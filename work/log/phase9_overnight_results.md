@@ -30,3 +30,10 @@ replicates of the two short windows alone (random keystreams, seeds 100-123):
 - **Page art** (`work/ornament_dots.py`, `work/log/phase9_art.md`): the border art is exactly mirror-symmetric; the
   five-dot figure (pages 24, 40, 73) is one rigid shape, mirrored or rotated; the three-dot rows (pages 50, 56) are one
   shape at two scales; pages 50-56 carry a six-sign cuneiform-style cluster at the top.
+- **Separator layer verified** (`work/separator_audit.py`, `phase9_separators.md`): 9,828 gaps, no missing and no extra
+  word separators; the only differences are the tick glyph (4 lone apostrophe ticks, quote ticks) that the transcription
+  lacks. Random separator loss cannot explain the word-length deficit (`work/seploss.py`).
+- **Research round 2** (`work/log/research_2026-10-17.md`): no public solve, nothing new from Cicada; community work uses the same
+  transcription lineage; the chain/step-domain family (flat step stream, no period) has been looked at by aldegonde and
+  Zhang only structurally (period, IoC, DFT), not with keystream screens, which `kscreen-chain` now does; the cuneiform
+  cluster on images 50-56 reads as base-60 numerals 17,13 / 55,1 = 1033 and 3301 (agent's reading, unchecked by a specialist).
