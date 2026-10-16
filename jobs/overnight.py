@@ -99,6 +99,7 @@ KS_GPU = KS / "gpu.py"
 PH_GPU = WORK / "phpmt" / "gpu.py"
 SELFTEST_CUDA = OVM / "kscreen_selftest_cuda.txt"
 GPU_VALIDATION = OVM / "gpu_validation.txt"
+CHAIN_SELFTEST = OVM / "chain_selftest.txt"
 DEVICE = "cpu"                   # the device campaigns are built for: "cuda" only after detect_device() validated it
 LANE = "main"                    # runner lane: lanes have their own lock, so a GPU lane and a CPU lane can run together
 # measured on the 2080 Ti against the 16-thread Ryzen 7 2700X (work/log/phase8_gpu.md); only scale the --hours estimates
@@ -206,6 +207,31 @@ def ks_summary(screens, null_name, verify_names):
     return out
 
 
+def chain_summary():
+    out = [f"- controls: {last_line(CHAIN_SELFTEST) or 'not run'}"]
+    allv, flagged = [], []
+    for a in range(1, 29):
+        v = {n: ks_best(f"chain/{n}_a{a}.tsv") for n in ("library", "lin2", "poly3", "null")}
+        if all(x is None for x in v.values()):
+            continue
+        allv.append((a, v))
+        if any((x or 0) >= 1.40 for n, x in v.items() if n != "null"):
+            flagged.append(a)
+    if not allv:
+        return out + ["- not run yet"]
+    f = lambda x: "-" if x is None else f"{x:.3f}"
+    out.append(f"- {len(allv)}/28 multipliers done. best IoC per multiplier (library / order-2 recurrences / cubic polynomials; matched null):")
+    for a, v in allv:
+        out.append(f"  - a={a:2d}: {f(v['library'])} / {f(v['lin2'])} / {f(v['poly3'])}; null {f(v['null'])}")
+    mx = max(((v[n] or 0, a, n) for a, v in allv for n in ("library", "lin2", "poly3")), default=(0, 0, ""))
+    out.append(f"- largest: {mx[0]:.3f} (a={mx[1]}, {mx[2]})" + ("; above 1.40 for a = " + ", ".join(map(str, flagged)) + ": see the verification files" if flagged else "; none reaches the 1.40 threshold"))
+    for a, _ in allv:
+        line = last_line(RES / "kscreen" / "chain" / f"library_a{a}_verify.txt", r"re-decoded hits")
+        if line and ("0 of" not in line):
+            out.append(f"  - a={a} verification: {line}")
+    return out
+
+
 def selftest_ok():
     return SELFTEST.exists() and "SELFTEST PASSED" in SELFTEST.read_text(encoding="utf-8")
 
@@ -282,6 +308,8 @@ def campaigns(threads):
             ks_screen("kscreen-restarts", "heads", "data/heads.txt", "file:data/library.ksb", "library_heads.tsv", T, hours=0.6),
             ks_screen("kscreen-restarts", "pages", "data/pages.txt", "file:data/library.ksb", "library_pages.tsv", T, hours=2.5),
             ks_screen("kscreen-restarts", "null-pages", "data/pages.txt", "rand:100:12", "null_pages.tsv", T, hours=0.4),
+            # the 91- and 121-rune heading windows reach IoC 1.7-2.1 by chance; their matched null is per window
+            ks_screen("kscreen-restarts", "null-heads", "data/heads.txt", "rand:600:13", "null_heads.tsv", T, hours=0.5),
             ks_verify("kscreen-restarts", "verify-heads", "library_heads.tsv"),
             ks_verify("kscreen-restarts", "verify-pages", "library_pages.tsv"),
         ],
@@ -373,6 +401,28 @@ def campaigns(threads):
         "(the single-section runs only covered LP2 page 0), then full-segment verification of the best candidates.",
         prng_steps(T),
         prng_summary))
+    chain = [
+        Step("kscreen-chain/windows", [PY, str(KS / "chain_windows.py")], hours=0.01,
+             outputs=[KS / "data" / "chain" / f"{k}_a28.txt" for k in ("segments", "heads", "pages")]),
+        # always rerun: the controls validate this machine's engines for the chain windows
+        Step("kscreen-chain/controls", [PY, str(KS / "chain_selftest.py"), "--engine", DEVICE, "--out", str(CHAIN_SELFTEST)],
+             hours=0.03, outputs=[CHAIN_SELFTEST], always=True, device=DEVICE),
+    ]
+    for a in range(1, 29):
+        w = f"data/chain/segments_a{a}.txt"
+        chain += [ks_screen("kscreen-chain", f"a{a}-library", w, "file:data/library.ksb", f"chain/library_a{a}.tsv", T, hours=0.12),
+                  ks_screen("kscreen-chain", f"a{a}-null", w, "rand:300:11", f"chain/null_a{a}.tsv", T, hours=0.03),
+                  ks_screen("kscreen-chain", f"a{a}-lin2", w, "lin:2", f"chain/lin2_a{a}.tsv", T, ("mults=1",), 0.01),
+                  ks_screen("kscreen-chain", f"a{a}-poly3", w, "poly:3", f"chain/poly3_a{a}.tsv", T, ("mults=1",), 0.01),
+                  ks_verify("kscreen-chain", f"a{a}-verify", f"chain/library_a{a}.tsv", top=10)]
+    C.append(Campaign(
+        "kscreen-chain", "Ciphertext-feedback ciphers c_i = a*c_{i-1} + p_i + k_i, a = 1..28",
+        "The doublet fingerprint (c_i - c_{i-1} flat except that 0 is missing) is what a cipher with ciphertext feedback gives "
+        "if the encryptor avoids the shift that would repeat a rune. Every earlier screen assumed c = p + k, so none of them "
+        "could see such a key. For each multiplier a the 8 sections are rewritten as c' = c_i - a*c_{i-1} with the collision "
+        "check against (1-a)*c_{i-1} (work/kscreen/chain_windows.py) and screened with the 1,447-keystream library, every order-2 "
+        "linear recurrence and every cubic polynomial, at every offset, both anti-repeat models, any plaintext language and alphabet.",
+        chain, chain_summary))
     return C
 
 

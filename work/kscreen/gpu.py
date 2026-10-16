@@ -41,11 +41,16 @@ def load_windows(path):
     for line in Path(path).read_text(encoding="utf-8").splitlines():
         if line.startswith("W "):
             p = line[2:].split()
-            wins.append({"name": p[0], "prev": int(p[1]) if len(p) > 1 else -1, "runes": np.zeros(0, np.uint8)})
+            wins.append({"name": p[0], "prev": int(p[1]) if len(p) > 1 else -1, "runes": np.zeros(0, np.uint8), "pv": None})
         elif line.startswith("R "):
             wins[-1]["runes"] = np.array(line[2:].split(), dtype=np.uint8)
+        elif line.startswith("P "):
+            wins[-1]["pv"] = np.array(line[2:].split(), dtype=np.int8)
     for w in wins:
         assert (w["runes"] < Q).all(), f"{w['name']}: rune out of range"
+        if w["pv"] is None:                       # default: compare with the previous rune (as the Rust engine)
+            w["pv"] = np.concatenate([[w["prev"]], w["runes"][:-1]]).astype(np.int8)
+        assert len(w["pv"]) == len(w["runes"]), f"{w['name']}: P line length"
     return wins
 
 
@@ -197,7 +202,7 @@ class Setup:
         self.d_runes = u8(np.concatenate([w["runes"][:n] for w, n in zip(self.wins, self.wn)]))
         self.d_wstart = u32(np.concatenate([[0], np.cumsum(self.wn)[:-1]]))
         self.d_wn, self.d_wab = u32(self.wn), u32(wab)
-        self.d_wprev = i32([w["prev"] for w in self.wins])
+        self.d_pv = cp.asarray(np.ascontiguousarray(np.concatenate([w["pv"][:n] for w, n in zip(self.wins, self.wn)]), np.int8))
         self.d_mults, self.d_models = u8(self.mults), u8(self.models)
         if fam.kind == "ks":
             lib = np.concatenate([v for _, v in fam.ks]) if fam.ks else np.zeros(1, np.uint8)
@@ -238,7 +243,7 @@ class Setup:
             pos = [self.ibase[i] for i in self.items] if self.fam.kind == "ks" else [0] * len(self.items)
             bufs["ibase"] = cp.asarray(np.array(pos, np.uint64))
         common = (self.d_lib, bufs["ibase"], bufs["pre"], bufs["ioff"], self.d_coef, np.int32(len(self.items)), np.uint64(t0))
-        data = (self.d_runes, self.d_wstart, self.d_wn, self.d_wprev, self.d_wab, self.d_mults, self.d_models,
+        data = (self.d_runes, self.d_wstart, self.d_wn, self.d_pv, self.d_wab, self.d_mults, self.d_models,
                 np.uint32(self.abort_s), np.float32(thr))
         outs = (bufs["hist"], bufs["wbest"], bufs["hcount"], bufs["hits"], np.uint32(HCAP), bufs["ab"],
                 dump if dump is not None else bufs["hits"])
@@ -367,6 +372,7 @@ def mode_trace(args):
 # ------------------------------------------------------------------ probe / selfcheck
 
 SELFCHECKS = [("data/segments.txt", "file:data/library.ksb", "items=40:44 offs=0:150 mults=1,28"),
+              ("data/chain/segments_a5.txt", "file:data/library.ksb", "items=30:33 offs=0:100 mults=1,28"),    # P lines (chain windows)
               ("data/heads.txt", "lin:2", "items=0:3 offs=0:120 mults=1"),
               ("data/pages.txt", "poly:2", "items=0:4 mults=1 models=1"),
               ("data/segments.txt", "rand:3:7", "offs=0:100 mults=3,28")]
@@ -380,6 +386,9 @@ def mode_selfcheck():
         print("selfcheck needs the CPU engine: cargo build --release in work/kscreen")
         return 1
     os.chdir(HERE)                                  # the SELFCHECKS paths are relative to work/kscreen
+    import chain_windows
+    if not os.path.exists("data/chain/segments_a5.txt"):
+        chain_windows.make(5, "segments")
     fallbacks = 0
     with tempfile.TemporaryDirectory() as d:
         for win, fam, extra in SELFCHECKS:

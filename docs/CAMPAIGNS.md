@@ -76,6 +76,7 @@ Hours below are rough figures for a 16-thread desktop CPU. The 15 W laptop these
 | `payload` | Hash identity and 832k passphrase AES/RC4/XOR decryptions | The earlier runs, and the community's, used the 5 wrong bytes | Built-in scoring of known formats | 0.6 |
 | `kscreen-multipliers` | The library with all 28 key multipliers (e.g. 3301·k ≡ 24·k) | Multiplied keys are cheap to cover | Matched null | 5.0 |
 | `prng-all` | PHP<7.1 `mt_rand`, glibc `random()`, .NET `Random`, a fresh seed per section | Only LP2 page 0 has been swept | Planted seeds (unit tests); `verify_top.py` z-scores | 20+ |
+| `kscreen-chain` | Ciphertext feedback c_i = a c_{i-1} + p_i + k_j for a = 1..28: the library, every order-2 recurrence and cubic polynomial on the sections rewritten as c' = c_i - a c_{i-1} | The doublet fingerprint is what such a cipher gives if it avoids a zero shift, and no earlier screen could see it (`work/log/phase9_chain.md`) | Planted feedback keys (a = 1, 7, 28) and wrong-a / random-key nulls (`chain_selftest.py`); matched null per a | 3.0 (1.5 on GPU) |
 
 ## Decision rules
 

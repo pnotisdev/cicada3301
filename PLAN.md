@@ -359,6 +359,23 @@ Details: `work/log/phase8_gpu.md`, `docs/GPU_PORT.md`.
 - **Queue started** as two lanes: GPU (kscreen restarts / recurrences / multipliers, prng-all) and CPU (rescreen,
   dsearch, payload). Results go to the usual `PLAN.md` / `results/` places as they finish.
 
+### Phase 9 – Page art, section statistics, ciphertext feedback (2026-10-17, overnight)
+Details: `work/log/phase9_overnight_results.md`, `phase9_art.md`, `phase9_chain.md`.
+- **Queue.** Two lanes (GPU: kscreen restarts / recurrences / multipliers, prng-all; CPU: rescreen, dsearch, payload). The
+  short heading windows (91 and 121 runes) need their own null: head0.13@1433 peaks at 2.12 against a null of 1.90-2.08
+  over 24 replicates (p ~ 0.01 for that window, not significant overall; its best offset is unrelated to the other
+  windows'); head0.14@1468 equals the null median.
+- **Other AI's branch `research/restart-columns`** merged after review: no key restart at any unit type (a word-unit bug
+  fixed, tests rewritten).
+- **Section statistics:** all eight unsolved sections share the doublet deficit, flat IoC and word-length shape; the
+  within-word distance-5 excess is +3.7 sigma pooled (about p = 0.002 after looking at 9 distances), spread over sections
+  and word lengths.
+- **Page art:** mirror-symmetric borders; the five-dot figure (pages 24, 40, 73) is one rigid shape reused; three-dot rows on
+  pages 50 and 56 share a shape; pages 50-56 carry a six-sign cuneiform-style cluster (unidentified).
+- **New hypothesis family, ciphertext feedback c_i = a c_{i-1} + p_i + k_j:** it reproduces the doublet fingerprint natively
+  and no earlier screen could see it. Reduction to the existing engine (P lines), positive and null controls, CPU/GPU
+  agreement; no short periodic key in any of the 28 transforms. Campaign `kscreen-chain` queued behind the GPU lane.
+
 ### Phase 5 – Validation and reporting
 - A plaintext counts as solved only if it scores well across a whole segment (word hits and IoC about 1.8)
   and the same rule works on the next page.

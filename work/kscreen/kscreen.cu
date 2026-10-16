@@ -32,7 +32,7 @@ __device__ __forceinline__ void take(St &st, u32 t, u32 nj) {
 #define MK(jj) (((u32)kp[(jj)] * m) % Q)
 
 // Returns the best coincidence sum s; *used is the number of runes decoded (n, or abort_at, or max(i, 2) if the beam died).
-__device__ u32 beam_decode(const u8 *__restrict__ c, int prev0, const u8 *__restrict__ kp, u32 m, int model, int n,
+__device__ u32 beam_decode(const u8 *__restrict__ c, const signed char *__restrict__ pv, const u8 *__restrict__ kp, u32 m, int model, int n,
                            int abort_at, u32 abort_s, u32 *used) {
     St cur[CAP];
     St ext[2 * BEAM];
@@ -42,7 +42,7 @@ __device__ u32 beam_decode(const u8 *__restrict__ c, int prev0, const u8 *__rest
     for (int x = 0; x < Q; x++) cur[0].cnt[x] = 0;
     for (int i = 0; i < n; i++) {
         const u32 ci = c[i];
-        const int prev = i == 0 ? prev0 : (int)c[i - 1];
+        const int prev = (int)pv[i];                 // the value a candidate ciphertext is compared with (P line)
         int ne = 0;
         int idx = 0;
         while (idx < nc) {
@@ -164,7 +164,7 @@ __device__ __forceinline__ bool bump(u32 *sc, int q, u32 t, u32 &s) {
     return cv != 255u;
 }
 
-__device__ bool beam_fast(const u8 *__restrict__ c, int prev0, const u8 *__restrict__ kp, u32 m, int model, int n,
+__device__ bool beam_fast(const u8 *__restrict__ c, const signed char *__restrict__ pv, const u8 *__restrict__ kp, u32 m, int model, int n,
                           int abort_at, u32 abort_s, u32 *used, u32 *best_out, u32 *sc) {
     u32 J[KSLOT], S[KSLOT];
     int nc = 1;
@@ -174,7 +174,7 @@ __device__ bool beam_fast(const u8 *__restrict__ c, int prev0, const u8 *__restr
     for (int w = 0; w < 8; w++) SC(0, w) = 0;
     for (int i = 0; i < n; i++) {
         const u32 ci = c[i];
-        const int prev = i == 0 ? prev0 : (int)c[i - 1];
+        const int prev = (int)pv[i];                 // the value a candidate ciphertext is compared with (P line)
         const int nc0 = nc;
         int ne = 0;
         bool ok = true;
@@ -341,7 +341,7 @@ extern "C" __global__ void __launch_bounds__(SBLK)
 screen_kernel(const u8 *__restrict__ lib, const u64 *__restrict__ ibase, const u64 *__restrict__ pre,
               const u32 *__restrict__ ioff0, const u8 *__restrict__ icoef, const int n_items, const u64 t0,
               const u64 n_tasks, const u8 *__restrict__ runes, const u32 *__restrict__ wstart,
-              const u32 *__restrict__ wn, const int *__restrict__ wprev, const u32 *__restrict__ wab,
+              const u32 *__restrict__ wn, const signed char *__restrict__ wpv, const u32 *__restrict__ wab,
               const u8 *__restrict__ mults, const u8 *__restrict__ models, const u32 abort_s, const float thr,
               u64 *ghist, u64 *wbest, u32 *hcount, u32 *hits, const u32 hcap, u64 *gaborted, u32 *dump, u32 *fb,
               u32 *fbcount, const u32 fbcap) {
@@ -367,7 +367,7 @@ screen_kernel(const u8 *__restrict__ lib, const u64 *__restrict__ ibase, const u
             for (int wi = 0; wi < NW; wi++) {
                 const int n = (int)wn[wi];
                 u32 used, s;
-                if (!beam_fast(runes + wstart[wi], wprev[wi], kp, m, model, n, (int)wab[wi], abort_s, &used, &s,
+                if (!beam_fast(runes + wstart[wi], wpv + wstart[wi], kp, m, model, n, (int)wab[wi], abort_s, &used, &s,
                                scnt + threadIdx.x)) {
                     const u32 q = atomicAdd(fbcount, 1u);
                     if (q < fbcap) {
@@ -395,7 +395,7 @@ extern "C" __global__ void __launch_bounds__(128)
 fallback_kernel(const u8 *__restrict__ lib, const u64 *__restrict__ ibase, const u64 *__restrict__ pre,
                 const u32 *__restrict__ ioff0, const u8 *__restrict__ icoef, const int n_items, const u64 t0,
                 const u8 *__restrict__ runes, const u32 *__restrict__ wstart, const u32 *__restrict__ wn,
-                const int *__restrict__ wprev, const u32 *__restrict__ wab, const u8 *__restrict__ mults,
+                const signed char *__restrict__ wpv, const u32 *__restrict__ wab, const u8 *__restrict__ mults,
                 const u8 *__restrict__ models, const u32 abort_s, const float thr, u64 *ghist, u64 *wbest,
                 u32 *hcount, u32 *hits, const u32 hcap, u64 *gaborted, u32 *dump, const u32 *__restrict__ fb,
                 const u32 n_fb) {
@@ -414,7 +414,7 @@ fallback_kernel(const u8 *__restrict__ lib, const u64 *__restrict__ ibase, const
 #endif
     const int model = models[mdl], n = (int)wn[wi];
     u32 used;
-    const u32 s = beam_decode(runes + wstart[wi], wprev[wi], kp, m, model, n, (int)wab[wi], abort_s, &used);
+    const u32 s = beam_decode(runes + wstart[wi], wpv + wstart[wi], kp, m, model, n, (int)wab[wi], abort_s, &used);
 #if DUMP
     const u64 di = (((task - t0) * NMODEL + mdl) * NW + wi) * 2;
     dump[di] = s;

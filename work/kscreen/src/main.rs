@@ -50,6 +50,11 @@ struct Win {
     name: String,
     prev: i32,
     runes: Vec<u8>,
+    /// the value the collision check compares a candidate ciphertext with, per position: by default the previous
+    /// rune (`prev` before the first). A `P` line in the windows file overrides it, which is how ciphertext-feedback
+    /// hypotheses c_i = a*c_{i-1} + p_i + k_i are screened (chain_windows.py): there the window holds
+    /// c'_i = c_i - a*c_{i-1} and the check compares with (1-a)*c_{i-1}.
+    pv: Vec<i32>,
     lens: String,
 }
 
@@ -61,13 +66,21 @@ fn load_windows(path: &str) -> Vec<Win> {
             let mut it = rest.split_whitespace();
             let name = it.next().expect("window name").to_string();
             let prev = it.next().map(|x| x.parse().expect("prev rune")).unwrap_or(-1);
-            out.push(Win { name, prev, runes: Vec::new(), lens: String::new() });
+            out.push(Win { name, prev, runes: Vec::new(), pv: Vec::new(), lens: String::new() });
         } else if let Some(rest) = line.strip_prefix("R ") {
             let w = out.last_mut().expect("R line before W line");
             w.runes = rest.split_whitespace().map(|x| x.parse::<u8>().expect("rune")).collect();
         } else if let Some(rest) = line.strip_prefix("L ") {
             out.last_mut().expect("L line before W line").lens = rest.to_string();
+        } else if let Some(rest) = line.strip_prefix("P ") {
+            out.last_mut().expect("P line before W line").pv = rest.split_whitespace().map(|x| x.parse().expect("pv")).collect();
         }
+    }
+    for w in out.iter_mut() {
+        if w.pv.is_empty() {
+            w.pv = (0..w.runes.len()).map(|i| if i == 0 { w.prev } else { w.runes[i - 1] as i32 }).collect();
+        }
+        assert_eq!(w.pv.len(), w.runes.len(), "{}: P line length", w.name);
     }
     for w in &out {
         assert!(w.runes.iter().all(|&r| (r as usize) < Q), "{}: rune out of range", w.name);
@@ -323,7 +336,7 @@ fn take(st: &mut St, t: u8, nj: usize) {
 #[allow(clippy::too_many_arguments)]
 fn ioc_beam(
     c: &[u8],
-    prev0: i32,
+    pvs: &[i32],
     mk: &[u8],
     model: u8,
     n: usize,
@@ -339,7 +352,7 @@ fn ioc_beam(
     let klen = mk.len();
     for i in 0..n {
         let ci = c[i] as usize;
-        let prev: i32 = if i == 0 { prev0 } else { c[i - 1] as i32 };
+        let prev: i32 = pvs[i];
         extra.clear();
         let mut idx = 0;
         while idx < cur.len() {
@@ -421,7 +434,7 @@ fn ioc_of(s: u32, n: usize) -> f64 {
 }
 
 /// Full decode for verification: like ioc_beam (no abort) but keeps each state's plaintext and pointers.
-fn full_decode(c: &[u8], prev0: i32, mk: &[u8], model: u8, n: usize, beam: usize) -> (f64, Vec<u8>, Vec<u32>) {
+fn full_decode(c: &[u8], pvs: &[i32], mk: &[u8], model: u8, n: usize, beam: usize) -> (f64, Vec<u8>, Vec<u32>) {
     #[derive(Clone)]
     struct S2 {
         j: usize,
@@ -443,7 +456,7 @@ fn full_decode(c: &[u8], prev0: i32, mk: &[u8], model: u8, n: usize, beam: usize
     };
     for i in 0..n {
         let ci = c[i] as usize;
-        let prev: i32 = if i == 0 { prev0 } else { c[i - 1] as i32 };
+        let prev: i32 = pvs[i];
         let mut next: Vec<S2> = Vec::new();
         for st in &cur {
             let j = st.j;
@@ -626,7 +639,7 @@ fn mode_screen(args: &[String]) {
                                     let n = wn[wi];
                                     let ab = if abort_at > 0 && abort_at < n { abort_at } else { 0 };
                                     let (s, used) =
-                                        ioc_beam(&w.runes, w.prev, &mk, model, n, beam, ab, abort_s, &tb, &mut cur, &mut extra);
+                                        ioc_beam(&w.runes, &w.pv, &mk, model, n, beam, ab, abort_s, &tb, &mut cur, &mut extra);
                                     let ioc = ioc_of(s, used) as f32;
                                     runs += 1;
                                     if used < n {
@@ -786,7 +799,7 @@ fn mode_trace(args: &[String]) {
                     for (wi, w) in wins.iter().enumerate() {
                         let n = w.runes.len().min(n_req);
                         let ab = if abort_at > 0 && abort_at < n { abort_at } else { 0 };
-                        let (s, used) = ioc_beam(&w.runes, w.prev, &mk, model, n, beam, ab, abort_s, &tb, &mut cur, &mut extra);
+                        let (s, used) = ioc_beam(&w.runes, &w.pv, &mk, model, n, beam, ab, abort_s, &tb, &mut cur, &mut extra);
                         writeln!(out, "{item} {off} {m} {model} {wi} {s} {used}").unwrap();
                     }
                 }
@@ -888,7 +901,7 @@ fn mode_verify(args: &[String]) {
         let mut key = vec![0u8; len];
         fam.fill(item, &coeffs, off, &mut key);
         let mk: Vec<u8> = key.iter().map(|&k| (k as usize * m % Q) as u8).collect();
-        let (ioc, plain, ptr) = full_decode(&w.runes, w.prev, &mk, model, n, beam);
+        let (ioc, plain, ptr) = full_decode(&w.runes, &w.pv, &mk, model, n, beam);
         let skips = ptr.windows(2).filter(|p| p[1] != p[0] + 1).count();
         println!("window {} n {} ioc {:.4} pointer_jumps {}", w.name, plain.len(), ioc, skips);
         println!("plain {}", join(&plain));
@@ -903,7 +916,7 @@ fn mode_verify(args: &[String]) {
                 let co = rng.below(noff as u64) as usize;
                 fam.fill(item, &coeffs, co, &mut key);
                 let cmk: Vec<u8> = key.iter().map(|&k| (k as usize * m % Q) as u8).collect();
-                vals.push(full_decode(&w.runes, w.prev, &cmk, model, n, beam).0);
+                vals.push(full_decode(&w.runes, &w.pv, &cmk, model, n, beam).0);
             }
             let mx = vals.iter().cloned().fold(0.0f64, f64::max);
             let mean = vals.iter().sum::<f64>() / vals.len() as f64;
