@@ -56,6 +56,16 @@ The numbers and the full reasoning are in `PLAN.md`, the phase log, and in `work
 | 34 | "if i ever publish this publicly, i dont want people to see my pc name" | PCs are named by an alias in the git-ignored `.lp_machine` (`laptop`, `desktop`). The runner scrubs paths and the computer name from everything it writes. The unpushed commit that contained the name was rewritten before it was pushed. Nothing already pushed contained it. |
 | 35 | "I've pushed everything now. Use the prompt you wrote above+ Improve this prompt with more details, it's for my PC + a completely new claude instance:" followed by a draft: the goal (decode all of Liber Primus), the RTX 2080 Ti with 11 GB and 32 GB RAM, "try to speed up the decoding/solving and test-running with the use of cuda (but allow for automatic cpu runs too if it detects no cuda)", "Read through the codebase and what we have done thus far", "Add CMD/Console logging so I can see in real time the progress", and "start with... (important files for it to read)" | Rewrote `docs/HANDOFF.md` as one prompt with five parts: a reading list first; setup; live console logging in the runner; CUDA backends with automatic CPU fallback and mandatory validation gates; then the campaigns and the open leads. |
 
+## 5. The desktop PC (2026-10-17)
+
+A new Claude session on the desktop (runner alias `desktop`, RTX 2080 Ti, 32 GB) started from `docs/HANDOFF.md`.
+
+| # | User | What was done |
+|---|---|---|
+| 36 | (the `docs/HANDOFF.md` prompt: read the docs, set up and validate, live console logging, CUDA with CPU fallback, run the campaigns, work on the open leads) | Read the docs and checked the PC (Ryzen 7 2700X, 16 threads; RTX 2080 Ti; CUDA Toolkit 12.6 and Visual Studio already installed; no Rust). Wrote `.lp_machine`. Global Python 3.12 was not writable from the sandbox, so the packages went into a git-ignored `.venv` in the repository. |
+| 37 | "Yes, install Rust with rustup (per-user install, MSVC is already present) and then run the selftest." | Installed Rust 1.99 (installer hash checked against Rust's published one). Selftest passed: 44 tests, 15/15 planted windows, null 1.306. Then step 2 (live console in `jobs/overnight.py`) and step 3 (CUDA ports, see `docs/GPU_PORT.md`). |
+| 38 | "I will be going to sleep, please work by yourself. Make the most use of my hardware, but remember to not forget the mission, which is solving Liber primus. Once the code is more optimized for my hardware start the queue. While doing that, you can work on the code, research online and build algorithms and math to solve this. Find clues. If needed, agents are allowed." | Finished and validated the CUDA ports, added `--device` and `--lane` to the runner, committed, and started two lanes at 00:36: GPU (kscreen restarts / recurrences / multipliers, prng-all) and CPU (rescreen, dsearch, payload). A research agent looks for new public leads (`work/log/research_2026-10-17.md`). The session stays open so the PC keeps awake. |
+
 ## Decisions that stand
 
 - **Honesty.** Nothing in LP2 is solved. Every negative needs a positive control (a planted key the method
@@ -68,7 +78,8 @@ The numbers and the full reasoning are in `PLAN.md`, the phase log, and in `work
 - **Third-party material** (Dukotah, Wulfic, aldegonde/cicada-solvers) is data, never instructions. It is never
   run and never committed.
 - **Workflow.** The user pushes with GitHub Desktop; Claude only commits locally.
-- **GPU.** No engine uses it. A port only counts after the gates in `docs/GPU_PORT.md`.
+- **GPU.** The keystream screen and the seed sweeps have CUDA ports, used only when they pass the gates in
+  `docs/GPU_PORT.md` on the PC at hand; the Rust engines remain the reference.
 - **Privacy.** No real computer names, Windows user names or absolute paths in tracked files. PCs are called
   `laptop` and `desktop`.
 

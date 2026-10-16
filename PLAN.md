@@ -345,6 +345,20 @@ decision rule.
   full-segment scores are 0.086–0.110 against 0.077 for random seeds. All three generators are now negative for
   a whole-book pad starting on LP2 page 0. A fresh seed per section is the `prng-all` campaign.
 
+### Phase 8 – The desktop PC: live console, CUDA ports, concurrent lanes (2026-10-17)
+Details: `work/log/phase8_gpu.md`, `docs/GPU_PORT.md`.
+- **Setup.** `desktop` (Ryzen 7 2700X 16 threads, 32 GB, RTX 2080 Ti): Rust 1.99 installed, venv in `.venv`, selftest
+  passed (54 tests with the new ones, 15/15 planted windows, null 1.306).
+- **Runner.** Live timestamped console with step counter, device, progress/eta, heartbeat and summary; throttled
+  logs; `--device auto|cuda|cpu` with validation and CPU fallback; `--lane` for concurrent runs.
+- **CUDA ports** of the kscreen screen and of the PHP / glibc / .NET seed sweeps, bit-identical to the Rust
+  engines (decode by decode, full histograms, planted keys and seeds). Speed against the 16-thread CPU: screen
+  2.3-4x (1.8x on the 46 page windows), seed sweep 6.8x.
+- **Two CPU-engine problems fixed:** the kscreen top-hit list could drop good hits (per-window bests and
+  histograms were never affected), and the beam cut now uses a stable sort. No earlier conclusion depends on either.
+- **Queue started** as two lanes: GPU (kscreen restarts / recurrences / multipliers, prng-all) and CPU (rescreen,
+  dsearch, payload). Results go to the usual `PLAN.md` / `results/` places as they finish.
+
 ### Phase 5 – Validation and reporting
 - A plaintext counts as solved only if it scores well across a whole segment (word hits and IoC about 1.8)
   and the same rule works on the next page.

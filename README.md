@@ -21,10 +21,12 @@ python scripts/fetch_data.py                 # verifies the committed data (or r
 (cd work/phpmt && cargo build --release)     # PRNG-pad sweep engine
 (cd work/walk  && cargo build --release)     # word-scoped solver and key-free alphabet search
 (cd work/kscreen && cargo build --release)   # language-agnostic keystream screen
-python -m unittest discover -s work/tests    # 44 tests, about 4 minutes
+python -m unittest discover -s work/tests    # 54 tests, about 6 minutes (the 6 GPU tests skip without CUDA)
 ```
 
-On Linux/macOS, `jobs/setup.sh` does all of the above. The book (`LiberPrimus.pdf`), the 75 original page
+On Linux/macOS, `jobs/setup.sh` does all of the above. On a Windows PC where the global Python is not writable,
+use a virtual environment in the repository (`python -m venv .venv`, git-ignored) and run everything with
+`.venv\Scripts\python.exe`. The book (`LiberPrimus.pdf`), the 75 original page
 images (`work/orig/`) and the text data (`work/ref/`) are committed. The sources are listed in
 `scripts/fetch_data.py`, which checks them against pinned SHA-256 hashes.
 
@@ -51,7 +53,7 @@ campaigns:
 
 | Job | What it does | Rough cost (16 threads) |
 |---|---|---|
-| `jobs/prng_sweeps.sh` | Tests every seed of PHP<7.1 `mt_rand`, glibc `random()` (PHP 5 `rand()` on Linux) and .NET `System.Random` as the key generator. Each runs 16 cipher variants and 2 anti-repeat models through a skip-aware decoder. `WINDOWS=07`: one whole-book pad; `WINDOWS=all`: a fresh seed per section. | Window 0.7: ~1.5 h per generator; all 8 windows: ~12 h per generator |
+| `jobs/prng_sweeps.sh` | Tests every seed of PHP<7.1 `mt_rand`, glibc `random()` (PHP 5 `rand()` on Linux) and .NET `System.Random` as the key generator. Each runs 16 cipher variants and 2 anti-repeat models through a skip-aware decoder. `WINDOWS=07`: one whole-book pad; `WINDOWS=all`: a fresh seed per section. | Window 0.7: ~1.5 h per generator on a laptop; all 8 windows: ~5 h per generator on a 16-thread desktop, ~45 min on the GPU |
 | `jobs/walk_dsearch.sh` | Key-free search for a secret outer alphabet behind a per-word additive key, with m = 1…8 position phases. Runs against structure-free surrogates with LP2's word lengths and anti-repeat rule. | ~2 min per run at 300k iterations; scale `ITERS`/`RESTARTS` up |
 | `python work/attack.py slide` | Number-theoretic keystreams (primes, φ, π…) at every start offset | ~70 min |
 | `python work/heading_screen.py` | The same keystreams restarted at every red heading and paragraph | ~2 h |
@@ -61,9 +63,17 @@ Environment knobs: `THREADS`, `GENS`, `WINDOWS`, `ITERS`, `RESTARTS`, `MS`, `GAP
 against random-seed controls. A real key stands out at z ≈ +60 or more (planted control: 0.815 against
 0.111 ± 0.010).
 
-The engines are CPU code. The seed sweep is embarrassingly parallel, so a CUDA port of
-`work/phpmt/src/main.rs` (generator, key mapping, early-abort decoder) is the obvious next step for a GPU
-machine.
+### GPU (optional)
+
+The Rust engines are the reference. `work/kscreen/gpu.py` and `work/phpmt/gpu.py` are CUDA ports of the keystream
+screen and of the seed sweeps (CuPy, kernels compiled at run time with NVRTC). They reproduce the CPU engines
+decode for decode and are validated before every use. Install: `python -m pip install -r requirements-gpu.txt`
+(an NVIDIA driver is needed; NVRTC comes from the installed CUDA Toolkit 12.x, or from the pip package
+`nvidia-cuda-nvrtc-cu12`). `python jobs/overnight.py run --device auto` (the default) uses CUDA only if the
+probe, the decode-by-decode selfchecks and the planted-key controls pass, and otherwise runs the CPU engines
+unchanged; `--device cpu` forces the CPU, `--device cuda` stops if CUDA is unusable. Measured on an RTX 2080 Ti
+against a 16-thread Ryzen 7 2700X: the keystream screen 1.8–4×, the seed sweeps 6.8×. Details and the validation
+gates are in `docs/GPU_PORT.md`.
 
 ## Layout
 
@@ -86,8 +96,10 @@ work/
   drift_period.py          periodic-key scan that allows for the skip rule's key drift, with power curves
   wordlen.py               word-length test: LP2 vs English in runes / in letters / with nulls
   kscreen/                 Rust: language- and alphabet-agnostic keystream screen (IoC under both anti-repeat
-                           models), keystream library export, verification, selftest
-  phpmt/                   Rust: PHP/glibc/.NET seed sweeps (bit-exact generators, validated vectors in ref/)
+                           models), keystream library export, verification, selftest; gpu.py + kscreen.cu: CUDA port
+  phpmt/                   Rust: PHP/glibc/.NET seed sweeps (bit-exact generators, validated vectors in ref/);
+                           gpu.py + phpmt.cu: CUDA port
+  gpu_common.py            CUDA probe shared by the two GPU drivers
   walk/                    Rust: word-scoped solver (annealing) and key-free D-search (dsearch)
   ref/                     transcription (rtkd/iddqd), errata, word list, Emerson text
   orig/                    the 75 original page images

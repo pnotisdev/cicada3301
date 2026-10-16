@@ -12,7 +12,7 @@ Nothing in LP2 is solved yet. Never imply otherwise.
    - `docs/CAMPAIGNS.md`: the overnight campaigns and their decision rules;
    - the newest `results/overnight/<machine>/REPORT.md`.
 3. On a PC where `work/*/target/` or `work/kscreen/data/` is missing, run `python jobs/overnight.py run
-   selftest` first. It builds the engines, exports the data, runs the 44 tests and the screen's controls.
+   selftest` first. It builds the engines, exports the data, runs the 54 tests and the screen's controls.
 
 ## Rules
 - **Controls or it didn't happen.** Every negative needs a positive control (a planted key the method

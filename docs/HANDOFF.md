@@ -31,7 +31,7 @@ START WITH: read these, in this order, before changing anything.
     - work/walk/src/dsearch.rs - the key-free alphabet search;
     - work/attack.py and work/keystreams.py - the dictionary screens and the keystream library;
     - work/lp.py - runes, transcription, the solved pages;
-    - work/tests/ - 44 regression tests.
+    - work/tests/ - 54 regression tests.
     The work/log/*.md files hold the write-ups of each experiment.
 Then reply with:
  (a) where the project stands, in 5-10 lines;
@@ -44,7 +44,7 @@ STEP 1 - Set up and validate this PC.
    this PC's runner folder, results/overnight/desktop/, so the real computer name never appears in the
    repository.
  - Check that Python 3.11+ and Rust/cargo are installed. Run `python -m pip install -r requirements.txt`, then
-   `python jobs/overnight.py run selftest`. That builds the engines, exports the data, runs the 44 tests and
+   `python jobs/overnight.py run selftest`. That builds the engines, exports the data, runs the 54 tests and
    the keystream-screen controls.
  - Continue only if every test passes and results/overnight/desktop/kscreen_selftest.txt ends with
    SELFTEST PASSED.

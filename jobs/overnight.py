@@ -234,7 +234,7 @@ def campaigns(threads):
 
     C.append(Campaign(
         "selftest", "Regression tests and keystream-screen controls",
-        "The 44 unit tests (solved pages, transcription, statistics, engines) and the kscreen plant/recover and "
+        "The 54 unit tests (solved pages, transcription, statistics, engines) and the kscreen plant/recover and "
         "random-key null. Nothing else is trusted unless this passes.",
         [
             Step("selftest/unittests", [PY, "-m", "unittest", "discover", "-s", "work/tests"], hours=0.1,

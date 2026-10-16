@@ -7,10 +7,12 @@ null controls (random keys under identical settings), so a "nothing found" resul
 ## First time on a new Windows PC
 
 1. Install Python 3.12 (python.org) and Rust (rustup.rs). Accept rustup's offer to install the Visual Studio
-   C++ build tools.
+   C++ build tools (or have Visual Studio with the C++ workload). If the global Python cannot be written to, use a
+   virtual environment in the repository: `python -m venv .venv`, then run everything with `.venv\Scripts\python.exe`.
 2. Clone the repository with GitHub Desktop.
-3. In PowerShell, from the repository folder, run `python -m pip install -r requirements.txt`.
-4. Run `python jobs/overnight.py run selftest`. It builds everything, exports the data, runs the 44 tests and
+3. In PowerShell, from the repository folder, run `python -m pip install -r requirements.txt` (and, for an NVIDIA GPU,
+   `python -m pip install -r requirements-gpu.txt`).
+4. Run `python jobs/overnight.py run selftest`. It builds everything, exports the data, runs the 54 tests and
    the kscreen controls (about 10 minutes). Continue only if `results/overnight/<machine>/kscreen_selftest.txt` ends with
    `SELFTEST PASSED`.
 5. Disable sleep while plugged in (Settings → System → Power).
@@ -64,7 +66,7 @@ Hours below are rough figures for a 16-thread desktop CPU. The 15 W laptop these
 
 | Campaign | Hypothesis tested | Why now | Controls | ~Hours |
 |---|---|---|---|---|
-| `selftest` | (none) 44 unit tests, plus kscreen plant/recover | Every later null depends on it | 15 planted windows, 5 key families, both models, substituted alphabets; random-key null | 0.2 |
+| `selftest` | (none) 54 unit tests, plus kscreen plant/recover | Every later null depends on it | 15 planted windows, 5 key families, both models, substituted alphabets; random-key null | 0.2 |
 | `analysis` | Periodic key under the skip rule; plaintext word-length conventions | The old lag scan cannot see periods beyond ~60 when skips shift the key | Power curve with planted periodic keys; random-rune null | 0.4 |
 | `kscreen-sections` | c = D(p) ± m·k + b for 1,447 library keystreams at every offset, any plaintext language, any alphabet D | Every earlier screen scored English words, which assumes English and an unscrambled alphabet | Matched null: 300 random keystreams | 0.8 |
 | `kscreen-restarts` | The same, with the key restarting at the 10 headings or 46 page starts | Restart points are natural for a hand-run scheme | Null over the page windows | 3.6 |
@@ -133,7 +135,21 @@ Every candidate so far, from any method, has been selection noise.
   constant shift and by the language. One kscreen pass covers all of those at once, under both anti-repeat
   models.
 
-## Using a GPU
+## Using a GPU, and lanes
 
-None of the engines use the GPU. The 2080 Ti would only pay off for `prng-all`, the one multi-night job.
-Porting it is planned in `docs/GPU_PORT.md`, with the validation gates any GPU result must pass first.
+`--device auto` (the default) uses the CUDA ports of the keystream screen and of the seed sweeps if, and only if, the
+validation in `docs/GPU_PORT.md` passes on this PC (probe, decode-by-decode selfchecks, planted-key controls; the
+record is `results/overnight/<machine>/gpu_validation.txt`). Otherwise the CPU engines run unchanged. `--device cpu`
+forces the CPU; `--device cuda` stops if CUDA is unusable. The device of every step is on the console prefix and in
+`state.json`. A CUDA step that fails is rerun on the CPU engine. The hour estimates in the table above are for the
+CPU; with CUDA the runner divides the screens by 3 and the seed sweeps by 7 (measured, see `GPU_PORT.md`).
+
+`--lane NAME` gives a run its own lock, so two runs can work at once. The GPU does the screens and sweeps with one
+CPU thread each, which leaves the CPU free:
+
+```
+python jobs/overnight.py run kscreen-restarts kscreen-recurrences kscreen-multipliers prng-all --lane gpu --threads 2
+python jobs/overnight.py run rescreen dsearch payload --device cpu --lane cpu --threads 14
+```
+
+Never give two lanes the same campaign. Per-step state is merged on write, so lanes can share `state.json`.
