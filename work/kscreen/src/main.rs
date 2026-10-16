@@ -18,7 +18,7 @@
 //!
 //! Modes:
 //!   screen <windows.txt> <family> <out.tsv> [n=300] [beam=16] [mults=1,28|all|a,b,..] [models=0,1]
-//!          [threads=T] [top=2000] [abort=150:1.2|0] [only=<item>] [items=a:b] [minlen=50]
+//!          [threads=T] [top=2000] [abort=150:1.2|0] [only=<item>] [items=a:b] [minlen=50] [dir=back]
 //!   trace  <windows.txt> <family> <out.txt> [same options as screen] [offs=a:b]
 //!          (one line per decode, for the decode-by-decode comparison with the GPU port)
 //!   plant  <plain_windows.txt> <family> <item> <offset> <mult> <model> <keep> <seed> <subst 0|1> <out.txt>
@@ -38,10 +38,15 @@ use std::env;
 use std::fs;
 use std::io::{BufWriter, Write};
 use std::sync::Mutex;
-use std::sync::atomic::{AtomicUsize, Ordering};
+use std::sync::atomic::{AtomicBool, AtomicUsize, Ordering};
 use std::time::Instant;
 
 const Q: usize = 29;
+
+/// dir=back: the key runs BACKWARD through the text (read from the end) while the encryptor still works front to back.
+/// Decoding then follows the text with a forward pointer into the reversed key; since a re-draw uses a LOWER key index,
+/// in pointer order the used key comes first and the colliding draws follow it (the opposite of the forward model).
+static BACK: AtomicBool = AtomicBool::new(false);
 const HBINS: usize = 400; // IoC histogram, bins of 0.01 over [0, 4)
 
 // ------------------------------------------------------------------ inputs
@@ -350,6 +355,7 @@ fn ioc_beam(
     cur.clear();
     cur.push(St { j: 0, s: 0, cnt: [0; Q] });
     let klen = mk.len();
+    let back = BACK.load(Ordering::Relaxed);
     for i in 0..n {
         let ci = c[i] as usize;
         let prev: i32 = pvs[i];
@@ -362,9 +368,29 @@ fn ioc_beam(
                 continue;
             }
             let k0 = mk[j] as usize;
+            let t0 = tb.sub[ci][k0];
             if prev >= 0 {
                 let pv = prev as u8;
-                if model == 0 {
+                if back {
+                    let k1 = mk[j + 1] as usize;
+                    let k2 = mk[j + 2] as usize;
+                    if model == 0 {
+                        if tb.add[t0 as usize][k1] == pv {
+                            let mut s2 = cur[idx];
+                            take(&mut s2, t0, j + 2);
+                            extra.push(s2);
+                        }
+                        if tb.add[t0 as usize][k1] == pv && tb.add[t0 as usize][k2] == pv {
+                            let mut s3 = cur[idx];
+                            take(&mut s3, t0, j + 3);
+                            extra.push(s3);
+                        }
+                    } else if tb.add[t0 as usize][k2] == pv {
+                        let mut s3 = cur[idx];
+                        take(&mut s3, t0, j + 3);
+                        extra.push(s3);
+                    }
+                } else if model == 0 {
                     let k1 = mk[j + 1] as usize;
                     let t1 = tb.sub[ci][k1];
                     if tb.add[t1 as usize][k0] == pv {
@@ -389,8 +415,13 @@ fn ioc_beam(
                     }
                 }
             }
-            let nj = if model == 1 && prev == ci as i32 { j + 2 } else { j + 1 };
-            take(&mut cur[idx], tb.sub[ci][k0], nj);
+            if back && model == 1 && prev >= 0 && prev == ci as i32 {
+                // a kept doublet, backward: the coin has the lower key index and the used key follows it
+                take(&mut cur[idx], tb.sub[ci][mk[j + 1] as usize], j + 2);
+            } else {
+                let nj = if !back && model == 1 && prev == ci as i32 { j + 2 } else { j + 1 };
+                take(&mut cur[idx], t0, nj);
+            }
             idx += 1;
         }
         cur.extend_from_slice(extra);
@@ -454,6 +485,7 @@ fn full_decode(c: &[u8], pvs: &[i32], mk: &[u8], model: u8, n: usize, beam: usiz
         x.j = nj;
         x
     };
+    let back = BACK.load(Ordering::Relaxed);
     for i in 0..n {
         let ci = c[i] as usize;
         let prev: i32 = pvs[i];
@@ -464,6 +496,29 @@ fn full_decode(c: &[u8], pvs: &[i32], mk: &[u8], model: u8, n: usize, beam: usiz
                 continue;
             }
             let k0 = mk[j] as usize;
+            if back {
+                let t0 = tb.sub[ci][k0];
+                let (k1, k2) = (mk[j + 1] as usize, mk[j + 2] as usize);
+                if prev >= 0 && model == 1 && prev == ci as i32 {
+                    next.push(step(st, tb.sub[ci][k1], j + 1, j + 2)); // kept doublet: the coin comes first, then the used key
+                } else {
+                    next.push(step(st, t0, j, j + 1));
+                }
+                if prev >= 0 {
+                    let pv = prev as u8;
+                    if model == 0 {
+                        if tb.add[t0 as usize][k1] == pv {
+                            next.push(step(st, t0, j, j + 2));
+                        }
+                        if tb.add[t0 as usize][k1] == pv && tb.add[t0 as usize][k2] == pv {
+                            next.push(step(st, t0, j, j + 3));
+                        }
+                    } else if tb.add[t0 as usize][k2] == pv {
+                        next.push(step(st, t0, j, j + 3));
+                    }
+                }
+                continue;
+            }
             let nj = if model == 1 && prev == ci as i32 { j + 2 } else { j + 1 };
             next.push(step(st, tb.sub[ci][k0], j, nj));
             if prev >= 0 {
@@ -547,6 +602,7 @@ fn mode_screen(args: &[String]) {
     let fam = Fam::parse(&args[1]);
     let out_path = &args[2];
     let o = opts(&args[3..]);
+    BACK.store(o.get("dir").map_or(false, |d| d == "back"), Ordering::Relaxed);
     let n_req: usize = get(&o, "n", 300);
     let beam: usize = get(&o, "beam", 16);
     let mults = list_u8(&get(&o, "mults", "1,28".to_string()));
@@ -699,7 +755,7 @@ fn mode_screen(args: &[String]) {
     let mut f = BufWriter::new(f);
     writeln!(
         f,
-        "# kscreen screen family={} windows={} n={} beam={} mults={} models={} abort={} runs={} aborted={} secs={:.0}",
+        "# kscreen screen family={} windows={} n={} beam={} mults={} models={} abort={} runs={} aborted={} secs={:.0} dir={}",
         args[1],
         args[0],
         nmax,
@@ -709,7 +765,8 @@ fn mode_screen(args: &[String]) {
         abort_spec,
         runs,
         aborted,
-        secs
+        secs,
+        if BACK.load(Ordering::Relaxed) { "back" } else { "fwd" }
     )
     .unwrap();
     let best = hits.first().map(|h| h.ioc).unwrap_or(0.0);
@@ -759,6 +816,7 @@ fn mode_trace(args: &[String]) {
     let all_wins = load_windows(&args[0]);
     let fam = Fam::parse(&args[1]);
     let o = opts(&args[3..]);
+    BACK.store(o.get("dir").map_or(false, |d| d == "back"), Ordering::Relaxed);
     let n_req: usize = get(&o, "n", 300);
     let beam: usize = get(&o, "beam", 16);
     let mults = list_u8(&get(&o, "mults", "1,28".to_string()));
@@ -887,6 +945,7 @@ fn mode_verify(args: &[String]) {
     let m: usize = args[4].parse().expect("mult");
     let model: u8 = args[5].parse().expect("model");
     let o = opts(&args[7..]);
+    BACK.store(o.get("dir").map_or(false, |d| d == "back"), Ordering::Relaxed);
     let n_req: usize = get(&o, "n", 0);
     let beam: usize = get(&o, "beam", 64);
     let coeffs = fam.coeffs(item);

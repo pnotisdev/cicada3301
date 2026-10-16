@@ -13,6 +13,9 @@ typedef unsigned int u32;
 typedef unsigned long long u64;
 
 #define Q 29
+#ifndef BACK
+#define BACK 0          // 1 = the key runs backward through the text (dir=back), see src/main.rs
+#endif
 #define CAP (3 * BEAM)
 
 struct St {
@@ -53,8 +56,30 @@ __device__ u32 beam_decode(const u8 *__restrict__ c, const signed char *__restri
                 continue;
             }
             const u32 k0 = MK(j);
+            const u32 t0 = sub29(ci, k0);
             if (prev >= 0) {
                 const u32 pv = (u32)prev;
+#if BACK
+                // key runs backward through the text: the used key comes first in pointer order, the colliding draws follow
+                const u32 k1 = MK(j + 1);
+                const u32 k2 = MK(j + 2);
+                if (model == 0) {
+                    if (add29(t0, k1) == pv) {
+                        ext[ne] = cur[idx];
+                        take(ext[ne], t0, j + 2);
+                        ne++;
+                    }
+                    if (add29(t0, k1) == pv && add29(t0, k2) == pv) {
+                        ext[ne] = cur[idx];
+                        take(ext[ne], t0, j + 3);
+                        ne++;
+                    }
+                } else if (add29(t0, k2) == pv) {
+                    ext[ne] = cur[idx];
+                    take(ext[ne], t0, j + 3);
+                    ne++;
+                }
+#else
                 if (model == 0) {
                     const u32 k1 = MK(j + 1);
                     const u32 t1 = sub29(ci, k1);
@@ -79,9 +104,17 @@ __device__ u32 beam_decode(const u8 *__restrict__ c, const signed char *__restri
                         ne++;
                     }
                 }
+#endif
             }
+#if BACK
+            if (model == 1 && prev >= 0 && prev == (int)ci)
+                take(cur[idx], sub29(ci, MK(j + 1)), j + 2);          // a kept doublet: the coin first, then the used key
+            else
+                take(cur[idx], t0, j + 1);
+#else
             const u32 nj = (model == 1 && prev == (int)ci) ? j + 2 : j + 1;
-            take(cur[idx], sub29(ci, k0), nj);
+            take(cur[idx], t0, nj);
+#endif
             idx++;
         }
         for (int e = 0; e < ne; e++) cur[nc + e] = ext[e];   // extend_from_slice
@@ -182,8 +215,38 @@ __device__ bool beam_fast(const u8 *__restrict__ c, const signed char *__restric
             const u32 j = J[idx];
             if (j + 3 > NEED) return false;
             const u32 k0 = MK(j);
+            const u32 t0 = sub29(ci, k0);
             if (prev >= 0) {
                 const u32 pv = (u32)prev;
+#if BACK
+                const u32 k1 = MK(j + 1);
+                const u32 k2 = MK(j + 2);
+                if (model == 0) {
+                    if (add29(t0, k1) == pv) {
+                        const int q = nc0 + ne++;
+                        if (q >= KSLOT) return false;
+                        cpslot(sc, q, idx);
+                        S[q] = S[idx];
+                        ok &= bump(sc, q, t0, S[q]);
+                        J[q] = j + 2;
+                    }
+                    if (add29(t0, k1) == pv && add29(t0, k2) == pv) {
+                        const int q = nc0 + ne++;
+                        if (q >= KSLOT) return false;
+                        cpslot(sc, q, idx);
+                        S[q] = S[idx];
+                        ok &= bump(sc, q, t0, S[q]);
+                        J[q] = j + 3;
+                    }
+                } else if (add29(t0, k2) == pv) {
+                    const int q = nc0 + ne++;
+                    if (q >= KSLOT) return false;
+                    cpslot(sc, q, idx);
+                    S[q] = S[idx];
+                    ok &= bump(sc, q, t0, S[q]);
+                    J[q] = j + 3;
+                }
+#else
                 if (model == 0) {
                     const u32 k1 = MK(j + 1);
                     const u32 t1 = sub29(ci, k1);
@@ -217,9 +280,20 @@ __device__ bool beam_fast(const u8 *__restrict__ c, const signed char *__restric
                         J[q] = j + 3;
                     }
                 }
+#endif
             }
-            ok &= bump(sc, idx, sub29(ci, k0), S[idx]);
+#if BACK
+            if (model == 1 && prev >= 0 && prev == (int)ci) {
+                ok &= bump(sc, idx, sub29(ci, MK(j + 1)), S[idx]);
+                J[idx] = j + 2;
+            } else {
+                ok &= bump(sc, idx, t0, S[idx]);
+                J[idx] = j + 1;
+            }
+#else
+            ok &= bump(sc, idx, t0, S[idx]);
             J[idx] = (model == 1 && prev == (int)ci) ? j + 2 : j + 1;
+#endif
         }
         if (!ok) return false;
         nc = nc0 + ne;

@@ -8,6 +8,13 @@ difference sequence c_i - c_{i-1} with the check "s == 0" (a cipher that never s
 
     python work/kscreen/chain_windows.py [a ...]         # default: a = 1..28 for segments, heads, pages
     -> data/chain/<segments|heads|pages>_a<a>.txt
+    python work/kscreen/chain_windows.py --reverse [a ...]   # default: a = 0..28 for segments
+    -> data/chain/segments_a<a>_rev.txt
+
+Reversed windows are for a key that runs BACKWARD through the text (read from the end; the encryptor still works front to
+back, so each rune's anti-repeat check refers to the rune before it in the text). Reversing both arrays of a window does
+exactly that: the engine moves a forward key pointer along the reversed text, and the reference of each position is still
+the text-preceding rune, which is the next element of the reversed array. a = 0 is the ordinary model, reversed.
 
 The first rune of a window is dropped when the rune before it is unknown (the start of segment 0.7).
 """
@@ -48,19 +55,27 @@ def write_windows(wins, path):
             f.write(f"W {w['name']} {w['prev']}\nR {' '.join(map(str, w['R']))}\nP {' '.join(map(str, w['P']))}\n")
 
 
-def make(a, kind, data=os.path.join(HERE, "data")):
+def reverse_window(w):
+    return {"name": w["name"], "prev": -1, "R": w["R"][::-1], "P": w["P"][::-1]}
+
+
+def make(a, kind, data=os.path.join(HERE, "data"), reverse=False):
     src = read_windows(os.path.join(data, f"{kind}.txt"))
-    dst = os.path.join(data, "chain", f"{kind}_a{a}.txt")
-    write_windows([chain_window(w, a) for w in src], dst)
+    dst = os.path.join(data, "chain", f"{kind}_a{a}{'_rev' if reverse else ''}.txt")
+    wins = [chain_window(w, a) for w in src]
+    write_windows([reverse_window(w) for w in wins] if reverse else wins, dst)
     return dst
 
 
 def main():
-    vals = [int(x) for x in sys.argv[1:]] or list(range(1, Q))
-    for kind in ("segments", "heads", "pages"):
+    args = sys.argv[1:]
+    reverse = "--reverse" in args
+    vals = [int(x) for x in args if x != "--reverse"] or list(range(0 if reverse else 1, Q))
+    for kind in (("segments",) if reverse else ("segments", "heads", "pages")):
         for a in vals:
-            make(a, kind)
-    print(f"wrote chain windows for a = {vals[0]}..{vals[-1]} ({len(vals)} values) x segments, heads, pages in data/chain/")
+            make(a, kind, reverse=reverse)
+    print(f"wrote {'reversed ' if reverse else ''}chain windows for a = {vals[0]}..{vals[-1]} ({len(vals)} values) "
+          f"x {'segments' if reverse else 'segments, heads, pages'} in data/chain/")
 
 
 if __name__ == "__main__":

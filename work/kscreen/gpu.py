@@ -191,7 +191,7 @@ class Setup:
         self.dpt = len(self.models) * len(self.wins)              # decodes per task
         defs = {"NEED": self.need, "BEAM": self.beam, "NW": len(self.wins), "NMODEL": len(self.models),
                 "NMULT": len(self.mults), "MODE": {"ks": 0, "lin": 1, "poly": 2}[fam.kind], "ORD": fam.d,
-                "HBINS": HBINS, "DUMP": int(dump), "SBLK": BLOCK}
+                "HBINS": HBINS, "DUMP": int(dump), "SBLK": BLOCK, "BACK": int(o.get("dir") == "back")}
         src = "".join(f"#define {k} {v}\n" for k, v in defs.items()) + KERNEL.read_text(encoding="utf-8")
         self.module = cp.RawModule(code=src, options=NVRTC_OPTIONS)
         self.kernel = self.module.get_function("screen_kernel")
@@ -316,7 +316,7 @@ def mode_screen(args):
     best = float(hb.view(np.float32)[0]) if len(hb) else 0.0
     out = [f"# kscreen screen family={args[1]} windows={args[0]} n={S.nmax} beam={S.beam} mults={','.join(map(str, S.mults))} "
            f"models={','.join(map(str, S.models))} abort={S.spec_abort} runs={total_runs} aborted={aborted} secs={secs:.0f} "
-           f"device=cuda", f"# best {best:.4f}"]
+           f"dir={'back' if o.get('dir') == 'back' else 'fwd'} device=cuda", f"# best {best:.4f}"]
     for wi, w in enumerate(S.wins):
         key = int(wbest[wi])
         if key == 0:
@@ -373,6 +373,7 @@ def mode_trace(args):
 
 SELFCHECKS = [("data/segments.txt", "file:data/library.ksb", "items=40:44 offs=0:150 mults=1,28"),
               ("data/chain/segments_a5.txt", "file:data/library.ksb", "items=30:33 offs=0:100 mults=1,28"),    # P lines (chain windows)
+              ("data/chain/segments_a5_rev.txt", "file:data/library.ksb", "items=30:33 offs=0:100 mults=1,28 dir=back"),  # reversed + backward key
               ("data/heads.txt", "lin:2", "items=0:3 offs=0:120 mults=1"),
               ("data/pages.txt", "poly:2", "items=0:4 mults=1 models=1"),
               ("data/segments.txt", "rand:3:7", "offs=0:100 mults=3,28")]
@@ -389,6 +390,8 @@ def mode_selfcheck():
     import chain_windows
     if not os.path.exists("data/chain/segments_a5.txt"):
         chain_windows.make(5, "segments")
+    if not os.path.exists("data/chain/segments_a5_rev.txt"):
+        chain_windows.make(5, "segments", reverse=True)
     fallbacks = 0
     with tempfile.TemporaryDirectory() as d:
         for win, fam, extra in SELFCHECKS:

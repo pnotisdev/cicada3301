@@ -37,10 +37,13 @@ class KScreenGpu(unittest.TestCase):
         cases = [("data/segments.txt", "file:data/library.ksb", ["items=0:6", "mults=1,28"]),
                  ("data/heads.txt", "lin:2", ["mults=1", "items=0:40"]),
                  ("data/pages.txt", "poly:2", ["mults=1"]),
-                 ("data/chain/segments_a7.txt", "file:data/library.ksb", ["items=0:4", "mults=1,28"])]   # P lines (chain windows)
+                 ("data/chain/segments_a7.txt", "file:data/library.ksb", ["items=0:4", "mults=1,28"]),   # P lines (chain windows)
+                 ("data/chain/segments_a7_rev.txt", "file:data/library.ksb", ["items=0:4", "mults=1,28", "dir=back"])]  # backward key
         import chain_windows
         if not os.path.exists(os.path.join(KS, "data", "chain", "segments_a7.txt")):
             chain_windows.make(7, "segments")
+        if not os.path.exists(os.path.join(KS, "data", "chain", "segments_a7_rev.txt")):
+            chain_windows.make(7, "segments", reverse=True)
         with tempfile.TemporaryDirectory() as d:
             for k, (win, fam, extra) in enumerate(cases):
                 a, b = os.path.join(d, f"cpu{k}.tsv"), os.path.join(d, f"gpu{k}.tsv")

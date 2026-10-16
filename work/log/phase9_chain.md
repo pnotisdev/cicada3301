@@ -43,6 +43,17 @@ Coincidences at lags 1..120 in `c'` for every a (3,451 tests; the largest z expe
 +2.98 (a = 0, lag 99). No short periodic key in any chain model. (Lag 1 in `c'` for a = 1 is normal, z = -1.0: the doublet
 deficit of `c` is exactly the missing zero difference.)
 
+## Backward keys (`dir=back`, campaign `kscreen-reverse`)
+
+The same screens only ever read the key forward along the text. A key read from the end is a window reversed (both arrays,
+`chain_windows.py --reverse`) screened with a forward pointer. The skip rule needs mirroring: a re-draw uses a lower key index,
+so in pointer order the key that was used comes first and the colliding draws follow it (the forward model has them the other
+way round). Reversing alone is therefore not exact (it loses the pointer at the first skip: planted backward keys came back
+at IoC 1.2-1.6 in 2 of 6 windows); with the mirrored rules (`dir=back` in the Rust engine and the CUDA kernel) all six
+planted windows (a = 0 and 7) come back at their exact key index, IoC 1.79-1.98, and the same ciphertext read forward is not
+found (1.23-1.24). The coin model's kept doublet puts the coin first and the used key second. CPU and GPU agree decode by
+decode in this mode (selfcheck, `test_kscreen_gpu.py`). The campaign covers a = 0 (the ordinary cipher, backward) and a = 1..28.
+
 ## The campaign
 
 `kscreen-chain`, queued after the first two lanes: for a = 1..28, the 1,447-keystream library x 8 sections (every offset,

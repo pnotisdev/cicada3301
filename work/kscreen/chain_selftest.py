@@ -7,7 +7,9 @@ c_i = a*c_{i-1} + D(p_i) + k_j (mod 29), D a random substitution, k a library ke
 anti-repeat rule on c (a repeated rune is re-drawn from the next key value with probability 0.82; model 0), for
 a = 1, 7, 28. The ciphertext goes through chain_windows.chain_window(a) and the unchanged screen; the planted item must
 be each window's best hit at the planted offset with IoC >= 1.40. A screen with the wrong a must NOT find it.
-Null: random keystreams over every offset of the LP2 chain windows (a = 1, 7, 28) stay below 1.40.
+Backward key: the same with the key pointer running down from the planted offset; found by reversed windows + dir=back (offset = the
+key index at the text's last rune), not by the forward screen. Null: random keystreams over every offset of the LP2 chain windows
+(a = 1, 7, 28) stay below 1.40.
 """
 import argparse
 import os
@@ -44,26 +46,33 @@ def load_ksb(path, name):
     raise KeyError(name)
 
 
-def plant(a, seed, keep=0.18):
+def plant(a, seed, keep=0.18, backward=False, last_used=None):
+    """Planted windows. backward=True: the key pointer RUNS DOWN from OFFSET (a key read from the end); last_used, if a
+    dict, receives each window's key index at its last rune (where a reversed-window screen finds the key)."""
     rng = random.Random(seed)
     d = list(range(Q))
     rng.shuffle(d)
     key = load_ksb(os.path.join(HERE, "data", "library.ksb"), ITEM)
+    step = -1 if backward else 1
     out = []
     for w in cw.read_windows(PLAIN):
-        j, prev, c = OFFSET, -1, []
+        j, prev, c, used = OFFSET, -1, [], OFFSET
         for p in w["R"]:
             t = d[p]
+            used = j
             y = (t + key[j] + a * (prev if prev >= 0 else 0)) % Q
-            j += 1
+            j += step
             tries = 0
             while prev >= 0 and y == prev and rng.random() >= keep and tries < 5:
+                used = j
                 y = (t + key[j] + a * prev) % Q
-                j += 1
+                j += step
                 tries += 1
             c.append(y)
             prev = y
         out.append({"name": "plant_" + w["name"], "prev": -1, "R": c, "P": None})
+        if last_used is not None:
+            last_used[out[-1]["name"]] = used
     return out
 
 
@@ -109,6 +118,22 @@ def main():
             good = top < THRESHOLD
             ok &= good
             lines.append(f"{'PASS' if good else 'FAIL'}  chain a={a} planted but screened with a={wrong}: best IoC {top:.3f} (must stay below {THRESHOLD})")
+        # a key that runs BACKWARD through the text: found by the reversed windows with dir=back, not by the forward screen
+        for a in (0, 7):
+            used = {}
+            win = plant(a, 70 + a, backward=True, last_used=used)
+            f = os.path.join(d, f"back_a{a}.txt")
+            cw.write_windows([cw.reverse_window(cw.chain_window(w, a)) for w in win], f)
+            for name, (ioc, item, off) in screen(f, "file:data/library.ksb", [f"only={ITEM}", "dir=back"], args.engine).items():
+                good = item == ITEM and ioc >= THRESHOLD and abs(off - used[name]) <= 6
+                ok &= good
+                lines.append(f"{'PASS' if good else 'FAIL'}  backward key, chain a={a}, reversed windows {name}: best {ioc:.3f} item {item!r} offset {off} (key index at the last rune {used[name]})")
+            f2 = os.path.join(d, f"back_fwd_a{a}.txt")
+            cw.write_windows([cw.chain_window(w, a) for w in win], f2)
+            top = max(v[0] for v in screen(f2, "file:data/library.ksb", [f"only={ITEM}"], args.engine).values())
+            good = top < THRESHOLD
+            ok &= good
+            lines.append(f"{'PASS' if good else 'FAIL'}  backward key, chain a={a}, read FORWARD: best IoC {top:.3f} (must stay below {THRESHOLD})")
         for a in (1, 7, 28):
             f = os.path.join(HERE, "data", "chain", f"segments_a{a}.txt")
             if not os.path.exists(f):

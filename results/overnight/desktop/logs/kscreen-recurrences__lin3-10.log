@@ -1,0 +1,11 @@
+# <repo>\.venv\Scripts\python.exe <repo>\work\kscreen\gpu.py screen data/segments.txt lin:3 <repo>\results\kscreen\lin3\chunk10.tsv mults=1 items=9820:10802
+# cwd <repo>\work\kscreen
+# device cuda
+kscreen: 982 items, 8 windows (n<=300), mults [1], models [0, 1], 383184256 decodes, CUDA NVIDIA GeForce RTX 2080 Ti
+ 16.71% (64019248 decodes) 3198317 decodes/s, eta 100 s
+ 47.80% (183148384 decodes) 3033117 decodes/s, eta 66 s
+ 78.49% (300754560 decodes) 2985464 decodes/s, eta 28 s
+ 93.87% (359702960 decodes) 2973959 decodes/s, eta 8 s
+kscreen: 383184256 decodes (374312066 aborted early) in 129 s; best IoC 1.3301; wrote <repo>\results\kscreen\lin3\chunk10.tsv
+
+# exit code 0, 134 s

@@ -1,0 +1,21 @@
+LP2: 12956 runes in words, chance coincidence S = 3.455%
+
+lag | coincid. in-word windows  obs  rate | bigram windows  obs  exp(S^2)  Poisson p | next-coincides: obs/coinc  (rate vs S)  binomial p
+ 2  |   7199  250  3.47%        |   4835   5   5.77   6.8e-01   |  5/166  ( 3.0% vs 3.5%)  6.8e-01
+ 3  |   4835  179  3.70%        |   3197   7   3.82   9.2e-02   |  7/109  ( 6.4% vs 3.5%)  8.4e-02
+ 4  |   3197  131  4.10%        |   2073   4   2.47   2.4e-01   |  4/ 87  ( 4.6% vs 3.5%)  3.5e-01
+ 5  |   2073  102  4.92%        |   1267   9   1.51   3.0e-05   |  9/ 66  (13.6% vs 3.5%)  4.4e-04
+ 6  |   1267   31  2.45%        |    713   0   0.85   1.0e+00   |  0/ 16  ( 0.0% vs 3.5%)  1.0e+00
+ 7  |    713   30  4.21%        |    373   1   0.45   3.6e-01   |  1/ 13  ( 7.7% vs 3.5%)  3.7e-01
+ 8  |    373   10  2.68%        |    192   0   0.23   1.0e+00   |  0/  7  ( 0.0% vs 3.5%)  1.0e+00
+
+C. Permutation null (10000 shuffles of the runes inside each section; word layout fixed):
+   lag | P(coincidences >= obs) | P(bigram repeats >= obs)
+    2  |        0.4483          |       0.6670
+    3  |        0.1655          |       0.0928
+    4  |        0.0250          |       0.2325
+    5  |        0.0004          |       0.0001
+    6  |        0.9793          |       1.0000
+    7  |        0.1540          |       0.3488
+    8  |        0.8252          |       1.0000
+   smallest per-lag p of the observed data = 0.0001; P(a shuffle has a smallest p <= that) = 0.0001   (look-elsewhere over 7 lags)

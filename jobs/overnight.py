@@ -207,11 +207,11 @@ def ks_summary(screens, null_name, verify_names):
     return out
 
 
-def chain_summary():
+def chain_summary(prefix="", avals=range(1, 29)):
     out = [f"- controls: {last_line(CHAIN_SELFTEST) or 'not run'}"]
     allv, flagged = [], []
-    for a in range(1, 29):
-        v = {n: ks_best(f"chain/{n}_a{a}.tsv") for n in ("library", "lin2", "poly3", "null")}
+    for a in avals:
+        v = {n: ks_best(f"chain/{prefix}{n}_a{a}.tsv") for n in ("library", "lin2", "poly3", "null")}
         if all(x is None for x in v.values()):
             continue
         allv.append((a, v))
@@ -220,13 +220,13 @@ def chain_summary():
     if not allv:
         return out + ["- not run yet"]
     f = lambda x: "-" if x is None else f"{x:.3f}"
-    out.append(f"- {len(allv)}/28 multipliers done. best IoC per multiplier (library / order-2 recurrences / cubic polynomials; matched null):")
+    out.append(f"- {len(allv)}/{len(avals)} multipliers done. best IoC per multiplier (library / order-2 recurrences / cubic polynomials; matched null):")
     for a, v in allv:
         out.append(f"  - a={a:2d}: {f(v['library'])} / {f(v['lin2'])} / {f(v['poly3'])}; null {f(v['null'])}")
     mx = max(((v[n] or 0, a, n) for a, v in allv for n in ("library", "lin2", "poly3")), default=(0, 0, ""))
     out.append(f"- largest: {mx[0]:.3f} (a={mx[1]}, {mx[2]})" + ("; above 1.40 for a = " + ", ".join(map(str, flagged)) + ": see the verification files" if flagged else "; none reaches the 1.40 threshold"))
     for a, _ in allv:
-        line = last_line(RES / "kscreen" / "chain" / f"library_a{a}_verify.txt", r"re-decoded hits")
+        line = last_line(RES / "kscreen" / "chain" / f"{prefix}library_a{a}_verify.txt", r"re-decoded hits")
         if line and ("0 of" not in line):
             out.append(f"  - a={a} verification: {line}")
     return out
@@ -425,13 +425,42 @@ def campaigns(threads):
         "check against (1-a)*c_{i-1} (work/kscreen/chain_windows.py) and screened with the 1,447-keystream library, every order-2 "
         "linear recurrence and every cubic polynomial, at every offset, both anti-repeat models, any plaintext language and alphabet.",
         chain, chain_summary))
+    gens_why = ("py3 (CPython random.seed), mt32 / mt31 (std::mt19937, PHP >= 7.1), java (java.util.Random), msvc (rand()), "
+                "drand48 (drand48, Perl) and ruby (Ruby <= 2.7), each with two natural key mappings, all 2^32 seeds, 16 cipher "
+                "variants (work/phpmt/src/gens.rs; the CUDA port is validated against the Rust engine, which is validated "
+                "against CPython, NumPy and published vectors). ")
     C.append(Campaign(
-        "prng-more", "More seeded-PRNG pads: Python, C++/PHP 7, Java, MSVC, drand48/Perl, Ruby",
-        "py3 (CPython random.seed), mt32 / mt31 (std::mt19937, PHP >= 7.1), java (java.util.Random), msvc (rand()), drand48 "
-        "(drand48, Perl) and ruby (Ruby <= 2.7), each with two natural key mappings, all 2^32 seeds, 16 cipher variants, "
-        "first on window 0.7 and then with a fresh seed per section (work/phpmt/src/gens.rs; the CUDA port is validated "
-        "against the Rust engine, which is validated against CPython, NumPy and published vectors).",
-        prng_more_steps(T), prng_more_summary))
+        "prng-more", "More seeded-PRNG pads, window 0.7: Python, C++/PHP 7, Java, MSVC, drand48/Perl, Ruby",
+        gens_why + "Window 0.7 only: one pad starting at the first unsolved rune.",
+        prng_more_steps(T, ("07",)), lambda: prng_more_summary(("07",))))
+
+    rev = [
+        Step("kscreen-reverse/windows", [PY, str(KS / "chain_windows.py"), "--reverse"], hours=0.01,
+             outputs=[KS / "data" / "chain" / "segments_a28_rev.txt", KS / "data" / "chain" / "segments_a0_rev.txt"]),
+        Step("kscreen-reverse/controls", [PY, str(KS / "chain_selftest.py"), "--engine", DEVICE, "--out", str(CHAIN_SELFTEST)],
+             hours=0.03, outputs=[CHAIN_SELFTEST], always=True, device=DEVICE),
+    ]
+    for a in range(0, 29):
+        w = f"data/chain/segments_a{a}_rev.txt"
+        back = ("dir=back",)
+        rev += [ks_screen("kscreen-reverse", f"a{a}-library", w, "file:data/library.ksb", f"chain/rev_library_a{a}.tsv", T, back, 0.12),
+                ks_screen("kscreen-reverse", f"a{a}-null", w, "rand:300:11", f"chain/rev_null_a{a}.tsv", T, back, 0.03),
+                ks_screen("kscreen-reverse", f"a{a}-lin2", w, "lin:2", f"chain/rev_lin2_a{a}.tsv", T, ("mults=1",) + back, 0.01),
+                ks_screen("kscreen-reverse", f"a{a}-poly3", w, "poly:3", f"chain/rev_poly3_a{a}.tsv", T, ("mults=1",) + back, 0.01),
+                ks_verify("kscreen-reverse", f"a{a}-verify", f"chain/rev_library_a{a}.tsv", top=10)]
+    C.append(Campaign(
+        "kscreen-reverse", "Key running BACKWARD through the text, with and without ciphertext feedback (a = 0..28)",
+        "Every IoC screen so far read the key forward along the text. A key read from the end is covered by reversed windows "
+        "and the engines' dir=back mode (a re-draw then uses a lower key index, so the used key comes first in pointer order). "
+        "a = 0 is the ordinary cipher with a backward key; a = 1..28 combine it with ciphertext feedback. Same library, "
+        "recurrences and polynomials as kscreen-sections; controls: planted backward keys recovered at the exact key index, "
+        "the same ciphertext read forward not found (work/kscreen/chain_selftest.py).",
+        rev, lambda: chain_summary("rev_", range(0, 29))))
+
+    C.append(Campaign(
+        "prng-more-all", "More seeded-PRNG pads with a fresh seed per section",
+        gens_why + "A fresh seed per section: all 8 windows at once.",
+        prng_more_steps(T, ("all",)), lambda: prng_more_summary(("all",))))
     return C
 
 
@@ -561,10 +590,10 @@ def prng_steps(T):
 NEW_GENS = ("py3", "mt32", "mt31", "java", "msvc", "drand48", "ruby")
 
 
-def prng_more_steps(T):
-    """The generators of work/phpmt/src/gens.rs: first window 0.7 only (one pad from the start of LP2), then every section."""
+def prng_more_steps(T, tags=("07", "all")):
+    """The generators of work/phpmt/src/gens.rs: window 0.7 only (one pad from the start of LP2) and/or every section."""
     steps = []
-    for tag, wfile, hours in (("07", "windows_07.txt", 0.7), ("all", "windows.txt", 5.4)):
+    for tag, wfile, hours in [t for t in (("07", "windows_07.txt", 0.7), ("all", "windows.txt", 5.4)) if t[0] in tags]:
         for gen in NEW_GENS:
             tsv = RES / "prng" / f"{gen}_{tag}.tsv"
             log = RES / "prng" / f"{gen}_{tag}.log"
@@ -583,9 +612,9 @@ def prng_more_steps(T):
     return steps
 
 
-def prng_more_summary():
+def prng_more_summary(tags=("07", "all")):
     out = []
-    for tag, what in (("07", "window 0.7 (one pad from the start of LP2)"), ("all", "every section")):
+    for tag, what in [t for t in (("07", "window 0.7 (one pad from the start of LP2)"), ("all", "every section")) if t[0] in tags]:
         out.append(f"- {what}:")
         for gen in NEW_GENS:
             sw = last_line(RES / "prng" / f"{gen}_{tag}.log", "swept")

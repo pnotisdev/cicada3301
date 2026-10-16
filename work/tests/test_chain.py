@@ -35,6 +35,16 @@ class ChainWindows(unittest.TestCase):
         self.assertEqual(w["R"], c)
         self.assertEqual(w["P"], [7] + c[:-1])            # the rune before the window is used when it is known
 
+    def test_reversed_windows_keep_the_collision_reference(self):
+        # reversing both arrays: position m of the reversed window is text position n-1-m; its reference is still the
+        # text-preceding rune, i.e. the NEXT element of the reversed rune array (for a = 0)
+        rng = random.Random(3)
+        c = [rng.randrange(29) for _ in range(200)]
+        w = cw.reverse_window(cw.chain_window({"name": "x", "prev": -1, "R": c, "P": None}, 0))
+        self.assertEqual(w["R"], c[1:][::-1])
+        for m in range(len(w["R"]) - 1):
+            self.assertEqual(w["P"][m], w["R"][m + 1])
+
     def test_unknown_predecessor_drops_the_first_rune_only(self):
         w = cw.chain_window({"name": "x", "prev": -1, "R": [5, 6, 7], "P": None}, 1)
         self.assertEqual(w["R"], [1, 1])
@@ -44,6 +54,21 @@ class ChainWindows(unittest.TestCase):
 
 @unittest.skipUnless(READY, "build with: cargo build --release (in work/kscreen) and run work/kscreen/export.py")
 class ChainRecovery(unittest.TestCase):
+    def test_backward_key_found_only_by_reversed_windows_with_dir_back(self):
+        import tempfile
+        used = {}
+        win = ct.plant(0, 71, backward=True, last_used=used)
+        with tempfile.TemporaryDirectory() as d:
+            back, fwd = os.path.join(d, "back.txt"), os.path.join(d, "fwd.txt")
+            cw.write_windows([cw.reverse_window(cw.chain_window(w, 0)) for w in win], back)
+            cw.write_windows([cw.chain_window(w, 0) for w in win], fwd)
+            for name, (ioc, item, off) in ct.screen(back, "file:data/library.ksb", [f"only={ct.ITEM}", "dir=back"], "cpu").items():
+                self.assertEqual(item, ct.ITEM, name)
+                self.assertGreater(ioc, 1.4, name)
+                self.assertLessEqual(abs(off - used[name]), 6, name)
+            self.assertLess(max(v[0] for v in ct.screen(fwd, "file:data/library.ksb", [f"only={ct.ITEM}"], "cpu").values()), 1.4)
+
+
     def test_planted_feedback_key_needs_the_right_multiplier(self):
         import tempfile
         a = 7
