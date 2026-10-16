@@ -33,3 +33,26 @@
   `attack.encrypt_tokens`.
 - Open question: measure glyph widths from `work/orig/` to finish the layout explanation.
 - No existing file is modified, so this merges cleanly next to the desktop's logging/CUDA work.
+
+## Review (stronger-model pass, 2026-10-17)
+
+Merged locally; nothing in the branch was run before the review. Findings and changes:
+- **Variance formula checked.** `column_stats` is the exact multinomial variance of the equal-pair count
+  (`n(n-1)(n-2)(T-S^2)` is the covariance of pairs sharing one rune, counted for unordered pairs of pairs). The new
+  test draws iid columns from a lumpy distribution (n = 40 and 300, 2,500 trials each) and requires z with mean 0
+  +- 0.08 and sd 1 +- 0.07.
+- **Bug fixed: word units.** `units_of("word")` split at every `
+`, but a bare line break inside a word is a
+  typographic wrap (the same bug `lp.word_spans` was fixed for). It made 3,316 fragments instead of the 2,928
+  words. Now the units equal `lp.word_spans` (tested per segment). Result of the word rows: still no restart
+  (start max z 1.46, Z_sum -1.5; end max z 3.09, Z_sum -0.5; planted restart: Z_sum 237). All other rows are unchanged.
+- **Skip rule in the control** matches `attack.encrypt_tokens` (a collision is re-rolled with probability q = 0.82
+  and the key pointer advances on every draw); the control also resets the previous-rune memory at a unit start,
+  which the real text does not (one rune in 20+ per unit, negligible for this test).
+- **Tests rewritten** (6 tests, 3 s): calibration of z, every unit kind partitions the 12,956 runes, words equal
+  `lp.word_spans`, unit counts nest, a planted forward restart is found by the forward reading, a planted backward
+  restart only by the backward reading, and a continuous key stays under max z 4.5 and |Z_sum| 3.5.
+- **Limits that remain.** The test sees only restarts to the SAME key start; a restart at a unit-specific offset
+  would look like a continuous key (the drift-aware pairwise scans cover shared-key reuse). The 9-segment test is
+  weak. The line-start explanation (glyph widths) is fitted from line compositions only; measured widths from
+  `work/orig/` would settle the 51-versus-flat leftover.

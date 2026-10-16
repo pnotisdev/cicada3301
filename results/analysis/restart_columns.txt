@@ -11,7 +11,8 @@ line           594 start    6.70      0    2.05            169.3 / 156.7        
 line           594   end    2.48      3   -0.98            175.0 / 166.1                                                    4.00
 sentence       212 start    3.62     27    1.04             60.4 / 53.2                                                     4.40
 sentence       212   end    1.71     42   -1.08             59.5 / 48.2                                                     4.87
-word          3316 start    1.88     10   -0.49            236.3 / 225.3                                                    3.09
-word          3316   end    1.98      7   -0.06            242.0 / 227.2                                                    2.80
+word          2928 start    1.46     11   -1.48            237.1 / 222.8                                                    3.91
+word          2928   end    3.09      7   -0.51            238.4 / 225.7                                                    3.41
 
 Reading: a restart would show as Z_sum far above 0 (the controls show what a real restart gives) and max z far above the continuous-key null's maximum. For many columns and 12 unit types/directions, |z| below about 4 is unremarkable.
+The one exception, line start column 0 (z = +6.7), is typographic: lines are set to a fixed width, so wide glyphs overflow to the next line more often (see line_layout.py). Columns 1-59 of the same units show nothing, which a real per-line restart (Z_sum about 170) would not allow.
