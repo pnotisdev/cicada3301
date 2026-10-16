@@ -5,7 +5,7 @@ that "English runes plus one extra rune in ~40% of multi-rune words" fits (p = 0
 with public-domain corpora in other languages, spelled as runes (digraph-aware, as lp.word_to_key does) and as plain
 letters, plus a two-parameter family on English:
 
-    length = letters - (digraph runes collapsed with probability r) + (extra rune with probability a, multi-rune words)
+    length = runes + (each digraph rune spelled as two letters with probability r) + (extra rune, prob. a, multi-rune words)
 
 Every model is compared with LP2's 2,928 word lengths (bins 1..11, 12+) by a G-test; df = 11 - fitted parameters.
 
@@ -105,8 +105,8 @@ def rune_len(w):
 
 
 def family(words, r_grid, a_grid):
-    """Distribution over lengths for each (r, a): every digraph rune is kept with prob 1-r (collapsed to letters
-    otherwise) and multi-rune words get an extra rune with prob a."""
+    """Length distribution for each r: every digraph rune is kept as one rune with prob 1-r and spelled as two letters
+    with prob r (r = 0: pure runes, r = 1: plain letters). The extra-rune parameter a is applied by the caller."""
     letters = np.array([len(w) for w in words])
     runes = np.array([rune_len(w) for w in words])
     out = {}
@@ -121,6 +121,67 @@ def family(words, r_grid, a_grid):
                 for j in range(k + 1):
                     base[ru + j] += comb(k, j) * (r ** j) * ((1 - r) ** (k - j))
         out[r] = base
+    return out
+
+
+def mechanisms(obs, ws):
+    """One-parameter mechanisms on English in runes (Emerson), each fitted to LP2 by minimum G."""
+    import collections
+    import random
+    base = [rune_len(w) for w in ws]
+    cnt = collections.Counter(base)
+
+    def fit(make):
+        best = None
+        for x in np.linspace(0.0, 0.9, 91):
+            q = make(x)
+            g, df, p = g_test(obs, q / q.sum(), fitted=1)
+            if best is None or g < best[0]:
+                best = (g, df, p, x)
+        return best
+
+    def shift(a):
+        q = np.zeros(64)
+        for L, n in cnt.items():
+            if L == 1:
+                q[1] += n
+            else:
+                q[L] += n * (1 - a)
+                q[L + 1] += n * a
+        return np.concatenate([q[1:BINS], [q[BINS:].sum()]])
+
+    def per_rune(lam):
+        from math import comb
+        q = np.zeros(80)
+        for L, n in cnt.items():
+            for k in range(0, min(L, 4) + 1):
+                q[min(L + k, 79)] += n * comb(L, k) * lam ** k * (1 - lam) ** (L - k)
+        return np.concatenate([q[1:BINS], [q[BINS:].sum()]])
+
+    def delete2(d):
+        q = np.zeros(BINS)
+        for L, n in cnt.items():
+            q[min(L, BINS) - 1] += n * ((1 - d) if L == 2 else 1.0)
+        return q
+
+    def merge(m):
+        R = random.Random(1)
+        out, cur = [], 0
+        for L in base:
+            cur += L
+            if R.random() >= m:
+                out.append(cur)
+                cur = 0
+        return hist(out)
+
+    rows = [("+1 rune in a fraction a of multi-rune words", fit(shift)),
+            ("inserted rune at rate lam per rune, anywhere", fit(lambda x: per_rune(x * 0.5))),
+            ("adjacent words fused (boundary lost) w.p. m", fit(lambda x: merge(x / 3))),
+            ("2-rune words missing w.p. d (renormalised)", fit(delete2))]
+    out = ["", "One-parameter mechanisms on English in runes (Emerson), fitted to LP2 (df = 10):"]
+    for name, (g, df, p, x) in rows:
+        out.append(f"  {name:48s} G={g:6.1f} p={p:.1e}")
+    out.append("(per-rune insertion and boundary fusion are parameterised on grids x/2 and x/3; best values are not shown.)")
     return out
 
 
@@ -166,12 +227,13 @@ def main():
             if best is None or g < best[0]:
                 best = (g, df, p, r, a, q)
     g, df, p, r, a, q = best
-    rows.append((p, f"English, digraph runes collapsed {100 * r:.0f}%, null rune in {100 * a:.0f}% of multi-rune words "
+    rows.append((p, f"English runes (digraphs spelled as letters in {100 * r:.0f}%), extra rune in {100 * a:.0f}% of multi-rune words "
                     f"(2 fitted)", q * obs.sum(), g, df))
     for p, name, h, g, df in sorted(rows, key=lambda t: -t[0]):
         out.append("  " + name.ljust(78)[:90] + " " + " ".join(f"{x:5.1f}" for x in 100 * h / h.sum())
                    + f"   G={g:7.1f} df={df} p={p:.1e}")
     out.append("(sorted by p; a model fits LP2 if p is not tiny. Two-parameter rows have 2 fewer df.)")
+    out += mechanisms(obs, ws)
     text = "\n".join(out)
     print(text)
     dest = os.path.join(HERE, "..", "results", "analysis")
