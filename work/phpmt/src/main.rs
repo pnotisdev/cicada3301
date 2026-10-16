@@ -105,14 +105,6 @@ fn map_range(n: u32, lo: i64, hi: i64) -> i64 {
     lo + (((hi - lo) as f64 + 1.0) * (n as f64 / 2147483648.0)) as i64
 }
 
-#[inline]
-fn key_of(n: u32, map: u8) -> u8 {
-    if map == 0 {
-        map_range(n, 0, 28) as u8
-    } else {
-        (n % 29) as u8
-    }
-}
 
 
 // ------------------------------------------------------------------ other generators

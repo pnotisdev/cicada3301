@@ -55,7 +55,7 @@ def build_lm(words, held_out=0):
 
 
 def write_windows(path, items):
-    with open(path, "w") as f:
+    with open(path, "w", newline="\n") as f:  # LF on every OS
         for name, runes, lens in items:
             f.write(f"W {name} -1\nR {' '.join(map(str, runes))}\nL {' '.join(map(str, lens))}\n")
 

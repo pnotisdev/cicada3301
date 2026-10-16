@@ -27,7 +27,9 @@ def window(f, name, prev, runes, lens):
 def main():
     os.makedirs(OUT, exist_ok=True)
     segs = stats.SEGS
-    with open(os.path.join(OUT, "windows.txt"), "w") as f, open(os.path.join(OUT, "windows_07.txt"), "w") as f07:
+    lf = "\n"  # always write LF so the generated files are identical on every OS
+    with open(os.path.join(OUT, "windows.txt"), "w", newline=lf) as f, \
+            open(os.path.join(OUT, "windows_07.txt"), "w", newline=lf) as f07:
         for i in stats.UNSOLVED:
             c = lp.runes_of(segs[i])
             if len(c) < 100:
@@ -39,12 +41,12 @@ def main():
                 window(f07, f"seg0.{i}", prev, c, lens)
     rd = attack.rune_dictionary()
     n = 0
-    with open(os.path.join(OUT, "dict.txt"), "w") as f:
+    with open(os.path.join(OUT, "dict.txt"), "w", newline=lf) as f:
         for L, (codes, _) in rd.items():
             for c in codes:
                 f.write(f"{L} {int(c)}\n")
                 n += 1
-    with open(os.path.join(OUT, "english.txt"), "w") as f:
+    with open(os.path.join(OUT, "english.txt"), "w", newline=lf) as f:
         for k, start in enumerate((5000, 20000, 40000)):
             toks = attack.synthetic_tokens(400, start=start)
             c = lp.runes_of(toks)
