@@ -1,0 +1,25 @@
+name: tests
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Python dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Verify data
+        run: python scripts/fetch_data.py
+      - name: Build engines
+        run: |
+          (cd work/phpmt && cargo build --release)
+          (cd work/walk && cargo build --release)
+      - name: Engine inputs
+        run: |
+          python work/phpmt/export_data.py
+          python work/walk/make_data.py
+      - name: Tests
+        run: python -m unittest discover -s work/tests -v

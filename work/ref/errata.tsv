@@ -1,0 +1,7 @@
+page	image	line	word	master	verified	evidence
+8	10.jpg	5	4	ᛒᛖᛚᛖᛁᚢᛖ (BELEIUE)	ᛒᛖᛚᛁᛖᚢᛖ (BELIEUE)	image shows ᛚ then ᛁ then ᛖ; OCR alignment flagged missing ᛖ + extra ᛖ (swap); verified by eye
+64	66.jpg	grid row 5	byte 45	1L	1l	byte 45: 1L (81) -> 1l (107); glyph metrics + visual check (tall bar, no foot (cf. 2L), rises above digit height -> lowercase l; also in Dukotah canon_256.bin as 81)
+64	66.jpg	grid row 6	byte 50	0L	0l	byte 50: 0L (21) -> 0l (47); glyph metrics + visual check (tall bar, no foot -> lowercase l; also in Dukotah canon_256.bin as 21)
+65	67.jpg	grid row 10	byte 165	0l	0I	byte 165: 0l (47) -> 0I (18); glyph metrics + visual check (bar exactly digit height (like 3I), not ascender height (like 2l) -> capital I; Dukotah canon already 18)
+65	67.jpg	grid row 11	byte 172	2s	2S	byte 172: 2s (174) -> 2S (148); glyph metrics + visual check (capital-height S, not x-height s -> S; Dukotah canon already 148)
+66	68.jpg	grid row 7	byte 246	3i	3I	byte 246: 3i (224) -> 3I (198); glyph metrics + visual check (no dot, digit height -> capital I; also in Dukotah canon_256.bin as 224)

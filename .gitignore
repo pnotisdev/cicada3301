@@ -1,0 +1,30 @@
+# The book (LiberPrimus.pdf), the 75 original page images (work/orig/) and the text data in work/ref/
+# ARE committed so a clone is ready to use. scripts/fetch_data.py can re-download and verify them.
+
+# --- third-party documents read during research (not ours to redistribute) ---
+work/ref/wulfic/
+work/ref/outguessed/
+
+# --- regenerable renders and scratch ---
+work/pages/
+work/figures/
+work/tmp/
+
+# --- build outputs ---
+work/phpmt/target/
+work/phpmt/target_gen/
+work/walk/target/
+**/__pycache__/
+*.pyc
+*.bak
+
+# --- engine data folders: keep the inputs, not scratch / in-progress outputs (results/ holds finished runs) ---
+work/phpmt/data/*
+!work/phpmt/data/windows.txt
+!work/phpmt/data/windows_07.txt
+!work/phpmt/data/dict.txt
+!work/phpmt/data/english.txt
+work/walk/data/*
+!work/walk/data/lm3.bin
+!work/walk/data/lp2.txt
+!work/walk/data/english_test.txt

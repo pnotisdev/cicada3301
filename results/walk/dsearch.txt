@@ -1,0 +1,13 @@
+# Key-free D-search: LP2 vs structure-free surrogates (same word lengths, anti-repeat keep 0.18)
+# 300k iterations x 16 restarts, gap 1. Synthetic F1(m=5) positive control: true-D G 2456, recovered 29/29 (null ~300).
+=== m=5
+dsearch m=5 gaps=[1] pairs=10021 iters=300000 restarts=16 time=111s | random-D G 147 | best G 352 | all: 352 346 343 339 339 336 332 332 330 329 328 326 322 320 313 312
+  surrogate 1: dsearch m=5 gaps=[1] pairs=10021 iters=300000 restarts=16 time=113s | random-D G 119 | best G 350 | all: 350 348 341 336 334 330 330 330 330 329 329 327 326 325 324 323
+  surrogate 2: dsearch m=5 gaps=[1] pairs=10021 iters=300000 restarts=16 time=116s | random-D G 164 | best G 351 | all: 351 340 339 338 337 335 335 333 331 329 326 324 323 321 321 312
+  surrogate 3: dsearch m=5 gaps=[1] pairs=10021 iters=300000 restarts=16 time=110s | random-D G 128 | best G 333 | all: 333 331 330 327 324 324 322 320 319 317 317 317 316 314 311 302
+=== m=1
+dsearch m=1 gaps=[1] pairs=10021 iters=300000 restarts=16 time=106s | random-D G 23 | best G 153 | all: 153 150 150 148 148 146 146 144 142 140 139 138 138 136 135 134
+  surrogate 1: dsearch m=1 gaps=[1] pairs=10021 iters=300000 restarts=16 time=100s | random-D G 26 | best G 177 | all: 177 176 176 176 170 170 170 168 167 167 166 163 160 160 159 157
+  surrogate 2: dsearch m=1 gaps=[1] pairs=10021 iters=300000 restarts=16 time=109s | random-D G 28 | best G 144 | all: 144 141 137 137 135 134 133 131 131 130 130 129 129 128 128 125
+  surrogate 3: dsearch m=1 gaps=[1] pairs=10021 iters=300000 restarts=16 time=114s | random-D G 30 | best G 148 | all: 148 144 142 142 139 138 137 136 136 132 131 131 130 129 124 116
+
