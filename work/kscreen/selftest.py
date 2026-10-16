@@ -37,8 +37,13 @@ def rel(p):
     return os.path.relpath(p, HERE).replace("\\", "/")
 
 
+ENGINE = "cpu"
+
+
 def run(args, **kw):
-    r = subprocess.run([BIN] + args, cwd=HERE, capture_output=True, text=True, **kw)
+    """The Rust engine; with --engine cuda the `screen` runs go through the GPU port (gpu.py), the rest stay on the CPU."""
+    cmd = [sys.executable, os.path.join(HERE, "gpu.py")] if ENGINE == "cuda" and args[0] == "screen" else [BIN]
+    r = subprocess.run(cmd + args, cwd=HERE, capture_output=True, text=True, **kw)
     if r.returncode != 0:
         raise RuntimeError(f"kscreen {' '.join(args)} failed:\n{r.stderr}")
     return r.stdout
@@ -71,7 +76,10 @@ def main():
     ap.add_argument("--threads", type=int, default=os.cpu_count())
     ap.add_argument("--null-keystreams", type=int, default=30)
     ap.add_argument("--out", default=os.path.join(OUT, "selftest.txt"), help="where to write the summary")
+    ap.add_argument("--engine", choices=["cpu", "cuda"], default="cpu", help="which screen engine to validate")
     args = ap.parse_args()
+    global ENGINE
+    ENGINE = args.engine
     os.makedirs(TMP, exist_ok=True)
     os.makedirs(OUT, exist_ok=True)
     lines, ok = [], True
@@ -97,6 +105,8 @@ def main():
     ok &= good
     lines.append(f"{'PASS' if good else 'FAIL'}  null: {args.null_keystreams} random keystreams x every offset x "
                  f"8 LP2 windows x 2 signs x 2 models: best IoC {nbest:.3f} (must stay below {THRESHOLD})")
+    if ENGINE == "cuda":
+        lines.insert(0, "engine: cuda (gpu.py)")
     lines.append("SELFTEST " + ("PASSED" if ok else "FAILED"))
     text = "\n".join(lines) + "\n"
     print(text)

@@ -21,8 +21,9 @@ work/kscreen/data/
 .lp_machine
 
 # --- transient files of a running job ---
-results/overnight/*/runner.lock
+results/overnight/*/runner*.lock
 *.part
+results/overnight/*/*.tmp
 *.failed
 
 # --- third-party documents read during research: not ours to redistribute (see work/log/research_2026-10-16.md) ---

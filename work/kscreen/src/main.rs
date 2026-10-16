@@ -19,6 +19,8 @@
 //! Modes:
 //!   screen <windows.txt> <family> <out.tsv> [n=300] [beam=16] [mults=1,28|all|a,b,..] [models=0,1]
 //!          [threads=T] [top=2000] [abort=150:1.2|0] [only=<item>] [items=a:b] [minlen=50]
+//!   trace  <windows.txt> <family> <out.txt> [same options as screen] [offs=a:b]
+//!          (one line per decode, for the decode-by-decode comparison with the GPU port)
 //!   plant  <plain_windows.txt> <family> <item> <offset> <mult> <model> <keep> <seed> <subst 0|1> <out.txt>
 //!   verify <windows.txt> <family> <item> <offset> <mult> <model> <window|all> [n=0] [beam=64] [controls=K]
 //!          (controls=K also decodes K random offsets of the same keystream: a keystream-matched null)
@@ -399,7 +401,8 @@ fn ioc_beam(
                 a += 1;
             }
             if cur.len() > beam {
-                cur.sort_unstable_by(|x, y| y.s.cmp(&x.s));
+                // stable, so ties at the cut are resolved by position: the GPU port (gpu.py) reproduces this exactly
+                cur.sort_by(|x, y| y.s.cmp(&x.s));
                 cur.truncate(beam);
             }
         }
@@ -597,6 +600,9 @@ fn mode_screen(args: &[String]) {
                 let mut key = vec![0u8; need];
                 let mut mk = vec![0u8; need];
                 let mut hits: Vec<Hit> = Vec::new();
+                // a hit must beat `thr`, the lowest IoC of the last pruned (sorted) list; before the first prune
+                // the list is unsorted, so nothing may be rejected (hits[top - 1] would be an arbitrary entry)
+                let mut thr = -1.0f32;
                 let mut hist = vec![0u64; HBINS];
                 let mut wbest = vec![Hit { ioc: 0.0, item: 0, off: 0, mult: 0, model: 0, win: 0, n: 0 }; wins.len()];
                 let (mut runs, mut aborted) = (0u64, 0u64);
@@ -631,10 +637,11 @@ fn mode_screen(args: &[String]) {
                                     if used == n && ioc > wbest[wi].ioc {
                                         wbest[wi] = h;
                                     }
-                                    if used == n && (hits.len() < top || ioc > hits[top - 1].ioc) {
+                                    if used == n && ioc > thr {
                                         hits.push(h);
                                         if hits.len() >= 2 * top {
                                             keep_top(&mut hits, top);
+                                            thr = hits[top - 1].ioc;
                                         }
                                     }
                                 }
@@ -725,6 +732,67 @@ fn mode_screen(args: &[String]) {
         .unwrap();
     }
     eprintln!("kscreen: {runs} decodes ({aborted} aborted early) in {secs:.0} s; best IoC {best:.4}; wrote {out_path}");
+}
+
+// ------------------------------------------------------------------ trace
+
+/// One line per decode: `item offset mult model window s used`, in the order item, offset, mult, model, window.
+/// This is what gpu.py is compared against decode by decode (tests/test_kscreen_gpu.py).
+fn mode_trace(args: &[String]) {
+    if args.len() < 3 {
+        eprintln!("usage: trace <windows.txt> <family> <out.txt> [n=300] [beam=16] [mults=..] [models=..] [abort=..] [items=a:b] [offs=a:b] [minlen=50]");
+        std::process::exit(2);
+    }
+    let all_wins = load_windows(&args[0]);
+    let fam = Fam::parse(&args[1]);
+    let o = opts(&args[3..]);
+    let n_req: usize = get(&o, "n", 300);
+    let beam: usize = get(&o, "beam", 16);
+    let mults = list_u8(&get(&o, "mults", "1,28".to_string()));
+    let models = list_u8(&get(&o, "models", "0,1".to_string()));
+    let minlen: usize = get(&o, "minlen", 50);
+    let abort_spec: String = get(&o, "abort", "150:1.2".to_string());
+    let (abort_at, abort_ioc) = if abort_spec == "0" {
+        (0usize, 0.0f64)
+    } else {
+        let (a, b) = abort_spec.split_once(':').expect("abort=<runes>:<ioc>");
+        (a.parse().expect("abort runes"), b.parse().expect("abort ioc"))
+    };
+    let abort_s = (abort_ioc * abort_at as f64 * (abort_at as f64 - 1.0) / Q as f64).ceil() as u32;
+    let range = |key: &str, hi: usize| -> (usize, usize) {
+        o.get(key).map_or((0, hi), |r| {
+            let (a, b) = r.split_once(':').expect("a:b");
+            (a.parse().unwrap(), b.parse::<usize>().unwrap().min(hi))
+        })
+    };
+    let wins: Vec<&Win> = all_wins.iter().filter(|w| w.runes.len() >= minlen).collect();
+    let nmax = wins.iter().map(|w| w.runes.len().min(n_req)).max().expect("no windows");
+    let need = nmax + nmax / 4 + 8;
+    let tb = tables();
+    let (mut cur, mut extra) = (Vec::new(), Vec::new());
+    let (mut key, mut mk) = (vec![0u8; need], vec![0u8; need]);
+    let mut out = BufWriter::new(fs::File::create(&args[2]).unwrap_or_else(|e| panic!("{}: {e}", args[2])));
+    let (i0, i1) = range("items", fam.items());
+    for item in i0..i1 {
+        let coeffs = fam.coeffs(item);
+        let (o0, o1) = range("offs", fam.offsets(item, need));
+        for off in o0..o1 {
+            fam.fill(item, &coeffs, off, &mut key);
+            for &m in &mults {
+                for (a, b) in mk.iter_mut().zip(key.iter()) {
+                    *a = ((*b as usize * m as usize) % Q) as u8;
+                }
+                for &model in &models {
+                    for (wi, w) in wins.iter().enumerate() {
+                        let n = w.runes.len().min(n_req);
+                        let ab = if abort_at > 0 && abort_at < n { abort_at } else { 0 };
+                        let (s, used) = ioc_beam(&w.runes, w.prev, &mk, model, n, beam, ab, abort_s, &tb, &mut cur, &mut extra);
+                        writeln!(out, "{item} {off} {m} {model} {wi} {s} {used}").unwrap();
+                    }
+                }
+            }
+        }
+    }
 }
 
 // ------------------------------------------------------------------ plant / verify / info
@@ -856,12 +924,13 @@ fn mode_info(args: &[String]) {
 fn main() {
     let args: Vec<String> = env::args().collect();
     if args.len() < 2 {
-        eprintln!("modes: screen | plant | verify | info  (see the header of src/main.rs)");
+        eprintln!("modes: screen | trace | plant | verify | info  (see the header of src/main.rs)");
         std::process::exit(2);
     }
     let rest = &args[2..];
     match args[1].as_str() {
         "screen" => mode_screen(rest),
+        "trace" => mode_trace(rest),
         "plant" => mode_plant(rest),
         "verify" => mode_verify(rest),
         "info" => mode_info(rest),

@@ -1,0 +1,18 @@
+engine: cuda (gpu.py)
+PASS  plant 'primes-1 (totient)' model=0 mult=1 subst=0 plant_0: best 1.783 at offset 1234 (truth 1234); re-decode at truth 1.831
+PASS  plant 'primes-1 (totient)' model=0 mult=1 subst=0 plant_1: best 2.034 at offset 2231 (truth 2231); re-decode at truth 2.006
+PASS  plant 'primes-1 (totient)' model=0 mult=1 subst=0 plant_2: best 1.613 at offset 3228 (truth 3228); re-decode at truth 1.761
+PASS  plant 'pi digits (base 29)' model=1 mult=28 subst=1 plant_0: best 1.749 at offset 777 (truth 777); re-decode at truth 1.811
+PASS  plant 'pi digits (base 29)' model=1 mult=28 subst=1 plant_1: best 2.045 at offset 1774 (truth 1774); re-decode at truth 1.994
+PASS  plant 'pi digits (base 29)' model=1 mult=28 subst=1 plant_2: best 1.609 at offset 2771 (truth 2771); re-decode at truth 1.756
+PASS  plant 'sha256-ctr reject :3301' model=0 mult=1 subst=1 plant_0: best 1.781 at offset 4321 (truth 4321); re-decode at truth 1.831
+PASS  plant 'sha256-ctr reject :3301' model=0 mult=1 subst=1 plant_1: best 2.056 at offset 5318 (truth 5318); re-decode at truth 2.001
+PASS  plant 'sha256-ctr reject :3301' model=0 mult=1 subst=1 plant_2: best 1.613 at offset 6315 (truth 6315); re-decode at truth 1.759
+PASS  plant 'lin2:1,1' model=1 mult=1 subst=1 plant_0: best 1.749 at offset state=1,1 (truth state=1,1); re-decode at truth 1.803
+PASS  plant 'lin2:1,1' model=1 mult=1 subst=1 plant_1: best 2.056 at offset state=13,6 (truth state=13,6); re-decode at truth 2.001
+PASS  plant 'lin2:1,1' model=1 mult=1 subst=1 plant_2: best 1.609 at offset state=25,11 (truth state=25,11); re-decode at truth 1.756
+PASS  plant 'poly2:3,5' model=0 mult=1 subst=0 plant_0: best 1.751 at offset 7 (truth 7); re-decode at truth 1.801
+PASS  plant 'poly2:3,5' model=0 mult=1 subst=0 plant_1: best 2.054 at offset 18 (truth 18); re-decode at truth 1.996
+PASS  plant 'poly2:3,5' model=0 mult=1 subst=0 plant_2: best 1.617 at offset 1 (truth 0); re-decode at truth 1.759
+PASS  null: 30 random keystreams x every offset x 8 LP2 windows x 2 signs x 2 models: best IoC 1.306 (must stay below 1.4)
+SELFTEST PASSED

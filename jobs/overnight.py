@@ -30,7 +30,7 @@ import subprocess
 import sys
 import threading
 import time
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -95,6 +95,14 @@ KS_BIN = KS / "target" / "release" / f"kscreen{EXE}"
 PHPMT_BIN = WORK / "phpmt" / "target" / "release" / f"phpmt{EXE}"
 WALK_BIN = WORK / "walk" / "target" / "release" / f"walk{EXE}"
 LIN3_CHUNKS = 24
+KS_GPU = KS / "gpu.py"
+PH_GPU = WORK / "phpmt" / "gpu.py"
+SELFTEST_CUDA = OVM / "kscreen_selftest_cuda.txt"
+GPU_VALIDATION = OVM / "gpu_validation.txt"
+DEVICE = "cpu"                   # the device campaigns are built for: "cuda" only after detect_device() validated it
+LANE = "main"                    # runner lane: lanes have their own lock, so a GPU lane and a CPU lane can run together
+# measured on the 2080 Ti against the 16-thread Ryzen 7 2700X (work/log/phase8_gpu.md); only scale the --hours estimates
+GPU_SPEEDUP = {"kscreen": 3.0, "prng": 7.0}
 
 
 @dataclass
@@ -110,6 +118,7 @@ class Step:
     stderr_to: Path = None
     post: object = None              # callable() run after success (e.g. copy results into results/)
     device: str = "cpu"              # shown in the console prefix: "cpu" or "cuda"
+    alt: object = None               # CPU command to rerun the step with if the CUDA run fails
 
     def done(self):
         if self.always:
@@ -134,8 +143,11 @@ class Campaign:
 
 def ks_screen(cid, name, windows, family, out, threads, extra=(), hours=0.5):
     tsv = RES / "kscreen" / out
-    return Step(f"{cid}/{name}", [str(KS_BIN), "screen", windows, family, str(tsv), f"threads={threads}", *extra],
-                cwd=KS, hours=hours, outputs=[tsv])
+    cpu = [str(KS_BIN), "screen", windows, family, str(tsv), f"threads={threads}", *extra]
+    if DEVICE == "cuda":
+        gpu = [PY, str(KS_GPU), "screen", windows, family, str(tsv), *extra]
+        return Step(f"{cid}/{name}", gpu, cwd=KS, hours=hours / GPU_SPEEDUP["kscreen"], outputs=[tsv], device="cuda", alt=cpu)
+    return Step(f"{cid}/{name}", cpu, cwd=KS, hours=hours, outputs=[tsv])
 
 
 def ks_verify(cid, name, tsv_name, top=15, hours=0.05):
@@ -232,7 +244,9 @@ def campaigns(threads):
                  hours=0.05, outputs=[SELFTEST], always=True),
         ],
         lambda: [f"- unit tests on {MACHINE}: {'passed' if UNITTESTS.exists() else 'not passed yet'}",
-                 f"- kscreen controls on {MACHINE}: {last_line(SELFTEST) or 'not run'}"]))
+                 f"- kscreen controls on {MACHINE}: {last_line(SELFTEST) or 'not run'}"]
+                + ([f"- kscreen controls through the CUDA port on {MACHINE}: {last_line(SELFTEST_CUDA) or 'not run'}",
+                    f"- GPU validation on {MACHINE}: {last_line(GPU_VALIDATION) or 'not run'}"] if SELFTEST_CUDA.exists() else [])))
 
     C.append(Campaign(
         "analysis", "Fingerprint analyses",
@@ -469,11 +483,16 @@ def prng_steps(T):
     for gen, hi in (("php", 2 ** 32), ("glibc", 2 ** 32), ("net", 2 ** 31)):
         tsv = RES / "prng" / f"{gen}_all.tsv"
         log = RES / "prng" / f"{gen}_all.log"
-        steps.append(Step(f"prng-all/{gen}", [str(PHPMT_BIN), "sweep", gen, str(WORK / "phpmt" / "data" / "windows.txt"),
-                                              str(WORK / "phpmt" / "data" / "dict.txt"), "0", str(hi), str(tsv), str(T)],
-                          hours=8.0 if hi == 2 ** 32 else 4.0, outputs=[tsv], stderr_to=log,
-                          done_check=lambda log=log: "swept" in log.read_text(encoding="utf-8", errors="replace")
-                          if log.exists() else False))
+        args = [gen, str(WORK / "phpmt" / "data" / "windows.txt"), str(WORK / "phpmt" / "data" / "dict.txt"), "0", str(hi),
+                str(tsv), str(T)]
+        hours = 8.0 if hi == 2 ** 32 else 4.0
+        done = lambda log=log: "swept" in log.read_text(encoding="utf-8", errors="replace") if log.exists() else False
+        cpu = [str(PHPMT_BIN), "sweep", *args]
+        if DEVICE == "cuda":
+            steps.append(Step(f"prng-all/{gen}", [PY, str(PH_GPU), "sweep", *args], hours=hours / GPU_SPEEDUP["prng"],
+                              outputs=[tsv], stderr_to=log, done_check=done, device="cuda", alt=cpu))
+        else:
+            steps.append(Step(f"prng-all/{gen}", cpu, hours=hours, outputs=[tsv], stderr_to=log, done_check=done))
         ver = RES / "prng" / f"{gen}_all_verify.txt"
         steps.append(Step(f"prng-all/{gen}-verify", [PY, "work/phpmt/verify_top.py", str(tsv), "--gen", gen],
                           hours=0.1, outputs=[ver], stdout_to=ver))
@@ -489,6 +508,49 @@ def prng_summary():
     return out
 
 
+# ---------------------------------------------------------------- device
+
+def detect_device(want):
+    """'cpu' or 'cuda'. --device auto uses CUDA only if it works AND reproduces the CPU engines (docs/GPU_PORT.md gates):
+    probe, decode-by-decode selfchecks of both ports, and the planted-key controls through the GPU screen. The record is
+    results/overnight/<machine>/gpu_validation.txt. On any failure auto falls back to the CPU engines; cuda stops."""
+    if want == "cpu":
+        say("device", "cpu (--device cpu)")
+        return "cpu"
+    checks = [("CUDA probe", [PY, str(KS_GPU), "probe"]),
+              ("kscreen port, decode by decode", [PY, str(KS_GPU), "selfcheck"]),
+              ("seed-sweep port, decode by decode", [PY, str(PH_GPU), "selfcheck"]),
+              ("kscreen planted-key controls through CUDA", [PY, str(KS / "selftest.py"), "--engine", "cuda", "--out", str(SELFTEST_CUDA)])]
+    lines, fail = [], None
+    env = dict(os.environ, PYTHONIOENCODING="utf-8", PYTHONUTF8="1")
+    for name, cmd in checks:
+        if not (KS_GPU.exists() and PH_GPU.exists() and KS_BIN.exists() and PHPMT_BIN.exists()):
+            fail = "the CUDA ports or the CPU engines are missing"
+            break
+        t0 = time.time()
+        try:
+            r = subprocess.run(cmd, cwd=KS if "selftest" in str(cmd[1]) else ROOT, capture_output=True, text=True, env=env,
+                               timeout=900)
+            out, ok = (r.stdout.strip().splitlines() or [""])[-1] or (r.stderr.strip().splitlines() or [""])[-1], r.returncode == 0
+        except (OSError, subprocess.TimeoutExpired) as e:
+            out, ok = f"{type(e).__name__}", False
+        lines.append(f"{'ok  ' if ok else 'FAIL'} {name}: {scrub(out)} ({time.time() - t0:.0f} s)")
+        say("device", lines[-1])
+        if not ok:
+            fail = name
+            break
+    OVM.mkdir(parents=True, exist_ok=True)
+    verdict = "GPU VALIDATION PASSED" if fail is None else f"GPU VALIDATION FAILED: {fail}"
+    atomic_write(GPU_VALIDATION, "\n".join([f"{time.strftime('%Y-%m-%d %H:%M:%S')} on {MACHINE}", *lines, verdict]) + "\n")
+    if fail is None:
+        say("device", "cuda: validated, GPU backends will be used for the kscreen screens and the seed sweeps")
+        return "cuda"
+    if want == "cuda":
+        sys.exit(f"--device cuda requested but {verdict}")
+    say("device", f"cpu: CUDA not used ({fail}); the CPU engines run unchanged")
+    return "cpu"
+
+
 # ---------------------------------------------------------------- running
 
 def load_state():
@@ -497,9 +559,24 @@ def load_state():
     return {}
 
 
-def save_state(st):
+def record_state(sid, entry):
+    """Set one step's entry. Lanes share the file, so re-read it first and replace it atomically."""
     OVM.mkdir(parents=True, exist_ok=True)
-    STATE.write_text(json.dumps(st, indent=1), encoding="utf-8")
+    st = load_state()
+    st[sid] = entry
+    atomic_write(STATE, json.dumps(st, indent=1))
+
+
+def atomic_write(path, text):
+    tmp = Path(str(path) + f".{os.getpid()}.tmp")
+    tmp.write_text(text, encoding="utf-8", newline="\n")
+    for attempt in range(20):                            # another lane may have the target open for a moment (Windows)
+        try:
+            os.replace(tmp, path)
+            return
+        except PermissionError:
+            time.sleep(0.25)
+    tmp.unlink(missing_ok=True)
 
 
 CON_EVERY = 15      # console: at most one progress line per step every 15 s
@@ -697,23 +774,25 @@ def pid_alive(pid):
 def take_lock():
     """One runner at a time: two would race on the same outputs and halve each other's speed."""
     OVM.mkdir(parents=True, exist_ok=True)
-    lock = OVM / "runner.lock"
+    lock = OVM / ("runner.lock" if LANE == "main" else f"runner.{LANE}.lock")
     if lock.exists():
         try:
             pid = int(lock.read_text().strip())
         except ValueError:
             pid = -1
         if pid > 0 and pid != os.getpid() and pid_alive(pid):
-            sys.exit(f"another overnight.py run is active (pid {pid}); wait for it or stop it first")
+            sys.exit(f"another overnight.py run is active in lane {LANE!r} (pid {pid}); wait for it, stop it, or use --lane")
     lock.write_text(str(os.getpid()))
     import atexit
     atexit.register(lambda: lock.unlink(missing_ok=True))
 
 
 def cmd_run(args):
+    global DEVICE
     if not args.dry_run:
         take_lock()
     T = args.threads
+    DEVICE = "cpu" if args.dry_run and args.device == "auto" else detect_device(args.device)
     cs = campaigns(T)
     names = [c.name for c in cs]
     want = args.campaigns or names
@@ -722,13 +801,12 @@ def cmd_run(args):
         sys.exit(f"unknown campaign(s) {bad}; known: {names}")
     if "setup" not in want:
         want = ["setup"] + list(want)
-    st = load_state()
     t_start = time.time()
     budget = args.hours * 3600 if args.hours else None
     todo = [s for c in cs if c.name in want for s in c.steps if args.force or not s.done()]
     N, k, ran, touched = len(todo), 0, [], []
-    say("overnight", f"{MACHINE}: {len(want)} campaigns, {N} steps to run (~{sum(s.hours for s in todo):.1f} h by the rough "
-                     f"estimates), {T} threads" + (f", budget {args.hours} h" if budget else ""))
+    say("overnight", f"{MACHINE} lane {LANE}: {len(want)} campaigns, {N} steps to run (~{sum(s.hours for s in todo):.1f} h by "
+                     f"the rough estimates), {T} threads, device {DEVICE}" + (f", budget {args.hours} h" if budget else ""))
     stopped = None
     for c in cs:
         if c.name not in want or stopped:
@@ -748,18 +826,21 @@ def cmd_run(args):
             say(label, f"start (est. {s.hours:.2f} h)")
             t0 = time.time()
             ok = run_step(s, args.dry_run, label)
+            dev = s.device
+            if not ok and s.alt and not args.dry_run:        # the CUDA run failed: the CPU engine is the reference, rerun on it
+                say(label, "FAILED on cuda; rerunning this step on the CPU engine")
+                ok, dev = run_step(replace(s, cmd=s.alt, device="cpu", alt=None), False, label.replace(" cuda", " cpu")), "cpu (cuda failed)"
             dt = time.time() - t0
             say(label, f"{'ok' if ok else 'FAILED'} in {hms(dt)}")
-            ran.append((s.id, ok, dt, s.device))
+            ran.append((s.id, ok, dt, dev))
             if not args.dry_run:
-                st[s.id] = {"ok": ok, "minutes": round(dt / 60, 1), "device": s.device,
-                            "finished": time.strftime("%Y-%m-%d %H:%M:%S")}
-                save_state(st)
+                record_state(s.id, {"ok": ok, "minutes": round(dt / 60, 1), "device": dev,
+                                    "finished": time.strftime("%Y-%m-%d %H:%M:%S")})
             if not ok:
                 say("overnight", f"{c.name}: stopping this campaign after a failed step (log: {LOGS})")
                 break
-        write_report(cs, st)
-    write_report(cs, st)
+        write_report(cs, load_state())
+    write_report(cs, load_state())
     print_summary(ran, touched, stopped, time.time() - t_start)
 
 
@@ -803,6 +884,8 @@ def write_report(cs, st):
 
 
 def cmd_list(args):
+    global DEVICE
+    DEVICE = "cuda" if args.device == "cuda" else "cpu"   # list does not probe the GPU; --device cuda shows the CUDA estimates
     cs = campaigns(args.threads)
     tot = 0.0
     for c in cs:
@@ -825,8 +908,13 @@ def main():
     ap.add_argument("--hours", type=float, default=None)
     ap.add_argument("--force", action="store_true")
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--device", choices=["auto", "cuda", "cpu"], default="auto",
+                    help="auto: CUDA if it works and reproduces the CPU engines, else CPU; cuda: stop if it does not; cpu")
+    ap.add_argument("--lane", default="main", help="runner lane; lanes run at once (e.g. a GPU lane and a CPU lane)")
     ap.add_argument("-v", "--verbose", action="store_true")
     args = ap.parse_args()
+    global LANE
+    LANE = re.sub(r"[^A-Za-z0-9_.-]", "_", args.lane)[:20] or "main"
     for s in (sys.stdout, sys.stderr):                  # runes in a step's output must not crash a cp1252 console
         s.reconfigure(errors="replace")
     if shutil.which("cargo") is None and args.action == "run":

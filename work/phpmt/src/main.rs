@@ -8,6 +8,10 @@
 //!                                                 score every seed in [lo, hi) (hi exclusive, u64)
 //!   verify <windows.txt> <dict.txt> <seed> <window> <map> <model> <sign> <atb>
 //!                                                 full-length decode of one candidate
+//!   raw    <gen> <lo> <hi> <out.txt>               the first K raw generator outputs of every seed (for gpu.py)
+//!   scores <gen> <windows.txt> <dict.txt> <lo> <hi> <out.txt>
+//!                                                 the sweep score of every (seed, window, variant), one line each
+//!                                                 (the reference gpu.py is compared with decode by decode)
 //!
 //! map: 0 = mt_rand(0,28) (PHP 5 RAND_RANGE scaling), 1 = mt_rand() % 29
 //! model: 0 = skip (on a collision the next key value is drawn; a missed check keeps the doublet)
@@ -694,13 +698,16 @@ fn mode_sweep(args_all: &[String]) {
     let next = Arc::new(AtomicU64::new(lo));
     let done = Arc::new(AtomicU64::new(0));
     let top: Arc<Mutex<Vec<Cand>>> = Arc::new(Mutex::new(Vec::new()));
+    let hist_all: Arc<Mutex<[u64; 64]>> = Arc::new(Mutex::new([0u64; 64]));
     const CHUNK: u64 = 1 << 18;
     const TOPK: usize = 400;
     let t0 = Instant::now();
     let mut hs = Vec::new();
     for _ in 0..threads {
         let (wins, dict, next, done, top) = (wins.clone(), dict.clone(), next.clone(), done.clone(), top.clone());
+        let hist_all = hist_all.clone();
         hs.push(std::thread::spawn(move || {
+            let mut hist = [0u64; 64];
             let mut local: Vec<Cand> = Vec::new();
             let mut floor: u16 = 0;
             let mut raw = [0u32; K];
@@ -722,6 +729,7 @@ fn mode_sweep(args_all: &[String]) {
                         for v in 0..16u8 {
                             let (model, map, sign, atb) = variant_parts(v);
                             let s = decode_fast(w, &keys[map as usize], sign, atb, model, &dict);
+                            hist[(s as usize).min(63)] += 1;
                             if s > floor || (local.len() < TOPK && s > 0) {
                                 local.push(Cand { score: s, seed, win: wi as u8, variant: v });
                                 if local.len() >= 2 * TOPK {
@@ -744,6 +752,9 @@ fn mode_sweep(args_all: &[String]) {
             local.sort_by(|x, y| y.score.cmp(&x.score));
             local.truncate(TOPK);
             top.lock().unwrap().extend(local);
+            for (a, b) in hist_all.lock().unwrap().iter_mut().zip(hist.iter()) {
+                *a += b;
+            }
         }));
     }
     for h in hs {
@@ -761,6 +772,47 @@ fn mode_sweep(args_all: &[String]) {
     }
     eprintln!("swept {} seeds in {:.0} s; best score {}", hi - lo, t0.elapsed().as_secs_f64(),
               all.first().map(|c| c.score).unwrap_or(0));
+    let h = hist_all.lock().unwrap();
+    eprintln!("hist {}", h.iter().enumerate().filter(|(_, c)| **c > 0).map(|(b, c)| format!("{b}:{c}")).collect::<Vec<_>>().join(" "));
+}
+
+fn mode_raw(args: &[String]) {
+    let rng = parse_gen(&args[0]);
+    let (lo, hi): (u64, u64) = (args[1].parse().unwrap(), args[2].parse().unwrap());
+    let mut f = std::io::BufWriter::new(fs::File::create(&args[3]).unwrap());
+    let mut raw = [0u32; K];
+    for seed in lo..hi {
+        fast_gen(rng, seed as u32, &mut raw);
+        write!(f, "{seed}").unwrap();
+        for x in raw.iter() {
+            write!(f, " {x}").unwrap();
+        }
+        writeln!(f).unwrap();
+    }
+}
+
+fn mode_scores(args_all: &[String]) {
+    let rng = parse_gen(&args_all[0]);
+    let args = &args_all[1..];
+    let wins = load_windows(&args[0]);
+    let dict = Dict::load(&args[1]);
+    let (lo, hi): (u64, u64) = (args[2].parse().unwrap(), args[3].parse().unwrap());
+    let mut f = std::io::BufWriter::new(fs::File::create(&args[4]).unwrap());
+    let mut raw = [0u32; K];
+    let mut keys = [[0u8; K]; 2];
+    for seed64 in lo..hi {
+        fast_gen(rng, seed64 as u32, &mut raw);
+        for i in 0..K {
+            keys[0][i] = key_gen(rng, raw[i], 0);
+            keys[1][i] = key_gen(rng, raw[i], 1);
+        }
+        for (wi, w) in wins.iter().enumerate() {
+            for v in 0..16u8 {
+                let (model, map, sign, atb) = variant_parts(v);
+                writeln!(f, "{seed64} {wi} {v} {}", decode_fast(w, &keys[map as usize], sign, atb, model, &dict)).unwrap();
+            }
+        }
+    }
 }
 
 fn mode_verify(args_all: &[String]) {
@@ -794,6 +846,8 @@ fn main() {
         Some("plant") => mode_plant(&args[2..]),
         Some("sweep") => mode_sweep(&args[2..]),
         Some("verify") => mode_verify(&args[2..]),
-        _ => eprintln!("usage: phpmt vectors|plant|sweep|verify ..."),
+        Some("raw") => mode_raw(&args[2..]),
+        Some("scores") => mode_scores(&args[2..]),
+        _ => eprintln!("usage: phpmt vectors|plant|sweep|verify|raw|scores ..."),
     }
 }
