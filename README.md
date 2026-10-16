@@ -32,7 +32,7 @@ images (`work/orig/`) and the text data (`work/ref/`) are committed. The sources
 
 ```bash
 python jobs/overnight.py list               # what exists, rough hours, what is done
-python jobs/overnight.py run --hours 9      # run in priority order; resumable; report in results/overnight/REPORT.md
+python jobs/overnight.py run --hours 9      # run in priority order; resumable; report in results/overnight/<machine>/REPORT.md
 ```
 
 `jobs/overnight.py` builds everything, runs the regression tests and the controls, and then runs the

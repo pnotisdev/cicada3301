@@ -6,9 +6,9 @@
 | `prng/glibc_07.tsv`, `.log` | `phpmt sweep glibc` on segment 0.7 | glibc random() / PHP 5 rand() on Linux |
 | `prng/net_07.tsv`, `.log` | `phpmt sweep net` on segment 0.7 | .NET System.Random, seeds 0..2^31 |
 | `walk/dsearch.txt` | `jobs/walk_dsearch.sh` | key-free D-search on LP2 vs surrogates |
-| `overnight/REPORT.md` | `jobs/overnight.py` | verdict per campaign; logs in `overnight/logs/` |
+| `overnight/<machine>/REPORT.md` | `jobs/overnight.py` | verdict per campaign on that PC; its logs, runner state and selftest in the same folder |
 | `kscreen/*.tsv`, `*_verify.txt` | `work/kscreen` | IoC screen hits (top 2,000), per-window bests, IoC histogram; re-decoded top hits |
-| `kscreen/selftest.txt` | `work/kscreen/selftest.py` | planted-key recovery and random-key null for the IoC screen |
+| `kscreen/selftest.txt` | `work/kscreen/selftest.py` | planted-key recovery and random-key null for the IoC screen (the runner writes its own copy per machine) |
 | `analysis/drift_period.*` | `work/drift_period.py` | drift-aware periodic-key scan (Z per period) with power curve |
 | `analysis/wordlen.txt` | `work/wordlen.py` | LP2 word-length histogram against English conventions |
 | `screens/` | `attack.py`, `rev_screen.py`, `heading_screen.py` | dictionary screens rerun with the corrected segmentation |

@@ -7,7 +7,7 @@ Positive: keys from five different families are planted into held-out English (w
 random substitution of the plaintext alphabet. Each must come back as its window's best hit with IoC >= 1.40,
 and a full re-decode at the true offset must also reach 1.40.
 Null: random keystreams over every offset of the LP2 section windows must stay below 1.40.
-Writes results/kscreen/selftest.txt and exits non-zero on any failure.
+Writes results/kscreen/selftest.txt (or --out) and exits non-zero on any failure.
 """
 import argparse
 import os
@@ -31,6 +31,10 @@ CASES = [
     ("lin:2", "lin2:1,1", "state=1,1", 1, 1, 1, ["mults=1"]),
     ("poly:2", "poly2:3,5", "7", 1, 0, 0, ["mults=1"]),
 ]
+
+
+def rel(p):
+    return os.path.relpath(p, HERE).replace("\\", "/")
 
 
 def run(args, **kw):
@@ -66,6 +70,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--threads", type=int, default=os.cpu_count())
     ap.add_argument("--null-keystreams", type=int, default=30)
+    ap.add_argument("--out", default=os.path.join(OUT, "selftest.txt"), help="where to write the summary")
     args = ap.parse_args()
     os.makedirs(TMP, exist_ok=True)
     os.makedirs(OUT, exist_ok=True)
@@ -73,19 +78,20 @@ def main():
     for ci, (fam, item, off, mult, model, subst, extra) in enumerate(CASES):
         plant = os.path.join(TMP, f"selftest_plant{ci}.txt")
         tsv = os.path.join(TMP, f"selftest_plant{ci}.tsv")
-        run(["plant", PLAIN, fam, item, off, str(mult), str(model), "0.18", str(100 + ci), str(subst), plant])
-        run(["screen", plant, fam, tsv, f"only={item}", f"threads={args.threads}"] + extra)
+        # relative paths: they end up in the result headers, which must not show this PC's folders
+        run(["plant", rel(PLAIN), fam, item, off, str(mult), str(model), "0.18", str(100 + ci), str(subst), rel(plant)])
+        run(["screen", rel(plant), fam, rel(tsv), f"only={item}", f"threads={args.threads}"] + extra)
         best = window_bests(tsv)
         for win, (titem, toff) in truths(plant).items():
             ioc, bitem, boff = best.get(win, (0.0, "-", "-"))
-            vout = run(["verify", plant, fam, item, toff, str(mult), str(model), win])
+            vout = run(["verify", rel(plant), fam, item, toff, str(mult), str(model), win])
             vioc = float(re.search(r"ioc ([\d.]+)", vout).group(1))
             good = bitem == item and ioc >= THRESHOLD and vioc >= THRESHOLD
             ok &= good
             lines.append(f"{'PASS' if good else 'FAIL'}  plant {item!r} model={model} mult={mult} subst={subst} {win}: "
                          f"best {ioc:.3f} at offset {boff} (truth {toff}); re-decode at truth {vioc:.3f}")
     null_tsv = os.path.join(TMP, "selftest_null.tsv")
-    run(["screen", "data/segments.txt", f"rand:{args.null_keystreams}:4242", null_tsv, f"threads={args.threads}"])
+    run(["screen", "data/segments.txt", f"rand:{args.null_keystreams}:4242", rel(null_tsv), f"threads={args.threads}"])
     nbest = max(v[0] for v in window_bests(null_tsv).values())
     good = nbest < THRESHOLD
     ok &= good
@@ -94,7 +100,8 @@ def main():
     lines.append("SELFTEST " + ("PASSED" if ok else "FAILED"))
     text = "\n".join(lines) + "\n"
     print(text)
-    with open(os.path.join(OUT, "selftest.txt"), "w", newline="\n", encoding="utf-8") as f:
+    os.makedirs(os.path.dirname(os.path.abspath(args.out)), exist_ok=True)
+    with open(args.out, "w", newline="\n", encoding="utf-8") as f:
         f.write(text)
     return 0 if ok else 1
 

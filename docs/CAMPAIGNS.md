@@ -11,7 +11,7 @@ null controls (random keys under identical settings), so a "nothing found" resul
 2. Clone the repository with GitHub Desktop.
 3. In PowerShell, from the repository folder, run `python -m pip install -r requirements.txt`.
 4. Run `python jobs/overnight.py run selftest`. It builds everything, exports the data, runs the 44 tests and
-   the kscreen controls (about 10 minutes). Continue only if `results/kscreen/selftest.txt` ends with
+   the kscreen controls (about 10 minutes). Continue only if `results/overnight/<machine>/kscreen_selftest.txt` ends with
    `SELFTEST PASSED`.
 5. Disable sleep while plugged in (Settings → System → Power).
 
@@ -28,7 +28,7 @@ python jobs/overnight.py list            # campaigns, rough hours, what is alrea
 python jobs/overnight.py run             # everything, in the order below
 python jobs/overnight.py run --hours 9   # start no new step after 9 hours (a step is never cut off)
 python jobs/overnight.py run kscreen-sections kscreen-restarts
-python jobs/overnight.py report          # rewrite results/overnight/REPORT.md
+python jobs/overnight.py report          # rewrite results/overnight/<machine>/REPORT.md
 ```
 
 - **Setup.** `setup` runs first every time: three cargo builds and the data exports. It takes seconds when
@@ -40,8 +40,12 @@ python jobs/overnight.py report          # rewrite results/overnight/REPORT.md
 - **Threads.** `--threads N` defaults to every logical CPU. Leave one or two free if you use the machine.
 - **Output.**
   - Results go under `results/` (see `results/README.md`).
-  - Logs go to `results/overnight/logs/`.
-  - The summary, with verdicts, is `results/overnight/REPORT.md`.
+  - Each PC keeps its runner state, logs and report in `results/overnight/<machine>/` (its own folder,
+    named by the PC's alias, so two PCs never edit the same file). These are committed: every PC sees every
+    log after a pull. The alias is never the computer's real name: put one word, e.g. `desktop`, in the
+    git-ignored file `.lp_machine` (or set `LP_MACHINE`). Without either, the runner picks a random
+    `pc-xxxxxx` and saves it there. Paths and the computer's name are scrubbed from the logs.
+  - The summary, with verdicts, is `results/overnight/<machine>/REPORT.md`.
 - **Machine.** Keep it plugged in with sleep disabled.
 
 Hours below are rough figures for a 16-thread desktop CPU. The 15 W laptop these were developed on is about

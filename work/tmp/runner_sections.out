@@ -1,0 +1,17 @@
+overnight: 2 campaigns, 16 threads
+
+== setup: Build engines and data
+   run      setup/build-phpmt  (est. 0.02 h) ... ok in 0.0 min
+   run      setup/build-walk  (est. 0.02 h) ... ok in 0.0 min
+   run      setup/build-kscreen  (est. 0.02 h) ... ok in 0.0 min
+   run      setup/fetch-data  (est. 0.02 h) ... ok in 0.0 min
+   done     setup/data-phpmt
+   done     setup/data-walk
+   done     setup/data-kscreen
+
+== kscreen-sections: Keystream library at every offset, LP2 sections
+   run      kscreen-sections/null  (est. 0.30 h) ... ok in 8.7 min
+   done     kscreen-sections/library
+   done     kscreen-sections/verify
+
+finished in 0.1 h; report: <repo>\results\overnight\REPORT.md

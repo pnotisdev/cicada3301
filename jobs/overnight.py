@@ -6,13 +6,14 @@ positive controls, resume, logs and an automatic report.
     python jobs/overnight.py run                           # everything, in priority order
     python jobs/overnight.py run kscreen-sections dsearch  # selected campaigns
     python jobs/overnight.py run --hours 9                 # stop starting new steps after 9 hours
-    python jobs/overnight.py report                        # rewrite results/overnight/REPORT.md
+    python jobs/overnight.py report                        # rewrite results/overnight/<machine>/REPORT.md
 
 Options: --threads N (default: all logical CPUs), --force (rerun finished steps), --dry-run.
 
 Resume: a step counts as finished when its output files exist (they are written only at the end), so a run
 can be stopped at any time (Ctrl+C, reboot) and restarted; only the interrupted step starts over. Setup steps
-(cargo builds, data export) always run and are fast when nothing changed. Logs: results/overnight/logs/.
+(cargo builds, data export) always run and are fast when nothing changed. State, logs and report live in
+results/overnight/<machine>/ (committed; one folder per PC, so pushes from two PCs never conflict).
 
 Discipline: every campaign starts with, or depends on, positive controls (planted keys that must be recovered)
 and null controls (random keys under identical settings). A campaign's null result is only reported as
@@ -21,6 +22,7 @@ validated when its controls passed. See docs/CAMPAIGNS.md for what each campaign
 import argparse
 import json
 import os
+import platform
 import re
 import shutil
 import subprocess
@@ -32,9 +34,58 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 WORK = ROOT / "work"
 RES = ROOT / "results"
+# Each machine keeps its own runner state, logs and report under results/overnight/<alias>/ (committed), so two
+# PCs can push without conflicts. The alias is never the real computer name, because the repository may become
+# public. It is LP_MACHINE if set, else the name in the git-ignored file .lp_machine (e.g. "laptop", "desktop"),
+# else a random alias that is saved there on first use.
+def machine_alias():
+    clean = lambda s: re.sub(r"[^A-Za-z0-9_.-]", "_", s.strip())[:40]
+    if os.environ.get("LP_MACHINE", "").strip():
+        return clean(os.environ["LP_MACHINE"])
+    f = ROOT / ".lp_machine"
+    if f.exists() and f.read_text(encoding="utf-8").strip():
+        return clean(f.read_text(encoding="utf-8"))
+    import secrets
+    alias = "pc-" + secrets.token_hex(3)
+    f.write_text(alias + "\n", encoding="utf-8")
+    print(f"note: this PC's runner folder will be results/overnight/{alias}/ (change the name in .lp_machine)")
+    return alias
+
+
+MACHINE = machine_alias()
+_HOST = platform.node()
+
+
+def scrub(text):
+    """Remove this PC's identity from text bound for tracked files: repository path, home folder, host name."""
+    for p, rep in ((str(ROOT), "<repo>"), (str(Path.home()), "~")):
+        forms = {p, p.replace("\\", "/"), p.replace("\\", "\\\\")}     # as is, forward slashes, repr()-escaped
+        if p[1:2] == ":":
+            forms.add("/" + p[0].lower() + p[2:].replace("\\", "/"))   # Git Bash style /c/...
+        for v in sorted(forms, key=len, reverse=True):
+            text = text.replace(v, rep)
+    if len(_HOST) >= 5:                                  # a very short host name would match ordinary words
+        text = re.sub(re.escape(_HOST), "<host>", text, flags=re.IGNORECASE)
+    return text
+
+
+def scrub_file(path):
+    p = Path(path)
+    if not p.exists() or p.stat().st_size > 50_000_000:
+        return
+    try:
+        t = p.read_text(encoding="utf-8")
+    except (UnicodeDecodeError, OSError):
+        return
+    s = scrub(t)
+    if s != t:
+        p.write_text(s, encoding="utf-8", newline="\n")
 OV = RES / "overnight"
-LOGS = OV / "logs"
-STATE = OV / "state.json"
+OVM = OV / MACHINE
+SELFTEST = OVM / "kscreen_selftest.txt"
+UNITTESTS = OVM / "unittests.ok"
+LOGS = OVM / "logs"
+STATE = OVM / "state.json"
 EXE = ".exe" if os.name == "nt" else ""
 PY = sys.executable
 KS = WORK / "kscreen"
@@ -141,8 +192,7 @@ def ks_summary(screens, null_name, verify_names):
 
 
 def selftest_ok():
-    p = RES / "kscreen" / "selftest.txt"
-    return p.exists() and "SELFTEST PASSED" in p.read_text(encoding="utf-8")
+    return SELFTEST.exists() and "SELFTEST PASSED" in SELFTEST.read_text(encoding="utf-8")
 
 
 # ---------------------------------------------------------------- campaigns
@@ -173,13 +223,13 @@ def campaigns(threads):
         "random-key null. Nothing else is trusted unless this passes.",
         [
             Step("selftest/unittests", [PY, "-m", "unittest", "discover", "-s", "work/tests"], hours=0.1,
-                 outputs=[OV / "unittests.ok"]),
+                 outputs=[UNITTESTS]),
             # always rerun: it validates this machine's build, and its result file may come from another machine
-            Step("selftest/kscreen-controls", [PY, str(KS / "selftest.py"), "--threads", str(T)], hours=0.05,
-                 outputs=[RES / "kscreen" / "selftest.txt"], always=True),
+            Step("selftest/kscreen-controls", [PY, str(KS / "selftest.py"), "--threads", str(T), "--out", str(SELFTEST)],
+                 hours=0.05, outputs=[SELFTEST], always=True),
         ],
-        lambda: [f"- unit tests: {'passed' if (OV / 'unittests.ok').exists() else 'not passed yet'}",
-                 f"- kscreen controls: {last_line(RES / 'kscreen' / 'selftest.txt') or 'not run'}"]))
+        lambda: [f"- unit tests on {MACHINE}: {'passed' if UNITTESTS.exists() else 'not passed yet'}",
+                 f"- kscreen controls on {MACHINE}: {last_line(SELFTEST) or 'not run'}"]))
 
     C.append(Campaign(
         "analysis", "Fingerprint analyses",
@@ -445,7 +495,7 @@ def load_state():
 
 
 def save_state(st):
-    OV.mkdir(parents=True, exist_ok=True)
+    OVM.mkdir(parents=True, exist_ok=True)
     STATE.write_text(json.dumps(st, indent=1), encoding="utf-8")
 
 
@@ -463,7 +513,7 @@ def run_step(step, dry):
         if callable(step.cmd):
             ok = bool(step.cmd(log))
         else:
-            log.write(f"# {' '.join(map(str, step.cmd))}\n# cwd {step.cwd}\n")
+            log.write(scrub(f"# {' '.join(map(str, step.cmd))}\n# cwd {step.cwd}\n"))
             log.flush()
             # stdout goes to <file>.part and is renamed only on success, so an interrupted step never
             # leaves an output that looks finished
@@ -485,7 +535,11 @@ def run_step(step, dry):
     if ok and step.post:
         step.post()
     if ok and step.id == "selftest/unittests":
-        (OV / "unittests.ok").write_text(time.strftime("%Y-%m-%d %H:%M:%S"), encoding="utf-8")
+        UNITTESTS.write_text(time.strftime("%Y-%m-%d %H:%M:%S"), encoding="utf-8")
+    # tracked text outputs must not carry this PC's paths or name (the repository may become public)
+    for p in [logp, step.stdout_to, step.stderr_to, *step.outputs]:
+        if p:
+            scrub_file(p)
     return ok
 
 
@@ -509,8 +563,8 @@ def pid_alive(pid):
 
 def take_lock():
     """One runner at a time: two would race on the same outputs and halve each other's speed."""
-    OV.mkdir(parents=True, exist_ok=True)
-    lock = OV / "runner.lock"
+    OVM.mkdir(parents=True, exist_ok=True)
+    lock = OVM / "runner.lock"
     if lock.exists():
         try:
             pid = int(lock.read_text().strip())
@@ -565,17 +619,17 @@ def cmd_run(args):
                 break
         write_report(cs, st)
     write_report(cs, st)
-    print(f"\nfinished in {(time.time() - t_start) / 3600:.1f} h; report: {OV / 'REPORT.md'}")
+    print(f"\nfinished in {(time.time() - t_start) / 3600:.1f} h; report: {OVM / 'REPORT.md'}")
 
 
 def write_report(cs, st):
-    OV.mkdir(parents=True, exist_ok=True)
-    lines = ["# Overnight campaigns: report", "",
-             f"Generated {time.strftime('%Y-%m-%d %H:%M:%S')} by `python jobs/overnight.py`. "
+    OVM.mkdir(parents=True, exist_ok=True)
+    lines = [f"# Overnight campaigns: report from {MACHINE}", "",
+             f"Generated on {MACHINE} at {time.strftime('%Y-%m-%d %H:%M:%S')} by `python jobs/overnight.py`. "
              "Thresholds and method: docs/CAMPAIGNS.md.", ""]
-    valid = selftest_ok() and (OV / "unittests.ok").exists()
-    lines.append("**Controls:** " + ("selftest passed; null results below are validated." if valid else
-                                     "selftest has NOT passed on this machine; treat every null below as unvalidated."))
+    valid = selftest_ok() and UNITTESTS.exists()
+    lines.append("**Controls:** " + (f"unit tests and kscreen selftest passed on {MACHINE}; null results below are validated." if valid else
+                                     f"the selftest has NOT passed on {MACHINE}; treat every null below as unvalidated."))
     for c in cs:
         done = sum(s.done() for s in c.steps if not s.always)
         total = sum(1 for s in c.steps if not s.always)
@@ -587,8 +641,8 @@ def write_report(cs, st):
                 lines.append(f"- (summary failed: {e})")
         failed = [s.id for s in c.steps if st.get(s.id, {}).get("ok") is False and not s.done()]
         if failed:
-            lines.append(f"- failed steps: {', '.join(failed)} (see results/overnight/logs/)")
-    (OV / "REPORT.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+            lines.append(f"- failed steps: {', '.join(failed)} (see results/overnight/{MACHINE}/logs/)")
+    (OVM / "REPORT.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
 def cmd_list(args):
@@ -603,7 +657,7 @@ def cmd_list(args):
         if args.verbose:
             for s in c.steps:
                 print(f"    {'x' if s.done() else ' '} {s.id}  ({s.hours:.2f} h)")
-    print(f"{'total':22s} ~{tot:5.1f} h (rough, 16-thread desktop CPU)")
+    print(f"{'total':22s} ~{tot:5.1f} h (rough, 16-thread desktop CPU); this machine: {MACHINE}")
 
 
 def main():
@@ -624,7 +678,7 @@ def main():
         cmd_run(args)
     else:
         write_report(campaigns(args.threads), load_state())
-        print((OV / "REPORT.md").read_text(encoding="utf-8"))
+        print((OVM / "REPORT.md").read_text(encoding="utf-8"))
 
 
 if __name__ == "__main__":

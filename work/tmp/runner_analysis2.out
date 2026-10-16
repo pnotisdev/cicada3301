@@ -1,0 +1,16 @@
+overnight: 2 campaigns, 4 threads
+
+== setup: Build engines and data
+   run      setup/build-phpmt  (est. 0.02 h) ... ok in 0.0 min
+   run      setup/build-walk  (est. 0.02 h) ... ok in 0.0 min
+   run      setup/build-kscreen  (est. 0.02 h) ... ok in 0.0 min
+   run      setup/fetch-data  (est. 0.02 h) ... ok in 0.0 min
+   done     setup/data-phpmt
+   done     setup/data-walk
+   done     setup/data-kscreen
+
+== analysis: Fingerprint analyses
+   run      analysis/drift-period  (est. 0.40 h) ... ok in 7.2 min
+   done     analysis/wordlen
+
+finished in 0.1 h; report: <repo>\results\overnight\REPORT.md

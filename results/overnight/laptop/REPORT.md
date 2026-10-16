@@ -1,8 +1,8 @@
-# Overnight campaigns: report
+# Overnight campaigns: report from laptop
 
-Generated 2026-10-16 22:54:50 by `python jobs/overnight.py`. Thresholds and method: docs/CAMPAIGNS.md.
+Generated on laptop at 2026-10-16 23:10:18 by `python jobs/overnight.py`. Thresholds and method: docs/CAMPAIGNS.md.
 
-**Controls:** selftest passed; null results below are validated.
+**Controls:** unit tests and kscreen selftest passed on laptop; null results below are validated.
 
 ## setup: Build engines and data (3/3 steps done)
 
@@ -13,8 +13,8 @@ Cargo builds of the three Rust engines and the generated inputs (fast when nothi
 
 The 44 unit tests (solved pages, transcription, statistics, engines) and the kscreen plant/recover and random-key null. Nothing else is trusted unless this passes.
 
-- unit tests: passed
-- kscreen controls: SELFTEST PASSED
+- unit tests on laptop: passed
+- kscreen controls on laptop: SELFTEST PASSED
 
 ## analysis: Fingerprint analyses (2/2 steps done)
 
