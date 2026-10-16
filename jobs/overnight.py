@@ -1,0 +1,631 @@
+#!/usr/bin/env python3
+"""Overnight campaign runner for the Liber Primus LP2 attacks: long tests and brute-force searches with
+positive controls, resume, logs and an automatic report.
+
+    python jobs/overnight.py list                          # campaigns, steps, rough hours, what is done
+    python jobs/overnight.py run                           # everything, in priority order
+    python jobs/overnight.py run kscreen-sections dsearch  # selected campaigns
+    python jobs/overnight.py run --hours 9                 # stop starting new steps after 9 hours
+    python jobs/overnight.py report                        # rewrite results/overnight/REPORT.md
+
+Options: --threads N (default: all logical CPUs), --force (rerun finished steps), --dry-run.
+
+Resume: a step counts as finished when its output files exist (they are written only at the end), so a run
+can be stopped at any time (Ctrl+C, reboot) and restarted; only the interrupted step starts over. Setup steps
+(cargo builds, data export) always run and are fast when nothing changed. Logs: results/overnight/logs/.
+
+Discipline: every campaign starts with, or depends on, positive controls (planted keys that must be recovered)
+and null controls (random keys under identical settings). A campaign's null result is only reported as
+validated when its controls passed. See docs/CAMPAIGNS.md for what each campaign tests and why.
+"""
+import argparse
+import json
+import os
+import re
+import shutil
+import subprocess
+import sys
+import time
+from dataclasses import dataclass, field
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+WORK = ROOT / "work"
+RES = ROOT / "results"
+OV = RES / "overnight"
+LOGS = OV / "logs"
+STATE = OV / "state.json"
+EXE = ".exe" if os.name == "nt" else ""
+PY = sys.executable
+KS = WORK / "kscreen"
+KS_BIN = KS / "target" / "release" / f"kscreen{EXE}"
+PHPMT_BIN = WORK / "phpmt" / "target" / "release" / f"phpmt{EXE}"
+WALK_BIN = WORK / "walk" / "target" / "release" / f"walk{EXE}"
+LIN3_CHUNKS = 24
+
+
+@dataclass
+class Step:
+    id: str
+    cmd: object                      # list of args, or a Python callable(log) -> bool
+    cwd: Path = ROOT
+    hours: float = 0.1               # rough estimate on a 16-thread desktop CPU
+    outputs: list = field(default_factory=list)
+    always: bool = False             # setup steps: run every time
+    done_check: object = None        # extra completion test: callable() -> bool
+    stdout_to: Path = None
+    stderr_to: Path = None
+    post: object = None              # callable() run after success (e.g. copy results into results/)
+
+    def done(self):
+        if self.always:
+            return False
+        if not self.outputs and self.done_check is None:
+            return False
+        if not all(Path(p).exists() and Path(p).stat().st_size > 0 for p in self.outputs):
+            return False
+        return self.done_check() if self.done_check else True
+
+
+@dataclass
+class Campaign:
+    name: str
+    title: str
+    why: str
+    steps: list
+    summarize: object = None         # callable() -> list of markdown lines
+
+
+# ---------------------------------------------------------------- helpers
+
+def ks_screen(cid, name, windows, family, out, threads, extra=(), hours=0.5):
+    tsv = RES / "kscreen" / out
+    return Step(f"{cid}/{name}", [str(KS_BIN), "screen", windows, family, str(tsv), f"threads={threads}", *extra],
+                cwd=KS, hours=hours, outputs=[tsv])
+
+
+def ks_verify(cid, name, tsv_name, top=15, hours=0.05):
+    tsv = RES / "kscreen" / tsv_name
+    out = RES / "kscreen" / tsv_name.replace(".tsv", "_verify.txt")
+    return Step(f"{cid}/{name}", [PY, str(KS / "verify.py"), str(tsv), "--top", str(top), "--out", str(out)],
+                hours=hours, outputs=[out])
+
+
+def ks_best(tsv_name):
+    p = RES / "kscreen" / tsv_name
+    if not p.exists():
+        return None
+    for line in open(p, encoding="utf-8"):
+        m = re.match(r"# best ([\d.]+)", line)
+        if m:
+            return float(m.group(1))
+    return None
+
+
+def ks_header(tsv_name):
+    p = RES / "kscreen" / tsv_name
+    if not p.exists():
+        return ""
+    line = open(p, encoding="utf-8").readline().strip()
+    m = re.search(r"runs=(\d+).*secs=(\d+)", line)
+    return f"{int(m.group(1)):,} decodes in {int(m.group(2)) / 60:.0f} min" if m else ""
+
+
+def last_line(path, pattern=None):
+    p = Path(path)
+    if not p.exists():
+        return None
+    lines = [l.rstrip() for l in open(p, encoding="utf-8", errors="replace") if l.strip()]
+    if pattern:
+        lines = [l for l in lines if re.search(pattern, l)]
+    return lines[-1] if lines else None
+
+
+def ks_summary(screens, null_name, verify_names):
+    out = []
+    nb = ks_best(null_name) if null_name else None
+    for label, name in screens:
+        b = ks_best(name)
+        if b is None:
+            out.append(f"- {label}: not run yet")
+            continue
+        flag = "**above threshold, see verification**" if b >= 1.40 else "below the 1.40 threshold"
+        out.append(f"- {label}: best IoC {b:.3f} ({flag}; {ks_header(name)})")
+    if nb is not None:
+        out.append(f"- matched null (random keystreams, same windows/settings): best {nb:.3f}")
+    for v in verify_names:
+        line = last_line(RES / "kscreen" / v, r"re-decoded hits")
+        if line:
+            out.append(f"- verification ({v}): {line}")
+    return out
+
+
+def selftest_ok():
+    p = RES / "kscreen" / "selftest.txt"
+    return p.exists() and "SELFTEST PASSED" in p.read_text(encoding="utf-8")
+
+
+# ---------------------------------------------------------------- campaigns
+
+def campaigns(threads):
+    T = threads
+    C = []
+
+    C.append(Campaign(
+        "setup", "Build engines and data",
+        "Cargo builds of the three Rust engines and the generated inputs (fast when nothing changed).",
+        [
+            Step("setup/build-phpmt", ["cargo", "build", "--release", "--manifest-path", str(WORK / "phpmt" / "Cargo.toml")], always=True, hours=0.02),
+            Step("setup/build-walk", ["cargo", "build", "--release", "--manifest-path", str(WORK / "walk" / "Cargo.toml")], always=True, hours=0.02),
+            Step("setup/build-kscreen", ["cargo", "build", "--release", "--manifest-path", str(KS / "Cargo.toml")], always=True, hours=0.02),
+            Step("setup/fetch-data", [PY, "scripts/fetch_data.py"], always=True, hours=0.02),
+            Step("setup/data-phpmt", [PY, "work/phpmt/export_data.py"], hours=0.02,
+                 outputs=[WORK / "phpmt" / "data" / f for f in ("windows.txt", "windows_07.txt", "dict.txt", "english.txt")]),
+            Step("setup/data-walk", [PY, "work/walk/make_data.py"], hours=0.02,
+                 outputs=[WORK / "walk" / "data" / f for f in ("lm3.bin", "lp2.txt", "english_test.txt")]),
+            Step("setup/data-kscreen", [PY, "work/kscreen/export.py"], hours=0.1,
+                 outputs=[KS / "data" / f for f in ("segments.txt", "heads.txt", "pages.txt", "library.ksb")]),
+        ]))
+
+    C.append(Campaign(
+        "selftest", "Regression tests and keystream-screen controls",
+        "The 44 unit tests (solved pages, transcription, statistics, engines) and the kscreen plant/recover and "
+        "random-key null. Nothing else is trusted unless this passes.",
+        [
+            Step("selftest/unittests", [PY, "-m", "unittest", "discover", "-s", "work/tests"], hours=0.1,
+                 outputs=[OV / "unittests.ok"]),
+            # always rerun: it validates this machine's build, and its result file may come from another machine
+            Step("selftest/kscreen-controls", [PY, str(KS / "selftest.py"), "--threads", str(T)], hours=0.05,
+                 outputs=[RES / "kscreen" / "selftest.txt"], always=True),
+        ],
+        lambda: [f"- unit tests: {'passed' if (OV / 'unittests.ok').exists() else 'not passed yet'}",
+                 f"- kscreen controls: {last_line(RES / 'kscreen' / 'selftest.txt') or 'not run'}"]))
+
+    C.append(Campaign(
+        "analysis", "Fingerprint analyses",
+        "Drift-aware periodic-key scan (the old lag scan cannot see periods beyond ~60 under the skip rule) and "
+        "the word-length model test (LP2 has too few 2-rune words for English in runes).",
+        [
+            Step("analysis/drift-period", [PY, "work/drift_period.py"], hours=0.4,
+                 outputs=[RES / "analysis" / "drift_period.tsv", RES / "analysis" / "drift_period.txt"],
+                 stdout_to=RES / "analysis" / "drift_period.txt"),
+            Step("analysis/wordlen", [PY, "work/wordlen.py"], hours=0.02, outputs=[RES / "analysis" / "wordlen.txt"]),
+        ],
+        lambda: [f"- drift period scan: {last_line(RES / 'analysis' / 'drift_period.txt', 'verdict') or 'not run'}",
+                 f"- word lengths: {last_line(RES / 'analysis' / 'wordlen.txt', 'null rune') or 'not run'}"]))
+
+    C.append(Campaign(
+        "kscreen-sections", "Keystream library at every offset, LP2 sections",
+        "1,447 keystreams (number theory, constants, Cicada numbers, hash streams of Cicada strings and of the "
+        "corrected payload) at every start offset, both key signs, both anti-repeat models, scored by IoC: any "
+        "plaintext language, any substituted plaintext alphabet.",
+        [
+            ks_screen("kscreen-sections", "null", "data/segments.txt", "rand:300:11", "null_segments.tsv", T, hours=0.3),
+            ks_screen("kscreen-sections", "library", "data/segments.txt", "file:data/library.ksb", "library_segments.tsv", T, hours=0.4),
+            ks_verify("kscreen-sections", "verify", "library_segments.tsv"),
+        ],
+        lambda: ks_summary([("library x 8 sections", "library_segments.tsv")], "null_segments.tsv",
+                           ["library_segments_verify.txt"])))
+
+    C.append(Campaign(
+        "kscreen-restarts", "Keystream library restarted at headings and page starts",
+        "Same library, with the key restarting at each red heading / paragraph start (10 windows) and at each "
+        "page start (46 windows).",
+        [
+            ks_screen("kscreen-restarts", "heads", "data/heads.txt", "file:data/library.ksb", "library_heads.tsv", T, hours=0.6),
+            ks_screen("kscreen-restarts", "pages", "data/pages.txt", "file:data/library.ksb", "library_pages.tsv", T, hours=2.5),
+            ks_screen("kscreen-restarts", "null-pages", "data/pages.txt", "rand:100:12", "null_pages.tsv", T, hours=0.4),
+            ks_verify("kscreen-restarts", "verify-heads", "library_heads.tsv"),
+            ks_verify("kscreen-restarts", "verify-pages", "library_pages.tsv"),
+        ],
+        lambda: ks_summary([("library x 10 heading restarts", "library_heads.tsv"),
+                            ("library x 46 page restarts", "library_pages.tsv")], "null_pages.tsv",
+                           ["library_heads_verify.txt", "library_pages_verify.txt"])))
+
+    lin3_items = 28 * 29 * 29
+    per = -(-lin3_items // LIN3_CHUNKS)
+    lin3 = [ks_screen("kscreen-recurrences", f"lin3-{k:02d}", "data/segments.txt", "lin:3", f"lin3/chunk{k:02d}.tsv", T,
+                      ("mults=1", f"items={k * per}:{(k + 1) * per}"), hours=0.3) for k in range(LIN3_CHUNKS)]
+    C.append(Campaign(
+        "kscreen-recurrences", "Every linear recurrence and polynomial key mod 29",
+        "All linear recurrences of order 1-3 mod 29 (Fibonacci, Lucas, Pell, Tribonacci, Padovan and 23,000 "
+        "others) from every start state, and all polynomial keys up to degree 3, on the 8 sections.",
+        [
+            ks_screen("kscreen-recurrences", "lin1", "data/segments.txt", "lin:1", "lin1_segments.tsv", T, ("mults=1",), 0.01),
+            ks_screen("kscreen-recurrences", "lin2", "data/segments.txt", "lin:2", "lin2_segments.tsv", T, ("mults=1",), 0.05),
+            ks_screen("kscreen-recurrences", "poly3", "data/segments.txt", "poly:3", "poly3_segments.tsv", T, ("mults=1",), 0.1),
+        ] + lin3 + [
+            Step("kscreen-recurrences/lin3-merge", lambda log: merge_chunks("lin:3", "lin3", "lin3_segments.tsv", log),
+                 hours=0.01, outputs=[RES / "kscreen" / "lin3_segments.tsv"]),
+            ks_verify("kscreen-recurrences", "verify-lin2", "lin2_segments.tsv", top=8),
+            ks_verify("kscreen-recurrences", "verify-poly3", "poly3_segments.tsv", top=8),
+            ks_verify("kscreen-recurrences", "verify-lin3", "lin3_segments.tsv", top=10),
+        ],
+        lambda: ks_summary([("order-1 recurrences", "lin1_segments.tsv"), ("order-2 recurrences", "lin2_segments.tsv"),
+                            ("polynomials deg <= 3", "poly3_segments.tsv"), ("order-3 recurrences", "lin3_segments.tsv")],
+                           "null_segments.tsv",
+                           ["lin2_segments_verify.txt", "poly3_segments_verify.txt", "lin3_segments_verify.txt"])))
+
+    C.append(Campaign(
+        "rescreen", "Dictionary screens rerun with the corrected word segmentation",
+        "Screens 1 and 2, the reverse-direction screen and the heading-restart screen were run before the "
+        "word-wrap fix (wrapped words were split, a handicap for a true key). English-dictionary scoring.",
+        [
+            Step("rescreen/screen1", [PY, "work/attack.py", "screen"], hours=1.0,
+                 outputs=[RES / "screens" / "screen1.log"], stdout_to=RES / "screens" / "screen1.log",
+                 post=lambda: copy_json("screen.json", "screen1_top.json", top=1000)),
+            Step("rescreen/screen2-slide", [PY, "work/attack.py", "slide"], hours=1.2,
+                 outputs=[RES / "screens" / "screen2_slide.log"], stdout_to=RES / "screens" / "screen2_slide.log",
+                 post=lambda: copy_json("screen_sliding.json", "screen2_slide.json")),
+            Step("rescreen/reverse", [PY, "work/rev_screen.py"], hours=1.5,
+                 outputs=[RES / "screens" / "reverse.log"], stdout_to=RES / "screens" / "reverse.log",
+                 post=lambda: copy_json("rev_screen.json", "reverse.json")),
+            Step("rescreen/headings", [PY, "work/heading_screen.py"], hours=2.0,
+                 outputs=[RES / "screens" / "headings.log"], stdout_to=RES / "screens" / "headings.log",
+                 post=lambda: copy_json("heading_screen.json", "headings.json")),
+        ],
+        lambda: [f"- {n}: {last_line(RES / 'screens' / f, r'(?i)control') or 'not run'}" for n, f in
+                 (("screen 1 (3 offsets)", "screen1.log"), ("screen 2 (all offsets)", "screen2_slide.log"),
+                  ("reverse direction", "reverse.log"), ("heading restarts", "headings.log"))]))
+
+    C.append(Campaign(
+        "dsearch", "Key-free secret-alphabet search, large",
+        "walk dsearch: a per-word additive key behind any secret outer alphabet, with m = 1-8 position phases and "
+        "gap sets {1,2} and {1,2,3} (the earlier runs used gap 1 only), against 4 structure-free surrogates each. "
+        "Starts with a synthetic positive control that must recover the planted alphabet.",
+        dsearch_steps(T),
+        dsearch_summary))
+
+    C.append(Campaign(
+        "payload", "The 256-byte payload, corrected bytes",
+        "Hash identity tests and 832k passphrase AES/RC4/XOR decryptions, rerun on the corrected payload (5 bytes "
+        "fixed in Phase 2/research; earlier runs and the community's used the uncorrected bytes).",
+        [
+            Step("payload/hashes", [PY, "work/grid60.py", "hashes"], hours=0.05,
+                 outputs=[RES / "payload" / "hashes.txt"], stdout_to=RES / "payload" / "hashes.txt"),
+            Step("payload/decrypt", [PY, "work/grid60.py", "decrypt"], hours=0.5,
+                 outputs=[RES / "payload" / "decrypt.txt"], stdout_to=RES / "payload" / "decrypt.txt"),
+        ],
+        lambda: [f"- hashes: {last_line(RES / 'payload' / 'hashes.txt', 'matches') or 'not run'}",
+                 f"- decryptions: {last_line(RES / 'payload' / 'decrypt.txt') or 'not run'}"]))
+
+    C.append(Campaign(
+        "kscreen-multipliers", "Keystream library x every key multiplier",
+        "The library again on the 8 sections with all 28 key multipliers (c = p + m*k), e.g. 3301*k = 24*k mod 29.",
+        [
+            ks_screen("kscreen-multipliers", "library-all-mults", "data/segments.txt", "file:data/library.ksb",
+                      "library_segments_allmults.tsv", T, ("mults=all",), hours=5.0),
+            ks_verify("kscreen-multipliers", "verify", "library_segments_allmults.tsv"),
+        ],
+        lambda: ks_summary([("library x 28 multipliers", "library_segments_allmults.tsv")], "null_segments.tsv",
+                           ["library_segments_allmults_verify.txt"])))
+
+    C.append(Campaign(
+        "prng-all", "Seeded-PRNG pads with a fresh seed per section",
+        "phpmt sweeps of every seed of PHP<7.1 mt_rand, glibc random() and .NET System.Random on all 8 sections "
+        "(the single-section runs only covered LP2 page 0), then full-segment verification of the best candidates.",
+        prng_steps(T),
+        prng_summary))
+    return C
+
+
+def copy_json(src, dst, top=None):
+    """Copy a dictionary screen's JSON from work/tmp/phase4 into results/screens (optionally the top rows)."""
+    p = WORK / "tmp" / "phase4" / src
+    if not p.exists():
+        return
+    data = json.loads(p.read_text(encoding="utf-8"))
+    if top is not None and isinstance(data, list):
+        data = data[:top]
+    (RES / "screens").mkdir(parents=True, exist_ok=True)
+    (RES / "screens" / dst).write_text(json.dumps(data), encoding="utf-8")
+
+
+def merge_chunks(family, sub, out_name, log):
+    """Merge chunked kscreen TSVs into one file in the screen's own format."""
+    rows, wbest, runs, aborted, secs, header = [], {}, 0, 0, 0, None
+    files = sorted((RES / "kscreen" / sub).glob("chunk*.tsv"))
+    if len(files) < LIN3_CHUNKS:
+        print(f"only {len(files)} of {LIN3_CHUNKS} chunks present", file=log)
+        return False
+    for f in files:
+        for line in open(f, encoding="utf-8"):
+            line = line.rstrip("\n")
+            if line.startswith("# kscreen"):
+                header = line
+                m = re.search(r"runs=(\d+) aborted=(\d+) secs=(\d+)", line)
+                runs, aborted, secs = runs + int(m.group(1)), aborted + int(m.group(2)), secs + int(m.group(3))
+            elif line.startswith("# window"):
+                w, b = line.split()[2], float(line.split()[4])
+                if b > wbest.get(w, (0.0, ""))[0]:
+                    wbest[w] = (b, line)
+            elif line and not line.startswith("#") and not line.startswith("ioc"):
+                rows.append(line)
+    rows.sort(key=lambda r: -float(r.split("\t")[0]))
+    header = re.sub(r"runs=\d+ aborted=\d+ secs=\d+", f"runs={runs} aborted={aborted} secs={secs}", header)
+    with open(RES / "kscreen" / out_name, "w", newline="\n", encoding="utf-8") as f:
+        f.write(header + "\n")
+        f.write(f"# best {float(rows[0].split(chr(9))[0]) if rows else 0:.4f}\n")
+        for _, line in sorted(wbest.values(), key=lambda t: t[1]):
+            f.write(line + "\n")
+        f.write("ioc\titem\toffset\tmult\tmodel\twindow\tn\n")
+        for r in rows[:2000]:
+            f.write(r + "\n")
+    print(f"merged {len(files)} chunks, {runs} decodes", file=log)
+    return True
+
+
+def dsearch_steps(T):
+    out = RES / "walk"
+    data = WORK / "walk" / "data"
+    tmp = WORK / "tmp" / "walk"
+    iters, restarts, nsur = 600_000, max(16, T), 4
+    steps = [
+        Step("dsearch/control-synth", [str(WALK_BIN), "synth", str(data / "english_test.txt"), str(tmp / "synth5.txt"),
+                                       str(tmp / "synth5_truth.txt"), "5", "1", "0.18"],
+             hours=0.01, outputs=[tmp / "synth5.txt", tmp / "synth5_truth.txt"]),
+        Step("dsearch/control-recover", [str(WALK_BIN), "dsearch", str(tmp / "synth5.txt"), "5", "1", "300000",
+                                         str(max(16, T)), str(T), str(tmp / "synth5_truth.txt")],
+             hours=0.05, outputs=[out / "dsearch_control.txt"], stdout_to=out / "dsearch_control.txt"),
+    ]
+    for s in range(1, nsur + 1):
+        steps.append(Step(f"dsearch/surrogate{s}", [str(WALK_BIN), "surrogate", str(data / "lp2.txt"),
+                                                    str(data / "sur" / f"sur{s}.txt"), str(s), "0.18"],
+                          hours=0.01, outputs=[data / "sur" / f"sur{s}.txt"]))
+    for m in (1, 2, 3, 4, 5, 6, 7, 8):
+        for gaps in ("1,2", "1,2,3"):
+            tag = f"m{m}_g{gaps.replace(',', '')}"
+            for k, text in enumerate([data / "lp2.txt"] + [data / "sur" / f"sur{s}.txt" for s in range(1, nsur + 1)]):
+                who = "lp2" if k == 0 else f"sur{k}"
+                steps.append(Step(f"dsearch/{tag}-{who}", [str(WALK_BIN), "dsearch", str(text), str(m), gaps, str(iters),
+                                                          str(restarts), str(T)],
+                                  hours=0.07 if gaps == "1,2" else 0.1,
+                                  outputs=[out / "dsearch_big" / f"{tag}_{who}.txt"],
+                                  stdout_to=out / "dsearch_big" / f"{tag}_{who}.txt"))
+    return steps
+
+
+def dsearch_summary():
+    out = []
+    c = last_line(RES / "walk" / "dsearch_control.txt", "agrees with truth")
+    out.append(f"- positive control (synthetic m=5): {c or 'not run'}")
+    d = RES / "walk" / "dsearch_big"
+    if not d.exists():
+        return out + ["- not run yet"]
+    tags = sorted({p.name.rsplit("_", 1)[0] for p in d.glob("*_lp2.txt")})
+    for tag in tags:
+        def best(p):
+            m = re.search(r"best G (\d+)", p.read_text(encoding="utf-8")) if p.exists() else None
+            return int(m.group(1)) if m else None
+        lp2 = best(d / f"{tag}_lp2.txt")
+        sur = [b for b in (best(p) for p in sorted(d.glob(f"{tag}_sur*.txt"))) if b is not None]
+        if lp2 is None:
+            continue
+        flag = ""
+        if sur:
+            mu = sum(sur) / len(sur)
+            sd = (sum((x - mu) ** 2 for x in sur) / max(1, len(sur) - 1)) ** 0.5
+            z = (lp2 - mu) / sd if sd > 0 else 0.0
+            flag = f"surrogates {sur} (z = {z:+.1f})" + ("  **LP2 stands out**" if lp2 > max(sur) and z > 4 else "")
+        out.append(f"- {tag}: LP2 best G {lp2}; {flag}")
+    return out
+
+
+def prng_steps(T):
+    steps = []
+    for gen, hi in (("php", 2 ** 32), ("glibc", 2 ** 32), ("net", 2 ** 31)):
+        tsv = RES / "prng" / f"{gen}_all.tsv"
+        log = RES / "prng" / f"{gen}_all.log"
+        steps.append(Step(f"prng-all/{gen}", [str(PHPMT_BIN), "sweep", gen, str(WORK / "phpmt" / "data" / "windows.txt"),
+                                              str(WORK / "phpmt" / "data" / "dict.txt"), "0", str(hi), str(tsv), str(T)],
+                          hours=8.0 if hi == 2 ** 32 else 4.0, outputs=[tsv], stderr_to=log,
+                          done_check=lambda log=log: "swept" in log.read_text(encoding="utf-8", errors="replace")
+                          if log.exists() else False))
+        ver = RES / "prng" / f"{gen}_all_verify.txt"
+        steps.append(Step(f"prng-all/{gen}-verify", [PY, "work/phpmt/verify_top.py", str(tsv), "--gen", gen],
+                          hours=0.1, outputs=[ver], stdout_to=ver))
+    return steps
+
+
+def prng_summary():
+    out = []
+    for gen in ("php", "glibc", "net"):
+        sw = last_line(RES / "prng" / f"{gen}_all.log", "swept")
+        ver = last_line(RES / "prng" / f"{gen}_all_verify.txt")
+        out.append(f"- {gen}: {sw or 'not run'}" + (f"; verification: {ver}" if ver else ""))
+    return out
+
+
+# ---------------------------------------------------------------- running
+
+def load_state():
+    if STATE.exists():
+        return json.loads(STATE.read_text(encoding="utf-8"))
+    return {}
+
+
+def save_state(st):
+    OV.mkdir(parents=True, exist_ok=True)
+    STATE.write_text(json.dumps(st, indent=1), encoding="utf-8")
+
+
+def run_step(step, dry):
+    LOGS.mkdir(parents=True, exist_ok=True)
+    logp = LOGS / (step.id.replace("/", "__") + ".log")
+    for p in step.outputs:
+        Path(p).parent.mkdir(parents=True, exist_ok=True)
+    if dry:
+        print(f"   would run: {step.cmd if callable(step.cmd) else ' '.join(map(str, step.cmd))}")
+        return True
+    env = dict(os.environ, PYTHONIOENCODING="utf-8", PYTHONUTF8="1")
+    t0 = time.time()
+    with open(logp, "w", encoding="utf-8", newline="\n") as log:
+        if callable(step.cmd):
+            ok = bool(step.cmd(log))
+        else:
+            log.write(f"# {' '.join(map(str, step.cmd))}\n# cwd {step.cwd}\n")
+            log.flush()
+            # stdout goes to <file>.part and is renamed only on success, so an interrupted step never
+            # leaves an output that looks finished
+            part = Path(str(step.stdout_to) + ".part") if step.stdout_to else None
+            out = open(part, "w", encoding="utf-8", newline="\n") if part else log
+            err = open(step.stderr_to, "w", encoding="utf-8", newline="\n") if step.stderr_to else \
+                (subprocess.STDOUT if out is log else log)
+            try:
+                rc = subprocess.run([str(c) for c in step.cmd], cwd=step.cwd, stdout=out, stderr=err, env=env).returncode
+            finally:
+                if out is not log:
+                    out.close()
+                if step.stderr_to:
+                    err.close()
+            ok = rc == 0
+            if part:
+                os.replace(part, step.stdout_to if ok else Path(str(step.stdout_to) + ".failed"))
+            log.write(f"\n# exit code {rc}, {time.time() - t0:.0f} s\n")
+    if ok and step.post:
+        step.post()
+    if ok and step.id == "selftest/unittests":
+        (OV / "unittests.ok").write_text(time.strftime("%Y-%m-%d %H:%M:%S"), encoding="utf-8")
+    return ok
+
+
+def pid_alive(pid):
+    if os.name == "nt":
+        import ctypes
+        k = ctypes.windll.kernel32
+        h = k.OpenProcess(0x1000, False, pid)            # PROCESS_QUERY_LIMITED_INFORMATION
+        if not h:
+            return False
+        code = ctypes.c_ulong()
+        ok = k.GetExitCodeProcess(h, ctypes.byref(code))
+        k.CloseHandle(h)
+        return bool(ok) and code.value == 259           # STILL_ACTIVE
+    try:
+        os.kill(pid, 0)
+        return True
+    except OSError:
+        return False
+
+
+def take_lock():
+    """One runner at a time: two would race on the same outputs and halve each other's speed."""
+    OV.mkdir(parents=True, exist_ok=True)
+    lock = OV / "runner.lock"
+    if lock.exists():
+        try:
+            pid = int(lock.read_text().strip())
+        except ValueError:
+            pid = -1
+        if pid > 0 and pid != os.getpid() and pid_alive(pid):
+            sys.exit(f"another overnight.py run is active (pid {pid}); wait for it or stop it first")
+    lock.write_text(str(os.getpid()))
+    import atexit
+    atexit.register(lambda: lock.unlink(missing_ok=True))
+
+
+def cmd_run(args):
+    if not args.dry_run:
+        take_lock()
+    T = args.threads
+    cs = campaigns(T)
+    names = [c.name for c in cs]
+    want = args.campaigns or names
+    bad = [w for w in want if w not in names]
+    if bad:
+        sys.exit(f"unknown campaign(s) {bad}; known: {names}")
+    if "setup" not in want:
+        want = ["setup"] + list(want)
+    st = load_state()
+    t_start = time.time()
+    budget = args.hours * 3600 if args.hours else None
+    print(f"overnight: {len(want)} campaigns, {T} threads" + (f", budget {args.hours} h" if budget else ""))
+    for c in cs:
+        if c.name not in want:
+            continue
+        print(f"\n== {c.name}: {c.title}")
+        for s in c.steps:
+            if s.done() and not args.force:
+                print(f"   done     {s.id}")
+                continue
+            elapsed = time.time() - t_start
+            if budget and not s.always and elapsed > 0 and elapsed + s.hours * 3600 > budget:
+                print(f"   budget reached before {s.id} (est. {s.hours:.1f} h); stopping. Rerun to continue.")
+                write_report(cs, st)
+                return
+            print(f"   run      {s.id}  (est. {s.hours:.2f} h) ... ", end="", flush=True)
+            t0 = time.time()
+            ok = run_step(s, args.dry_run)
+            dt = time.time() - t0
+            print(f"{'ok' if ok else 'FAILED'} in {dt / 60:.1f} min", flush=True)
+            if not args.dry_run:
+                st[s.id] = {"ok": ok, "minutes": round(dt / 60, 1), "finished": time.strftime("%Y-%m-%d %H:%M:%S")}
+                save_state(st)
+            if not ok:
+                print(f"   {c.name}: stopping this campaign after a failed step (log: {LOGS})")
+                break
+        write_report(cs, st)
+    write_report(cs, st)
+    print(f"\nfinished in {(time.time() - t_start) / 3600:.1f} h; report: {OV / 'REPORT.md'}")
+
+
+def write_report(cs, st):
+    OV.mkdir(parents=True, exist_ok=True)
+    lines = ["# Overnight campaigns: report", "",
+             f"Generated {time.strftime('%Y-%m-%d %H:%M:%S')} by `python jobs/overnight.py`. "
+             "Thresholds and method: docs/CAMPAIGNS.md.", ""]
+    valid = selftest_ok() and (OV / "unittests.ok").exists()
+    lines.append("**Controls:** " + ("selftest passed; null results below are validated." if valid else
+                                     "selftest has NOT passed on this machine; treat every null below as unvalidated."))
+    for c in cs:
+        done = sum(s.done() for s in c.steps if not s.always)
+        total = sum(1 for s in c.steps if not s.always)
+        lines += ["", f"## {c.name}: {c.title} ({done}/{total} steps done)", "", c.why, ""]
+        if c.summarize:
+            try:
+                lines += c.summarize()
+            except Exception as e:  # noqa: BLE001
+                lines.append(f"- (summary failed: {e})")
+        failed = [s.id for s in c.steps if st.get(s.id, {}).get("ok") is False and not s.done()]
+        if failed:
+            lines.append(f"- failed steps: {', '.join(failed)} (see results/overnight/logs/)")
+    (OV / "REPORT.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def cmd_list(args):
+    cs = campaigns(args.threads)
+    tot = 0.0
+    for c in cs:
+        h = sum(s.hours for s in c.steps)
+        tot += h
+        done = sum(s.done() for s in c.steps if not s.always)
+        n = sum(1 for s in c.steps if not s.always)
+        print(f"{c.name:22s} ~{h:5.1f} h  {done:3d}/{n:<3d} done  {c.title}")
+        if args.verbose:
+            for s in c.steps:
+                print(f"    {'x' if s.done() else ' '} {s.id}  ({s.hours:.2f} h)")
+    print(f"{'total':22s} ~{tot:5.1f} h (rough, 16-thread desktop CPU)")
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("action", choices=["list", "run", "report"])
+    ap.add_argument("campaigns", nargs="*")
+    ap.add_argument("--threads", type=int, default=os.cpu_count())
+    ap.add_argument("--hours", type=float, default=None)
+    ap.add_argument("--force", action="store_true")
+    ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("-v", "--verbose", action="store_true")
+    args = ap.parse_args()
+    if shutil.which("cargo") is None and args.action == "run":
+        sys.exit("cargo not found: install Rust from https://rustup.rs first")
+    if args.action == "list":
+        cmd_list(args)
+    elif args.action == "run":
+        cmd_run(args)
+    else:
+        write_report(campaigns(args.threads), load_state())
+        print((OV / "REPORT.md").read_text(encoding="utf-8"))
+
+
+if __name__ == "__main__":
+    main()

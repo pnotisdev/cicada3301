@@ -220,7 +220,9 @@ text made by `sim.make_skip_key`.
 3. ✅ **Crib-driven constraint solving, negative** (`work/log/phase4_crib.md`, `work/crib.py`, `work/cribsolve.py`).
    The cribs rule out four models: the same word always enciphered the same way, one key per word, a key set by
    position within the word, and a key restarting each line or page. FFT scans find no periodic key at any lag
-   2–6000 and no key reused between segments. The constraint solver recovers synthetic periodic keys (up to
+   2–6000 and no key reused between segments. *(Corrected in Phase 7: the skip rule shifts the key, so this
+   lag scan only covers periods up to about 60. The drift-aware scan extends the exclusion to about 400. Key
+   reuse between segments is weakened the same way.)* The constraint solver recovers synthetic periodic keys (up to
    L = 1322) and shared-key pairs. On the real candidates it scores at control level. The apparent L = 1322 hit on
    0.15 turned out to be a time-limit artefact.
 4. ✅ **Hash and random-generator keys, negative** (`work/log/phase4_items4-6.md`, `work/prng_screen.py`). I tried
@@ -288,6 +290,57 @@ Full write-up with sources: `work/log/research_2026-10-16.md`.
   - **On LP2 it finds nothing.** m = 5: 352 against surrogates 350/351/333. m = 1: 153 against 177/144/148.
   - **Ruled out: a per-word additive key behind any secret outer alphabet**, with or without period-m inner
     alphabets. aldegonde had ruled out only keyword-built alphabets in this space.
+
+### Phase 7 – Overnight campaigns (2026-10-16)
+The runner is `jobs/overnight.py`; `docs/CAMPAIGNS.md` explains what each campaign tests, its controls and its
+decision rule.
+
+- **Correction: periodic keys.** The "no periodic key up to lag 6000" claim (Phase 4 item 3) assumed the key
+  stays aligned with the runes. Under the skip rule, the key pointer gains one position at every skip
+  (r ≈ 0.028 per rune, from the doublet deficit). Repeats of a period-P key therefore sit at lags P − Δd, with
+  Δd ≈ Poisson(r·P), and the plain lag scan loses them beyond P ≈ 60. `work/drift_period.py` applies a matched
+  filter over those drift bands and their harmonics.
+  - Power on Emerson enciphered with random periodic keys under the rule: Z(true P) beats the random-text
+    maximum in 8/8 trials for P ≤ 400, 7/8 at P = 800, 6/8 at P = 1600 and 0/8 at P = 3200.
+  - LP2: max Z 3.03, against random-rune nulls of 2.29–3.55 (8 texts). **Periodic keys are ruled out up to about 400 runes
+    only.** Longer periods remain open.
+- **Word lengths** (`work/wordlen.py`). The LP2 histogram rejects English in GP runes (G = 227, p ≈ 10⁻⁴²; against
+  the solved sections p ≈ 10⁻³⁵). English counted in letters, with no digraph runes, fits better but is still
+  rejected (p = 7·10⁻⁸). The best simple fit is English runes with **one extra rune in about 40% of multi-rune
+  words** (p = 0.025). This is a lead: nulls or padding inside words, another plaintext convention, or another
+  language. Dictionary screens lose power under all three; IoC screens do not.
+- **New engine `work/kscreen`.** It is a language- and alphabet-agnostic keystream screen. For each keystream,
+  start offset, key multiplier and anti-repeat model (skip or coin), it runs a beam decode over key pointers
+  and scores the decoded letters by IoC. The IoC is unchanged by Atbash, by any substitution of the plaintext
+  alphabet, by a constant shift and by the language. So one pass covers c = D(p) ± m·k + b for every D and b,
+  in any language.
+  - **Families:** a 1,447-keystream library (`work/kscreen/export.py`). It has the earlier number streams and
+    the 809 solved-text keyword keys, plus:
+    - new prime and multiplicative functions;
+    - 13 more constants in base 29;
+    - SHA-256/SHA-512/MD5 counter and chain streams (520) of 65 seeds: Cicada strings and numbers, the An End
+      hash, and the corrected payload forwards and reversed;
+    - the payload bytes themselves.
+
+    Beyond the library, every linear recurrence of order ≤ 3 mod 29 from every start state, and every
+    polynomial key up to degree 3.
+  - **Controls** (`work/kscreen/selftest.py`, `tests/test_kscreen.py`): 15/15 planted windows are recovered at
+    their exact offset (IoC 1.61–2.06). The plants cover totient, π base-29, SHA-256 stream, Fibonacci and
+    polynomial keys, both models, both signs, with and without a random plaintext alphabet. Random keys stay
+    below 1.31 over 10⁷ decodes. The decision threshold is 1.40, followed by whole-window verification.
+    Verification includes a keystream-matched null: the same keystream at 20 random offsets on the same
+    window. It is needed because structured keystreams can let the beam overfit (plain English decoded with a
+    period-3 recurrence key reached 2.29).
+  - **Result on LP2, library × the 8 sections** (409 M decodes, 19 min on the laptop):
+    - best 1.366, against 1.318 for the matched null of 300 random keystreams;
+    - all 15 top hits fall to 1.05–1.13 over their whole section (their own keystream at random offsets:
+      1.05–1.09);
+    - **negative.** This extends the screen 1/2 negatives to **any plaintext language and any substituted
+      plaintext alphabet**, under both anti-repeat models.
+  - The other kscreen campaigns (restarts, recurrences, multipliers) are queued in `jobs/overnight.py`.
+- **glibc `random()` sweep (segment 0.7, all 2³² seeds): negative.** Best screening score 21. The top-20
+  full-segment scores are 0.088–0.112 against 0.077 for random seeds, the same selection-bias pattern as PHP
+  (`work/log/phase6_prng.md`). The .NET sweep follows.
 
 ### Phase 5 – Validation and reporting
 - A plaintext counts as solved only if it scores well across a whole segment (word hits and IoC about 1.8)

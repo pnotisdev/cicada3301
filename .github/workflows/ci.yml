@@ -17,6 +17,7 @@ jobs:
         run: |
           (cd work/phpmt && cargo build --release)
           (cd work/walk && cargo build --release)
+          (cd work/kscreen && cargo build --release)
       - name: Engine inputs
         run: |
           python work/phpmt/export_data.py

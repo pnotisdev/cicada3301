@@ -32,6 +32,15 @@ word. Surviving seeds are scored by the number of runes inside dictionary words 
   16 variants or either anti-repeat model.
 - Files: `results/prng/php_07.tsv` (top 4,000), `php_07.log`, `php_07_verify.txt`.
 
+## glibc `random()` (= PHP 5 `rand()` on Linux), segment 0.7, all 2³² seeds
+- 4,294,967,296 seeds × 16 variants in 5,660 s (0.76–0.95 M seeds/s, shared CPU). Best screening score 21,
+  the same noise ceiling as PHP.
+- **Full-segment check of the top 20:** 0.088–0.112 against 0.076–0.079 for random seeds (z +1.5…+5.0). This is
+  the same selection-bias pattern as PHP; a true key would score about 0.8.
+- **Result: negative.** No glibc `random()` seed produces an LP2 pad starting at page 0, under any variant or
+  either anti-repeat model.
+- Files: `results/prng/glibc_07.tsv`, `glibc_07.log`, `glibc_07_verify.txt`.
+
 ## Not covered yet
 - A fresh seed per section (`WINDOWS=all` in `jobs/prng_sweeps.sh`: 8 windows, about 8× the time).
 - Key offsets ≠ 0 (pad not starting at the first rune of LP2), PHP's own auto-seeding, `mt_srand` with

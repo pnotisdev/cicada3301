@@ -24,7 +24,10 @@ _W = {}
 
 
 def windows():
-    raw = json.load(open(os.path.join(HERE, "tmp", "phase4", "restart_windows.json")))
+    path = os.path.join(HERE, "ref", "restart_windows.json")      # committed copy of red_runs.py's output
+    if not os.path.exists(path):
+        path = os.path.join(HERE, "tmp", "phase4", "restart_windows.json")
+    raw = json.load(open(path))
     seen, out = set(), []
     for seg, start, _ in raw:
         if any(s == seg and abs(start - k) <= 2 for s, k in seen):

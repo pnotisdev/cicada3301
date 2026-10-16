@@ -20,14 +20,34 @@ python -m pip install -r requirements.txt
 python scripts/fetch_data.py                 # verifies the committed data (or re-downloads it if missing)
 (cd work/phpmt && cargo build --release)     # PRNG-pad sweep engine
 (cd work/walk  && cargo build --release)     # word-scoped solver and key-free alphabet search
-python -m unittest discover -s work/tests    # 40 tests, about 4 minutes
+(cd work/kscreen && cargo build --release)   # language-agnostic keystream screen
+python -m unittest discover -s work/tests    # 44 tests, about 4 minutes
 ```
 
 On Linux/macOS, `jobs/setup.sh` does all of the above. The book (`LiberPrimus.pdf`), the 75 original page
 images (`work/orig/`) and the text data (`work/ref/`) are committed. The sources are listed in
 `scripts/fetch_data.py`, which checks them against pinned SHA-256 hashes.
 
-## Long jobs
+## Overnight campaigns
+
+```bash
+python jobs/overnight.py list               # what exists, rough hours, what is done
+python jobs/overnight.py run --hours 9      # run in priority order; resumable; report in results/overnight/REPORT.md
+```
+
+`jobs/overnight.py` builds everything, runs the regression tests and the controls, and then runs the
+campaigns:
+- **The new language-agnostic keystream screen (`work/kscreen`).** 1,447 keystreams, every order ≤ 3 linear
+  recurrence and every polynomial key mod 29, each at every offset, under both anti-repeat models. It is
+  insensitive to the plaintext language and to any substituted plaintext alphabet.
+- **The dictionary screens**, rerun with the corrected segmentation.
+- **Large D-search runs.**
+- **Payload decryptions** on the corrected bytes.
+- **PRNG sweeps** with a fresh seed per section.
+
+`docs/CAMPAIGNS.md` explains what each campaign tests, why, its controls and its decision rule.
+
+## Individual long jobs
 
 | Job | What it does | Rough cost (16 threads) |
 |---|---|---|
@@ -51,7 +71,8 @@ machine.
 LiberPrimus.pdf            the book (print of the 75 original page images)
 PLAN.md                    research plan and results, phase by phase
 scripts/fetch_data.py      data sources, pinned hashes, builds work/ref/lp_verified.txt from master + errata
-jobs/                      setup and long-running jobs for a bigger machine
+jobs/                      overnight.py campaign runner; setup and older shell jobs
+docs/                      CAMPAIGNS.md (what the overnight runs test), GPU_PORT.md
 results/                   outputs of long runs (sweep candidate lists, search logs)
 work/
   lp.py                    Gematria Primus, transcription parser, ciphers, scoring, solved sections (KNOWN)
@@ -62,6 +83,10 @@ work/
   attack.py keystreams.py  collision-skip decoder, fast vectorised screen, keystream library
   crib.py cribsolve.py     crib deductions, key-reuse scans, constraint solver (periodic / two-time pad)
   prng_screen.py rev_screen.py heading_screen.py red_runs.py doublet_audit.py
+  drift_period.py          periodic-key scan that allows for the skip rule's key drift, with power curves
+  wordlen.py               word-length test: LP2 vs English in runes / in letters / with nulls
+  kscreen/                 Rust: language- and alphabet-agnostic keystream screen (IoC under both anti-repeat
+                           models), keystream library export, verification, selftest
   phpmt/                   Rust: PHP/glibc/.NET seed sweeps (bit-exact generators, validated vectors in ref/)
   walk/                    Rust: word-scoped solver (annealing) and key-free D-search (dsearch)
   ref/                     transcription (rtkd/iddqd), errata, word list, Emerson text
@@ -79,14 +104,17 @@ work/
   - **5 byte errors in the 256-byte base-60 payload**, 3 of which are also in Dukotah's `canon_256.bin`;
   - no merged doublets anywhere (the anti-repeat filter is real).
 - **The cipher's fingerprint:**
-  - flat unigrams, bigrams and every lag up to 6000;
+  - flat unigrams and bigrams, and no coincidence peak at any lag up to 6000 (but see the periodic-key
+    caveat below);
   - doublets suppressed about 5× and boundary-blind;
   - a within-word distance-5 echo (102/2,073, p < 0.001), reproduced from aldegonde;
   - the repeated phrase ᛞᛄᚢ-ᛒᛖᛁ;
-  - fewer 2-rune words than English.
+  - fewer 2-rune words than English. The length histogram rejects English in runes (p ≈ 10⁻⁴²). The best
+    simple fit is one extra rune in about 40% of multi-rune words (p = 0.025).
 - **Ruled out, each with a validated method:**
   - English or solved-text running keys and autokeys;
-  - periodic keys up to 6000; key reuse between sections;
+  - periodic keys up to about 400 runes. That limit comes from a drift-aware scan, because under the skip
+    rule the old lag scan only covers about 60. Key reuse between sections;
   - about 1,000 number-theoretic and Cicada-number keystreams at every offset, both reading directions;
   - keyword keys; hash and PRNG keys seeded with Cicada phrases;
   - transposition after encryption;

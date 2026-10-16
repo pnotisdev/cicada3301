@@ -1,0 +1,30 @@
+LP2 stream: 12956 runes, doublets 86 vs 447 expected -> skip rate r = 0.0278 per rune
+null (random runes, same rule): max Z over P=2..6400: 2.95 2.89 2.54 2.88 2.59 3.55 2.29 3.47  -> detection threshold 3.55
+
+power (Emerson, LP2 length, random periodic key, skip rule q=0.82):
+    P   Z(true P) mean/min   detected (Z(true P) above the null maximum)
+     30    12.5 /   11.1     8/8
+     60    10.6 /    8.7     8/8
+    100     9.6 /    7.7     8/8
+    200     7.2 /    6.1     8/8
+    400     6.6 /    5.1     8/8
+    800     4.8 /    3.2     7/8
+   1600     4.9 /    2.4     6/8
+   3200     1.9 /    0.3     0/8
+
+LP2: max Z 3.03 at P=5593; top 12:
+  P= 5593  Z=3.03
+  P= 5594  Z=3.03
+  P= 5592  Z=3.01
+  P= 5595  Z=3.01
+  P= 5596  Z=2.98
+  P= 5591  Z=2.98
+  P= 5597  Z=2.94
+  P= 5590  Z=2.93
+  P= 5598  Z=2.89
+  P= 5589  Z=2.87
+  P= 5599  Z=2.82
+  P= 5588  Z=2.79
+LP2 Z at r=0 (the old plain lag scan), top 3: P=6002 Z=4.11, P=2039 Z=3.44, P=4908 Z=3.41
+
+verdict: NULL (LP2 max 3.03 vs null max 3.55)
