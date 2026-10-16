@@ -1,0 +1,8 @@
+594 lines; 579 full lines (>= 17 runes) used for the width fit.
+fitted glyph widths (mean 1): F=0.80 U=1.23 TH=0.88 O=0.75 R=0.71 C=1.05 G=0.99 W=0.84 H=1.05 N=0.88 I=0.44 J=1.08 EO=1.03 P=1.04 X=1.38 S=0.80 T=1.16 B=0.88 E=1.12 M=1.26 L=0.77 ING=1.11 OE=0.91 D=1.26 A=0.72 AE=0.79 Y=1.17 IA=1.15 EA=1.74
+corr(width, first-rune enrichment) = 0.74; permutation p = 0.0000
+chi2 of line-initial runes (28 df): flat 78.7; overflow model 36.6 (widths fitted in-sample, 28 free parameters)
+out-of-sample: widths fitted on segments (11, 12, 13, 14, 15), tested on (7, 8, 9) (167 lines): chi2 flat 39.6 -> overflow model 33.3
+out-of-sample: widths fitted on segments (7, 8, 9), tested on (11, 12, 13, 14, 15) (426 lines): chi2 flat 84.9 -> overflow model 50.9
+
+Reading: the overflow model removes most of the excess in sample (78.7 -> 36.6 on 28 df) and part of it out of sample (the widths are fitted from only 167 or 426 lines there), and the widest glyph (EA) and the narrowest (I) lead the enrichment/deficit; corr(width, enrichment) = +0.74. The line-start anomaly is therefore mostly a layout effect of the printed ciphertext runes. A leftover of chi2 ~51 on 426 lines out of sample is not explained; real glyph widths measured from the page images would settle it. Either way it carries no key information: a per-line key restart would show in columns 1-59 as well.
