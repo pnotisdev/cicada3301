@@ -7,7 +7,7 @@ before it uses the GPU.
 | Engine | CPU reference | GPU port | What one thread does |
 |---|---|---|---|
 | keystream screen | `work/kscreen/src/main.rs` | `work/kscreen/gpu.py`, `kscreen.cu` | one (keystream, start offset, multiplier) task: every model and window |
-| seed sweeps (PHP / glibc / .NET) | `work/phpmt/src/main.rs` | `work/phpmt/gpu.py`, `phpmt.cu` | one seed: generate 160 outputs, both key maps, 8 windows x 16 variants |
+| seed sweeps (PHP / glibc / .NET, and py3 / mt32 / mt31 / java / msvc / drand48 / ruby) | `work/phpmt/src/main.rs`, `gens.rs` | `work/phpmt/gpu.py`, `phpmt.cu` | one seed: both key maps (160 values each), 8 windows x 16 variants |
 
 Not ported: the annealing key-free alphabet search (`work/walk`, already scales with threads and has no large
 independent batch), and the numpy dictionary screens (`work/attack.py`, small).

@@ -3,11 +3,14 @@
 its scores decode for decode (see tests/test_phpmt_gpu.py) and writes the same TSV.
 
     python work/phpmt/gpu.py sweep  <gen> <windows.txt> <dict.txt> <lo> <hi> <out.tsv> [threads]   (as the Rust `sweep`)
-    python work/phpmt/gpu.py raw    <gen> <lo> <hi> <out.txt>                                        (as the Rust `raw`)
+    python work/phpmt/gpu.py raw    <gen> <lo> <hi> <out.txt>                                        (as the Rust `raw`; php/glibc/net)
+    python work/phpmt/gpu.py keys   <gen> <lo> <hi> <out.txt>                                        (as the Rust `keys`; every generator)
     python work/phpmt/gpu.py scores <gen> <windows.txt> <dict.txt> <lo> <hi> <out.txt>               (as the Rust `scores`)
     python work/phpmt/gpu.py probe | selfcheck
 
-gen is php (mt_rand before PHP 7.1), glibc (random() / PHP 5 rand() on Linux) or net (.NET System.Random).
+gen is php (mt_rand before PHP 7.1), glibc (random() / PHP 5 rand() on Linux), net (.NET System.Random), py3 (CPython
+random.seed(n)), mt32 (std::mt19937 / PHP >= 7.1), mt31, java (java.util.Random), msvc (rand()), drand48 (drand48 / Perl) or
+ruby (Ruby <= 2.7): the rules are in work/phpmt/src/gens.rs.
 `threads` is accepted and ignored. Needs cupy-cuda12x, an NVIDIA driver and NVRTC (see requirements-gpu.txt).
 """
 import os
@@ -31,7 +34,7 @@ TOPK = 4000
 THR0 = 8                        # lowest score recorded at first; raised to the 4000th best once there are 4000
 KERNEL = HERE / "phpmt.cu"
 BIN = HERE / "target" / "release" / ("phpmt.exe" if os.name == "nt" else "phpmt")
-GENS = {"php": 0, "glibc": 1, "net": 2}
+GENS = {"php": 0, "glibc": 1, "net": 2, "py3": 3, "mt32": 4, "mt31": 5, "java": 6, "msvc": 7, "drand48": 8, "ruby": 9}
 
 
 def load_windows(path):
@@ -197,6 +200,19 @@ def mode_raw(a):
     Path(out).write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
 
 
+def mode_keys(a):
+    gen, lo, hi, out = a[0], int(a[1]), int(a[2]), a[3]
+    S = Sweep(gen, str(HERE / "data" / "windows.txt"), str(HERE / "data" / "dict.txt"), dump=3)
+    cp, lines, step = S.cp, [], 1 << 13
+    for s0 in range(lo, hi, step):
+        n = min(step, hi - s0)
+        d = cp.zeros(n * 2 * 160, cp.uint32)
+        S.launch(s0, n, 1 << 30, d)
+        d = d.get().reshape(n, 2 * 160)
+        lines.extend(f"{s0 + g} " + " ".join(map(str, d[g])) for g in range(n))
+    Path(out).write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
+
+
 # seed ranges for the generator checks: small seeds, the 2^31 and 2^32 edges
 RAW_RANGES = [(0, 300), (2147483600, 2147483700), (4294967200, 4294967296)]
 SCORE_RANGES = [(0, 500), (123456789, 123456989), (4294966800, 4294967296)]
@@ -213,12 +229,18 @@ def mode_selfcheck():
         ca, cb = os.path.join(d, "cpu.txt"), os.path.join(d, "gpu.txt")
         for gen in GENS:
             for lo, hi in RAW_RANGES:
-                subprocess.run([str(BIN), "raw", gen, str(lo), str(hi), ca], check=True)
-                mode_raw([gen, str(lo), str(hi), cb])
+                if GENS[gen] <= 2:
+                    subprocess.run([str(BIN), "raw", gen, str(lo), str(hi), ca], check=True)
+                    mode_raw([gen, str(lo), str(hi), cb])
+                    if Path(ca).read_text() != Path(cb).read_text():
+                        print(f"MISMATCH: raw {gen} outputs of seeds {lo}..{hi}")
+                        return 1
+                subprocess.run([str(BIN), "keys", gen, str(lo), str(hi), ca], check=True)
+                mode_keys([gen, str(lo), str(hi), cb])
                 if Path(ca).read_text() != Path(cb).read_text():
-                    print(f"MISMATCH: raw {gen} outputs of seeds {lo}..{hi}")
+                    print(f"MISMATCH: key values (both maps) of {gen} for seeds {lo}..{hi}")
                     return 1
-            print(f"identical: raw outputs of {gen} for {sum(h - l for l, h in RAW_RANGES)} seeds (incl. the 2^31/2^32 edges)")
+            print(f"identical: key values of {gen} for {sum(h - l for l, h in RAW_RANGES)} seeds (incl. the 2^31/2^32 edges)")
             for lo, hi in SCORE_RANGES:
                 subprocess.run([str(BIN), "scores", gen, win, dic, str(lo), str(hi), ca], check=True)
                 mode_scores([gen, win, dic, str(lo), str(hi), cb])
@@ -235,7 +257,7 @@ def mode_selfcheck():
 
 def main():
     a = sys.argv[1:]
-    modes = {"sweep": (mode_sweep, 7), "scores": (mode_scores, 7), "raw": (mode_raw, 5)}
+    modes = {"sweep": (mode_sweep, 7), "scores": (mode_scores, 7), "raw": (mode_raw, 5), "keys": (mode_keys, 5)}
     if a and a[0] == "probe":
         return gpu_common.probe()
     if a and a[0] == "selfcheck":

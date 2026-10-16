@@ -260,7 +260,7 @@ def campaigns(threads):
 
     C.append(Campaign(
         "selftest", "Regression tests and keystream-screen controls",
-        "The 54 unit tests (solved pages, transcription, statistics, engines) and the kscreen plant/recover and "
+        "The 71 unit tests (solved pages, transcription, statistics, engines) and the kscreen plant/recover and "
         "random-key null. Nothing else is trusted unless this passes.",
         [
             Step("selftest/unittests", [PY, "-m", "unittest", "discover", "-s", "work/tests"], hours=0.1,
@@ -303,7 +303,9 @@ def campaigns(threads):
     C.append(Campaign(
         "kscreen-restarts", "Keystream library restarted at headings and page starts",
         "Same library, with the key restarting at each red heading / paragraph start (10 windows) and at each "
-        "page start (46 windows).",
+        "page start (46 windows). Caution: windows shorter than ~250 runes (two heading windows of 91 and 121 runes, two "
+        "page windows of 131 and 137) exceed the 1.40 threshold by chance after ~10^8 decodes; judge them with the per-window "
+        "extreme-value null of work/kscreen/short_window_null.py (results/analysis/short_window_null_*.txt), not with 1.40.",
         [
             ks_screen("kscreen-restarts", "heads", "data/heads.txt", "file:data/library.ksb", "library_heads.tsv", T, hours=0.6),
             ks_screen("kscreen-restarts", "pages", "data/pages.txt", "file:data/library.ksb", "library_pages.tsv", T, hours=2.5),
@@ -423,6 +425,13 @@ def campaigns(threads):
         "check against (1-a)*c_{i-1} (work/kscreen/chain_windows.py) and screened with the 1,447-keystream library, every order-2 "
         "linear recurrence and every cubic polynomial, at every offset, both anti-repeat models, any plaintext language and alphabet.",
         chain, chain_summary))
+    C.append(Campaign(
+        "prng-more", "More seeded-PRNG pads: Python, C++/PHP 7, Java, MSVC, drand48/Perl, Ruby",
+        "py3 (CPython random.seed), mt32 / mt31 (std::mt19937, PHP >= 7.1), java (java.util.Random), msvc (rand()), drand48 "
+        "(drand48, Perl) and ruby (Ruby <= 2.7), each with two natural key mappings, all 2^32 seeds, 16 cipher variants, "
+        "first on window 0.7 and then with a fresh seed per section (work/phpmt/src/gens.rs; the CUDA port is validated "
+        "against the Rust engine, which is validated against CPython, NumPy and published vectors).",
+        prng_more_steps(T), prng_more_summary))
     return C
 
 
@@ -547,6 +556,42 @@ def prng_steps(T):
         steps.append(Step(f"prng-all/{gen}-verify", [PY, "work/phpmt/verify_top.py", str(tsv), "--gen", gen],
                           hours=0.1, outputs=[ver], stdout_to=ver))
     return steps
+
+
+NEW_GENS = ("py3", "mt32", "mt31", "java", "msvc", "drand48", "ruby")
+
+
+def prng_more_steps(T):
+    """The generators of work/phpmt/src/gens.rs: first window 0.7 only (one pad from the start of LP2), then every section."""
+    steps = []
+    for tag, wfile, hours in (("07", "windows_07.txt", 0.7), ("all", "windows.txt", 5.4)):
+        for gen in NEW_GENS:
+            tsv = RES / "prng" / f"{gen}_{tag}.tsv"
+            log = RES / "prng" / f"{gen}_{tag}.log"
+            args = [gen, str(WORK / "phpmt" / "data" / wfile), str(WORK / "phpmt" / "data" / "dict.txt"), "0", str(2 ** 32),
+                    str(tsv), str(T)]
+            done = lambda log=log: "swept" in log.read_text(encoding="utf-8", errors="replace") if log.exists() else False
+            if DEVICE == "cuda":       # no CPU fallback: a CPU sweep of 2^32 seeds is hours per generator
+                steps.append(Step(f"prng-more/{gen}-{tag}", [PY, str(PH_GPU), "sweep", *args], hours=hours / GPU_SPEEDUP["prng"],
+                                  outputs=[tsv], stderr_to=log, done_check=done, device="cuda"))
+            else:
+                steps.append(Step(f"prng-more/{gen}-{tag}", [str(PHPMT_BIN), "sweep", *args], hours=hours, outputs=[tsv],
+                                  stderr_to=log, done_check=done))
+            ver = RES / "prng" / f"{gen}_{tag}_verify.txt"
+            steps.append(Step(f"prng-more/{gen}-{tag}-verify", [PY, "work/phpmt/verify_top.py", str(tsv), "--gen", gen],
+                              hours=0.1, outputs=[ver], stdout_to=ver))
+    return steps
+
+
+def prng_more_summary():
+    out = []
+    for tag, what in (("07", "window 0.7 (one pad from the start of LP2)"), ("all", "every section")):
+        out.append(f"- {what}:")
+        for gen in NEW_GENS:
+            sw = last_line(RES / "prng" / f"{gen}_{tag}.log", "swept")
+            ver = last_line(RES / "prng" / f"{gen}_{tag}_verify.txt")
+            out.append(f"  - {gen}: {sw or 'not run'}" + (f"; verification: {ver}" if ver else ""))
+    return out
 
 
 def prng_summary():

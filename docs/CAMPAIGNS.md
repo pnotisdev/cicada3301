@@ -12,7 +12,7 @@ null controls (random keys under identical settings), so a "nothing found" resul
 2. Clone the repository with GitHub Desktop.
 3. In PowerShell, from the repository folder, run `python -m pip install -r requirements.txt` (and, for an NVIDIA GPU,
    `python -m pip install -r requirements-gpu.txt`).
-4. Run `python jobs/overnight.py run selftest`. It builds everything, exports the data, runs the 54 tests and
+4. Run `python jobs/overnight.py run selftest`. It builds everything, exports the data, runs the 71 tests and
    the kscreen controls (about 10 minutes). Continue only if `results/overnight/<machine>/kscreen_selftest.txt` ends with
    `SELFTEST PASSED`.
 5. Disable sleep while plugged in (Settings → System → Power).
@@ -66,7 +66,7 @@ Hours below are rough figures for a 16-thread desktop CPU. The 15 W laptop these
 
 | Campaign | Hypothesis tested | Why now | Controls | ~Hours |
 |---|---|---|---|---|
-| `selftest` | (none) 54 unit tests, plus kscreen plant/recover | Every later null depends on it | 15 planted windows, 5 key families, both models, substituted alphabets; random-key null | 0.2 |
+| `selftest` | (none) 71 unit tests, plus kscreen plant/recover | Every later null depends on it | 15 planted windows, 5 key families, both models, substituted alphabets; random-key null | 0.2 |
 | `analysis` | Periodic key under the skip rule; plaintext word-length conventions | The old lag scan cannot see periods beyond ~60 when skips shift the key | Power curve with planted periodic keys; random-rune null | 0.4 |
 | `kscreen-sections` | c = D(p) ± m·k + b for 1,447 library keystreams at every offset, any plaintext language, any alphabet D | Every earlier screen scored English words, which assumes English and an unscrambled alphabet | Matched null: 300 random keystreams | 0.8 |
 | `kscreen-restarts` | The same, with the key restarting at the 10 headings or 46 page starts | Restart points are natural for a hand-run scheme | Null over the page windows | 3.6 |
@@ -77,6 +77,7 @@ Hours below are rough figures for a 16-thread desktop CPU. The 15 W laptop these
 | `kscreen-multipliers` | The library with all 28 key multipliers (e.g. 3301·k ≡ 24·k) | Multiplied keys are cheap to cover | Matched null | 5.0 |
 | `prng-all` | PHP<7.1 `mt_rand`, glibc `random()`, .NET `Random`, a fresh seed per section | Only LP2 page 0 has been swept | Planted seeds (unit tests); `verify_top.py` z-scores | 20+ |
 | `kscreen-chain` | Ciphertext feedback c_i = a c_{i-1} + p_i + k_j for a = 1..28: the library, every order-2 recurrence and cubic polynomial on the sections rewritten as c' = c_i - a c_{i-1} | The doublet fingerprint is what such a cipher gives if it avoids a zero shift, and no earlier screen could see it (`work/log/phase9_chain.md`) | Planted feedback keys (a = 1, 7, 28) and wrong-a / random-key nulls (`chain_selftest.py`); matched null per a | 3.0 (1.5 on GPU) |
+| `prng-more` | py3 / mt32 / mt31 / java / msvc / drand48 / ruby: every 32-bit seed, two key maps each, 16 variants, window 0.7 then every section | The three swept generators are a small part of what a 2012-14 program would use; the GPU makes the rest exhaustive (`work/log/phase9_gens.md`) | Planted seeds for each generator and map; validated generators (`test_gens.py`); `verify_top.py` z-scores | 7.5 (GPU) |
 
 ## Decision rules
 

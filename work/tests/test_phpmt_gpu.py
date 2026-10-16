@@ -53,8 +53,14 @@ class PhpmtGpu(unittest.TestCase):
 
     def test_planted_seed_recovered(self):
         # gate (b): a planted seed comes back at rank 1 for all three generators
-        for gen, seed, lo, hi, mp, sign, atb in (("php", 777777, 700000, 850000, 0, 1, 0), ("glibc", 424242, 400000, 450000, 1, -1, 1),
-                                                 ("net", 31337, 0, 60000, 0, 1, 0)):
+        cases = (("php", 777777, 700000, 850000, 0, 1, 0), ("glibc", 424242, 400000, 450000, 1, -1, 1),
+                 ("net", 31337, 0, 60000, 0, 1, 0),
+                 # the generators of work/phpmt/src/gens.rs, both key maps, both signs, with and without Atbash
+                 ("py3", 123456, 100000, 150000, 0, 1, 0), ("py3", 98765, 80000, 120000, 1, -1, 1),
+                 ("mt32", 54321, 40000, 70000, 0, 1, 1), ("mt31", 222222, 200000, 250000, 1, 1, 0),
+                 ("java", 42424, 30000, 60000, 0, -1, 0), ("msvc", 5555, 0, 20000, 1, 1, 1),
+                 ("drand48", 160000, 150000, 190000, 0, 1, 0), ("ruby", 313131, 300000, 330000, 1, -1, 0))
+        for gen, seed, lo, hi, mp, sign, atb in cases:
             with tempfile.TemporaryDirectory() as d:
                 planted, out = os.path.join(d, "planted.txt"), os.path.join(d, "out.tsv")
                 subprocess.run([CPU, "plant", gen, "data/english.txt", str(seed), str(mp), "1", str(sign), str(atb), "0.18", planted],
@@ -63,7 +69,8 @@ class PhpmtGpu(unittest.TestCase):
                                capture_output=True, check=True)
                 r = rows(out)
             self.assertEqual(r[0][1], str(seed), gen)
-            self.assertEqual(list(r[0][3:7]), ["1", str(mp), str(sign), str(atb)], gen)
+            top = [x for x in r if x[1] == str(seed) and x[0] == r[0][0]]       # a window without collisions scores model 0 and 1 alike
+            self.assertIn(["1", str(mp), str(sign), str(atb)], [list(x[3:7]) for x in top], gen)
             noise = max([int(x[0]) for x in r if x[1] != str(seed)] or [0])
             self.assertGreater(int(r[0][0]), noise + 10, gen)
 

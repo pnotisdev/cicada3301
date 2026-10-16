@@ -8,7 +8,8 @@
 //!                                                 score every seed in [lo, hi) (hi exclusive, u64)
 //!   verify <windows.txt> <dict.txt> <seed> <window> <map> <model> <sign> <atb>
 //!                                                 full-length decode of one candidate
-//!   raw    <gen> <lo> <hi> <out.txt>               the first K raw generator outputs of every seed (for gpu.py)
+//!   raw    <gen> <lo> <hi> <out.txt>               the first K raw generator outputs of every seed (php/glibc/net)
+//!   keys   <gen> <lo> <hi> <out.txt>               the first K key values of both maps of every seed (every generator)
 //!   scores <gen> <windows.txt> <dict.txt> <lo> <hi> <out.txt>
 //!                                                 the sweep score of every (seed, window, variant), one line each
 //!                                                 (the reference gpu.py is compared with decode by decode)
@@ -17,6 +18,8 @@
 //! model: 0 = skip (on a collision the next key value is drawn; a missed check keeps the doublet)
 //!        1 = coin (on a collision one value is drawn as a coin; keep, or draw a fresh key value)
 //! sign: +1 means c = t + k, -1 means c = t - k;  atb: 1 means t = 28 - p (Atbash), else t = p
+
+mod gens;
 
 use std::env;
 use std::fs;
@@ -121,6 +124,7 @@ enum Gen {
     Php,
     Glibc,
     Net,
+    New(gens::Kind), // py3 mt32 mt31 java msvc drand48 ruby: see gens.rs
 }
 
 fn parse_gen(s: &str) -> Gen {
@@ -128,7 +132,10 @@ fn parse_gen(s: &str) -> Gen {
         "php" => Gen::Php,
         "glibc" => Gen::Glibc,
         "net" => Gen::Net,
-        _ => panic!("generator must be php, glibc or net"),
+        _ => match gens::parse(s) {
+            Some(k) => Gen::New(k),
+            None => panic!("generator must be php, glibc, net, py3, mt32, mt31, java, msvc, drand48 or ruby"),
+        },
     }
 }
 
@@ -232,6 +239,7 @@ fn gen_outputs(rng: Gen, seed: u32, count: usize) -> Vec<u32> {
         }
         Gen::Glibc => glibc_fill(seed, &mut v),
         Gen::Net => net_fill(seed, &mut v),
+        Gen::New(_) => panic!("this generator has no one-output-per-key stream; use key_stream"),
     }
     v
 }
@@ -242,6 +250,37 @@ fn fast_gen(rng: Gen, seed: u32, out: &mut [u32; K]) {
         Gen::Php => fast_outputs(seed, out),
         Gen::Glibc => glibc_fast(seed, out),
         Gen::Net => net_fill(seed, out),
+        Gen::New(_) => panic!("this generator has no one-output-per-key stream; use fast_keys"),
+    }
+}
+
+/// `count` key values 0..28 of a seed under map 0 or 1.
+fn key_stream(rng: Gen, seed: u32, map: u8, count: usize) -> Vec<u8> {
+    match rng {
+        Gen::New(k) => {
+            let mut v = vec![0u8; count];
+            gens::fill_keys(k, seed, map, &mut v);
+            v
+        }
+        _ => gen_outputs(rng, seed, count).iter().map(|&n| key_gen(rng, n, map)).collect(),
+    }
+}
+
+/// The first K key values of both maps (the sweeps' hot path).
+fn fast_keys(rng: Gen, seed: u32, keys: &mut [[u8; K]; 2]) {
+    match rng {
+        Gen::New(k) => {
+            gens::fill_keys(k, seed, 0, &mut keys[0]);
+            gens::fill_keys(k, seed, 1, &mut keys[1]);
+        }
+        _ => {
+            let mut raw = [0u32; K];
+            fast_gen(rng, seed, &mut raw);
+            for i in 0..K {
+                keys[0][i] = key_gen(rng, raw[i], 0);
+                keys[1][i] = key_gen(rng, raw[i], 1);
+            }
+        }
     }
 }
 
@@ -625,7 +664,14 @@ fn mode_plant(args_all: &[String]) {
         (lcg >> 11) as f64 / (1u64 << 53) as f64
     };
     for w in &wins {
-        let stream = gen_outputs(rng, seed, w.runes.len() * 4 + 64);
+        let keyed = matches!(rng, Gen::New(_));      // these generators give key values directly
+        let len = w.runes.len() * 4 + 64;
+        let stream: Vec<u32> = if keyed {
+            key_stream(rng, seed, map, len).iter().map(|&x| x as u32).collect()
+        } else {
+            gen_outputs(rng, seed, len)
+        };
+        let kg = |n: u32| -> i32 { if keyed { n as i32 } else { key_gen(rng, n, map) as i32 } };
         let mut sp = 0usize;
         let mut draw = || {
             sp += 1;
@@ -635,17 +681,17 @@ fn mode_plant(args_all: &[String]) {
         let mut c = Vec::with_capacity(w.runes.len());
         for &p in &w.runes {
             let t = if atb { 28 - p as i32 } else { p as i32 };
-            let mut y = md(t + sign * key_gen(rng, draw(), map) as i32);
+            let mut y = md(t + sign * kg(draw()));
             if model == 0 {
                 let mut tries = 0;
                 while prev >= 0 && y == prev && coin() >= keep && tries < 5 {
-                    y = md(t + sign * key_gen(rng, draw(), map) as i32);
+                    y = md(t + sign * kg(draw()));
                     tries += 1;
                 }
             } else if prev >= 0 && y == prev {
-                let c100 = (draw() % 100) as f64;
+                let c100 = if keyed { draw() as f64 * (100.0 / 29.0) } else { (draw() % 100) as f64 }; // the coin spends one key value
                 if c100 >= keep * 100.0 {
-                    y = md(t + sign * key_gen(rng, draw(), map) as i32);
+                    y = md(t + sign * kg(draw()));
                 }
             }
             c.push(y as u8);
@@ -710,7 +756,6 @@ fn mode_sweep(args_all: &[String]) {
             let mut hist = [0u64; 64];
             let mut local: Vec<Cand> = Vec::new();
             let mut floor: u16 = 0;
-            let mut raw = [0u32; K];
             let mut keys = [[0u8; K]; 2];
             loop {
                 let a = next.fetch_add(CHUNK, Ordering::Relaxed);
@@ -720,11 +765,7 @@ fn mode_sweep(args_all: &[String]) {
                 let b = (a + CHUNK).min(hi);
                 for seed64 in a..b {
                     let seed = seed64 as u32;
-                    fast_gen(rng, seed, &mut raw);
-                    for i in 0..K {
-                        keys[0][i] = key_gen(rng, raw[i], 0);
-                        keys[1][i] = key_gen(rng, raw[i], 1);
-                    }
+                    fast_keys(rng, seed, &mut keys);
                     for (wi, w) in wins.iter().enumerate() {
                         for v in 0..16u8 {
                             let (model, map, sign, atb) = variant_parts(v);
@@ -791,6 +832,24 @@ fn mode_raw(args: &[String]) {
     }
 }
 
+/// seed, then the first K values of key map 0 and of key map 1 (what gpu.py compares with, for every generator)
+fn mode_keys(args: &[String]) {
+    let rng = parse_gen(&args[0]);
+    let (lo, hi): (u64, u64) = (args[1].parse().unwrap(), args[2].parse().unwrap());
+    let mut f = std::io::BufWriter::new(fs::File::create(&args[3]).unwrap());
+    let mut keys = [[0u8; K]; 2];
+    for seed in lo..hi {
+        fast_keys(rng, seed as u32, &mut keys);
+        write!(f, "{seed}").unwrap();
+        for m in 0..2 {
+            for x in keys[m].iter() {
+                write!(f, " {x}").unwrap();
+            }
+        }
+        writeln!(f).unwrap();
+    }
+}
+
 fn mode_scores(args_all: &[String]) {
     let rng = parse_gen(&args_all[0]);
     let args = &args_all[1..];
@@ -798,14 +857,9 @@ fn mode_scores(args_all: &[String]) {
     let dict = Dict::load(&args[1]);
     let (lo, hi): (u64, u64) = (args[2].parse().unwrap(), args[3].parse().unwrap());
     let mut f = std::io::BufWriter::new(fs::File::create(&args[4]).unwrap());
-    let mut raw = [0u32; K];
     let mut keys = [[0u8; K]; 2];
     for seed64 in lo..hi {
-        fast_gen(rng, seed64 as u32, &mut raw);
-        for i in 0..K {
-            keys[0][i] = key_gen(rng, raw[i], 0);
-            keys[1][i] = key_gen(rng, raw[i], 1);
-        }
+        fast_keys(rng, seed64 as u32, &mut keys);
         for (wi, w) in wins.iter().enumerate() {
             for v in 0..16u8 {
                 let (model, map, sign, atb) = variant_parts(v);
@@ -826,7 +880,7 @@ fn mode_verify(args_all: &[String]) {
     let model: u8 = args[5].parse().unwrap();
     let sign: i32 = args[6].parse().unwrap();
     let atb = args[7] == "1";
-    let key: Vec<u8> = gen_outputs(rng, seed, w.runes.len() * 3 + 50).iter().map(|&n| key_gen(rng, n, map)).collect();
+    let key: Vec<u8> = key_stream(rng, seed, map, w.runes.len() * 3 + 50);
     let (score, plain) = decode_full(w, &key, sign, atb, model, &dict);
     let mut txt = String::new();
     for (i, p) in plain.iter().enumerate() {
@@ -847,7 +901,8 @@ fn main() {
         Some("sweep") => mode_sweep(&args[2..]),
         Some("verify") => mode_verify(&args[2..]),
         Some("raw") => mode_raw(&args[2..]),
+        Some("keys") => mode_keys(&args[2..]),
         Some("scores") => mode_scores(&args[2..]),
-        _ => eprintln!("usage: phpmt vectors|plant|sweep|verify|raw|scores ..."),
+        _ => eprintln!("usage: phpmt vectors|plant|sweep|verify|raw|keys|scores ..."),
     }
 }

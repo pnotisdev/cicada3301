@@ -65,6 +65,26 @@ A new Claude session on the desktop (runner alias `desktop`, RTX 2080 Ti, 32 GB)
 | 36 | (the `docs/HANDOFF.md` prompt: read the docs, set up and validate, live console logging, CUDA with CPU fallback, run the campaigns, work on the open leads) | Read the docs and checked the PC (Ryzen 7 2700X, 16 threads; RTX 2080 Ti; CUDA Toolkit 12.6 and Visual Studio already installed; no Rust). Wrote `.lp_machine`. Global Python 3.12 was not writable from the sandbox, so the packages went into a git-ignored `.venv` in the repository. |
 | 37 | "Yes, install Rust with rustup (per-user install, MSVC is already present) and then run the selftest." | Installed Rust 1.99 (installer hash checked against Rust's published one). Selftest passed: 44 tests, 15/15 planted windows, null 1.306. Then step 2 (live console in `jobs/overnight.py`) and step 3 (CUDA ports, see `docs/GPU_PORT.md`). |
 | 38 | "I will be going to sleep, please work by yourself. Make the most use of my hardware, but remember to not forget the mission, which is solving Liber primus. Once the code is more optimized for my hardware start the queue. While doing that, you can work on the code, research online and build algorithms and math to solve this. Find clues. If needed, agents are allowed." | Finished and validated the CUDA ports, added `--device` and `--lane` to the runner, committed, and started two lanes at 00:36: GPU (kscreen restarts / recurrences / multipliers, prng-all) and CPU (rescreen, dsearch, payload). A research agent looks for new public leads (`work/log/research_2026-10-17.md`). The session stays open so the PC keeps awake. |
+| 39 | "Are we working on solving liber primus now?" | Yes: two lanes were running (GPU screens and sweeps; CPU dictionary screens, dsearch, payload); status given. |
+| 40 | "As I will be going to sleep, if you happen to see any pull requests or different branches, make sure to look at those and take them into consideration. I have another AI, a weaker one, researching and writing tests, but those tests needs to be rewritten with a stronger better ai before being run. Also if we happen to finish before I wake up, run any new queues you have. (only 1 at a time) And you can also write code, algorithms and math to solve this." | Fetched `origin`: branch `research/restart-columns` (reviewed, word-unit bug fixed, tests rewritten, merged) and a new empty `research/wordlen-languages` (not yet pushed to; coordinate before doing the word-length work). No pull requests exist (`ls-remote`). New queues are chained behind the running GPU lane, one at a time (`kscreen-chain`, then `prng-more`). |
+| 41 | "Oh and I know i use github desktop. But I allow you to commit to github directly, and push/pull. Read, close pull requests, merge." | Pushed `main` three times (privacy scan of the added lines each time); recorded in `CLAUDE.md`. `gh` is not installed and the repo is private, so PRs cannot be listed without a token; I did not look for one. |
+
+## 6. The first night on the desktop (2026-10-17): what was built and found
+
+- **Queue** (started 00:36): GPU lane `kscreen-restarts` (done), `kscreen-recurrences` (running), `kscreen-multipliers`, `prng-all`;
+  CPU lane `rescreen`, `dsearch`, `payload`. Chained behind the GPU lane: `kscreen-chain` (ciphertext feedback, a = 1..28), then
+  `prng-more` (seven more generators). Check `results/overnight/desktop/REPORT.md` and `python jobs/overnight.py list`.
+- **Built:** live console runner; CUDA ports of the keystream screen (2-4x the 16-thread CPU) and of the seed sweeps (6.8x),
+  validated bit-identical; `--device`, `--lane`; ciphertext-feedback windows (`P` lines in both engines); seven new generators;
+  separator/tick audit of the page images; section and within-word statistics; page-art measurements; per-window
+  extreme-value null for short windows.
+- **Found (all negative or weak):** the short heading/page windows give "candidates" that are extreme-value noise; the
+  transcription's separators are correct (word-length anomaly is real); no short periodic key in any chain transform; no key
+  restart at any unit; the page art is reused stamps and mirrored borders; the cuneiform header is base-60 for 1033 and 3301
+  (the research agent's reading).
+- **Open:** wait for the queue; the `research/wordlen-languages` branch; the four apostrophe cribs (`work/ref/tick_marks.tsv`);
+  the stray rune-sized "7" glyph (image 27, a one-glyph word); the N = 28 step-domain variant of the chain family
+  (needs an alphabet-size parameter in the engines; `work/log/research_2026-10-17.md`, section 4).
 
 ## Decisions that stand
 

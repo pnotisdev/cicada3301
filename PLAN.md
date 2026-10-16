@@ -376,6 +376,12 @@ Details: `work/log/phase9_overnight_results.md`, `phase9_art.md`, `phase9_chain.
   and no earlier screen could see it. Reduction to the existing engine (P lines), positive and null controls, CPU/GPU
   agreement; no short periodic key in any of the 28 transforms. Campaign `kscreen-chain` queued behind the GPU lane.
 
+- **Seven more generators for the seed sweeps** (py3, mt32, mt31, java, msvc, drand48, ruby; `work/log/phase9_gens.md`):
+  validated against CPython, NumPy and published vectors, bit-identical on the GPU, planted seeds recovered; campaign
+  `prng-more` queued (window 0.7 first, then every section).
+- **Image-level audits:** the transcription's separators are right (9,828 gaps, none missing, none extra); the images carry a
+  tick glyph the transcription lacks (4 apostrophes, quote marks): `work/ref/tick_marks.tsv`, `phase9_separators.md`.
+
 ### Phase 5 – Validation and reporting
 - A plaintext counts as solved only if it scores well across a whole segment (word hits and IoC about 1.8)
   and the same rule works on the next page.

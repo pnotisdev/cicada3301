@@ -21,7 +21,7 @@ python scripts/fetch_data.py                 # verifies the committed data (or r
 (cd work/phpmt && cargo build --release)     # PRNG-pad sweep engine
 (cd work/walk  && cargo build --release)     # word-scoped solver and key-free alphabet search
 (cd work/kscreen && cargo build --release)   # language-agnostic keystream screen
-python -m unittest discover -s work/tests    # 54 tests, about 6 minutes (the 6 GPU tests skip without CUDA)
+python -m unittest discover -s work/tests    # 71 tests, about 10 minutes (the 6 GPU tests skip without CUDA)
 ```
 
 On Linux/macOS, `jobs/setup.sh` does all of the above. On a Windows PC where the global Python is not writable,
