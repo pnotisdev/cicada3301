@@ -1,5 +1,6 @@
 # <repo>\.venv\Scripts\python.exe <repo>\work\kscreen\selftest.py --threads 16 --out <repo>\results\overnight\desktop\kscreen_selftest.txt
 # cwd <repo>
+# device cpu
 PASS  plant 'primes-1 (totient)' model=0 mult=1 subst=0 plant_0: best 1.783 at offset 1234 (truth 1234); re-decode at truth 1.831
 PASS  plant 'primes-1 (totient)' model=0 mult=1 subst=0 plant_1: best 2.034 at offset 2231 (truth 2231); re-decode at truth 2.006
 PASS  plant 'primes-1 (totient)' model=0 mult=1 subst=0 plant_2: best 1.613 at offset 3228 (truth 3228); re-decode at truth 1.761
@@ -18,5 +19,4 @@ PASS  plant 'poly2:3,5' model=0 mult=1 subst=0 plant_2: best 1.617 at offset 1 (
 PASS  null: 30 random keystreams x every offset x 8 LP2 windows x 2 signs x 2 models: best IoC 1.306 (must stay below 1.4)
 SELFTEST PASSED
 
-
-# exit code 0, 18 s
+# exit code 0, 19 s

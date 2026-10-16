@@ -23,10 +23,12 @@ import argparse
 import json
 import os
 import platform
+import queue
 import re
 import shutil
 import subprocess
 import sys
+import threading
 import time
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -107,6 +109,7 @@ class Step:
     stdout_to: Path = None
     stderr_to: Path = None
     post: object = None              # callable() run after success (e.g. copy results into results/)
+    device: str = "cpu"              # shown in the console prefix: "cpu" or "cuda"
 
     def done(self):
         if self.always:
@@ -499,7 +502,148 @@ def save_state(st):
     STATE.write_text(json.dumps(st, indent=1), encoding="utf-8")
 
 
-def run_step(step, dry):
+CON_EVERY = 15      # console: at most one progress line per step every 15 s
+LOG_EVERY = 30      # logs: at most one progress line every 30 s (the newest skipped one is kept for the end)
+HEARTBEAT = 60      # console: a line when a step has been silent this long (s)
+# The Rust engines print "12.50% (123 seeds) 820000 seeds/s, eta 90 s"; the Python screens print "k/N ...".
+RE_ENGINE = re.compile(r"^\s*(\d+(?:\.\d+)?)%\s+\(([\d,]+) (\w+)\)\s+([\d.]+) (\w+)/s, eta (\d+) s")
+RE_FRAC = re.compile(r"^\s*(\d+)/(\d+)\b")
+
+
+def hms(sec):
+    sec = int(max(0, sec))
+    h, r = divmod(sec, 3600)
+    m, s = divmod(r, 60)
+    return f"{h}h{m:02d}m" if h else f"{m}m{s:02d}s" if m else f"{s}s"
+
+
+def say(label, msg):
+    print(f"[{time.strftime('%H:%M:%S')}] [{label}] {msg}", flush=True)
+
+
+def classify(line, elapsed):
+    """(is_progress, console text) for one output line."""
+    m = RE_ENGINE.match(line)
+    if m:
+        pct, n, unit, rate, runit, eta = m.groups()
+        return True, f"{float(pct):6.2f}%  {int(n.replace(',', '')):,} {unit}  {float(rate):,.0f} {runit}/s  eta {hms(int(eta))}"
+    m = RE_FRAC.match(line)
+    if m and 0 < int(m.group(1)) <= int(m.group(2)):
+        k, n = int(m.group(1)), int(m.group(2))
+        return True, f"{100 * k / n:6.2f}%  {line.strip()}  eta ~{hms(elapsed * (n - k) / k)}"
+    return False, line
+
+
+class Throttled:
+    """Line writer for a log: progress lines at most once per `every` s. The newest skipped progress line is
+    written before the next ordinary line, so a log still ends with its final 100% line."""
+
+    def __init__(self, f, every=LOG_EVERY):
+        self.f, self.every, self.last, self.pending = f, every, 0.0, None
+
+    def write(self, text, progress):
+        text = scrub(text)
+        if progress and time.time() - self.last < self.every:
+            self.pending = text
+            return
+        if self.pending is not None and not progress:
+            self.f.write(self.pending + "\n")
+        self.f.write(text + "\n")
+        self.f.flush()
+        if progress:
+            self.last = time.time()
+        self.pending = None
+
+    def close(self):
+        if self.pending is not None:
+            self.f.write(self.pending + "\n")
+        self.f.flush()
+
+
+def pump(fd, tag, q):
+    """Read a child's pipe in chunks and queue (tag, line, ended_by_CR). Lines end at \\n, \\r\\n or a bare \\r
+    (what progress bars use); None marks the end of the stream."""
+    buf = b""
+    while True:
+        chunk = os.read(fd, 65536)
+        if not chunk:
+            break
+        buf += chunk
+        hold = b"\r" if buf.endswith(b"\r") else b""        # a trailing \r may be half of \r\n
+        parts = re.split(rb"(\r\n|\n|\r)", buf[:len(buf) - len(hold)])
+        buf = parts.pop() + hold
+        for i in range(0, len(parts), 2):
+            q.put((tag, parts[i].decode("utf-8", "replace"), parts[i + 1] == b"\r"))
+    if buf.strip():
+        q.put((tag, buf.decode("utf-8", "replace").rstrip("\r"), False))
+    q.put((tag, None, False))
+
+
+def run_cmd(step, env, log, label):
+    """Run a command step and stream its output: live to the console (timestamped, progress throttled, a
+    heartbeat when silent), to the step's log (progress throttled) and to its output files. Returns the exit code."""
+    # stdout goes to <file>.part and is renamed only on success, so an interrupted step never leaves an
+    # output that looks finished; it is written in full (it is the result), only the log copy is throttled
+    part = Path(str(step.stdout_to) + ".part") if step.stdout_to else None
+    part_f = open(part, "w", encoding="utf-8", newline="\n") if part else None
+    err_f = open(step.stderr_to, "w", encoding="utf-8", newline="\n") if step.stderr_to else None
+    log_w = Throttled(log)
+    err_w = Throttled(err_f) if err_f else log_w
+    write = {"out": (lambda t, p: part_f.write(t + "\n")) if part_f else log_w.write, "err": err_w.write}
+    t0 = time.time()
+    proc = subprocess.Popen([str(c) for c in step.cmd], cwd=step.cwd, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                            env=env, bufsize=0)
+    q = queue.Queue()
+    for tag, pipe in (("out", proc.stdout), ("err", proc.stderr)):
+        threading.Thread(target=pump, args=(pipe.fileno(), tag, q), daemon=True).start()
+    open_streams, last_say, last_prog, last_text, skipped = 2, time.time(), 0.0, "", None
+    try:
+        while open_streams:
+            try:
+                tag, text, cr = q.get(timeout=1.0)
+            except queue.Empty:
+                if time.time() - last_say >= HEARTBEAT:
+                    say(label, f"still running ({hms(time.time() - t0)}), last output: {last_text[:100] or '(none yet)'}")
+                    last_say = time.time()
+                continue
+            if text is None:
+                open_streams -= 1
+                continue
+            if not text.strip():
+                if part_f and tag == "out":
+                    part_f.write("\n")
+                continue
+            progress, shown = classify(text, time.time() - t0)
+            progress = progress or cr
+            write[tag](text, progress)
+            last_text = shown.strip()
+            if progress and time.time() - last_prog < CON_EVERY:
+                skipped = shown                      # shown later if nothing else follows: the final 100% line
+                continue
+            if skipped and not progress:
+                say(label, skipped)
+            skipped = None
+            say(label, shown)
+            last_say = time.time()
+            if progress:
+                last_prog = last_say
+        if skipped:
+            say(label, skipped)
+        for pipe in (proc.stdout, proc.stderr):
+            pipe.close()
+    finally:
+        if proc.poll() is None:
+            proc.kill()
+        log_w.close()
+        for f, w in ((err_f, err_w), (part_f, None)):
+            if f:
+                if w:
+                    w.close()
+                f.close()
+    return proc.wait()
+
+
+def run_step(step, dry, label=""):
     LOGS.mkdir(parents=True, exist_ok=True)
     logp = LOGS / (step.id.replace("/", "__") + ".log")
     for p in step.outputs:
@@ -507,29 +651,18 @@ def run_step(step, dry):
     if dry:
         print(f"   would run: {step.cmd if callable(step.cmd) else ' '.join(map(str, step.cmd))}")
         return True
-    env = dict(os.environ, PYTHONIOENCODING="utf-8", PYTHONUTF8="1")
+    env = dict(os.environ, PYTHONIOENCODING="utf-8", PYTHONUTF8="1", PYTHONUNBUFFERED="1")
     t0 = time.time()
     with open(logp, "w", encoding="utf-8", newline="\n") as log:
         if callable(step.cmd):
             ok = bool(step.cmd(log))
         else:
-            log.write(scrub(f"# {' '.join(map(str, step.cmd))}\n# cwd {step.cwd}\n"))
+            log.write(scrub(f"# {' '.join(map(str, step.cmd))}\n# cwd {step.cwd}\n# device {step.device}\n"))
             log.flush()
-            # stdout goes to <file>.part and is renamed only on success, so an interrupted step never
-            # leaves an output that looks finished
-            part = Path(str(step.stdout_to) + ".part") if step.stdout_to else None
-            out = open(part, "w", encoding="utf-8", newline="\n") if part else log
-            err = open(step.stderr_to, "w", encoding="utf-8", newline="\n") if step.stderr_to else \
-                (subprocess.STDOUT if out is log else log)
-            try:
-                rc = subprocess.run([str(c) for c in step.cmd], cwd=step.cwd, stdout=out, stderr=err, env=env).returncode
-            finally:
-                if out is not log:
-                    out.close()
-                if step.stderr_to:
-                    err.close()
+            rc = run_cmd(step, env, log, label)
             ok = rc == 0
-            if part:
+            if step.stdout_to:
+                part = Path(str(step.stdout_to) + ".part")
                 os.replace(part, step.stdout_to if ok else Path(str(step.stdout_to) + ".failed"))
             log.write(f"\n# exit code {rc}, {time.time() - t0:.0f} s\n")
     if ok and step.post:
@@ -592,34 +725,58 @@ def cmd_run(args):
     st = load_state()
     t_start = time.time()
     budget = args.hours * 3600 if args.hours else None
-    print(f"overnight: {len(want)} campaigns, {T} threads" + (f", budget {args.hours} h" if budget else ""))
+    todo = [s for c in cs if c.name in want for s in c.steps if args.force or not s.done()]
+    N, k, ran, touched = len(todo), 0, [], []
+    say("overnight", f"{MACHINE}: {len(want)} campaigns, {N} steps to run (~{sum(s.hours for s in todo):.1f} h by the rough "
+                     f"estimates), {T} threads" + (f", budget {args.hours} h" if budget else ""))
+    stopped = None
     for c in cs:
-        if c.name not in want:
+        if c.name not in want or stopped:
             continue
-        print(f"\n== {c.name}: {c.title}")
+        touched.append(c)
+        print(f"\n== {c.name}: {c.title}", flush=True)
         for s in c.steps:
             if s.done() and not args.force:
-                print(f"   done     {s.id}")
+                say("overnight", f"done  {s.id}")
                 continue
             elapsed = time.time() - t_start
             if budget and not s.always and elapsed > 0 and elapsed + s.hours * 3600 > budget:
-                print(f"   budget reached before {s.id} (est. {s.hours:.1f} h); stopping. Rerun to continue.")
-                write_report(cs, st)
-                return
-            print(f"   run      {s.id}  (est. {s.hours:.2f} h) ... ", end="", flush=True)
+                stopped = f"budget reached before {s.id} (est. {s.hours:.1f} h); stopping. Rerun to continue."
+                break
+            k += 1
+            label = f"{k}/{N} {s.id} {s.device}"
+            say(label, f"start (est. {s.hours:.2f} h)")
             t0 = time.time()
-            ok = run_step(s, args.dry_run)
+            ok = run_step(s, args.dry_run, label)
             dt = time.time() - t0
-            print(f"{'ok' if ok else 'FAILED'} in {dt / 60:.1f} min", flush=True)
+            say(label, f"{'ok' if ok else 'FAILED'} in {hms(dt)}")
+            ran.append((s.id, ok, dt, s.device))
             if not args.dry_run:
-                st[s.id] = {"ok": ok, "minutes": round(dt / 60, 1), "finished": time.strftime("%Y-%m-%d %H:%M:%S")}
+                st[s.id] = {"ok": ok, "minutes": round(dt / 60, 1), "device": s.device,
+                            "finished": time.strftime("%Y-%m-%d %H:%M:%S")}
                 save_state(st)
             if not ok:
-                print(f"   {c.name}: stopping this campaign after a failed step (log: {LOGS})")
+                say("overnight", f"{c.name}: stopping this campaign after a failed step (log: {LOGS})")
                 break
         write_report(cs, st)
     write_report(cs, st)
-    print(f"\nfinished in {(time.time() - t_start) / 3600:.1f} h; report: {OVM / 'REPORT.md'}")
+    print_summary(ran, touched, stopped, time.time() - t_start)
+
+
+def print_summary(ran, touched, stopped, secs):
+    print(f"\n[{time.strftime('%H:%M:%S')}] ===== summary: {MACHINE}, {hms(secs)} =====")
+    if stopped:
+        print(stopped)
+    for sid, ok, dt, dev in ran:
+        print(f"  {'ok    ' if ok else 'FAILED'} {sid:46s} {dev:5s} {hms(dt):>8s}")
+    if not ran:
+        print("  nothing to run: every step already has its output (--force reruns)")
+    for c in touched:
+        if c.summarize and c.name != "setup":
+            print(f"\n{c.name}: {c.title}")
+            for line in c.summarize():
+                print("  " + line)
+    print(f"\nreport: results/overnight/{MACHINE}/REPORT.md")
 
 
 def write_report(cs, st):
@@ -670,6 +827,8 @@ def main():
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("-v", "--verbose", action="store_true")
     args = ap.parse_args()
+    for s in (sys.stdout, sys.stderr):                  # runes in a step's output must not crash a cp1252 console
+        s.reconfigure(errors="replace")
     if shutil.which("cargo") is None and args.action == "run":
         sys.exit("cargo not found: install Rust from https://rustup.rs first")
     if args.action == "list":

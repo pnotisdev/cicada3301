@@ -46,6 +46,15 @@ python jobs/overnight.py report          # rewrite results/overnight/<machine>/R
     git-ignored file `.lp_machine` (or set `LP_MACHINE`). Without either, the runner picks a random
     `pc-xxxxxx` and saves it there. Paths and the computer's name are scrubbed from the logs.
   - The summary, with verdicts, is `results/overnight/<machine>/REPORT.md`.
+- **Console.** The runner streams every step's output live, one line per event, as
+  `[HH:MM:SS] [k/N step-id device] ...`: `k/N` counts the steps this run will execute, and `device` is `cpu`
+  or `cuda`. Engine progress (`P% (n units) R units/s, eta S s`) and the Python screens' `k/N` lines are shown
+  as `percent, count, speed, eta`, at most once per 15 s, and the final 100% line is always shown. A step that
+  prints nothing for a minute gets a heartbeat line with its elapsed time. The run ends with a summary of
+  every step's result and duration and each campaign's verdict lines.
+- **Logs.** `results/overnight/<machine>/logs/<step>.log` keeps the same output, with at most one progress line
+  per 30 s (plus the final one), so a multi-hour sweep leaves a readable log instead of thousands of updates.
+  A step's result file (`stdout_to`) is written in full.
 - **Machine.** Keep it plugged in with sleep disabled.
 
 Hours below are rough figures for a 16-thread desktop CPU. The 15 W laptop these were developed on is about
