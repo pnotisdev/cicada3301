@@ -1,0 +1,12 @@
+# <repo>\.venv\Scripts\python.exe -m unittest discover -s work/tests
+# cwd <repo>
+....................<repo>\work\grid60.py:20: ResourceWarning: unclosed file <_io.TextIOWrapper name='<repo>\\work\\ref\\lp_verified.txt' mode='r' encoding='utf-8'>
+  body = open(lp.MASTER, encoding="utf-8").read().split("\n\n", 1)[1].split("§")[0]
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+........................
+----------------------------------------------------------------------
+Ran 44 tests in 35.119s
+
+OK
+
+# exit code 0, 37 s
