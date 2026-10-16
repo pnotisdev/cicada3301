@@ -33,6 +33,12 @@
   40% of words". Per-rune insertion (what a collision-insertion cipher would give) and lost word boundaries are
   rejected.
 - The two-parameter family also prefers pure runes (r = 0) plus a = 0.40 (p = 0.015, 2 fitted parameters).
+- **The dominant effect is one digraph: TH.** THE is English's commonest word and is a 2-rune word only because TH is
+  a single rune (ᚦ). Spelling just TH as T+H (ᛏᚻ) takes G from 223 to 56 with no fitted parameter; spelling any
+  other digraph as letters does nothing (G stays at 218-227). Spelling *all* digraphs as letters gives 54. So the
+  length data say: **LP2's plaintext probably does not use the single TH rune** (and may spell everything letter by
+  letter). Even then p = 5e-8, so a smaller effect remains: still too few 2-rune words (20% vs 15.9%) and too many
+  7-8-rune words (4.0 vs 5.4%).
 - All p-values are weak evidence once the model was chosen after looking: lead, not finding.
 
 ## Consequences

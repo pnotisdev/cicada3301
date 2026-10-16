@@ -185,6 +185,29 @@ def mechanisms(obs, ws):
     return out
 
 
+def digraph_expansion(obs, ws):
+    """Which digraph rune, spelled as two letters, explains most of English-in-runes' excess of 2-rune words?"""
+    seqs = [s for s in (lp.word_to_key(w.replace("IO", "IA")) for w in ws) if s]
+    names = [n for n in lp.LATIN if len(n) >= 2]
+
+    def dist(expand):
+        q = np.zeros(80)
+        for s in seqs:
+            extra = sum(len(lp.LATIN[r]) - 1 for r in s if lp.LATIN[r] in expand)
+            q[min(len(s) + extra, 79)] += 1
+        return np.concatenate([q[1:BINS], [q[BINS:].sum()]]) / q[1:].sum()
+
+    out = ["", "Spelling a digraph rune as two letters (all occurrences), English runes, no other parameter (df = 11):"]
+    for n in names:
+        g, df, p = g_test(obs, dist({n}))
+        out.append(f"  only {n:4s} as letters   G={g:6.1f} p={p:.1e}")
+    g, df, p = g_test(obs, dist(set(names)))
+    out.append(f"  all digraphs as letters  G={g:6.1f} p={p:.1e}")
+    out.append("(THE is the commonest English word and a 2-rune word only because TH is one rune; spelling TH as T+H "
+               "moves it to 3 runes and removes most of the discrepancy, but not all of it.)")
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--fetch", action="store_true")
@@ -234,6 +257,7 @@ def main():
                    + f"   G={g:7.1f} df={df} p={p:.1e}")
     out.append("(sorted by p; a model fits LP2 if p is not tiny. Two-parameter rows have 2 fewer df.)")
     out += mechanisms(obs, ws)
+    out += digraph_expansion(obs, ws)
     text = "\n".join(out)
     print(text)
     dest = os.path.join(HERE, "..", "results", "analysis")
