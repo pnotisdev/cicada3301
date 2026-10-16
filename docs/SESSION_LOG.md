@@ -54,6 +54,7 @@ The numbers and the full reasoning are in `PLAN.md`, the phase log, and in `work
 | 33 | "Update the gitignore, so that my PC can easily work on this project. It doesnt have the same pc name and stuff so let it build the projects and stuff there, but it should see all the progress, logs, images, text messages and code. After that, write me a good prompt for it so it knows where to continue." | This change. Everything is tracked except builds, the generated keystream library and third-party copies. The runner now keeps a folder per machine. Added this log, `CLAUDE.md` and `docs/HANDOFF.md`. |
 
 | 34 | "if i ever publish this publicly, i dont want people to see my pc name" | PCs are named by an alias in the git-ignored `.lp_machine` (`laptop`, `desktop`). The runner scrubs paths and the computer name from everything it writes. The unpushed commit that contained the name was rewritten before it was pushed. Nothing already pushed contained it. |
+| 35 | "I've pushed everything now. Use the prompt you wrote above+ Improve this prompt with more details, it's for my PC + a completely new claude instance:" followed by a draft: the goal (decode all of Liber Primus), the RTX 2080 Ti with 11 GB and 32 GB RAM, "try to speed up the decoding/solving and test-running with the use of cuda (but allow for automatic cpu runs too if it detects no cuda)", "Read through the codebase and what we have done thus far", "Add CMD/Console logging so I can see in real time the progress", and "start with... (important files for it to read)" | Rewrote `docs/HANDOFF.md` as one prompt with five parts: a reading list first; setup; live console logging in the runner; CUDA backends with automatic CPU fallback and mandatory validation gates; then the campaigns and the open leads. |
 
 ## Decisions that stand
 
@@ -77,13 +78,12 @@ The numbers and the full reasoning are in `PLAN.md`, the phase log, and in `work
   - solved-section reproduction, transcription audit, fingerprint;
   - screens 1 and 2, the reverse screen, the crib solver;
   - hash and PRNG-seeded keys;
-  - PHP and glibc 2³² sweeps of segment 0.7;
+  - PHP and glibc 2³² sweeps of segment 0.7, and the .NET 2³¹ sweep;
   - D-search for m = 1 and m = 5;
   - kscreen library × 8 sections;
   - the drift-aware period scan (≤ 400).
-- **Finishing on the laptop:** the .NET `System.Random` sweep of segment 0.7. Its results will be committed
-  from the laptop as `results/prng/net_07*`. After that the laptop runs no more campaigns, so all overnight
-  work happens on the second PC.
+- **The laptop is finished.** Its last job, the .NET `System.Random` sweep of segment 0.7, was negative
+  (`results/prng/net_07*`). It runs no more campaigns, so all overnight work happens on the desktop.
 - **Next on the second PC:** `python jobs/overnight.py run`, in this order: kscreen-restarts,
   kscreen-recurrences, rescreen (this includes the heading-restart screen, which the laptop did not run),
   dsearch, payload, kscreen-multipliers, prng-all. `docs/HANDOFF.md` has the full brief.

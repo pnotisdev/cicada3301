@@ -340,7 +340,10 @@ decision rule.
   - The other kscreen campaigns (restarts, recurrences, multipliers) are queued in `jobs/overnight.py`.
 - **glibc `random()` sweep (segment 0.7, all 2³² seeds): negative.** Best screening score 21. The top-20
   full-segment scores are 0.088–0.112 against 0.077 for random seeds, the same selection-bias pattern as PHP
-  (`work/log/phase6_prng.md`). The .NET sweep follows.
+  (`work/log/phase6_prng.md`).
+- **.NET `System.Random` sweep (segment 0.7, all 2³¹ seeds): negative.** Best screening score 19. The top-20
+  full-segment scores are 0.086–0.110 against 0.077 for random seeds. All three generators are now negative for
+  a whole-book pad starting on LP2 page 0. A fresh seed per section is the `prng-all` campaign.
 
 ### Phase 5 – Validation and reporting
 - A plaintext counts as solved only if it scores well across a whole segment (word hits and IoC about 1.8)

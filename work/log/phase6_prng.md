@@ -41,6 +41,17 @@ word. Surviving seeds are scored by the number of runes inside dictionary words 
   either anti-repeat model.
 - Files: `results/prng/glibc_07.tsv`, `glibc_07.log`, `glibc_07_verify.txt`.
 
+## .NET `System.Random`, segment 0.7, all 2³¹ seeds (`Random(int)` uses |seed|)
+- 2,147,483,648 seeds × 16 variants in 2,454 s. Best screening score 19.
+- **Full-segment check of the top 20:** 0.086–0.110 against 0.076–0.079 for random seeds (z +1.4…+5.0). This is
+  the same selection-bias pattern as PHP and glibc; a true key would score about 0.8.
+- **Result: negative.** No .NET `System.Random` seed produces an LP2 pad starting at page 0, under any variant
+  or either anti-repeat model.
+- Files: `results/prng/net_07.tsv`, `net_07.log`, `net_07_verify.txt`.
+
+**All three generators are done for segment 0.7 (one whole-book pad): negative.** A fresh seed per section
+(all 8 windows) is the `prng-all` campaign in `jobs/overnight.py`.
+
 ## Not covered yet
 - A fresh seed per section (`WINDOWS=all` in `jobs/prng_sweeps.sh`: 8 windows, about 8× the time).
 - Key offsets ≠ 0 (pad not starting at the first rune of LP2), PHP's own auto-seeding, `mt_srand` with
