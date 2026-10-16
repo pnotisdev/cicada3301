@@ -137,7 +137,7 @@ def main():
         lp2 += [b - a for _, a, b in lp.word_spans(segs[i], c)]
     obs = hist(lp2)
     out = [f"LP2: {len(lp2)} words, mean {np.mean(lp2):.2f}. share by length 1..11,12+ (%):",
-           "  " + "LP2".ljust(40) + " ".join(f"{x:5.1f}" for x in 100 * obs / obs.sum())]
+           "  " + "LP2".ljust(78) + " ".join(f"{x:5.1f}" for x in 100 * obs / obs.sum())]
     rows = []
     for name in CORPORA:
         ws = words_of(name)
@@ -169,7 +169,7 @@ def main():
     rows.append((p, f"English, digraph runes collapsed {100 * r:.0f}%, null rune in {100 * a:.0f}% of multi-rune words "
                     f"(2 fitted)", q * obs.sum(), g, df))
     for p, name, h, g, df in sorted(rows, key=lambda t: -t[0]):
-        out.append("  " + name.ljust(40)[:40] + " " + " ".join(f"{x:5.1f}" for x in 100 * h / h.sum())
+        out.append("  " + name.ljust(78)[:90] + " " + " ".join(f"{x:5.1f}" for x in 100 * h / h.sum())
                    + f"   G={g:7.1f} df={df} p={p:.1e}")
     out.append("(sorted by p; a model fits LP2 if p is not tiny. Two-parameter rows have 2 fewer df.)")
     text = "\n".join(out)
