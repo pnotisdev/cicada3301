@@ -1,0 +1,41 @@
+LP2: 12956 runes, 2928 words; 30 relation families; null = 1,000 shuffles of the runes inside each section
+relation                                              pairs      z  P(null)   matched pairs / expected   closest simple map
+within words, distance 1                              10028 +10.60    0.453   543 / 345.8   5 of 29 runes follow affine 2 c + 25
+within words, distance 2                               7199 +10.71    0.457   417 / 248.2   5 of 29 runes follow affine 1 c + 27
+within words, distance 3                               4835 +10.24    0.860   299 / 166.8   6 of 29 runes follow affine 20 c + 25
+within words, distance 4                               3197 +10.47    0.825   220 / 110.1   7 of 29 runes follow affine 24 c + 28
+within words, distance 5                               2073 +12.13    0.056   174 / 71.5   5 of 29 runes follow affine 7 c + 6
+within words, distance 6                               1267 +12.16    0.148   124 / 43.7   5 of 29 runes follow affine 21 c + 27
+within words, distance 7                                713 +11.58    0.770   82 / 24.6   5 of 29 runes follow affine 2 c + 13
+within words, distance 8                                373 +10.92    0.995   52 / 12.9   5 of 29 runes follow affine 6 c + 22
+within words, distance 9                                192 +15.31    0.027   46 / 6.6   7 of 29 runes follow affine 24 c + 11
+within words, distance 10                                88 +13.76    0.930   27 / 3.0   6 of 29 runes follow affine 13 c + 8
+within words, distance 11                                35 +14.38    0.805   17 / 1.2   6 of 29 runes follow affine 5 c + 24
+within words, distance 12                                10 +13.05    0.403   8 / 0.3   6 of 29 runes follow affine 2 c + 19
+across the section, distance 1                        12947 +11.30    0.054   685 / 446.3   5 of 29 runes follow affine 10 c + 18
+across the section, distance 2                        12938 +10.36    0.577   665 / 446.2   5 of 29 runes follow affine 14 c + 16
+across the section, distance 3                        12929 +10.05    0.816   658 / 445.8   6 of 29 runes follow affine 1 c + 18
+across the section, distance 4                        12920 +10.26    0.636   662 / 445.4   5 of 29 runes follow affine 14 c + 24
+across the section, distance 5                        12911 +10.26    0.637   662 / 445.4   8 of 29 runes follow affine 16 c + 23
+across the section, distance 6                        12902  +9.45    0.985   644 / 444.8   5 of 29 runes follow affine 21 c + 25
+across the section, distance 7                        12893 +10.04    0.822   656 / 444.4   6 of 29 runes follow affine 11 c + 13
+across the section, distance 8                        12884 +10.72    0.330   670 / 444.2   7 of 29 runes follow affine 25 c + 17
+across the section, distance 9                        12875  +9.59    0.956   646 / 443.9   6 of 29 runes follow affine 6 c + 21
+across the section, distance 10                       12867 +10.13    0.754   657 / 443.7   5 of 29 runes follow affine 3 c + 18
+across the section, distance 11                       12859 +10.63    0.347   667 / 443.2   5 of 29 runes follow affine 7 c + 16
+across the section, distance 12                       12851 +10.35    0.576   661 / 443.1   6 of 29 runes follow affine 10 c + 22
+same position, word w and w+1 (all positions)          9250 +10.42    0.569   505 / 318.9   5 of 29 runes follow affine 6 c + 19
+same position, word w and w+2 (all positions)          9256 +10.58    0.495   508 / 319.1   5 of 29 runes follow affine 4 c + 3
+same position, word w and w+3 (all positions)          9169  +9.85    0.927   491 / 316.0   6 of 29 runes follow affine 2 c + 7
+first runes of word w and w+1                          2919 +10.81    0.673   209 / 100.6   5 of 29 runes follow affine 3 c + 21
+first runes of word w and w+2                          2910 +11.64    0.168   217 / 100.3   7 of 29 runes follow affine 24 c + 26
+first runes of word w and w+3                          2902 +10.70    0.735   207 / 100.0   7 of 29 runes follow affine 9 c + 28
+best z over all 30 families: +15.31 (within words, distance 9); shuffle null of the best over families: median +16.06, 95th percentile +18.02, P(null best >= observed) = 0.676
+
+control: random runes with LP2's word structure, c_i = g(c_(i-5)) inside words with probability eps (the family 'within words, distance 5'):
+   equality               eps 0.015: z +11.5 (min +10.0); null 95th percentile of this family +12.1; detected in 1 of 20
+   equality               eps 0.03: z +12.2 (min +10.9); null 95th percentile of this family +12.1; detected in 5 of 20
+   equality               eps 0.06: z +15.6 (min +12.9); null 95th percentile of this family +12.1; detected in 20 of 20
+   a random permutation   eps 0.015: z +11.3 (min +10.6); null 95th percentile of this family +12.1; detected in 0 of 20
+   a random permutation   eps 0.03: z +12.2 (min +11.2); null 95th percentile of this family +12.1; detected in 4 of 20
+   a random permutation   eps 0.06: z +15.7 (min +13.9); null 95th percentile of this family +12.1; detected in 20 of 20

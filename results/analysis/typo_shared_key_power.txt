@@ -1,0 +1,10 @@
+Power of the shared-key test of the five list items of 0.14 (work/typo_shared_key_power.py): a library key is planted at the SAME offset into English twins of the five items (139 / 91 / 98 / 96 / 129 runes), each twin is screened alone against the 1,447-keystream library (kscreen CPU engine, top 2,000 kept), and the planted setting is looked up in each list (#rank, - = not in the top 2,000). 'test' = number of settings that appear in at least 2 / at least 3 of the five lists (chance expectation 0.76 / 3e-5 on 52.6 million settings).
+planted setting                              item1(139)  item2(91)  item3(98)  item4(96)  item5(129)   lists holding it   test: >=2 / >=3 lists
+primes-1 (totient) @5000 x1 m0                       #1        #35       #472         #4          #2   5 of 5               6 / 6
+pi digits (base 29) @9000 x1 m1                      #1        #23       #399         #3          #1   5 of 5               4 / 1
+sha256-ctr reject :3301 @12000 x28 m0                #1        #35       #428         #3          #1   5 of 5               4 / 1
+primes-1 (totient) @14000 x28 m1                     #8        #41       #406         #5          #1   5 of 5               19 / 6
+pi digits (base 29) @3000 x1 m0                      #2        #32          -         #8          #1   4 of 5               2 / 2
+sha256-ctr reject :3301 @7000 x1 m1                  #1        #18       #735         #4          #2   5 of 5               5 / 2
+
+the planted setting was in the top 2,000 of at least 3 of the 5 items in 6 of 6 plants; in at least 2 in 6
