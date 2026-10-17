@@ -85,3 +85,20 @@ passphrase through the whole pipeline).
 - **Same reservation as hashscan:** the decoder is the dictionary one, so every negative of this PR (the 334 M stage-A seeds per generator, the 199,075 OEIS sequences, the 719,280 KDF streams) is a
   dictionary-score negative. The OEIS and KDF lanes are the next candidates for a boundary-free rescore.
 - The "primes plant on the 8-section windows" is the only planted control for the page-start and heading windows; the short (14-rune) windows have less power than the 36-rune ones, as the note says.
+
+## Stage B on the laptop (finished 2026-10-17, committed 2026-10-17 evening)
+
+`python work/prngx/campaign.py run stageB --gens rand48 msvc java` covered the rest of the 32-bit seed space after stage A:
+16 chunks per generator, and for java also its 2^31 negative seeds. It used every key map of each generator, including the
+third maps of `msvc` and `java` (`v*29/32767`, `abs(nextInt())%29`), which the GPU sweeps did not cover. Window 0.7,
+dictionary score.
+
+| Generator | Sweeps | Best screen score | Largest z of the re-decoded hits |
+|---|---|---|---|
+| rand48 | 16 | 20 | +6.9 |
+| msvc | 16 | 21 | +6.4 |
+| java | 17 | 21 | +7.9 |
+
+The top 20 of each sweep were re-decoded over the whole section against random seeds. A real key gives about z +60. The
+docstring's "noise ≤ +5" holds for one sweep, not for the maximum over 16-17 sweeps × 20 candidates. **Negative**, with the
+dictionary-score reservation above. Files: `results/prngx/<gen>_b_*.tsv`, `.log`, `_verify.txt`.
