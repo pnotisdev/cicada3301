@@ -158,8 +158,8 @@ section 1):
 | Within-word lag-5 coincidences | 102 of 2,073 pairs, z +3.67 | 104 of 2,105, z +3.75 |
 
 No conclusion changes: the lag-5 excess and the word-length shape stand. But every word-level count in `PLAN.md` and the
-logs used the old convention. The toolkit fix (`lp.word_spans` and the exports built on it) is a separate change; see
-section 6.
+logs used the old convention. The toolkit fix (`lp.word_spans` and the exports built on it) was done the same day as a
+separate change: `work/log/page_seam_fix_2026-10-17.md`.
 
 ### 4.2 The cuneiform stamp: seven copies, not four
 
@@ -319,10 +319,10 @@ drawn attention too. So treat it as about 10⁻³, still a hint of key or state 
 
 ## 6. What to do with it
 
-- **Toolkit fix, a separate change.** In `lp.word_spans`, treat '%' like '\n'. Do the same in the helpers modelled on it
-  (`work/word_gaps.py` keeps lines per page and is unaffected), then regenerate the word-based exports. Then rerun the
-  word-level analyses: the one-rune crib, the word-length tests, within-word lag 5, the per-word key tests and the Phase 9
-  family fingerprints. The expected effect is small. A follow-up session has been proposed.
+- **Toolkit fix, a separate change, done the same day** (`work/log/page_seam_fix_2026-10-17.md`). `lp.word_spans` now
+  treats '%' like '\n', and so do the helpers modelled on it (`work/word_gaps.py` keeps lines per page and is unaffected).
+  The word-based exports were regenerated and the word-level analyses rerun: the one-rune crib, the word-length tests,
+  within-word lag 5, the per-word key tests and the Phase 9 family fingerprints.
 - **Transcription.** No rune changes. The five three-dot marks could be added as a separator class if we ever test
   punctuation restarts. A diff against the site's newer cicada-solvers master needs the user's OK to download it.
 - **Doublet floor.** It confirms that the anti-repeat rule (or feedback) is a necessary part of any additive model in the

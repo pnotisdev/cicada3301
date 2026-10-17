@@ -26,6 +26,8 @@ def clauses_of(ids):
         for t in toks:
             if isinstance(t, int):
                 w += 1
+            elif t in ("\n", "%"):                    # a bare line or page break is a wrap inside a word (lp.word_spans)
+                continue
             else:
                 if w:
                     cur.append(w)

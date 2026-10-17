@@ -155,11 +155,15 @@ on English converted to runes, using Emerson's *Essays*, which include Self-Reli
 - **Corrected 2026-10-16:** `lp.word_spans` used to treat every line break as a word boundary, but the
   transcription wraps words across lines (a real boundary at a line end is always written '-' or '.'). The numbers
   below are the corrected ones; the originals were 3.91 runes, 318 one-rune words and χ² = 44.8.
-- Word lengths look like English: there are 2,928 words with a mean of 4.42 runes (aldegonde's count is also
-  2,928). So word boundaries are probably real plaintext boundaries.
-- There are **99 one-rune words** (3.4% of words, a plausible rate for A and I in English), which must be ᚪ (A) or
-  ᛁ (I). Their ciphertext runes are uniform (χ² = 18.5, df 28). The earlier "marginal" unevenness was a
-  fragment artefact. A correct key turns most of these 99 into A or I, against 7% by chance.
+- **Corrected again 2026-10-17:** a page break without '-' or '.' is a wrap too. 32 of the 55 page breaks in LP2 fall
+  inside a word, and the page images show no separator dot there (`results/analysis/page_seams_2026-10-17.txt`). The
+  numbers below are corrected; the 2026-10-16 values were 2,928 words, a mean of 4.42 runes, 99 one-rune words (3.4%)
+  and χ² = 18.5.
+- Word lengths look like English: there are 2,896 words with a mean of 4.47 runes (aldegonde's 2,928 also cuts at
+  page breaks; cicadanotebook.com has 2,896). So word boundaries are probably real plaintext boundaries.
+- There are **83 one-rune words** (2.9% of words, a plausible rate for A and I in English), which must be ᚪ (A) or
+  ᛁ (I). Their ciphertext runes are uniform (χ² = 20.8, df 28): 28 runes occur, all but ᚳ. The earlier "marginal"
+  unevenness was a fragment artefact. A correct key turns most of these 83 into A or I, against 7% by chance.
 - The fix raises solved-section dictionary scores (Welcome 0.78 → 0.84) and does not change any deduction (D1–D4).
   Earlier real-data screens split wrapped words into fragments, a small handicap for a true key that the synthetic
   sensitivity tests (which have no line breaks) did not reflect.
@@ -304,11 +308,12 @@ decision rule.
     maximum in 8/8 trials for P ≤ 400, 7/8 at P = 800, 6/8 at P = 1600 and 0/8 at P = 3200.
   - LP2: max Z 3.03, against random-rune nulls of 2.29–3.55 (8 texts). **Periodic keys are ruled out up to about 400 runes
     only.** Longer periods remain open.
-- **Word lengths** (`work/wordlen.py`). The LP2 histogram rejects English in GP runes (G = 227, p ≈ 10⁻⁴²; against
-  the solved sections p ≈ 10⁻³⁵). English counted in letters, with no digraph runes, fits better but is still
-  rejected (p = 7·10⁻⁸). The best simple fit is English runes with **one extra rune in about 40% of multi-rune
-  words** (p = 0.025). This is a lead: nulls or padding inside words, another plaintext convention, or another
-  language. Dictionary screens lose power under all three; IoC screens do not.
+- **Word lengths** (`work/wordlen.py`; numbers corrected 2026-10-17 for page-break wraps, earlier G = 227, p ≈ 10⁻⁴²,
+  40% at p = 0.025). The LP2 histogram rejects English in GP runes (G = 242, p ≈ 10⁻⁴⁵; against the solved sections
+  p ≈ 10⁻³⁷). English counted in letters, with no digraph runes, fits better but is still rejected (p = 8·10⁻⁹). The
+  best simple fit is English runes with **one extra rune in about 42% of multi-rune words** (p = 0.085, no longer
+  rejected at 5%). This is a lead: nulls or padding inside words, another plaintext convention, or another language.
+  Dictionary screens lose power under all three; IoC screens do not.
 - **New engine `work/kscreen`.** It is a language- and alphabet-agnostic keystream screen. For each keystream,
   start offset, key multiplier and anti-repeat model (skip or coin), it runs a beam decode over key pointers
   and scores the decoded letters by IoC. The IoC is unchanged by Atbash, by any substitution of the plaintext
@@ -462,7 +467,26 @@ engine `work/layer2` (output `results/layer2/`).
   (`work/tmp/hyp/page_seam_dots.py`, `results/analysis/page_seams_2026-10-17.txt`): none of the 32 shows a separator dot, all 21
   marked page breaks show one, and the detector finds 150 of 151 marked line ends with 4 false dots in 388 wraps. Corrected:
   2,896 words (not 2,928), **83 one-rune words (not 99)**, the site's tokens exactly, 2-rune share 15.5%, within-word lag-5
-  z +3.75 (was +3.67). No conclusion changes; the toolkit fix is pending.
+  z +3.75 (was +3.67). No conclusion changes; the toolkit fix is the next bullet.
+- **Toolkit fix: an unmarked page break is a wrap (18:30; `work/log/page_seam_fix_2026-10-17.md`).**
+  - **Code:** `lp.word_spans` treats '%' like '\n'. Also fixed: `stats.adjacent_pairs`, the word unit of
+    `restart_columns`, and five scripts with their own splitters. Three of those (`wordlen_clauses`, the two crib checks)
+    and `grid30`'s Gematria sums still cut at every line break, the pre-2026-10-16 bug.
+  - **Exports:** phpmt's `windows*.txt` and walk's `lp2.txt` / `lm3.bin` regenerated; only the word lengths change.
+  - **Reruns:** 23 result files. Nothing that mattered moved:
+    - lag 5: 104 of 2,105 pairs, permutation p 0.0007;
+    - one-rune cipher runes still uniform;
+    - every family row and every exclusion keeps its verdict; the lag-5 concentration on S calibrates at P 0.010
+      (was 0.0073).
+  - **Three shifts worth knowing:**
+    - the word-length model "+1 rune in about 42% of multi-rune words" is no longer rejected (p 0.085-0.10, was 0.025);
+    - with wraps joined, the community crib for 0.7 fits LP2's word division exactly (0 cuts inside crib words, not 4);
+    - **the lag-6 affine lead c' = 24 − 2c got stronger:** z +5.32, look-elsewhere P 0.005 (was 0.013), and its
+      split-half replication went from P 0.035 to 0 of 200 shuffles (held-out z +1.44, about 4.9 sd). It is still a lead,
+      not a finding: three pairs moved the statistic a lot. A follow-up with the relation fixed in advance is proposed.
+  - **Not rerun:** the engine campaigns that scored with word lengths. About 1% of words are affected, so a true key
+    loses a little score but is not excluded.
+  - **Tests:** `test_crib` and `test_families` updated.
 - **cicadanotebook.com read in full (17:00; `work/log/research_cicadanotebook_2026-10-17.md`).** An AI-assisted notebook of 79
   controlled sessions; **no solution claimed**. Recomputed on our data (`work/tmp/hyp/notebook_checks.py`, `keyed_floor.py`;
   `results/analysis/cicadanotebook_checks_2026-10-17.txt`):

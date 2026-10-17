@@ -106,16 +106,9 @@ def main():
     perm = [viterbi(list(rng.permutation(CRIB_LENS)), V, uni, ia, ib, cnt, mem)[0] for _ in range(60)]
     say(f"   (a) 60 random permutations of the crib's 33 lengths: best-sentence score mean {np.mean(perm):.2f}, sd {np.std(perm):.2f}, min {np.min(perm):.2f}, max {np.max(perm):.2f}")
     cw = []
-    for si in range(7, 16):
-        cur, ws = [], []
-        for t in stats.SEGS[si]:
-            if isinstance(t, int):
-                cur.append(t)
-            elif t in (" ", ".", "\n", "&", "%") and cur:
-                ws.append(len(cur)); cur = []
-        if cur:
-            ws.append(len(cur))
-        cw.append(ws)
+    for si in range(7, 16):                       # cipher word lengths as lp.word_spans cuts them (line and page wraps rejoined)
+        c = lp.runes_of(stats.SEGS[si])
+        cw.append([b - a for _, a, b in lp.word_spans(stats.SEGS[si], c)])
     flat = [(si, j) for si, ws in enumerate(cw) for j in range(len(ws) - 33)]
     pick = [flat[i] for i in rng.choice(len(flat), 60, replace=False)]
     win = [viterbi(cw[si][j:j + 33], V, uni, ia, ib, cnt, mem)[0] for si, j in pick]

@@ -1,24 +1,24 @@
-LP2: 2928 words, 12956 runes; chance coincidence S = 3.455%
+LP2: 2896 words, 12956 runes; chance coincidence S = 3.455%
 
 A. Inside words, by lag g: coincidences (rune j == rune j+g) and repeated bigrams ((j,j+1) == (j+g,j+g+1)).
    expected bigram repeats = pairs * S^2; MC = fraction of chain-null streams (LP2's word structure, anti-repeat marginal) with at least as many, 20000 streams
    g | coinc. pairs equal  rate%     z | bigram pairs  obs   exp  Poisson P   MC P
-   2 |         7199   250   3.47  +0.1 |        4835     5  5.77    6.8e-01  7.2e-01
-   3 |         4835   179   3.70  +0.9 |        3197     7  3.82    9.2e-02  1.0e-01
-   4 |         3197   131   4.10  +2.0 |        2073     4  2.47    2.4e-01  2.5e-01
-   5 |         2073   102   4.92  +3.7 |        1267     9  1.51    3.0e-05  5.0e-05
-   6 |         1267    31   2.45  -2.0 |         713     0  0.85    1.0e+00  1.0e+00
-   7 |          713    30   4.21  +1.1 |         373     1  0.45    3.6e-01  3.6e-01
-   8 |          373    10   2.68  -0.8 |         192     0  0.23    1.0e+00  1.0e+00
-   9 |          192     5   2.60  -0.6 |          88     0  0.11    1.0e+00  1.0e+00
+   2 |         7247   252   3.48  +0.1 |        4882     5  5.83    6.9e-01  7.2e-01
+   3 |         4882   181   3.71  +1.0 |        3237     7  3.86    9.7e-02  1.1e-01
+   4 |         3237   131   4.05  +1.8 |        2105     4  2.51    2.5e-01  2.6e-01
+   5 |         2105   104   4.94  +3.7 |        1290     9  1.54    3.4e-05  5.0e-05
+   6 |         1290    32   2.48  -1.9 |         731     0  0.87    1.0e+00  1.0e+00
+   7 |          731    30   4.10  +1.0 |         388     1  0.46    3.7e-01  3.7e-01
+   8 |          388    10   2.58  -0.9 |         201     0  0.24    1.0e+00  1.0e+00
+   9 |          201     5   2.49  -0.8 |          92     0  0.11    1.0e+00  1.0e+00
    (9 lags tested: multiply the lag-5 P by 8 for a look-elsewhere correction)
 
 B. Where does the lag-5 excess live? bigram windows, lag 5:
-   whole stream: 29 repeats, 15.5 expected;  both windows inside one word: 9 observed, 1.51 expected;  all other windows: 20 observed, 13.9 expected
+   whole stream: 29 repeats, 15.5 expected;  both windows inside one word: 9 observed, 1.54 expected;  all other windows: 20 observed, 13.9 expected
 
 C. The words with a repeated bigram at lag 5 (rune values and letters):
    21 13  3 24 26 21 13 15   INGPOAYINGPS
-    7 27 28  4 25  7 27 23 24  2   WIAEARAEWIADATH
+    7 27 28  4 25  7 27 23 24  2  5   WIAEARAEWIADATHC
    28 26 13 22  2 15 26 13   EAYPOETHSYP
     9 24 28  3 24  9 24  2  6  3   NAEAOANATHGO
    13 22 11 24 21 13  2 13 24 21   POEJAINGPTHPAING
@@ -27,17 +27,17 @@ C. The words with a repeated bigram at lag 5 (rune values and letters):
    18 15 12  2  2 18 15   ESEOTHTHES
 
 D. English in runes (Emerson), inside words: coincidence rate and bigram-repeat ratio to the chance level:
-   lag 2: English  3.41%, ratio   0.3   |   LP2  3.47%, ratio   0.9
-   lag 3: English  5.42%, ratio   4.3   |   LP2  3.70%, ratio   1.8
-   lag 4: English  5.56%, ratio   5.0   |   LP2  4.10%, ratio   1.6
-   lag 5: English  6.43%, ratio   6.1   |   LP2  4.92%, ratio   6.0
-   lag 6: English  6.42%, ratio   4.3   |   LP2  2.45%, ratio   0.0
-   lag 7: English  6.42%, ratio  11.3   |   LP2  4.21%, ratio   2.3
-   lag 8: English  7.23%, ratio   4.4   |   LP2  2.68%, ratio   0.0
+   lag 2: English  3.41%, ratio   0.3   |   LP2  3.48%, ratio   0.9
+   lag 3: English  5.42%, ratio   4.3   |   LP2  3.71%, ratio   1.8
+   lag 4: English  5.56%, ratio   5.0   |   LP2  4.05%, ratio   1.6
+   lag 5: English  6.43%, ratio   6.1   |   LP2  4.94%, ratio   5.9
+   lag 6: English  6.42%, ratio   4.3   |   LP2  2.48%, ratio   0.0
+   lag 7: English  6.42%, ratio  11.3   |   LP2  4.10%, ratio   2.2
+   lag 8: English  7.23%, ratio   4.4   |   LP2  2.58%, ratio   0.0
 
 E. Mechanism checks (20,000 English words enciphered under the anti-repeat rule), same features as LP2:
    model                           c2    c3    c4    c5    c6    c7   bg5 ratio  lag-5 diff chi2/df (excl. d=0)
-   LP2                             3.47  3.70  4.10  4.92  2.45  4.21      5.97       0.96
+   LP2                             3.48  3.71  4.05  4.94  2.48  4.10      5.87       0.86
    OTP key (control)               3.48  3.54  3.31  3.50  3.60  3.43      1.08       0.61
    per-word random key, period 5   3.59  3.45  3.69  6.19  3.15  3.41      5.41      17.49
    per-word random key, period 4   3.46  3.47  5.46  3.32  3.65  3.74      1.08       1.24

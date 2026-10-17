@@ -155,8 +155,9 @@ COMMON_N = _load_dictionary()
 
 def word_spans(toks, plain):
     """[(latin_word, first_rune_pos, last_rune_pos+1)] in reading order.
-    A bare line break ('\\n' between two runes) is a typographic wrap inside a word, not a word
-    boundary: in the transcription a real boundary at a line end is always written '-' or '.'."""
+    A bare line break ('\\n') or page break ('%') between two runes is a typographic wrap inside a word, not a word
+    boundary: in the transcription a real boundary at a line or page end is always written '-' or '.' (checked against
+    the page images in work/tmp/hyp/page_seam_dots.py; page breaks were word boundaries here until 2026-10-17)."""
     spans, cur, start, pos = [], [], 0, 0
     for t in toks + [" "]:
         if isinstance(t, int):
@@ -164,7 +165,7 @@ def word_spans(toks, plain):
                 start = pos
             cur.append(LATIN[plain[pos]])
             pos += 1
-        elif t == "\n":
+        elif t in ("\n", "%"):
             continue
         elif cur:
             spans.append(("".join(cur), start, pos))

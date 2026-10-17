@@ -63,13 +63,10 @@ def pieces(keys):
 
 def main():
     toks = stats.SEGS[7]
-    cw, cur = [], []
-    for t in toks:
-        if isinstance(t, int):
-            cur.append(t)
-        elif t in (" ", ".", "\n", "&", "%") and cur:
-            cw.append(cur); cur = []
     c = np.array(lp.runes_of(toks))
+    # cipher words as lp.word_spans cuts them: bare line and page breaks are wraps inside a word (until 2026-10-17 this
+    # script cut at every line break, which split FOREVER, THINK, WORD and ANSWER)
+    cw = [list(c[a:b]) for _, a, b in lp.word_spans(toks, lp.runes_of(toks))]
     heading = c[:13]
     body = c[13:13 + 141]
     say(f"section 0.7: {len(cw)} cipher words; first words of {[len(w) for w in cw[:2]]} runes = the 13-rune heading, then {[len(w) for w in cw[2:40]]}")

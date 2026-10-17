@@ -24,6 +24,8 @@ def slice_tokens(toks, lo, hi):
         if isinstance(t, int):
             cur.append((k, t))
             k += 1
+        elif t in ("\n", "%"):                    # a bare line or page break is a wrap inside a word (lp.word_spans)
+            continue
         else:
             if cur and cur[0][0] >= lo and cur[-1][0] < hi:
                 out += [x for _, x in cur]

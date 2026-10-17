@@ -2,47 +2,47 @@
 
 ## probe1.py
 
-LP2 words 2928, runes 12956; English words 66513
+LP2 words 2896, runes 12956; English words 66513
 
 1. within-word coincidence rate by lag (percent); uniform 3.45
   d   LP2 pairs  LP2 coinc  LP2 %   z(unif)   English %
-  1     10028        63    0.63   -15.48     2.89
-  2      7199       250    3.47    +0.11     3.38
-  3      4835       179    3.70    +0.97     5.52
-  4      3197       131    4.10    +2.01     5.55
-  5      2073       102    4.92    +3.67     6.36
-  6      1267        31    2.45    -1.95     6.64
-  7       713        30    4.21    +1.11     6.16
-  8       373        10    2.68    -0.81     7.36
-  9       192         5    2.60    -0.64     7.28
- 10        88         2    2.27    -0.60     6.05
+  1     10060        63    0.63   -15.51     2.89
+  2      7247       252    3.48    +0.14     3.38
+  3      4882       181    3.71    +0.99     5.52
+  4      3237       131    4.05    +1.87     5.55
+  5      2105       104    4.94    +3.75     6.36
+  6      1290        32    2.48    -1.90     6.64
+  7       731        30    4.10    +0.97     6.16
+  8       388        10    2.58    -0.94     7.36
+  9       201         5    2.49    -0.75     7.28
+ 10        92         2    2.17    -0.67     6.05
 
    LP2 z-score (vs uniform) by lag d (rows) and word length L (columns)
   d       2      3      4      5      6      7      8      9     10     11     12     13     14
-  1    -3.8   -5.8   -5.7   -5.7   -5.6   -5.7   -4.7   -4.2   -3.3   -3.2   -1.1   -1.3   -1.2
-  2       .   +1.4   -0.4   -0.9   +1.9   -1.2   -0.5   -0.6   +0.8   +1.1   -0.9   -0.4   -0.2
-  3       .      .   +0.3   +2.0   +1.4   -0.3   -1.2   -2.3   +1.7   +0.1   +2.8   -0.3   -0.1
-  4       .      .      .   +0.9   +0.9   +0.6   +0.9   +0.5   +0.5   +0.1   +0.9   +0.7   +1.0
-  5       .      .      .      .   -0.2   +1.1   +1.4   +1.4   +4.2   +0.1   +0.8   +1.8   +1.1
-  6       .      .      .      .      .   +0.2   -1.2   -0.3   -1.5   -1.8   +0.7   -1.0   -0.9
-  7       .      .      .      .      .      .   +1.1   +1.2   +1.2   -1.0   -1.2   +1.3   +0.3
-  8       .      .      .      .      .      .      .   -1.7   +2.4   -1.7   -1.0   +0.4   -0.8
-  9       .      .      .      .      .      .      .      .   -1.3   +1.5   -1.4   -0.8   +0.7
- 10       .      .      .      .      .      .      .      .      .   -1.0   +0.7   -0.7   -0.7
+  1    -3.7   -5.7   -5.7   -5.8   -5.5   -5.7   -4.6   -4.3   -3.3   -3.4   -1.1   -1.3   -1.2
+  2       .   +1.5   -0.6   -0.9   +1.8   -1.2   -0.2   -0.7   +1.3   +0.7   -0.9   -0.4   -0.2
+  3       .      .   +0.6   +1.8   +1.5   -0.1   -1.2   -2.6   +1.6   +0.1   +2.8   -0.3   -0.1
+  4       .      .      .   +0.9   +0.8   +0.6   +0.8   +0.4   +0.7   -0.3   +0.9   +0.7   +1.0
+  5       .      .      .      .   +0.1   +1.1   +1.5   +1.3   +3.8   +0.5   +0.8   +1.8   +1.1
+  6       .      .      .      .      .   +0.2   -1.5   -0.0   -1.2   -2.0   +0.7   -1.0   -0.9
+  7       .      .      .      .      .      .   +1.1   +1.1   +1.1   -1.2   -1.2   +1.3   +0.3
+  8       .      .      .      .      .      .      .   -1.7   +1.8   -1.3   -1.0   +0.4   -0.8
+  9       .      .      .      .      .      .      .      .   -1.4   +1.2   -1.4   -0.8   +0.7
+ 10       .      .      .      .      .      .      .      .      .   -1.1   +0.7   -0.7   -0.7
    half-word lag (d = L/2) for even L:
-   L= 4 d=2: pairs  1028 coinc   33 expected   35.4 z -0.42
-   L= 6 d=3: pairs   756 coinc   33 expected   26.1 z +1.38
-   L= 8 d=4: pairs   636 coinc   26 expected   21.9 z +0.88
-   L=10 d=5: pairs   255 coinc   21 expected    8.8 z +4.19
+   L= 4 d=2: pairs  1026 coinc   32 expected   35.4 z -0.58
+   L= 6 d=3: pairs   768 coinc   34 expected   26.5 z +1.49
+   L= 8 d=4: pairs   624 coinc   25 expected   21.5 z +0.76
+   L=10 d=5: pairs   260 coinc   20 expected    9.0 z +3.75
    L=12 d=6: pairs   108 coinc    5 expected    3.7 z +0.67
    L=14 d=7: pairs    21 coinc    1 expected    0.7 z +0.33
 
 2. rune F (index 0)
    share of all runes: 3.54% (uniform 3.45)
    English plaintext F share (Emerson in GP runes): 2.66%
-   2-rune words: 465; F last 10, F first 16 (uniform 16.0 each)
+   2-rune words: 448; F last 10, F first 16 (uniform 15.4 each)
    English 2-rune words: F last 16.5%, F first 0.0%
-   word-initial F 117 of 2928 (4.00%), word-final F 84 of 2829 (2.97%)
+   word-initial F 117 of 2896 (4.04%), word-final F 81 of 2813 (2.88%)
 
 3. chi-square (28 df: mean 28, sd 7.5) of (c[i+d]-c[i]) mod 29 within sections
    d=  1 chi   343.8  chi without bin 0   52.8  bin0 86 (exp 446)
@@ -85,21 +85,21 @@ controls (section lengths as LP2, q = 0.8):
 
 ## probe3.py
 
-H-MULT: profile of rune F in LP2 [1-rune words, word-initial, word-final, medial] = [1, 116, 84, 257] of slots [99, 2829, 2829, 7199]
+H-MULT: profile of rune F in LP2 [1-rune words, word-initial, word-final, medial] = [1, 116, 81, 260] of slots [83, 2813, 2813, 7247]
   F share of runes 3.54%; a uniform symbol would give G small (shown as 'uniform' below)
-  G against 'F is a uniform cipher symbol': 8.2 (4 df)
+  G against 'F is a uniform cipher symbol': 8.6 (4 df)
   best English letters X (G, 4 df; p < 0.001 needs G > 18.5):
-    X = M   G =    70.1  expected profile shares 0.10% 4.21% 1.76% 2.26%
-    X = L   G =    80.6  expected profile shares 0.05% 2.59% 3.73% 5.33%
-    X = H   G =    85.7  expected profile shares 0.00% 5.14% 1.80% 2.49%
-    X = C   G =    89.8  expected profile shares 0.35% 4.39% 1.00% 4.50%
-    X = F   G =   307.2  expected profile shares 0.00% 3.58% 5.16% 1.14%
-    X = D   G =   335.6  expected profile shares 0.00% 2.52% 9.29% 1.77%
+    X = M   G =    69.2  expected profile shares 0.10% 4.21% 1.76% 2.26%
+    X = L   G =    82.0  expected profile shares 0.05% 2.59% 3.73% 5.33%
+    X = C   G =    83.5  expected profile shares 0.35% 4.39% 1.00% 4.50%
+    X = H   G =    84.3  expected profile shares 0.00% 5.14% 1.80% 2.49%
+    X = F   G =   315.2  expected profile shares 0.00% 3.58% 5.16% 1.14%
+    X = P   G =   338.7  expected profile shares 0.00% 3.40% 0.36% 1.77%
   every rune as the fixed point (29 runes x 29 letters), best fits:
-    rune EO  ~ letter M   G =   49.2  profile [2, 95, 80, 222]
-    rune A   ~ letter L   G =   54.6  profile [2, 99, 105, 276]
-    rune E   ~ letter M   G =   56.4  profile [1, 112, 75, 251]
-    rune TH  ~ letter L   G =   64.8  profile [3, 88, 98, 266]
+    rune EO  ~ letter M   G =   43.4  profile [1, 95, 78, 225]
+    rune IA  ~ letter L   G =   52.5  profile [1, 96, 103, 270]
+    rune A   ~ letter L   G =   55.7  profile [2, 98, 105, 277]
+    rune E   ~ letter M   G =   55.8  profile [1, 112, 75, 251]
 
 H-CUM: chi-square (27 df, LP2 = 41.2) of the step histogram without bin 0, n = 12,956, skip rule q = 0.8
   t = pg10.txt     p + cumsum(t)  chi-square    129.7
@@ -135,7 +135,7 @@ H-DITTO: doublets by the class of their second rune {'one': 0, 'ini': 23, 'fin':
     X = IA  G =  338.4  frequency 0.64%  shares one/ini/fin/med 0.0/0.1/1.1/98.8
     X = EA  G =   94.9  frequency 0.72%  shares one/ini/fin/med 0.0/10.4/1.6/88.0
 
-quotes: within-word lag-5 coincidences 102, inside the quote spans 2; the spans cover 1.9% of LP2, so 1.9 are expected
+quotes: within-word lag-5 coincidences 104, inside the quote spans 2; the spans cover 1.9% of LP2, so 2.0 are expected
 
 H-DRST (the key restarts after each surviving doublet): 3721 coincidences in 108460 aligned pairs (3.43%, uniform 3.45%), z -0.32
   null: 86 random restart points, 20 replicates: z median +0.28, max +2.48

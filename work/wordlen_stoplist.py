@@ -80,7 +80,7 @@ def main():
         out.append(f"   best N={best[0]}: G = {best[1]:.1f}, p = {best[2]:.2e}; shares " + " ".join(f"{x:.1f}" for x in 100 * best[3] / best[3].sum()))
     out.append("")
     out.append("Reading: a good fit (p not tiny) at some N would support a text of content words in no sentence order; the best fits of "
-               "wordlen_languages.py (extra rune in 40% of words, 2-rune words missing) have G 17-20.")
+               "wordlen_languages.py (extra rune in 42% of multi-rune words, 2-rune words missing) have G 16-18.")
     text = "\n".join(out)
     print(text)
     dest = os.path.join(HERE, "..", "results", "analysis")

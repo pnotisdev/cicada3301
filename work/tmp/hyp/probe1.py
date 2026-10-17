@@ -23,12 +23,12 @@ LP2 = list(range(7, 16))
 
 
 def words_of(toks):
-    """Rune-index lists per word, reading order; a bare line break is a wrap, not a boundary."""
+    """Rune-index lists per word, reading order; a bare line or page break is a wrap, not a boundary (lp.word_spans)."""
     out, cur = [], []
     for t in toks + [" "]:
         if isinstance(t, int):
             cur.append(t)
-        elif t == "\n":
+        elif t in ("\n", "%"):
             continue
         elif cur:
             out.append(cur)

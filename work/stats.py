@@ -22,9 +22,10 @@ def stream(seg_ids=UNSOLVED, segs=SEGS):
 
 def adjacent_pairs(toks):
     """Yield (a, b, boundary) for consecutive runes; boundary is the strongest separator
-    between them: '' (same word), ' ' word, '.' clause, '\\n' line only, '%' page, '&' paragraph, '#' numeral."""
+    between them: '' (same word), '\\n' line break only, '%' page break only, ' ' word, '.' clause, '#' numeral,
+    '&' paragraph. A bare line or page break is a wrap inside a word (see lp.word_spans), so any written mark wins."""
     prev, sep = None, ""
-    rank = {"": 0, "\n": 1, " ": 2, ".": 3, "#": 4, "&": 5, "%": 6}
+    rank = {"": 0, "\n": 1, "%": 2, " ": 3, ".": 4, "#": 5, "&": 6}
     for t in toks:
         if isinstance(t, int):
             if prev is not None:
@@ -59,8 +60,8 @@ def doublets():
           f"expected {n / N:.0f}); P(X<={d}) = {binom_sf(d, n, 1 / N):.1e}")
 
     print("\n== By boundary type (unsolved)")
-    names = {"": "inside word", "\n": "line break only", " ": "word gap", ".": "clause",
-             "#": "numeral", "&": "paragraph", "%": "page"}
+    names = {"": "inside word", "\n": "line break only", "%": "page break only", " ": "word gap", ".": "clause",
+             "#": "numeral", "&": "paragraph"}
     by = Counter(s for _, _, s in pairs)
     dby = Counter(s for a, b, s in pairs if a == b)
     for s in names:

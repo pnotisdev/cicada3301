@@ -75,7 +75,7 @@ def quotes():
             if isinstance(t, int):
                 cur.append(pos)
                 pos += 1
-            elif t == "\n":
+            elif t in ("\n", "%"):                # a bare line or page break is a wrap (lp.word_spans)
                 continue
             elif cur:
                 words.append(cur)
