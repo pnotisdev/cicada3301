@@ -34,6 +34,14 @@ word), arithmetic progression, quadratic (any coefficients, new ones for every w
 - So the distance-5 echo is **not** a per-word period-5 key, and the same holds for constant, linear, quadratic or
   periodic keys of period <= 7, for English plaintext in the dictionary. (An unknown outer alphabet D is the
   `walk dsearch` case; this test assumes the standard rune alphabet.)
+- **Per-word linear recurrences** (`work/word_recurrence.py`, results `word_recurrence_d2.txt`, `_d3.txt`): the same
+  consistency test for a key that follows a recurrence k_{j+d} = a_1 k_{j+d-1} + ... + a_d k_j with the same
+  coefficients for the whole book and a *fresh initial state for every word* (a Fibonacci/Lucas/Tribonacci/LCG-type key
+  re-seeded at each word). All 812 order-2 and all 23,548 order-3 coefficient sets are scanned. LP2's best operator
+  has 5 consistent words (order 2) and 6 (order 3), the random surrogate's best has 4 and 6. Planted keys with the
+  anti-repeat skip rule are recovered with their true operator at rank 1 (656-672/840 and 553-577/720 words
+  consistent against a runner-up of 4-25). This family is not covered by the kscreen recurrence campaign, which runs
+  one key stream through a whole section.
 - Simulations in section E of the repeats results: a per-word random key of period 5 reproduces the bigram clustering
   but predicts a lag-5 difference histogram that LP2 does not have; an independent "copy rune j-5" process does not
   reproduce the clustering. A period-5 key with pointer jumps of 10-20% matches the coincidence rates at lags 4-5, but

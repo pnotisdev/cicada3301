@@ -12,6 +12,7 @@ sys.path.insert(0, os.path.dirname(HERE))
 
 import word_internal_repeats as wir  # noqa: E402
 import word_key_dictionary as wkd  # noqa: E402
+import word_recurrence as wrec  # noqa: E402
 
 
 class WordKeyDictionary(unittest.TestCase):
@@ -26,6 +27,19 @@ class WordKeyDictionary(unittest.TestCase):
                 self.assertGreater(hits / n, 0.6, (kind, par, L))
             for L, (n, hits, e) in sur.items():
                 self.assertLessEqual(hits, n * e + 4 * (n * e) ** 0.5 + 2, (kind, par, L))
+
+
+class WordRecurrence(unittest.TestCase):
+    def test_planted_operator_is_found(self):
+        rng = random.Random(4)
+        a = (7, 19)
+        seqs = wkd.sample_dictionary(rng, per_len=40, lo=6, hi=10)
+        words = wrec.encipher(seqs, a, rng)
+        ops = [a] + [tuple(rng.randrange(29) for _ in range(1)) + (rng.randrange(1, 29),) for _ in range(60)]
+        ops, hits, eligible = wrec.scan(words, 2, ops)
+        self.assertEqual(int(hits.argmax()), 0)
+        self.assertGreater(hits[0], 0.6 * eligible)
+        self.assertLessEqual(sorted(hits)[-2], 0.1 * eligible)
 
 
 class RepeatCounter(unittest.TestCase):
