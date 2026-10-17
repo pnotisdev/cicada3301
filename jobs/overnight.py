@@ -265,6 +265,18 @@ def step28_steps():
                           outputs=[nul], device="cuda"))
     ver = RES / "kscreen" / "step28_library_verify.txt"
     steps.append(Step("kscreen-step28/verify", S28 + ["verify", str(lib), "--top", "8", "--out", str(ver)], hours=0.01, outputs=[ver]))
+    # the same families built natively mod 28 (variants A and C read Z28 keys; work/kscreen/export28.py)
+    l28 = KS / "data" / "library28.ksb"
+    t28 = RES / "kscreen" / "step28_library28.tsv"
+    steps.append(Step("kscreen-step28/export28", [PY, str(KS / "export28.py")], hours=0.05, outputs=[l28]))
+    steps.append(Step("kscreen-step28/library28", S28 + ["screen", str(l28), str(t28), "--variants", "AC"], hours=0.05, outputs=[t28],
+                      device="cuda"))
+    for r in range(2):
+        nul = RES / "kscreen" / f"step28_null28_{r}.tsv"
+        steps.append(Step(f"kscreen-step28/null28-{r}", S28 + ["screen", f"rand:655:{800 + r}", str(nul), "--variants", "AC"], hours=0.05,
+                          outputs=[nul], device="cuda"))
+    v28 = RES / "kscreen" / "step28_library28_verify.txt"
+    steps.append(Step("kscreen-step28/verify28", S28 + ["verify", str(t28), "--top", "8", "--out", str(v28)], hours=0.01, outputs=[v28]))
     per = RES / "analysis" / "step_periodicity.txt"
     steps.append(Step("kscreen-step28/periodicity", [PY, str(WORK / "step_periodicity.py")], hours=0.05, outputs=[per]))
     return steps
@@ -292,6 +304,16 @@ def step28_summary():
         out.append(f"- matched null ({len(nulls)} replicates of random streams, same pair count): largest per-window best "
                    f"{max(nmax.values()):.3f}; windows where the library beats every replicate by 0.02 and reaches 1.30: "
                    + (", ".join(above) if above else "none"))
+    t28 = RES / "kscreen" / "step28_library28.tsv"
+    if t28.exists():
+        n28 = [bests(RES / "kscreen" / f"step28_null28_{r}.tsv") for r in range(2) if (RES / "kscreen" / f"step28_null28_{r}.tsv").exists()]
+        b28 = bests(t28)
+        top28 = max(b28.items(), key=lambda kv: kv[1])
+        out.append(f"- native mod-28 library (variants A and C, keys 0..27; export28.py): best IoC {top28[1]:.3f} ({top28[0]}); "
+                   f"largest per-window best in {len(n28)} null replicates: {max((max(n.values()) for n in n28), default=0):.3f}")
+        v28 = first_data_line(RES / "kscreen" / "step28_library28_verify.txt")
+        if v28:
+            out.append(f"- verification of the native library (best-ranked window): {v28}")
     ver = first_data_line(RES / "kscreen" / "step28_library_verify.txt")
     if ver:
         out.append(f"- verification (the best-ranked window continued to the end of its section): {ver}")

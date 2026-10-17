@@ -269,12 +269,12 @@ def cmd_screen(a):
     lib = load_library(a.library)
     pairs = sum(max(0, len(v) - a.n) for _, v in lib)
     t0 = time.time()
-    rows = screen(lib, wins, a.engine, log=lambda s: print(f"[{time.time() - t0:6.0f}s] {s}", file=sys.stderr, flush=True),
+    rows = screen(lib, wins, a.engine, variants=tuple(a.variants), log=lambda s: print(f"[{time.time() - t0:6.0f}s] {s}", file=sys.stderr, flush=True),
                   thr_ioc=a.thr)
     best = summarize(rows, wins)
     lib_label = os.path.relpath(a.library, ROOT).replace(os.sep, "/") if os.path.exists(a.library) else a.library
     lines = [f"# step28 library={lib_label} streams={len(lib)} pairs~{pairs} n={a.n} windows={len(wins)} engine={a.engine} "
-             f"variants=A,B,C modes=drop,keep multipliers={len(UNITS)}",
+             f"variants={','.join(a.variants)} modes=drop,keep multipliers={len(UNITS)}",
              "# window\tvariant\tmode\tm\tioc\tstream\toffset\tstream_index"]
     for r in rows:
         lines.append(f"{r[0]}\t{r[1]}\t{r[2]}\t{r[3]}\t{r[4]:.4f}\t{r[5]}\t{r[6]}\t{r[8]}")
@@ -396,6 +396,7 @@ def main():
     s.add_argument("out")
     s.add_argument("--n", type=int, default=300)
     s.add_argument("--engine", choices=["cuda", "cpu"], default="cuda")
+    s.add_argument("--variants", default="ABC", help="e.g. AC for a native mod-28 library (variant B reads logs of Z29 values)")
     s.add_argument("--thr", type=float, default=None, help="record every (stream, offset) with IoC >= thr")
     v = sub.add_parser("verify")
     v.add_argument("tsv")

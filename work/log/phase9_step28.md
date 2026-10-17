@@ -25,7 +25,7 @@ reach per-window maxima up to 1.32 (sec0.12@300 in one of them), so nothing stan
 
 **Periodic keys (`work/step_periodicity.py`, `results/analysis/step_periodicity.txt`).** Coincidence of the step classes at lag 2..3000, per
 section and over the concatenated sections, both variants and modes. Controls: planted periods 97 and 400 found at z 6.5-11 (a period of 1200
-in a 3000-step section only reaches z about 4.4, a limit of the data, not of the code); random sections give a maximum z of 4.4. LP2: largest
+in a 3000-step section only reaches z about 4.4, a limit of the data, not of the code); 20 random sections give a maximum z of 4.7 (median 4.05; other runs reached 5.3-5.5, so 4-4.5 is what chance gives for the largest of ~3,000 lags x settings). LP2: largest
 z 3.69 (section 0.15, lag 58) and 3.59 over all sections concatenated. No periodic key with a period up to about 800 in any of the four settings.
 This also excludes every order <= 2 linear recurrence and every polynomial key over Z28 (their periods are at most 784).
 
