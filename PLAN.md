@@ -418,6 +418,8 @@ Details: `work/log/phase9_overnight_results.md`, `phase9_art.md`, `phase9_chain.
 
 - **Backward-key campaign complete (13:16):** `kscreen-reverse` a = 26..28 ran on the GPU in 15 minutes and is negative; over all 29 values of a the largest library IoC is 1.387 (a = 8), none reaches 1.40, 0 verified hits (`work/log/phase9_overnight_results.md`).
 
+- **GPU, 30 minutes (13:30-13:56):** boundary-free sweeps of every section window over epoch-time seeds 2011-2015 (8 generators) and small integer seeds below 2^27 (php, glibc, py3): 0 candidates at +300 (prioritised ranges, not exhaustive). **Boundary-free OEIS lane (199,088 sequences):** negative, real best 181 / 246 against matched null bests 192 / 230; the top decodes are unreadable (`work/log/phase9_overnight_results.md`).
+
 ### Phase 5 – Validation and reporting
 - A plaintext counts as solved only if it scores well across a whole segment (word hits and IoC about 1.8)
   and the same rule works on the next page.

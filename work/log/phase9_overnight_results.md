@@ -146,3 +146,27 @@ sections gives a largest library IoC of 1.387 (a = 8), none reaches the 1.40 rul
 recurrences and the cubic polynomials. Files: `results/kscreen/chain/rev_*_a26..28*`, `results/overnight/desktop/logs/kscreen-reverse__a2[678]-*.log`.
 
 A second session ('Advanced hypotheses') was running its own CPU campaign `kscreen-hyp` (lane `hyp`) in the same checkout during this run; its files were not touched or committed here.
+
+## Time-seed and small-integer seed sweeps of every section (GPU, 13:30-13:56; negative)
+
+The user offered the GPU for 30 minutes. The full boundary-free sweep of all section windows costs about 1.7 hours per generator (2^32 seeds, 8 windows, about 0.7 M seeds/s), so a PRIORITISED seed
+range was swept instead (`python work/phpmt/bg.py sweep <gen> all <lo> <hi> <out.tsv>`, windows = the 8 section windows 0.7-0.15 without the 9-rune 0.10, a fresh seed per window; the engine gate
+`work.tests.test_bgmt` passed first, `results/prng/bgtime_selftest.txt`):
+
+- **Epoch-time seeds** 1,293,840,000 .. 1,420,070,400 (2011-01-01 to 2015-01-01 UTC, 126,230,400 seeds): php 117 s, glibc 103 s, py3 103 s, mt32 100 s, mt31 101 s, msvc 110 s, drand48 109 s, ruby 106 s.
+  Java (64-bit millisecond seeds) and .NET (tick-count seeds) do not fit a 32-bit time range and were not swept.
+- **Small-integer seeds** 0 .. 2^27 (134,217,728 seeds; dates such as 20131231 or 31122013, round numbers, 3301 and friends): php 117 s, glibc 119 s, py3 114 s; mt32, mt31, msvc, drand48 and ruby were not
+  reached (deadline).
+- **Result:** 0 candidates at or above the +300 gate in every sweep, so there was nothing to verify (`*_verify.txt`: 'no candidate reached the sweep's floor'). Files: `results/prng/bgtime_<gen>_all.*`,
+  `bgsmall_<gen>_all.*`.
+- **Scope.** This tests only these seed ranges on sections 0.8-0.15 (0.7 was swept over all seeds before); a miss does not exclude other seeds, other generators, or an additive stream with any other
+  source. The remaining GPU work is the full all-section ranges (`prng-bg`, about 1.7 h per generator), `prng-step` (about 25 h) and `prng-more-all`.
+
+## Boundary-free OEIS lane (CPU, 10:39-13:52; negative)
+
+199,088 OEIS sequences (mod 29) as keystreams, 28 multipliers, both signs, skip and coin models, 36-rune windows (`prngx bgsweep seq`): sections with all 128 offsets (8 windows) and pages + heads with
+offsets 0-15 (55 windows), each with a matched null of random sequences of the same lengths. Best scores (gate +300): sections real 181, null 192; pages + heads real 246, null 230. Decoding the top rows
+with the Python reference (`work/prngx/oeis_bg_verify.py`, `results/prngx/bg_oeis_verify.txt`; it reproduces the sweep's scores exactly) shows no English: the real best (A255575, offset 5, x14,
+'EHTSUGTHOFIANDILENT...') and the null best ('NMEGHISATBLIPLTR...') are equally unreadable at about +6 per rune, which is what the skip / coin beam makes of a random sequence over 25.5 million seeds and
+55 windows (random sequences at the same settings score -430 +- 100). The OEIS lane is closed as noise; the control of the lane is `work/prngx/oeis_bg_control.py` (planted primes found at rank 1).
+
