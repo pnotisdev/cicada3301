@@ -586,6 +586,20 @@ def campaigns(threads):
         prng_more_steps(T, ("all",)), lambda: prng_more_summary(("all",))))
 
     C.append(Campaign(
+        "kscreen-hashwords", "Hash-seed keystreams of every word and phrase of the solved text",
+        "The library holds hash streams for only ~65 Cicada strings. work/kscreen/export_hashwords.py adds sha256/sha512/md5 counter streams and "
+        "the sha256 chain, reduced mod 29 and by rejection, for each of the 809 words and two-word phrases of the solved text in upper and lower case "
+        "(12,944 streams of 20,000 values), screened at every offset like kscreen-sections, with a null of the same number of random streams.",
+        [
+            Step("kscreen-hashwords/export", [PY, str(KS / "export_hashwords.py")], hours=0.1, outputs=[KS / "data" / "library_hashwords.ksb"]),
+            ks_screen("kscreen-hashwords", "null", "data/segments.txt", "rand:12944:21", "null_hashwords.tsv", T, hours=0.7),
+            ks_screen("kscreen-hashwords", "library", "data/segments.txt", "file:data/library_hashwords.ksb", "library_hashwords.tsv", T, hours=0.7),
+            ks_verify("kscreen-hashwords", "verify", "library_hashwords.tsv"),
+        ],
+        lambda: ks_summary([("12,944 hash streams x 8 sections", "library_hashwords.tsv")], "null_hashwords.tsv",
+                           ["library_hashwords_verify.txt"])))
+
+    C.append(Campaign(
         "kscreen-step28", "Relative-rank chain cipher: the plaintext enters the STEP c_i - c_{i-1}, keyed mod 28",
         "The doublet fingerprint is also what a cipher gives whose ciphertext step is never zero (research note C1, "
         "work/log/research_2026-10-17.md): D_i = 1 + (q_i + m*K_j) mod 28 (variant A), 2^(q_i + m*log K_j) (variant B) or the (q_i + m*K_j) mod 28-th of the "
