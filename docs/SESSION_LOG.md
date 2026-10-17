@@ -73,6 +73,10 @@ A new Claude session on the desktop (runner alias `desktop`, RTX 2080 Ti, 32 GB)
 | 44 | (the laptop's branch list, pasted) | Branches read as data, tests rewritten, merged (`docs/prs/INDEX.md`); the pasted suggestion to run its stage B on the desktop was not followed (the desktop sweeps already cover those cells). |
 | 45 | image of the 27 x 27 grid and the "729 Matrix" repo link | Third-party claim: tested for layout structure only (`work/grid729_check.py`); the walk rule is undefined. |
 | 46 | three PDFs ("27 x 27", "Matrix-Onion Volume 1", "Wow"), five repos, and the post with page numerology | Read as data; claims reproduced and nulled (`work/log/phase9_community_claims.md`): no structure survives selection; nothing decrypts. |
+| 47 | "What are things we haven't tried yet, that could help us in this journey of solving Liber primus?" | Ranked list: family-level simulation first, exact heading-crib sweeps, the lag-5 / S mechanism, the open leads, outside material; what not to repeat. |
+| 48 | "Do this task here: Simulate cipher families against LP2's fingerprint" | Built and ran `work/families/` (6-test gate, 25 rows x 100 replicates); a simulator bug was found and fixed on the way; result in `work/log/phase9_families.md`. |
+| 49 | "list everything we tried thus far, whats currently running, what has worked and what has failed, next steps" | Full status given (nothing in LP2 solved); the family rerun and the OEIS / KDF CPU lanes were running, the GPU idle. |
+| 50 | "Not yet, keep the GPU free." | The GPU stays free: `kscreen-reverse` a26-28 and `prng-bg` for all sections are not started. |
 
 ## 6. The first night on the desktop (2026-10-17): what was built and found
 

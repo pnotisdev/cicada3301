@@ -411,6 +411,11 @@ Details: `work/log/phase9_overnight_results.md`, `phase9_art.md`, `phase9_chain.
   the crib is word-choice selection (20 / 28 / 39 alternative words fit the first three slots); matrix repeats 5 against a null mean 2.4 (P 0.05); the heading + body keys are in none of 199,088 OEIS
   sequences (exact difference lookup, planted control found); first row 563 / first column 569 of the 121-rune page is 2e-5 for the fixed lines but about 6e-3 for any row and column. Nothing decrypts.
 
+- **Family simulations (2026-10-17, 12:20; `work/log/phase9_families.md`, `work/families/`):** 25 cipher-family rows x 100 replicates against LP2's fingerprint (IoC, doublets, within-word lag-5, repeated
+  words, difference IoC, lag spectrum, word-initial IoC). Any structureless additive key (PRNG / hash / OEIS) is 'random + about 81% avoid-repeat' and cannot be told apart by statistics; plain, mono,
+  plaintext / ciphertext autokeys, per-word keys and Vigenere periods up to 29 are excluded. The lag-5 effect is reproduced by period-5 alphabets per word or a 1.5% lag-5 copy; no family that otherwise fits reproduces its
+  concentration on rune S (calibrated P 0.0073). Side scan: the affine relation c' = 24 - 2c at lag 6 (z +5.0, P 0.013 over lags and relations, split-half P 0.035) is an unreplicated lead.
+
 ### Phase 5 – Validation and reporting
 - A plaintext counts as solved only if it scores well across a whole segment (word hits and IoC about 1.8)
   and the same rule works on the next page.
