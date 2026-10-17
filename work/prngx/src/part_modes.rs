@@ -216,6 +216,124 @@ fn mode_verify(args_all: &[String]) {
     println!("{:.3}\t{}\t{}", score, seed, &txt[..txt.len().min(400)]);
 }
 
+#[derive(Clone)]
+struct BgCand {
+    score: i32,
+    seed: i64,
+    win: u8,
+    variant: u8,
+}
+
+/// bgsweep <gen> <windows.txt> <bigram.txt> <lo> <hi> <out.tsv> [threads]
+/// Boundary-free score (decode_bg): the first 120 runes of every window (36 for the OEIS windows), no word separators involved.
+fn mode_bgsweep(args_all: &[String]) {
+    let g = parse_gen(&args_all[0]);
+    let args = &args_all[1..];
+    let wins = Arc::new(load_windows(&args[0]));
+    let tbl = Arc::new(load_bigram(&args[1]));
+    let lo: i64 = args[2].parse().unwrap();
+    let hi: i64 = args[3].parse().unwrap();
+    let out = args[4].clone();
+    let threads: usize = if args.len() > 5 { args[5].parse().unwrap() } else {
+        std::thread::available_parallelism().map(|n| n.get()).unwrap_or(4)
+    };
+    let next = Arc::new(AtomicU64::new(0));
+    let done = Arc::new(AtomicU64::new(0));
+    let top: Arc<Mutex<Vec<BgCand>>> = Arc::new(Mutex::new(Vec::new()));
+    const CHUNK: u64 = 1 << 16;
+    const TOPK: usize = 400;
+    let total = (hi - lo) as u64;
+    let nm = n_maps(g);
+    let t0 = Instant::now();
+    let hist: Arc<Mutex<[u64; 64]>> = Arc::new(Mutex::new([0u64; 64]));
+    let mut hs = Vec::new();
+    for _ in 0..threads {
+        let (wins, tbl, next, done, top, hist) = (wins.clone(), tbl.clone(), next.clone(), done.clone(), top.clone(), hist.clone());
+        hs.push(std::thread::spawn(move || {
+            let mut local: Vec<BgCand> = Vec::new();
+            let mut floor: i32 = -1000;
+            let mut lh = [0u64; 64];
+            let mut keys: Vec<Vec<u8>> = (0..nm).map(|_| Vec::with_capacity(K)).collect();
+            loop {
+                let a = next.fetch_add(CHUNK, Ordering::Relaxed);
+                if a >= total {
+                    break;
+                }
+                let b = (a + CHUNK).min(total);
+                for off in a..b {
+                    let seed = lo + off as i64;
+                    let raw = raw_n(g, seed, RK);
+                    for m in 0..nm {
+                        keys_from(g, &raw, m, &mut keys[m as usize], K);
+                    }
+                    for (wi, w) in wins.iter().enumerate() {
+                        for v in 0..(nm * 8) {
+                            let (model, map, sign, atb) = variant_parts(v);
+                            let s = decode_bg(&w.runes, w.prev, &keys[map as usize], sign, atb, model, &tbl);
+                            lh[((s + 400) / 20).clamp(0, 63) as usize] += 1;
+                            if s > floor && s >= 0 {
+                                local.push(BgCand { score: s, seed, win: wi as u8, variant: v });
+                                if local.len() >= 2 * TOPK {
+                                    local.sort_by(|x, y| y.score.cmp(&x.score));
+                                    local.truncate(TOPK);
+                                    floor = local[TOPK - 1].score;
+                                }
+                            }
+                        }
+                    }
+                }
+                let d = done.fetch_add(b - a, Ordering::Relaxed) + (b - a);
+                if d % (CHUNK * 256) < CHUNK {
+                    let el = t0.elapsed().as_secs_f64();
+                    let rate = d as f64 / el;
+                    eprintln!("{:.2}% ({} seeds) {:.0} seeds/s, eta {:.0} s", 100.0 * d as f64 / total as f64, d, rate,
+                              (total as f64 - d as f64) / rate);
+                }
+            }
+            local.sort_by(|x, y| y.score.cmp(&x.score));
+            local.truncate(TOPK);
+            top.lock().unwrap().extend(local);
+            let mut h = hist.lock().unwrap();
+            for i in 0..64 {
+                h[i] += lh[i];
+            }
+        }));
+    }
+    for h in hs {
+        h.join().unwrap();
+    }
+    let mut all = top.lock().unwrap().clone();
+    all.sort_by(|x, y| y.score.cmp(&x.score));
+    all.truncate(4000);
+    let mut f = fs::File::create(&out).unwrap();
+    writeln!(f, "score\tseed\twindow\tmodel\tmap\tsign\tatbash").unwrap();
+    for c in &all {
+        let (model, map, sign, atb) = variant_parts(c.variant);
+        writeln!(f, "{}\t{}\t{}\t{}\t{}\t{}\t{}", c.score, c.seed, wins[c.win as usize].name, model, map, sign, atb as u8).unwrap();
+    }
+    let h = hist.lock().unwrap();
+    eprintln!("swept {} seeds in {:.0} s; best score {}", total, t0.elapsed().as_secs_f64(),
+              all.first().map(|c| c.score.to_string()).unwrap_or("none".into()));
+    eprintln!("hist (bins of 20 from -400) {}", h.iter().enumerate().filter(|(_, c)| **c > 0).map(|(b, c)| format!("{b}:{c}")).collect::<Vec<_>>().join(" "));
+}
+
+/// bgscore <gen> <windows.txt> <bigram.txt> <seed> <map> <model> <sign> <atb>: the boundary-free score of one (seed, variant) on window 0 (for the tests)
+fn mode_bgscore(args_all: &[String]) {
+    let g = parse_gen(&args_all[0]);
+    let a = &args_all[1..];
+    let wins = load_windows(&a[0]);
+    let tbl = load_bigram(&a[1]);
+    let seed: i64 = a[2].parse().unwrap();
+    let map: u8 = a[3].parse().unwrap();
+    let model: u8 = a[4].parse().unwrap();
+    let sign: i32 = a[5].parse().unwrap();
+    let atb = a[6] == "1";
+    let raw = raw_n(g, seed, RK);
+    let mut keys = Vec::new();
+    keys_from(g, &raw, map, &mut keys, K);
+    println!("{}", decode_bg(&wins[0].runes, wins[0].prev, &keys, sign, atb, model, &tbl));
+}
+
 fn main() {
     let args: Vec<String> = env::args().collect();
     match args.get(1).map(|s| s.as_str()) {
@@ -223,6 +341,8 @@ fn main() {
         Some("plant") => mode_plant(&args[2..]),
         Some("sweep") => mode_sweep(&args[2..]),
         Some("verify") => mode_verify(&args[2..]),
-        _ => eprintln!("usage: prngx vectors|plant|sweep|verify ... (see the header of src/main.rs)"),
+        Some("bgsweep") => mode_bgsweep(&args[2..]),
+        Some("bgscore") => mode_bgscore(&args[2..]),
+        _ => eprintln!("usage: prngx vectors|plant|sweep|bgsweep|bgscore|verify ... (see the header of src/main.rs)"),
     }
 }

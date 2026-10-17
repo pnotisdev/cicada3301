@@ -555,6 +555,136 @@ const LATIN: [&str; 29] = ["F", "U", "TH", "O", "R", "C", "G", "W", "H", "N", "I
     "E", "M", "L", "ING", "OE", "D", "A", "AE", "Y", "IA", "EA"];
 
 
+// ---- boundary-free decoder (desktop, 2026-10-17): the same skip / coin beam, scored by an English rune-bigram log-likelihood ratio instead of
+// ---- dictionary words between the transcription's word separators (which LP2's separators may not be: work/log/phase9_boundaries.md).
+// ---- Mirrors work/phpmt/bg.py::ref_decode and bgmt.cu::bg_decode statement by statement.
+
+const BG_N: usize = 120; // runes decoded
+const BG_ABORT_AT: usize = 40;
+const BG_ABORT_THR: i32 = 60; // a true key is near +300 after 40 runes, a wrong one far below zero
+const BG_START: usize = 29; // row of the table for the first rune: unigram log-odds
+
+#[derive(Clone, Copy)]
+struct BS {
+    score: i32,
+    j: u16,
+    last: u8,
+}
+
+/// Table of work/phpmt/data/bigram.txt: 30 rows x 29 columns of round(10 ln(29 P(b|a))); row 29 is the unigram row.
+fn load_bigram(path: &str) -> Vec<i16> {
+    let t: Vec<i16> = fs::read_to_string(path).expect("bigram table").split_whitespace().map(|x| x.parse().unwrap()).collect();
+    assert_eq!(t.len(), 30 * 29, "bigram table must be 30 x 29");
+    t
+}
+
+fn decode_bg(runes: &[u8], prev0: i32, key: &[u8], sign: i32, atb: bool, model: u8, tbl: &[i16]) -> i32 {
+    const Z: BS = BS { score: 0, j: 0, last: BG_START as u8 };
+    let n = runes.len().min(BG_N);
+    let mut states: [BS; 16] = [Z; 16];
+    let mut ns = 1usize;
+    let mut next: [BS; 48] = [Z; 48];
+    let klen = key.len();
+    let sub = |c: i32, k: u8| -> i32 {
+        let v = if sign > 0 { c - k as i32 } else { c + k as i32 };
+        if v < 0 { v + MOD } else if v >= MOD { v - MOD } else { v }
+    };
+    let add = |t: i32, k: u8| -> i32 {
+        let v = if sign > 0 { t + k as i32 } else { t - k as i32 };
+        if v < 0 { v + MOD } else if v >= MOD { v - MOD } else { v }
+    };
+    for i in 0..n {
+        let c = runes[i] as i32;
+        let prev = if i == 0 { prev0 } else { runes[i - 1] as i32 };
+        let mut nn = 0usize;
+        for si in 0..ns {
+            let s = states[si];
+            let j = s.j as usize;
+            if j + 3 >= klen {
+                continue;
+            }
+            macro_rules! push {
+                ($t:expr, $nj:expr) => {{
+                    if nn < 48 {
+                        let t: i32 = $t;
+                        let p = if atb { 28 - t } else { t };
+                        next[nn] = BS { score: s.score + tbl[s.last as usize * 29 + p as usize] as i32, j: $nj as u16, last: p as u8 };
+                        nn += 1;
+                    }
+                }};
+            }
+            let k0 = key[j];
+            if model == 0 {
+                push!(sub(c, k0), j + 1);
+                if prev >= 0 {
+                    let t1 = sub(c, key[j + 1]);
+                    if add(t1, k0) == prev {
+                        push!(t1, j + 2);
+                    }
+                    let t2 = sub(c, key[j + 2]);
+                    if add(t2, k0) == prev && add(t2, key[j + 1]) == prev {
+                        push!(t2, j + 3);
+                    }
+                }
+            } else {
+                if prev >= 0 && c == prev {
+                    push!(sub(c, k0), j + 2);
+                } else {
+                    push!(sub(c, k0), j + 1);
+                }
+                if prev >= 0 {
+                    let t = sub(c, key[j + 2]);
+                    if add(t, k0) == prev {
+                        push!(t, j + 3);
+                    }
+                }
+            }
+        }
+        if nn == 0 {
+            return -100000;
+        }
+        ns = 0;
+        for q in 0..nn {
+            let s = next[q];
+            let mut found = false;
+            for r in 0..ns {
+                if states[r].j == s.j {
+                    if s.score > states[r].score {
+                        states[r] = s;
+                    }
+                    found = true;
+                    break;
+                }
+            }
+            if !found {
+                if ns < 16 {
+                    states[ns] = s;
+                    ns += 1;
+                } else {
+                    let mut wi = 0usize;
+                    let mut ws = states[0].score;
+                    for r in 1..16 {
+                        if states[r].score < ws {
+                            ws = states[r].score;
+                            wi = r;
+                        }
+                    }
+                    if s.score > ws {
+                        states[wi] = s;
+                    }
+                }
+            }
+        }
+        if i + 1 == BG_ABORT_AT {
+            let best = states[..ns].iter().map(|s| s.score).max().unwrap();
+            if best < BG_ABORT_THR {
+                return best;
+            }
+        }
+    }
+    states[..ns].iter().map(|s| s.score).max().unwrap()
+}
+
 // ------------------------------------------------------------------ modes
 
 fn mode_vectors(path: &str) {
@@ -772,6 +902,124 @@ fn mode_verify(args_all: &[String]) {
     println!("{:.3}\t{}\t{}", score, seed, &txt[..txt.len().min(400)]);
 }
 
+#[derive(Clone)]
+struct BgCand {
+    score: i32,
+    seed: i64,
+    win: u8,
+    variant: u8,
+}
+
+/// bgsweep <gen> <windows.txt> <bigram.txt> <lo> <hi> <out.tsv> [threads]
+/// Boundary-free score (decode_bg): the first 120 runes of every window (36 for the OEIS windows), no word separators involved.
+fn mode_bgsweep(args_all: &[String]) {
+    let g = parse_gen(&args_all[0]);
+    let args = &args_all[1..];
+    let wins = Arc::new(load_windows(&args[0]));
+    let tbl = Arc::new(load_bigram(&args[1]));
+    let lo: i64 = args[2].parse().unwrap();
+    let hi: i64 = args[3].parse().unwrap();
+    let out = args[4].clone();
+    let threads: usize = if args.len() > 5 { args[5].parse().unwrap() } else {
+        std::thread::available_parallelism().map(|n| n.get()).unwrap_or(4)
+    };
+    let next = Arc::new(AtomicU64::new(0));
+    let done = Arc::new(AtomicU64::new(0));
+    let top: Arc<Mutex<Vec<BgCand>>> = Arc::new(Mutex::new(Vec::new()));
+    const CHUNK: u64 = 1 << 16;
+    const TOPK: usize = 400;
+    let total = (hi - lo) as u64;
+    let nm = n_maps(g);
+    let t0 = Instant::now();
+    let hist: Arc<Mutex<[u64; 64]>> = Arc::new(Mutex::new([0u64; 64]));
+    let mut hs = Vec::new();
+    for _ in 0..threads {
+        let (wins, tbl, next, done, top, hist) = (wins.clone(), tbl.clone(), next.clone(), done.clone(), top.clone(), hist.clone());
+        hs.push(std::thread::spawn(move || {
+            let mut local: Vec<BgCand> = Vec::new();
+            let mut floor: i32 = -1000;
+            let mut lh = [0u64; 64];
+            let mut keys: Vec<Vec<u8>> = (0..nm).map(|_| Vec::with_capacity(K)).collect();
+            loop {
+                let a = next.fetch_add(CHUNK, Ordering::Relaxed);
+                if a >= total {
+                    break;
+                }
+                let b = (a + CHUNK).min(total);
+                for off in a..b {
+                    let seed = lo + off as i64;
+                    let raw = raw_n(g, seed, RK);
+                    for m in 0..nm {
+                        keys_from(g, &raw, m, &mut keys[m as usize], K);
+                    }
+                    for (wi, w) in wins.iter().enumerate() {
+                        for v in 0..(nm * 8) {
+                            let (model, map, sign, atb) = variant_parts(v);
+                            let s = decode_bg(&w.runes, w.prev, &keys[map as usize], sign, atb, model, &tbl);
+                            lh[((s + 400) / 20).clamp(0, 63) as usize] += 1;
+                            if s > floor && s >= 0 {
+                                local.push(BgCand { score: s, seed, win: wi as u8, variant: v });
+                                if local.len() >= 2 * TOPK {
+                                    local.sort_by(|x, y| y.score.cmp(&x.score));
+                                    local.truncate(TOPK);
+                                    floor = local[TOPK - 1].score;
+                                }
+                            }
+                        }
+                    }
+                }
+                let d = done.fetch_add(b - a, Ordering::Relaxed) + (b - a);
+                if d % (CHUNK * 256) < CHUNK {
+                    let el = t0.elapsed().as_secs_f64();
+                    let rate = d as f64 / el;
+                    eprintln!("{:.2}% ({} seeds) {:.0} seeds/s, eta {:.0} s", 100.0 * d as f64 / total as f64, d, rate,
+                              (total as f64 - d as f64) / rate);
+                }
+            }
+            local.sort_by(|x, y| y.score.cmp(&x.score));
+            local.truncate(TOPK);
+            top.lock().unwrap().extend(local);
+            let mut h = hist.lock().unwrap();
+            for i in 0..64 {
+                h[i] += lh[i];
+            }
+        }));
+    }
+    for h in hs {
+        h.join().unwrap();
+    }
+    let mut all = top.lock().unwrap().clone();
+    all.sort_by(|x, y| y.score.cmp(&x.score));
+    all.truncate(4000);
+    let mut f = fs::File::create(&out).unwrap();
+    writeln!(f, "score\tseed\twindow\tmodel\tmap\tsign\tatbash").unwrap();
+    for c in &all {
+        let (model, map, sign, atb) = variant_parts(c.variant);
+        writeln!(f, "{}\t{}\t{}\t{}\t{}\t{}\t{}", c.score, c.seed, wins[c.win as usize].name, model, map, sign, atb as u8).unwrap();
+    }
+    let h = hist.lock().unwrap();
+    eprintln!("swept {} seeds in {:.0} s; best score {}", total, t0.elapsed().as_secs_f64(),
+              all.first().map(|c| c.score.to_string()).unwrap_or("none".into()));
+    eprintln!("hist (bins of 20 from -400) {}", h.iter().enumerate().filter(|(_, c)| **c > 0).map(|(b, c)| format!("{b}:{c}")).collect::<Vec<_>>().join(" "));
+}
+
+/// bgscore <gen> <windows.txt> <bigram.txt> <seed> <map> <model> <sign> <atb>: the boundary-free score of one (seed, variant) on window 0 (for the tests)
+fn mode_bgscore(args_all: &[String]) {
+    let g = parse_gen(&args_all[0]);
+    let a = &args_all[1..];
+    let wins = load_windows(&a[0]);
+    let tbl = load_bigram(&a[1]);
+    let seed: i64 = a[2].parse().unwrap();
+    let map: u8 = a[3].parse().unwrap();
+    let model: u8 = a[4].parse().unwrap();
+    let sign: i32 = a[5].parse().unwrap();
+    let atb = a[6] == "1";
+    let raw = raw_n(g, seed, RK);
+    let mut keys = Vec::new();
+    keys_from(g, &raw, map, &mut keys, K);
+    println!("{}", decode_bg(&wins[0].runes, wins[0].prev, &keys, sign, atb, model, &tbl));
+}
+
 fn main() {
     let args: Vec<String> = env::args().collect();
     match args.get(1).map(|s| s.as_str()) {
@@ -779,6 +1027,8 @@ fn main() {
         Some("plant") => mode_plant(&args[2..]),
         Some("sweep") => mode_sweep(&args[2..]),
         Some("verify") => mode_verify(&args[2..]),
-        _ => eprintln!("usage: prngx vectors|plant|sweep|verify ... (see the header of src/main.rs)"),
+        Some("bgsweep") => mode_bgsweep(&args[2..]),
+        Some("bgscore") => mode_bgscore(&args[2..]),
+        _ => eprintln!("usage: prngx vectors|plant|sweep|bgsweep|bgscore|verify ... (see the header of src/main.rs)"),
     }
 }
