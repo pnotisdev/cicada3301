@@ -51,7 +51,10 @@ them with the transcription for the 537 of 594 lines whose detected glyph count 
 - 17 "dots" appear inside ordinary tight gaps (mostly page-top lines; ink inside or touching a glyph), and 4 wide gaps
   (0.35-0.38) with a dot where the transcription has no separator (pages 19, 36, 50, 56: a three-dot mark next to a
   rune). That is at most 4 doubtful boundaries among 12,700 gaps, so **the 2-rune-word deficit is not a spacing
-  artefact**. The 57 lines with unequal counts (ligatures) are not checked.
+  artefact**. The 57 lines with unequal counts (ligatures) are covered by a second, position-free check
+  (`work/word_gaps_lines.py`): over all 594 lines the transcription has **2,589 '-'** and the images **2,598 isolated
+  dots**; 40 lines differ by one or two (an extra dot or a multi-dot mark at a line edge, where the transcription is
+  known to drop marks).
 
 ## Consequences
 - Dictionary screens (`attack.py`) are blind to an inserted rune inside a word, and to missing function words they
