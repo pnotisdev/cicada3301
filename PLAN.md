@@ -402,6 +402,10 @@ Details: `work/log/phase9_overnight_results.md`, `phase9_art.md`, `phase9_chain.
   `prng-bg` (`work/phpmt/bg.py`, bigram log-likelihood, same ten generators; gates in `work/tests/test_bgmt.py`). The Gutenberg table of
   `wordlen_languages.py` reproduces byte for byte.
 
+- **Morning of 2026-10-17 (10:20):** boundary-free seed sweeps (window 0.7, ten generators, all seeds), the backward-key campaign (a = 0..25), the hash streams of every
+  solved-text word and phrase (12,944 streams) and the step-domain screens are all negative with controls; GPU handed back at 10:00 (resume commands at the end of
+  `work/log/phase9_overnight_results.md`). Nothing in LP2 is solved.
+
 ### Phase 5 – Validation and reporting
 - A plaintext counts as solved only if it scores well across a whole segment (word hits and IoC about 1.8)
   and the same rule works on the next page.

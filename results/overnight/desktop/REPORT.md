@@ -1,6 +1,6 @@
 # Overnight campaigns: report from desktop
 
-Generated on desktop at 2026-10-17 07:32:53 by `python jobs/overnight.py`. Thresholds and method: docs/CAMPAIGNS.md.
+Generated on desktop at 2026-10-17 10:18:28 by `python jobs/overnight.py`. Thresholds and method: docs/CAMPAIGNS.md.
 
 **Controls:** unit tests and kscreen selftest passed on desktop; null results below are validated.
 
@@ -151,73 +151,71 @@ The doublet fingerprint (c_i - c_{i-1} flat except that 0 is missing) is what a 
 py3 (CPython random.seed), mt32 / mt31 (std::mt19937, PHP >= 7.1), java (java.util.Random), msvc (rand()), drand48 (drand48, Perl) and ruby (Ruby <= 2.7), each with two natural key mappings, all 2^32 seeds, 16 cipher variants (work/phpmt/src/gens.rs; the CUDA port is validated against the Rust engine, which is validated against CPython, NumPy and published vectors). Window 0.7 only: one pad starting at the first unsolved rune.
 
 - window 0.7 (one pad from the start of LP2):
+  - py3: swept 4294967296 seeds in 425 s; best score 22; verification:   screen  18 seed  818920650 seg0.7 model 0 map 1 sign -1 atb 1: full 0.075 (random seeds 0.076 +- 0.007, z -0.1)
+  - mt32: swept 4294967296 seeds in 324 s; best score 22; verification:   screen  18 seed 1234791201 seg0.7 model 1 map 1 sign  1 atb 0: full 0.078 (random seeds 0.076 +- 0.006, z +0.3)
+  - mt31: swept 4294967296 seeds in 330 s; best score 21; verification:   screen  18 seed 1749727333 seg0.7 model 0 map 0 sign -1 atb 1: full 0.074 (random seeds 0.077 +- 0.008, z -0.5)
   - java: swept 4294967296 seeds in 165 s; best score 21; verification:   screen  18 seed  731394255 seg0.7 model 1 map 1 sign  1 atb 0: full 0.074 (random seeds 0.076 +- 0.006, z -0.3)
   - msvc: swept 4294967296 seeds in 171 s; best score 21; verification:   screen  18 seed 1629347255 seg0.7 model 0 map 0 sign -1 atb 0: full 0.095 (random seeds 0.077 +- 0.007, z +2.5)
   - drand48: swept 4294967296 seeds in 171 s; best score 20; verification:   screen  18 seed  606886285 seg0.7 model 1 map 1 sign  1 atb 0: full 0.073 (random seeds 0.076 +- 0.006, z -0.5)
-  - mt31: swept 4294967296 seeds in 330 s; best score 21; verification:   screen  18 seed 1749727333 seg0.7 model 0 map 0 sign -1 atb 1: full 0.074 (random seeds 0.077 +- 0.008, z -0.5)
-  - mt32: swept 4294967296 seeds in 324 s; best score 22; verification:   screen  18 seed 1234791201 seg0.7 model 1 map 1 sign  1 atb 0: full 0.078 (random seeds 0.076 +- 0.006, z +0.3)
   - ruby: swept 4294967296 seeds in 421 s; best score 20; verification:   screen  18 seed 1257362876 seg0.7 model 1 map 0 sign  1 atb 1: full 0.074 (random seeds 0.079 +- 0.007, z -0.8)
-  - py3: swept 4294967296 seeds in 425 s; best score 22; verification:   screen  18 seed  818920650 seg0.7 model 0 map 1 sign -1 atb 1: full 0.075 (random seeds 0.076 +- 0.007, z -0.1)
 
-## kscreen-reverse: Key running BACKWARD through the text, with and without ciphertext feedback (a = 0..28) (26/146 steps done)
+## kscreen-reverse: Key running BACKWARD through the text, with and without ciphertext feedback (a = 0..28) (131/146 steps done)
 
 Every IoC screen so far read the key forward along the text. A key read from the end is covered by reversed windows and the engines' dir=back mode (a re-draw then uses a lower key index, so the used key comes first in pointer order). a = 0 is the ordinary cipher with a backward key; a = 1..28 combine it with ciphertext feedback. Same library, recurrences and polynomials as kscreen-sections; controls: planted backward keys recovered at the exact key index, the same ciphertext read forward not found (work/kscreen/chain_selftest.py).
 
 - controls: CHAIN SELFTEST PASSED
-- 5/29 multipliers done. best IoC per multiplier (library / order-2 recurrences / cubic polynomials; matched null):
+- 26/29 multipliers done. best IoC per multiplier (library / order-2 recurrences / cubic polynomials; matched null):
   - a= 0: 1.332 / 1.315 / 1.249; null 1.344
   - a= 1: 1.328 / 1.290 / 1.225; null 1.338
   - a= 2: 1.320 / 1.306 / 1.270; null 1.311
   - a= 3: 1.333 / 1.280 / 1.242; null 1.327
   - a= 4: 1.349 / 1.274 / 1.234; null 1.329
-- largest: 1.349 (a=4, library); none reaches the 1.40 threshold
+  - a= 5: 1.338 / 1.317 / 1.262; null 1.317
+  - a= 6: 1.335 / 1.289 / 1.259; null 1.352
+  - a= 7: 1.343 / 1.294 / 1.252; null 1.340
+  - a= 8: 1.387 / 1.307 / 1.254; null 1.335
+  - a= 9: 1.338 / 1.291 / 1.294; null 1.322
+  - a=10: 1.324 / 1.277 / 1.249; null 1.335
+  - a=11: 1.361 / 1.272 / 1.243; null 1.316
+  - a=12: 1.322 / 1.297 / 1.248; null 1.348
+  - a=13: 1.329 / 1.316 / 1.232; null 1.331
+  - a=14: 1.337 / 1.280 / 1.285; null 1.342
+  - a=15: 1.325 / 1.320 / 1.243; null 1.321
+  - a=16: 1.337 / 1.271 / 1.267; null 1.319
+  - a=17: 1.329 / 1.291 / 1.245; null 1.350
+  - a=18: 1.361 / 1.285 / 1.288; null 1.333
+  - a=19: 1.323 / 1.276 / 1.245; null 1.335
+  - a=20: 1.324 / 1.280 / 1.260; null 1.350
+  - a=21: 1.334 / 1.291 / 1.250; null 1.310
+  - a=22: 1.342 / 1.294 / 1.265; null 1.333
+  - a=23: 1.338 / 1.361 / 1.245; null 1.336
+  - a=24: 1.338 / 1.292 / 1.241; null 1.357
+  - a=25: 1.318 / 1.315 / 1.243; null 1.355
+- largest: 1.387 (a=8, library); none reaches the 1.40 threshold
+- failed steps: kscreen-reverse/a26-library (see results/overnight/desktop/logs/)
 
 ## prng-more-all: More seeded-PRNG pads with a fresh seed per section (0/14 steps done)
 
 py3 (CPython random.seed), mt32 / mt31 (std::mt19937, PHP >= 7.1), java (java.util.Random), msvc (rand()), drand48 (drand48, Perl) and ruby (Ruby <= 2.7), each with two natural key mappings, all 2^32 seeds, 16 cipher variants (work/phpmt/src/gens.rs; the CUDA port is validated against the Rust engine, which is validated against CPython, NumPy and published vectors). A fresh seed per section: all 8 windows at once.
 
 - every section:
+  - py3: not run
+  - mt32: not run
+  - mt31: not run
   - java: not run
   - msvc: not run
   - drand48: not run
-  - mt31: not run
-  - mt32: not run
   - ruby: not run
-  - py3: not run
 
-## prng-bg: Seeded-PRNG pads with a boundary-free score (English rune-bigram log-likelihood), window 0.7 (and every section) (0/40 steps done)
-
-The dictionary score of the earlier seed sweeps counts words between the transcription's word separators. LP2's word lengths have no serial structure (results/analysis/wordlen_adjacency.txt: mean PMI -0.060 against +0.050 for English and +0.006 for the solved sections), and with LP2's separators imposed on English plaintext a planted seed scores 0 instead of 33 (work/log/phase9_boundaries.md): if the separators are independent of the plaintext words, those sweeps could not see a true key. work/phpmt/bg.py scores a decoded window (120 runes) by the log-likelihood ratio of its plaintext under an English rune-bigram table instead, with the same ten generators, 16 variants and skip/coin beam. Gates: generators identical to phpmt.cu, scores equal to a Python reference, planted seeds recovered for every generator, random ciphertext gives no candidate (work/tests/test_bgmt.py).
-
-- controls (a skipped test counts as failed): not run
-- py3 (07): not run
-- java (07): not run
-- php (07): not run
-- glibc (07): not run
-- mt32 (07): not run
-- msvc (07): not run
-- drand48 (07): not run
-- ruby (07): not run
-- mt31 (07): not run
-- net (07): not run
-- py3 (all): not run
-- java (all): not run
-- php (all): not run
-- glibc (all): not run
-- mt32 (all): not run
-- msvc (all): not run
-- drand48 (all): not run
-- ruby (all): not run
-- mt31 (all): not run
-- net (all): not run
-
-## kscreen-hashwords: Hash-seed keystreams of every word and phrase of the solved text (1/4 steps done)
+## kscreen-hashwords: Hash-seed keystreams of every word and phrase of the solved text (4/4 steps done)
 
 The library holds hash streams for only ~65 Cicada strings. work/kscreen/export_hashwords.py adds sha256/sha512/md5 counter streams and the sha256 chain, reduced mod 29 and by rejection, for each of the 809 words and two-word phrases of the solved text in upper and lower case (12,944 streams of 20,000 values), screened at every offset like kscreen-sections, with a null of the same number of random streams.
 
-- 12,944 hash streams x 8 sections: not run yet
+- 12,944 hash streams x 8 sections: best IoC 1.371 (below the 1.40 threshold; 8,125,932,544 decodes in 108 min)
+- matched null (random keystreams, same windows/settings): best 1.364
+- verification (library_hashwords_verify.txt): 0 of 15 re-decoded hits keep IoC >= 1.4 over their whole window and beat their own keystream's random offsets by 0.15 (none: noise)
 
-## kscreen-step28: Relative-rank chain cipher: the plaintext enters the STEP c_i - c_{i-1}, keyed mod 28 (12/12 steps done)
+## kscreen-step28: Relative-rank chain cipher: the plaintext enters the STEP c_i - c_{i-1}, keyed mod 28 (0/0 steps done)
 
 The doublet fingerprint is also what a cipher gives whose ciphertext step is never zero (research note C1, work/log/research_2026-10-17.md): D_i = 1 + (q_i + m*K_j) mod 28 (variant A), 2^(q_i + m*log K_j) (variant B) or the (q_i + m*K_j) mod 28-th of the 28 runes other than c_{i-1} (variant C, rank), with the rare zero step as a 'ditto' that consumes a key value or not. In the c domain the plaintext is a random walk and every earlier screen was blind to it; in the step domain the decoder is a plain subtraction with no beam. work/kscreen/step28.py counts the class histogram at every (stream, offset) for the 1,447-stream library and every unit multiplier of Z28, with planted-key recovery (variants A, B, C and both modes), CPU/CUDA agreement and matched nulls; work/step_periodicity.py scans periodic keys (lags to 3,000).
 
@@ -229,7 +227,7 @@ The doublet fingerprint is also what a cipher gives whose ciphertext step is nev
 - verification (the best-ranked window continued to the end of its section): sec0.9@1200 B/drop m=17 stream #571 'sha256-ctr mod :2014' offset 5796: window 1.297, beyond (229 steps) 0.961
 - periodic keys (coincidences at lag 2..3000, planted controls and a structured null):   largest z of all scopes and settings: LP2 4.97; 40 random replicates of the same statistic: median 4.49, max 5.48, replicates >= LP2: 4; controls passed
 
-## prng-step: Seeded-PRNG pads for the step-domain cipher, window 0.7: all ten generators (0/20 steps done)
+## prng-step: Seeded-PRNG pads for the step-domain cipher, window 0.7: all ten generators (0/0 steps done)
 
 Research note C2: the seed sweeps of the ordinary cipher (c = p + k) cannot see a key that enters the STEP c_i - c_{i-1}. work/phpmt/step.py runs the ten generators of phpmt.cu over all 2^32 seeds and scores, per seed, 144 settings on the first 240 steps of section 0.7 (at key index 0 and 1) (variants A and C with keys mod 28 / variant B with log2 of the non-zero keys of Z29, both key maps, zero steps spending a key value or not, the 12 unit multipliers of Z28) by the index of coincidence of the decoded classes. Gates: keys equal the Rust engine for both alphabets, scores equal the numpy reference, planted seeds recovered for every generator, random ciphertext gives no candidate (work/tests/test_stepmt.py).
 

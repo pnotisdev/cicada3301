@@ -117,3 +117,9 @@ All project GPU jobs were stopped at 10:00 by a watchdog; no lane lock or GPU pr
    window 0.7 is done for all ten generators);
 3. `python jobs/overnight.py run prng-step --lane gpu` (step-domain seed sweeps, about 25 h) and `prng-more-all` (dictionary scored, see phase9_boundaries.md: low priority);
 4. the CPU lane's `kscreen-hashwords` finishes by itself (about 10:20).
+
+## `kscreen-hashwords` (CPU lane, 10:18; negative)
+
+12,944 hash streams (sha256 / sha512 / md5 counter and sha256 chain, mod 29 and rejection, upper and lower case) of every word and two-word phrase of the solved text
+at every offset on the 8 sections: 8.1e9 decodes in 108 minutes; best IoC 1.371 (seg 0.13, 'sha512-ctr reject :MESSAGE CONTAINED'), against 1.364 for 12,944 random streams under the
+same settings; 0 of 15 re-decoded hits keep IoC >= 1.4 over their whole window (the best one falls to 1.078 over 1,524 runes, its own random offsets average 1.050).
