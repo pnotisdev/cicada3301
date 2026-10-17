@@ -37,3 +37,21 @@ replicates of the two short windows alone (random keystreams, seeds 100-123):
   transcription lineage; the chain/step-domain family (flat step stream, no period) has been looked at by aldegonde and
   Zhang only structurally (period, IoC, DFT), not with keystream screens, which `kscreen-chain` now does; the cuneiform
   cluster on images 50-56 reads as base-60 numerals 17,13 / 55,1 = 1033 and 3301 (agent's reading, unchecked by a specialist).
+
+## Second pass (2026-10-17, early morning)
+
+- **Per-window extreme-value null for the page windows** (`work/kscreen/short_window_null.py`, 12 replicates each,
+  `results/analysis/short_window_null_pages.txt`): the six page windows shorter than 250 runes that the library screen
+  flagged have Gumbel p of 0.19-0.85 (library best 1.40-1.68 against null maxima up to 1.75). All are chance.
+- **Backward keys** (`dir=back` in the Rust and CUDA screens): planted backward keys are recovered at the exact key
+  index in both engines; the campaign `kscreen-reverse` runs the 29 chain transforms on reversed windows.
+- **Branch `research/word-internal-lag5`** (merged, tests rewritten, see `docs/prs/word-internal.md`): the lag-5 repeated
+  bigram excess (9 against 1.51) replicates with independent code (`work/lag5_check.py`): permutation P < 1.1e-4 after
+  the look-elsewhere over lags 2-8, conditional on the coincidences P = 4e-4 to 5e-3. It is concentrated in 10-rune
+  words (lag 5 = half the word: 21 coincidences against 8.8 expected, +4.2 sigma; no other even length does that).
+  Mechanism unknown: a per-word key of period 5 is excluded by the dictionary test and by the flat lag-5 difference
+  histogram; a per-rune copy process does not give the clustering.
+- **Branch `research/wordlen-languages`** (merged, review in `docs/prs/wordlen-languages.md`): the Emerson-based rows
+  reproduce exactly (TH spelled as T+H takes G from 223 to 56; fewer 2-rune words fits at p = 0.07). The other-corpus
+  table was not reproduced (needs the Gutenberg download). The repository's dictionaries already index every spelling of a
+  word (`attack.rune_spellings`), so the screens are not blind to TH as two letters.

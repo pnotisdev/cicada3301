@@ -382,6 +382,13 @@ Details: `work/log/phase9_overnight_results.md`, `phase9_art.md`, `phase9_chain.
 - **Image-level audits:** the transcription's separators are right (9,828 gaps, none missing, none extra); the images carry a
   tick glyph the transcription lacks (4 apostrophes, quote marks): `work/ref/tick_marks.tsv`, `phase9_separators.md`.
 
+- **Second pass (early morning, `work/log/phase9_overnight_results.md`):** the six short page windows the library screen
+  flagged are chance (Gumbel p 0.19-0.85); backward-key screening added to both engines with planted-key controls;
+  branches `restart-columns`, `word-internal-lag5` and `wordlen-languages` reviewed and merged (tests rewritten).
+  The lag-5 repeated-bigram excess replicates independently (P < 1e-4 after the look-elsewhere over lags, 4e-4 to 5e-3
+  with conditioning), sits in 10-rune words (lag 5 = half the word, +4.2 sigma, post hoc), and has no mechanism yet.
+  Word lengths: the TH digraph explains most of the 2-rune-word deficit (G 223 -> 56); a residual remains.
+
 ### Phase 5 – Validation and reporting
 - A plaintext counts as solved only if it scores well across a whole segment (word hits and IoC about 1.8)
   and the same rule works on the next page.

@@ -82,9 +82,13 @@ A new Claude session on the desktop (runner alias `desktop`, RTX 2080 Ti, 32 GB)
   transcription's separators are correct (word-length anomaly is real); no short periodic key in any chain transform; no key
   restart at any unit; the page art is reused stamps and mirrored borders; the cuneiform header is base-60 for 1033 and 3301
   (the research agent's reading).
-- **Open:** wait for the queue; the `research/wordlen-languages` branch; the four apostrophe cribs (`work/ref/tick_marks.tsv`);
+- **Open:** wait for the queue; the apostrophe cribs (`work/ref/tick_marks.tsv`);
   the stray rune-sized "7" glyph (image 27, a one-glyph word); the N = 28 step-domain variant of the chain family
-  (needs an alphabet-size parameter in the engines; `work/log/research_2026-10-17.md`, section 4).
+  (needs an alphabet-size parameter in the engines; `work/log/research_2026-10-17.md`, section 4); the lag-5 word-internal
+  clustering (no mechanism; `docs/prs/word-internal.md`); the corpora fetch for `wordlen_languages.py` (needs permission).
+- **User instructions this night:** work alone while asleep; use the hardware; review the other AI's branches and rewrite its
+  tests before running them (done for `restart-columns`, `word-internal-lag5`, `wordlen-languages`); run any new queue only one
+  at a time; the user allowed commits, pushes, pulls and merges directly (never credentials). Pushed 2026-10-17 02:10.
 
 ## Decisions that stand
 
