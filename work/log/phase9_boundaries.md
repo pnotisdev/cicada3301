@@ -47,7 +47,7 @@ English (Emerson, 395 runes) enciphered under PHP mt_rand seed 777777 (map 0, mo
 
 The lag-5 repeated-bigram excess (`docs/prs/word-internal.md`) sits inside words: 9 against 1.5 expected in windows lying inside one word, 20 against
 13.9 in the other windows. If the separators were random cuts of a stream, the echo should not prefer within-word windows (about 10% of all windows);
-7.5 of the 13.5 excess pairs fall in them (P about 0.003 by Poisson). So the separators are not independent of the cipher structure either. The two
+7.5 of the 13.5 excess pairs fall in them (P about 0.004 by Poisson, if the within-word windows were a random tenth of all windows). So the separators are not independent of the cipher structure either. The two
 observations (no serial structure in lengths, an echo that respects the separators) are not yet reconciled; shuffled word ORDER with intact words
 would explain the first and keep the dictionary score working.
 
