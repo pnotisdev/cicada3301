@@ -389,6 +389,12 @@ Details: `work/log/phase9_overnight_results.md`, `phase9_art.md`, `phase9_chain.
   with conditioning), sits in 10-rune words (lag 5 = half the word, +4.2 sigma, post hoc), and has no mechanism yet.
   Word lengths: the TH digraph explains most of the 2-rune-word deficit (G 223 -> 56); a residual remains.
 
+- **GPU lane (00:36-04:35, `work/log/phase9_overnight_results.md`):** kscreen restarts/recurrences/multipliers and the full prng-all sweeps (PHP,
+  glibc, .NET over all seeds, all 8 sections) are negative with verification. Step-domain family (research note C1/C2: plaintext enters the step
+  c_i - c_{i-1} keyed mod 28, variants A additive / B log / C rank): library screen (mod-29 and native mod-28), periodic keys to lag 3000 and the
+  word-index polynomial / grid key checks are negative with planted controls; seed sweeps of ten generators (`prng-step`) validated and queued
+  (`work/log/phase9_step28.md`). An independent review corrected the IoC null tail (exact multinomial, random maximum ~1.42 at 240 steps).
+
 ### Phase 5 – Validation and reporting
 - A plaintext counts as solved only if it scores well across a whole segment (word hits and IoC about 1.8)
   and the same rule works on the next page.

@@ -1,6 +1,6 @@
 # Overnight campaigns: report from desktop
 
-Generated on desktop at 2026-10-17 03:14:25 by `python jobs/overnight.py`. Thresholds and method: docs/CAMPAIGNS.md.
+Generated on desktop at 2026-10-17 04:35:16 by `python jobs/overnight.py`. Thresholds and method: docs/CAMPAIGNS.md.
 
 **Controls:** unit tests and kscreen selftest passed on desktop; null results below are validated.
 
@@ -65,12 +65,18 @@ Screens 1 and 2, the reverse-direction screen and the heading-restart screen wer
 - reverse direction: reverse direction: 893 keystreams; control max 0.167
 - heading restarts: heading restarts: 893 keystreams; control max 0.975
 
-## dsearch: Key-free secret-alphabet search, large (0/86 steps done)
+## dsearch: Key-free secret-alphabet search, large (39/86 steps done)
 
 walk dsearch: a per-word additive key behind any secret outer alphabet, with m = 1-8 position phases and gap sets {1,2} and {1,2,3} (the earlier runs used gap 1 only), against 4 structure-free surrogates each. Starts with a synthetic positive control that must recover the planted alphabet.
 
-- positive control (synthetic m=5): not run
-- not run yet
+- positive control (synthetic m=5):   true-D G 2726; best D agrees with truth on 14 of 29 symbols (up to affine)
+- m1_g12: LP2 best G 212; surrogates [226, 210, 207, 213] (z = -0.2)
+- m1_g123: LP2 best G 250; surrogates [280, 248, 240, 253] (z = -0.3)
+- m2_g12: LP2 best G 303; surrogates [324, 318, 291, 307] (z = -0.5)
+- m2_g123: LP2 best G 404; surrogates [405, 382, 364, 378] (z = +1.3)
+- m3_g12: LP2 best G 372; surrogates [388, 389, 377, 387] (z = -2.4)
+- m3_g123: LP2 best G 488; surrogates [501, 502, 470, 503] (z = -0.4)
+- m4_g12: LP2 best G 464; surrogates [477, 482] (z = -4.4)
 
 ## payload: The 256-byte payload, corrected bytes (0/2 steps done)
 
@@ -87,10 +93,10 @@ The library again on the 8 sections with all 28 key multipliers (c = p + m*k), e
 - matched null (random keystreams, same windows/settings): best 1.318
 - verification (library_segments_allmults_verify.txt): 0 of 15 re-decoded hits keep IoC >= 1.4 over their whole window and beat their own keystream's random offsets by 0.15 (none: noise)
 
-## prng-all: Seeded-PRNG pads with a fresh seed per section (0/6 steps done)
+## prng-all: Seeded-PRNG pads with a fresh seed per section (6/6 steps done)
 
 phpmt sweeps of every seed of PHP<7.1 mt_rand, glibc random() and .NET System.Random on all 8 sections (the single-section runs only covered LP2 page 0), then full-segment verification of the best candidates.
 
-- php: not run
-- glibc: not run
-- net: not run
+- php: swept 4294967296 seeds in 2628 s; best score 21; verification:   screen  18 seed   16096334 seg0.7 model 0 map 0 sign  1 atb 1: full 0.096 (random seeds 0.078 +- 0.007, z +2.5)
+- glibc: swept 4294967296 seeds in 2451 s; best score 21; verification:   screen  19 seed 2235614708 seg0.15 model 0 map 0 sign -1 atb 1: full 0.082 (random seeds 0.078 +- 0.002, z +2.1)
+- net: swept 2147483648 seeds in 1206 s; best score 21; verification:   screen  18 seed  174175237 seg0.15 model 1 map 0 sign -1 atb 1: full 0.086 (random seeds 0.078 +- 0.002, z +3.5)

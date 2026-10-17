@@ -55,3 +55,14 @@ replicates of the two short windows alone (random keystreams, seeds 100-123):
   reproduce exactly (TH spelled as T+H takes G from 223 to 56; fewer 2-rune words fits at p = 0.07). The other-corpus
   table was not reproduced (needs the Gutenberg download). The repository's dictionaries already index every spelling of a
   word (`attack.rune_spellings`), so the screens are not blind to TH as two letters.
+
+## GPU lane results (2026-10-17, 00:36-04:35, all negative)
+
+- **kscreen-restarts, kscreen-recurrences, kscreen-multipliers:** best IoC 1.40 or below in every screen except none above the 1.40 rule that survived
+  its whole-window verification (0 of 8 / 8 / 10 / 15 re-decoded hits keep IoC >= 1.4 or beat their own random offsets). Order-3 recurrences
+  (9.2e9 decodes) peaked at 1.368 and the library x 28 multipliers (5.7e9 decodes) at 1.381; with this many decodes the chance maximum
+  is higher than the single "matched null" of the report (1.318, far fewer decodes), which is why the verification step decides.
+- **prng-all** (a fresh seed per section, all 8 sections, all 2^32 seeds of PHP < 7.1 mt_rand, glibc random() and 2^31 of .NET Random):
+  best screen score 21 for all three (random-seed maximum per the score histogram); the 20 best candidates of each re-decode over the whole
+  segment to 0.08-0.11 against 0.075-0.078 for random seeds (z +0.9 to +5.5, selection bias), where a true key scores about 0.8.
+  php: 2,628 s, glibc 2,451 s, .NET 1,206 s on the 2080 Ti.
