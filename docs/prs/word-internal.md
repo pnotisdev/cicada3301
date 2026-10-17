@@ -47,6 +47,23 @@ word), arithmetic progression, quadratic (any coefficients, new ones for every w
   reproduce the clustering. A period-5 key with pointer jumps of 10-20% matches the coincidence rates at lags 4-5, but
   the dictionary test above excludes it directly.
 
+## Relation to prior work (third-party data, read after the fact)
+After running the above I found that the cicada-solvers/aldegonde `hypotheses/` notes (`lag5-digraph-structure.md`,
+`within-word-key-sharing.md`, `lag5-back-reference.md`, `line-initial-bias.md`) already contain the same observations:
+paired lag-5 matches at separations 1 and 4 (29 and 28 against 17.7 expected over the whole stream; our whole-stream
+lag-5 bigram-repeat count is the same 29 vs 15.3), a disproof of an *additive* per-word 5-periodic key from the flat
+nonzero lag-5 differences, and the line-initial glyph-width artefact. They also note that an *equality-only*
+mechanism survives: positions five apart in a word enciphered with the same *mixed (non-additive)* alphabet, so that
+equal plaintext letters give equal ciphertext runes and unequal ones scramble. What this PR adds to that picture:
+- the localisation inside words (9 vs 1.5 with the bigram windows inside one word, 20 vs 13.9 elsewhere; Monte Carlo
+  P < 5e-5), with an English yardstick: the bigram-repeat ratio at lag 5 is 6.0 in LP2 and 6.1 for English written in
+  runes. That is what an equality-only, *plaintext-driven* mechanism predicts; an independent copy process gives
+  1.9-3.7 at the same coincidence rate (section E), so copy events are disfavoured;
+- a direct dictionary test with planted controls that excludes per-word *algebraic* key families (constant, linear,
+  quadratic, periodic <= 7, order-2/3 recurrences) for English plaintext, which complements their histogram argument;
+- consequence for the equality-only family: a per-word cycle of arbitrary alphabets leaves almost nothing for a
+  dictionary to test (only p_j = p_{j+5} versus c_j = c_{j+5}), which is why no existing screen can see it.
+
 ## What this means
 A real, small, word-internal repetition at distance five that no simple per-word key explains. It constrains models:
 whatever generates the key (or the text) makes equal runes five apart inside a word more often than chance, in runs
