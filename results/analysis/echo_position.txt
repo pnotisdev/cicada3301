@@ -1,0 +1,37 @@
+LP2 sections 0.7-0.15, the project's word cuts; 300 shuffles inside sections; expected = shuffle mean, z = (observed - mean) / shuffle sd
+
+lag 5, equality (any rune):
+   within                                           pairs   2105  hits  104  expected   72.9  excess  +31.1  z +3.65
+   cross                                            pairs  10806  hits  373  expected  372.2  excess   +0.8  z +0.04
+   within, earlier rune at word position 0          pairs    815  hits   36  expected   27.8  excess   +8.2  z +1.66
+   within, earlier rune at word position 1          pairs    559  hits   27  expected   19.6  excess   +7.4  z +1.65
+   within, earlier rune at word position 2          pairs    343  hits   18  expected   12.1  excess   +5.9  z +1.83
+   within, earlier rune at word position 3          pairs    187  hits   11  expected    6.6  excess   +4.4  z +1.72
+   within, earlier rune at word position 4+         pairs    201  hits   12  expected    6.9  excess   +5.1  z +1.95
+
+lag 5, equality carried by S:
+   within                                           pairs   2105  hits   11  expected    2.4  excess   +8.6  z +5.86
+   cross                                            pairs  10806  hits   10  expected   12.2  excess   -2.2  z -0.62
+   within, earlier rune at word position 0          pairs    815  hits    4  expected    0.9  excess   +3.1  z +3.38
+   within, earlier rune at word position 1          pairs    559  hits    3  expected    0.7  excess   +2.3  z +2.88
+   within, earlier rune at word position 2          pairs    343  hits    1  expected    0.4  excess   +0.6  z +1.00
+   within, earlier rune at word position 3          pairs    187  hits    3  expected    0.2  excess   +2.8  z +6.24
+   within, earlier rune at word position 4+         pairs    201  hits    0  expected    0.2  excess   -0.2  z -0.51
+
+lag 6, c' = 24 - 2c:
+   within                                           pairs   1290  hits   80  expected   44.9  excess  +35.1  z +5.16
+   cross                                            pairs  11612  hits  401  expected  399.9  excess   +1.1  z +0.05
+   within, earlier rune at word position 0          pairs    559  hits   33  expected   19.6  excess  +13.4  z +2.98
+   within, earlier rune at word position 1          pairs    343  hits   19  expected   11.8  excess   +7.2  z +2.06
+   within, earlier rune at word position 2          pairs    187  hits   12  expected    6.5  excess   +5.5  z +2.18
+   within, earlier rune at word position 3          pairs    109  hits    6  expected    3.8  excess   +2.2  z +1.14
+   within, earlier rune at word position 4+         pairs     92  hits   10  expected    3.2  excess   +6.8  z +3.71
+
+Reading: the relation was selected on within-word pairs, so the 'within' z carries a selection bias (look-elsewhere P 0.005); the 'cross' rows are out of sample.
+
+Control: LP2's runes shuffled inside sections, then an echo planted at the observed within-word rate (lag 5: copy the rune 5 back, q 0.0153; lag 6: write 24 - 2c of the rune 6 back, q 0.0283), either at every position
+or inside words only; the same categories are counted (mean of 20 plants; excess over the unplanted shuffle mean):
+   lag 5 equality, echo every position    : excess within  +29.7, across word boundaries +162.1
+   lag 5 equality, echo inside words only : excess within  +31.3, across word boundaries   -0.6
+   lag 6 relation, echo every position    : excess within  +34.5, across word boundaries +321.5
+   lag 6 relation, echo inside words only : excess within  +35.0, across word boundaries   +0.0
