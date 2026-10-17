@@ -1,0 +1,13 @@
+# <repo>\.venv\Scripts\python.exe <repo>\work\kscreen\verify.py <repo>\results\kscreen\chain\library_a7.tsv --top 10 --out <repo>\results\kscreen\chain\library_a7_verify.txt
+# cwd <repo>
+# device cpu
+Traceback (most recent call last):
+  File "<repo>\work\kscreen\verify.py", line 105, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "<repo>\work\kscreen\verify.py", line 63, in main
+    key = (h["item"], h["window"])
+                      ~^^^^^^^^^^
+KeyError: 'window'
+
+# exit code 1, 7 s

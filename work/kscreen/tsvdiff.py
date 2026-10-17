@@ -14,7 +14,7 @@ import sys
 def parse(path):
     d = {"hist": {}, "wbest": {}, "hits": []}
     with open(path, encoding="utf-8") as f:
-        lines = f.read().splitlines()
+        lines = f.read().split("\n")      # stream names can contain control characters that splitlines() treats as line ends
     header = None
     for line in lines:
         if line.startswith("# kscreen"):

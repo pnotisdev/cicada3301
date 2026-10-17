@@ -66,3 +66,11 @@ replicates of the two short windows alone (random keystreams, seeds 100-123):
   best screen score 21 for all three (random-seed maximum per the score histogram); the 20 best candidates of each re-decode over the whole
   segment to 0.08-0.11 against 0.075-0.078 for random seeds (z +0.9 to +5.5, selection bias), where a true key scores about 0.8.
   php: 2,628 s, glibc 2,451 s, .NET 1,206 s on the 2080 Ti.
+
+## A bug found at 05:00: stream names with control characters broke `verify.py` (fixed, chain restarted)
+
+`kscreen-chain/a7-verify` failed with `KeyError: 'window'` and the runner stopped the campaign. Cause: eight library streams (the binary "An End" hash,
+as seed of the four hash constructions x two mappings) have names containing \x0b and \x1c, which `str.splitlines()` treats as line ends, so a TSV
+row was cut in two. It only bites when such a stream is among the top hits (here at IoC 1.311 in a7), so the earlier verifications were unaffected.
+`verify.py`, `tsvdiff.py` and `step28.py verify` now split on "\n" only. The a7 verification then runs (0 of 10 hits keep IoC >= 1.4). The chain campaign
+was restarted by hand (`run kscreen-chain --lane gpu`); the chained waiters for the later campaigns wait for the lane lock and their markers, so nothing was lost.

@@ -37,7 +37,7 @@ def english_rank():
 def read_hits(path):
     meta, rows, header = {}, [], None
     with open(path, encoding="utf-8") as f:
-        lines = f.read().splitlines()
+        lines = f.read().split("\n")      # not splitlines(): stream names can contain control characters (the binary seed)
     for line in lines:
         if line.startswith("# kscreen"):
             meta = dict(kv.split("=", 1) for kv in line.split()[3:] if "=" in kv)

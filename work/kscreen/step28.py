@@ -296,7 +296,7 @@ def cmd_verify(a):
     import re
     import lp
     import stats
-    head = Path(a.tsv).read_text(encoding="utf-8").splitlines()
+    head = Path(a.tsv).read_text(encoding="utf-8").split("\n")      # not splitlines(): stream names can hold control characters
     meta = dict(kv.split("=", 1) for kv in head[0].split()[2:] if "=" in kv)
     spec = meta["library"]
     lib = load_library(spec if spec.startswith("rand:") else str(ROOT / spec))
