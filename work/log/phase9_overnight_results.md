@@ -123,3 +123,9 @@ All project GPU jobs were stopped at 10:00 by a watchdog; no lane lock or GPU pr
 12,944 hash streams (sha256 / sha512 / md5 counter and sha256 chain, mod 29 and rejection, upper and lower case) of every word and two-word phrase of the solved text
 at every offset on the 8 sections: 8.1e9 decodes in 108 minutes; best IoC 1.371 (seg 0.13, 'sha512-ctr reject :MESSAGE CONTAINED'), against 1.364 for 12,944 random streams under the
 same settings; 0 of 15 re-decoded hits keep IoC >= 1.4 over their whole window (the best one falls to 1.078 over 1,524 runes, its own random offsets average 1.050).
+
+## Boundary-free rescoring of the laptop's hashscan lane (CPU, 10:27-10:40; negative)
+
+`work/hashscan` mode `bgsweep` (decoder `decode_bg`, the Rust port of `work/phpmt/bg.py::ref_decode`): 19.2 M candidate passphrases x 4 hashes x 4 stream conventions x 3 byte maps x 8 cipher variants,
+window = first 120 runes of section 0.7. No decode passes the 40-rune gate; best recorded score 54-59 per tier (lore 54, words 58, dates 59, pairs 59, numbers 59); whole-section decodes of the 10 best per tier
+score -9.3 to -10.8 per rune against -10.2 to -10.9 for random strings. Files: `results/hashscan/bg_*.tsv|log`, `bg_*_verify.txt`. This replaces the dictionary-scored negative of the laptop for these lists.

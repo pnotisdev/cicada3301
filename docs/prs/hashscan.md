@@ -47,7 +47,11 @@ planted passphrases are recovered at rank 1 for three settings).
 - **The one reservation is the score, not the code.** `decode_fast` is the phpmt dictionary decoder: it counts dictionary words that sit exactly between the transcription's
   word separators. LP2's word lengths have no serial structure and a planted seed is invisible to that score once LP2's separators replace the English words'
   own (33 -> 0, `work/log/phase9_boundaries.md`). If the printed dots are not the plaintext's word boundaries, "no passphrase is the key" is not established by
-  this run. A boundary-free rescore (bigram log-likelihood of the first 120 decoded runes, no separators) of the same candidate lists is the fix and is run next on the desktop CPU
-  (`work/hashscan`, mode `bgsweep`; results in `results/hashscan/bg_*`).
+  this run. A boundary-free rescore (bigram log-likelihood of the first 120 decoded runes, no separators) of the same candidate lists was run on the desktop CPU
+  (`work/hashscan` mode `bgsweep`, `bg_verify.py`, `work/tests/test_hashscan_bg.py`; results in `results/hashscan/bg_*`). **Result, 2026-10-17 10:40: negative.** All 19.2 million
+  candidates (lore 23,976; words 29,722; dates 146,327; pairs 8,997,555; numbers 10,000,000) x 4 hashes x 4 conventions x 3 maps x 8 cipher variants (369 M decodes per million candidates):
+  not one decode passes the 40-rune gate (best path >= +60; a true key is near +300), the best recorded score is 54-59 in every tier, and the top candidates decoded over the whole
+  section (729 runes of section 0.7) score -9.3 to -10.8 per rune against -10.2 to -10.9 for random strings (a true key: about +10). Controls: the Rust scores equal a Python
+  reference built on `hashlib` keys, planted passphrases are recovered at rank 1 for three settings with every other candidate below 150. 375 s for the 10 M numbers on 14 threads.
 - The candidate lists are reasonable (lore, words, dates, 9 M word pairs, 10 M numbers); the conventions (4 hashes x 4 counters x 3 byte maps) match the
   desktop's library streams, whose mod-29 and rejection maps are two of the three.
