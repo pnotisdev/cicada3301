@@ -14,12 +14,32 @@ description in `docs/prs/<name>.md`. Create a PR from a branch with
 | `research/hashscan` | new | `work/hashscan`: passphrase -> MD5/SHA-1/SHA-256/SHA-512 stream keys (4 conventions x 3 byte maps) for 19 M candidates | negative |
 | `research/restart-llr` | new | log-likelihood-ratio restart test (more informative than counting equal pairs); information limit of drift-aware pairwise alignment; red headings under all 812 affine maps | restart at paragraphs/pages/sentences/lines excluded, restart at the 9 section starts is NOT testable (power Z ~ 2.7); headings are not an affine cipher of English |
 
+## Independent reproduction of `main` on the laptop
+`main` at 71dc4b5 (the desktop's step-domain work) was built from scratch on the laptop CPU through the runner
+(`python jobs/overnight.py run selftest`): **93 tests pass (11 skipped: the CUDA tests), the kscreen controls pass**
+(15/15 planted windows, random-key null below the threshold). So the desktop's results do not depend on the desktop.
+
+## Small observations that did not get their own branch
+- **The lag-5 echo is carried by the rune S (index 15).** 11 of the 102 within-word lag-5 coincidences are S (10.8%,
+  chance 3.25%, z ~ +4.4; other lags: 0-2%), spread over six of the eight sections. Seven of the eleven words start with
+  S and five have S at the first or last of the two equal positions (e.g. ᛋᚣᛗᛞᚣᛋ, ᛋᚩᛠᚳᛖᛋ, ᛋᛞᛝᚷᛚᛋᛞᛝ). The
+  aldegonde note `rune-s-lag5-echo.md` reports the same. Any mechanism for the echo has to explain why S.
+- **Clause lengths are English-like**: LP2's '.'-delimited clauses have median 11 and mean 14.8 words (Emerson clauses
+  median 14, mean 16.9; the solved pages 6 and 7.7).
+- **No word-level checksum**: sums of rune indices or prime values modulo 2-29 (90 tests) show nothing beyond the
+  parity of word length.
+- **The numeral '7' and the 1-5 list markers** sit where earlier sessions said; no pattern with the preceding text.
+
 ## What to run on the desktop
 - `python work/prngx/campaign.py run stageB` (finished chunks are skipped): the remaining ~92% of the 32-bit seed space for
   `rand48`, `msvc`, `java` (hours on a CPU, minutes on a GPU) and, if ported, `mt`/`pymt` (~6 h each on a CPU). The
   generators are 5-20 lines of CUDA each (LCGs) or the phpmt kernel (MT).
 - `hashscan` is a candidate for the GPU as well (SHA-256/MD5 are cheap there); the dictionary is `make_candidates.py`.
-  More conventions (HMAC, PBKDF2) are the obvious extension.
+  More conventions (HMAC, PBKDF2) are the obvious extension;
+  `work/prngx/kdf_streams.py` already covers RC4, AES-CTR, ChaCha20, PBKDF2 and scrypt for the lore list.
+- If hashcat is installed, the 2080 Ti is the natural machine for brute-forcing the last page's 512-bit hash with masks
+  (SHA-512 on that card runs at billions per second; every 7-character mask is minutes). The community's
+  `Cicada-DWH-HashcatAttempts` shows which charsets were tried; not run here.
 - Any new keystream family can be added to the OEIS lane's machinery: `seq` takes a text file `<id> v0 v1 ...` (values
   mod 29).
 
