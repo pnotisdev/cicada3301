@@ -89,3 +89,11 @@ Acknowledged, not fixed: the library holds 29-valued streams, so variants A and 
 the sweep is fragile to a third convention for the zero step (121 good steps before the first zero step in the 0.7 window is about chance level);
 both screens assume an uninterrupted key of at least 240-300 steps (a key that restarts per page or line is invisible); Java seeds above 2^31 as
 `long` are not covered; A and B are identical in the periodicity scan (J_B is a bijection of J_A), so only A and C are independent there.
+
+## Native mod-28 library (answering review remark 5)
+
+`work/kscreen/export28.py` rebuilds the library with the alphabet size patched to 28 (primes, recurrences and constants' digits in base 28, hash
+counter/chain bytes reduced mod 28, keywords reduced mod 28): 1,446 streams with values 0..27. Variants A and C on it (40 windows of 300 steps,
+12 multipliers, drop/keep): best IoC 1.315 (sec0.15@2100); two matched nulls of 655 random streams reach 1.315 and 1.310; the best window
+continued to the end of its section falls to 1.01 beyond the window (`results/kscreen/step28_library28*.tsv`, `step28_library28_verify.txt`).
+Negative. The campaign `kscreen-step28` repeats these steps.
