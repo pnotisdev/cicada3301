@@ -1,0 +1,19 @@
+1. TRUE-KEY SCORE OF THE BOUNDARY-FREE LANES BY PLAINTEXT LANGUAGE (English table; a correct key decodes to the plaintext)
+text                                  per rune  120 runes >= +300  60 >= +300  48 >= +300  first 40 >= +60
+Cicada's solved sections                 +7.39             100.0%       96.9%       81.3%           100.0%
+English (Emerson, Essays I)              +7.89             100.0%       99.0%       89.5%           100.0%
+English (Thoreau, Walden)                +7.54             100.0%       97.6%       83.6%           100.0%
+Latin (Caesar, De bello Gallico)         +5.13              98.2%       56.4%       26.9%            96.2%
+Latin (Vergil, Aeneid)                   +5.14              99.1%       56.0%       26.2%            96.8%
+German (Goethe, Faust I)                 +5.62              99.8%       69.8%       34.6%            99.0%
+French (Hugo, Les Miserables I)          +6.41             100.0%       87.3%       58.6%            99.3%
+Spanish (Cervantes, Don Quijote)         +5.88              99.9%       76.1%       41.8%            99.4%
+Italian (Dante, Commedia)                +5.63              99.6%       68.1%       37.8%            98.1%
+
+2. IoC OF THE PLAINTEXT, 300-rune and 100-rune windows (the kscreen rule is IoC >= 1.40; planted keys decode to English at about 1.6-2.06)
+Cicada's solved sections (stride 50)   L=300: windows    54, mean 1.802, min 1.571, 5th pct 1.624, share >= 1.40: 100.0%
+Cicada's solved sections (stride 50)   L=100: windows   116, mean 1.772, min 1.371, 5th pct 1.535, share >= 1.40:  99.1%
+English, Emerson                       L=300: windows  1195, mean 1.791, min 1.528, 5th pct 1.634, share >= 1.40: 100.0%
+English, Emerson                       L=100: windows  2397, mean 1.776, min 1.265, 5th pct 1.512, share >= 1.40:  99.5%
+
+3. LITERAL F: LP2 has 458 ciphertext F of 12956 runes (expected 447 +- 21, z +0.54); a literal plaintext F (about 2% of English runes) would add about 259. Rank of F among the 29 rune counts: 7.
