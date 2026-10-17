@@ -416,6 +416,14 @@ Details: `work/log/phase9_overnight_results.md`, `phase9_art.md`, `phase9_chain.
   plaintext / ciphertext autokeys, per-word keys and Vigenere periods up to 29 are excluded. The lag-5 effect is reproduced by period-5 alphabets per word or a 1.5% lag-5 copy; no family that otherwise fits reproduces its
   concentration on rune S (calibrated P 0.0073). Side scan: the affine relation c' = 24 - 2c at lag 6 (z +5.0, P 0.013 over lags and relations, split-half P 0.035) is an unreplicated lead.
 
+- **Backward-key campaign complete (13:16):** `kscreen-reverse` a = 26..28 ran on the GPU in 15 minutes and is negative; over all 29 values of a the largest library IoC is 1.387 (a = 8), none reaches 1.40, 0 verified hits (`work/log/phase9_overnight_results.md`).
+
+- **GPU, 30 minutes (13:30-13:56):** boundary-free sweeps of every section window over epoch-time seeds 2011-2015 (8 generators) and small integer seeds below 2^27 (php, glibc, py3): 0 candidates at +300 (prioritised ranges, not exhaustive). **Boundary-free OEIS lane (199,088 sequences):** negative, real best 181 / 246 against matched null bests 192 / 230; the top decodes are unreadable (`work/log/phase9_overnight_results.md`).
+
+- **KDF lane and the laptop's new branch (14:30):** the 719,280 passphrase key streams (RC4 / AES-CTR / ChaCha20 / PBKDF2 / scrypt) are negative on the boundary-free score (best 58, whole-section -8.9 to -10.2 per rune). `research/new-hypotheses` (keyless exclusions, the two-layer screen `layer2`, millisecond-timestamp seeds) was reviewed, not merged (`docs/prs/new-hypotheses.md`): its generator vectors re-check independently (86 of 86); accept after two changes.
+
+- **64-bit CUDA port for `prng-time` (14:20; `work/log/phase10_prng_time_gpu.md`, `docs/GPU_PORT.md`):** `bgmt64.cu` / `bg64.py` sweep py3, ruby and java with 64-bit (millisecond-timestamp) seeds; gate `test_bgmt64` 8/8 against independent CPython / java.util.Random references; 6.4 M (py3, ruby) and 10.8 M (java) seeds/s, so the full 2012-2014 window is about 2.9 h / 1.7 h per generator (`time_gpu.py`, not started). Demo, 2014-01-04/06 UTC, 172.8 M timestamps per generator: 0 candidates (agrees with the laptop's CPU sweep).
+
 ### Phase 10 – New hypotheses: keyless exclusions and the two-layer screen (2026-10-17, laptop)
 Details: `work/log/hypotheses_2026-10-17.md`; probes `work/tmp/hyp/` (output `results/analysis/hypotheses_2026-10-17.txt`);
 engine `work/layer2` (output `results/layer2/`).
