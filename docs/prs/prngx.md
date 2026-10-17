@@ -44,6 +44,12 @@ offset) pairs x 28 x 8 x 8 windows = 4.6 x 10^10 decodes, 29 min on 12 threads):
 matched null of random sequences with the same lengths, and 28 for a planted primes key (which is also found in the
 equivalent sequences 2p, 3p, ...). **Negative**: no OEIS sequence is the key's first ~36 terms at any offset.
 
+Same lane on the other places a key could restart: the first ~36 runes of 46 page starts and 10 short heading windows
+(14-36 runes; 56 windows), start offsets 0-15, same settings (`results/prngx/seq/{oeis,null}_pagesheads_off16.*`, 98 and
+112 min): best score **17** (page 56 start, library line 143194 at offset 7) against **19**
+for the matched random-sequence null. **Negative.** Only the null was run on this window set; the planted-key control
+is the primes plant on the 8-section windows above, and the 14-rune windows have less power than the 36-rune ones.
+
 **KDF / stream-cipher lane** (`kdf_streams.py`, `results/prngx/kdf/`): for each of the 23,976 Cicada-lore strings (the
 `hashscan` lore list: Cicada phrases and numbers, every word and 2-4-word phrase of the solved pages, the keyword list,
 case/space variants) the keystreams of RC4 and RC4-drop768 (the passphrase as key), AES-128-CTR (key MD5) and AES-256-CTR
