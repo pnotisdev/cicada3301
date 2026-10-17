@@ -41,6 +41,18 @@
   7-8-rune words (4.0 vs 5.4%).
 - All p-values are weak evidence once the model was chosen after looking: lead, not finding.
 
+## The word boundaries are right (new check against the page images)
+Every statistic above rests on the transcription's word separators. Phase 2 verified the runes against the images
+but not the separators, so `work/word_gaps.py` (72 s) checks them. The book separates words with a small mid-height
+dot. The script finds separator-sized components between consecutive glyphs in the 2400x3600 originals and compares
+them with the transcription for the 537 of 594 lines whose detected glyph count equals the rune count:
+- **0 of 2,334 transcribed word boundaries lack a dot** in the image, and the gap widths separate perfectly (word gaps
+  0.16-0.21 of the rune height, ordinary gaps 0.02-0.06, clause marks 0.43+).
+- 17 "dots" appear inside ordinary tight gaps (mostly page-top lines; ink inside or touching a glyph), and 4 wide gaps
+  (0.35-0.38) with a dot where the transcription has no separator (pages 19, 36, 50, 56: a three-dot mark next to a
+  rune). That is at most 4 doubtful boundaries among 12,700 gaps, so **the 2-rune-word deficit is not a spacing
+  artefact**. The 57 lines with unequal counts (ligatures) are not checked.
+
 ## Consequences
 - Dictionary screens (`attack.py`) are blind to an inserted rune inside a word, and to missing function words they
   are not blind (they score what decodes). A null-tolerant dictionary matcher (one wildcard rune per word) is the
