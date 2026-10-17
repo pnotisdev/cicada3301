@@ -1,0 +1,12 @@
+LP2: 12956 runes. Log-likelihood-ratio column test, first 60 columns, Z_sum over the first 20.
+unit           n   dir  max z  Z_sum   control (restart): Z_sum mean / min over 6    null (continuous key): max z over 6 / |Z_sum| max
+segment        9 start   3.08   0.96         2.7 /     0.7           3.73 /   2.04
+segment        9   end   3.62   0.43         3.8 /     2.0           3.33 /   1.50
+paragraph     60 start   4.40   1.07        27.7 /    24.3           4.55 /   1.45
+paragraph     60   end   2.57  -0.70        27.6 /    20.2           4.12 /   0.71
+page          57 start   4.01   1.07        23.9 /    22.9           6.45 /   1.83
+page          57   end   2.28  -0.73        24.6 /    17.9           4.13 /   2.18
+sentence     212 start   3.84   0.89        83.0 /    71.8           5.87 /   1.30
+sentence     212   end   2.11  -1.64        74.5 /    69.2           5.55 /   2.88
+
+Reading: a restart would give Z_sum like the control column. LP2 shows nothing at any unit type. For the 9 sections the control Z_sum shows how much power the test has (equal-pair counting gave ~2.5 in restart_columns.py).
