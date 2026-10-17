@@ -63,7 +63,7 @@ extra runes or half the 2-rune words missing, p 0.03-0.07). Everything else is a
 - Everything above is merged on `main`; each PR file has a "Review" section. All tests were read first and run afterwards (`restart_llr`, `hashscan`, `prngx`, `kdf_streams`, `word_recurrence` pass).
 - **The rune-S observation is real and stronger than the lag-5 total**: of the 102 within-word lag-5 coincidences 11 are S (expected 2.3; Poisson P = 3e-5 per (lag, rune) cell, about 0.007
   after the 232 cells looked at); no other lag has a rune above z 3.4. Four of the 22 S-initial words of 6+ runes have S again at position 5 (P = 0.006).
-  Five of the 11 pairs are in section 0.15 (6 of 11 counting its hundred-rune neighbours); P(S) by position in the word is flat (3.0-4.0%). Still no mechanism.
+  Five of the 11 pairs are in section 0.15 (the longest, 3,316 runes), two in 0.14 and one each in 0.7, 0.8, 0.9 and 0.11; P(S) by position in the word is flat (2.8-4.0%). Still no mechanism.
 - **Clause lengths:** the figures agree with the desktop's once the page and paragraph marks count as clause ends (median 12 words, CV 0.81); with '.' alone the CV is 0.94. The desktop's reading of the word separators
   (`work/log/phase9_boundaries.md`) rests on the serial structure of the word lengths and on the first word of a clause being an ordinary word, not on the clause lengths.
 - **Boundary caveat for the dictionary-scored PRs** (hashscan, prngx): see their review sections. Stage B is covered on the GPU.
