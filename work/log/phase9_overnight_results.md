@@ -88,3 +88,17 @@ was restarted by hand (`run kscreen-chain --lane gpu`); the chained waiters for 
 - **kscreen-chain** (a = 1..28, 8 sections, library / order-2 recurrences / cubic polynomials): largest IoC 1.415 (a = 17, library, section 0.11,
   'sha256-ctr mod :INSTAR', multiplier 28); continued to the end of its window it falls to 1.073 over 1,894 runes (its own random offsets: mean 1.047, max 1.056). No other
   verification passes. `kscreen-chain/a7-verify` had first failed on a control character in a stream name (see above).
+
+## prng-more, window 0.7 (06:20-06:58; seven more generators, all 2^32 seeds, 16 variants each; all negative)
+
+| generator | sweep time | best screen score | best candidate re-decoded over the whole segment (random seeds ~0.077) |
+|---|---|---|---|
+| py3 (CPython) | 425 s | 22 | 0.080 (z +0.4) |
+| mt32 (std::mt19937, PHP >= 7.1) | 324 s | 22 | 0.075 (z -0.3) |
+| mt31 | 330 s | 21 | 0.077 (z -0.3) |
+| java | 165 s | 21 | 0.093 (z +2.5) |
+| msvc | 171 s | 21 | 0.074 (z -0.5) |
+| drand48 (Perl) | 171 s | 20 | 0.081 (z +0.2) |
+| ruby | 421 s | 20 | 0.067 (z -1.3) |
+
+A true key scores about 0.8. The rest of the GPU queue (kscreen-reverse, prng-more-all, kscreen-step28, prng-step) is still running.
