@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Check the best rows of a boundary-free OEIS-lane sweep (`prngx bgsweep seq` on data/oeis_seqs.txt, 36-rune windows): re-decode each row's window with the Python reference
 (work/phpmt/bg.py::ref_decode), compare the score with the sweep's own (a reproduction check), print the decoded text, and give the same decode of 8 random sequences of the same length
-under the same settings (what a wrong key scores). A true key reads as English and scores about +10 per rune (about +360 over 36 runes); selection noise does not.
+under the same settings (what a wrong key scores). A true key reads as English and scores about +7.3 per rune on Cicada's text (about +263 over 36 runes, below the +300 gate in 71% of windows: results/analysis/true_key_score.txt); selection noise does not.
 
     python work/prngx/oeis_bg_verify.py <sweep.tsv> <windows.txt> [--top 8] [--lib data/oeis_seqs.txt]
 """

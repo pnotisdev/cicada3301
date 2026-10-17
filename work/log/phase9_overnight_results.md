@@ -168,7 +168,7 @@ range was swept instead (`python work/phpmt/bg.py sweep <gen> all <lo> <hi> <out
 offsets 0-15 (55 windows), each with a matched null of random sequences of the same lengths. Best scores (gate +300): sections real 181, null 192; pages + heads real 246, null 230. Decoding the top rows
 with the Python reference (`work/prngx/oeis_bg_verify.py`, `results/prngx/bg_oeis_verify.txt`; it reproduces the sweep's scores exactly) shows no English: the real best (A255575, offset 5, x14,
 'EHTSUGTHOFIANDILENT...') and the null best ('NMEGHISATBLIPLTR...') are equally unreadable at about +6 per rune, which is what the skip / coin beam makes of a random sequence over 25.5 million seeds and
-55 windows (random sequences at the same settings score -430 +- 100). The OEIS lane is closed as noise; the control of the lane is `work/prngx/oeis_bg_control.py` (planted primes found at rank 1).
+55 windows (random sequences at the same settings score -430 +- 100). The OEIS lane is closed as noise; the control of the lane is `work/prngx/oeis_bg_control.py` (planted primes found at rank 1). **Correction (2026-10-17, 23:30, `phase10_deepseek_round3.md`):** a true key scores +7.3 per rune on Cicada's text, so a 36-rune window passes the +300 gate in only about 29% of cases; the lane's negative is weak to partial, not closed.
 
 ## KDF lane (CPU, 13:52-14:05; negative)
 

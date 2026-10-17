@@ -115,12 +115,12 @@ Hours below are rough figures for a 16-thread desktop CPU. The 15 W laptop these
 
 - **prng-step** (IoC of 240 decoded classes; random 1.0): the null tail is the exact multinomial tail, heavier than chi-square (P(IoC >= 1.37) = 4e-11 and P(IoC >= 1.45) = 3e-13 per setting; work/tmp/ioc_tail.py), so a random maximum over 6 x 10^11 settings is about 1.42 and the sweep records every setting >= 1.45; a true seed scores about 1.8. `step_verify.py` regenerates the keys of the best candidates with the Rust engine and decodes the section beyond the window: a true seed keeps about 1.8, a chance maximum falls to 1.0.
 
-- **prng-bg** (sum of 10 ln-odds of the bigram table over 120 decoded runes; a true key near +1200, a wrong one far below zero): candidates are the settings >= +300; `bg.py verify` decodes the whole section with Rust key streams and compares the per-rune score with 8 random seeds (a true key keeps about +10 per rune, a wrong one about -10.5).
+- **prng-bg** (sum of 10 ln-odds of the bigram table over 120 decoded runes; a true key about +880 (+7.3 per rune measured on solved Cicada text; every 120-rune window passes +300), a wrong one far below zero): candidates are the settings >= +300; `bg.py verify` decodes the whole section with Rust key streams and compares the per-rune score with 8 random seeds (a true key keeps about +10 per rune, a wrong one about -10.5).
 
 - **prng-time** (the `bgsweep` score: 10 ln-odds summed over the first 120 decoded runes; a true key near +1000, random rows
   rarely reach 0, the best of 200,000 seeds on random ciphertext +59): rows >= +300 are candidates; `time_verify.py` checks the
   best 10 rows of every month over the whole section with keys rebuilt by independent code, against 8 random timestamps of
-  the same month. A candidate needs +2.0 per rune and 5 above every control (a true key keeps about +10).
+  the same month. A candidate needs +2.0 per rune and 5 above every control (a true key keeps about +7).
 
 - **layer2** (mode=bigram: 10 ln-odds per rune of the decoded letters under the English rune-bigram table, first 300 runes of each section; a true key about +7, random decodes about -15, the best of ~10^8 random decodes about -5): `work/layer2/verify.py` re-decodes the best hits over the whole window with a beam of 64 and decodes the same setting at 20 random offsets of the same stream. A candidate must reach +2.0 per rune over the whole window and beat that matched null by 5. Periodic-mode hits (column z-score) are first turned into a keyword (best English shift per column, both alphabets) and then judged by the same rule.
 

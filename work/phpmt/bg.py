@@ -5,7 +5,7 @@ Why: the dictionary score of phpmt counts dictionary words that sit exactly betw
 separators are independent of the plaintext words (its word lengths have no serial structure, results/analysis/wordlen_adjacency.txt, and with
 LP2's separators imposed on English plaintext a planted seed scores 0 against 33, work/log/phase9_boundaries.md), that score cannot see a true
 key. Here a decoded window is scored by the log-likelihood ratio of its plaintext under an English rune-bigram table; the skip / coin beam of
-decode_fast is kept and pruned at every rune. A true key scores about +10 per rune (a wrong one about -10.5 (measured on whole sections with random strings)), so 120 runes separate them by far.
+decode_fast is kept and pruned at every rune. A true key scores about +7.3 per rune on Cicada's solved text (results/analysis/true_key_score.txt; a wrong one about -10.5 (measured on whole sections with random strings)), so 120 runes separate them by far.
 
     python work/phpmt/bg.py sweep  <gen> <07|all> <lo> <hi> <out.tsv> [thr]
     python work/phpmt/bg.py verify <sweep.tsv> --gen <gen> [--top 10]     # whole-section decode of the best candidates (Rust key streams)
@@ -38,7 +38,7 @@ ROW = 128                        # runes per window row (BGROW in bgmt.cu)
 CCAP = 1 << 20
 TARGET_S = 0.3
 TOPK = 4000
-THR = 300                        # candidate floor (10 * ln-odds, 120 runes: a true key is near 1200)
+THR = 300                        # candidate floor (10 * ln-odds, 120 runes: a true key is near +880, measured)
 K = 160
 TABLE = HERE / "data" / "bigram.txt"
 KERNEL = HERE / "bgmt.cu"

@@ -49,7 +49,7 @@ def fit(obs, lengths, grid=np.arange(0, 0.301, 0.001)):
 
 def kscreen_coverage(item="primes-1 (totient)", off=1234):
     """Is an H8 ciphertext visible to the existing keystream screen? English windows enciphered with a library stream,
-    a null emitted at 82% of collisions (no key value spent), then screened with kscreen as is."""
+    a null emitted at 82% of collisions in place of the colliding attempt (whose key value is spent; the real rune uses the next one, so ciphertext and key indices stay aligned), then screened with kscreen as is."""
     import subprocess
     import tempfile
     ks = os.path.join(HERE, "kscreen")
