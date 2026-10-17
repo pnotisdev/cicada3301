@@ -1,0 +1,9 @@
+# <repo>\.venv\Scripts\python.exe <repo>\work\kscreen\gpu.py screen data/chain/segments_a13.txt rand:300:11 <repo>\results\kscreen\chain\null_a13.tsv
+# cwd <repo>\work\kscreen
+# device cuda
+kscreen: 300 items, 8 windows (n<=300), mults [1, 28], models [0, 1], 188332800 decodes, CUDA NVIDIA GeForce RTX 2080 Ti
+ 34.75% (65439232 decodes) 3237604 decodes/s, eta 38 s
+ 68.41% (128844752 decodes) 3194078 decodes/s, eta 19 s
+kscreen: 188332800 decodes (183733958 aborted early) in 59 s; best IoC 1.3359; wrote <repo>\results\kscreen\chain\null_a13.tsv
+
+# exit code 0, 62 s

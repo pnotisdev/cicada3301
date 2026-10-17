@@ -74,3 +74,17 @@ as seed of the four hash constructions x two mappings) have names containing \x0
 row was cut in two. It only bites when such a stream is among the top hits (here at IoC 1.311 in a7), so the earlier verifications were unaffected.
 `verify.py`, `tsvdiff.py` and `step28.py verify` now split on "\n" only. The a7 verification then runs (0 of 10 hits keep IoC >= 1.4). The chain campaign
 was restarted by hand (`run kscreen-chain --lane gpu`); the chained waiters for the later campaigns wait for the lane lock and their markers, so nothing was lost.
+
+## CPU lane results (rescreen, dsearch, payload; finished 06:35, all negative)
+
+- **rescreen** (dictionary screens with the corrected word segmentation): screen 1 best 0.155 is a random CONTROL stream; screen 2 has no non-control hit
+  above the control maximum; reverse direction: control max 0.167 over 893 keystreams; heading restarts: 893 keystreams, control max 0.975.
+- **dsearch** (key-free secret-alphabet search, m = 1..8 symbols of context, with and without the third-order term): LP2's best G sits inside the
+  four surrogates' range for all 16 settings (z from -2.4 to +2.3; the extremes are what 16 tests give by chance). Positive control (synthetic m = 5): true-D G 2726,
+  the search recovers 14 of 29 symbols up to an affine map.
+- **payload** (256 corrected bytes): 25 candidate seeds x sha512 / sha3_512 / blake2b: 0 matches; the decryption sweep's best guess
+  (AES-192-ecb with a passphrase from the book, printable fraction 0.48, first byte reads as an old-format PGP packet tag) is the kind of coincidence
+  that hundreds of passphrase/cipher tries produce and not a decryption.
+- **kscreen-chain** (a = 1..28, 8 sections, library / order-2 recurrences / cubic polynomials): largest IoC 1.415 (a = 17, library, section 0.11,
+  'sha256-ctr mod :INSTAR', multiplier 28); continued to the end of its window it falls to 1.073 over 1,894 runes (its own random offsets: mean 1.047, max 1.056). No other
+  verification passes. `kscreen-chain/a7-verify` had first failed on a control character in a stream name (see above).
