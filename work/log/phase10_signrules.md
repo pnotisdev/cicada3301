@@ -11,8 +11,10 @@ the transcription, c = p + s_w * k. An outside LLM (third-party text, not run) e
   word's own ciphertext numbers (G, R, first / last rune, their GP primes) depend on the sign being chosen; the plaintext word's numbers are not computable by a solver. Kept: 64 rules (parity 11, half splits mod 3 / 5 / 7 on 11 quantities and mod 29 on G and R of the previous word 35, comparisons with the
   previous word 10, previous-word first / last comparisons 2, length thresholds n >= 3, 4, 5 on the current and the previous word 6); 61 after dropping three duplicates of another rule's sign vector.
 - **Not built:** the second mechanism (pointer direction per word). It needs the pointer to run backward over key values before the start offset and a convention for where a backward word begins; a larger engine change, to be decided after this result.
-- **Partly covered already.** A rule that flips only a small share of the runes is visible to the unsigned screens (a plant with 25% of its runes flipped still decodes at IoC 1.61 without the signs). Flip shares of the 61 rules are in `work/kscreen/data/signs/rules.tsv`
-  (not tracked); the extremes: A_prev_pf and A_prev_pl 95-97% (nearly the global sign), C_cur_wp 1.4%, C_cur_ws 5.5%, E_cur_n3 7.6%, E_prev_n3 18.5%, E_cur_n4 24%. These are not independent tests.
+- **Partly covered already (corrected by the audit of `phase10_deepseek_round4.md`).** An earlier version of this note said a plant with 25% flipped runes still decodes at 1.61 unsigned; that was one window. Measured (`results/analysis/sign_checks.txt`): the unsigned screen finds a planted key in 2 of 3 windows at 13-18% flipped runes and in none from 33%.
+  Rules at or below about 20% flipped runes were therefore already tested by the earlier unsigned screens: C_cur_wp 1.4%, C_cur_ws 5.5%, E_cur_n3 7.6%, E_prev_n3 18.5%, and A_prev_pf / A_prev_pl (95-97% negative, i.e. 3-5% unflipped, nearly the global sign); E_cur_n4 (24%) is borderline. Flip shares of all rules: `work/kscreen/data/signs/rules.tsv` (not tracked).
+- **Pointer-direction mechanism: both orientations are needed** (audit A2): negating a direction rule is a reversed key stream, not the multiplier 28.
+- **Flat-IoC subset corrected** (audit A4): 5 excluded streams are flat under sign masks (`gematria primes cycle`, `An End hash nibbles`, `primes digit sum`, `payload bytes mod 29` and its reversal); all 61 rules over them: best IoC 1.293, `results/kscreen/signs_extra/`.
 
 ## Engine and controls
 

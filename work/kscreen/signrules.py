@@ -17,9 +17,11 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 WORK = os.path.dirname(HERE)
 sys.path.insert(0, WORK)
 import lp  # noqa: E402
+import keystreams  # noqa: E402
 import stats  # noqa: E402
 
 OUT = os.path.join(HERE, "data", "signs")
+N = 29
 
 
 def numbers(r):
@@ -127,6 +129,25 @@ def flat_library():
             nb = name.encode("utf-8")[:300]
             f.write(struct.pack("<H", len(nb)) + nb + struct.pack("<I", len(v)) + bytes(v.astype(np.uint8)))
     print(f"library_flat.ksb: {len(ks)} streams")
+    # the excluded streams that WOULD be flat under a sign mask flipping a share f of the runes independent of the key (marginal (1 - f) h(v) + f h(-v), f = 0.25, 0.5, 0.75; audit of 2026-10-18): screened separately
+    P = keystreams.english_distribution()
+    extra = {}
+    for name, v in read_ksb(os.path.join(HERE, "data", "library.ksb")):
+        if name in flat:
+            continue
+        v = np.frombuffer(bytes(v), dtype=np.uint8).astype(np.int64)
+        h = np.bincount(v[:4000] % N, minlength=N) / min(4000, len(v))
+        for fr in (0.25, 0.5, 0.75):
+            hm = (1 - fr) * h + fr * h[(-np.arange(N)) % N]
+            q = sum(hm[k] * np.roll(P, k) for k in range(N))
+            if N * (q ** 2).sum() <= 1.003:
+                extra[name] = v
+    with open(os.path.join(HERE, "data", "library_signed_extra.ksb"), "wb") as f:
+        f.write(b"KSB1" + struct.pack("<I", len(extra)))
+        for name, v in extra.items():
+            nb = name.encode("utf-8")[:300]
+            f.write(struct.pack("<H", len(nb)) + nb + struct.pack("<I", len(v)) + bytes(v.astype(np.uint8)))
+    print(f"library_signed_extra.ksb: {len(extra)} streams")
 
 
 def main():

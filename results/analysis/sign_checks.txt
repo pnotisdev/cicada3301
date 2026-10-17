@@ -1,0 +1,14 @@
+1. 858 library streams are excluded by the flat IoC (unsigned predicted IoC > 1.003); predicted IoC of the signed marginal (1 - f) h(v) + f h(-v):
+   f = 0.25: 2 of 858 would be flat (<= 1.003); lowest predicted IoC 1.0022 ('payload bytes reversed mod 29 (cycled)'), 5th lowest 1.0081
+   f = 0.5: 5 of 858 would be flat (<= 1.003); lowest predicted IoC 1.0013 ('An End hash nibbles'), 5th lowest 1.0022
+   f = 0.75: 2 of 858 would be flat (<= 1.003); lowest predicted IoC 1.0022 ('payload bytes reversed mod 29 (cycled)'), 5th lowest 1.0081
+
+2. UNSIGNED screen of a plant whose key sign is flipped on a random share of WORDS (3 windows of 400 runes, one library key, rule-free random signs):
+ flipped runes  unsigned IoC at truth  naive mixture       screen best (item at truth?)
+            0%                  1.856          1.780 3 of 3 windows: best hit = the planted item with IoC >= 1.40
+           13%                  1.512          1.584 2 of 3 windows: best hit = the planted item with IoC >= 1.40
+           18%                  1.528          1.518 2 of 3 windows: best hit = the planted item with IoC >= 1.40
+           33%                  1.232          1.355 0 of 3 windows: best hit = the planted item with IoC >= 1.40
+           40%                  1.253          1.280 0 of 3 windows: best hit = the planted item with IoC >= 1.40
+           52%                  1.197          1.180 0 of 3 windows: best hit = the planted item with IoC >= 1.40
+
