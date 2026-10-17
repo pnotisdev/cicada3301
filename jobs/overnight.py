@@ -232,6 +232,64 @@ def chain_summary(prefix="", avals=range(1, 29)):
     return out
 
 
+STEP28_SELFTEST = OVM / "step28_selftest.txt"
+STEP28_NULLS = 4
+
+
+def step28_steps():
+    """step-domain (relative-rank) chain screen: CUDA only, the CPU engine is a reference for the controls"""
+    if DEVICE != "cuda":
+        return []
+    S28 = [PY, str(KS / "step28.py")]
+    lib = RES / "kscreen" / "step28_library.tsv"
+    steps = [
+        Step("kscreen-step28/controls", S28 + ["selftest", "--engine", "cuda"], hours=0.02, outputs=[STEP28_SELFTEST],
+             always=True, device="cuda", stdout_to=STEP28_SELFTEST),
+        Step("kscreen-step28/library", S28 + ["screen", str(KS / "data" / "library.ksb"), str(lib)], hours=0.05, outputs=[lib],
+             device="cuda"),
+    ]
+    for r in range(STEP28_NULLS):
+        nul = RES / "kscreen" / f"step28_null{r}.tsv"
+        steps.append(Step(f"kscreen-step28/null{r}", S28 + ["screen", f"rand:655:{700 + r}", str(nul)], hours=0.05,
+                          outputs=[nul], device="cuda"))
+    ver = RES / "kscreen" / "step28_library_verify.txt"
+    steps.append(Step("kscreen-step28/verify", S28 + ["verify", str(lib), "--top", "8", "--out", str(ver)], hours=0.01, outputs=[ver]))
+    per = RES / "analysis" / "step_periodicity.txt"
+    steps.append(Step("kscreen-step28/periodicity", [PY, str(WORK / "step_periodicity.py")], hours=0.05, outputs=[per]))
+    return steps
+
+
+def step28_summary():
+    lib = RES / "kscreen" / "step28_library.tsv"
+    if not lib.exists():
+        return ["- not run yet (CUDA only)"]
+    pat = re.compile(r"# window (\S+) best ([\d.]+) variant=(\w) mode=(\w+) m=(\d+)")
+
+    def bests(p):
+        return {m.group(1): float(m.group(2)) for m in map(pat.match, p.read_text(encoding="utf-8").splitlines()) if m}
+
+    lb = bests(lib)
+    nulls = [bests(RES / "kscreen" / f"step28_null{r}.tsv") for r in range(STEP28_NULLS)
+             if (RES / "kscreen" / f"step28_null{r}.tsv").exists()]
+    out = [f"- controls: {last_line(STEP28_SELFTEST) or 'not run'}"]
+    top = max(lb.items(), key=lambda kv: kv[1])
+    out.append(f"- {len(lb)} windows of 300 steps, 1,447 library streams x every offset x variants A/B x modes drop/keep x 12 multipliers: "
+               f"best IoC {top[1]:.3f} ({top[0]})")
+    if nulls:
+        nmax = {w: max(n.get(w, 0) for n in nulls) for w in lb}
+        above = [w for w in lb if lb[w] > nmax[w] + 0.02 and lb[w] >= 1.30]
+        out.append(f"- matched null ({len(nulls)} replicates of random streams, same pair count): largest per-window best "
+                   f"{max(nmax.values()):.3f}; windows where the library beats every replicate by 0.02 and reaches 1.30: "
+                   + (", ".join(above) if above else "none"))
+    ver = last_line(RES / "kscreen" / "step28_library_verify.txt")
+    if ver:
+        out.append(f"- verification (best window continued to the end of its section): {ver}")
+    per = RES / "analysis" / "step_periodicity.txt"
+    if per.exists():
+        out.append(f"- periodic keys (scan of coincidences at lag 2..3000): {last_line(per) or ''}")
+    return out
+
+
 def selftest_ok():
     return SELFTEST.exists() and "SELFTEST PASSED" in SELFTEST.read_text(encoding="utf-8")
 
@@ -461,6 +519,17 @@ def campaigns(threads):
         "prng-more-all", "More seeded-PRNG pads with a fresh seed per section",
         gens_why + "A fresh seed per section: all 8 windows at once.",
         prng_more_steps(T, ("all",)), lambda: prng_more_summary(("all",))))
+
+    C.append(Campaign(
+        "kscreen-step28", "Relative-rank chain cipher: the plaintext enters the STEP c_i - c_{i-1}, keyed mod 28",
+        "The doublet fingerprint is also what a cipher gives whose ciphertext step is never zero (research note C1, "
+        "work/log/research_2026-10-17.md): D_i = 1 + (q_i + m*K_j) mod 28 (variant A) or 2^(q_i + m*log K_j) (variant B), with "
+        "the rare zero step as a 'ditto' that consumes a key value or not. In the c domain the plaintext is a random walk and "
+        "every earlier screen was blind to it; in the step domain the decoder is a plain subtraction with no beam. "
+        "work/kscreen/step28.py counts the class histogram at every (stream, offset) for the 1,447-stream library and every "
+        "unit multiplier of Z28, with planted-key recovery (both variants and modes), CPU/CUDA agreement and matched nulls; "
+        "work/step_periodicity.py scans periodic keys (lags to 3,000).",
+        step28_steps(), step28_summary))
     return C
 
 
