@@ -75,7 +75,7 @@ not run (the negative says nothing about the effect size LP2 shows).
 
 doublet deficit (0.63% against 3.45%, ignores text structure; 81% enforcement); within-word lag-5 echo (z +3.7, carried by rune S, calibrated P 0.007; with the laptop's page-seam fix z +3.75); the lag-6
 relation c' = 24 - 2c inside words (z +5.0, P 0.005-0.013 after the look-elsewhere, split-half replicates); word lengths with no serial structure and an English-like histogram ('+1 rune in 42% of
-multi-rune words', p 0.085); flat IoC; the repeated 6-gram DJU-BEI (chance: P(>= 1) = 0.16). The lag-5 and lag-6 effects are strictly word-internal (across word boundaries +0.8 and +1.1 hits where a position-independent echo would give +160 and +320; `results/analysis/echo_position.txt`) and flat over the position in the word: a mechanism must know where words begin and end.
+multi-rune words', p 0.085); flat IoC; the repeated 6-gram DJU-BEI (chance: P(>= 1) = 0.16). The lag-5 and lag-6 effects are strictly word-internal (across word boundaries +0.8 and +1.1 hits where a position-independent echo would give +160 and +320; `results/analysis/echo_position.txt`) and flat over the position in the word: a mechanism must know where words begin and end. A per-word period-5 twist skeleton (key state T^(j mod 5), T(x) = 24 - 2x) reproduces both effects but predicts equal excesses at lags 3, 4, 7, 8 that LP2 lacks (lags 3 and 4 about -6 sd together; `results/analysis/skeleton5.txt`), so a periodic per-word key is excluded.
 
 ## 6. What is left, ranked by whether a test with power exists
 
