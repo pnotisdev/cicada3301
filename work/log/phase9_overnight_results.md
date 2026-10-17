@@ -79,7 +79,7 @@ was restarted by hand (`run kscreen-chain --lane gpu`); the chained waiters for 
 
 - **rescreen** (dictionary screens with the corrected word segmentation): screen 1 best 0.155 is a random CONTROL stream; screen 2 has no non-control hit
   above the control maximum; reverse direction: control max 0.167 over 893 keystreams; heading restarts: 893 keystreams, control max 0.975.
-- **dsearch** (key-free secret-alphabet search, m = 1..8 symbols of context, with and without the third-order term): LP2's best G sits inside the
+- **dsearch** (per-word additive key behind any secret outer alphabet, m = 1-8, gaps {1,2} and {1,2,3}): LP2's best G sits inside the
   four surrogates' range for all 16 settings (z from -2.4 to +2.3; the extremes are what 16 tests give by chance). Positive control (synthetic m = 5): true-D G 2726,
   the search recovers 14 of 29 symbols up to an affine map.
 - **payload** (256 corrected bytes): 25 candidate seeds x sha512 / sha3_512 / blake2b: 0 matches; the decryption sweep's best guess
