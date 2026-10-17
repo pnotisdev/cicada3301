@@ -60,12 +60,14 @@ additive key the difference of two ciphertexts is the difference of two plaintex
 gives FIND 2 1 26 2, YOU 3 8 21, ARE 8 5 13; the block sums 89 / 115 / 230 (= 434) and 491 after CANNOT; the five 4 x 4 matrices (S0 115/17/61/46/32/83 ... S4 192/41/72/62/51/141);
 the repeated values 32, 41, 51, 54, 201; exactly five word-aligned 16-rune spans. Every number quoted in the PDFs is reproduced, so the arithmetic is exact.
 
-**What the fit to the word structure really is.** All 32 inner crib word boundaries are cipher separators, but 4 cipher separators fall INSIDE crib words (FOREVER 1+6, THINK 3+1, WORD 2+2,
-ANSWER 5+1). If separators are plaintext word boundaries, the crib contradicts them at four places; if not, the 'fit to the preserved word structure' is not a fit to it (my
-`phase9_boundaries.md` evidence says LP2's separators carry no English serial structure). Either way a fluent phrase fitting a length pattern is not rare: the most fluent English
-sentence with the crib's exact 33 rune lengths (word-bigram model from the Gutenberg texts, Viterbi) scores -3.30 per word; 60 random permutations of those lengths give -3.30 +- 0.08, 58 of 60
-windows of 33 consecutive LP2 cipher words at random places give -3.41 +- 0.14, the real location -3.39. The crib phrase itself scores -6.85 (the optimum is a Bible-style
-collocation salad, not a meaningful sentence), so the control shows only that fits exist for every pattern, not that the crib is bad.
+**CORRECTION (2026-10-17, 17:00): the fit to the word structure is EXACT.** This section first said that 4 cipher separators fall inside crib words (FOREVER 1+6, THINK 3+1, WORD 2+2, ANSWER 5+1) and that the crib
+therefore contradicts the separators at four places. That was my error: `crib_matrix_check.py` cut words at every line break by its own rule, but a bare line break is a wrap inside a word in this project
+(`lp.word_spans`, since 2026-10-16). The four 'separators' were line wraps. With the project's segmentation (the scripts now call `lp.word_spans`) NO cipher separator falls inside a crib word, and all 32 inner crib word
+boundaries are cipher separators: **the crib's 33 word lengths equal LP2's cipher words exactly**, so the crib was fitted to the true word division. (The laptop's `research/new-hypotheses` found the same independently when
+it reran the check after its page-seam fix.) What the exact fit is worth is limited by the next control: the most fluent English sentence with the crib's 33 rune lengths (word-bigram model from the Gutenberg texts, Viterbi)
+scores -3.30 per word; 60 random permutations of those lengths give -3.30 +- 0.08, 56 of 60 windows of 33 consecutive LP2 cipher words at random places give -3.44 +- 0.13, the real location -3.30 (+1.0 sd). The crib phrase
+itself scores -6.85 (the optimum is a Bible-style collocation salad, not a meaningful sentence), so a fluent fit exists for every length pattern: an exact length fit is what any search over phrases produces, not evidence by
+itself. (An earlier version of this paragraph, built on the wrong count, said the fit was partial; the Fibonacci, matrix and exact-lookup results below do not depend on it.)
 
 **The Fibonacci claim is selection.** The first 14 body keys (FIND YOU ARE and the start of NECESSARILY) are all Fibonacci residues mod 29 (10 of 29 residues; 3.4e-7 by chance), but for exactly the same
 criterion the FIND slot admits 20 dictionary spellings (CIND, COOL, CORD, DOOR, FIND, FOOD, FOOL, FORD, FOUL, FOUR ...), the YOU slot 28, the ARE slot 39, and the NECESSARILY slot (8 of 11
@@ -83,7 +85,7 @@ Plaintext = ciphertext at 6 positions (K = 0) against 4.9 expected.
 primes at offset 5 x 3 + 11 are found. Heading key (13 values) and five stretches of the body key (up to 37 differences): 0 places. This excludes OEIS (with a shift and a multiplier, no skips)
 as the keystream if the crib is right; it does not test the crib.
 
-**Reading.** The crib is a selected phrase: the Fibonacci evidence is explained by the freedom of word choice, the matrix repeats are a 5% event at best, the fit to the word structure is
+**Reading.** The crib is a selected phrase: the Fibonacci evidence is explained by the freedom of word choice, the matrix repeats are a 5% event at best, the (exact) fit to the word structure is
 available for any pattern, and the one place where the crib could be tested independently, a key rule that predicts the next words, is missing (the authors say so: "the ordered
 key values are still obtained only after an English candidate is tested"). The heading itself, DIVINITY WITHIN, is a better-motivated guess (the last page says to find the divinity within; the
 heading has exactly the 8 + 5 rune lengths; a post-hoc candidate; an 8-then-5 word-length pair opens 0.33% of adjacent word pairs in LP2, so the length match alone is worth about 1 in 300 per candidate phrase tried), but its key [21 27 17 22 26 9 11 3 8 16 16 11 25] has no structure I can find.

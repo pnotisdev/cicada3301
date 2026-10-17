@@ -63,13 +63,8 @@ def pieces(keys):
 
 def main():
     toks = stats.SEGS[7]
-    cw, cur = [], []
-    for t in toks:
-        if isinstance(t, int):
-            cur.append(t)
-        elif t in (" ", ".", "\n", "&", "%") and cur:
-            cw.append(cur); cur = []
     c = np.array(lp.runes_of(toks))
+    cw = [c[a:b].tolist() for _, a, b in lp.word_spans(toks, c)]          # the project's words: a bare line break is a wrap inside a word, not a boundary
     heading = c[:13]
     body = c[13:13 + 141]
     say(f"section 0.7: {len(cw)} cipher words; first words of {[len(w) for w in cw[:2]]} runes = the 13-rune heading, then {[len(w) for w in cw[2:40]]}")
