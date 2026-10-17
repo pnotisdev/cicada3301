@@ -67,3 +67,16 @@ there was nothing to verify (`results/prng/time_gpu/<gen>_<month>_verify.txt`). 
 not swept beyond the 2014-01-04/06 demo; 20 months (2012-01 .. 2013-08) are left: about 3.9 hours for py3 and java together at these speeds (py3 2.4 h, java 1.5 h; an earlier version of this note said 2.4 h for both) (`python work/phpmt/time_gpu.py run <gen> --hours H` resumes, skipping finished months).
 This rules out these months for these two generators on section 0.7 only.
 
+## Second slice (2026-10-17, 20:27-20:50, on the user's go for about 25 minutes): 2013-08 and 2013-07
+
+`time_gpu.py run py3 --hours 0.25` then `run java --hours 0.17`, the gate `test_bgmt64` (8 of 8) having passed on the merged tree an hour earlier, nothing else on the GPU (a CPU job, the layer2 A1 screen, ran beside it).
+
+| generator | month | seeds | time | speed | candidates at +300 |
+|---|---|---|---|---|---|
+| py3 | 2013-08 | 2,678,400,000 | 446 s | 6.0 M/s | 0 |
+| py3 | 2013-07 | 2,678,400,000 | 414 s | 6.5 M/s | 0 |
+| java | 2013-08 | 2,678,400,000 | 295 s | 9.1 M/s | 0 |
+| java | 2013-07 | 2,678,400,000 | 267 s | 10.1 M/s | 0 |
+
+10.7 billion seeds in 1,422 s of GPU time. No row reached the +300 floor, so there was nothing to verify (`results/prng/time_gpu/<gen>_<month>_verify.txt`). With the first slice, py3 and java are swept for 2013-07 .. 2014-01 (seven
+months, section 0.7 only); 18 months (2012-01 .. 2013-06) remain: about 3.4 h for py3 and java (py3 2.0 h, java 1.4 h). Nothing in LP2 is solved.
