@@ -56,3 +56,11 @@ Read as data on the desktop at about 14:30. None of the branch's code was run (n
 
 **Most valuable next step from the branch: the 64-bit CUDA port of the boundary-free sweep (`phpmt.cu` / `bgmt.cu`), spec in `work/log/phase10_prng_time.md` (about 4.6 h per generator for the full 2012-2014 window once
 ported, against 210 CPU hours).** The generator gates it asks for (keys equal to `prngx keys` for the vector seeds, planted seeds recovered, random ciphertext without candidates) are the project's usual ones.
+
+## Update after the final push of the `kscreen-typo` results (f096a8c, 2026-10-17 19:40)
+
+Added lines scanned for the host name, the user name and absolute paths: clean except one comment line in `typo_summary.txt` and its log that names the interpreter by a home-relative (tilde) path. Results read as data and re-tested with my
+shared-key test (`work/log/phase10_keyless_power.md`, 1b): negative; the summary's 'CANDIDATE - inspect' line is an artefact of the verify rule. `work/log/typo_restarts_2026-10-17.md` still carries PENDING placeholders.
+**Still not merged.** A trial merge with main conflicts in four files that I changed after the branch point (`work/crib_fluency_null.py`, `work/crib_matrix_check.py` and their two `results/analysis/*.txt`: the word-span correction),
+and four files that the desktop's second session still has uncommitted overlap the branch (`PLAN.md`, `docs/CAMPAIGNS.md`, `docs/SESSION_LOG.md`, `jobs/overnight.py`). Merge after that session's work is committed; resolve the crib files by taking
+main's `lp.word_spans` version and re-running them, and keep both bullets in `PLAN.md`.

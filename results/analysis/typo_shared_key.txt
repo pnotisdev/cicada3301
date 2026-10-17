@@ -1,5 +1,6 @@
-Shared-key test on the five list items of 0.14 (work/typo_shared_key.py), PRELIMINARY: the per-item top-2,000 lists are those of the laptop's `kscreen-typo` campaign as pushed in commits f7b8998 and 46843a2 of research/new-hypotheses while the campaign was still running (library lists for items 1-5, null lists for items 1-3 only). A key that restarts at every item with the same library keystream and offset would put that setting in each item's list (power: results/analysis/typo_shared_key_power.txt, 6 of 6 plants in at least 3 of 5 lists).
-library lists: items [1, 2, 3, 4, 5]; null lists: items [1, 2, 3]
+Shared-key test on the five list items of 0.14 (work/typo_shared_key.py), FINAL: the per-item top-2,000 lists (library and random null, items 1-5) are those of the laptop's `kscreen-typo` campaign as pushed in commit f096a8c of research/new-hypotheses (the earlier version of this file used the checkpoint f7b8998 / 46843a2 with null items 1-3). A key that restarts at every item with the same library keystream and offset would put that setting in each item's list (power: results/analysis/typo_shared_key_power.txt, 6 of 6 plants in at least 3 of 5 lists; the laptop's own pooled test, with a counter offset as well, plants 3 of 3 and finds nothing in LP2).
+
+library lists: items [1, 2, 3, 4, 5]; null lists: items [1, 2, 3, 4, 5]
 
 library, all items (5 lists of 2000 settings out of 52,616,620 screened):
    settings in at least 2 lists: 0   (chance expectation 0.76)
@@ -7,10 +8,15 @@ library, all items (5 lists of 2000 settings out of 52,616,620 screened):
    settings in at least 4 lists: 0   (chance expectation 5.5e-10)
    settings in at least 5 lists: 0   (chance expectation 4.2e-15)
 
-library, items that also have a null (3 lists of 2000 settings out of 52,616,620 screened):
-   settings in at least 2 lists: 0   (chance expectation 0.23)
-   settings in at least 3 lists: 0   (chance expectation 2.9e-06)
+library, items that also have a null (5 lists of 2000 settings out of 52,616,620 screened):
+   settings in at least 2 lists: 0   (chance expectation 0.76)
+   settings in at least 3 lists: 0   (chance expectation 2.9e-05)
+   settings in at least 4 lists: 0   (chance expectation 5.5e-10)
+   settings in at least 5 lists: 0   (chance expectation 4.2e-15)
 
-null (3 lists of 2000 settings out of 114,429,280 screened):
-   settings in at least 2 lists: 0   (chance expectation 0.1)
-   settings in at least 3 lists: 0   (chance expectation 6.1e-07)
+null (5 lists of 2000 settings out of 114,429,280 screened):
+   settings in at least 2 lists: 1   (chance expectation 0.35)
+   settings in at least 3 lists: 0   (chance expectation 6.1e-06)
+   settings in at least 4 lists: 0   (chance expectation 5.3e-11)
+   settings in at least 5 lists: 0   (chance expectation 1.9e-16)
+   example recurring settings: 'RANDOM 201' offset 9355 x1 model 1 in 2 lists

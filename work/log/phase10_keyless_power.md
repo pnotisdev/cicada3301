@@ -8,14 +8,34 @@ main-branch data with the rule "measure the detection threshold with a planted c
 Hypothesis (cicadanotebook.com): the key restarts at typographic marks. 22 windows: the five numbered-list items of 0.14 (91-139 runes), the whole list, five three-dot marks, ten places after red headings;
 the 1,447-keystream library at every offset against a matched null of 1,439 random keystreams. As pushed: windows of 250-300 runes (15): library best IoC 1.285-1.359 against null maxima 1.29-1.43, far below the 1.40
 rule, and planted keys clear their null in 45 of 45 of these windows (a strong negative); windows under 150 runes (7): every library best is at or below its window's null maximum, but planted keys are recovered in only 13 of
-21 cases and clear their null in 9 of 21 (a weak negative). Solved sections: the true keys run straight through their three-dot marks (restart or skip at the mark: 61-209 of 66-209 runes wrong). Not yet in the push: the null of
-items 4-5, the pooled test (one keystream restarted at every item), the summary; the write-up still says PENDING.
+21 cases and clear their null in 9 of 21 (a weak negative). Solved sections: the true keys run straight through their three-dot marks (restart or skip at the mark: 61-209 of 66-209 runes wrong). The final push (f096a8c, 19:26) added the null of items 4-5,
+the pooled test and the summary; its write-up `typo_restarts_2026-10-17.md` still says PENDING_CONTROLS / PENDING_RESULTS. Final numbers in 1b.
 
-**Shared-key test on the five item lists** (`work/typo_shared_key.py`, `results/analysis/typo_shared_key.txt`, PRELIMINARY): a restart with the same library keystream and offset would put that setting in each item's top-2,000 list.
-Observed: 0 settings in two or more of the five lists (chance 0.76 for two, 3e-5 for three); the random null (items 1-3) also 0. **Power** (`work/typo_shared_key_power.py`, `results/analysis/typo_shared_key_power.txt`): a library
+**Shared-key test on the five item lists** (`work/typo_shared_key.py`, `results/analysis/typo_shared_key.txt`): a restart with the same library keystream and offset would put that setting in each item's top-2,000 list.
+Observed: 0 settings in two or more of the five lists (chance 0.76 for two, 3e-5 for three); the random null (items 1-5): one setting in two lists, none in three (chance 0.35 and 6e-6). **Power** (`work/typo_shared_key_power.py`, `results/analysis/typo_shared_key_power.txt`): a library
 key planted at the same offset into English twins of the five items is in the top 2,000 of at least 3 of the 5 lists in 6 of 6 plants (ranks 1-8 for the 139-rune item, 18-41 for the 91-rune item, 399-735 for the
 98-rune item, 3-8 and 1-2 for the others; one plant missing from one list), and the test then reports settings in 3 lists. So the test can see a shared key, and its zero is a genuine negative for library keystreams. (My first
 power attempt was wrong: kscreen's `plant` mode shifts the offset by 997 per window, so a lookup of one offset in all items could not match; each item is now planted separately.)
+
+## 1b. The laptop's final results (f096a8c), read as data on 2026-10-17 19:40
+
+- **Pooled test (the laptop's own, same idea as mine with a counter offset added):** one library keystream restarted at every list item, offset equal in all items (d = 0) or offset + k for item k (d = 1): library 0 settings in 3 or more
+  of the 5 lists (d = 0: 0 in two lists; d = 1: 1 in two lists, 'e digits' at offset 7953), random null 0 in 3 or more. Planted controls 3 of 3 pass (true key above the cut-off of 4, 5 and 5 of 5 lists). With my own run on the
+  final lists (0 in two or more lists, power 6 of 6) this is a negative for a library key shared by the five items; it does not test a key that is not in the library.
+- **Matched null per window (`typo_summary.txt`):** the library beats its matched null (best of 1,439 random keystreams) in 5 of 22 windows, all of 282-300 runes, by 0.003-0.037 IoC (best library value 1.359, rule 1.40, planted keys
+  1.6-2.0 in these windows); in all 7 windows of 81-139 runes the library best is at or below the null best (for example 2.023 against 2.121 for the 81 runes after the red heading of 0.13). Two windows tie (1.879, 1.718).
+  Planted controls: 44 of 45 recovered and 45 of 45 above the null at 250-300 runes; 13 of 21 and 9 of 21 below 150 runes (the three keys planted into the 81-rune window are not above its null in any case).
+- **The summary's last line, 'verification: 14 of 15 re-decoded hits keep IoC >= 1.4 ... (CANDIDATE - inspect)', is an artefact of the verify rule, not a candidate.** All 15 hits are in windows of 81-96 runes (the 14 that pass the rule and one it labels noise), whose
+  random null reaches 2.09-2.22 (every hit sits at 1.9-2.02, below its window's null best); the rule compares a hit with the SAME keystream at 20 random offsets (max 1.2-1.37) and not with the best of the 29 million
+  settings screened, so any short-window maximum passes it. The decodes are letter soup built from repeated AE / TH / ING pairs (the beam picks high-frequency pairs), no word, and none was verified over a whole section
+  (the CLAUDE.md rule). I did not run the rule on the null's hits. Suggested rule for the laptop: a hit must exceed the window's matched null best, then be verified over the whole section.
+- **Not interpreted:** at the common cut-off (IoC 1.7185) the lists hold 1,090 library rows and 2,000 null rows, 1.2 times the null's rate per setting screened (1.12e9 against 2.48e9 settings), carried by the 81-rune window (896
+  against 1,507 rows, 1.3 times); the other short windows give 0.8-1.2 times. A single true key adds one row, not hundreds, so this is a composition difference between the library's streams and uniform random streams; no test was made.
+- **Known answers (`typo_known.txt`):** the published keys of 0.5 and 0.16 run straight through their three-dot marks (restart or skip at the mark: 28-209 of 33-209 runes wrong), so the mark itself is not a restart in the solved sections.
+- **Privacy:** the added lines of f096a8c are clean except one comment line in the header of `typo_summary.txt` and its log that names the interpreter by a home-relative (tilde) path, no user name; to scrub at merge.
+
+Conclusion for the hypothesis 'the key restarts at typographic marks': excluded for library keystreams in windows of 250-300 runes (three-dot marks, text after headings, the whole list) with the controls above, and for a
+library key shared by the five short list items; NOT excluded for a single short window (81-139 runes), which no test here can rank.
 
 ## 2. A general fixed map between runes at a fixed distance (`work/families/perm_relations.py`, `results/analysis/perm_relations.txt`)
 
