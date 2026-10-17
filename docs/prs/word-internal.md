@@ -60,12 +60,12 @@ reproduce the committed result files byte for byte (`word_key_dictionary.py` 12 
 --reps 20000` 53 s). Findings:
 - **The lag-5 clustering replicates with code that does not use the branch's counters** (`work/lag5_check.py`,
   `results/analysis/lag5_check.txt`): inside words, 9 repeated bigrams at lag 5 against 1.51 expected. Three nulls:
-  analytic Poisson (3.0e-5), a permutation null that shuffles the runes inside each section (10,000 shuffles: 1 in
-  10,001 reaches 9 at lag 5; after the look-elsewhere over lags 2-8, P < 1.1e-4, the limit of the resolution), and a
+  analytic Poisson (3.0e-5), a permutation null that shuffles the runes inside each section (10,000 shuffles: none
+  reaches 9 at lag 5; after the look-elsewhere over lags 2-8, P < 1.1e-4, the limit of the resolution), and a
   null that conditions on the observed coincidences: of the 66 lag-5 coincidences whose next position is still inside
   the word, 9 (13.6%) are followed by another coincidence, against 3.5% by chance (binomial P = 4.4e-4; if the
-  baseline is the observed lag-5 rate 4.9% instead, P is about 4e-3). So the excess is in the clustering, not only in
-  the higher coincidence rate. The bigger the conditioning, the weaker: the honest summary is P of 1e-4 to 4e-3
+  baseline is the observed lag-5 rate 4.9% instead, P = 4.8e-3). So the excess is in the clustering, not only in
+  the higher coincidence rate. The more is conditioned on, the weaker it gets: the honest summary is P of 1e-4 to 5e-3
   depending on the null, before the look-elsewhere over how the data were sliced. One signal, small numbers (9 events).
 - **Where it sits** (`lag5_position.txt`, `lag_by_length.txt`, `lag5_len10_words.txt`, exploratory slicing, so read the
   p-values as descriptive): the lag-5 coincidence rate rises mildly with the start position j (4.3% at j=0 to 6.7% at
@@ -79,7 +79,7 @@ reproduce the committed result files byte for byte (`word_key_dictionary.py` 12 
   word" screen for most words; the planted rate falls from 70-100% to 50-70% with only 5% pointer jumps. The
   histogram argument (a period-5 key aligned in more than about 25% of the pairs makes the lag-5 differences
   non-flat, which LP2's are not) is the stronger exclusion and I checked its scaling: chi2/df about 17.5 at 15,000
-  pairs for a fully aligned key scales to roughly 2.3 at LP2's 2,073 pairs, and to 1.5 at 49% alignment, against 0.96
+  pairs for a fully aligned key scales to roughly 3.3 at LP2's 2,073 pairs, and to 1.55 at 49% alignment, against 0.96
   +- 0.27 observed.
 - **Mixed evidence on alignment.** The coincidence rate says about half of the lag-5 pairs behave like English
   (4.9% between chance 3.5% and English 6.4%); the bigram ratio says all of them (6.0 against English 6.1). These are
