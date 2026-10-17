@@ -433,6 +433,13 @@ engine `work/layer2` (output `results/layer2/`).
 - **First slices negative:** An End's prime streams (p, p-1, p+1) x DIVINITY / FIRFUMFERENFE / CIRCUMFERENCE, every option and
   offset, 8 sections: 512 M decodes, best -4.53 per rune; 0 of 15 hits survive whole-window verification. Periodic mode, 20 Cicada
   streams x any keyword of period 2-14 (no literal F): 111 M decodes, 0 of the 100 best survive keyword estimation + re-decoding.
+- **prng-time (`work/log/phase10_prng_time.md`):** generators seeded with a millisecond timestamp of 2012-2014, outside the 32-bit
+  sweeps: Java `new Random(currentTimeMillis())` (48-bit seed) and CPython / Ruby integer seeds above 2^32 (two-word `init_by_array`;
+  `prngx pymt` now seeds like CPython for any integer). Vectors from CPython and the Java specification 119/119, engine keys equal
+  independent keys, planted timestamp seeds at rank 1 (+988 against a random-ciphertext best of +59), whole-section check
+  (`time_verify.py`). Campaign `prng-time`: one sweep per UTC month, newest first; about 210 h on a CPU, so the full window wants the
+  CUDA kernels extended to 64-bit seeds (spec in the log). Demo on LP2, the weekend of 2014-01-04/05 (172.8 M timestamps per
+  generator): best screen +59 for both, no row near +300, 0 candidates after the whole-section check. Negative.
 - **Queued:** campaign `layer2` for the desktop (115 streams x the solved keys, 20 streams x 30 keywords, periodic mode,
   folded-key variant; about 13 h on 16 threads). Proposed next: time-seeded Java / Python generators (millisecond seeds of
   2012-2014 are outside the 32-bit sweeps), crib-filtered sweeps ("AN INSTRUCTION" fits 0.8's heading under letter spelling),

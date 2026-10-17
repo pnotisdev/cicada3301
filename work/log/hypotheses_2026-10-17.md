@@ -141,9 +141,9 @@ the 115 core number streams x the three solved keys; 20 Cicada streams x 30 Cica
 
 1. **The `layer2` campaign** on the desktop (above).
 2. **Time-seeded generators.** All 32-bit seeds are swept, but Java's `Random` takes a 48-bit seed and Python's
-   `random.seed(int)` any integer. A program run in 2012-2014 that seeded with a millisecond timestamp
-   (1.3254e12 .. 1.3889e12, about 6.4 x 10^10 seeds) is not covered. On the desktop GPU the existing kernels take 165 s
-   (Java) and 425 s (Python) per 2^32 seeds, so about 40 min and 1.8 h. Controls as in `prng-more`.
+   `random.seed(int)` any integer. A program run in 2012-2014 that seeded with a millisecond timestamp is not covered.
+   **Built the same day:** campaign `prng-time`, `work/log/phase10_prng_time.md` (engine change, independent vectors,
+   planted-seed controls, whole-section check; the full 6.6e10-seed window per generator is GPU work).
 3. **Crib-filtered seed sweeps.** With letter-by-letter spelling (the TH finding of `wordlen-languages`) the red heading
    of 0.8, word lengths (2, 11, 3), fits "AN INSTRUCTION" (the title of solved section 0.6), and 0.13's (3, 12, 4) fits
    "THE INSTRUCTIONS". A crib turns a sweep into a filter: generate the first 13-16 key values of each seed and compare

@@ -2,7 +2,9 @@
 //!
 //! Generators (a seed -> a stream of raw 32-bit values -> key values 0..28 by one of several "maps"):
 //!   mt     std MT19937, init_genrand(seed): C++ std::mt19937, PHP >= 7.1 mt_srand, numpy RandomState(seed)
-//!   pymt   MT19937, init_by_array([seed]): Python random.seed(int), Ruby Random.new(int)
+//!   pymt   MT19937, init_by_array(32-bit words of |seed|): Python random.seed(int), Ruby Random.new(int); one word
+//!          below 2^32, two words above (e.g. a millisecond timestamp, see the prng-time campaign)
+//!   (java takes the full 48-bit seed of java.util.Random(long), so millisecond timestamps need no change there)
 //!   msvc   Microsoft C rand(): s = s * 214013 + 2531011; (s >> 16) & 0x7fff
 //!   java   java.util.Random(seed): 48-bit LCG; raw = next(32)
 //!   rand48 drand48 family (Perl srand/rand, C srand48): 48-bit LCG, seed << 16 | 0x330E; raw = X >> 16
@@ -14,6 +16,7 @@
 //!
 //! Modes (same arguments as phpmt, generator first):
 //!   vectors <vectors.txt>
+//!   keys <gen> <seed> <map> <count>                                         (one seed's key values)
 //!   plant <gen> <plain.txt> <seed> <map> <model> <sign> <atb> <keep> <out.txt>
 //!   sweep <gen> <windows.txt> <dict.txt> <lo> <hi> <out.tsv> [threads]     (lo, hi: i64, hi exclusive)
 //!   verify <gen> <windows.txt> <dict.txt> <seed> <window> <map> <model> <sign> <atb>

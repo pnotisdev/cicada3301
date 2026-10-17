@@ -195,6 +195,50 @@ def l2_summary():
     return out
 
 
+PX = WORK / "prngx"
+PT_OUT = RES / "prngx" / "time"
+
+
+def prng_time_steps(T):
+    """one step per (month, generator), newest month first, Java and Python alternating (work/prngx/time_campaign.py)"""
+    sys.path.insert(0, str(PX))
+    import time_campaign
+    steps = [Step("prng-time/build", ["cargo", "build", "--release", "--manifest-path", str(PX / "Cargo.toml")], always=True, hours=0.02),
+             Step("prng-time/vectors", [str(PX / "target" / "release" / f"prngx{EXE}"), "vectors", "ref/vectors.txt"], cwd=PX, hours=0.01,
+                  outputs=[OVM / "prng_time_vectors.txt"], stdout_to=OVM / "prng_time_vectors.txt",
+                  done_check=lambda: " 0 mismatch" in (last_line(OVM / "prng_time_vectors.txt") or "")),
+             # gate: planted timestamp seeds recovered, random ciphertext without candidates, the whole-section check works
+             Step("prng-time/gate", [PY, "-m", "unittest", "discover", "-s", "work/tests", "-p", "test_prngx_time.py"], hours=0.02,
+                  outputs=[OVM / "prng_time_gate.txt"], stderr_to=OVM / "prng_time_gate.txt",
+                  done_check=lambda: (last_line(OVM / "prng_time_gate.txt") or "").startswith("OK"))]
+    for lab, lo, hi in time_campaign.months():
+        for gen, rate in (("java", 12_000), ("pymt", 10_000)):      # seeds/s per thread on the CPU (laptop measurement)
+            tsv, _, ver = time_campaign.paths(gen, lab)
+            steps.append(Step(f"prng-time/{gen}-{lab}", [PY, str(PX / "time_campaign.py"), "run", gen, lab, "--threads", str(T)],
+                              hours=(hi - lo) / (rate * 16) / 3600, outputs=[Path(tsv), Path(ver)]))
+    return steps
+
+
+def prng_time_summary():
+    import glob
+    out = [f"- generator vectors (Java 48-bit and CPython two-word seeds): {last_line(OVM / 'prng_time_vectors.txt') or 'not run'}"]
+    for gen in ("java", "pymt"):
+        vers = sorted(v for v in glob.glob(str(PT_OUT / f"{gen}_*_verify.txt")) if re.search(r"_\d{4}-\d{2}_verify\.txt$", v))
+        cands = [Path(v).name for v in vers if "CANDIDATE" in open(v, encoding="utf-8").read()]
+        best = None
+        for v in vers:
+            tsv = v.replace("_verify.txt", ".tsv")
+            if os.path.exists(tsv):
+                with open(tsv, encoding="utf-8") as f:
+                    f.readline()
+                    first = f.readline().split("\t")
+                if first and first[0].strip().lstrip("-").isdigit():
+                    best = max(best or -10 ** 9, int(first[0]))
+        out.append(f"- {gen}: {len(vers)} of 25 months done; best screen score {best if best is not None else '-'} (a true key ~ +1000, candidates "
+                   f">= +300); candidates after the whole-section check: {', '.join(cands) if cands else 'none'}")
+    return out
+
+
 def ks_best(tsv_name):
     p = RES / "kscreen" / tsv_name
     if not p.exists():
@@ -738,6 +782,17 @@ def campaigns(threads):
             l2_verify("layer2", "verify-combined", "bigram_combined.tsv"),
         ],
         l2_summary))
+
+    C.append(Campaign(
+        "prng-time", "Generators seeded with a millisecond timestamp of 2012-2014 (Java 48-bit, Python / Ruby two-word seeds)",
+        "The 32-bit sweeps cover every time(NULL) seed but not new Random(System.currentTimeMillis()) (Java's seed is 48-bit) or "
+        "random.seed(int(time.time() * 1000)) (CPython / Ruby seed MT19937 with two 32-bit words above 2^32). work/prngx/time_campaign.py sweeps "
+        "each UTC month of 2012-01 .. 2014-01, newest first, on section 0.7 with the boundary-free bigram score (Java maps nextInt / nextDouble / "
+        "abs(nextInt) %; Python maps randrange, Ruby rand(n), random()), then checks the best rows over the whole section against random timestamps "
+        "(work/prngx/time_verify.py). Gates: tests/test_prngx_time.py (vectors from CPython and the Java specification, planted timestamp seeds at "
+        "rank 1, random ciphertext without candidates). About 6.6e10 seeds per generator: ~200 h on a 16-thread CPU, so the full window wants the "
+        "GPU kernels extended to 64-bit seeds (work/log/phase10_prng_time.md); run the newest months on the CPU with --hours.",
+        prng_time_steps(T), prng_time_summary))
     return C
 
 
