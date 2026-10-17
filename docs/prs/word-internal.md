@@ -34,10 +34,35 @@ word), arithmetic progression, quadratic (any coefficients, new ones for every w
 - So the distance-5 echo is **not** a per-word period-5 key, and the same holds for constant, linear, quadratic or
   periodic keys of period <= 7, for English plaintext in the dictionary. (An unknown outer alphabet D is the
   `walk dsearch` case; this test assumes the standard rune alphabet.)
+- **Per-word linear recurrences** (`work/word_recurrence.py`, results `word_recurrence_d2.txt`, `_d3.txt`): the same
+  consistency test for a key that follows a recurrence k_{j+d} = a_1 k_{j+d-1} + ... + a_d k_j with the same
+  coefficients for the whole book and a *fresh initial state for every word* (a Fibonacci/Lucas/Tribonacci/LCG-type key
+  re-seeded at each word). All 812 order-2 and all 23,548 order-3 coefficient sets are scanned. LP2's best operator
+  has 5 consistent words (order 2) and 6 (order 3), the random surrogate's best has 4 and 6. Planted keys with the
+  anti-repeat skip rule are recovered with their true operator at rank 1 (656-672/840 and 553-577/720 words
+  consistent against a runner-up of 4-25). This family is not covered by the kscreen recurrence campaign, which runs
+  one key stream through a whole section.
 - Simulations in section E of the repeats results: a per-word random key of period 5 reproduces the bigram clustering
   but predicts a lag-5 difference histogram that LP2 does not have; an independent "copy rune j-5" process does not
   reproduce the clustering. A period-5 key with pointer jumps of 10-20% matches the coincidence rates at lags 4-5, but
   the dictionary test above excludes it directly.
+
+## Relation to prior work (third-party data, read after the fact)
+After running the above I found that the cicada-solvers/aldegonde `hypotheses/` notes (`lag5-digraph-structure.md`,
+`within-word-key-sharing.md`, `lag5-back-reference.md`, `line-initial-bias.md`) already contain the same observations:
+paired lag-5 matches at separations 1 and 4 (29 and 28 against 17.7 expected over the whole stream; our whole-stream
+lag-5 bigram-repeat count is the same 29 vs 15.3), a disproof of an *additive* per-word 5-periodic key from the flat
+nonzero lag-5 differences, and the line-initial glyph-width artefact. They also note that an *equality-only*
+mechanism survives: positions five apart in a word enciphered with the same *mixed (non-additive)* alphabet, so that
+equal plaintext letters give equal ciphertext runes and unequal ones scramble. What this PR adds to that picture:
+- the localisation inside words (9 vs 1.5 with the bigram windows inside one word, 20 vs 13.9 elsewhere; Monte Carlo
+  P < 5e-5), with an English yardstick: the bigram-repeat ratio at lag 5 is 6.0 in LP2 and 6.1 for English written in
+  runes. That is what an equality-only, *plaintext-driven* mechanism predicts; an independent copy process gives
+  1.9-3.7 at the same coincidence rate (section E), so copy events are disfavoured;
+- a direct dictionary test with planted controls that excludes per-word *algebraic* key families (constant, linear,
+  quadratic, periodic <= 7, order-2/3 recurrences) for English plaintext, which complements their histogram argument;
+- consequence for the equality-only family: a per-word cycle of arbitrary alphabets leaves almost nothing for a
+  dictionary to test (only p_j = p_{j+5} versus c_j = c_{j+5}), which is why no existing screen can see it.
 
 ## What this means
 A real, small, word-internal repetition at distance five that no simple per-word key explains. It constrains models:

@@ -14,6 +14,7 @@ sys.path.insert(0, os.path.dirname(HERE))
 import lag5_check as l5  # noqa: E402
 import word_internal_repeats as wir  # noqa: E402
 import word_key_dictionary as wkd  # noqa: E402
+import word_recurrence as wrec  # noqa: E402
 
 N = 29
 
@@ -111,6 +112,34 @@ class DictionaryAlgebra(unittest.TestCase):
         t = wkd.table(wkd.encipher(seqs, "per", 5, rng), "poly", 0)
         for L, (n, hits, e) in t.items():
             self.assertLessEqual(hits, n * e + 4 * (n * e) ** 0.5 + 2, L)
+
+
+class WordRecurrence(unittest.TestCase):
+    """per-word linear recurrence keys (fresh state per word, global coefficients): the operator Delta annihilates the key"""
+
+    def test_delta_annihilates_a_recurrence_key(self):
+        rng = random.Random(6)
+        for a in ((7, 19), (3, 5, 11)):
+            d = len(a)
+            for _ in range(20):
+                k = [rng.randrange(N) for _ in range(d)]
+                while len(k) < 14:
+                    k.append(sum(a[i] * k[-1 - i] for i in range(d)) % N)
+                self.assertTrue((wrec.delta(np.array([k]), a) == 0).all(), a)
+
+    def test_planted_operator_found_and_random_words_not(self):
+        rng = random.Random(4)
+        a = (7, 19)
+        seqs = wkd.sample_dictionary(rng, per_len=40, lo=6, hi=10)
+        words = wrec.encipher(seqs, a, rng)
+        ops = [a] + [(rng.randrange(N), rng.randrange(1, N)) for _ in range(60)]
+        ops, hits, eligible = wrec.scan(words, 2, ops)
+        self.assertEqual(int(hits.argmax()), 0)
+        self.assertGreater(hits[0], 0.6 * eligible)
+        self.assertLessEqual(sorted(hits)[-2], 0.1 * eligible)
+        sur = wkd.surrogate([len(s) for s in seqs], rng)
+        _, sh, se = wrec.scan(sur, 2, ops)
+        self.assertLessEqual(int(sh.max()), 0.05 * se + 3)
 
 
 class ChainNull(unittest.TestCase):
