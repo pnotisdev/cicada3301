@@ -102,3 +102,18 @@ was restarted by hand (`run kscreen-chain --lane gpu`); the chained waiters for 
 | ruby | 421 s | 20 | 0.067 (z -1.3) |
 
 A true key scores about 0.8. The rest of the GPU queue (kscreen-reverse, prng-more-all, kscreen-step28, prng-step) is still running.
+
+## Backward-key campaign `kscreen-reverse` (a = 0..25 of 0..28 done when the GPU was handed back at 10:00; negative)
+
+Library / order-2 recurrences / cubic polynomials on the sections read from the end, a = 0 (ordinary cipher, backward key) and a = 1..25 (with ciphertext
+feedback): largest library IoC 1.387 (a = 8), none reaches the 1.40 rule, and all 26 whole-window verifications report 0 of 10 hits kept. a = 26 (partial), 27 and 28
+are still to run (`python jobs/overnight.py run kscreen-reverse --lane gpu` resumes at a26).
+
+## GPU hand-over at 10:00 (user request)
+
+All project GPU jobs were stopped at 10:00 by a watchdog; no lane lock or GPU process remains. To resume, in this order of value:
+1. `python jobs/overnight.py run kscreen-reverse --lane gpu` (3 more values of a, ~15 min);
+2. `python jobs/overnight.py run prng-bg --lane gpu` (the boundary-free sweeps of every section with a fresh seed per section; ~2 h per generator when the GPU is free;
+   window 0.7 is done for all ten generators);
+3. `python jobs/overnight.py run prng-step --lane gpu` (step-domain seed sweeps, about 25 h) and `prng-more-all` (dictionary scored, see phase9_boundaries.md: low priority);
+4. the CPU lane's `kscreen-hashwords` finishes by itself (about 10:20).
