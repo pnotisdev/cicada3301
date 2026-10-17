@@ -2,7 +2,9 @@
 //!
 //! Generators (a seed -> a stream of raw 32-bit values -> key values 0..28 by one of several "maps"):
 //!   mt     std MT19937, init_genrand(seed): C++ std::mt19937, PHP >= 7.1 mt_srand, numpy RandomState(seed)
-//!   pymt   MT19937, init_by_array([seed]): Python random.seed(int), Ruby Random.new(int)
+//!   pymt   MT19937, init_by_array(32-bit words of |seed|): Python random.seed(int) (Ruby Random.new(int) by its docs, unverified); one word
+//!          below 2^32, two words above (e.g. a millisecond timestamp, see the prng-time campaign)
+//!   (java takes the full 48-bit seed of java.util.Random(long), so millisecond timestamps need no change there)
 //!   msvc   Microsoft C rand(): s = s * 214013 + 2531011; (s >> 16) & 0x7fff
 //!   java   java.util.Random(seed): 48-bit LCG; raw = next(32)
 //!   rand48 drand48 family (Perl srand/rand, C srand48): 48-bit LCG, seed << 16 | 0x330E; raw = X >> 16
@@ -14,6 +16,7 @@
 //!
 //! Modes (same arguments as phpmt, generator first):
 //!   vectors <vectors.txt>
+//!   keys <gen> <seed> <map> <count>                                         (one seed's key values)
 //!   plant <gen> <plain.txt> <seed> <map> <model> <sign> <atb> <keep> <out.txt>
 //!   sweep <gen> <windows.txt> <dict.txt> <lo> <hi> <out.tsv> [threads]     (lo, hi: i64, hi exclusive)
 //!   verify <gen> <windows.txt> <dict.txt> <seed> <window> <map> <model> <sign> <atb>
@@ -143,7 +146,14 @@ fn raw_n(g: Gen, seed: i64, count: usize) -> Vec<u32> {
             if g == Gen::Mt {
                 init_genrand(seed as u32, &mut s);
             } else {
-                init_by_array(&[seed as u32], &mut s);
+                // CPython random.seed(n) (Ruby's documented Random.new(n) for n >= 2^32 too, unverified): the 32-bit words of |n|, least
+                // significant first; one word below 2^32 (all earlier sweeps), two up to 2^64 (millisecond timestamps)
+                let n = seed.unsigned_abs();
+                if n >> 32 == 0 {
+                    init_by_array(&[n as u32], &mut s);
+                } else {
+                    init_by_array(&[n as u32, (n >> 32) as u32], &mut s);
+                }
             }
             while v.len() < count {
                 twist(&mut s);
@@ -794,6 +804,20 @@ fn variant_parts(v: u8) -> (u8, u8, i32, bool) {
     (sub >> 2 & 1, v >> 3, if (sub >> 1) & 1 == 0 { 1 } else { -1 }, sub & 1 == 1)
 }
 
+/// PRNGX_MAPS=a,b,..: sweep / bgsweep only these key maps (default: every map of the generator). The prng-time campaign
+/// uses it to keep the maps a language that seeds with two 32-bit words can produce (pymt: 2 randrange, 5 random(), and 3, Ruby's
+/// documented rand(n), not checked against a Ruby).
+fn sweep_maps(g: Gen) -> Vec<u8> {
+    match env::var("PRNGX_MAPS") {
+        Ok(s) if !s.trim().is_empty() => {
+            let v: Vec<u8> = s.split(',').map(|x| x.trim().parse().expect("PRNGX_MAPS: comma-separated map numbers")).collect();
+            assert!(v.iter().all(|&m| m < n_maps(g)), "PRNGX_MAPS: map out of range for this generator");
+            v
+        }
+        _ => (0..n_maps(g)).collect(),
+    }
+}
+
 fn mode_sweep(args_all: &[String]) {
     let g = parse_gen(&args_all[0]);
     let args = &args_all[1..];
@@ -812,10 +836,11 @@ fn mode_sweep(args_all: &[String]) {
     const TOPK: usize = 400;
     let total = (hi - lo) as u64;
     let nm = n_maps(g);
+    let maps = Arc::new(sweep_maps(g));
     let t0 = Instant::now();
     let mut hs = Vec::new();
     for _ in 0..threads {
-        let (wins, dict, next, done, top) = (wins.clone(), dict.clone(), next.clone(), done.clone(), top.clone());
+        let (wins, dict, next, done, top, maps) = (wins.clone(), dict.clone(), next.clone(), done.clone(), top.clone(), maps.clone());
         hs.push(std::thread::spawn(move || {
             let mut local: Vec<Cand> = Vec::new();
             let mut floor: u16 = 0;
@@ -829,11 +854,11 @@ fn mode_sweep(args_all: &[String]) {
                 for off in a..b {
                     let seed = lo + off as i64;
                     let raw = raw_n(g, seed, RK);
-                    for m in 0..nm {
+                    for &m in maps.iter() {
                         keys_from(g, &raw, m, &mut keys[m as usize], K);
                     }
                     for (wi, w) in wins.iter().enumerate() {
-                        for v in 0..(nm * 8) {
+                        for v in maps.iter().flat_map(|&m| (0..8u8).map(move |sub| m * 8 + sub)) {
                             let (model, map, sign, atb) = variant_parts(v);
                             let s = decode_fast(w, &keys[map as usize], sign, atb, model, &dict);
                             if s > floor || (local.len() < TOPK && s > 0) {
@@ -930,11 +955,13 @@ fn mode_bgsweep(args_all: &[String]) {
     const TOPK: usize = 400;
     let total = (hi - lo) as u64;
     let nm = n_maps(g);
+    let maps = Arc::new(sweep_maps(g));
     let t0 = Instant::now();
     let hist: Arc<Mutex<[u64; 64]>> = Arc::new(Mutex::new([0u64; 64]));
     let mut hs = Vec::new();
     for _ in 0..threads {
-        let (wins, tbl, next, done, top, hist) = (wins.clone(), tbl.clone(), next.clone(), done.clone(), top.clone(), hist.clone());
+        let (wins, tbl, next, done, top, hist, maps) =
+            (wins.clone(), tbl.clone(), next.clone(), done.clone(), top.clone(), hist.clone(), maps.clone());
         hs.push(std::thread::spawn(move || {
             let mut local: Vec<BgCand> = Vec::new();
             let mut floor: i32 = -1000;
@@ -949,11 +976,11 @@ fn mode_bgsweep(args_all: &[String]) {
                 for off in a..b {
                     let seed = lo + off as i64;
                     let raw = raw_n(g, seed, RK);
-                    for m in 0..nm {
+                    for &m in maps.iter() {
                         keys_from(g, &raw, m, &mut keys[m as usize], K);
                     }
                     for (wi, w) in wins.iter().enumerate() {
-                        for v in 0..(nm * 8) {
+                        for v in maps.iter().flat_map(|&m| (0..8u8).map(move |sub| m * 8 + sub)) {
                             let (model, map, sign, atb) = variant_parts(v);
                             let s = decode_bg(&w.runes, w.prev, &keys[map as usize], sign, atb, model, &tbl);
                             lh[((s + 400) / 20).clamp(0, 63) as usize] += 1;
@@ -1020,15 +1047,28 @@ fn mode_bgscore(args_all: &[String]) {
     println!("{}", decode_bg(&wins[0].runes, wins[0].prev, &keys, sign, atb, model, &tbl));
 }
 
+/// keys <gen> <seed> <map> <count>: the first `count` key values of one seed (reference for a GPU port: docs/GPU_PORT.md)
+fn mode_keys(a: &[String]) {
+    let g = parse_gen(&a[0]);
+    let seed: i64 = a[1].parse().unwrap();
+    let map: u8 = a[2].parse().unwrap();
+    let count: usize = a[3].parse().unwrap();
+    let raw = raw_n(g, seed, count * 3 + 64);
+    let mut k = Vec::new();
+    keys_from(g, &raw, map, &mut k, count);
+    println!("{}", k.iter().map(|x| x.to_string()).collect::<Vec<_>>().join(" "));
+}
+
 fn main() {
     let args: Vec<String> = env::args().collect();
     match args.get(1).map(|s| s.as_str()) {
         Some("vectors") => mode_vectors(&args[2]),
+        Some("keys") => mode_keys(&args[2..]),
         Some("plant") => mode_plant(&args[2..]),
         Some("sweep") => mode_sweep(&args[2..]),
         Some("verify") => mode_verify(&args[2..]),
         Some("bgsweep") => mode_bgsweep(&args[2..]),
         Some("bgscore") => mode_bgscore(&args[2..]),
-        _ => eprintln!("usage: prngx vectors|plant|sweep|bgsweep|bgscore|verify ... (see the header of src/main.rs)"),
+        _ => eprintln!("usage: prngx vectors|keys|plant|sweep|bgsweep|bgscore|verify ... (see the header of src/main.rs)"),
     }
 }

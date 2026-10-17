@@ -159,21 +159,23 @@ def gematria_search():
     for i in stats.UNSOLVED:
         toks = S[i]
         word, line, page, clause = [], [], [], []
-        for t in toks + ["%"]:
+        # a bare line or page break is a wrap inside a word (lp.word_spans), so it ends lines and pages but not words or
+        # clauses; "$end" closes every unit at the end of the segment
+        for t in toks + ["$end"]:
             if isinstance(t, int):
                 v = lp.PRIME[t]
                 word.append(v); line.append(v); page.append(v); clause.append(v)
                 continue
-            if t in (" ", ".", "\n", "%", "&") or t.startswith("#"):
+            if t in (" ", ".", "&", "$end") or t.startswith("#"):
                 if word:
                     sums[("word", sum(word))] += 1; word = []
-            if t in (".", "%", "&"):
+            if t in (".", "&", "$end"):
                 if clause:
                     sums[("clause", sum(clause))] += 1; clause = []
-            if t in ("\n", "%", "&"):
+            if t in ("\n", "%", "&", "$end"):
                 if line:
                     sums[("line", sum(line))] += 1; line = []
-            if t == "%":
+            if t in ("%", "$end"):
                 if page:
                     sums[("page", sum(page))] += 1; page = []
     for kind in ("word", "clause", "line", "page"):

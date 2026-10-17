@@ -38,10 +38,11 @@ class Families(unittest.TestCase):
 
     def test_real_fingerprint_reproduces_the_project_counts(self):
         runes, start, sid = self.real
-        self.assertEqual((len(runes), int(start.sum())), (12956, 2928))
+        # words as lp.word_spans cuts them since 2026-10-17 (bare page breaks are wraps): 2,896 words, not 2,928
+        self.assertEqual((len(runes), int(start.sum())), (12956, 2896))
         fp = F.fingerprint(runes, start, sid)
-        self.assertAlmostEqual(fp["dbl_in"], 100 * 63 / 10028, places=3)            # within_word.txt: 63 doublets in 10,028 adjacent in-word pairs
-        self.assertAlmostEqual(fp["z5"], 3.65, delta=0.1)                           # 102 equal of 2,073 at lag 5 (z +3.7)
+        self.assertAlmostEqual(fp["dbl_in"], 100 * 63 / 10060, places=3)            # within_word.txt: 63 doublets in 10,060 adjacent in-word pairs
+        self.assertAlmostEqual(fp["z5"], 3.73, delta=0.1)                           # 104 equal of 2,105 at lag 5 (z +3.7)
         self.assertAlmostEqual(fp["ioc"], 1.0, delta=0.01)
 
     def test_each_simulator_leaves_its_mark(self):

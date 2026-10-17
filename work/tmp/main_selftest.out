@@ -1,0 +1,133 @@
+[05:06:57] [device] cpu: CUDA not used (the CUDA ports or the CPU engines are missing); the CPU engines run unchanged
+[05:06:57] [overnight] laptop-wt lane main: 2 campaigns, 7 steps to run (~0.3 h by the rough estimates), 6 threads, device cpu
+
+== setup: Build engines and data
+[05:06:57] [1/7 setup/build-phpmt cpu] start (est. 0.02 h)
+[05:07:03] [1/7 setup/build-phpmt cpu]    Compiling phpmt v0.1.0 (<repo>\work\phpmt)
+[05:07:38] [1/7 setup/build-phpmt cpu]     Finished `release` profile [optimized] target(s) in 39.04s
+[05:07:40] [1/7 setup/build-phpmt cpu] ok in 42s
+[05:07:40] [2/7 setup/build-walk cpu] start (est. 0.02 h)
+[05:07:44] [2/7 setup/build-walk cpu]    Compiling walk v0.1.0 (<repo>\work\walk)
+[05:08:16] [2/7 setup/build-walk cpu]     Finished `release` profile [optimized] target(s) in 34.19s
+[05:08:17] [2/7 setup/build-walk cpu] ok in 36s
+[05:08:17] [3/7 setup/build-kscreen cpu] start (est. 0.02 h)
+[05:08:21] [3/7 setup/build-kscreen cpu]    Compiling kscreen v0.1.0 (<repo>\work\kscreen)
+[05:08:58] [3/7 setup/build-kscreen cpu]     Finished `release` profile [optimized] target(s) in 40.34s
+[05:08:59] [3/7 setup/build-kscreen cpu] ok in 41s
+[05:08:59] [4/7 setup/fetch-data cpu] start (est. 0.02 h)
+[05:09:07] [4/7 setup/fetch-data cpu] lp_master.txt          cached
+[05:09:07] [4/7 setup/fetch-data cpu] lp_keys.txt            cached
+[05:09:07] [4/7 setup/fetch-data cpu] lp_translation.txt     cached
+[05:09:07] [4/7 setup/fetch-data cpu] english_20k.txt        cached
+[05:09:07] [4/7 setup/fetch-data cpu] emerson_essays1.txt    cached
+[05:09:07] [4/7 setup/fetch-data cpu] lp_verified.txt        built (6 errata lines applied)
+[05:09:08] [4/7 setup/fetch-data cpu] ok in 8s
+[05:09:08] [overnight] done  setup/data-phpmt
+[05:09:08] [overnight] done  setup/data-walk
+[05:09:08] [5/7 setup/data-kscreen cpu] start (est. 0.10 h)
+[05:10:09] [5/7 setup/data-kscreen cpu] still running (1m00s), last output: (none yet)
+[05:11:09] [5/7 setup/data-kscreen cpu] still running (2m01s), last output: (none yet)
+[05:12:10] [5/7 setup/data-kscreen cpu] still running (3m01s), last output: (none yet)
+[05:13:10] [5/7 setup/data-kscreen cpu] still running (4m02s), last output: (none yet)
+[05:14:10] [5/7 setup/data-kscreen cpu] still running (5m02s), last output: (none yet)
+[05:15:11] [5/7 setup/data-kscreen cpu] still running (6m03s), last output: (none yet)
+[05:16:12] [5/7 setup/data-kscreen cpu] still running (7m04s), last output: (none yet)
+[05:17:13] [5/7 setup/data-kscreen cpu] still running (8m04s), last output: (none yet)
+[05:18:13] [5/7 setup/data-kscreen cpu] still running (9m05s), last output: (none yet)
+[05:19:14] [5/7 setup/data-kscreen cpu] still running (10m05s), last output: (none yet)
+[05:20:14] [5/7 setup/data-kscreen cpu] still running (11m06s), last output: (none yet)
+[05:21:16] [5/7 setup/data-kscreen cpu] still running (12m07s), last output: (none yet)
+[05:22:16] [5/7 setup/data-kscreen cpu] still running (13m07s), last output: (none yet)
+[05:23:17] [5/7 setup/data-kscreen cpu] still running (14m08s), last output: (none yet)
+[05:24:17] [5/7 setup/data-kscreen cpu] still running (15m09s), last output: (none yet)
+[05:25:18] [5/7 setup/data-kscreen cpu] still running (16m09s), last output: (none yet)
+[05:26:18] [5/7 setup/data-kscreen cpu] still running (17m10s), last output: (none yet)
+[05:27:18] [5/7 setup/data-kscreen cpu] still running (18m10s), last output: (none yet)
+[05:27:49] [5/7 setup/data-kscreen cpu] windows: 8 segments, 10 headings, 46 pages; library: 1447 keystreams (866 already excluded by LP2's flat IoC under English plaintext)
+[05:27:53] [5/7 setup/data-kscreen cpu] ok in 18m44s
+
+== selftest: Regression tests and keystream-screen controls
+[05:28:13] [6/7 selftest/unittests cpu] start (est. 0.10 h)
+[05:29:14] [6/7 selftest/unittests cpu] still running (1m01s), last output: (none yet)
+[05:30:14] [6/7 selftest/unittests cpu] still running (2m01s), last output: (none yet)
+[05:31:15] [6/7 selftest/unittests cpu] still running (3m02s), last output: (none yet)
+[05:32:16] [6/7 selftest/unittests cpu] still running (4m03s), last output: (none yet)
+[05:32:20] [6/7 selftest/unittests cpu] ......<repo>\work\kscreen\chain_selftest.py:35: ResourceWarning: unclosed file <_io.BufferedReader name='<repo>\\work\\kscreen\\data\\library.ksb'>
+[05:32:20] [6/7 selftest/unittests cpu]   b = open(path, "rb").read()
+[05:32:20] [6/7 selftest/unittests cpu] ResourceWarning: Enable tracemalloc to get the object allocation traceback
+[05:32:52] [6/7 selftest/unittests cpu] [05:32:52] [1/1 t/child cpu] kscreen: start
+[05:32:52] [6/7 selftest/unittests cpu] [05:32:52] [1/1 t/child cpu]  10.00%  10,000 decodes  5,000 decodes/s  eta 1m30s
+[05:32:52] [6/7 selftest/unittests cpu] [05:32:52] [1/1 t/child cpu] 100.00%  100,000 decodes  5,000 decodes/s  eta 0s
+[05:32:52] [6/7 selftest/unittests cpu] [05:32:52] [1/1 t/child cpu] swept 100000 in 1 s
+[05:32:52] [6/7 selftest/unittests cpu] [05:32:52] [1/1 t/child cpu] result line 1
+[05:32:52] [6/7 selftest/unittests cpu] [05:32:52] [1/1 t/child cpu] result line 2
+[05:33:53] [6/7 selftest/unittests cpu] still running (5m40s), last output: [05:32:52] [1/1 t/child cpu] result line 2
+[05:34:53] [6/7 selftest/unittests cpu] still running (6m40s), last output: [05:32:52] [1/1 t/child cpu] result line 2
+[05:35:54] [6/7 selftest/unittests cpu] still running (7m41s), last output: [05:32:52] [1/1 t/child cpu] result line 2
+[05:36:02] [6/7 selftest/unittests cpu] ..............................sss.<repo>\work\grid60.py:20: ResourceWarning: unclosed file <_io.TextIOWrapper name='<repo>\\work\\ref\\lp_verified.txt' mode='r' encoding='utf-8'>
+[05:36:02] [6/7 selftest/unittests cpu]   body = open(lp.MASTER, encoding="utf-8").read().split("\n\n", 1)[1].split("§")[0]
+[05:36:02] [6/7 selftest/unittests cpu] ResourceWarning: Enable tracemalloc to get the object allocation traceback
+[05:36:51] [6/7 selftest/unittests cpu] .....sss......<repo>\work\red_runs.py:22: ResourceWarning: unclosed file <_io.TextIOWrapper name='<repo>\\work\\ref\\lp_verified.txt' mode='r' encoding='utf-8'>
+[05:36:51] [6/7 selftest/unittests cpu]   body = open(lp.MASTER, encoding="utf-8").read().split("\n\n", 1)[1].split("§")[0]
+[05:36:51] [6/7 selftest/unittests cpu] ResourceWarning: Enable tracemalloc to get the object allocation traceback
+[05:36:54] [6/7 selftest/unittests cpu] <repo>\work\separator_audit.py:35: ResourceWarning: unclosed file <_io.TextIOWrapper name='<repo>\\work\\ref\\lp_master.txt' mode='r' encoding='utf-8'>
+[05:36:54] [6/7 selftest/unittests cpu]   body = open(lp.MASTER_ORIGINAL, encoding="utf-8").read().split("\n\n", 1)[1].split("§")[0]
+[05:36:54] [6/7 selftest/unittests cpu] ResourceWarning: Enable tracemalloc to get the object allocation traceback
+[05:37:55] [6/7 selftest/unittests cpu] still running (9m42s), last output: ResourceWarning: Enable tracemalloc to get the object allocation traceback
+[05:38:55] [6/7 selftest/unittests cpu] still running (10m42s), last output: ResourceWarning: Enable tracemalloc to get the object allocation traceback
+[05:39:55] [6/7 selftest/unittests cpu] still running (11m42s), last output: ResourceWarning: Enable tracemalloc to get the object allocation traceback
+[05:40:55] [6/7 selftest/unittests cpu] still running (12m42s), last output: ResourceWarning: Enable tracemalloc to get the object allocation traceback
+[05:41:56] [6/7 selftest/unittests cpu] still running (13m43s), last output: ResourceWarning: Enable tracemalloc to get the object allocation traceback
+[05:42:57] [6/7 selftest/unittests cpu] still running (14m44s), last output: ResourceWarning: Enable tracemalloc to get the object allocation traceback
+[05:43:58] [6/7 selftest/unittests cpu] still running (15m45s), last output: ResourceWarning: Enable tracemalloc to get the object allocation traceback
+[05:44:00] [6/7 selftest/unittests cpu] ....................s..ssss<repo>\work\tests\test_stepmt.py:146: ResourceWarning: unclosed file <_io.TextIOWrapper name='~\\AppData\\Local\\Temp\\tmp020ylcjf\\k.txt' mode='r' encoding='utf-8'>
+[05:44:00] [6/7 selftest/unittests cpu]   v = [int(x) for x in open(out).read().split()]
+[05:44:00] [6/7 selftest/unittests cpu] ResourceWarning: Enable tracemalloc to get the object allocation traceback
+[05:44:01] [6/7 selftest/unittests cpu] <repo>\work\tests\test_stepmt.py:146: ResourceWarning: unclosed file <_io.TextIOWrapper name='~\\AppData\\Local\\Temp\\tmptxnij1zq\\k.txt' mode='r' encoding='utf-8'>
+[05:44:01] [6/7 selftest/unittests cpu]   v = [int(x) for x in open(out).read().split()]
+[05:44:01] [6/7 selftest/unittests cpu] ResourceWarning: Enable tracemalloc to get the object allocation traceback
+[05:44:01] [6/7 selftest/unittests cpu] <repo>\work\tests\test_stepmt.py:146: ResourceWarning: unclosed file <_io.TextIOWrapper name='~\\AppData\\Local\\Temp\\tmpnvmc2zu9\\k.txt' mode='r' encoding='utf-8'>
+[05:44:01] [6/7 selftest/unittests cpu]   v = [int(x) for x in open(out).read().split()]
+[05:44:01] [6/7 selftest/unittests cpu] ResourceWarning: Enable tracemalloc to get the object allocation traceback
+[05:44:06] [6/7 selftest/unittests cpu] ............
+[05:44:06] [6/7 selftest/unittests cpu] ----------------------------------------------------------------------
+[05:44:06] [6/7 selftest/unittests cpu] Ran 93 tests in 727.901s
+[05:44:06] [6/7 selftest/unittests cpu] OK (skipped=11)
+[05:44:10] [6/7 selftest/unittests cpu] ok in 15m56s
+[05:44:10] [7/7 selftest/kscreen-controls cpu] start (est. 0.05 h)
+[05:45:11] [7/7 selftest/kscreen-controls cpu] still running (1m01s), last output: (none yet)
+[05:46:11] [7/7 selftest/kscreen-controls cpu] still running (2m01s), last output: (none yet)
+[05:47:11] [7/7 selftest/kscreen-controls cpu] still running (3m01s), last output: (none yet)
+[05:47:49] [7/7 selftest/kscreen-controls cpu] PASS  plant 'primes-1 (totient)' model=0 mult=1 subst=0 plant_0: best 1.783 at offset 1234 (truth 1234); re-decode at truth 1.831
+[05:47:49] [7/7 selftest/kscreen-controls cpu] PASS  plant 'primes-1 (totient)' model=0 mult=1 subst=0 plant_1: best 2.034 at offset 2231 (truth 2231); re-decode at truth 2.006
+[05:47:49] [7/7 selftest/kscreen-controls cpu] PASS  plant 'primes-1 (totient)' model=0 mult=1 subst=0 plant_2: best 1.613 at offset 3228 (truth 3228); re-decode at truth 1.761
+[05:47:49] [7/7 selftest/kscreen-controls cpu] PASS  plant 'pi digits (base 29)' model=1 mult=28 subst=1 plant_0: best 1.749 at offset 777 (truth 777); re-decode at truth 1.811
+[05:47:49] [7/7 selftest/kscreen-controls cpu] PASS  plant 'pi digits (base 29)' model=1 mult=28 subst=1 plant_1: best 2.045 at offset 1774 (truth 1774); re-decode at truth 1.994
+[05:47:49] [7/7 selftest/kscreen-controls cpu] PASS  plant 'pi digits (base 29)' model=1 mult=28 subst=1 plant_2: best 1.609 at offset 2771 (truth 2771); re-decode at truth 1.756
+[05:47:49] [7/7 selftest/kscreen-controls cpu] PASS  plant 'sha256-ctr reject :3301' model=0 mult=1 subst=1 plant_0: best 1.781 at offset 4321 (truth 4321); re-decode at truth 1.831
+[05:47:49] [7/7 selftest/kscreen-controls cpu] PASS  plant 'sha256-ctr reject :3301' model=0 mult=1 subst=1 plant_1: best 2.056 at offset 5318 (truth 5318); re-decode at truth 2.001
+[05:47:49] [7/7 selftest/kscreen-controls cpu] PASS  plant 'sha256-ctr reject :3301' model=0 mult=1 subst=1 plant_2: best 1.613 at offset 6315 (truth 6315); re-decode at truth 1.759
+[05:47:49] [7/7 selftest/kscreen-controls cpu] PASS  plant 'lin2:1,1' model=1 mult=1 subst=1 plant_0: best 1.749 at offset state=1,1 (truth state=1,1); re-decode at truth 1.803
+[05:47:49] [7/7 selftest/kscreen-controls cpu] PASS  plant 'lin2:1,1' model=1 mult=1 subst=1 plant_1: best 2.056 at offset state=13,6 (truth state=13,6); re-decode at truth 2.001
+[05:47:49] [7/7 selftest/kscreen-controls cpu] PASS  plant 'lin2:1,1' model=1 mult=1 subst=1 plant_2: best 1.609 at offset state=25,11 (truth state=25,11); re-decode at truth 1.756
+[05:47:49] [7/7 selftest/kscreen-controls cpu] PASS  plant 'poly2:3,5' model=0 mult=1 subst=0 plant_0: best 1.751 at offset 7 (truth 7); re-decode at truth 1.801
+[05:47:49] [7/7 selftest/kscreen-controls cpu] PASS  plant 'poly2:3,5' model=0 mult=1 subst=0 plant_1: best 2.054 at offset 18 (truth 18); re-decode at truth 1.996
+[05:47:49] [7/7 selftest/kscreen-controls cpu] PASS  plant 'poly2:3,5' model=0 mult=1 subst=0 plant_2: best 1.617 at offset 1 (truth 0); re-decode at truth 1.759
+[05:47:49] [7/7 selftest/kscreen-controls cpu] PASS  null: 30 random keystreams x every offset x 8 LP2 windows x 2 signs x 2 models: best IoC 1.306 (must stay below 1.4)
+[05:47:49] [7/7 selftest/kscreen-controls cpu] SELFTEST PASSED
+[05:47:49] [7/7 selftest/kscreen-controls cpu] ok in 3m39s
+
+[05:47:52] ===== summary: laptop-wt, 40m54s =====
+  ok     setup/build-phpmt                              cpu        42s
+  ok     setup/build-walk                               cpu        36s
+  ok     setup/build-kscreen                            cpu        41s
+  ok     setup/fetch-data                               cpu         8s
+  ok     setup/data-kscreen                             cpu     18m44s
+  ok     selftest/unittests                             cpu     15m56s
+  ok     selftest/kscreen-controls                      cpu      3m39s
+
+selftest: Regression tests and keystream-screen controls
+  - unit tests on laptop-wt: passed
+  - kscreen controls on laptop-wt: SELFTEST PASSED
+
+report: results/overnight/laptop-wt/REPORT.md

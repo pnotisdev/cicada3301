@@ -19,10 +19,13 @@ import lp  # noqa: E402
 class Deductions(unittest.TestCase):
     cw = crib.cipher_words()
 
-    def test_one_rune_words_use_all_runes(self):
+    def test_one_rune_words_use_nearly_all_runes(self):
         ones = Counter(w[0] for _, _, w in self.cw if len(w) == 1)
-        self.assertEqual(sum(ones.values()), 99)  # line-wrapped words rejoined (318 before the fix)
-        self.assertEqual(len(ones), 29)
+        # line- and page-wrapped words rejoined: 318 with every break as a boundary, 99 with page breaks still cutting
+        # words (until 2026-10-17), 83 now, the image-audited count of cicadanotebook.com; only C never stands alone
+        self.assertEqual(sum(ones.values()), 83)
+        self.assertEqual(len(ones), 28)
+        self.assertNotIn(lp.RUNE_IDX["ᚳ"], ones)
 
     def test_two_rune_words_look_freshly_keyed(self):
         twos = [w for _, _, w in self.cw if len(w) == 2]

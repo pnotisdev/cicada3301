@@ -40,6 +40,56 @@ def main():
     print("java", 42, "javaint", -1170105035, 234785527)
     print("java", 0, "javaint", -1155484576, -723955400)
     print("rand48", 1, 0, *[x % 29 for x in (89400484, 976015093)])
+    # seeds above 2^32 (prng-time campaign: millisecond timestamps of 2012-2014). Python: real CPython, whose
+    # random.seed(n) uses the 32-bit words of |n|, least significant first. Java: JavaRandom below, written from the
+    # java.util.Random specification (no JVM on the machine that made these; the small published seeds above agree).
+    for s in BIG_SEEDS:
+        r = random.Random(s)
+        print("pymt", s, "raw", *[r.getrandbits(32) for _ in range(N)])
+        r = random.Random(s)
+        print("pymt", s, 2, *[r.randrange(29) for _ in range(N)])
+        r = random.Random(s)
+        print("pymt", s, 5, *[int(r.random() * 29) for _ in range(N)])
+    for s in BIG_SEEDS + [42, 0]:
+        j = JavaRandom(s)
+        print("java", s, "javaint", *[j.next_int() for _ in range(N)])
+        j = JavaRandom(s)
+        print("java", s, 0, *[j.next_int(29) for _ in range(N)])
+        j = JavaRandom(s)
+        print("java", s, 1, *[int(j.next_double() * 29) for _ in range(N)])
+
+
+# 2^32 (first two-word Python seed), 2012-01-01, mid 2013, 2014-01-01 and 2014-01-07 (UTC, in ms), 2^40 + 12345,
+# a negative seed (Python uses |n|; Java sign-extends), the largest 48-bit Java seed
+BIG_SEEDS = [2 ** 32, 1325376000000, 1370000000000, 1388534400000, 1389052800000, 2 ** 40 + 12345, -1388534400000,
+             2 ** 48 - 1]
+
+
+class JavaRandom:
+    """java.util.Random from its specification: 48-bit LCG, next(bits) = (int)(seed >>> (48 - bits))."""
+    MASK = (1 << 48) - 1
+
+    def __init__(self, seed):
+        self.s = (seed ^ 0x5DEECE66D) & self.MASK
+
+    def next(self, bits):
+        self.s = (self.s * 0x5DEECE66D + 0xB) & self.MASK
+        r = self.s >> (48 - bits)
+        return r - (1 << 32) if r >= 1 << 31 else r      # the cast to a 32-bit int (only bits = 32 can be negative)
+
+    def next_int(self, bound=None):
+        if bound is None:
+            return self.next(32)
+        if bound & (bound - 1) == 0:
+            return (bound * self.next(31)) >> 31
+        while True:
+            bits = self.next(31)
+            val = bits % bound
+            if bits - val + (bound - 1) < 1 << 31:          # no int overflow: accept
+                return val
+
+    def next_double(self):
+        return ((self.next(26) << 27) + self.next(27)) * 2.0 ** -53
 
 
 if __name__ == "__main__":

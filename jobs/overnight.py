@@ -100,6 +100,9 @@ PH_GPU = WORK / "phpmt" / "gpu.py"
 SELFTEST_CUDA = OVM / "kscreen_selftest_cuda.txt"
 GPU_VALIDATION = OVM / "gpu_validation.txt"
 CHAIN_SELFTEST = OVM / "chain_selftest.txt"
+L2 = WORK / "layer2"
+L2_BIN = L2 / "target" / "release" / f"layer2{EXE}"
+L2_SELFTEST = OVM / "layer2_selftest.txt"
 DEVICE = "cpu"                   # the device campaigns are built for: "cuda" only after detect_device() validated it
 LANE = "main"                    # runner lane: lanes have their own lock, so a GPU lane and a CPU lane can run together
 # measured on the 2080 Ti against the 16-thread Ryzen 7 2700X (work/log/phase8_gpu.md); only scale the --hours estimates
@@ -156,6 +159,102 @@ def ks_verify(cid, name, tsv_name, top=15, hours=0.05):
     out = RES / "kscreen" / tsv_name.replace(".tsv", "_verify.txt")
     return Step(f"{cid}/{name}", [PY, str(KS / "verify.py"), str(tsv), "--top", str(top), "--out", str(out)],
                 hours=hours, outputs=[out])
+
+
+def l2_screen(cid, name, windows, family, out, threads, extra=(), hours=0.5):
+    tsv = RES / "layer2" / out
+    return Step(f"{cid}/{name}", [str(L2_BIN), "screen", windows, family, str(tsv), f"threads={threads}", *extra],
+                cwd=L2, hours=hours, outputs=[tsv])
+
+
+def l2_verify(cid, name, tsv_name, top=15, hours=0.1):
+    tsv = RES / "layer2" / tsv_name
+    out = RES / "layer2" / tsv_name.replace(".tsv", "_verify.txt")
+    return Step(f"{cid}/{name}", [PY, str(L2 / "verify.py"), str(tsv), "--top", str(top), "--out", str(out)],
+                cwd=L2, hours=hours, outputs=[out])
+
+
+def l2_summary():
+    out = [f"- controls: {last_line(L2_SELFTEST) or 'not run'}"]
+    for label, name, unit in (("null: 20 random streams x the solved keys (bigram)", "null_bigram_solved.tsv", "per rune"),
+                              ("core streams x the solved keys DIVINITY / FIRFUMFERENFE / CIRCUMFERENCE (bigram)", "bigram_solved.tsv", "per rune"),
+                              ("20 Cicada streams x 30 Cicada keywords (bigram)", "bigram_words.tsv", "per rune"),
+                              ("core streams x any keyword of period 2-14 (column z)", "periodic_core.tsv", "z"),
+                              ("variant A1: 20 streams with a solved key folded in, one pointer (bigram)", "bigram_combined.tsv", "per rune")):
+        p = RES / "layer2" / name
+        if not p.exists():
+            out.append(f"- {label}: not run yet")
+            continue
+        head = open(p, encoding="utf-8").readline()
+        m = re.search(r"runs=(\d+).*secs=(\d+)", head)
+        best = next((l.split()[2] for l in open(p, encoding="utf-8") if l.startswith("# best")), "?")
+        out.append(f"- {label}: best {best} {unit}" + (f" ({int(m.group(1)):,} decodes in {int(m.group(2)) / 60:.0f} min)" if m else ""))
+        v = last_line(RES / "layer2" / name.replace(".tsv", "_verify.txt"), r"re-decoded hits pass")
+        if v:
+            out.append(f"  - verification: {v}")
+    return out
+
+
+PX = WORK / "prngx"
+PT_OUT = RES / "prngx" / "time"                     # CPU engine (work/prngx/time_campaign.py)
+PT_GPU_OUT = RES / "prng" / "time_gpu"              # 64-bit CUDA port (work/phpmt/time_gpu.py, bg64.py)
+PT_GATE = OVM / "prng_time_gate.txt"
+PT_GPU_GATE = OVM / "prng_time_gpu_gate.txt"
+# (generator, seeds/s): GPU rates measured on the 2080 Ti (work/log/phase10_prng_time_gpu.md); CPU rates per thread on the laptop.
+# ruby: CPython's MT19937 with Ruby's documented seeding and rand(n) rule, NOT checked against a Ruby (none on either machine)
+PT_GPU_GENS = (("java", 10.8e6), ("py3", 6.4e6), ("java-abs", 10.8e6), ("ruby", 6.4e6))
+PT_CPU_GENS = (("java", 12_000), ("pymt", 10_000))
+
+
+def prng_time_steps(T):
+    """one step per (month, generator), newest month first. On a validated GPU (DEVICE cuda): the desktop's 64-bit port of the
+    boundary-free sweep, work/phpmt/time_gpu.py, behind its gate test_bgmt64 (about 9 h for the whole window and all four generators).
+    Otherwise the CPU engine, work/prngx/time_campaign.py, behind test_prngx_time (about 210 h: run the newest months with --hours).
+    Both gates go through work/tests/run_gate.py, which fails when a test is skipped (a missing build or table)."""
+    sys.path.insert(0, str(PX))
+    import time_campaign
+    if DEVICE == "cuda":
+        steps = [Step("prng-time/gpu-gate", [PY, "work/tests/run_gate.py", "work.tests.test_bgmt64"], hours=0.05, outputs=[PT_GPU_GATE],
+                      always=True, stdout_to=PT_GPU_GATE, device="cuda")]
+        for lab, lo, hi in time_campaign.months():
+            for gen, rate in PT_GPU_GENS:
+                log, ver = PT_GPU_OUT / f"{gen}_{lab}.log", PT_GPU_OUT / f"{gen}_{lab}_verify.txt"
+                steps.append(Step(f"prng-time/{gen}-{lab}", [PY, str(WORK / "phpmt" / "time_gpu.py"), "run", gen, "--only", lab],
+                                  hours=(hi - lo) / rate / 3600, outputs=[ver], device="cuda",
+                                  done_check=lambda log=log: log.exists() and "swept" in log.read_text(encoding="utf-8", errors="replace")))
+        return steps
+    steps = [Step("prng-time/build", ["cargo", "build", "--release", "--manifest-path", str(PX / "Cargo.toml")], always=True, hours=0.02),
+             Step("prng-time/vectors", [str(PX / "target" / "release" / f"prngx{EXE}"), "vectors", "ref/vectors.txt"], cwd=PX, hours=0.01,
+                  outputs=[OVM / "prng_time_vectors.txt"], stdout_to=OVM / "prng_time_vectors.txt",
+                  done_check=lambda: " 0 mismatch" in (last_line(OVM / "prng_time_vectors.txt") or "")),
+             # gate: independent vectors and keys, timestamp seeds planted with independent keys found at rank 1, random ciphertext
+             # without candidates, the whole-section check works; fails on a skipped test
+             Step("prng-time/gate", [PY, "work/tests/run_gate.py", "work.tests.test_prngx_time"], hours=0.02, outputs=[PT_GATE],
+                  always=True, stdout_to=PT_GATE)]
+    for lab, lo, hi in time_campaign.months():
+        for gen, rate in PT_CPU_GENS:
+            tsv, _, ver = time_campaign.paths(gen, lab)
+            steps.append(Step(f"prng-time/{gen}-{lab}", [PY, str(PX / "time_campaign.py"), "run", gen, lab, "--threads", str(T)],
+                              hours=(hi - lo) / (rate * 16) / 3600, outputs=[Path(tsv), Path(ver)]))
+    return steps
+
+
+def prng_time_summary():
+    import glob
+    out = [f"- gate on {MACHINE}: GPU {last_line(PT_GPU_GATE) or 'not run'}; CPU {last_line(PT_GATE) or 'not run'}",
+           f"- generator vectors (Java 48-bit and CPython two-word seeds): {last_line(OVM / 'prng_time_vectors.txt') or 'not run'}"]
+    month = re.compile(r"_\d{4}-\d{2}_verify\.txt$")
+    for where, folder, gens in (("GPU", PT_GPU_OUT, [g for g, _ in PT_GPU_GENS]), ("CPU", PT_OUT, [g for g, _ in PT_CPU_GENS])):
+        for gen in gens:
+            vers = sorted(v for v in glob.glob(str(folder / f"{gen}_*_verify.txt")) if month.search(v))
+            if not vers:
+                continue
+            cands = [Path(v).name for v in vers if "CANDIDATE" in open(v, encoding="utf-8").read()]
+            out.append(f"- {where} {gen}{' (Ruby rule unverified)' if gen == 'ruby' else ''}: {len(vers)} of 25 months done; candidates after the "
+                       f"whole-section check: {', '.join(cands) if cands else 'none'}")
+    if len(out) == 2:
+        out.append("- no month swept yet")
+    return out
 
 
 def ks_best(tsv_name):
@@ -476,6 +575,31 @@ def campaigns(threads):
                             ("library x 46 page restarts", "library_pages.tsv")], "null_pages.tsv",
                            ["library_heads_verify.txt", "library_pages_verify.txt"])))
 
+    C.append(Campaign(
+        "kscreen-typo", "Keystream library restarted at typographic marks",
+        "cicadanotebook.com proposed key restarts at the numbered list of 0.14 (items 1-5 and its 10-dot brackets), at the "
+        "three-dot marks and right after the red headings (work/log/typo_restarts_2026-10-17.md). 22 windows from "
+        "work/typo_restarts.py; the null has the library's size (1,439 random keystreams of 20,000), because windows under "
+        "250 runes are judged against their own maximum. Plants show the power per window length; the solved sections give "
+        "the known answer (their keys run through the marks); one keystream restarted at every list item is a separate "
+        "pooled test.",
+        [
+            Step("kscreen-typo/export", [PY, str(WORK / "typo_restarts.py"), "export"], hours=0.01,
+                 outputs=[KS / "data" / "typo.txt", KS / "data" / "typo_plain.txt"]),
+            ks_screen("kscreen-typo", "library", "data/typo.txt", "file:data/library.ksb", "library_typo.tsv", T, hours=1.0),
+            ks_screen("kscreen-typo", "null", "data/typo.txt", "rand:1439:17", "null_typo.tsv", T, hours=1.0),
+            ks_verify("kscreen-typo", "verify", "library_typo.tsv"),
+            Step("kscreen-typo/plants", [PY, str(WORK / "typo_restarts.py"), "plants"], hours=0.05,
+                 outputs=[RES / "kscreen" / "typo_plants.txt"]),
+            Step("kscreen-typo/known", [PY, str(WORK / "typo_restarts.py"), "known"], hours=0.01,
+                 outputs=[RES / "kscreen" / "typo_known.txt"]),
+            Step("kscreen-typo/pooled", [PY, str(WORK / "typo_restarts.py"), "pooled"], hours=0.1,
+                 outputs=[RES / "kscreen" / "typo_pooled.txt"]),
+            Step("kscreen-typo/summary", [PY, str(WORK / "typo_restarts.py"), "summary"], hours=0.01,
+                 outputs=[RES / "kscreen" / "typo_summary.txt"]),
+        ],
+        lambda: [f"- {line}" for line in (last_line(RES / "kscreen" / "typo_summary.txt", r"windows where") or "not run yet",)]))
+
     lin3_items = 28 * 29 * 29
     per = -(-lin3_items // LIN3_CHUNKS)
     lin3 = [ks_screen("kscreen-recurrences", f"lin3-{k:02d}", "data/segments.txt", "lin:3", f"lin3/chunk{k:02d}.tsv", T,
@@ -719,6 +843,54 @@ def campaigns(threads):
         "of coincidence of the decoded classes. Gates: keys equal the Rust engine for both alphabets, scores equal the numpy "
         "reference, planted seeds recovered for every generator, random ciphertext gives no candidate (work/tests/test_stepmt.py).",
         prng_step_steps(), prng_step_summary))
+
+    seg = "../kscreen/data/segments.txt"
+    C.append(Campaign(
+        "layer2", "Two layers from the solved pages: keyword Vigenere inside, number stream with the anti-repeat rule outside",
+        "Hypothesis H-LAYER (work/log/hypotheses_2026-10-17.md): q = p + K[phi mod m] with the literal-F rule of Welcome / Koan 2 "
+        "(or without), then c = q + S_j with the skip / coin anti-repeat models. The outer layer explains the doublet deficit and "
+        "the flat statistics, and it hides the inner literal F (LP2 has no F excess); kscreen decodes the outer stream but scores a "
+        "Vigenere text (IoC ~1.1-1.2), so it is blind. work/layer2 keeps a beam over the outer pointer and the inner phase and scores "
+        "the decoded letters with an English rune-bigram table (identity and Atbash alphabets): a true key ~ +7 per rune, random "
+        "~ -15. Periodic mode covers any keyword of period 2-14 by column coincidences; its hits are checked by estimating the keyword "
+        "and rescoring. Controls: work/layer2/selftest.py (plants with and without literal F, both alphabets, both models; kscreen "
+        "blind to them; random streams below +2.0).",
+        [
+            Step("layer2/build", ["cargo", "build", "--release", "--manifest-path", str(L2 / "Cargo.toml")], always=True, hours=0.02),
+            Step("layer2/export", [PY, str(L2 / "export.py")], hours=0.02,
+                 outputs=[L2 / "data" / f for f in ("core.ksb", "core20.ksb", "combined.ksb", "keywords.txt", "keywords_solved.txt",
+                                                    "keyword_none.txt", "plain.txt")]),
+            Step("layer2/selftest", [PY, str(L2 / "selftest.py"), "--threads", str(T), "--out", str(L2_SELFTEST)], hours=0.3,
+                 outputs=[L2_SELFTEST], done_check=lambda: "PASSED" in (last_line(L2_SELFTEST) or "")),
+            l2_screen("layer2", "null", seg, "rand:20:91", "null_bigram_solved.tsv", T,
+                      ["mode=bigram", "kw=data/keywords_solved.txt"], hours=1.1),
+            l2_screen("layer2", "bigram-solved", seg, "file:data/core.ksb", "bigram_solved.tsv", T,
+                      ["mode=bigram", "kw=data/keywords_solved.txt"], hours=6.3),
+            l2_verify("layer2", "verify-solved", "bigram_solved.tsv"),
+            l2_screen("layer2", "bigram-words", seg, "file:data/core20.ksb", "bigram_words.tsv", T,
+                      ["mode=bigram", "kw=data/keywords.txt", "atb=0"], hours=4.0),
+            l2_verify("layer2", "verify-words", "bigram_words.tsv"),
+            l2_screen("layer2", "periodic", seg, "file:data/core.ksb", "periodic_core.tsv", T,
+                      ["mode=periodic", "ms=2:14", "litf=0"], hours=1.5),
+            l2_verify("layer2", "verify-periodic", "periodic_core.tsv", top=100, hours=0.3),
+            # variant A1: the keyword folded into the stream (one pointer); single layer, English-bigram score
+            l2_screen("layer2", "combined", seg, "file:data/combined.ksb", "bigram_combined.tsv", T,
+                      ["mode=bigram", "kw=data/keyword_none.txt", "litf=0", "isigns=1"], hours=0.6),
+            l2_verify("layer2", "verify-combined", "bigram_combined.tsv"),
+        ],
+        l2_summary))
+
+    C.append(Campaign(
+        "prng-time", "Generators seeded with a millisecond timestamp of 2012-2014 (Java 48-bit, CPython two-word seeds)",
+        "The 32-bit sweeps cover every time(NULL) seed but not new Random(System.currentTimeMillis()) (Java's seed is 48-bit) or "
+        "random.seed(int(time.time() * 1000)) (CPython seeds MT19937 with two 32-bit words above 2^32). Every UTC month of 2012-01 .. 2014-01, "
+        "newest first, section 0.7, boundary-free bigram score, then a whole-section check of the best rows with independently built keys against "
+        "random timestamps. With a validated GPU: work/phpmt/time_gpu.py (the desktop's 64-bit port bgmt64.cu, gate tests/test_bgmt64; java, py3, "
+        "java-abs, and 'ruby' = Ruby's documented seeding and rand(n) rule on CPython's MT19937, not checked against a Ruby; about 9 h for all). "
+        "Without one: work/prngx/time_campaign.py on the CPU (gate tests/test_prngx_time: vectors from CPython and the Java specification, seeds "
+        "planted with independent keys found at rank 1, random ciphertext without candidates; about 210 h, so run the newest months with --hours). "
+        "Both gates run through run_gate.py and fail on a skipped test.",
+        prng_time_steps(T), prng_time_summary))
     return C
 
 

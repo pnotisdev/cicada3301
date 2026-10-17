@@ -1,22 +1,22 @@
 12956 runes; for each lag 1..8 the best of 812 affine relations c' = a c + b (mod 29) on within-word pairs; equality is a = 1, b = 0
 lag  best relation                  z      observed / expected   equality z   P(best of 812 under shuffles)
-  1  c' = 26 c +  3       +3.50     411 /  346.0      -15.23      0.196
-  2  c' =  2 c +  0       +3.16     298 /  248.2       +0.08      0.486
-  3  c' =  3 c + 18       +2.73     202 /  166.7       +0.92      0.933
-  4  c' = 24 c + 28       +3.89     151 /  110.2       +1.95      0.056
-  5  c' = 23 c + 15       +3.85     104 /   71.5       +3.59      0.098
-  6  c' = 27 c + 24       +5.04      77 /   43.7       -1.93      0.002
-  7  c' = 11 c +  4       +2.91      39 /   24.6       +1.08      0.898
-  8  c' =  4 c +  8       +2.83      23 /   12.9       -0.80      0.953
-best over all 8 lags: z +5.04 (lag 6); shuffle null of the best over lags and relations: median +3.92, 95th percentile +4.56; P(null best >= observed) = 0.013
+  1  c' = 26 c +  3       +3.43     411 /  347.1      -15.27      0.235
+  2  c' =  2 c +  0       +3.17     300 /  249.9       +0.10      0.461
+  3  c' =  6 c + 22       +2.81     205 /  168.5       +0.95      0.904
+  4  c' = 24 c + 28       +3.73     151 /  111.6       +1.81      0.094
+  5  c' = 23 c + 15       +3.80     105 /   72.6       +3.67      0.116
+  6  c' = 27 c + 24       +5.32      80 /   44.5       -1.88      0.002
+  7  c' = 11 c +  4       +2.95      40 /   25.2       +0.94      0.879
+  8  c' =  5 c + 26       +3.18      25 /   13.4       -0.93      0.738
+best over all 8 lags: z +5.32 (lag 6); shuffle null of the best over lags and relations: median +3.92, 95th percentile +4.58; P(null best >= observed) = 0.005
 the best relation (lag 6, c' = 27 c + 24) by section:
    section 0.7: 79 pairs, 6 obey it, 2.7 expected (+2.0)
-   section 0.8: 105 pairs, 6 obey it, 3.6 expected (+1.2)
-   section 0.9: 183 pairs, 10 obey it, 6.3 expected (+1.5)
+   section 0.8: 106 pairs, 6 obey it, 3.7 expected (+1.2)
+   section 0.9: 184 pairs, 10 obey it, 6.4 expected (+1.4)
    section 0.10: 0 pairs, 0 obey it, 0.0 expected (+0.0)
-   section 0.11: 176 pairs, 13 obey it, 6.1 expected (+2.8)
-   section 0.12: 97 pairs, 5 obey it, 3.3 expected (+0.9)
-   section 0.13: 151 pairs, 11 obey it, 5.2 expected (+2.5)
+   section 0.11: 178 pairs, 13 obey it, 6.1 expected (+2.8)
+   section 0.12: 100 pairs, 5 obey it, 3.4 expected (+0.8)
+   section 0.13: 152 pairs, 11 obey it, 5.3 expected (+2.5)
    section 0.14: 154 pairs, 9 obey it, 5.3 expected (+1.6)
-   section 0.15: 322 pairs, 17 obey it, 11.1 expected (+1.8)
-split-half replication (best relation of 4 sections scored in the other 4; 70 directed splits): mean z in the held-out half +0.54 against a shuffle null +0.00 +- 0.29 (P(null >= observed) = 0.035); the half-best relation is the lag-6 one in 20% of the splits
+   section 0.15: 337 pairs, 20 obey it, 11.6 expected (+2.5)
+split-half replication (best relation of 4 sections scored in the other 4; 70 directed splits): mean z in the held-out half +1.44 against a shuffle null +0.01 +- 0.29 (P(null >= observed) = 0.000); the half-best relation is the lag-6 one in 44% of the splits

@@ -1,0 +1,14 @@
+# ~\miniconda3\python.exe <repo>\work\typo_restarts.py pooled
+# cwd <repo>
+# device cpu
+One keystream restarted at EVERY item of the 0.14 list (items 1-5, 91-139 runes): each item screened alone by kscreen with the 1,439-keystream library (beam decoding through the anti-repeat skips), its top 2,000 decodes kept; a shared key shows as one (keystream, multiplier, model, offset) in 3 or more of the 5 lists, at the same offset (d = 0) or at offset + k for item k (d = 1, a counter from the item label).
+top-2,000 cut-off IoC per item (library): item 1 1.400, item 2 1.586, item 3 1.544, item 4 1.558, item 5 1.423
+   library d=0: candidates in 2 lists 0, in 3 or more 0
+   library d=1: candidates in 2 lists 1, in 3 or more 0; most shared: 'e digits (base 29)' offset 7953 in 2 items
+   null    d=0: candidates in 2 lists 1, in 3 or more 0; most shared: 'RANDOM 201' offset 9355 in 2 items
+   null    d=1: candidates in 2 lists 0, in 3 or more 0
+PASS  plant 'primes-1 (totient)' offset 1234 mult 1 model 0 d 0: true-key IoC per item 1.817, 1.558, 1.721, 1.787, 1.907; above the item's cut-off in 4 of 5 (3 needed)
+PASS  plant 'pi digits (base 29)' offset 777 mult 28 model 1 d 1: true-key IoC per item 1.980, 1.806, 1.623, 2.080, 1.798; above the item's cut-off in 5 of 5 (3 needed)
+PASS  plant 'sha256-ctr reject :3301' offset 4321 mult 1 model 0 d 1: true-key IoC per item 1.811, 1.742, 1.769, 2.455, 2.192; above the item's cut-off in 5 of 5 (3 needed)
+
+# exit code 0, 749 s

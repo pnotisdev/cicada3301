@@ -1,15 +1,17 @@
 Per-word linear recurrence of order 3 with global coefficients: 23,548 operators, words of >= 7 runes.
-LP2: 547 eligible words; hits per operator: max 6, mean 0.535; top operators:
+LP2: 552 eligible words; hits per operator: max 6, mean 0.539; top operators:
    a = (28, 5, 8): 6 words
-   a = (23, 12, 5): 5 words
-   a = (5, 2, 10): 5 words
-   a = (11, 25, 1): 5 words
    a = (7, 25, 25): 5 words
-surrogate (random runes, LP2 lengths): 547 eligible words; max 6, mean 0.550; top: (3, 21, 22):6, (8, 4, 26):5, (0, 26, 20):5, (0, 2, 16):5, (8, 19, 26):5
+   a = (5, 2, 10): 5 words
+   a = (23, 12, 5): 5 words
+   a = (9, 26, 25): 5 words
+surrogate (random runes, LP2 lengths): 552 eligible words; max 6, mean 0.556; top: (3, 21, 22):6, (0, 26, 20):5, (8, 4, 26):5, (0, 2, 16):5, (8, 19, 26):5
    LP2 max over operators 6 vs surrogate max 6 (the null maximum).
 
 Planted controls (dictionary words, fresh state per word, anti-repeat skips): rank of the true operator and hits
    planted a = (8, 18, 19): 553/720 words consistent, rank 1 of 23,548; next best 23
    planted a = (27, 21, 12): 577/720 words consistent, rank 1 of 23,548; next best 24
+   planted a = (21, 11, 5): 549/720 words consistent, rank 1 of 23,548; next best 4
+   planted a = (6, 3, 23): 550/720 words consistent, rank 1 of 23,548; next best 5
 
 Verdict: no operator beats the surrogate maximum. A planted recurrence is found with its true operator at rank 1 in every control above, so a per-word key of this family (with English plaintext in the dictionary) is excluded at order 3.

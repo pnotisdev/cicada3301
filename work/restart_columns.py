@@ -44,8 +44,9 @@ def units_of(kind, segs, idxs):
         "paragraph": {"%", "&"},
         "line": {"%", "&", "\n"},
         "sentence": {"%", "&", "."},              # '.' is the transcription's clause separator
-        # a bare line break inside a word is a typographic wrap, not a word boundary (see lp.word_spans)
-        "word": {"%", "&", " ", "."},
+        # a bare line or page break inside a word is a typographic wrap, not a word boundary (see lp.word_spans);
+        # the coarser units above still cut at every page break, by design (a restart at each page as well)
+        "word": {"&", " ", "."},
     }[kind]
     out = []
     for i in idxs:

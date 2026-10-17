@@ -155,11 +155,15 @@ on English converted to runes, using Emerson's *Essays*, which include Self-Reli
 - **Corrected 2026-10-16:** `lp.word_spans` used to treat every line break as a word boundary, but the
   transcription wraps words across lines (a real boundary at a line end is always written '-' or '.'). The numbers
   below are the corrected ones; the originals were 3.91 runes, 318 one-rune words and χ² = 44.8.
-- Word lengths look like English: there are 2,928 words with a mean of 4.42 runes (aldegonde's count is also
-  2,928). So word boundaries are probably real plaintext boundaries.
-- There are **99 one-rune words** (3.4% of words, a plausible rate for A and I in English), which must be ᚪ (A) or
-  ᛁ (I). Their ciphertext runes are uniform (χ² = 18.5, df 28). The earlier "marginal" unevenness was a
-  fragment artefact. A correct key turns most of these 99 into A or I, against 7% by chance.
+- **Corrected again 2026-10-17:** a page break without '-' or '.' is a wrap too. 32 of the 55 page breaks in LP2 fall
+  inside a word, and the page images show no separator dot there (`results/analysis/page_seams_2026-10-17.txt`). The
+  numbers below are corrected; the 2026-10-16 values were 2,928 words, a mean of 4.42 runes, 99 one-rune words (3.4%)
+  and χ² = 18.5.
+- Word lengths look like English: there are 2,896 words with a mean of 4.47 runes (aldegonde's 2,928 also cuts at
+  page breaks; cicadanotebook.com has 2,896). So word boundaries are probably real plaintext boundaries.
+- There are **83 one-rune words** (2.9% of words, a plausible rate for A and I in English), which must be ᚪ (A) or
+  ᛁ (I). Their ciphertext runes are uniform (χ² = 20.8, df 28): 28 runes occur, all but ᚳ. The earlier "marginal"
+  unevenness was a fragment artefact. A correct key turns most of these 83 into A or I, against 7% by chance.
 - The fix raises solved-section dictionary scores (Welcome 0.78 → 0.84) and does not change any deduction (D1–D4).
   Earlier real-data screens split wrapped words into fragments, a small handicap for a true key that the synthetic
   sensitivity tests (which have no line breaks) did not reflect.
@@ -304,11 +308,12 @@ decision rule.
     maximum in 8/8 trials for P ≤ 400, 7/8 at P = 800, 6/8 at P = 1600 and 0/8 at P = 3200.
   - LP2: max Z 3.03, against random-rune nulls of 2.29–3.55 (8 texts). **Periodic keys are ruled out up to about 400 runes
     only.** Longer periods remain open.
-- **Word lengths** (`work/wordlen.py`). The LP2 histogram rejects English in GP runes (G = 227, p ≈ 10⁻⁴²; against
-  the solved sections p ≈ 10⁻³⁵). English counted in letters, with no digraph runes, fits better but is still
-  rejected (p = 7·10⁻⁸). The best simple fit is English runes with **one extra rune in about 40% of multi-rune
-  words** (p = 0.025). This is a lead: nulls or padding inside words, another plaintext convention, or another
-  language. Dictionary screens lose power under all three; IoC screens do not.
+- **Word lengths** (`work/wordlen.py`; numbers corrected 2026-10-17 for page-break wraps, earlier G = 227, p ≈ 10⁻⁴²,
+  40% at p = 0.025). The LP2 histogram rejects English in GP runes (G = 242, p ≈ 10⁻⁴⁵; against the solved sections
+  p ≈ 10⁻³⁷). English counted in letters, with no digraph runes, fits better but is still rejected (p = 8·10⁻⁹). The
+  best simple fit is English runes with **one extra rune in about 42% of multi-rune words** (p = 0.085, no longer
+  rejected at 5%). This is a lead: nulls or padding inside words, another plaintext convention, or another language.
+  Dictionary screens lose power under all three; IoC screens do not.
 - **New engine `work/kscreen`.** It is a language- and alphabet-agnostic keystream screen. For each keystream,
   start offset, key multiplier and anti-repeat model (skip or coin), it runs a beam decode over key pointers
   and scores the decoded letters by IoC. The IoC is unchanged by Atbash, by any substitution of the plaintext
@@ -428,6 +433,7 @@ Details: `work/log/phase9_overnight_results.md`, `phase9_art.md`, `phase9_chain.
 
 - **Keyless tests and their power (19:10, `work/log/phase10_keyless_power.md`):** the laptop's final `kscreen-typo` results (f096a8c, 22 windows): strong negative for the 250-300-rune windows (planted keys clear the null 45/45; the library beats its matched null by at most 0.037 IoC, 5 of 22), weak for the 91-139-rune list items (13/21 recovered); the shared-key test on the five list items (and the laptop's pooled test) found nothing and its power control passes (6 of 6 plants seen); the summary's 'CANDIDATE - inspect' line is a verify-rule artefact (short-window maxima, 1.9-2.0, are below the null's 2.1-2.2). The branch is still not merged (conflicts in the crib files, overlap with the second session's uncommitted files). A general fixed-map scan (any permutation between runes at distance 1-12, across words) is negative but cannot see LP2's 1.5% effect size (detects 6%); a sparse-tap key-recurrence scan (55,440 forms) finds only the known doublet deficit and lag-6 relation and fails its control for three-term forms. Lesson: ciphertext-only statistics see strong effects only; the specific hypotheses worth running are those that become a finite key family for a decode screen.
 
+- **Merged `research/new-hypotheses` (evening; `docs/prs/new-hypotheses.md`):** after committing the desktop's second session (9faf953) and the merge itself. Merged tree, CPU: 144 tests, 0 failures, the 15 errors are GPU tests with the GPU hidden; `test_prngx_time` and `test_layer2` gates pass; layer2 selftest 14/14 on the desktop. The crib reruns are identical to the laptop's apart from the corpus size of the bigram model (the PCs' `ref/corpora` differ). The GPU tests of the merged tree were not run (GPU kept free).
 - **Untested hypotheses (2026-10-17, `docs/HYPOTHESES.md`, details `work/log/phase9_hyp.md`):** H1-H12, each with its blind spot, controls and kill rule. Run so far:
   - `kscreen-hyp` (CPU, 1 h): 16,071 decimated library streams (H3), text prefix sums (H4), pi / e / phi / sqrt2 from positions 10^6 and 3301*1033 (H6), LP2's ciphertext as its own key forwards
     (guarded) and backwards (H5, 28 multipliers). Controls 15/15; best 1.3747 against a 1,300-stream null of 1.3553; 0 of 31 hits survive verification. **Negative.** New engine option: G lines
@@ -441,6 +447,82 @@ Details: `work/log/phase9_overnight_results.md`, `phase9_art.md`, `phase9_chain.
   - `kscreen-clock` (CPU, 1 h 07 min), H3 clocked pointer: new engine option `clock=` (the pointer moves on by 1 + index, the prime or prime - 1 of the cipher or deciphered
     rune; default decodes unchanged, 19,200 compared). Controls 19/19; the library on 8 sections for all six clocks, each against its own 300-stream null; 0 of 90 hits survive
     verification. **Negative.**
+
+### Phase 10 – New hypotheses: keyless exclusions and the two-layer screen (2026-10-17, laptop)
+Details: `work/log/hypotheses_2026-10-17.md`; probes `work/tmp/hyp/` (output `results/analysis/hypotheses_2026-10-17.txt`);
+engine `work/layer2` (output `results/layer2/`).
+- **Keyless tests with planted controls.** Excluded: a running key plus a progressive (Trithemius) shift (progressive kappa:
+  LP2 +2.30 inside the null, plants +4.1 .. +5.3); multiplicative keystreams c = D(p)*k (no rune has a letter's word-position
+  profile, best G = 49 on 4 df); running keys made uniform by a cumulative sum (step chi-square 130-736 against LP2's 41);
+  the surviving doublets as a ditto code for one letter; a key restart after each surviving doublet (z -0.32, plants +17 .. +25).
+  Disfavoured (p ~ 0.05): any prime-based key at ANY offset for the identity and Atbash alphabets (such keys never take one
+  value; LP2 max z +1.89, plants median +3.55). The lag-5 echo is not concentrated in quoted speech.
+- **H-LAYER, new family:** the solved pages' two methods stacked, a keyword Vigenere inside (optionally with the literal-F
+  rule) and a number stream with the anti-repeat rule outside. It fits the fingerprint and explains why LP2 shows no literal-F
+  excess; kscreen is blind to it (IoC 1.18 at the true offset of a plant). `work/layer2` decodes both layers in one beam and
+  scores English bigrams (true key ~ +7 per rune, random ~ -15); periodic mode covers any keyword of period m. Selftest 14/14
+  (plants with and without literal F, both alphabets, both models, a keyword outside the list; random streams best -4.77).
+- **First slices negative:** An End's prime streams (p, p-1, p+1) x DIVINITY / FIRFUMFERENFE / CIRCUMFERENCE, every option and
+  offset, 8 sections: 512 M decodes, best -4.53 per rune; 0 of 15 hits survive whole-window verification. Periodic mode, 20 Cicada
+  streams x any keyword of period 2-14 (no literal F): 111 M decodes, 0 of the 100 best survive keyword estimation + re-decoding.
+- **prng-time (`work/log/phase10_prng_time.md`):** generators seeded with a millisecond timestamp of 2012-2014, outside the 32-bit
+  sweeps: Java `new Random(currentTimeMillis())` (48-bit seed) and CPython integer seeds above 2^32 (two-word `init_by_array`; Ruby by its documentation, unverified;
+  `prngx pymt` now seeds like CPython for any integer). Vectors from CPython and the Java specification 119/119, engine keys equal
+  independent keys, planted timestamp seeds at rank 1 (+988 against a random-ciphertext best of +59), whole-section check
+  (`time_verify.py`). Campaign `prng-time`: one sweep per UTC month, newest first; on a validated GPU it runs the desktop's 64-bit
+  port (`time_gpu.py`, about 9 h for the window), otherwise the CPU engine (about 210 h). Demo on LP2, the weekend of 2014-01-04/05 (172.8 M timestamps per
+  generator): best screen +59 for both, no row near +300, 0 candidates after the whole-section check. Negative.
+- **Queued:** campaign `layer2` for the desktop (115 streams x the solved keys, 20 streams x 30 keywords, periodic mode,
+  folded-key variant; about 13 h on 16 threads). Proposed next: crib-filtered sweeps ("AN INSTRUCTION" fits 0.8's heading under
+  letter spelling), direction-switching keys.
+- **Review of this branch (desktop, 14:30) answered (15:10):** main merged in; `prng-time` gated by `run_gate.py` (fails on skipped
+  tests) and pointed at the GPU port; the prngx and layer2 controls now plant with independent code (`time_verify.plant_windows`,
+  `work/layer2/plant_ref.py`): `test_prngx_time` 5/5, `test_layer2` 3/3, `layer2/selftest.py` 14/14; Ruby marked unverified
+  (no Ruby on either machine). Response at the end of `docs/prs/new-hypotheses.md`.
+- **Correction: words across page breaks (16:00; `work/log/research_cicadanotebook_2026-10-17.md`).** Comparing our one-rune words
+  with cicadanotebook.com's image-audited inventory (83) showed that `lp.word_spans` treats every page break as a word boundary.
+  In fact 32 of the 55 page breaks inside LP2 fall inside a word: no '-' or '.' on either side. In the solved sections, words
+  split by a page break decrypt as single words: WH|O, ADHEREN|CE, STOP|PED. **The images confirm it**
+  (`work/tmp/hyp/page_seam_dots.py`, `results/analysis/page_seams_2026-10-17.txt`): none of the 32 shows a separator dot, all 21
+  marked page breaks show one, and the detector finds 150 of 151 marked line ends with 4 false dots in 388 wraps. Corrected:
+  2,896 words (not 2,928), **83 one-rune words (not 99)**, the site's tokens exactly, 2-rune share 15.5%, within-word lag-5
+  z +3.75 (was +3.67). No conclusion changes; the toolkit fix is the next bullet.
+- **Toolkit fix: an unmarked page break is a wrap (18:30; `work/log/page_seam_fix_2026-10-17.md`).**
+  - **Code:** `lp.word_spans` treats '%' like '\n'. Also fixed: `stats.adjacent_pairs`, the word unit of
+    `restart_columns`, and five scripts with their own splitters. Three of those (`wordlen_clauses`, the two crib checks)
+    and `grid30`'s Gematria sums still cut at every line break, the pre-2026-10-16 bug.
+  - **Exports:** phpmt's `windows*.txt` and walk's `lp2.txt` / `lm3.bin` regenerated; only the word lengths change.
+  - **Reruns:** 23 result files. Nothing that mattered moved:
+    - lag 5: 104 of 2,105 pairs, permutation p 0.0007;
+    - one-rune cipher runes still uniform;
+    - every family row and every exclusion keeps its verdict; the lag-5 concentration on S calibrates at P 0.010
+      (was 0.0073).
+  - **Three shifts worth knowing:**
+    - the word-length model "+1 rune in about 42% of multi-rune words" is no longer rejected (p 0.085-0.10, was 0.025);
+    - with wraps joined, the community crib for 0.7 fits LP2's word division exactly (0 cuts inside crib words, not 4);
+    - **the lag-6 affine lead c' = 24 − 2c got stronger:** z +5.32, look-elsewhere P 0.005 (was 0.013), and its
+      split-half replication went from P 0.035 to 0 of 200 shuffles (held-out z +1.44, about 4.9 sd). It is still a lead,
+      not a finding: three pairs moved the statistic a lot. A follow-up with the relation fixed in advance is proposed.
+  - **Not rerun:** the engine campaigns that scored with word lengths. About 1% of words are affected, so a true key
+    loses a little score but is not excluded.
+  - **Tests:** `test_crib` and `test_families` updated.
+- **cicadanotebook.com read in full (17:00; `work/log/research_cicadanotebook_2026-10-17.md`).** An AI-assisted notebook of 79
+  controlled sessions; **no solution claimed**. Recomputed on our data (`work/tmp/hyp/notebook_checks.py`, `keyed_floor.py`;
+  `results/analysis/cicadanotebook_checks_2026-10-17.txt`):
+  - **Confirmed:** doublets per section, the phrase, no rune errors, the payload bytes.
+  - **Corrected the other way:** the cuneiform stamp appears 7 times, not 4.
+  - **Separators:** 5 three-dot marks in the unsolved part are in our images too; our master writes each as '-'. Words are
+    unaffected.
+  - **Exact keyless bounds:**
+    - an additive key that ignores the text needs at least 207 doublets on English in the standard order (181-226 per
+      text, 121-172 in five other languages), against LP2's 86, so the encryption must look at the text (collision rule
+      or feedback). A keyed alphabet gets under the floor (cheapest 29-cycle 0.15%) and a lag-1 fit cannot exclude it:
+      open, low priority;
+    - ciphertext feedback p = G(c_{i-1}, c_i) allows at most 5.53% for the top plaintext rune (random null 5.46%);
+    - no LP2 word of 4+ runes repeats;
+    - the phrase repeat has chance 4.3e-5 under independent keys, chosen after looking.
+  - **Ideas not yet run:** restarts at typography with the full library, using the second koan and page 56 as controls;
+    Euler-trail nulls; one-rune words as filters; a key-reuse scan anchored on the phrase.
 
 ### Phase 5 – Validation and reporting
 - A plaintext counts as solved only if it scores well across a whole segment (word hits and IoC about 1.8)

@@ -57,10 +57,31 @@ Read as data on the desktop at about 14:30. None of the branch's code was run (n
 **Most valuable next step from the branch: the 64-bit CUDA port of the boundary-free sweep (`phpmt.cu` / `bgmt.cu`), spec in `work/log/phase10_prng_time.md` (about 4.6 h per generator for the full 2012-2014 window once
 ported, against 210 CPU hours).** The generator gates it asks for (keys equal to `prngx keys` for the vector seeds, planted seeds recovered, random ciphertext without candidates) are the project's usual ones.
 
+## Response from the laptop (2026-10-17, about 15:10; branch commits after the merge of main c31c6a9)
+
+Every change the verdict asks for is made; nothing else in the branch's results changes.
+
+| review item | change | evidence |
+|---|---|---|
+| merge conflict in `PLAN.md` | `main` merged into the branch (c31c6a9); the desktop's four Phase 9 bullets kept first, then Phase 10 | `git merge-tree` against `main` is now clean |
+| 1. the gate passes on skipped tests | `prng-time/gate` runs `work/tests/run_gate.py work.tests.test_prngx_time` (and the GPU path `run_gate.py work.tests.test_bgmt64`); both fail on a skip | `GATE PASSED`, 5 tests, 0 skipped (laptop) |
+| 1. Ruby claimed, not verified | no Ruby on either machine, so the claim is qualified everywhere (campaign text, `time_campaign.py`, the engine comments, the log, `CAMPAIGNS.md`, `PLAN.md`): map 3 is "Ruby's documented `rand(n)`, not checked against a Ruby"; the GPU path's `ruby` generator is labelled the same way in the runner summary | text changes only |
+| 2. plants made by the engine itself | `time_verify.plant_windows` plants with keys built outside the engine (CPython `random.Random`; the java.util.Random specification) under the engine's anti-repeat rule; `work/layer2/plant_ref.py` writes the two-layer cipher in Python from the library's stream values; `test_prngx_time`, `test_layer2` and `layer2/selftest.py` now plant only that way | `test_prngx_time` 5/5, `test_layer2` 3/3 (both through `run_gate.py`, 0 skipped); `layer2/selftest.py` 14/14 with the independent plants (`results/layer2/selftest.txt`); all prngx suites 10/10 |
+| most valuable next step: the GPU port | done on the desktop (3a0cc99); the campaign now uses it: on a validated GPU `prng-time` runs `work/phpmt/time_gpu.py run <gen> --only <month>` behind `test_bgmt64` (java, py3, java-abs, ruby; about 9 h for the window), the CPU engine stays the fallback (about 210 h) | `python jobs/overnight.py list -v` on a CUDA machine: gate + 100 month steps |
+
+Not changed, as the review says: coverage is section 0.7 with one pad from the first LP2 rune; the `layer2` negatives cover the solved keys and the
+20 core streams, not seeded-generator streams. The commit author name on the laptop is the user's decision (see the end of `docs/SESSION_LOG.md`).
+
 ## Update after the final push of the `kscreen-typo` results (f096a8c, 2026-10-17 19:40)
 
 Added lines scanned for the host name, the user name and absolute paths: clean except one comment line in `typo_summary.txt` and its log that names the interpreter by a home-relative (tilde) path. Results read as data and re-tested with my
 shared-key test (`work/log/phase10_keyless_power.md`, 1b): negative; the summary's 'CANDIDATE - inspect' line is an artefact of the verify rule. `work/log/typo_restarts_2026-10-17.md` still carries PENDING placeholders.
-**Still not merged.** A trial merge with main conflicts in four files that I changed after the branch point (`work/crib_fluency_null.py`, `work/crib_matrix_check.py` and their two `results/analysis/*.txt`: the word-span correction),
-and four files that the desktop's second session still has uncommitted overlap the branch (`PLAN.md`, `docs/CAMPAIGNS.md`, `docs/SESSION_LOG.md`, `jobs/overnight.py`). Merge after that session's work is committed; resolve the crib files by taking
-main's `lp.word_spans` version and re-running them, and keep both bullets in `PLAN.md`.
+**Merged on 2026-10-17 (evening) after the desktop's second session was committed (9faf953).** Conflicts and how they were settled:
+- `work/crib_fluency_null.py`, `work/crib_matrix_check.py`: both sides had made the same `lp.word_spans` change; main's text kept. Their two result files rerun on the merged tree (the page-seam fix is now in): the matrix
+  check is identical to the laptop's (158 cipher words in 0.7); the fluency check differs only in the bigram model's corpus size (2,102,767 word tokens here, 2,108,966 on the laptop: the two PCs' `ref/corpora` differ), same conclusions.
+- `PLAN.md`: both sets of bullets kept (main's, then the laptop's Phase 10 section). `docs/prs/INDEX.md`: the laptop's row with the status rewritten.
+Checks on the merged tree (CPU, GPU hidden): the Rust engines prngx, layer2 and kscreen rebuilt (the old prngx binary failed four vector tests until rebuilt); `python -m unittest discover -s work/tests`: 144 run, 0 failures,
+15 errors that are all `cudaErrorNoDevice` (the GPU-dependent tests of bgmt, bgmt64, step28, stepmt, not run because the GPU was kept free), 6 skipped (GPU); `run_gate.py work.tests.test_prngx_time` and
+`work.tests.test_layer2`: GATE PASSED, 0 skipped; `work/layer2/selftest.py` on the desktop: 14 of 14 PASS (`results/layer2/selftest_desktop.txt`); `work/kscreen/export.py` rerun so the plant files carry the new word lengths.
+Privacy: the added lines of the whole merge contain no user name, computer name or absolute path; the laptop's runner logs carry home-relative (tilde) interpreter paths, the runner's own scrubbing.
+Not done: the GPU tests (bgmt, bgmt64, stepmt, step28 CUDA) were not run on the merged tree; the two review items about coverage (section 0.7 only; layer2 negatives cover the solved keys and 20 core streams) stand.

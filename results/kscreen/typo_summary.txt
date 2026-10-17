@@ -1,0 +1,122 @@
+# work/typo_restarts.py summary: key restarts at typographic marks of LP2 (campaign kscreen-typo)
+
+Library (1,439 keystreams) against a random null of the same size (1,439 keystreams of 20,000), per window:
+window                   runes  library best  null best  library item at best
+item1_0.14@754             139         1.590      1.648  sha512-ctr reject :parable @ 8602 (mult 28, model 0)
+item2_0.14@893              91         1.905      2.217  sha512-ctr reject :deep web @ 3611 (mult 28, model 1)
+item3_0.14@984              98         1.879      1.879  sha256-chain mod :question all things @ 3589 (mult 28, model 1)
+item4_0.14@1082             96         1.940      2.092  sha256-chain mod :Cicada 3301 @ 9447 (mult 1, model 1)
+item5_0.14@1178            129         1.718      1.718  md5-ctr reject :circumference @ 14829 (mult 1, model 0)
+list_0.14@754              300         1.300      1.306  sha512-ctr reject :<128 bytes 33363336> @ 2282 (mult 28, model 0)
+afterlist_0.14@1307        282         1.323      1.318  sha256-chain mod :434 @ 16937 (mult 28, model 1)
+dots_0.8@588               300         1.307      1.309  sha256-ctr mod :LIBER PRIMUS @ 5884 (mult 1, model 0)
+dots_0.9@1036              300         1.311      1.308  sha256-ctr reject :pilgrim @ 15169 (mult 1, model 1)
+dots_0.11@1355             300         1.325      1.347  md5-ctr reject :an end @ 10671 (mult 1, model 0)
+dots_0.14@1149             300         1.285      1.320  md5-ctr reject :shadows aethereal buffers void carnal ob @ 18031 (mult 28, model 0)
+dots_0.15@1689             300         1.315      1.317  sha256-chain mod :shadows aethereal buffers void carnal ob @ 4581 (mult 1, model 0)
+body_0.7@13                300         1.306      1.293  sha256-ctr reject :PILGRIM @ 2782 (mult 28, model 0)
+body_0.8@16                300         1.312      1.322  md5-ctr mod :totient @ 279 (mult 28, model 0)
+body_0.8@122               300         1.302      1.315  md5-ctr reject :7 @ 13400 (mult 1, model 0)
+body_0.8@823               300         1.309      1.318  sha512-ctr mod :FULMAEAYOEA @ 3733 (mult 28, model 1)
+body_0.12@16               300         1.359      1.322  sha256-ctr mod :PILGRIM @ 770 (mult 28, model 1)
+body_0.13@19               300         1.288      1.425  md5-ctr mod :DIVINITY @ 2676 (mult 28, model 1)
+body_0.13@1443              81         2.023      2.121  sha512-ctr mod :within @ 16191 (mult 28, model 0)
+body_0.14@1471             118         1.727      1.760  sha256-ctr reject :INSTAR EMERGENCE @ 5726 (mult 1, model 0)
+body_0.15@8                300         1.298      1.293  sha512-ctr mod :program your mind @ 15151 (mult 28, model 1)
+body_0.15@3017             299         1.288      1.358  sha256-chain mod :LIBER PRIMUS @ 19470 (mult 28, model 1)
+windows where the library beats its matched null: 5 of 22 (about half expected by chance)
+verification: 14 of 15 re-decoded hits keep IoC >= 1.4 over their whole window and beat their own keystream's random offsets by 0.15 (CANDIDATE - inspect)
+
+## typo_plants.txt
+Planted controls: a library key planted into English twins of the 22 windows (same scored length), screened with the true keystream at every offset; 'clears null' = its IoC beats the best of 1,439 random keystreams on the real LP2 window of that name.
+   item1_0.14@754            139 runes  primes-1 (totient)         MISSED    IoC 2.023  null max 1.648  clears null
+   item2_0.14@893             91 runes  primes-1 (totient)         recovered IoC 1.608  null max 2.217  BELOW NULL
+   item3_0.14@984             98 runes  primes-1 (totient)         recovered IoC 1.617  null max 1.879  BELOW NULL
+   item4_0.14@1082            96 runes  primes-1 (totient)         recovered IoC 1.800  null max 2.092  BELOW NULL
+   item5_0.14@1178           129 runes  primes-1 (totient)         recovered IoC 1.760  null max 1.718  clears null
+   list_0.14@754             300 runes  primes-1 (totient)         recovered IoC 1.795  null max 1.306  clears null
+   afterlist_0.14@1307       282 runes  primes-1 (totient)         recovered IoC 1.845  null max 1.318  clears null
+   dots_0.8@588              300 runes  primes-1 (totient)         recovered IoC 1.814  null max 1.309  clears null
+   dots_0.9@1036             300 runes  primes-1 (totient)         recovered IoC 1.775  null max 1.308  clears null
+   dots_0.11@1355            300 runes  primes-1 (totient)         recovered IoC 1.812  null max 1.347  clears null
+   dots_0.14@1149            300 runes  primes-1 (totient)         recovered IoC 1.853  null max 1.320  clears null
+   dots_0.15@1689            300 runes  primes-1 (totient)         recovered IoC 1.818  null max 1.317  clears null
+   body_0.7@13               300 runes  primes-1 (totient)         recovered IoC 1.951  null max 1.293  clears null
+   body_0.8@16               300 runes  primes-1 (totient)         recovered IoC 1.689  null max 1.322  clears null
+   body_0.8@122              300 runes  primes-1 (totient)         recovered IoC 1.676  null max 1.315  clears null
+   body_0.8@823              300 runes  primes-1 (totient)         MISSED    IoC 1.667  null max 1.318  clears null
+   body_0.12@16              300 runes  primes-1 (totient)         recovered IoC 1.683  null max 1.322  clears null
+   body_0.13@19              300 runes  primes-1 (totient)         recovered IoC 1.816  null max 1.425  clears null
+   body_0.13@1443             81 runes  primes-1 (totient)         MISSED    IoC 1.692  null max 2.121  BELOW NULL
+   body_0.14@1471            118 runes  primes-1 (totient)         recovered IoC 1.891  null max 1.760  clears null
+   body_0.15@8               300 runes  primes-1 (totient)         recovered IoC 1.860  null max 1.293  clears null
+   body_0.15@3017            299 runes  primes-1 (totient)         recovered IoC 1.933  null max 1.358  clears null
+   item1_0.14@754            139 runes  pi digits (base 29)        recovered IoC 1.968  null max 1.648  clears null
+   item2_0.14@893             91 runes  pi digits (base 29)        MISSED    IoC 1.615  null max 2.217  BELOW NULL
+   item3_0.14@984             98 runes  pi digits (base 29)        MISSED    IoC 1.708  null max 1.879  BELOW NULL
+   item4_0.14@1082            96 runes  pi digits (base 29)        recovered IoC 1.641  null max 2.092  BELOW NULL
+   item5_0.14@1178           129 runes  pi digits (base 29)        recovered IoC 1.784  null max 1.718  clears null
+   list_0.14@754             300 runes  pi digits (base 29)        recovered IoC 1.785  null max 1.306  clears null
+   afterlist_0.14@1307       282 runes  pi digits (base 29)        recovered IoC 1.878  null max 1.318  clears null
+   dots_0.8@588              300 runes  pi digits (base 29)        recovered IoC 1.841  null max 1.309  clears null
+   dots_0.9@1036             300 runes  pi digits (base 29)        recovered IoC 1.758  null max 1.308  clears null
+   dots_0.11@1355            300 runes  pi digits (base 29)        recovered IoC 1.812  null max 1.347  clears null
+   dots_0.14@1149            300 runes  pi digits (base 29)        recovered IoC 1.853  null max 1.320  clears null
+   dots_0.15@1689            300 runes  pi digits (base 29)        recovered IoC 1.818  null max 1.317  clears null
+   body_0.7@13               300 runes  pi digits (base 29)        recovered IoC 1.935  null max 1.293  clears null
+   body_0.8@16               300 runes  pi digits (base 29)        recovered IoC 1.686  null max 1.322  clears null
+   body_0.8@122              300 runes  pi digits (base 29)        recovered IoC 1.642  null max 1.315  clears null
+   body_0.8@823              300 runes  pi digits (base 29)        recovered IoC 1.692  null max 1.318  clears null
+   body_0.12@16              300 runes  pi digits (base 29)        recovered IoC 1.655  null max 1.322  clears null
+   body_0.13@19              300 runes  pi digits (base 29)        recovered IoC 1.803  null max 1.425  clears null
+   body_0.13@1443             81 runes  pi digits (base 29)        MISSED    IoC 1.683  null max 2.121  BELOW NULL
+   body_0.14@1471            118 runes  pi digits (base 29)        recovered IoC 1.849  null max 1.760  clears null
+   body_0.15@8               300 runes  pi digits (base 29)        recovered IoC 1.860  null max 1.293  clears null
+   body_0.15@3017            299 runes  pi digits (base 29)        recovered IoC 1.925  null max 1.358  clears null
+   item1_0.14@754            139 runes  sha256-ctr reject :3301    recovered IoC 1.968  null max 1.648  clears null
+   item2_0.14@893             91 runes  sha256-ctr reject :3301    MISSED    IoC 1.572  null max 2.217  BELOW NULL
+   item3_0.14@984             98 runes  sha256-ctr reject :3301    recovered IoC 1.721  null max 1.879  BELOW NULL
+   item4_0.14@1082            96 runes  sha256-ctr reject :3301    recovered IoC 1.800  null max 2.092  BELOW NULL
+   item5_0.14@1178           129 runes  sha256-ctr reject :3301    recovered IoC 1.784  null max 1.718  clears null
+   list_0.14@754             300 runes  sha256-ctr reject :3301    recovered IoC 1.791  null max 1.306  clears null
+   afterlist_0.14@1307       282 runes  sha256-ctr reject :3301    recovered IoC 1.878  null max 1.318  clears null
+   dots_0.8@588              300 runes  sha256-ctr reject :3301    recovered IoC 1.834  null max 1.309  clears null
+   dots_0.9@1036             300 runes  sha256-ctr reject :3301    recovered IoC 1.768  null max 1.308  clears null
+   dots_0.11@1355            300 runes  sha256-ctr reject :3301    recovered IoC 1.827  null max 1.347  clears null
+   dots_0.14@1149            300 runes  sha256-ctr reject :3301    recovered IoC 1.853  null max 1.320  clears null
+   dots_0.15@1689            300 runes  sha256-ctr reject :3301    recovered IoC 1.834  null max 1.317  clears null
+   body_0.7@13               300 runes  sha256-ctr reject :3301    recovered IoC 1.961  null max 1.293  clears null
+   body_0.8@16               300 runes  sha256-ctr reject :3301    recovered IoC 1.702  null max 1.322  clears null
+   body_0.8@122              300 runes  sha256-ctr reject :3301    recovered IoC 1.668  null max 1.315  clears null
+   body_0.8@823              300 runes  sha256-ctr reject :3301    recovered IoC 1.688  null max 1.318  clears null
+   body_0.12@16              300 runes  sha256-ctr reject :3301    recovered IoC 1.666  null max 1.322  clears null
+   body_0.13@19              300 runes  sha256-ctr reject :3301    recovered IoC 1.803  null max 1.425  clears null
+   body_0.13@1443             81 runes  sha256-ctr reject :3301    MISSED    IoC 1.710  null max 2.121  BELOW NULL
+   body_0.14@1471            118 runes  sha256-ctr reject :3301    MISSED    IoC 1.928  null max 1.760  clears null
+   body_0.15@8               300 runes  sha256-ctr reject :3301    recovered IoC 1.860  null max 1.293  clears null
+   body_0.15@3017            299 runes  sha256-ctr reject :3301    recovered IoC 1.925  null max 1.358  clears null
+windows of 0-149 runes: recovered 13/21, clear their null 9/21
+windows of 250-300 runes: recovered 44/45, clear their null 45/45
+
+## typo_known.txt
+Known answers: the solved sections' keys run straight through their three-dot marks?
+(wrong runes against the published decryption when the key index restarts at the mark, or skips one position there)
+   0.5 (FIRFUMFERENFE, literal F at 49 and 58), mark before rune 110: restart  -> 209 of 209 runes wrong
+   0.5 (FIRFUMFERENFE, literal F at 49 and 58), mark before rune 110: skip one -> 209 of 209 runes wrong
+   0.5 (FIRFUMFERENFE, literal F at 49 and 58), mark before rune 286: restart  -> 28 of 33 runes wrong
+   0.5 (FIRFUMFERENFE, literal F at 49 and 58), mark before rune 286: skip one -> 33 of 33 runes wrong
+   0.5: continuous key -> 0 wrong (the published decryption)
+   0.16 (primes-1, literal F at 56), mark before rune 19: restart  -> 61 of 66 runes wrong
+   0.16 (primes-1, literal F at 56), mark before rune 19: skip one -> 65 of 66 runes wrong
+   0.16: continuous key -> 0 wrong (the published decryption)
+
+## typo_pooled.txt
+One keystream restarted at EVERY item of the 0.14 list (items 1-5, 91-139 runes): each item screened alone by kscreen with the 1,439-keystream library (beam decoding through the anti-repeat skips), its top 2,000 decodes kept; a shared key shows as one (keystream, multiplier, model, offset) in 3 or more of the 5 lists, at the same offset (d = 0) or at offset + k for item k (d = 1, a counter from the item label).
+top-2,000 cut-off IoC per item (library): item 1 1.400, item 2 1.586, item 3 1.544, item 4 1.558, item 5 1.423
+   library d=0: candidates in 2 lists 0, in 3 or more 0
+   library d=1: candidates in 2 lists 1, in 3 or more 0; most shared: 'e digits (base 29)' offset 7953 in 2 items
+   null    d=0: candidates in 2 lists 1, in 3 or more 0; most shared: 'RANDOM 201' offset 9355 in 2 items
+   null    d=1: candidates in 2 lists 0, in 3 or more 0
+PASS  plant 'primes-1 (totient)' offset 1234 mult 1 model 0 d 0: true-key IoC per item 1.817, 1.558, 1.721, 1.787, 1.907; above the item's cut-off in 4 of 5 (3 needed)
+PASS  plant 'pi digits (base 29)' offset 777 mult 28 model 1 d 1: true-key IoC per item 1.980, 1.806, 1.623, 2.080, 1.798; above the item's cut-off in 5 of 5 (3 needed)
+PASS  plant 'sha256-ctr reject :3301' offset 4321 mult 1 model 0 d 1: true-key IoC per item 1.811, 1.742, 1.769, 2.455, 2.192; above the item's cut-off in 5 of 5 (3 needed)
