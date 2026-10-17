@@ -1,6 +1,6 @@
 # Overnight campaigns: report from desktop
 
-Generated on desktop at 2026-10-17 15:28:34 by `python jobs/overnight.py`. Thresholds and method: docs/CAMPAIGNS.md.
+Generated on desktop at 2026-10-17 22:13:17 by `python jobs/overnight.py`. Thresholds and method: docs/CAMPAIGNS.md.
 
 **Controls:** unit tests and kscreen selftest passed on desktop; null results below are validated.
 
@@ -23,7 +23,7 @@ The 71 unit tests (solved pages, transcription, statistics, engines) and the ksc
 Drift-aware periodic-key scan (the old lag scan cannot see periods beyond ~60 under the skip rule) and the word-length model test (LP2 has too few 2-rune words for English in runes).
 
 - drift period scan: verdict: NULL (LP2 max 3.03 vs null max 3.55)
-- word lengths:   English runes + null rune in 40% of multi-rune words  3.0  16.1  23.9  17.5  11.7   8.8   6.7   4.6   3.3   2.2   1.2   1.1   G=   20.5 df=10 p=2.51e-02
+- word lengths:   English runes + null rune in 42% of multi-rune words  3.0  15.6  24.1  17.6  11.8   8.8   6.7   4.6   3.3   2.2   1.2   1.1   G=   16.5 df=10 p=8.52e-02
 
 ## kscreen-sections: Keystream library at every offset, LP2 sections (3/3 steps done)
 
@@ -42,6 +42,12 @@ Same library, with the key restarting at each red heading / paragraph start (10 
 - matched null (random keystreams, same windows/settings): best 1.597
 - verification (library_heads_verify.txt): 15 of 15 re-decoded hits keep IoC >= 1.4 over their whole window and beat their own keystream's random offsets by 0.15 (CANDIDATE - inspect)
 - verification (library_pages_verify.txt): 15 of 15 re-decoded hits keep IoC >= 1.4 over their whole window and beat their own keystream's random offsets by 0.15 (CANDIDATE - inspect)
+
+## kscreen-typo: Keystream library restarted at typographic marks (7/8 steps done)
+
+cicadanotebook.com proposed key restarts at the numbered list of 0.14 (items 1-5 and its 10-dot brackets), at the three-dot marks and right after the red headings (work/log/typo_restarts_2026-10-17.md). 22 windows from work/typo_restarts.py; the null has the library's size (1,439 random keystreams of 20,000), because windows under 250 runes are judged against their own maximum. Plants show the power per window length; the solved sections give the known answer (their keys run through the marks); one keystream restarted at every list item is a separate pooled test.
+
+- windows where the library beats its matched null: 5 of 22 (about half expected by chance)
 
 ## kscreen-recurrences: Every linear recurrence and polynomial key mod 29 (31/31 steps done)
 
@@ -101,6 +107,15 @@ The library again on the 8 sections with all 28 key multipliers (c = p + m*k), e
 - library x 28 multipliers: best IoC 1.381 (below the 1.40 threshold; 5,729,965,248 decodes in 35 min)
 - matched null (random keystreams, same windows/settings): best 1.318
 - verification (library_segments_allmults_verify.txt): 0 of 15 re-decoded hits keep IoC >= 1.4 over their whole window and beat their own keystream's random offsets by 0.15 (none: noise)
+
+## kscreen-sacred: New stream families from an outside LLM: two-stream combinations, functions at the primes, reciprocals, prime residues (4/4 steps done)
+
+work/kscreen/sacred.py builds streams the library lacks: F1 s1 + t*s2 and interleaves of 20 number-theoretic streams, F3 phi / sigma / d / Fibonacci / Lucas / Pell / triangular read at p_i - 1, p_i, p_i + 1, F4 base-29 digits of 1/3301, 1/1033 and their ratios, F5 rational functions of the prime residue p mod 29. Streams LP2's flat IoC already excludes as keys, and affine duplicates of library streams, are dropped (sacred.tsv). Screened on the 8 sections at every offset like the library (kscreen-sections), against that campaign's 300-stream random null. Controls: work/kscreen/sacred_selftest.py (one planted key per family, recovered). F2 of the proposal (order-4 recurrences with chosen coefficients) is not built.
+
+- controls: SACRED SELFTEST PASSED
+- sacred streams x 8 sections: best IoC 1.369 (below the 1.40 threshold; 629,728,288 decodes in 10 min)
+- matched null (random keystreams, same windows/settings): best 1.318
+- verification (sacred_segments_verify.txt): 0 of 15 re-decoded hits keep IoC >= 1.4 over their whole window and beat their own keystream's random offsets by 0.15 (none: noise)
 
 ## prng-all: Seeded-PRNG pads with a fresh seed per section (6/6 steps done)
 
@@ -307,3 +322,24 @@ Research note C2: the seed sweeps of the ordinary cipher (c = p + k) cannot see 
 - drand48: not run
 - ruby: not run
 - mt31: not run
+
+## layer2: Two layers from the solved pages: keyword Vigenere inside, number stream with the anti-repeat rule outside (3/11 steps done)
+
+Hypothesis H-LAYER (work/log/hypotheses_2026-10-17.md): q = p + K[phi mod m] with the literal-F rule of Welcome / Koan 2 (or without), then c = q + S_j with the skip / coin anti-repeat models. The outer layer explains the doublet deficit and the flat statistics, and it hides the inner literal F (LP2 has no F excess); kscreen decodes the outer stream but scores a Vigenere text (IoC ~1.1-1.2), so it is blind. work/layer2 keeps a beam over the outer pointer and the inner phase and scores the decoded letters with an English rune-bigram table (identity and Atbash alphabets): a true key ~ +7 per rune, random ~ -15. Periodic mode covers any keyword of period 2-14 by column coincidences; its hits are checked by estimating the keyword and rescoring. Controls: work/layer2/selftest.py (plants with and without literal F, both alphabets, both models; kscreen blind to them; random streams below +2.0).
+
+- controls: not run
+- null: 20 random streams x the solved keys (bigram): not run yet
+- core streams x the solved keys DIVINITY / FIRFUMFERENFE / CIRCUMFERENCE (bigram): not run yet
+- 20 Cicada streams x 30 Cicada keywords (bigram): not run yet
+- core streams x any keyword of period 2-14 (column z): not run yet
+- variant A1: 20 streams with a solved key folded in, one pointer (bigram): best -5.6267 per rune (1,159,951,616 decodes in 3 min)
+  - verification: 0 of 15 re-decoded hits pass (none: noise)
+
+## prng-time: Generators seeded with a millisecond timestamp of 2012-2014 (Java 48-bit, CPython two-word seeds) (0/51 steps done)
+
+The 32-bit sweeps cover every time(NULL) seed but not new Random(System.currentTimeMillis()) (Java's seed is 48-bit) or random.seed(int(time.time() * 1000)) (CPython seeds MT19937 with two 32-bit words above 2^32). Every UTC month of 2012-01 .. 2014-01, newest first, section 0.7, boundary-free bigram score, then a whole-section check of the best rows with independently built keys against random timestamps. With a validated GPU: work/phpmt/time_gpu.py (the desktop's 64-bit port bgmt64.cu, gate tests/test_bgmt64; java, py3, java-abs, and 'ruby' = Ruby's documented seeding and rand(n) rule on CPython's MT19937, not checked against a Ruby; about 9 h for all). Without one: work/prngx/time_campaign.py on the CPU (gate tests/test_prngx_time: vectors from CPython and the Java specification, seeds planted with independent keys found at rank 1, random ciphertext without candidates; about 210 h, so run the newest months with --hours). Both gates run through run_gate.py and fail on a skipped test.
+
+- gate on desktop: GPU not run; CPU not run
+- generator vectors (Java 48-bit and CPython two-word seeds): not run
+- GPU java: 7 of 25 months done; candidates after the whole-section check: none
+- GPU py3: 7 of 25 months done; candidates after the whole-section check: none

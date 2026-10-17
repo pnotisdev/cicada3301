@@ -678,6 +678,23 @@ def campaigns(threads):
         lambda: ks_summary([("library x 28 multipliers", "library_segments_allmults.tsv")], "null_segments.tsv",
                            ["library_segments_allmults_verify.txt"])))
 
+    sacred_selftest = RES / "kscreen" / "sacred_selftest.txt"
+    C.append(Campaign(
+        "kscreen-sacred", "New stream families from an outside LLM: two-stream combinations, functions at the primes, reciprocals, prime residues",
+        "work/kscreen/sacred.py builds streams the library lacks: F1 s1 + t*s2 and interleaves of 20 number-theoretic streams, F3 phi / sigma / d / Fibonacci / Lucas / Pell / triangular read at p_i - 1, p_i, p_i + 1, "
+        "F4 base-29 digits of 1/3301, 1/1033 and their ratios, F5 rational functions of the prime residue p mod 29. Streams LP2's flat IoC already excludes as keys, and affine duplicates of library streams, are dropped "
+        "(sacred.tsv). Screened on the 8 sections at every offset like the library (kscreen-sections), against that campaign's 300-stream random null. Controls: work/kscreen/sacred_selftest.py "
+        "(one planted key per family, recovered). F2 of the proposal (order-4 recurrences with chosen coefficients) is not built.",
+        [
+            Step("kscreen-sacred/build", [PY, str(KS / "sacred.py")], hours=0.02, outputs=[KS / "data" / "sacred.ksb"]),
+            Step("kscreen-sacred/controls", [PY, str(KS / "sacred_selftest.py"), "--threads", str(T), "--out", str(sacred_selftest)], hours=0.05,
+                 outputs=[sacred_selftest], done_check=lambda: "PASSED" in (last_line(sacred_selftest) or "")),
+            ks_screen("kscreen-sacred", "library", "data/segments.txt", "file:data/sacred.ksb", "sacred_segments.tsv", T, hours=0.3),
+            ks_verify("kscreen-sacred", "verify", "sacred_segments.tsv"),
+        ],
+        lambda: [f"- controls: {last_line(sacred_selftest) or 'not run'}"] + ks_summary([("sacred streams x 8 sections", "sacred_segments.tsv")], "null_segments.tsv",
+                                                                                    ["sacred_segments_verify.txt"])))
+
     C.append(Campaign(
         "prng-all", "Seeded-PRNG pads with a fresh seed per section",
         "phpmt sweeps of every seed of PHP<7.1 mt_rand, glibc random() and .NET System.Random on all 8 sections "

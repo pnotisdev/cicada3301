@@ -1,0 +1,2012 @@
+# kscreen screen family=file:data/sacred.ksb windows=data/segments.txt n=300 beam=16 mults=1,28 models=0,1 abort=150:1.2 runs=629728288 aborted=615137863 secs=592 dir=fwd
+# best 1.3689
+# window seg0.7 best 1.3385 item=F1 triangular + 1/3*cumulative phi(n) offset=16352 mult=28 model=1
+# window seg0.8 best 1.3216 item=F1 pell + 2*cumulative phi(n) offset=1732 mult=1 model=0
+# window seg0.9 best 1.3689 item=F1 pell + 1/2*sigma(n) offset=4737 mult=28 model=0
+# window seg0.11 best 1.3430 item=F1 n^2 + 2*phi(n) offset=13639 mult=1 model=1
+# window seg0.12 best 1.3236 item=F1 n^3 + 2*sigma(n) offset=9358 mult=28 model=1
+# window seg0.13 best 1.3352 item=F1 n^2 + 1*cumulative phi(n) offset=14073 mult=28 model=1
+# window seg0.14 best 1.3663 item=F1 primes + 2*sigma(n) offset=18670 mult=1 model=1
+# window seg0.15 best 1.3216 item=F1 primes + -1*pell offset=14327 mult=1 model=1
+# hist 0.84:2 0.85:68 0.86:527 0.87:2787 0.88:6246 0.89:23059 0.90:59076 0.91:136793 0.92:288914 0.93:567628 0.94:1058766 0.95:1312429 0.96:2831973 0.97:4701396 0.98:7464825 0.99:11334024 1.00:16414008 1.01:22587782 1.02:21462795 1.03:34829758 1.04:41441354 1.05:46897603 1.06:50554828 1.07:52195569 1.08:51552197 1.09:37694442 1.10:45791630 1.11:40493373 1.12:34280217 1.13:28242380 1.14:22508023 1.15:13710653 1.16:14375022 1.17:10849688 1.18:8079006 1.19:5928748 1.20:26669 1.21:12343 1.22:6338 1.23:2710 1.24:1435 1.25:645 1.26:295 1.27:131 1.28:69 1.29:29 1.30:11 1.31:7 1.32:7 1.33:3 1.34:1 1.35:2 1.36:4
+ioc	item	offset	mult	model	window	n
+1.3689	F1 pell + 1/2*sigma(n)	4737	28	0	seg0.9	300
+1.3663	F1 primes + 2*sigma(n)	18670	1	1	seg0.14	300
+1.3617	F1 pell + 1/2*sigma(n)	4736	28	0	seg0.9	300
+1.3611	F1 primes + 2*sigma(n)	18668	1	1	seg0.14	300
+1.3585	F1 pell + 1/2*sigma(n)	4735	28	0	seg0.9	300
+1.3520	F1 primes + 2*sigma(n)	18672	1	1	seg0.14	300
+1.3430	F1 n^2 + 2*phi(n)	13639	1	1	seg0.11	300
+1.3385	F1 triangular + 1/3*cumulative phi(n)	16352	28	1	seg0.7	300
+1.3352	F1 n^2 + 1*cumulative phi(n)	14073	28	1	seg0.13	300
+1.3313	F1 n^2 + 2*phi(n)	13635	1	1	seg0.11	300
+1.3275	F1 primes + 1/3*phi(n)	17301	28	0	seg0.13	300
+1.3236	F1 n^3 + 2*sigma(n)	9358	28	1	seg0.12	300
+1.3236	F1 fibonacci + 2*sigma(n)	2662	28	0	seg0.14	300
+1.3223	F1 fibonacci + 2*sigma(n)	2660	28	0	seg0.14	300
+1.3223	F1 fibonacci + 2*sigma(n)	2661	28	0	seg0.14	300
+1.3216	F1 primes + -1*pell	14327	1	1	seg0.15	300
+1.3216	F1 pell + 2*cumulative phi(n)	1732	1	0	seg0.8	300
+1.3165	F1 fibonacci + -1*sigma(n)	18260	1	1	seg0.9	300
+1.3139	F1 prime gaps + 2*sigma(n)	11266	1	0	seg0.8	300
+1.3139	F1 pell + 1/2*sigma(n)	13370	28	1	seg0.11	300
+1.3120	F1 n^2 + 2*sigma(n)	4725	28	0	seg0.11	300
+1.3120	F1 n^2 + 2*sigma(n)	4724	28	0	seg0.11	300
+1.3113	F1 cumulative prime sum + -1*n^3	12685	28	1	seg0.11	300
+1.3113	F1 cumulative prime sum + -1*n^3	12683	28	1	seg0.11	300
+1.3068	F1 pell + 1/2*sigma(n)	13372	28	1	seg0.11	300
+1.3061	F1 cumulative prime sum + -1*triangular	16362	28	1	seg0.8	300
+1.3055	F1 interleave primes^3 | primes reversed digits	8114	28	1	seg0.13	300
+1.3029	F1 n^2 + 2*sigma(n)	4726	28	0	seg0.11	300
+1.3029	F1 primes + -1*pell	14325	1	1	seg0.15	300
+1.3029	F1 sigma(n) + 1/2*primes reversed digits	6266	28	1	seg0.12	300
+1.3023	F1 fibonacci + -1*composites	8187	28	0	seg0.14	300
+1.3023	F1 fibonacci + 1*sigma(n)	12641	1	0	seg0.14	300
+1.3023	F1 lucas + 1/2*emirps	9708	1	1	seg0.15	300
+1.3010	F1 fibonacci + 2*phi(n)	6744	1	1	seg0.13	300
+1.3003	F1 fibonacci + -1*sigma(n)	18262	1	1	seg0.9	300
+1.2997	F1 cumulative prime sum + 1*n^3	5591	28	0	seg0.14	300
+1.2990	F1 primes + 3*composites	6183	28	1	seg0.8	300
+1.2990	F1 primes + 3*composites	6185	28	1	seg0.8	300
+1.2984	F1 emirps + 3*primes digit sum	5130	28	0	seg0.8	300
+1.2984	F1 lucas + 1*primes digit sum	11967	28	1	seg0.8	300
+1.2984	F1 n + 1*phi(n)	6057	28	0	seg0.11	300
+1.2971	F1 fibonacci + -1*composites	17020	28	0	seg0.14	300
+1.2971	F1 n^2 + 2*primes reversed digits	11550	28	0	seg0.12	300
+1.2971	F1 pell + -1*primes reversed digits	17181	1	0	seg0.9	300
+1.2971	F1 triangular + 1/2*cumulative phi(n)	7417	1	0	seg0.15	300
+1.2964	F1 lucas + 1/3*primes^3	17045	28	1	seg0.11	300
+1.2958	F1 fibonacci + 1/3*emirps	8053	28	1	seg0.7	300
+1.2958	F1 prime gaps + 3*primes reversed digits	6610	28	1	seg0.11	300
+1.2951	F1 primes + 1/3*phi(n)	17302	28	0	seg0.13	300
+1.2951	F1 prime gaps + 1/2*primes digit sum	13263	28	0	seg0.8	300
+1.2945	F1 pell + 2*cumulative phi(n)	1734	1	0	seg0.8	300
+1.2945	F1 lucas + 1/3*primes^3	17043	28	1	seg0.11	300
+1.2938	F1 primes digit sum + 2*primes reversed digits	3273	1	0	seg0.8	300
+1.2938	F1 lucas + 1*sigma(n)	17607	28	1	seg0.9	300
+1.2932	F1 triangular + -1*phi(n)	10630	28	0	seg0.12	300
+1.2932	F1 cumulative prime sum + 1*n^2	12665	28	1	seg0.14	300
+1.2932	F1 prime gaps + 1*cumulative phi(n)	4061	1	0	seg0.12	300
+1.2926	F1 n^2 + 2*phi(n)	13641	1	1	seg0.11	300
+1.2926	F1 interleave sigma(n) | cumulative phi(n)	11339	28	0	seg0.12	300
+1.2919	F1 pell + 1/3*emirps	14750	1	1	seg0.9	300
+1.2919	F1 sigma(n) + 3*composites	16619	28	0	seg0.11	300
+1.2913	F1 composites + 1/3*emirps	7581	28	0	seg0.8	300
+1.2906	F1 triangular + 1/2*cumulative phi(n)	7415	1	0	seg0.15	300
+1.2906	F1 triangular + 1/2*cumulative phi(n)	7416	1	0	seg0.15	300
+1.2900	F1 lucas + 1/2*cumulative phi(n)	1891	28	1	seg0.12	300
+1.2900	F1 sigma(n) + 1/2*primes reversed digits	6264	28	1	seg0.12	300
+1.2893	F1 primes + 1/2*composites	4686	28	1	seg0.11	300
+1.2893	F1 primes + 1/2*composites	4688	28	1	seg0.11	300
+1.2887	F1 cumulative prime sum + 1/2*primes digit sum	8540	1	0	seg0.15	300
+1.2887	F1 cumulative prime sum + -1*primes^3	11968	28	0	seg0.7	300
+1.2887	F1 sigma(n) + 3*composites	16618	28	0	seg0.11	300
+1.2887	F1 pell + 1/3*emirps	14752	1	1	seg0.9	300
+1.2887	F1 fibonacci + 1*composites	1827	1	0	seg0.7	300
+1.2887	F1 primes digit sum + 2*primes reversed digits	3276	1	0	seg0.8	300
+1.2880	F1 primes + 1/3*n^3	18277	1	1	seg0.11	300
+1.2880	F1 emirps + 3*primes^3	19492	28	0	seg0.9	300
+1.2880	F1 primes + 3*n	7362	1	0	seg0.7	300
+1.2880	F1 primes digit sum + 2*primes reversed digits	3274	1	0	seg0.8	300
+1.2880	F1 sigma(n) + 2*primes reversed digits	12660	28	1	seg0.14	300
+1.2874	F1 d(n) + 1/3*primes^2	9387	28	0	seg0.8	300
+1.2874	F1 d(n) + -1*primes digit sum	18707	28	1	seg0.7	300
+1.2874	F1 interleave primes | composites	10077	28	0	seg0.15	300
+1.2867	F1 lucas + 1/2*cumulative phi(n)	1893	28	1	seg0.12	300
+1.2867	F1 cumulative prime sum + 3*primes^2	4087	1	1	seg0.13	300
+1.2867	F1 cumulative prime sum + 3*cumulative phi(n)	15580	28	0	seg0.11	300
+1.2867	F1 fibonacci + 3*primes^3	18052	1	1	seg0.9	300
+1.2867	F1 primes + 1/2*primes digit sum	932	1	1	seg0.14	300
+1.2854	F3 phi(p+1)	10170	1	0	seg0.15	300
+1.2854	F3 phi(p+1)	10171	1	0	seg0.15	300
+1.2854	F1 triangular + 1/3*cumulative phi(n)	16348	28	1	seg0.7	300
+1.2848	F1 interleave n | primes reversed digits	9555	28	1	seg0.13	300
+1.2848	F1 d(n) + 2*primes^2	649	28	1	seg0.9	300
+1.2848	F1 d(n) + 1/3*primes^2	9384	28	0	seg0.8	300
+1.2841	F1 fibonacci + 2*sigma(n)	8438	28	1	seg0.13	300
+1.2841	F1 lucas + 2*cumulative phi(n)	8091	28	1	seg0.7	300
+1.2835	F1 cumulative prime sum + -1*n^2	1754	1	1	seg0.13	300
+1.2835	F1 n + 1*primes digit sum	13608	28	0	seg0.14	300
+1.2835	F1 primes + -1*triangular	2864	28	1	seg0.13	300
+1.2835	F1 fibonacci + 1/2*phi(n)	11312	1	1	seg0.13	300
+1.2829	F1 phi(n) + 1*primes digit sum	5922	1	1	seg0.9	300
+1.2829	F1 pell + -1*primes^3	11144	28	0	seg0.9	300
+1.2829	F1 cumulative prime sum + 1/2*cumulative phi(n)	17756	1	0	seg0.14	300
+1.2829	F1 lucas + 1*sigma(n)	17609	28	1	seg0.9	300
+1.2829	F1 n^3 + 1/3*primes^3	4330	1	0	seg0.7	300
+1.2822	F1 fibonacci + -1*primes^3	9166	1	0	seg0.14	300
+1.2822	F1 lucas + 1/2*cumulative phi(n)	1889	28	1	seg0.12	300
+1.2822	F1 lucas + 1/2*emirps	9710	1	1	seg0.15	300
+1.2822	F1 triangular + 1/3*primes^3	14380	28	0	seg0.9	300
+1.2822	F1 prime gaps + 1*n^3	10919	1	1	seg0.14	300
+1.2822	F1 n^2 + -1*phi(n)	12053	28	0	seg0.7	300
+1.2822	F1 triangular + 1/2*cumulative phi(n)	3006	1	0	seg0.7	300
+1.2822	F1 fibonacci + 1*primes^3	15858	1	1	seg0.7	300
+1.2822	F1 primes + 2*fibonacci	7837	1	1	seg0.8	300
+1.2822	F1 prime gaps + 2*primes^3	1461	1	0	seg0.7	300
+1.2816	F1 lucas + 1/2*cumulative phi(n)	1887	28	1	seg0.12	300
+1.2816	F1 n^2 + 1/2*primes^3	346	1	1	seg0.14	300
+1.2816	F1 cumulative prime sum + 3*primes^2	16780	1	0	seg0.15	300
+1.2816	F1 primes + 2*emirps	6268	1	0	seg0.13	300
+1.2816	F1 d(n) + 1/2*primes digit sum	14648	1	0	seg0.9	300
+1.2816	F1 n^3 + 2*primes digit sum	15765	1	1	seg0.7	300
+1.2816	F1 cumulative prime sum + 1/3*cumulative phi(n)	18866	1	1	seg0.12	300
+1.2809	F1 cumulative prime sum + 1/2*sigma(n)	17713	1	1	seg0.12	300
+1.2809	F1 n^3 + 2*sigma(n)	9360	28	1	seg0.12	300
+1.2809	F1 prime gaps + 2*primes^3	1460	1	0	seg0.7	300
+1.2809	F1 composites + 1/2*primes reversed digits	12127	28	0	seg0.11	300
+1.2809	F1 primes + -1*lucas	10138	1	1	seg0.11	300
+1.2809	F1 cumulative prime sum + 1*primes^3	12672	1	1	seg0.15	300
+1.2803	F1 primes + 1/2*composites	4682	28	1	seg0.11	300
+1.2803	F1 pell + 2*cumulative phi(n)	1733	1	0	seg0.8	300
+1.2803	F1 primes digit sum + 2*primes reversed digits	3275	1	0	seg0.8	300
+1.2803	F1 fibonacci + -1*composites	1760	28	0	seg0.14	300
+1.2803	F1 triangular + 2*primes digit sum	16898	28	0	seg0.15	300
+1.2803	F1 cumulative prime sum + 1/3*emirps	19221	28	1	seg0.13	300
+1.2796	F1 primes + 3*sigma(n)	13138	28	0	seg0.7	300
+1.2796	F1 interleave n | primes reversed digits	9553	28	1	seg0.13	300
+1.2796	F1 pell + 1*emirps	8989	1	1	seg0.9	300
+1.2796	F1 interleave sigma(n) | primes^3	3556	28	1	seg0.8	300
+1.2796	F1 n^2 + 3*primes digit sum	8151	1	0	seg0.14	300
+1.2790	F1 cumulative prime sum + 1*primes^2	17392	1	0	seg0.8	300
+1.2790	F1 cumulative prime sum + 1*primes^2	17391	1	0	seg0.8	300
+1.2790	F1 cumulative phi(n) + 3*primes^2	16098	1	1	seg0.15	300
+1.2790	F1 cumulative prime sum + 3*primes^2	12826	1	1	seg0.14	300
+1.2790	F1 d(n) + 1/3*emirps	16640	28	0	seg0.14	300
+1.2790	F1 d(n) + 1/2*primes digit sum	14650	1	0	seg0.9	300
+1.2790	F1 n^2 + 1*primes reversed digits	14933	28	1	seg0.14	300
+1.2790	F1 n^2 + 3*primes digit sum	4390	1	0	seg0.15	300
+1.2783	F1 cumulative prime sum + 1/2*fibonacci	13734	28	0	seg0.13	300
+1.2783	F1 cumulative phi(n) + 2*primes reversed digits	14757	1	1	seg0.15	300
+1.2783	F1 cumulative phi(n) + 1*primes^3	12440	28	0	seg0.8	300
+1.2783	F1 pell + 1/2*cumulative phi(n)	8411	28	0	seg0.8	300
+1.2783	F1 sigma(n) + 3*composites	17397	1	0	seg0.13	300
+1.2783	F1 cumulative prime sum + 1/2*primes reversed digits	13087	1	1	seg0.7	300
+1.2777	F1 cumulative prime sum + 1*composites	10228	28	0	seg0.15	300
+1.2777	F1 prime gaps + 1/2*cumulative phi(n)	5749	1	0	seg0.14	300
+1.2777	F1 fibonacci + 1*primes^3	15860	1	1	seg0.7	300
+1.2777	F1 sigma(n) + 1/2*emirps	13659	28	1	seg0.12	300
+1.2770	F1 primes + 1/3*phi(n)	17300	28	0	seg0.13	300
+1.2770	F1 sigma(n) + 1/2*emirps	13661	28	1	seg0.12	300
+1.2770	F1 fibonacci + -1*composites	13584	28	0	seg0.14	300
+1.2770	F1 prime gaps + 1*n^3	10915	1	1	seg0.14	300
+1.2770	F1 triangular + 1/3*d(n)	16290	28	0	seg0.12	300
+1.2770	F1 lucas + 3*primes^3	18089	28	1	seg0.15	300
+1.2770	F1 phi(n) + 2*composites	547	28	0	seg0.12	300
+1.2764	F1 primes + 3*fibonacci	5180	1	1	seg0.9	300
+1.2764	F1 composites + 1/3*emirps	7580	28	0	seg0.8	300
+1.2764	F1 fibonacci + 2*sigma(n)	8444	28	1	seg0.13	300
+1.2764	F1 cumulative prime sum + 1*n	13590	1	1	seg0.11	300
+1.2764	F1 n + 1*sigma(n)	5417	28	0	seg0.11	300
+1.2764	F1 sigma(n) + 2*cumulative phi(n)	13451	28	0	seg0.9	300
+1.2764	F1 n + 2*sigma(n)	2483	1	0	seg0.15	300
+1.2764	F1 d(n) + 1/3*cumulative phi(n)	3102	28	0	seg0.8	300
+1.2757	F1 primes^3 + 1*primes reversed digits	17923	28	1	seg0.15	300
+1.2757	F1 n + 3*d(n)	14671	28	1	seg0.14	300
+1.2757	F1 n + 1/2*cumulative phi(n)	3348	28	0	seg0.9	300
+1.2757	F1 n + 1/2*cumulative phi(n)	17133	28	0	seg0.13	300
+1.2757	F1 primes + 1/2*composites	4684	28	1	seg0.11	300
+1.2757	F1 prime gaps + -1*emirps	9294	28	0	seg0.13	300
+1.2757	F1 fibonacci + 3*primes reversed digits	13994	28	1	seg0.11	300
+1.2757	F1 emirps + 3*primes reversed digits	17265	28	1	seg0.8	300
+1.2757	F1 sigma(n) + 1/3*composites	18233	28	1	seg0.13	300
+1.2757	F1 n^2 + 1/3*primes^2	15188	1	1	seg0.15	300
+1.2757	F1 fibonacci + -1*composites	13587	28	0	seg0.14	300
+1.2751	F1 cumulative prime sum + 2*emirps	13609	1	0	seg0.13	300
+1.2751	F1 phi(n) + 2*emirps	13014	1	1	seg0.12	300
+1.2751	F1 fibonacci + 2*phi(n)	6742	1	1	seg0.13	300
+1.2751	F1 cumulative prime sum + 2*emirps	13610	1	0	seg0.13	300
+1.2751	F1 cumulative prime sum + 2*emirps	13611	1	0	seg0.13	300
+1.2751	F1 cumulative prime sum + -1*fibonacci	6122	28	0	seg0.15	300
+1.2751	F1 cumulative prime sum + 3*primes^2	12828	1	1	seg0.14	300
+1.2751	F1 phi(n) + 1/2*composites	12194	1	1	seg0.12	300
+1.2751	F1 fibonacci + -1*emirps	8159	1	1	seg0.8	300
+1.2751	F1 n^2 + -1*primes reversed digits	2829	1	0	seg0.12	300
+1.2744	F1 phi(n) + 1/2*primes^3	2715	28	1	seg0.14	300
+1.2744	F1 cumulative prime sum + 1/3*n^2	6913	1	0	seg0.14	300
+1.2744	F1 composites + 1*primes^3	4252	1	1	seg0.8	300
+1.2744	F1 primes + 1*d(n)	4544	1	1	seg0.8	300
+1.2744	F1 n + 3*cumulative phi(n)	3850	28	0	seg0.15	300
+1.2744	F1 cumulative prime sum + 1*sigma(n)	4416	1	0	seg0.7	300
+1.2738	F1 primes + 2*cumulative phi(n)	11853	1	1	seg0.14	300
+1.2738	F1 primes + 1/2*n^2	9011	1	0	seg0.14	300
+1.2738	F1 prime gaps + 3*composites	11403	28	1	seg0.7	300
+1.2738	F1 prime gaps + 3*composites	11405	28	1	seg0.7	300
+1.2738	F1 phi(n) + 2*primes digit sum	2237	1	1	seg0.11	300
+1.2738	F1 primes + 3*emirps	6368	1	1	seg0.8	300
+1.2738	F1 lucas + 1/2*primes reversed digits	2049	1	0	seg0.15	300
+1.2738	F1 interleave primes^3 | primes reversed digits	8112	28	1	seg0.13	300
+1.2738	F5 r/(r-1)	15754	1	1	seg0.7	300
+1.2738	F1 phi(n) + 1/3*primes digit sum	3100	28	0	seg0.15	300
+1.2738	F1 fibonacci + 2*primes reversed digits	11134	28	0	seg0.7	300
+1.2738	F1 pell + 3*primes reversed digits	2533	1	0	seg0.8	300
+1.2738	F1 lucas + 1/2*primes reversed digits	2050	1	0	seg0.15	300
+1.2732	F1 phi(n) + 1*primes digit sum	5920	1	1	seg0.9	300
+1.2732	F1 n + 1/2*cumulative phi(n)	3349	28	0	seg0.9	300
+1.2732	F1 prime gaps + 1/2*primes^3	6443	1	0	seg0.12	300
+1.2732	F1 prime gaps + -1*n^2	11258	28	0	seg0.7	300
+1.2732	F1 fibonacci + -1*composites	13580	28	0	seg0.14	300
+1.2732	F1 fibonacci + -1*composites	13581	28	0	seg0.14	300
+1.2732	F1 fibonacci + -1*composites	13582	28	0	seg0.14	300
+1.2732	F1 emirps + -1*primes^2	19556	28	1	seg0.15	300
+1.2732	F1 d(n) + 1*emirps	18129	1	1	seg0.15	300
+1.2732	F1 phi(n) + 1*primes digit sum	5918	1	1	seg0.9	300
+1.2725	F1 primes + 3*fibonacci	5178	1	1	seg0.9	300
+1.2725	F1 n^2 + -1*composites	2045	1	1	seg0.14	300
+1.2725	F1 phi(n) + 1/3*primes reversed digits	4577	1	1	seg0.11	300
+1.2725	F1 sigma(n) + -1*primes^3	18441	28	0	seg0.13	300
+1.2725	F1 composites + 1/2*primes digit sum	13769	1	1	seg0.12	300
+1.2725	F1 cumulative prime sum + 1/2*sigma(n)	17709	1	1	seg0.12	300
+1.2725	F1 cumulative prime sum + 2*phi(n)	18387	28	1	seg0.9	300
+1.2725	F1 cumulative prime sum + 1/3*pell	9329	28	1	seg0.11	300
+1.2719	F1 primes digit sum + 1*primes reversed digits	5609	1	1	seg0.14	300
+1.2719	F1 cumulative prime sum + 3*primes reversed digits	13033	1	0	seg0.7	300
+1.2719	F1 fibonacci + 2*phi(n)	6740	1	1	seg0.13	300
+1.2719	F1 prime gaps + 2*primes reversed digits	14151	28	1	seg0.13	300
+1.2719	F1 n^2 + -1*sigma(n)	3892	1	1	seg0.14	300
+1.2719	F1 d(n) + -1*cumulative phi(n)	1696	1	0	seg0.11	300
+1.2719	F1 lucas + 3*primes^3	18085	28	1	seg0.15	300
+1.2719	F1 primes + -1*emirps	13257	28	1	seg0.14	300
+1.2719	F1 composites + 1*primes^3	4254	1	1	seg0.8	300
+1.2719	F1 pell + 1/3*emirps	14748	1	1	seg0.9	300
+1.2712	F1 primes + 1/2*primes reversed digits	16621	28	1	seg0.9	300
+1.2712	F1 d(n) + -1*primes^3	17713	28	1	seg0.8	300
+1.2712	F1 n^3 + -1*phi(n)	18661	28	1	seg0.11	300
+1.2712	F1 primes + 2*cumulative prime sum	6972	28	1	seg0.12	300
+1.2712	F1 lucas + 1/2*cumulative phi(n)	1384	28	0	seg0.14	300
+1.2712	F1 emirps + 1/2*primes digit sum	5786	28	1	seg0.13	300
+1.2712	F1 cumulative prime sum + -1*emirps	997	1	0	seg0.11	300
+1.2712	F1 prime gaps + 2*primes^3	2012	28	0	seg0.8	300
+1.2712	F1 d(n) + 1*composites	8458	28	0	seg0.15	300
+1.2712	F1 lucas + 3*cumulative phi(n)	7109	1	0	seg0.8	300
+1.2712	F1 lucas + 1*cumulative phi(n)	15649	1	1	seg0.9	300
+1.2706	F1 d(n) + 1/3*primes^2	9386	28	0	seg0.8	300
+1.2706	F1 prime gaps + -1*n^2	14256	28	0	seg0.9	300
+1.2706	F1 triangular + -1*phi(n)	10629	28	0	seg0.12	300
+1.2706	F1 lucas + 1*primes digit sum	11969	28	1	seg0.8	300
+1.2706	F1 d(n) + 1*composites	8460	28	0	seg0.15	300
+1.2706	F1 d(n) + 1/2*primes digit sum	14646	1	0	seg0.9	300
+1.2706	F1 interleave n^3 | primes reversed digits	6317	28	1	seg0.8	300
+1.2706	F1 prime gaps + 3*composites	9547	28	0	seg0.8	300
+1.2706	F1 n + 2*emirps	15080	28	0	seg0.13	300
+1.2706	F1 interleave primes | primes^3	212	28	1	seg0.12	300
+1.2706	F1 emirps + -1*primes digit sum	17636	1	1	seg0.11	300
+1.2706	F1 phi(n) + 1/3*primes digit sum	3099	28	0	seg0.15	300
+1.2706	F1 cumulative phi(n) + 2*primes reversed digits	14759	1	1	seg0.15	300
+1.2706	F1 d(n) + -1*composites	11232	1	1	seg0.14	300
+1.2699	F1 prime gaps + 2*n	14253	1	0	seg0.8	300
+1.2699	F1 n^3 + 3*primes^3	17744	28	1	seg0.9	300
+1.2699	F1 pell + 1/2*primes^3	13874	1	0	seg0.13	300
+1.2699	F1 lucas + 3*primes reversed digits	5584	28	1	seg0.11	300
+1.2699	F1 prime gaps + -1*n^3	13712	1	0	seg0.15	300
+1.2699	F1 lucas + 1/3*primes reversed digits	9119	1	1	seg0.9	300
+1.2699	F1 phi(n) + 2*primes digit sum	2239	1	1	seg0.11	300
+1.2693	F1 phi(n) + 2*emirps	3181	1	1	seg0.13	300
+1.2693	F1 n + -1*d(n)	1324	1	1	seg0.8	300
+1.2693	F1 interleave emirps | primes reversed digits	13003	28	1	seg0.11	300
+1.2693	F1 cumulative prime sum + 1/2*n	9722	1	0	seg0.9	300
+1.2693	F1 cumulative prime sum + 1/3*n^2	6912	1	0	seg0.14	300
+1.2693	F1 composites + -1*primes digit sum	5983	1	1	seg0.7	300
+1.2693	F1 cumulative phi(n) + 3*primes^3	6453	1	1	seg0.12	300
+1.2686	F1 primes + 1/2*lucas	10308	1	0	seg0.8	300
+1.2686	F1 sigma(n) + 2*composites	6226	1	1	seg0.13	300
+1.2686	F1 prime gaps + 1*composites	18153	28	1	seg0.14	300
+1.2686	F1 sigma(n) + 1/3*composites	18231	28	1	seg0.13	300
+1.2686	F1 primes + 1*primes reversed digits	9414	1	1	seg0.15	300
+1.2686	F1 primes + -1*lucas	10136	1	1	seg0.11	300
+1.2686	F1 cumulative prime sum + 3*d(n)	17678	28	1	seg0.8	300
+1.2686	F1 prime gaps + 2*primes reversed digits	14153	28	1	seg0.13	300
+1.2686	F1 n^2 + 1/2*sigma(n)	2413	28	0	seg0.12	300
+1.2686	F1 primes^2 + 2*primes reversed digits	1851	1	1	seg0.15	300
+1.2686	F1 composites + 1*primes^3	4250	1	1	seg0.8	300
+1.2686	F1 n^3 + 1/2*phi(n)	10326	28	1	seg0.9	300
+1.2686	F1 cumulative prime sum + 1/2*n^2	8685	1	0	seg0.15	300
+1.2680	F1 n + 3*d(n)	4469	28	1	seg0.13	300
+1.2680	F1 primes + 1*phi(n)	1208	1	0	seg0.13	300
+1.2680	F1 n^2 + -1*composites	5050	28	1	seg0.15	300
+1.2680	F1 triangular + 2*primes^3	18192	1	0	seg0.8	300
+1.2680	F1 n^3 + 3*primes^3	17742	28	1	seg0.9	300
+1.2680	F1 sigma(n) + 2*primes reversed digits	8501	1	0	seg0.11	300
+1.2680	F1 interleave phi(n) | sigma(n)	18755	28	1	seg0.8	300
+1.2680	F1 triangular + 1/2*primes^3	9277	1	0	seg0.12	300
+1.2680	F1 cumulative prime sum + 3*cumulative phi(n)	8303	28	1	seg0.7	300
+1.2680	F1 fibonacci + -1*cumulative phi(n)	7844	1	0	seg0.13	300
+1.2680	F1 interleave cumulative prime sum | n^3	173	28	0	seg0.8	300
+1.2680	F1 cumulative prime sum + 1/3*n	14391	28	1	seg0.11	300
+1.2680	F1 triangular + 1*primes^2	465	28	1	seg0.15	300
+1.2680	F1 cumulative phi(n) + 1*primes^3	4630	28	1	seg0.11	300
+1.2680	F1 pell + 1*phi(n)	12074	28	1	seg0.7	300
+1.2680	F1 d(n) + 1/2*primes^2	5741	1	0	seg0.14	300
+1.2680	F1 primes^3 + -1*primes digit sum	15017	1	1	seg0.15	300
+1.2673	F1 cumulative prime sum + 1/2*emirps	8330	1	0	seg0.8	300
+1.2673	F1 prime gaps + 1/3*primes^3	17840	1	0	seg0.13	300
+1.2673	F1 lucas + 1*sigma(n)	9738	28	1	seg0.8	300
+1.2673	F1 interleave n | emirps	5840	28	1	seg0.15	300
+1.2673	F1 cumulative prime sum + 1/2*n	9723	1	0	seg0.9	300
+1.2673	F1 prime gaps + 1*n^3	6909	1	1	seg0.8	300
+1.2673	F1 lucas + 1/2*emirps	9706	1	1	seg0.15	300
+1.2673	F1 interleave primes | n	13999	1	0	seg0.7	300
+1.2673	F1 phi(n) + 1/2*primes^3	10632	1	0	seg0.7	300
+1.2673	F1 primes + 1/3*fibonacci	4654	1	0	seg0.13	300
+1.2673	F1 n + 1/3*primes^2	4356	28	1	seg0.15	300
+1.2673	F1 primes + 3*pell	8642	28	1	seg0.9	300
+1.2673	F1 sigma(n) + 1/3*primes digit sum	16544	28	1	seg0.12	300
+1.2673	F1 prime gaps + 1/2*primes digit sum	13264	28	0	seg0.8	300
+1.2673	F1 sigma(n) + 1/3*primes digit sum	16542	28	1	seg0.12	300
+1.2673	F1 n + 1/3*primes digit sum	17297	28	0	seg0.12	300
+1.2667	F1 primes + -1*pell	6685	28	0	seg0.13	300
+1.2667	F1 sigma(n) + 2*primes^3	3787	28	0	seg0.13	300
+1.2667	F1 fibonacci + -1*composites	13583	28	0	seg0.14	300
+1.2667	F1 phi(n) + 1/3*primes reversed digits	16098	28	0	seg0.9	300
+1.2667	F1 primes + -1*triangular	2862	28	1	seg0.13	300
+1.2667	F1 prime gaps + 1/2*cumulative prime sum	14454	28	1	seg0.13	300
+1.2667	F1 cumulative prime sum + 1/3*composites	16061	1	1	seg0.9	300
+1.2667	F1 prime gaps + 3*n^2	15369	1	1	seg0.12	300
+1.2667	F1 phi(n) + 1/3*primes digit sum	3098	28	0	seg0.15	300
+1.2667	F1 cumulative prime sum + 1/3*d(n)	422	28	1	seg0.15	300
+1.2667	F1 primes + 3*n^2	17096	1	1	seg0.14	300
+1.2667	F1 primes + 1*lucas	7875	1	0	seg0.7	300
+1.2667	F1 cumulative phi(n) + 3*primes^2	3223	28	1	seg0.8	300
+1.2667	F1 cumulative prime sum + 1/3*composites	16059	1	1	seg0.9	300
+1.2660	F1 emirps + 3*primes^3	19491	28	0	seg0.9	300
+1.2660	F1 cumulative prime sum + 3*n^2	9839	28	0	seg0.11	300
+1.2660	F1 pell + 1/2*cumulative phi(n)	8410	28	0	seg0.8	300
+1.2660	F1 fibonacci + 2*primes reversed digits	6321	1	1	seg0.7	300
+1.2660	F1 phi(n) + 3*primes^2	4221	28	1	seg0.7	300
+1.2660	F1 interleave sigma(n) | emirps	2753	1	0	seg0.9	300
+1.2660	F1 interleave sigma(n) | emirps	2755	1	0	seg0.9	300
+1.2660	F1 cumulative phi(n) + 3*primes reversed digits	4159	1	0	seg0.12	300
+1.2660	F1 interleave n^3 | primes^3	15210	1	1	seg0.15	300
+1.2660	F1 prime gaps + -1*n^3	18226	28	1	seg0.13	300
+1.2660	F1 fibonacci + 2*primes^2	7231	28	1	seg0.13	300
+1.2660	F1 prime gaps + 1*n^3	3085	1	1	seg0.14	300
+1.2660	F1 cumulative prime sum + 1/3*primes^2	6673	28	0	seg0.13	300
+1.2660	F1 sigma(n) + 1/3*primes digit sum	10142	1	0	seg0.7	300
+1.2660	F1 prime gaps + 1*sigma(n)	17369	1	1	seg0.15	300
+1.2660	F1 fibonacci + -1*composites	17019	28	0	seg0.14	300
+1.2660	F1 cumulative prime sum + 3*n^3	3867	28	1	seg0.12	300
+1.2660	F1 cumulative prime sum + 1/3*composites	16063	1	1	seg0.9	300
+1.2660	F1 pell + 1/3*sigma(n)	3872	1	1	seg0.8	300
+1.2660	F1 lucas + 1/2*sigma(n)	18030	1	0	seg0.14	300
+1.2660	F1 sigma(n) + 3*primes^3	9230	28	0	seg0.11	300
+1.2660	F1 fibonacci + 1*emirps	9242	1	1	seg0.8	300
+1.2654	F1 emirps + 1/2*primes digit sum	18908	1	0	seg0.9	300
+1.2654	F1 primes^2 + 1/2*primes reversed digits	18098	1	0	seg0.15	300
+1.2654	F1 cumulative prime sum + 2*d(n)	12245	28	0	seg0.14	300
+1.2654	F1 interleave n^3 | composites	18432	28	0	seg0.11	300
+1.2654	F1 n^3 + 1/2*phi(n)	11098	28	0	seg0.15	300
+1.2654	F1 composites + 2*primes reversed digits	9192	1	0	seg0.14	300
+1.2654	F1 cumulative prime sum + 1/3*primes reversed digits	5159	28	1	seg0.7	300
+1.2654	F1 n + 3*cumulative phi(n)	8604	1	0	seg0.8	300
+1.2654	F1 interleave cumulative phi(n) | primes^3	8448	28	0	seg0.11	300
+1.2654	F1 sigma(n) + 1*primes reversed digits	16778	1	1	seg0.11	300
+1.2654	F1 fibonacci + 1*sigma(n)	4023	1	0	seg0.15	300
+1.2654	F1 primes + 1/2*n	2994	28	0	seg0.11	300
+1.2654	F1 prime gaps + 1*n^3	10917	1	1	seg0.14	300
+1.2647	F3 sigma(p-1)	16981	28	1	seg0.7	300
+1.2647	F1 primes + 2*cumulative prime sum	6974	28	1	seg0.12	300
+1.2647	F1 emirps + -1*primes digit sum	16266	1	1	seg0.14	300
+1.2647	F1 pell + 1/3*composites	3912	28	1	seg0.9	300
+1.2647	F1 prime gaps + 1/2*cumulative phi(n)	5748	1	0	seg0.14	300
+1.2647	F1 interleave n^3 | phi(n)	12741	1	0	seg0.11	300
+1.2647	F1 triangular + -1*primes^3	9179	1	0	seg0.11	300
+1.2647	F1 phi(n) + 1/2*emirps	11983	28	1	seg0.9	300
+1.2647	F1 interleave n^3 | phi(n)	19197	1	0	seg0.15	300
+1.2647	F1 cumulative prime sum + 1/2*primes digit sum	5897	1	1	seg0.11	300
+1.2647	F1 interleave n | primes^3	8672	1	0	seg0.8	300
+1.2647	F1 interleave sigma(n) | composites	746	1	0	seg0.7	300
+1.2647	F1 phi(n) + 2*primes reversed digits	17854	1	1	seg0.11	300
+1.2647	F1 primes + 3*n^3	17344	1	0	seg0.12	300
+1.2647	F1 n + 1/3*primes^2	4358	28	1	seg0.15	300
+1.2647	F1 pell + 3*emirps	16430	1	0	seg0.11	300
+1.2647	F1 phi(n) + 1/2*primes^2	171	28	0	seg0.13	300
+1.2647	F1 n^2 + 1/2*composites	367	1	1	seg0.11	300
+1.2647	F1 prime gaps + 3*n	17719	28	0	seg0.14	300
+1.2647	F1 n^2 + 3*primes digit sum	5815	1	0	seg0.7	300
+1.2647	F1 lucas + -1*primes^3	3335	28	0	seg0.7	300
+1.2647	F1 phi(n) + -1*cumulative phi(n)	9402	28	1	seg0.14	300
+1.2647	F1 interleave sigma(n) | emirps	1837	28	0	seg0.8	300
+1.2647	F1 prime gaps + 1*emirps	17004	1	0	seg0.12	300
+1.2647	F1 cumulative prime sum + -1*primes reversed digits	14200	1	1	seg0.9	300
+1.2647	F1 lucas + 1/3*emirps	14086	28	1	seg0.9	300
+1.2647	F1 primes^3 + -1*primes digit sum	5009	1	1	seg0.8	300
+1.2641	F1 phi(n) + 1*primes^3	14948	28	1	seg0.9	300
+1.2641	F5 (r-1)/r	11322	28	1	seg0.15	300
+1.2641	F1 cumulative phi(n) + -1*primes^2	1154	1	0	seg0.15	300
+1.2641	F1 lucas + 2*phi(n)	9585	28	1	seg0.14	300
+1.2641	F1 phi(n) + -1*primes reversed digits	10564	1	0	seg0.12	300
+1.2641	F1 phi(n) + -1*primes reversed digits	10565	1	0	seg0.12	300
+1.2641	F1 n^3 + 3*primes reversed digits	11148	1	1	seg0.8	300
+1.2641	F1 pell + 1*primes^3	13699	28	0	seg0.9	300
+1.2641	F1 n + 1*d(n)	14311	1	1	seg0.8	300
+1.2641	F1 fibonacci + 1/2*composites	13322	28	0	seg0.14	300
+1.2641	F1 fibonacci + 1/2*composites	13323	28	0	seg0.14	300
+1.2641	F1 n^2 + 1/2*cumulative phi(n)	2956	1	1	seg0.14	300
+1.2641	F1 primes + 1/2*n^2	15323	1	0	seg0.12	300
+1.2641	F1 phi(n) + 2*primes digit sum	2993	28	0	seg0.9	300
+1.2641	F1 d(n) + 1/3*primes digit sum	13548	1	1	seg0.7	300
+1.2641	F1 fibonacci + 1/2*phi(n)	18641	1	1	seg0.13	300
+1.2641	F1 lucas + 3*sigma(n)	15556	1	1	seg0.12	300
+1.2641	F1 n^2 + 1/2*cumulative phi(n)	2952	1	1	seg0.14	300
+1.2641	F1 phi(n) + -1*cumulative phi(n)	1765	1	1	seg0.12	300
+1.2641	F1 phi(n) + -1*emirps	13432	1	1	seg0.14	300
+1.2641	F1 emirps + 1*primes^3	16570	1	0	seg0.12	300
+1.2641	F1 primes + 1/2*primes reversed digits	15118	1	1	seg0.12	300
+1.2641	F1 lucas + -1*phi(n)	8506	28	0	seg0.11	300
+1.2641	F1 lucas + 1/3*cumulative phi(n)	16494	28	0	seg0.15	300
+1.2641	F1 d(n) + 1/3*cumulative phi(n)	12448	1	1	seg0.8	300
+1.2635	F1 n + 3*sigma(n)	3968	1	0	seg0.13	300
+1.2635	F1 prime gaps + 1*emirps	1497	28	0	seg0.13	300
+1.2635	F1 triangular + 1/3*cumulative phi(n)	16356	28	1	seg0.7	300
+1.2635	F1 n + 2*phi(n)	14008	28	0	seg0.9	300
+1.2635	F1 cumulative prime sum + 1/3*emirps	19219	28	1	seg0.13	300
+1.2635	F1 d(n) + 1/2*primes digit sum	19295	1	1	seg0.15	300
+1.2635	F1 triangular + 1/3*cumulative phi(n)	16350	28	1	seg0.7	300
+1.2635	F1 cumulative prime sum + 1*triangular	15664	1	1	seg0.8	300
+1.2635	F1 triangular + 2*cumulative phi(n)	17404	28	0	seg0.8	300
+1.2635	F1 primes + -1*pell	16524	28	1	seg0.11	300
+1.2635	F1 fibonacci + 3*phi(n)	6128	1	0	seg0.11	300
+1.2635	F1 lucas + 1*cumulative phi(n)	17101	28	1	seg0.13	300
+1.2635	F1 triangular + 3*sigma(n)	8154	1	1	seg0.8	300
+1.2635	F1 triangular + 3*composites	4000	1	1	seg0.7	300
+1.2635	F1 triangular + 1*composites	11741	1	0	seg0.9	300
+1.2635	F1 n + 3*cumulative phi(n)	8603	1	0	seg0.8	300
+1.2635	F1 prime gaps + 2*sigma(n)	16957	28	0	seg0.9	300
+1.2635	F1 fibonacci + 1/3*primes reversed digits	18880	1	0	seg0.9	300
+1.2635	F1 n^2 + 1/2*primes reversed digits	12931	1	0	seg0.7	300
+1.2635	F1 lucas + 2*primes reversed digits	6070	28	1	seg0.11	300
+1.2635	F1 primes + 2*triangular	17553	28	1	seg0.8	300
+1.2635	F1 interleave n^3 | primes^3	15212	1	1	seg0.15	300
+1.2635	F1 composites + 2*primes reversed digits	9193	1	0	seg0.14	300
+1.2635	F1 composites + 2*primes reversed digits	9194	1	0	seg0.14	300
+1.2635	F1 cumulative prime sum + 1/3*pell	15960	28	0	seg0.8	300
+1.2628	F1 triangular + 1/3*primes digit sum	14936	1	1	seg0.14	300
+1.2628	F1 cumulative phi(n) + 1/2*primes digit sum	5006	1	1	seg0.14	300
+1.2628	F1 d(n) + 1/3*cumulative phi(n)	12450	1	1	seg0.8	300
+1.2628	F1 emirps + 1*primes reversed digits	9253	1	1	seg0.13	300
+1.2628	F1 triangular + 1/3*emirps	19052	1	1	seg0.8	300
+1.2628	F1 n^2 + 2*primes reversed digits	9680	1	0	seg0.11	300
+1.2628	F1 cumulative prime sum + 1/2*composites	2668	1	0	seg0.13	300
+1.2628	F1 phi(n) + -1*d(n)	13125	28	0	seg0.8	300
+1.2628	F1 d(n) + 1/2*emirps	687	28	1	seg0.12	300
+1.2628	F1 d(n) + 1/2*emirps	5911	28	1	seg0.14	300
+1.2628	F1 cumulative prime sum + 2*triangular	3701	1	1	seg0.15	300
+1.2628	F1 sigma(n) + 1/3*emirps	13249	28	0	seg0.11	300
+1.2628	F1 primes + 2*triangular	17555	28	1	seg0.8	300
+1.2628	F1 triangular + 1/3*cumulative phi(n)	16354	28	1	seg0.7	300
+1.2628	F1 pell + 2*primes digit sum	14426	1	1	seg0.12	300
+1.2628	F1 primes + -1*triangular	2860	28	1	seg0.13	300
+1.2628	F1 primes + 1/3*d(n)	10003	1	0	seg0.15	300
+1.2628	F1 cumulative prime sum + 1/2*emirps	9047	1	0	seg0.15	300
+1.2628	F1 cumulative prime sum + 1/2*emirps	9046	1	0	seg0.15	300
+1.2622	F1 cumulative phi(n) + 1/3*primes^2	3113	1	0	seg0.13	300
+1.2622	F1 cumulative prime sum + 1/2*primes digit sum	4822	28	1	seg0.13	300
+1.2622	F1 n + 1/2*sigma(n)	859	1	0	seg0.12	300
+1.2622	F1 n + 1/2*primes digit sum	3951	1	1	seg0.14	300
+1.2622	F1 cumulative prime sum + 2*n^3	1682	1	0	seg0.7	300
+1.2622	F1 n^2 + 1/2*emirps	2929	1	0	seg0.13	300
+1.2622	F1 sigma(n) + -1*primes digit sum	18742	1	1	seg0.12	300
+1.2622	F1 lucas + 1/3*primes^2	9658	28	0	seg0.15	300
+1.2622	F1 n^3 + 3*cumulative phi(n)	13165	28	1	seg0.13	300
+1.2622	F1 cumulative phi(n) + 1/3*primes^2	3112	1	0	seg0.13	300
+1.2622	F1 primes^2 + 3*primes digit sum	13925	1	1	seg0.15	300
+1.2622	F1 n + 1*emirps	9212	28	1	seg0.8	300
+1.2622	F1 interleave primes | n^3	13757	28	1	seg0.15	300
+1.2622	F1 pell + 3*phi(n)	17522	1	0	seg0.15	300
+1.2622	F1 pell + 3*emirps	16429	1	0	seg0.11	300
+1.2622	F1 d(n) + 1/3*primes digit sum	11516	1	0	seg0.12	300
+1.2622	F1 primes + -1*fibonacci	6819	28	1	seg0.9	300
+1.2622	F1 interleave n^3 | phi(n)	19198	1	0	seg0.15	300
+1.2615	F1 cumulative prime sum + 1*triangular	1181	1	1	seg0.14	300
+1.2615	F1 cumulative prime sum + 3*d(n)	16809	1	0	seg0.12	300
+1.2615	F1 interleave phi(n) | emirps	9283	1	0	seg0.7	300
+1.2615	F1 lucas + 1/3*composites	1761	1	1	seg0.9	300
+1.2615	F1 interleave phi(n) | emirps	14514	28	1	seg0.13	300
+1.2615	F1 emirps + -1*primes^2	9885	28	0	seg0.11	300
+1.2615	F1 n^2 + -1*composites	2047	1	1	seg0.14	300
+1.2615	F1 interleave cumulative phi(n) | primes reversed digits	17119	1	1	seg0.7	300
+1.2615	F1 triangular + 2*primes^3	14463	28	1	seg0.9	300
+1.2615	F1 primes + -1*emirps	4826	1	1	seg0.9	300
+1.2615	F1 fibonacci + -1*emirps	16190	28	0	seg0.9	300
+1.2615	F1 d(n) + 3*primes^2	3358	28	1	seg0.15	300
+1.2615	F1 n^2 + -1*primes reversed digits	2830	1	0	seg0.12	300
+1.2615	F1 n + 3*d(n)	14673	28	1	seg0.14	300
+1.2615	F1 primes + 1/3*cumulative prime sum	17898	1	0	seg0.12	300
+1.2615	F1 pell + 2*emirps	13492	1	1	seg0.7	300
+1.2609	F1 interleave primes | cumulative phi(n)	477	1	0	seg0.8	300
+1.2609	F1 n^2 + 3*primes reversed digits	9305	1	0	seg0.15	300
+1.2609	F1 interleave primes | phi(n)	5598	28	1	seg0.7	300
+1.2609	F1 prime gaps + 3*primes^3	15927	28	0	seg0.9	300
+1.2609	F1 pell + -1*emirps	3817	1	0	seg0.11	300
+1.2609	F1 fibonacci + 1/3*primes^2	8876	1	1	seg0.8	300
+1.2609	F1 n^2 + -1*primes^2	8464	28	1	seg0.13	300
+1.2609	F1 phi(n) + 3*d(n)	3020	1	0	seg0.8	300
+1.2609	F1 primes + -1*n^3	7870	28	1	seg0.13	300
+1.2609	F1 pell + 2*primes digit sum	14424	1	1	seg0.12	300
+1.2609	F1 composites + 1/3*primes^3	5524	1	0	seg0.7	300
+1.2609	F1 triangular + 1/3*emirps	19551	28	0	seg0.13	300
+1.2609	F1 interleave n^3 | composites	18435	28	0	seg0.11	300
+1.2609	F1 triangular + 1/2*primes reversed digits	18995	1	1	seg0.7	300
+1.2609	F1 lucas + 1/2*cumulative phi(n)	1386	28	0	seg0.14	300
+1.2609	F1 lucas + -1*primes reversed digits	19167	28	1	seg0.15	300
+1.2609	F1 d(n) + 1/2*composites	12182	1	0	seg0.8	300
+1.2609	F1 d(n) + 1*primes reversed digits	7025	1	1	seg0.14	300
+1.2609	F1 prime gaps + 1/3*primes^3	17841	1	0	seg0.13	300
+1.2609	F1 fibonacci + 1/2*composites	13337	28	0	seg0.14	300
+1.2609	F1 d(n) + -1*primes^3	4171	1	0	seg0.7	300
+1.2609	F1 n^3 + 1*d(n)	9800	28	0	seg0.11	300
+1.2609	F1 cumulative prime sum + 1/2*sigma(n)	17707	1	1	seg0.12	300
+1.2609	F1 fibonacci + 1*sigma(n)	4024	1	0	seg0.15	300
+1.2609	F1 n^3 + 2*primes reversed digits	1380	1	1	seg0.7	300
+1.2609	F1 fibonacci + 2*primes reversed digits	10460	28	1	seg0.13	300
+1.2609	F1 triangular + 1*primes digit sum	9220	28	1	seg0.14	300
+1.2609	F1 n^2 + -1*primes reversed digits	5522	1	0	seg0.12	300
+1.2609	F1 triangular + 1/2*primes digit sum	15242	28	1	seg0.13	300
+1.2602	F1 n^3 + 1/3*composites	4697	28	0	seg0.15	300
+1.2602	F1 n^3 + 1/2*primes digit sum	17118	1	1	seg0.13	300
+1.2602	F1 n^3 + 1/3*composites	4696	28	0	seg0.15	300
+1.2602	F1 fibonacci + -1*composites	17022	28	0	seg0.14	300
+1.2602	F1 n^3 + 3*d(n)	9524	28	1	seg0.9	300
+1.2602	F1 primes + 1/2*composites	4690	28	1	seg0.11	300
+1.2602	F1 triangular + 2*phi(n)	11867	1	0	seg0.13	300
+1.2602	F1 prime gaps + -1*n^3	18228	28	1	seg0.13	300
+1.2602	F1 primes + 2*sigma(n)	10901	1	1	seg0.11	300
+1.2602	F1 primes + 2*fibonacci	7839	1	1	seg0.8	300
+1.2602	F1 phi(n) + 2*primes reversed digits	11991	1	0	seg0.11	300
+1.2602	F1 cumulative prime sum + 2*fibonacci	13755	28	0	seg0.12	300
+1.2602	F1 primes + -1*phi(n)	16653	1	1	seg0.14	300
+1.2602	F1 triangular + 1/3*primes digit sum	14938	1	1	seg0.14	300
+1.2602	F1 phi(n) + 1/3*primes digit sum	3101	28	0	seg0.15	300
+1.2602	F1 prime gaps + 1*sigma(n)	17367	1	1	seg0.15	300
+1.2602	F1 interleave primes | n	12315	28	1	seg0.15	300
+1.2602	F1 n^2 + 2*primes reversed digits	11547	28	0	seg0.12	300
+1.2602	F1 n^3 + 2*primes reversed digits	18970	28	1	seg0.7	300
+1.2602	F1 prime gaps + 1/3*n^3	10872	1	0	seg0.8	300
+1.2602	F1 interleave primes | sigma(n)	12158	1	0	seg0.15	300
+1.2602	F1 interleave primes | sigma(n)	12159	1	0	seg0.15	300
+1.2602	F1 fibonacci + 1*emirps	1745	28	0	seg0.8	300
+1.2602	F1 primes + -1*n^2	11841	1	1	seg0.12	300
+1.2602	F1 n + -1*emirps	3390	1	1	seg0.12	300
+1.2602	F1 n + -1*emirps	3392	1	1	seg0.12	300
+1.2602	F1 lucas + 1/3*emirps	2229	28	0	seg0.13	300
+1.2596	F1 n^3 + 1/2*d(n)	11939	1	0	seg0.9	300
+1.2596	F1 n^3 + 1/2*primes^2	16738	1	1	seg0.12	300
+1.2596	F1 cumulative prime sum + -1*fibonacci	10233	1	0	seg0.8	300
+1.2596	F1 pell + -1*phi(n)	4521	28	0	seg0.11	300
+1.2596	F1 triangular + 2*sigma(n)	13518	28	0	seg0.9	300
+1.2596	F1 cumulative prime sum + 2*composites	18560	1	0	seg0.14	300
+1.2596	F1 interleave primes | phi(n)	5602	28	1	seg0.7	300
+1.2596	F1 pell + 3*emirps	19003	28	1	seg0.8	300
+1.2596	F1 cumulative prime sum + 1/3*n^3	8745	28	1	seg0.11	300
+1.2596	F1 interleave n | sigma(n)	4081	28	0	seg0.15	300
+1.2596	F1 interleave primes | n	4990	28	0	seg0.9	300
+1.2596	F1 primes + -1*pell	16522	28	1	seg0.11	300
+1.2596	F1 n^3 + 1/2*primes^2	66	1	0	seg0.12	300
+1.2596	F1 prime gaps + 1/3*primes^3	17839	1	0	seg0.13	300
+1.2596	F1 prime gaps + 3*phi(n)	7677	28	1	seg0.8	300
+1.2596	F1 n^3 + 1/3*phi(n)	4098	1	1	seg0.12	300
+1.2596	F1 prime gaps + 1*n^3	6911	1	1	seg0.8	300
+1.2596	F1 prime gaps + 1*emirps	10877	1	1	seg0.9	300
+1.2596	F1 cumulative prime sum + 2*n^2	8700	28	1	seg0.11	300
+1.2596	F1 interleave n^3 | primes reversed digits	6315	28	1	seg0.8	300
+1.2589	F1 primes + 2*n	10207	1	0	seg0.12	300
+1.2589	F1 lucas + -1*primes digit sum	11890	1	1	seg0.12	300
+1.2589	F1 triangular + -1*primes reversed digits	16472	28	0	seg0.8	300
+1.2589	F1 cumulative phi(n) + -1*emirps	3750	28	1	seg0.13	300
+1.2589	F1 fibonacci + 3*sigma(n)	2245	1	0	seg0.13	300
+1.2589	F1 n^3 + 1/2*phi(n)	11097	28	0	seg0.15	300
+1.2589	F1 cumulative prime sum + 3*composites	17825	28	1	seg0.9	300
+1.2589	F1 n + 3*composites	8768	1	1	seg0.8	300
+1.2589	F1 primes + 1/2*emirps	9138	28	0	seg0.7	300
+1.2589	F1 n + 1/3*emirps	2461	1	0	seg0.7	300
+1.2589	F1 primes + -1*emirps	10843	1	0	seg0.9	300
+1.2589	F1 n + 1/2*primes reversed digits	15855	28	1	seg0.13	300
+1.2589	F1 prime gaps + -1*primes^2	13185	1	0	seg0.7	300
+1.2589	F1 prime gaps + 1/3*primes^3	11514	28	1	seg0.15	300
+1.2589	F1 primes + 3*phi(n)	2172	1	0	seg0.14	300
+1.2589	F1 prime gaps + 1/3*n^3	10872	1	1	seg0.8	300
+1.2589	F1 cumulative prime sum + 1/3*n^2	6911	1	0	seg0.14	300
+1.2589	F1 phi(n) + 1/3*primes reversed digits	14152	1	0	seg0.15	300
+1.2589	F1 triangular + 2*primes digit sum	16896	28	0	seg0.15	300
+1.2589	F1 n^3 + -1*emirps	13451	1	1	seg0.11	300
+1.2589	F1 triangular + 2*phi(n)	5265	28	0	seg0.15	300
+1.2589	F1 fibonacci + 3*sigma(n)	2244	1	0	seg0.13	300
+1.2589	F1 primes + -1*triangular	15742	28	0	seg0.15	300
+1.2589	F1 primes + -1*triangular	15743	28	0	seg0.15	300
+1.2589	F1 cumulative phi(n) + 1*primes reversed digits	14146	1	1	seg0.7	300
+1.2589	F1 n^3 + 2*composites	334	1	1	seg0.8	300
+1.2583	F1 cumulative prime sum + 1*cumulative phi(n)	6752	1	0	seg0.11	300
+1.2583	F1 prime gaps + 1*triangular	4844	28	1	seg0.7	300
+1.2583	F1 d(n) + 1/2*composites	12181	1	0	seg0.8	300
+1.2583	F1 primes + 3*primes digit sum	9821	1	0	seg0.9	300
+1.2583	F1 pell + -1*primes^3	16664	28	0	seg0.9	300
+1.2583	F1 pell + -1*primes^3	16665	28	0	seg0.9	300
+1.2583	F1 prime gaps + 1/3*sigma(n)	17090	1	1	seg0.7	300
+1.2583	F1 fibonacci + 2*sigma(n)	8442	28	1	seg0.13	300
+1.2583	F3 phi(p+1)	12643	1	0	seg0.11	300
+1.2583	F1 n^3 + -1*primes digit sum	1751	1	0	seg0.15	300
+1.2583	F1 lucas + 1/3*composites	10598	1	1	seg0.15	300
+1.2583	F1 composites + 1/2*primes^3	2104	1	0	seg0.12	300
+1.2583	F1 primes + 1/2*d(n)	3090	28	0	seg0.12	300
+1.2583	F1 fibonacci + 3*cumulative phi(n)	10569	28	1	seg0.11	300
+1.2583	F1 cumulative prime sum + 2*phi(n)	1925	1	1	seg0.13	300
+1.2583	F1 cumulative phi(n) + 1/3*primes digit sum	5926	1	1	seg0.9	300
+1.2583	F1 pell + 2*primes^3	581	1	1	seg0.15	300
+1.2583	F1 prime gaps + 1/3*n^2	18212	1	1	seg0.15	300
+1.2583	F1 prime gaps + 1/2*sigma(n)	10377	28	0	seg0.15	300
+1.2583	F1 fibonacci + 1*primes^3	19440	1	0	seg0.7	300
+1.2583	F1 phi(n) + 2*primes digit sum	7181	28	1	seg0.15	300
+1.2583	F1 emirps + 1/2*primes digit sum	8068	28	1	seg0.15	300
+1.2583	F1 cumulative prime sum + 1*primes^2	2275	28	0	seg0.9	300
+1.2583	F1 n + -1*primes^3	5917	28	1	seg0.7	300
+1.2583	F1 emirps + -1*primes reversed digits	14541	28	1	seg0.12	300
+1.2583	F1 prime gaps + 1/2*triangular	13676	28	0	seg0.11	300
+1.2583	F1 cumulative prime sum + 1/2*n^3	17408	28	0	seg0.8	300
+1.2583	F1 cumulative prime sum + 1/3*n^3	8747	28	1	seg0.11	300
+1.2583	F1 prime gaps + 2*sigma(n)	14319	28	1	seg0.13	300
+1.2583	F1 n + 1*d(n)	18864	1	0	seg0.9	300
+1.2583	F1 n^3 + 1/3*d(n)	16910	1	0	seg0.14	300
+1.2583	F1 prime gaps + 3*n^2	12208	28	0	seg0.11	300
+1.2583	F1 primes + 1*triangular	1229	1	0	seg0.11	300
+1.2583	F1 n^3 + 2*primes^2	99	1	1	seg0.14	300
+1.2583	F1 triangular + 1/3*sigma(n)	2504	28	0	seg0.7	300
+1.2583	F1 cumulative phi(n) + 2*primes digit sum	19011	1	0	seg0.11	300
+1.2576	F1 fibonacci + 2*sigma(n)	2658	28	0	seg0.14	300
+1.2576	F1 n^3 + 2*composites	10617	28	1	seg0.14	300
+1.2576	F1 composites + 1/2*primes reversed digits	2261	1	1	seg0.12	300
+1.2576	F1 primes + 1/3*lucas	5094	28	0	seg0.9	300
+1.2576	F1 d(n) + -1*primes reversed digits	19153	28	1	seg0.11	300
+1.2576	F1 triangular + 1/2*cumulative phi(n)	3007	1	0	seg0.7	300
+1.2576	F1 primes + -1*n^2	9817	28	1	seg0.14	300
+1.2576	F1 d(n) + 1/3*primes reversed digits	12596	1	1	seg0.8	300
+1.2576	F1 cumulative prime sum + 1/2*primes^2	5630	1	1	seg0.12	300
+1.2576	F1 fibonacci + 2*composites	14321	1	1	seg0.11	300
+1.2576	F1 n^2 + 1/2*sigma(n)	2414	28	0	seg0.12	300
+1.2576	F1 emirps + 3*primes^3	6461	28	1	seg0.8	300
+1.2576	F1 primes^2 + 1*primes reversed digits	14836	28	0	seg0.13	300
+1.2576	F1 prime gaps + 3*composites	11407	28	1	seg0.7	300
+1.2576	F1 interleave cumulative prime sum | n^3	174	28	0	seg0.8	300
+1.2576	F1 cumulative prime sum + 1/2*fibonacci	7699	1	1	seg0.9	300
+1.2576	F1 n + 2*sigma(n)	2482	1	0	seg0.15	300
+1.2576	F1 cumulative phi(n) + 1/3*composites	18657	28	1	seg0.11	300
+1.2576	F1 primes^3 + 2*primes reversed digits	14964	28	1	seg0.11	300
+1.2576	F1 prime gaps + 1/2*composites	12561	28	1	seg0.15	300
+1.2576	F1 lucas + 1/3*composites	5146	1	0	seg0.15	300
+1.2576	F1 cumulative prime sum + 1*n^3	5589	28	0	seg0.14	300
+1.2576	F1 cumulative prime sum + 1/3*triangular	14889	1	0	seg0.9	300
+1.2576	F1 cumulative prime sum + 1*n^3	5590	28	0	seg0.14	300
+1.2576	F1 cumulative prime sum + -1*fibonacci	10234	1	0	seg0.8	300
+1.2576	F1 primes + 3*triangular	2482	1	1	seg0.9	300
+1.2576	F1 n^3 + -1*primes digit sum	632	28	0	seg0.14	300
+1.2576	F1 interleave primes | sigma(n)	12160	1	0	seg0.15	300
+1.2576	F5 r/(r-1)	12232	28	0	seg0.13	300
+1.2576	F1 emirps + 3*primes digit sum	267	28	1	seg0.7	300
+1.2576	F1 prime gaps + 1/2*composites	4134	1	0	seg0.14	300
+1.2576	F1 phi(n) + 1/2*sigma(n)	16921	1	1	seg0.15	300
+1.2576	F1 n + 2*emirps	18311	28	0	seg0.14	300
+1.2576	F1 interleave primes | n	13998	1	0	seg0.7	300
+1.2576	F1 phi(n) + -1*primes digit sum	17466	1	1	seg0.14	300
+1.2576	F1 sigma(n) + 1/2*primes^3	6299	1	0	seg0.12	300
+1.2576	F1 fibonacci + 3*primes^3	9963	1	1	seg0.8	300
+1.2576	F1 sigma(n) + 1/3*primes^2	15026	1	0	seg0.7	300
+1.2576	F1 phi(n) + 3*primes reversed digits	14109	28	0	seg0.15	300
+1.2576	F1 primes + 3*sigma(n)	13137	28	0	seg0.7	300
+1.2576	F1 pell + 1*sigma(n)	9699	1	1	seg0.11	300
+1.2576	F1 cumulative prime sum + 3*cumulative phi(n)	15579	28	0	seg0.11	300
+1.2576	F1 cumulative prime sum + 3*composites	17827	28	1	seg0.9	300
+1.2576	F1 prime gaps + 1/3*triangular	7375	1	1	seg0.14	300
+1.2576	F1 prime gaps + 1*n^3	17963	1	0	seg0.8	300
+1.2576	F1 fibonacci + 1*cumulative phi(n)	10444	28	1	seg0.14	300
+1.2576	F1 fibonacci + 1*cumulative phi(n)	10442	28	1	seg0.14	300
+1.2576	F1 primes + 3*primes reversed digits	8345	28	1	seg0.13	300
+1.2570	F1 phi(n) + 2*emirps	3183	1	1	seg0.13	300
+1.2570	F1 n^2 + 1/2*emirps	2930	1	0	seg0.13	300
+1.2570	F1 primes + -1*emirps	9500	28	1	seg0.9	300
+1.2570	F1 fibonacci + 2*primes reversed digits	10462	28	1	seg0.13	300
+1.2570	F1 pell + 1/2*emirps	1742	1	0	seg0.8	300
+1.2570	F1 n + -1*cumulative phi(n)	17082	1	0	seg0.15	300
+1.2570	F1 triangular + 1/2*phi(n)	3982	28	1	seg0.11	300
+1.2570	F1 emirps + 2*primes^3	13495	28	0	seg0.7	300
+1.2570	F1 n^3 + -1*primes digit sum	12161	1	1	seg0.7	300
+1.2570	F1 triangular + 1/3*primes reversed digits	10090	28	0	seg0.11	300
+1.2570	F1 phi(n) + 1/3*primes^3	6019	1	0	seg0.9	300
+1.2570	F1 primes + 1/3*pell	9941	1	1	seg0.9	300
+1.2570	F1 phi(n) + 3*composites	8055	1	1	seg0.14	300
+1.2570	F1 cumulative phi(n) + -1*primes^2	1155	1	0	seg0.15	300
+1.2570	F1 n + 1*phi(n)	12377	1	1	seg0.11	300
+1.2570	F1 emirps + 1*primes^3	16569	1	0	seg0.12	300
+1.2570	F1 phi(n) + 2*primes^3	13673	28	0	seg0.13	300
+1.2570	F1 n^2 + -1*sigma(n)	9110	28	1	seg0.15	300
+1.2570	F1 pell + 1/2*phi(n)	4992	1	1	seg0.12	300
+1.2570	F1 prime gaps + 3*emirps	9960	1	1	seg0.11	300
+1.2570	F1 primes + 1/3*d(n)	6512	1	1	seg0.7	300
+1.2570	F1 prime gaps + 3*pell	10967	1	0	seg0.8	300
+1.2570	F1 d(n) + 1*primes reversed digits	7027	1	1	seg0.14	300
+1.2570	F1 cumulative prime sum + 2*n^3	1354	28	0	seg0.8	300
+1.2570	F1 n + 1/3*primes digit sum	12779	28	1	seg0.14	300
+1.2563	F1 n^3 + 1/3*pell	136	28	1	seg0.11	300
+1.2563	F1 sigma(n) + 1*cumulative phi(n)	6317	1	1	seg0.13	300
+1.2563	F1 interleave composites | primes^3	17088	28	1	seg0.9	300
+1.2563	F1 pell + -1*primes reversed digits	12514	1	1	seg0.7	300
+1.2563	F1 triangular + 1/2*primes^3	9275	1	0	seg0.12	300
+1.2563	F1 n^3 + 1/3*pell	1296	28	1	seg0.11	300
+1.2563	F1 n^3 + 1/3*pell	1876	28	1	seg0.11	300
+1.2563	F1 phi(n) + -1*cumulative phi(n)	9077	28	1	seg0.13	300
+1.2563	F1 n^3 + 3*d(n)	10879	1	0	seg0.11	300
+1.2563	F1 n^3 + 1/3*pell	716	28	1	seg0.11	300
+1.2563	F1 primes + 1/2*cumulative prime sum	282	1	1	seg0.8	300
+1.2563	F1 interleave cumulative prime sum | emirps	5305	28	1	seg0.8	300
+1.2563	F1 pell + 1/2*emirps	1741	1	0	seg0.8	300
+1.2563	F1 d(n) + -1*composites	11230	1	1	seg0.14	300
+1.2563	F1 d(n) + 2*primes^2	6908	1	1	seg0.8	300
+1.2563	F3 sigma(p+1)	4024	1	0	seg0.8	300
+1.2563	F1 fibonacci + -1*composites	3932	28	0	seg0.14	300
+1.2563	F1 d(n) + 1/3*composites	12412	28	1	seg0.7	300
+1.2563	F1 cumulative phi(n) + 2*primes^3	18958	28	0	seg0.8	300
+1.2563	F1 n + 3*primes^3	4403	28	1	seg0.12	300
+1.2563	F1 cumulative prime sum + 1*sigma(n)	4415	1	0	seg0.7	300
+1.2563	F1 cumulative phi(n) + -1*primes^2	12751	28	1	seg0.14	300
+1.2563	F1 cumulative phi(n) + 1/3*primes reversed digits	11091	1	0	seg0.14	300
+1.2563	F1 lucas + 1*composites	5421	1	1	seg0.11	300
+1.2563	F1 sigma(n) + 2*d(n)	977	28	1	seg0.12	300
+1.2563	F1 sigma(n) + 2*d(n)	975	28	1	seg0.12	300
+1.2563	F1 primes + 2*sigma(n)	5228	1	1	seg0.11	300
+1.2563	F5 (r-1)/(r+1)	8998	1	0	seg0.7	300
+1.2563	F1 n^3 + 1/3*primes reversed digits	11265	28	1	seg0.8	300
+1.2563	F1 cumulative prime sum + 3*d(n)	17674	28	1	seg0.8	300
+1.2563	F1 pell + 1/3*phi(n)	4561	1	0	seg0.9	300
+1.2563	F1 prime gaps + 1*triangular	4840	28	1	seg0.7	300
+1.2563	F1 sigma(n) + 1/2*emirps	7266	28	0	seg0.11	300
+1.2563	F1 cumulative phi(n) + 1*primes reversed digits	7536	1	1	seg0.11	300
+1.2563	F1 lucas + 1/3*primes^2	15369	28	0	seg0.11	300
+1.2557	F1 lucas + 1/3*phi(n)	4209	28	1	seg0.12	300
+1.2557	F1 n + 3*primes^2	18079	28	0	seg0.13	300
+1.2557	F1 prime gaps + 3*primes digit sum	11888	1	1	seg0.11	300
+1.2557	F1 cumulative phi(n) + 2*emirps	3610	28	0	seg0.13	300
+1.2557	F1 lucas + 3*primes^3	12332	28	1	seg0.14	300
+1.2557	F1 n + 1*sigma(n)	20	28	1	seg0.14	300
+1.2557	F1 n^3 + 3*emirps	5688	28	1	seg0.8	300
+1.2557	F1 lucas + 2*primes digit sum	3152	28	1	seg0.11	300
+1.2557	F1 cumulative phi(n) + 1/2*primes reversed digits	5073	1	0	seg0.12	300
+1.2557	F1 primes + -1*n^3	15014	1	1	seg0.7	300
+1.2557	F1 triangular + 1*sigma(n)	8632	28	1	seg0.15	300
+1.2557	F1 phi(n) + 3*d(n)	3022	1	0	seg0.8	300
+1.2557	F1 emirps + -1*primes^2	9884	28	0	seg0.11	300
+1.2557	F1 cumulative prime sum + -1*n^2	17703	28	1	seg0.12	300
+1.2557	F1 primes^3 + 2*primes reversed digits	4555	1	0	seg0.14	300
+1.2557	F1 interleave primes | cumulative prime sum	4818	1	1	seg0.8	300
+1.2557	F1 lucas + 1*primes^3	15120	1	1	seg0.12	300
+1.2557	F1 cumulative prime sum + 2*primes reversed digits	18041	28	0	seg0.12	300
+1.2557	F1 n^2 + 1*primes^3	3835	28	0	seg0.7	300
+1.2557	F1 primes + 1/3*cumulative prime sum	2424	28	0	seg0.9	300
+1.2557	F1 fibonacci + 2*phi(n)	6428	28	1	seg0.15	300
+1.2557	F1 cumulative prime sum + 1/3*primes^3	4501	28	0	seg0.15	300
+1.2557	F1 n^3 + 1*d(n)	9801	28	0	seg0.11	300
+1.2557	F1 cumulative prime sum + 1/3*pell	9331	28	1	seg0.11	300
+1.2557	F1 n + 1/3*primes^2	4360	28	1	seg0.15	300
+1.2557	F1 cumulative prime sum + 3*primes digit sum	9679	28	1	seg0.8	300
+1.2557	F1 sigma(n) + 3*primes^3	9229	28	0	seg0.11	300
+1.2557	F1 lucas + 2*sigma(n)	4134	1	1	seg0.14	300
+1.2557	F1 sigma(n) + 2*primes reversed digits	8499	1	0	seg0.11	300
+1.2557	F1 emirps + 1/3*primes reversed digits	3325	1	0	seg0.14	300
+1.2557	F1 interleave cumulative prime sum | primes reversed digits	1899	28	1	seg0.14	300
+1.2557	F1 interleave n | sigma(n)	13889	1	0	seg0.9	300
+1.2557	F1 n^2 + 1*sigma(n)	5342	1	1	seg0.15	300
+1.2557	F1 n^2 + 1/2*cumulative phi(n)	19480	1	1	seg0.9	300
+1.2557	F1 sigma(n) + 1/2*primes digit sum	5959	28	0	seg0.13	300
+1.2557	F1 primes + 2*n	9042	28	1	seg0.9	300
+1.2557	F1 cumulative prime sum + 2*n^2	10833	28	1	seg0.9	300
+1.2557	F1 sigma(n) + 1/2*emirps	13663	28	1	seg0.12	300
+1.2557	F1 primes + 1/3*lucas	5095	28	0	seg0.9	300
+1.2551	F1 prime gaps + -1*composites	7157	1	0	seg0.7	300
+1.2551	F1 triangular + 1/3*primes^2	11202	28	0	seg0.9	300
+1.2551	F1 d(n) + 1/3*primes reversed digits	13776	1	1	seg0.11	300
+1.2551	F1 cumulative prime sum + -1*n^2	8229	28	1	seg0.13	300
+1.2551	F1 phi(n) + 3*emirps	10153	28	0	seg0.12	300
+1.2551	F1 n + -1*primes digit sum	1016	28	1	seg0.9	300
+1.2551	F1 cumulative prime sum + 3*composites	6212	1	1	seg0.8	300
+1.2551	F1 composites + 3*primes^2	424	28	0	seg0.9	300
+1.2551	F1 primes + 1/2*pell	4639	28	0	seg0.13	300
+1.2551	F1 fibonacci + 1*composites	84	28	1	seg0.12	300
+1.2551	F1 triangular + 1/2*emirps	3514	1	1	seg0.14	300
+1.2551	F1 sigma(n) + 1*primes reversed digits	14844	28	0	seg0.8	300
+1.2551	F1 fibonacci + 3*primes^3	6822	1	1	seg0.12	300
+1.2551	F1 prime gaps + 2*sigma(n)	241	28	0	seg0.11	300
+1.2551	F1 fibonacci + 3*phi(n)	2935	1	1	seg0.12	300
+1.2551	F1 prime gaps + 1/3*primes reversed digits	7429	28	0	seg0.9	300
+1.2551	F1 cumulative prime sum + 2*emirps	8960	28	0	seg0.8	300
+1.2551	F1 cumulative phi(n) + 1/3*primes digit sum	5932	1	1	seg0.9	300
+1.2551	F1 fibonacci + -1*composites	1762	28	0	seg0.14	300
+1.2551	F1 primes + 3*d(n)	13807	1	0	seg0.7	300
+1.2551	F1 interleave primes | cumulative phi(n)	19092	28	0	seg0.8	300
+1.2551	F1 fibonacci + 1/2*sigma(n)	4024	28	1	seg0.9	300
+1.2551	F1 phi(n) + 1*composites	3998	28	0	seg0.9	300
+1.2551	F1 interleave primes | n	12317	28	1	seg0.15	300
+1.2551	F1 sigma(n) + 1/2*primes reversed digits	13024	1	0	seg0.13	300
+1.2551	F1 lucas + 1/2*primes^2	1993	1	1	seg0.15	300
+1.2551	F1 lucas + 1/2*primes^2	9402	1	1	seg0.11	300
+1.2551	F1 lucas + 2*sigma(n)	15098	28	0	seg0.8	300
+1.2551	F1 n^2 + 1/2*emirps	241	1	1	seg0.8	300
+1.2551	F1 fibonacci + 1/2*phi(n)	10062	1	0	seg0.8	300
+1.2551	F1 lucas + 3*sigma(n)	15558	1	1	seg0.12	300
+1.2551	F1 phi(n) + 1/3*emirps	1155	1	0	seg0.14	300
+1.2551	F1 primes + -1*d(n)	3990	28	0	seg0.9	300
+1.2551	F1 interleave sigma(n) | primes^3	5284	28	1	seg0.9	300
+1.2544	F1 lucas + -1*emirps	18381	1	0	seg0.8	300
+1.2544	F1 n^2 + -1*composites	9308	1	1	seg0.15	300
+1.2544	F1 sigma(n) + 1/3*d(n)	18562	1	1	seg0.15	300
+1.2544	F1 n^3 + 1/2*cumulative phi(n)	18429	1	1	seg0.11	300
+1.2544	F1 n^2 + 3*primes^3	1865	28	1	seg0.13	300
+1.2544	F1 cumulative prime sum + 1/3*lucas	8734	1	1	seg0.12	300
+1.2544	F1 sigma(n) + 1/3*composites	6939	1	0	seg0.7	300
+1.2544	F1 n^3 + 2*cumulative phi(n)	7673	1	1	seg0.11	300
+1.2544	F1 n^3 + 3*primes digit sum	19446	28	1	seg0.8	300
+1.2544	F1 sigma(n) + -1*emirps	5007	1	1	seg0.7	300
+1.2544	F1 lucas + 1/2*composites	13668	28	0	seg0.8	300
+1.2544	F1 cumulative prime sum + 1/3*d(n)	11633	1	1	seg0.13	300
+1.2544	F1 lucas + -1*emirps	16204	28	1	seg0.9	300
+1.2544	F1 sigma(n) + 1*emirps	6688	1	1	seg0.13	300
+1.2544	F1 cumulative prime sum + 2*triangular	3703	1	1	seg0.15	300
+1.2544	F1 interleave cumulative prime sum | cumulative phi(n)	11231	28	1	seg0.7	300
+1.2544	F1 sigma(n) + 2*d(n)	6600	1	0	seg0.14	300
+1.2544	F1 n + 3*emirps	15651	1	0	seg0.7	300
+1.2544	F1 cumulative prime sum + 2*n	17504	28	0	seg0.14	300
+1.2544	F1 cumulative prime sum + 1*fibonacci	11144	1	0	seg0.7	300
+1.2544	F1 cumulative prime sum + 1/3*lucas	6316	28	1	seg0.9	300
+1.2544	F1 sigma(n) + 1/2*cumulative phi(n)	11777	28	0	seg0.15	300
+1.2544	F1 d(n) + 2*emirps	15252	1	0	seg0.7	300
+1.2544	F1 triangular + -1*primes reversed digits	15232	28	1	seg0.7	300
+1.2544	F1 n^2 + -1*composites	9306	1	1	seg0.15	300
+1.2544	F1 n^2 + 3*phi(n)	14313	1	0	seg0.7	300
+1.2544	F1 prime gaps + 1/2*n^2	13582	1	1	seg0.7	300
+1.2544	F1 phi(n) + 1*primes reversed digits	16802	28	0	seg0.7	300
+1.2544	F1 cumulative phi(n) + 1/2*primes^2	11895	28	0	seg0.15	300
+1.2544	F1 phi(n) + 1/3*composites	2967	28	0	seg0.8	300
+1.2544	F1 primes + 1/3*fibonacci	9700	1	1	seg0.14	300
+1.2544	F1 fibonacci + -1*primes reversed digits	585	28	1	seg0.12	300
+1.2544	F1 cumulative prime sum + -1*cumulative phi(n)	4838	28	1	seg0.11	300
+1.2544	F1 interleave primes | n	4988	28	0	seg0.9	300
+1.2544	F1 primes + 1/3*composites	4307	28	0	seg0.9	300
+1.2544	F1 interleave sigma(n) | cumulative phi(n)	5893	28	1	seg0.11	300
+1.2544	F1 interleave sigma(n) | cumulative phi(n)	13701	1	1	seg0.15	300
+1.2544	F1 sigma(n) + 3*emirps	11317	28	1	seg0.7	300
+1.2544	F1 emirps + 1*primes^2	16174	1	0	seg0.8	300
+1.2544	F1 n^3 + 2*primes^3	6368	28	0	seg0.7	300
+1.2544	F1 n + -1*d(n)	4036	1	1	seg0.8	300
+1.2544	F1 lucas + 1*composites	5423	1	1	seg0.11	300
+1.2544	F1 sigma(n) + 1/2*d(n)	12838	1	0	seg0.7	300
+1.2544	F1 cumulative phi(n) + 1/2*primes digit sum	5008	1	1	seg0.14	300
+1.2544	F1 prime gaps + 3*primes reversed digits	6604	28	1	seg0.11	300
+1.2544	F1 lucas + 3*phi(n)	1850	1	1	seg0.9	300
+1.2544	F1 interleave primes | cumulative phi(n)	12009	28	0	seg0.9	300
+1.2544	F1 pell + -1*primes reversed digits	12516	1	1	seg0.7	300
+1.2544	F1 interleave primes^3 | primes reversed digits	9555	28	1	seg0.13	300
+1.2544	F1 prime gaps + 2*n^3	6173	1	1	seg0.13	300
+1.2544	F1 n + 1/3*primes digit sum	17298	28	0	seg0.12	300
+1.2544	F1 lucas + 2*emirps	15706	1	0	seg0.11	300
+1.2538	F1 n^2 + -1*primes^3	12045	28	1	seg0.15	300
+1.2538	F1 primes + 1*emirps	10652	28	1	seg0.7	300
+1.2538	F1 sigma(n) + 1*primes^3	10566	1	1	seg0.11	300
+1.2538	F1 interleave phi(n) | emirps	8915	1	0	seg0.11	300
+1.2538	F1 cumulative phi(n) + 3*emirps	10064	1	1	seg0.12	300
+1.2538	F1 triangular + 2*cumulative phi(n)	2053	1	0	seg0.12	300
+1.2538	F1 primes^3 + 2*primes reversed digits	8458	1	0	seg0.11	300
+1.2538	F1 primes^3 + 2*primes reversed digits	10374	28	1	seg0.14	300
+1.2538	F1 n^2 + -1*sigma(n)	9112	28	1	seg0.15	300
+1.2538	F1 primes + 2*n	9040	28	1	seg0.9	300
+1.2538	F1 primes + 1/2*emirps	14866	28	1	seg0.7	300
+1.2538	F1 fibonacci + 1/3*primes reversed digits	9244	1	0	seg0.11	300
+1.2538	F1 sigma(n) + 1*primes reversed digits	10845	1	0	seg0.15	300
+1.2538	F1 cumulative prime sum + 1/2*phi(n)	10327	28	1	seg0.12	300
+1.2538	F1 pell + 1/2*primes reversed digits	18672	1	1	seg0.8	300
+1.2538	F1 n + 2*phi(n)	14009	28	0	seg0.9	300
+1.2538	F1 d(n) + 1*composites	14570	1	0	seg0.7	300
+1.2538	F1 fibonacci + -1*composites	17021	28	0	seg0.14	300
+1.2538	F1 triangular + -1*primes reversed digits	16473	28	0	seg0.8	300
+1.2538	F1 cumulative prime sum + 1/3*phi(n)	17064	28	1	seg0.14	300
+1.2538	F1 lucas + 1/3*phi(n)	9687	1	0	seg0.7	300
+1.2538	F1 n^2 + 1*emirps	8096	28	0	seg0.8	300
+1.2538	F1 sigma(n) + -1*composites	7478	1	1	seg0.11	300
+1.2538	F1 interleave primes | n	4989	28	0	seg0.9	300
+1.2538	F1 cumulative prime sum + 1*n	7385	1	0	seg0.11	300
+1.2538	F1 n^2 + 2*cumulative phi(n)	17884	28	1	seg0.7	300
+1.2538	F1 n + 1*emirps	2370	28	0	seg0.13	300
+1.2538	F1 sigma(n) + 1/3*emirps	5563	28	0	seg0.12	300
+1.2538	F1 primes digit sum + 2*primes reversed digits	7853	1	0	seg0.15	300
+1.2538	F1 d(n) + 2*primes^2	12413	1	1	seg0.9	300
+1.2538	F1 primes^2 + 1/2*primes reversed digits	17985	28	0	seg0.14	300
+1.2538	F1 d(n) + 1/2*emirps	689	28	1	seg0.12	300
+1.2538	F1 cumulative phi(n) + 3*primes^3	9059	1	1	seg0.15	300
+1.2538	F1 fibonacci + 1/2*sigma(n)	11214	28	1	seg0.12	300
+1.2538	F1 primes^2 + 1/2*primes reversed digits	17988	28	0	seg0.14	300
+1.2538	F1 phi(n) + 1*composites	16527	28	1	seg0.9	300
+1.2538	F1 n + -1*primes reversed digits	1559	1	1	seg0.7	300
+1.2538	F1 n + -1*primes reversed digits	12396	28	0	seg0.9	300
+1.2538	F1 interleave cumulative phi(n) | composites	5133	28	1	seg0.9	300
+1.2538	F1 triangular + 3*sigma(n)	19353	28	1	seg0.14	300
+1.2538	F1 prime gaps + 1/2*cumulative prime sum	7287	1	0	seg0.9	300
+1.2538	F1 d(n) + 1/3*composites	12410	28	1	seg0.7	300
+1.2538	F1 cumulative phi(n) + 1/2*emirps	2379	1	0	seg0.13	300
+1.2538	F1 n + 1/3*emirps	2460	1	0	seg0.7	300
+1.2538	F1 n^3 + 2*primes digit sum	18211	1	0	seg0.9	300
+1.2531	F1 n + 3*emirps	3970	1	0	seg0.12	300
+1.2531	F1 sigma(n) + 1*primes digit sum	7684	28	1	seg0.13	300
+1.2531	F1 n^3 + -1*primes^2	8606	28	0	seg0.8	300
+1.2531	F1 primes + 3*emirps	13475	1	0	seg0.11	300
+1.2531	F1 triangular + 3*sigma(n)	8152	1	1	seg0.8	300
+1.2531	F1 triangular + 1*sigma(n)	8634	28	1	seg0.15	300
+1.2531	F1 cumulative prime sum + 1/2*primes reversed digits	7008	28	1	seg0.7	300
+1.2531	F1 n + 3*cumulative phi(n)	12231	1	1	seg0.11	300
+1.2531	F1 primes + 3*composites	5032	28	1	seg0.15	300
+1.2531	F1 d(n) + -1*emirps	15523	28	1	seg0.7	300
+1.2531	F1 primes + 1/3*primes reversed digits	17397	1	1	seg0.13	300
+1.2531	F1 prime gaps + 3*n	3990	28	0	seg0.12	300
+1.2531	F1 cumulative phi(n) + 1*emirps	16473	1	1	seg0.12	300
+1.2531	F1 fibonacci + -1*primes^2	19603	28	1	seg0.13	300
+1.2531	F1 interleave composites | primes^3	4673	28	0	seg0.11	300
+1.2531	F1 prime gaps + -1*n	18999	1	1	seg0.7	300
+1.2531	F1 interleave n^3 | sigma(n)	1883	1	1	seg0.8	300
+1.2531	F1 pell + -1*primes^3	11137	28	0	seg0.9	300
+1.2531	F1 lucas + 1/2*sigma(n)	6402	1	1	seg0.15	300
+1.2531	F1 phi(n) + 1*sigma(n)	4576	28	1	seg0.11	300
+1.2531	F1 phi(n) + 1*sigma(n)	4578	28	1	seg0.11	300
+1.2531	F1 d(n) + 1/3*primes digit sum	11517	1	0	seg0.12	300
+1.2531	F1 pell + 3*primes^3	10490	28	0	seg0.14	300
+1.2531	F1 primes^2 + 2*primes digit sum	14010	28	0	seg0.9	300
+1.2531	F1 emirps + -1*primes digit sum	902	1	1	seg0.15	300
+1.2531	F1 n^2 + 2*d(n)	4130	1	1	seg0.14	300
+1.2531	F1 cumulative phi(n) + 3*primes reversed digits	3442	28	1	seg0.7	300
+1.2531	F1 triangular + 1/2*primes reversed digits	14175	28	0	seg0.8	300
+1.2531	F1 lucas + 3*emirps	7915	1	0	seg0.7	300
+1.2531	F1 sigma(n) + 2*primes^2	14853	1	1	seg0.9	300
+1.2531	F1 lucas + 3*emirps	16308	1	0	seg0.11	300
+1.2531	F1 n + -1*primes^2	15649	1	1	seg0.14	300
+1.2531	F1 lucas + 1*cumulative phi(n)	15544	1	0	seg0.12	300
+1.2531	F1 interleave cumulative prime sum | primes reversed digits	8761	28	1	seg0.8	300
+1.2531	F1 emirps + 1*primes^3	16473	28	1	seg0.12	300
+1.2531	F1 n + 1*primes^3	11129	1	1	seg0.12	300
+1.2531	F1 composites + 1*emirps	7802	28	1	seg0.7	300
+1.2531	F1 primes + 1/2*n	9569	28	1	seg0.15	300
+1.2531	F1 sigma(n) + 3*composites	18386	28	0	seg0.11	300
+1.2525	F1 lucas + 3*primes^3	3631	1	0	seg0.8	300
+1.2525	F1 triangular + 3*primes digit sum	17567	1	1	seg0.12	300
+1.2525	F1 phi(n) + 3*primes^2	4219	28	1	seg0.7	300
+1.2525	F1 n^3 + 1*pell	1102	1	1	seg0.8	300
+1.2525	F1 sigma(n) + 1/2*primes^2	15309	28	1	seg0.8	300
+1.2525	F1 pell + 2*sigma(n)	4093	1	0	seg0.9	300
+1.2525	F1 prime gaps + -1*emirps	15047	28	1	seg0.7	300
+1.2525	F1 primes + -1*composites	3347	28	1	seg0.9	300
+1.2525	F1 cumulative phi(n) + 1/3*primes reversed digits	3932	1	0	seg0.12	300
+1.2525	F1 primes^3 + 2*primes reversed digits	14968	28	1	seg0.11	300
+1.2525	F1 n^3 + -1*pell	1392	1	1	seg0.8	300
+1.2525	F1 cumulative prime sum + -1*n^2	17253	28	0	seg0.8	300
+1.2525	F1 n^2 + 1*primes^2	19385	28	0	seg0.15	300
+1.2525	F1 n^3 + -1*pell	232	1	1	seg0.8	300
+1.2525	F1 n^3 + -1*pell	812	1	1	seg0.8	300
+1.2525	F1 cumulative prime sum + -1*cumulative phi(n)	14360	1	0	seg0.13	300
+1.2525	F1 primes + 2*emirps	1456	1	0	seg0.12	300
+1.2525	F1 prime gaps + 1/2*triangular	11483	28	1	seg0.15	300
+1.2525	F1 phi(n) + 1*primes^3	9141	1	0	seg0.7	300
+1.2525	F1 composites + 1/2*emirps	10976	1	0	seg0.7	300
+1.2525	F1 composites + 1/2*emirps	14079	1	0	seg0.12	300
+1.2525	F1 primes + 1/2*cumulative prime sum	1543	28	0	seg0.9	300
+1.2525	F1 primes + 1/3*sigma(n)	10872	28	0	seg0.12	300
+1.2525	F1 prime gaps + 2*sigma(n)	16958	28	0	seg0.9	300
+1.2525	F1 prime gaps + 1/2*primes^2	563	1	1	seg0.9	300
+1.2525	F1 triangular + 3*primes reversed digits	19411	1	0	seg0.11	300
+1.2525	F1 cumulative prime sum + -1*emirps	995	1	0	seg0.11	300
+1.2525	F1 n + 2*cumulative phi(n)	3646	1	0	seg0.14	300
+1.2525	F1 fibonacci + -1*primes reversed digits	8221	28	1	seg0.12	300
+1.2525	F1 triangular + 1/2*sigma(n)	12020	28	1	seg0.13	300
+1.2525	F1 primes + -1*emirps	10700	28	1	seg0.13	300
+1.2525	F1 cumulative prime sum + 1/3*pell	16660	28	0	seg0.11	300
+1.2525	F1 cumulative prime sum + 3*sigma(n)	18353	28	1	seg0.8	300
+1.2525	F1 phi(n) + 1/2*sigma(n)	4378	28	0	seg0.7	300
+1.2525	F1 lucas + 3*phi(n)	11186	28	1	seg0.12	300
+1.2525	F1 primes + 1/3*triangular	3962	28	0	seg0.12	300
+1.2525	F1 d(n) + -1*primes reversed digits	19151	28	1	seg0.11	300
+1.2525	F1 cumulative prime sum + -1*cumulative phi(n)	14361	1	0	seg0.13	300
+1.2525	F1 n^3 + -1*pell	1972	1	1	seg0.8	300
+1.2525	F1 primes + 3*n^3	6743	1	1	seg0.13	300
+1.2525	F1 triangular + 2*sigma(n)	682	1	0	seg0.11	300
+1.2525	F1 cumulative prime sum + -1*n^3	14016	28	0	seg0.9	300
+1.2525	F1 cumulative phi(n) + -1*composites	18133	1	0	seg0.7	300
+1.2525	F1 phi(n) + 2*primes reversed digits	9933	1	1	seg0.15	300
+1.2525	F1 phi(n) + 1/3*primes^2	15394	28	1	seg0.14	300
+1.2525	F1 interleave n | sigma(n)	4083	28	0	seg0.15	300
+1.2525	F1 fibonacci + 1/3*phi(n)	14765	1	0	seg0.7	300
+1.2525	F1 cumulative prime sum + 1*phi(n)	15711	28	1	seg0.13	300
+1.2525	F1 cumulative prime sum + 1/2*n^3	3758	1	1	seg0.7	300
+1.2525	F1 sigma(n) + 3*composites	16467	1	0	seg0.7	300
+1.2525	F1 d(n) + 1/2*emirps	16084	28	0	seg0.13	300
+1.2525	F1 fibonacci + 3*primes digit sum	18067	28	0	seg0.13	300
+1.2525	F1 n + 1/3*emirps	2462	1	0	seg0.7	300
+1.2525	F1 n^3 + 3*composites	18180	28	1	seg0.12	300
+1.2525	F1 triangular + 1/3*emirps	19552	28	0	seg0.13	300
+1.2525	F1 pell + 1/3*cumulative phi(n)	8120	1	1	seg0.13	300
+1.2525	F1 n^3 + 1*primes^2	2862	28	1	seg0.8	300
+1.2525	F1 primes + 2*prime gaps	1187	1	0	seg0.8	300
+1.2525	F1 n + 1/3*primes^3	12648	28	1	seg0.7	300
+1.2525	F1 n^3 + 1*pell	1682	1	1	seg0.8	300
+1.2525	F1 interleave phi(n) | primes^3	6754	28	0	seg0.9	300
+1.2525	F1 n^3 + 1*pell	522	1	1	seg0.8	300
+1.2525	F1 interleave phi(n) | primes reversed digits	11173	1	1	seg0.8	300
+1.2525	F1 cumulative prime sum + 1/2*emirps	11955	28	1	seg0.15	300
+1.2525	F1 prime gaps + 2*n^3	6175	1	1	seg0.13	300
+1.2525	F1 n^2 + -1*primes^3	475	1	1	seg0.9	300
+1.2525	F1 d(n) + 3*primes digit sum	5413	28	0	seg0.15	300
+1.2525	F1 cumulative phi(n) + -1*primes digit sum	13727	1	1	seg0.14	300
+1.2525	F1 triangular + -1*primes digit sum	12910	1	0	seg0.14	300
+1.2518	F1 sigma(n) + 2*primes^2	14851	1	1	seg0.9	300
+1.2518	F1 lucas + 3*primes reversed digits	18127	28	0	seg0.13	300
+1.2518	F1 n^2 + 1*primes^2	10887	1	0	seg0.14	300
+1.2518	F1 n^3 + 2*emirps	5346	1	1	seg0.12	300
+1.2518	F1 triangular + 2*phi(n)	11059	1	0	seg0.7	300
+1.2518	F1 cumulative prime sum + 1*phi(n)	15709	28	1	seg0.13	300
+1.2518	F1 sigma(n) + 1/3*d(n)	3935	1	1	seg0.7	300
+1.2518	F1 prime gaps + 1/2*cumulative prime sum	7288	1	0	seg0.9	300
+1.2518	F1 n + 3*primes^3	973	28	0	seg0.12	300
+1.2518	F1 n + 1/2*primes reversed digits	7896	28	1	seg0.11	300
+1.2518	F1 pell + 1*sigma(n)	9919	28	1	seg0.9	300
+1.2518	F1 n^3 + 1/3*primes digit sum	6715	28	0	seg0.15	300
+1.2518	F1 n^3 + 1/3*primes digit sum	6716	28	0	seg0.15	300
+1.2518	F1 pell + -1*primes reversed digits	15835	28	1	seg0.7	300
+1.2518	F1 cumulative prime sum + 3*primes^2	16781	1	0	seg0.15	300
+1.2518	F1 lucas + 3*cumulative phi(n)	6083	28	0	seg0.14	300
+1.2518	F1 prime gaps + 1/2*composites	12563	28	1	seg0.15	300
+1.2518	F1 phi(n) + -1*d(n)	13124	28	0	seg0.8	300
+1.2518	F3 sigma(p-1)	5350	1	0	seg0.7	300
+1.2518	F1 primes + 3*fibonacci	2307	1	0	seg0.9	300
+1.2518	F1 pell + 2*cumulative phi(n)	14095	1	0	seg0.8	300
+1.2518	F1 pell + -1*primes^3	16663	28	0	seg0.9	300
+1.2518	F1 composites + 3*primes^2	14784	28	0	seg0.9	300
+1.2518	F1 interleave emirps | primes reversed digits	13001	28	1	seg0.11	300
+1.2518	F1 primes^2 + 1/3*primes reversed digits	13561	1	0	seg0.7	300
+1.2518	F1 primes + -1*n^2	3063	1	1	seg0.7	300
+1.2518	F1 cumulative prime sum + 3*n^2	1619	1	1	seg0.7	300
+1.2518	F1 d(n) + 1/2*primes digit sum	19297	1	1	seg0.15	300
+1.2518	F1 primes + 1/3*emirps	4271	28	1	seg0.13	300
+1.2518	F1 prime gaps + 3*cumulative phi(n)	15508	1	0	seg0.12	300
+1.2518	F1 sigma(n) + 1*primes^2	15781	1	0	seg0.12	300
+1.2518	F1 n + -1*primes reversed digits	15525	1	1	seg0.9	300
+1.2518	F1 primes digit sum + 3*primes reversed digits	10866	28	1	seg0.14	300
+1.2518	F1 n^3 + 1*emirps	18063	28	1	seg0.14	300
+1.2518	F1 n + 1/3*sigma(n)	16406	28	1	seg0.15	300
+1.2518	F1 n^2 + 3*cumulative phi(n)	14638	1	1	seg0.12	300
+1.2518	F1 n^2 + 3*cumulative phi(n)	14640	1	1	seg0.12	300
+1.2518	F1 triangular + 1*emirps	3305	1	0	seg0.7	300
+1.2518	F1 fibonacci + 3*emirps	8220	1	0	seg0.8	300
+1.2518	F1 pell + -1*sigma(n)	7500	1	1	seg0.13	300
+1.2518	F1 pell + -1*sigma(n)	7502	1	1	seg0.13	300
+1.2518	F1 emirps + 1*primes^3	16566	1	0	seg0.12	300
+1.2518	F1 cumulative prime sum + 2*primes reversed digits	2773	28	1	seg0.12	300
+1.2518	F1 prime gaps + 2*cumulative phi(n)	15901	1	1	seg0.11	300
+1.2518	F1 cumulative prime sum + 2*triangular	14442	28	1	seg0.8	300
+1.2518	F1 triangular + 1/2*composites	9493	1	0	seg0.11	300
+1.2518	F1 pell + 1/2*primes^2	19164	28	0	seg0.11	300
+1.2518	F1 phi(n) + 1*sigma(n)	8879	28	0	seg0.11	300
+1.2518	F1 sigma(n) + 1/2*primes reversed digits	8135	28	1	seg0.12	300
+1.2518	F1 lucas + 3*primes digit sum	16585	1	1	seg0.8	300
+1.2518	F1 primes + 3*pell	8983	28	1	seg0.8	300
+1.2518	F1 cumulative prime sum + -1*emirps	993	1	0	seg0.11	300
+1.2518	F1 primes + 1/2*n^2	15325	1	0	seg0.12	300
+1.2518	F1 cumulative prime sum + 1/3*primes^3	13840	28	1	seg0.9	300
+1.2518	F1 cumulative prime sum + 3*lucas	378	1	1	seg0.7	300
+1.2518	F1 prime gaps + 1/3*n^3	8302	1	1	seg0.14	300
+1.2518	F1 n^2 + 2*cumulative phi(n)	12957	1	0	seg0.13	300
+1.2518	F5 (r-1)/r	3919	28	1	seg0.15	300
+1.2518	F1 lucas + 1/3*emirps	3944	28	1	seg0.12	300
+1.2518	F1 pell + 2*primes^3	579	1	1	seg0.15	300
+1.2518	F1 n + 1/3*primes reversed digits	13617	1	1	seg0.7	300
+1.2512	F1 cumulative prime sum + 2*phi(n)	10997	1	0	seg0.8	300
+1.2512	F1 n^2 + 1*primes digit sum	16800	1	1	seg0.7	300
+1.2512	F1 emirps + 3*primes^3	6463	28	1	seg0.8	300
+1.2512	F1 prime gaps + 1/3*primes digit sum	17967	1	1	seg0.8	300
+1.2512	F1 n^2 + 2*composites	8993	28	0	seg0.12	300
+1.2512	F1 n^2 + 2*primes digit sum	9781	1	1	seg0.12	300
+1.2512	F1 interleave n^3 | primes^3	1608	28	1	seg0.9	300
+1.2512	F1 prime gaps + 1/3*primes digit sum	17965	1	1	seg0.8	300
+1.2512	F1 phi(n) + -1*d(n)	13123	28	1	seg0.8	300
+1.2512	F1 d(n) + 1/2*emirps	683	28	1	seg0.12	300
+1.2512	F1 cumulative prime sum + 1/2*primes digit sum	17602	28	0	seg0.12	300
+1.2512	F1 triangular + 2*primes^3	5069	28	1	seg0.14	300
+1.2512	F1 primes + 2*prime gaps	3989	28	0	seg0.12	300
+1.2512	F1 n^3 + -1*primes^3	15663	1	1	seg0.9	300
+1.2512	F1 n^3 + -1*phi(n)	2916	28	1	seg0.14	300
+1.2512	F1 phi(n) + 1/3*primes^3	16692	1	0	seg0.15	300
+1.2512	F1 n^3 + -1*d(n)	10173	28	0	seg0.15	300
+1.2512	F1 n^3 + 3*emirps	15856	1	1	seg0.8	300
+1.2512	F1 pell + 1*primes reversed digits	5237	28	0	seg0.9	300
+1.2512	F1 primes^2 + 1/3*primes reversed digits	11404	28	0	seg0.8	300
+1.2512	F1 sigma(n) + 1*primes reversed digits	14847	28	0	seg0.8	300
+1.2512	F1 pell + 1*primes^3	7667	28	1	seg0.7	300
+1.2512	F5 r/(r-1)	12233	28	0	seg0.13	300
+1.2512	F1 n^2 + -1*primes digit sum	3731	1	1	seg0.7	300
+1.2512	F1 lucas + 3*sigma(n)	2003	1	0	seg0.9	300
+1.2512	F1 cumulative prime sum + 1/2*n	8250	1	0	seg0.9	300
+1.2512	F1 n^2 + 1/2*cumulative phi(n)	8732	28	1	seg0.11	300
+1.2512	F1 lucas + 1/3*composites	1759	1	1	seg0.9	300
+1.2512	F1 n + 1/3*primes digit sum	9915	1	0	seg0.9	300
+1.2512	F1 emirps + 2*primes^3	10860	1	0	seg0.13	300
+1.2512	F1 cumulative prime sum + 1/3*n	5752	1	0	seg0.8	300
+1.2512	F1 triangular + 3*primes digit sum	17565	1	1	seg0.12	300
+1.2512	F1 composites + 1/2*primes^3	7094	1	0	seg0.7	300
+1.2512	F1 cumulative phi(n) + 1*emirps	192	28	0	seg0.12	300
+1.2512	F1 prime gaps + 1/3*primes reversed digits	12390	1	0	seg0.15	300
+1.2512	F1 primes + 1/3*sigma(n)	10873	28	0	seg0.12	300
+1.2512	F1 fibonacci + 1/3*primes reversed digits	9034	28	0	seg0.7	300
+1.2512	F1 lucas + 1/3*sigma(n)	17644	28	1	seg0.13	300
+1.2512	F1 lucas + 1/3*composites	10930	1	0	seg0.15	300
+1.2512	F1 cumulative prime sum + 1/3*n^3	6486	28	0	seg0.7	300
+1.2512	F1 lucas + 2*emirps	8609	28	1	seg0.13	300
+1.2512	F1 fibonacci + -1*composites	13586	28	0	seg0.14	300
+1.2512	F1 triangular + 3*phi(n)	18893	28	0	seg0.11	300
+1.2512	F1 cumulative phi(n) + 1/3*composites	14383	1	0	seg0.12	300
+1.2512	F1 cumulative phi(n) + 1/3*composites	14384	1	0	seg0.12	300
+1.2512	F1 cumulative phi(n) + 1/2*primes^2	8130	28	1	seg0.12	300
+1.2512	F1 prime gaps + 1/3*n^2	19560	28	0	seg0.14	300
+1.2512	F1 primes digit sum + -1*primes reversed digits	7119	28	1	seg0.7	300
+1.2512	F1 d(n) + 2*primes^2	919	28	1	seg0.9	300
+1.2512	F1 prime gaps + 1/3*n^3	10998	28	0	seg0.15	300
+1.2512	F1 cumulative prime sum + 1*n	18586	28	0	seg0.14	300
+1.2512	F1 d(n) + 2*primes^2	925	28	1	seg0.9	300
+1.2512	F1 interleave n^3 | phi(n)	19164	28	0	seg0.15	300
+1.2512	F1 cumulative prime sum + 2*n^2	14437	28	0	seg0.12	300
+1.2512	F1 triangular + 2*primes^2	16528	1	0	seg0.9	300
+1.2512	F1 emirps + 2*primes digit sum	4876	28	0	seg0.9	300
+1.2512	F1 cumulative prime sum + 1/3*cumulative phi(n)	18868	1	1	seg0.12	300
+1.2512	F1 phi(n) + 1*primes reversed digits	18473	28	1	seg0.8	300
+1.2505	F1 n + 2*primes digit sum	11841	1	0	seg0.8	300
+1.2505	F1 prime gaps + 3*triangular	12861	1	1	seg0.13	300
+1.2505	F1 n + 1/3*primes^3	9752	28	0	seg0.12	300
+1.2505	F1 cumulative prime sum + 1*lucas	11837	28	0	seg0.9	300
+1.2505	F1 fibonacci + 2*composites	9144	28	1	seg0.11	300
+1.2505	F1 lucas + 1/2*cumulative phi(n)	5743	1	1	seg0.12	300
+1.2505	F1 interleave n | primes reversed digits	14874	28	1	seg0.15	300
+1.2505	F1 triangular + 1/3*emirps	8843	28	0	seg0.12	300
+1.2505	F1 d(n) + 1/2*emirps	5909	28	1	seg0.14	300
+1.2505	F1 cumulative prime sum + 1/3*emirps	13481	1	1	seg0.8	300
+1.2505	F1 fibonacci + 1/3*primes^2	947	28	0	seg0.9	300
+1.2505	F1 emirps + 1*primes digit sum	14657	1	0	seg0.7	300
+1.2505	F1 cumulative phi(n) + 1/3*primes reversed digits	3931	1	0	seg0.12	300
+1.2505	F1 d(n) + 1/3*primes^2	866	1	1	seg0.7	300
+1.2505	F1 triangular + 1/2*primes digit sum	12975	28	0	seg0.11	300
+1.2505	F1 n + 1/2*emirps	16686	28	1	seg0.12	300
+1.2505	F1 n^2 + 1*sigma(n)	5719	1	1	seg0.15	300
+1.2505	F1 composites + 1*primes reversed digits	15230	1	0	seg0.14	300
+1.2505	F1 primes digit sum + 2*primes reversed digits	1212	1	1	seg0.8	300
+1.2505	F1 n^2 + 1/2*cumulative phi(n)	19482	1	1	seg0.9	300
+1.2505	F1 emirps + -1*primes reversed digits	870	1	1	seg0.14	300
+1.2505	F1 primes + 2*cumulative prime sum	13804	28	0	seg0.12	300
+1.2505	F1 d(n) + 3*cumulative phi(n)	12224	28	0	seg0.15	300
+1.2505	F1 d(n) + 3*composites	18602	1	0	seg0.11	300
+1.2505	F1 interleave primes | cumulative prime sum	7027	1	0	seg0.14	300
+1.2505	F1 prime gaps + 2*emirps	15985	28	1	seg0.14	300
+1.2505	F1 interleave n | phi(n)	3702	28	1	seg0.15	300
+1.2505	F1 interleave primes | cumulative prime sum	7029	1	0	seg0.14	300
+1.2505	F1 prime gaps + 1/2*primes reversed digits	16719	28	1	seg0.7	300
+1.2505	F1 prime gaps + 1/3*primes reversed digits	3539	28	1	seg0.14	300
+1.2505	F1 emirps + 1*primes^3	14830	28	0	seg0.12	300
+1.2505	F1 cumulative prime sum + 1/3*primes^2	13451	1	0	seg0.12	300
+1.2505	F1 prime gaps + -1*primes^2	6201	28	1	seg0.14	300
+1.2505	F1 pell + 1/2*primes^2	14763	28	1	seg0.11	300
+1.2505	F1 fibonacci + -1*composites	13523	28	0	seg0.14	300
+1.2505	F1 lucas + 2*primes reversed digits	4316	1	0	seg0.11	300
+1.2505	F1 lucas + 2*phi(n)	15617	28	1	seg0.12	300
+1.2505	F1 phi(n) + 1/3*cumulative phi(n)	6376	28	1	seg0.8	300
+1.2505	F1 sigma(n) + 1/3*d(n)	2161	1	0	seg0.7	300
+1.2505	F1 prime gaps + 3*primes digit sum	14489	1	1	seg0.13	300
+1.2505	F1 prime gaps + -1*sigma(n)	298	1	1	seg0.8	300
+1.2505	F1 primes + 1/3*fibonacci	2398	28	1	seg0.7	300
+1.2505	F1 primes + -1*cumulative phi(n)	171	28	0	seg0.9	300
+1.2505	F1 primes + -1*emirps	7804	28	0	seg0.8	300
+1.2505	F1 prime gaps + 1*pell	17004	1	0	seg0.14	300
+1.2505	F1 n^2 + 1/2*primes digit sum	14583	1	0	seg0.7	300
+1.2505	F1 sigma(n) + 1/3*emirps	16734	28	1	seg0.9	300
+1.2505	F1 primes + -1*cumulative phi(n)	170	28	0	seg0.9	300
+1.2505	F1 fibonacci + 1*primes^3	19439	1	0	seg0.7	300
+1.2505	F1 triangular + -1*primes^2	848	28	1	seg0.8	300
+1.2505	F1 n^3 + 1/3*emirps	15573	28	0	seg0.7	300
+1.2505	F1 n + 1/2*cumulative phi(n)	17132	28	0	seg0.13	300
+1.2505	F1 primes + 1/3*cumulative prime sum	2423	28	0	seg0.9	300
+1.2505	F1 fibonacci + 2*emirps	18030	1	0	seg0.7	300
+1.2505	F1 cumulative prime sum + -1*phi(n)	18277	1	0	seg0.15	300
+1.2505	F1 pell + 2*emirps	19201	28	0	seg0.11	300
+1.2505	F1 composites + 1*emirps	6418	1	1	seg0.8	300
+1.2505	F1 prime gaps + 2*primes^3	5660	28	1	seg0.12	300
+1.2499	F1 triangular + 1/3*primes^3	16810	1	1	seg0.9	300
+1.2499	F1 phi(n) + 2*cumulative phi(n)	4126	1	0	seg0.14	300
+1.2499	F1 phi(n) + 1/2*primes digit sum	2065	1	0	seg0.13	300
+1.2499	F1 n + 1/2*primes digit sum	3953	1	1	seg0.14	300
+1.2499	F1 composites + 1/2*primes^3	7095	1	0	seg0.7	300
+1.2499	F1 triangular + 1/3*primes^3	16808	1	1	seg0.9	300
+1.2499	F1 pell + 1*phi(n)	4702	28	0	seg0.12	300
+1.2499	F1 phi(n) + 1/3*primes^3	3711	28	1	seg0.14	300
+1.2499	F1 cumulative prime sum + 1*fibonacci	17337	28	0	seg0.14	300
+1.2499	F1 n^3 + 1/2*phi(n)	11099	28	0	seg0.15	300
+1.2499	F1 n^3 + 1*primes reversed digits	12249	28	1	seg0.9	300
+1.2499	F1 composites + 1/2*emirps	16381	1	1	seg0.8	300
+1.2499	F1 primes digit sum + 1/2*primes reversed digits	17029	1	0	seg0.8	300
+1.2499	F1 cumulative prime sum + 1/2*composites	4367	1	0	seg0.13	300
+1.2499	F1 interleave n^3 | primes^3	1610	28	1	seg0.9	300
+1.2499	F1 prime gaps + 1*n^3	6913	1	1	seg0.8	300
+1.2499	F1 n^3 + 1*primes reversed digits	12251	28	1	seg0.9	300
+1.2499	F1 triangular + 3*composites	3998	1	1	seg0.7	300
+1.2499	F1 interleave primes | phi(n)	5604	28	1	seg0.7	300
+1.2499	F1 n + 1/2*primes^3	16575	28	0	seg0.15	300
+1.2499	F1 n + 1/2*primes^3	16576	28	0	seg0.15	300
+1.2499	F1 n^2 + 3*cumulative phi(n)	15084	1	0	seg0.8	300
+1.2499	F1 fibonacci + -1*composites	13585	28	0	seg0.14	300
+1.2499	F1 lucas + 2*phi(n)	14151	28	0	seg0.12	300
+1.2499	F1 phi(n) + 1/3*primes^2	15354	1	1	seg0.9	300
+1.2499	F1 composites + 1*primes reversed digits	9937	1	0	seg0.7	300
+1.2499	F1 n^3 + 1/2*primes^2	4120	28	1	seg0.15	300
+1.2499	F1 triangular + 2*phi(n)	1376	28	1	seg0.9	300
+1.2499	F1 n + 1/2*phi(n)	6013	28	1	seg0.7	300
+1.2499	F1 n^2 + 1/3*primes^3	10028	28	0	seg0.15	300
+1.2499	F1 n^3 + 1/2*primes digit sum	739	28	0	seg0.14	300
+1.2499	F1 prime gaps + 2*primes reversed digits	10402	1	1	seg0.7	300
+1.2499	F1 interleave phi(n) | primes^3	16168	1	1	seg0.11	300
+1.2499	F1 interleave n^3 | cumulative phi(n)	12804	28	1	seg0.14	300
+1.2499	F1 composites + 3*primes^2	3022	28	0	seg0.9	300
+1.2499	F1 prime gaps + 2*n	8867	28	0	seg0.7	300
+1.2499	F1 lucas + 3*phi(n)	10909	28	1	seg0.11	300
+1.2499	F1 prime gaps + -1*cumulative phi(n)	15626	28	1	seg0.13	300
+1.2499	F1 n^2 + 1*d(n)	1275	28	0	seg0.8	300
+1.2499	F1 phi(n) + 1/2*primes^2	1522	28	0	seg0.15	300
+1.2499	F1 sigma(n) + 1/2*primes reversed digits	6258	28	1	seg0.12	300
+1.2499	F1 fibonacci + -1*emirps	12738	1	1	seg0.12	300
+1.2499	F1 phi(n) + 2*primes digit sum	2235	1	1	seg0.11	300
+1.2499	F1 cumulative prime sum + -1*emirps	4587	28	0	seg0.7	300
+1.2499	F1 primes + 2*sigma(n)	5230	1	1	seg0.11	300
+1.2499	F1 fibonacci + -1*emirps	3814	28	1	seg0.9	300
+1.2499	F1 n^3 + 1*composites	10064	1	0	seg0.14	300
+1.2499	F1 n^3 + 2*phi(n)	8594	28	1	seg0.13	300
+1.2499	F1 sigma(n) + 1/2*primes reversed digits	3928	28	0	seg0.9	300
+1.2499	F1 fibonacci + 1/3*primes^2	5301	1	1	seg0.8	300
+1.2499	F1 n^3 + 1/3*sigma(n)	3792	1	1	seg0.8	300
+1.2499	F1 d(n) + 1/3*primes reversed digits	36	28	0	seg0.12	300
+1.2499	F1 fibonacci + 2*primes digit sum	15909	28	0	seg0.14	300
+1.2499	F1 sigma(n) + 1/3*primes reversed digits	1269	1	0	seg0.7	300
+1.2499	F1 prime gaps + 1/2*primes^3	4849	28	0	seg0.15	300
+1.2499	F1 prime gaps + 1/2*primes^3	4850	28	0	seg0.15	300
+1.2499	F1 n^2 + 2*primes^3	93	1	1	seg0.12	300
+1.2499	F1 interleave n^3 | phi(n)	7912	1	0	seg0.15	300
+1.2499	F1 d(n) + -1*primes digit sum	6905	1	0	seg0.11	300
+1.2499	F1 fibonacci + 2*cumulative phi(n)	16182	1	1	seg0.7	300
+1.2499	F1 primes + 1*primes digit sum	4015	28	0	seg0.7	300
+1.2499	F1 fibonacci + 3*cumulative phi(n)	3302	28	1	seg0.11	300
+1.2499	F1 n + 1/2*primes digit sum	12675	1	0	seg0.14	300
+1.2499	F1 n^2 + 1*primes reversed digits	17876	28	1	seg0.15	300
+1.2499	F1 prime gaps + 2*cumulative phi(n)	1907	1	1	seg0.12	300
+1.2499	F1 lucas + 1/3*emirps	2227	28	0	seg0.13	300
+1.2499	F1 primes + 1/2*triangular	11704	28	1	seg0.14	300
+1.2499	F1 fibonacci + 1/3*composites	14699	28	1	seg0.12	300
+1.2499	F1 n^2 + -1*primes reversed digits	2831	1	0	seg0.12	300
+1.2499	F1 n + 2*phi(n)	15005	28	1	seg0.11	300
+1.2492	F1 n^2 + 2*fibonacci	536	28	1	seg0.9	300
+1.2492	F1 interleave cumulative phi(n) | primes reversed digits	814	28	0	seg0.7	300
+1.2492	F1 cumulative prime sum + -1*fibonacci	6926	1	0	seg0.8	300
+1.2492	F1 cumulative prime sum + 1*primes digit sum	11744	1	1	seg0.8	300
+1.2492	F1 n^2 + 1*primes^2	10967	1	0	seg0.12	300
+1.2492	F1 primes + 2*fibonacci	8107	28	0	seg0.12	300
+1.2492	F1 phi(n) + 1/2*emirps	8184	1	1	seg0.13	300
+1.2492	F1 cumulative prime sum + -1*n	7706	28	0	seg0.12	300
+1.2492	F1 emirps + 1/2*primes^3	11363	28	0	seg0.8	300
+1.2492	F1 fibonacci + -1*composites	13519	28	0	seg0.14	300
+1.2492	F1 primes^3 + 1*primes reversed digits	10965	28	0	seg0.14	300
+1.2492	F1 pell + 1/2*primes^2	19163	28	0	seg0.11	300
+1.2492	F1 sigma(n) + 1/2*primes digit sum	817	1	0	seg0.12	300
+1.2492	F1 n^2 + 2*fibonacci	942	28	1	seg0.9	300
+1.2492	F1 triangular + 1*cumulative phi(n)	12682	28	1	seg0.15	300
+1.2492	F1 n^2 + 3*primes digit sum	3287	1	0	seg0.13	300
+1.2492	F1 interleave phi(n) | cumulative phi(n)	11579	28	1	seg0.13	300
+1.2492	F1 interleave phi(n) | cumulative phi(n)	19221	1	1	seg0.9	300
+1.2492	F1 sigma(n) + 2*cumulative phi(n)	18022	1	1	seg0.11	300
+1.2492	F1 primes + 1/2*primes reversed digits	8236	1	0	seg0.12	300
+1.2492	F1 d(n) + 1/3*primes^3	5857	1	0	seg0.12	300
+1.2492	F1 fibonacci + 3*primes digit sum	6421	1	1	seg0.8	300
+1.2492	F1 lucas + 3*primes^3	12410	28	0	seg0.9	300
+1.2492	F1 cumulative phi(n) + 3*primes^3	15859	1	1	seg0.7	300
+1.2492	F1 n^2 + 1/2*primes^2	13225	28	0	seg0.15	300
+1.2492	F1 triangular + 3*primes^3	6668	28	1	seg0.11	300
+1.2492	F1 primes + 2*sigma(n)	5225	1	0	seg0.11	300
+1.2492	F1 fibonacci + 1*primes^3	1215	28	1	seg0.13	300
+1.2492	F1 emirps + 1/2*primes digit sum	6021	1	0	seg0.13	300
+1.2492	F1 d(n) + 3*primes^2	1300	1	1	seg0.14	300
+1.2492	F1 cumulative prime sum + 1*n^2	7344	1	0	seg0.13	300
+1.2492	F1 n^2 + 1/2*primes digit sum	3587	1	0	seg0.7	300
+1.2492	F1 d(n) + 1/3*primes digit sum	11518	1	0	seg0.12	300
+1.2492	F1 fibonacci + 3*emirps	6460	28	1	seg0.14	300
+1.2492	F1 phi(n) + -1*primes^3	4414	28	0	seg0.7	300
+1.2492	F1 n^2 + 1/3*primes^3	12735	1	1	seg0.15	300
+1.2492	F1 lucas + -1*primes digit sum	6854	1	0	seg0.8	300
+1.2492	F1 emirps + -1*primes reversed digits	11420	28	0	seg0.8	300
+1.2492	F1 n^3 + -1*primes digit sum	631	28	0	seg0.14	300
+1.2492	F1 fibonacci + 3*primes^3	9961	1	1	seg0.8	300
+1.2492	F1 n^2 + 2*fibonacci	130	28	1	seg0.9	300
+1.2492	F1 n^2 + 2*fibonacci	1348	28	1	seg0.9	300
+1.2492	F1 fibonacci + 3*primes^3	9965	1	1	seg0.8	300
+1.2492	F1 pell + 1/3*sigma(n)	8175	1	0	seg0.11	300
+1.2492	F1 prime gaps + 1*n^3	10914	1	1	seg0.14	300
+1.2492	F1 sigma(n) + 3*primes digit sum	8859	1	0	seg0.15	300
+1.2492	F1 sigma(n) + -1*primes^3	18440	28	0	seg0.13	300
+1.2492	F1 sigma(n) + 1*primes reversed digits	14845	28	0	seg0.8	300
+1.2492	F1 n^3 + 3*primes^3	3112	1	1	seg0.13	300
+1.2492	F1 cumulative prime sum + 1/3*n^2	10577	28	1	seg0.15	300
+1.2492	F1 phi(n) + 1/3*d(n)	14971	28	0	seg0.15	300
+1.2492	F1 interleave sigma(n) | cumulative phi(n)	6319	28	0	seg0.15	300
+1.2492	F1 emirps + 1/3*primes reversed digits	10452	1	0	seg0.14	300
+1.2492	F1 primes + 1/3*sigma(n)	16106	1	0	seg0.14	300
+1.2492	F1 n^2 + 2*fibonacci	1754	28	1	seg0.9	300
+1.2492	F1 n^2 + 1/3*composites	6712	1	0	seg0.12	300
+1.2492	F1 fibonacci + 1/3*primes reversed digits	18879	1	0	seg0.9	300
+1.2492	F1 primes + 2*d(n)	78	28	0	seg0.7	300
+1.2492	F1 phi(n) + 3*d(n)	12373	28	1	seg0.11	300
+1.2492	F1 phi(n) + 2*sigma(n)	6572	1	0	seg0.14	300
+1.2492	F1 d(n) + -1*primes reversed digits	10753	1	0	seg0.11	300
+1.2492	F1 d(n) + -1*primes reversed digits	17453	1	1	seg0.8	300
+1.2492	F1 composites + 1/2*primes reversed digits	2259	1	1	seg0.12	300
+1.2492	F1 interleave primes^3 | primes reversed digits	9553	28	1	seg0.13	300
+1.2492	F1 d(n) + 3*primes digit sum	3079	28	0	seg0.7	300
+1.2492	F1 emirps + -1*primes reversed digits	11419	28	0	seg0.8	300
+1.2486	F1 n^3 + -1*cumulative phi(n)	5880	1	0	seg0.11	300
+1.2486	F1 primes + 2*cumulative phi(n)	11855	1	1	seg0.14	300
+1.2486	F1 phi(n) + 2*primes digit sum	4873	1	1	seg0.8	300
+1.2486	F1 n^2 + 1*phi(n)	18854	1	1	seg0.14	300
+1.2486	F1 fibonacci + -1*primes reversed digits	7008	28	0	seg0.9	300
+1.2486	F1 n^3 + 1/3*primes reversed digits	14611	1	0	seg0.7	300
+1.2486	F1 triangular + 3*primes reversed digits	14104	28	1	seg0.7	300
+1.2486	F1 phi(n) + 2*sigma(n)	8816	28	1	seg0.14	300
+1.2486	F1 phi(n) + 1/2*primes digit sum	9842	1	1	seg0.7	300
+1.2486	F1 sigma(n) + 2*d(n)	14043	1	0	seg0.8	300
+1.2486	F1 triangular + 3*phi(n)	19474	28	0	seg0.9	300
+1.2486	F1 n^3 + 2*primes digit sum	2011	1	1	seg0.12	300
+1.2486	F1 triangular + -1*primes reversed digits	13269	28	0	seg0.12	300
+1.2486	F1 triangular + -1*primes reversed digits	13268	28	0	seg0.12	300
+1.2486	F1 interleave phi(n) | emirps	8278	1	0	seg0.7	300
+1.2486	F1 phi(n) + 3*cumulative phi(n)	9611	28	0	seg0.8	300
+1.2486	F1 phi(n) + 3*cumulative phi(n)	9612	28	0	seg0.8	300
+1.2486	F1 triangular + 1/3*d(n)	16289	28	0	seg0.12	300
+1.2486	F1 primes^3 + 1/3*primes digit sum	2384	1	0	seg0.7	300
+1.2486	F1 prime gaps + 2*composites	7166	28	1	seg0.9	300
+1.2486	F1 phi(n) + 1/2*sigma(n)	3656	28	1	seg0.13	300
+1.2486	F1 phi(n) + 1*primes^3	9953	28	1	seg0.11	300
+1.2486	F1 composites + 2*primes^3	2377	28	1	seg0.15	300
+1.2486	F1 emirps + 1/3*primes digit sum	16032	28	1	seg0.15	300
+1.2486	F1 primes^3 + 3*primes digit sum	2028	1	0	seg0.12	300
+1.2486	F1 cumulative prime sum + -1*fibonacci	6120	28	0	seg0.15	300
+1.2486	F1 n^2 + 2*primes^2	19188	1	0	seg0.14	300
+1.2486	F1 sigma(n) + 3*primes digit sum	4425	1	0	seg0.12	300
+1.2486	F1 primes^2 + 1/2*primes reversed digits	17984	28	0	seg0.14	300
+1.2486	F1 primes + 2*triangular	6733	1	0	seg0.15	300
+1.2486	F1 pell + 1/3*primes^2	4968	1	0	seg0.15	300
+1.2486	F1 sigma(n) + 3*primes reversed digits	13588	1	0	seg0.9	300
+1.2486	F1 n + -1*primes reversed digits	9607	1	1	seg0.7	300
+1.2486	F1 n^2 + 1/2*primes^3	15949	1	0	seg0.13	300
+1.2486	F1 n^2 + 1/2*emirps	2931	1	0	seg0.13	300
+1.2486	F1 triangular + 2*primes^3	18190	1	0	seg0.8	300
+1.2486	F1 prime gaps + 2*n	14254	1	0	seg0.8	300
+1.2486	F1 prime gaps + 3*n^2	15522	28	0	seg0.15	300
+1.2486	F1 emirps + 1*primes digit sum	14658	1	0	seg0.7	300
+1.2486	F5 r/(r-1)	6921	28	0	seg0.15	300
+1.2486	F1 primes + 2*n^3	10316	28	0	seg0.12	300
+1.2486	F1 interleave primes | n	12123	28	1	seg0.14	300
+1.2486	F1 cumulative prime sum + 1/3*n^2	248	1	1	seg0.14	300
+1.2486	F1 n + 2*emirps	8606	28	1	seg0.11	300
+1.2486	F1 n + 2*emirps	8608	28	1	seg0.11	300
+1.2486	F1 cumulative prime sum + 1/3*primes^3	2044	28	1	seg0.15	300
+1.2486	F1 cumulative prime sum + 1/3*primes^3	4647	1	1	seg0.14	300
+1.2486	F1 cumulative prime sum + 1/2*n^3	17410	28	0	seg0.8	300
+1.2486	F1 pell + 2*primes^2	8030	1	1	seg0.7	300
+1.2486	F1 primes + -1*triangular	15741	28	0	seg0.15	300
+1.2486	F1 prime gaps + 1/2*n^2	9203	1	0	seg0.8	300
+1.2486	F1 sigma(n) + 3*cumulative phi(n)	16812	1	0	seg0.15	300
+1.2486	F3 sigma(p+1)	18972	28	0	seg0.8	300
+1.2486	F1 n + 1/3*emirps	13702	1	0	seg0.12	300
+1.2486	F1 primes + 3*fibonacci	8123	1	0	seg0.7	300
+1.2486	F1 fibonacci + -1*primes^3	17720	28	0	seg0.13	300
+1.2486	F1 n^3 + 1*phi(n)	16857	28	1	seg0.11	300
+1.2486	F1 emirps + -1*primes^2	16638	1	1	seg0.7	300
+1.2486	F1 composites + -1*primes^3	1762	1	0	seg0.11	300
+1.2486	F1 n + 3*emirps	17964	1	0	seg0.9	300
+1.2486	F1 cumulative prime sum + 1*n^3	17670	1	0	seg0.12	300
+1.2486	F1 lucas + 3*sigma(n)	11690	1	1	seg0.11	300
+1.2486	F1 pell + -1*primes^2	3052	1	0	seg0.15	300
+1.2486	F1 n + 1/3*phi(n)	9722	1	1	seg0.15	300
+1.2486	F1 interleave primes^3 | primes reversed digits	8116	28	1	seg0.13	300
+1.2486	F1 fibonacci + 2*sigma(n)	2659	28	0	seg0.14	300
+1.2486	F1 n + -1*primes reversed digits	12671	28	0	seg0.13	300
+1.2486	F1 n + 1*primes^3	14075	28	1	seg0.9	300
+1.2486	F1 primes + -1*cumulative prime sum	5106	1	1	seg0.14	300
+1.2486	F1 primes^3 + -1*primes digit sum	6063	28	1	seg0.15	300
+1.2486	F1 emirps + 1*primes^3	16469	28	1	seg0.12	300
+1.2479	F1 interleave primes | primes^3	4107	28	0	seg0.7	300
+1.2479	F1 lucas + 2*sigma(n)	1268	1	0	seg0.11	300
+1.2479	F1 cumulative prime sum + 1/3*primes^3	13836	28	1	seg0.9	300
+1.2479	F1 cumulative prime sum + 1*n	13330	28	1	seg0.7	300
+1.2479	F1 fibonacci + 2*primes reversed digits	15469	28	1	seg0.9	300
+1.2479	F1 n^3 + 1/3*emirps	4975	1	1	seg0.12	300
+1.2479	F1 primes^3 + 3*primes reversed digits	14096	1	1	seg0.7	300
+1.2479	F1 emirps + 1/3*primes reversed digits	3471	28	0	seg0.13	300
+1.2479	F1 n^2 + 2*d(n)	7589	1	0	seg0.11	300
+1.2479	F1 primes + 2*cumulative prime sum	13802	28	0	seg0.12	300
+1.2479	F1 prime gaps + 1*sigma(n)	16925	28	1	seg0.8	300
+1.2479	F1 fibonacci + 3*sigma(n)	19398	1	1	seg0.11	300
+1.2479	F1 lucas + -1*primes^2	16548	28	0	seg0.8	300
+1.2479	F1 sigma(n) + 1*primes^3	2090	1	0	seg0.7	300
+1.2479	F1 cumulative phi(n) + 1*primes digit sum	19098	1	1	seg0.14	300
+1.2479	F1 composites + 3*primes^3	16866	28	0	seg0.7	300
+1.2479	F1 lucas + 1*emirps	1674	1	0	seg0.9	300
+1.2479	F1 pell + 2*primes^2	8028	1	1	seg0.7	300
+1.2479	F1 prime gaps + -1*primes^2	6199	28	1	seg0.14	300
+1.2479	F1 prime gaps + 3*primes digit sum	14491	1	1	seg0.13	300
+1.2479	F1 triangular + 2*phi(n)	11057	1	0	seg0.7	300
+1.2479	F1 sigma(n) + 2*primes^2	14855	1	1	seg0.9	300
+1.2479	F1 fibonacci + 1/3*emirps	8055	28	1	seg0.7	300
+1.2479	F1 primes + 1/3*d(n)	10569	1	1	seg0.13	300
+1.2479	F1 cumulative phi(n) + 2*primes reversed digits	12802	28	1	seg0.8	300
+1.2479	F1 primes + 2*fibonacci	13017	28	1	seg0.8	300
+1.2479	F1 lucas + 1/2*cumulative phi(n)	1385	28	0	seg0.14	300
+1.2479	F1 interleave composites | primes^3	12605	28	0	seg0.13	300
+1.2479	F1 primes digit sum + 3*primes reversed digits	13642	28	0	seg0.12	300
+1.2479	F1 cumulative phi(n) + 1*primes reversed digits	14144	1	1	seg0.7	300
+1.2479	F1 d(n) + -1*emirps	6008	28	0	seg0.14	300
+1.2479	F1 sigma(n) + -1*primes^2	17890	1	0	seg0.8	300
+1.2479	F1 cumulative prime sum + 1/3*n^3	8749	28	1	seg0.11	300
+1.2479	F1 primes + 1/3*sigma(n)	10874	28	0	seg0.12	300
+1.2479	F1 n^2 + 3*primes digit sum	3286	1	0	seg0.13	300
+1.2479	F1 cumulative prime sum + 1/3*primes^2	11685	1	0	seg0.11	300
+1.2479	F1 cumulative prime sum + 2*composites	14976	1	0	seg0.9	300
+1.2479	F1 n^3 + 2*cumulative phi(n)	7669	1	1	seg0.11	300
+1.2479	F1 lucas + 2*phi(n)	9583	28	1	seg0.14	300
+1.2479	F1 n^2 + 2*primes^2	14899	28	1	seg0.13	300
+1.2479	F1 cumulative phi(n) + -1*primes digit sum	9425	1	1	seg0.11	300
+1.2479	F1 primes + 1*d(n)	1815	28	1	seg0.8	300
+1.2479	F1 interleave primes | cumulative phi(n)	19091	28	0	seg0.8	300
+1.2479	F1 fibonacci + 1/2*sigma(n)	4020	28	1	seg0.9	300
+1.2479	F1 primes + 1*n^3	3901	1	0	seg0.12	300
+1.2479	F1 fibonacci + 1/2*sigma(n)	4022	28	1	seg0.9	300
+1.2479	F1 cumulative prime sum + 1/3*pell	3642	1	0	seg0.11	300
+1.2479	F1 n^3 + 1/3*primes reversed digits	17297	1	1	seg0.8	300
+1.2479	F1 cumulative prime sum + 1*primes^3	15014	1	0	seg0.15	300
+1.2479	F1 phi(n) + 1/2*primes^2	11862	28	1	seg0.13	300
+1.2479	F1 n + 2*sigma(n)	11456	28	1	seg0.11	300
+1.2479	F1 n^2 + 1*phi(n)	6541	28	1	seg0.9	300
+1.2479	F1 primes + -1*cumulative phi(n)	172	28	0	seg0.9	300
+1.2479	F1 composites + -1*emirps	17942	1	1	seg0.8	300
+1.2479	F1 composites + -1*emirps	17944	1	1	seg0.8	300
+1.2479	F1 phi(n) + 2*sigma(n)	8945	28	0	seg0.15	300
+1.2479	F1 triangular + 1*phi(n)	7882	1	0	seg0.7	300
+1.2479	F1 lucas + -1*cumulative phi(n)	14096	1	1	seg0.8	300
+1.2479	F1 cumulative phi(n) + 1/3*primes digit sum	9537	28	1	seg0.12	300
+1.2479	F1 n^3 + 2*cumulative phi(n)	7667	1	1	seg0.11	300
+1.2479	F1 fibonacci + -1*composites	13522	28	0	seg0.14	300
+1.2479	F1 n^2 + -1*sigma(n)	10340	28	1	seg0.14	300
+1.2479	F1 cumulative phi(n) + 1/2*primes digit sum	8027	1	0	seg0.15	300
+1.2479	F1 primes^2 + 1/2*primes digit sum	19077	28	1	seg0.8	300
+1.2479	F1 prime gaps + 1*triangular	7865	28	1	seg0.13	300
+1.2479	F1 lucas + 1/3*primes digit sum	376	28	1	seg0.14	300
+1.2479	F1 primes + 1*phi(n)	1257	1	1	seg0.9	300
+1.2479	F1 cumulative prime sum + 1*composites	3972	28	0	seg0.13	300
+1.2479	F1 prime gaps + 2*n	8866	28	0	seg0.7	300
+1.2479	F1 n^2 + -1*primes digit sum	16050	28	0	seg0.11	300
+1.2479	F1 fibonacci + 3*primes^2	10210	28	0	seg0.13	300
+1.2479	F1 n^3 + 2*primes^2	19519	1	0	seg0.9	300
+1.2479	F1 cumulative prime sum + -1*phi(n)	13754	1	1	seg0.14	300
+1.2479	F1 cumulative prime sum + -1*phi(n)	13752	1	1	seg0.14	300
+1.2479	F1 primes + -1*cumulative prime sum	1492	1	0	seg0.11	300
+1.2479	F1 primes + -1*cumulative prime sum	1493	1	0	seg0.11	300
+1.2479	F1 d(n) + 1/3*cumulative phi(n)	12446	1	1	seg0.8	300
+1.2479	F1 phi(n) + 1*composites	13063	28	0	seg0.11	300
+1.2473	F1 fibonacci + 1/3*composites	17630	28	0	seg0.14	300
+1.2473	F1 pell + 1/3*cumulative phi(n)	1795	28	1	seg0.8	300
+1.2473	F1 n^3 + 1/2*primes digit sum	2911	1	0	seg0.8	300
+1.2473	F1 sigma(n) + 1/2*primes^3	12352	1	0	seg0.15	300
+1.2473	F1 cumulative phi(n) + 1/3*primes^3	18502	1	1	seg0.7	300
+1.2473	F1 interleave emirps | primes^3	232	28	0	seg0.14	300
+1.2473	F1 phi(n) + -1*d(n)	13121	28	1	seg0.8	300
+1.2473	F1 n^3 + 3*phi(n)	19418	28	0	seg0.12	300
+1.2473	F1 sigma(n) + 2*cumulative phi(n)	12044	28	0	seg0.9	300
+1.2473	F1 sigma(n) + 1/3*primes^2	16121	28	1	seg0.8	300
+1.2473	F1 d(n) + 1/2*cumulative phi(n)	4886	1	1	seg0.15	300
+1.2473	F1 emirps + -1*primes reversed digits	2265	1	0	seg0.8	300
+1.2473	F1 lucas + 1*primes reversed digits	18654	28	0	seg0.13	300
+1.2473	F1 n^3 + 1*primes^3	7102	28	1	seg0.15	300
+1.2473	F1 primes + 2*emirps	6454	1	0	seg0.9	300
+1.2473	F1 cumulative prime sum + -1*primes^3	11967	28	0	seg0.7	300
+1.2473	F1 n^2 + 1/3*primes^3	9467	28	1	seg0.7	300
+1.2473	F1 n^2 + 1/3*primes^3	12733	1	1	seg0.15	300
+1.2473	F1 triangular + 1/3*primes^2	9784	28	1	seg0.8	300
+1.2473	F1 fibonacci + 2*primes digit sum	19383	1	1	seg0.7	300
+1.2473	F1 prime gaps + 1/3*n^2	18669	1	1	seg0.9	300
+1.2473	F1 pell + 3*phi(n)	17523	1	0	seg0.15	300
+1.2473	F1 prime gaps + 1/3*n^2	18671	1	1	seg0.9	300
+1.2473	F1 prime gaps + 1/2*sigma(n)	11506	28	1	seg0.11	300
+1.2473	F1 fibonacci + 1*primes^3	15732	28	0	seg0.8	300
+1.2473	F1 triangular + 1/2*sigma(n)	2341	1	1	seg0.12	300
+1.2473	F1 sigma(n) + 1/2*primes digit sum	5958	28	0	seg0.13	300
+1.2473	F1 d(n) + 3*primes^3	766	28	0	seg0.11	300
+1.2473	F1 primes^3 + 2*primes reversed digits	17397	1	1	seg0.11	300
+1.2473	F1 primes^2 + 2*primes reversed digits	19205	28	1	seg0.15	300
+1.2473	F1 primes + 2*composites	15746	28	0	seg0.7	300
+1.2473	F1 sigma(n) + 1/3*primes reversed digits	1270	1	0	seg0.7	300
+1.2473	F1 fibonacci + -1*composites	15197	28	0	seg0.14	300
+1.2473	F1 primes + 3*d(n)	8574	28	1	seg0.13	300
+1.2473	F1 n + 1/3*sigma(n)	8742	28	1	seg0.15	300
+1.2473	F1 cumulative phi(n) + 3*primes^2	8810	1	0	seg0.14	300
+1.2473	F1 primes + 1*triangular	1228	1	0	seg0.11	300
+1.2473	F1 cumulative prime sum + 3*composites	5703	28	1	seg0.9	300
+1.2473	F1 cumulative prime sum + 1*n^3	17669	1	0	seg0.12	300
+1.2473	F1 cumulative prime sum + 2*composites	8856	28	0	seg0.13	300
+1.2473	F1 prime gaps + 3*phi(n)	1100	1	0	seg0.8	300
+1.2473	F1 cumulative prime sum + 1/3*d(n)	13979	28	0	seg0.9	300
+1.2473	F1 n + 1*sigma(n)	17092	28	1	seg0.9	300
+1.2473	F1 n + 2*primes^2	10872	1	1	seg0.7	300
+1.2473	F1 emirps + -1*primes digit sum	14153	28	1	seg0.8	300
+1.2473	F1 sigma(n) + 1/2*primes^2	684	28	1	seg0.13	300
+1.2473	F1 d(n) + -1*cumulative phi(n)	8049	28	0	seg0.15	300
+1.2473	F1 prime gaps + -1*triangular	1717	28	1	seg0.8	300
+1.2473	F1 cumulative prime sum + 1/3*lucas	18503	28	0	seg0.15	300
+1.2473	F1 primes^2 + -1*primes reversed digits	2668	28	0	seg0.9	300
+1.2473	F1 interleave n^3 | sigma(n)	17092	1	1	seg0.15	300
+1.2473	F1 cumulative phi(n) + 1/2*primes digit sum	3487	28	1	seg0.7	300
+1.2473	F1 emirps + 1*primes^3	16471	28	1	seg0.12	300
+1.2473	F1 pell + 1/3*emirps	10803	28	0	seg0.13	300
+1.2473	F1 n^2 + 1/3*composites	15636	28	1	seg0.8	300
+1.2473	F1 prime gaps + 3*primes reversed digits	2935	28	1	seg0.14	300
+1.2473	F1 n^2 + -1*primes digit sum	16048	28	0	seg0.11	300
+1.2473	F1 fibonacci + 1*emirps	17131	28	1	seg0.14	300
+1.2473	F1 sigma(n) + 3*cumulative phi(n)	14913	1	0	seg0.12	300
+1.2473	F1 sigma(n) + -1*primes^3	18439	28	0	seg0.13	300
+1.2473	F1 cumulative prime sum + 1/3*primes digit sum	6008	1	1	seg0.8	300
+1.2473	F1 fibonacci + 1/3*primes reversed digits	10413	1	1	seg0.9	300
+1.2473	F1 sigma(n) + 1/2*composites	16982	1	0	seg0.8	300
+1.2473	F1 interleave phi(n) | emirps	10461	1	1	seg0.12	300
+1.2473	F1 cumulative phi(n) + -1*composites	9706	28	1	seg0.11	300
+1.2473	F1 triangular + -1*phi(n)	17361	28	1	seg0.12	300
+1.2473	F1 primes + 1/2*primes digit sum	3623	28	0	seg0.11	300
+1.2473	F1 cumulative prime sum + -1*fibonacci	6925	1	0	seg0.8	300
+1.2473	F1 primes^3 + -1*primes digit sum	530	1	1	seg0.7	300
+1.2473	F5 (r-1)/r	1066	1	1	seg0.12	300
+1.2473	F1 fibonacci + 1/3*primes digit sum	3052	1	0	seg0.13	300
+1.2473	F1 fibonacci + 1/3*primes digit sum	11268	28	0	seg0.9	300
+1.2473	F1 sigma(n) + -1*primes reversed digits	9788	28	1	seg0.8	300
+1.2473	F1 interleave cumulative prime sum | sigma(n)	14325	28	0	seg0.15	300
+1.2473	F1 n^2 + -1*cumulative phi(n)	10936	28	1	seg0.14	300
+1.2473	F1 cumulative phi(n) + -1*primes digit sum	13729	1	1	seg0.14	300
+1.2473	F1 primes digit sum + 1*primes reversed digits	5605	1	1	seg0.14	300
+1.2473	F1 primes + 2*cumulative prime sum	9183	28	0	seg0.14	300
+1.2466	F1 n^2 + -1*emirps	1038	28	1	seg0.15	300
+1.2466	F1 lucas + 1/3*emirps	2228	28	0	seg0.13	300
+1.2466	F1 n^3 + 2*emirps	409	28	1	seg0.11	300
+1.2466	F1 n^2 + 1*primes^2	19386	28	0	seg0.15	300
+1.2466	F1 primes + 1/2*composites	3618	28	1	seg0.13	300
+1.2466	F1 pell + 1*primes reversed digits	10841	1	0	seg0.8	300
+1.2466	F1 fibonacci + -1*cumulative phi(n)	7842	1	0	seg0.13	300
+1.2466	F1 fibonacci + -1*cumulative phi(n)	7843	1	0	seg0.13	300
+1.2466	F1 lucas + 1/2*primes^2	1995	1	1	seg0.15	300
+1.2466	F1 lucas + 1/2*primes^2	1997	1	1	seg0.15	300
+1.2466	F1 primes + 1/3*primes digit sum	2163	1	1	seg0.9	300
+1.2466	F1 primes + 2*phi(n)	2913	28	1	seg0.11	300
+1.2466	F1 cumulative prime sum + 1/3*fibonacci	5962	28	0	seg0.8	300
+1.2466	F1 fibonacci + 3*primes digit sum	9918	28	0	seg0.9	300
+1.2466	F1 pell + 1/3*primes^2	3974	28	0	seg0.13	300
+1.2466	F1 sigma(n) + 2*cumulative phi(n)	1633	1	1	seg0.15	300
+1.2466	F1 n^3 + 3*phi(n)	14879	1	0	seg0.7	300
+1.2466	F1 composites + 1/2*primes^3	2105	1	0	seg0.12	300
+1.2466	F1 cumulative prime sum + 1/2*n^2	4863	1	0	seg0.12	300
+1.2466	F1 cumulative prime sum + 2*triangular	3257	1	0	seg0.13	300
+1.2466	F1 interleave sigma(n) | emirps	2754	1	0	seg0.9	300
+1.2466	F1 interleave primes | cumulative prime sum	16236	1	0	seg0.9	300
+1.2466	F1 primes + 2*n^2	8218	1	1	seg0.12	300
+1.2466	F1 interleave phi(n) | composites	5595	28	0	seg0.9	300
+1.2466	F1 cumulative prime sum + 2*phi(n)	10996	1	0	seg0.8	300
+1.2466	F1 lucas + -1*emirps	19463	28	1	seg0.12	300
+1.2466	F1 n + -1*primes reversed digits	12670	28	0	seg0.13	300
+1.2466	F1 composites + -1*primes^3	10264	1	0	seg0.7	300
+1.2466	F1 composites + -1*primes^3	15295	28	0	seg0.15	300
+1.2466	F1 n^2 + 1/2*cumulative phi(n)	3560	1	0	seg0.7	300
+1.2466	F1 interleave cumulative phi(n) | composites	9296	28	0	seg0.15	300
+1.2466	F1 emirps + 1/3*primes^2	18862	28	0	seg0.7	300
+1.2466	F1 triangular + 3*sigma(n)	16583	1	1	seg0.13	300
+1.2466	F1 primes + 1*d(n)	15718	1	0	seg0.14	300
+1.2466	F1 fibonacci + 1/2*composites	7011	1	0	seg0.13	300
+1.2466	F1 sigma(n) + 2*cumulative phi(n)	15724	28	1	seg0.9	300
+1.2466	F1 d(n) + 1/2*emirps	4202	1	0	seg0.7	300
+1.2466	F1 pell + 1/2*primes^3	14240	1	0	seg0.15	300
+1.2466	F1 n + 1/2*cumulative phi(n)	3350	28	0	seg0.9	300
+1.2466	F1 n + 1*primes reversed digits	1967	1	1	seg0.9	300
+1.2466	F1 cumulative prime sum + 1/3*phi(n)	15887	1	0	seg0.12	300
+1.2466	F1 emirps + 1/2*primes^3	11877	1	0	seg0.8	300
+1.2466	F1 d(n) + -1*composites	5460	1	0	seg0.15	300
+1.2466	F1 d(n) + 3*cumulative phi(n)	18957	28	0	seg0.8	300
+1.2466	F1 sigma(n) + 1*primes^3	12750	1	1	seg0.7	300
+1.2466	F1 pell + -1*emirps	3820	1	0	seg0.11	300
+1.2466	F1 primes + 1/2*cumulative phi(n)	981	28	1	seg0.8	300
+1.2466	F1 n + 1*sigma(n)	11021	1	0	seg0.12	300
+1.2466	F1 cumulative phi(n) + 2*emirps	15360	28	1	seg0.11	300
+1.2466	F1 sigma(n) + -1*primes^2	10038	1	0	seg0.15	300
+1.2466	F1 cumulative prime sum + 1/2*cumulative phi(n)	13194	1	1	seg0.14	300
+1.2466	F1 triangular + -1*sigma(n)	8909	1	0	seg0.8	300
+1.2466	F1 interleave cumulative phi(n) | emirps	8536	28	0	seg0.9	300
+1.2466	F1 cumulative phi(n) + 3*primes reversed digits	3903	28	1	seg0.12	300
+1.2466	F1 cumulative prime sum + 3*primes^3	3198	28	1	seg0.11	300
+1.2466	F1 cumulative prime sum + 1/2*primes reversed digits	7010	28	1	seg0.7	300
+1.2466	F1 prime gaps + -1*phi(n)	9428	28	0	seg0.15	300
+1.2466	F1 triangular + 1/2*emirps	18924	28	0	seg0.11	300
+1.2466	F1 triangular + 2*primes digit sum	9619	1	0	seg0.9	300
+1.2466	F1 fibonacci + 1*emirps	1746	28	0	seg0.8	300
+1.2466	F1 sigma(n) + -1*primes^3	18443	28	0	seg0.13	300
+1.2466	F1 cumulative phi(n) + 1/2*composites	3548	1	0	seg0.7	300
+1.2466	F1 n^3 + 1/2*primes^2	12961	28	1	seg0.13	300
+1.2466	F1 n^3 + 3*cumulative phi(n)	14870	1	1	seg0.9	300
+1.2466	F1 pell + 2*phi(n)	42	1	0	seg0.9	300
+1.2466	F1 cumulative phi(n) + 1/2*emirps	8390	1	0	seg0.11	300
+1.2466	F1 fibonacci + 1/3*emirps	2173	1	0	seg0.12	300
+1.2466	F1 prime gaps + -1*sigma(n)	10366	1	1	seg0.13	300
+1.2466	F1 sigma(n) + -1*primes reversed digits	4931	1	1	seg0.9	300
+1.2466	F1 interleave cumulative prime sum | sigma(n)	18043	1	0	seg0.13	300
+1.2466	F1 fibonacci + 1*cumulative phi(n)	5493	1	1	seg0.9	300
+1.2466	F1 cumulative prime sum + 1/2*emirps	9045	1	0	seg0.15	300
+1.2466	F1 phi(n) + 1/2*d(n)	1897	28	1	seg0.7	300
+1.2466	F1 composites + 1*emirps	9177	28	0	seg0.11	300
+1.2466	F1 pell + 2*primes^3	577	1	1	seg0.15	300
+1.2466	F1 phi(n) + 1/2*d(n)	13721	28	1	seg0.7	300
+1.2466	F1 n^3 + 1*primes digit sum	4754	28	1	seg0.8	300
+1.2466	F1 n^3 + 3*primes digit sum	3663	1	0	seg0.14	300
+1.2460	F1 primes + 3*cumulative phi(n)	16377	1	0	seg0.12	300
+1.2460	F1 lucas + 1*primes^3	15121	1	0	seg0.12	300
+1.2460	F1 n^3 + 2*cumulative phi(n)	7671	1	1	seg0.11	300
+1.2460	F1 emirps + 2*primes reversed digits	10149	1	1	seg0.7	300
+1.2460	F1 cumulative prime sum + 2*triangular	37	1	1	seg0.14	300
+1.2460	F1 cumulative prime sum + 1/2*n^2	18701	28	1	seg0.9	300
+1.2460	F1 prime gaps + 3*n^3	5017	28	1	seg0.8	300
+1.2460	F1 lucas + -1*phi(n)	13428	1	1	seg0.12	300
+1.2460	F1 triangular + 3*primes digit sum	17563	1	1	seg0.12	300
+1.2460	F1 n^2 + 1*cumulative phi(n)	6963	1	0	seg0.7	300
+1.2460	F1 cumulative prime sum + 3*composites	11939	28	1	seg0.14	300
+1.2460	F1 prime gaps + 1*sigma(n)	5235	28	1	seg0.11	300
+1.2460	F1 primes + 3*primes digit sum	19208	1	1	seg0.13	300
+1.2460	F1 triangular + 1/3*primes reversed digits	10091	28	0	seg0.11	300
+1.2460	F1 fibonacci + 1/2*primes reversed digits	11572	1	0	seg0.12	300
+1.2460	F1 primes + 1/3*pell	9943	1	1	seg0.9	300
+1.2460	F1 n^3 + 1/2*primes^3	11238	1	1	seg0.8	300
+1.2460	F1 n^2 + 2*primes reversed digits	13443	28	1	seg0.9	300
+1.2460	F1 n + 3*sigma(n)	3966	1	0	seg0.13	300
+1.2460	F1 primes + 1*cumulative phi(n)	7996	1	1	seg0.11	300
+1.2460	F1 sigma(n) + 1/3*primes reversed digits	15255	1	0	seg0.15	300
+1.2460	F1 n^2 + 1*primes^2	3363	1	0	seg0.12	300
+1.2460	F1 lucas + 1/2*primes^3	18949	28	0	seg0.8	300
+1.2460	F1 primes + 1/3*cumulative prime sum	17896	1	0	seg0.12	300
+1.2460	F1 triangular + 2*primes reversed digits	15736	1	1	seg0.13	300
+1.2460	F1 cumulative prime sum + 1*n^2	6931	28	0	seg0.14	300
+1.2460	F1 pell + 3*composites	13417	1	1	seg0.14	300
+1.2460	F1 cumulative prime sum + -1*composites	10734	28	1	seg0.14	300
+1.2460	F1 primes + 1*sigma(n)	12900	28	0	seg0.9	300
+1.2460	F1 fibonacci + 2*composites	14323	1	1	seg0.11	300
+1.2460	F1 interleave cumulative phi(n) | composites	5135	28	1	seg0.9	300
+1.2460	F1 n + -1*primes reversed digits	1557	1	1	seg0.7	300
+1.2460	F1 prime gaps + 1*n^2	13297	1	1	seg0.14	300
+1.2460	F1 prime gaps + 3*phi(n)	7675	28	1	seg0.8	300
+1.2460	F1 emirps + 3*primes^3	19490	28	0	seg0.9	300
+1.2460	F1 fibonacci + -1*primes reversed digits	2954	28	0	seg0.13	300
+1.2460	F1 n^3 + 3*primes digit sum	17797	28	1	seg0.13	300
+1.2460	F1 lucas + 1*sigma(n)	6743	1	1	seg0.13	300
+1.2460	F1 interleave primes | emirps	3458	28	1	seg0.9	300
+1.2460	F1 lucas + 1/3*primes^3	14237	1	0	seg0.12	300
+1.2460	F1 prime gaps + 1*primes reversed digits	5820	28	0	seg0.9	300
+1.2460	F1 cumulative prime sum + 2*cumulative phi(n)	17008	1	1	seg0.12	300
+1.2460	F1 sigma(n) + -1*primes^3	18442	28	0	seg0.13	300
+1.2460	F1 d(n) + 1*composites	14567	1	0	seg0.7	300
+1.2460	F1 n^3 + 1/3*sigma(n)	3794	1	1	seg0.8	300
+1.2460	F1 cumulative prime sum + 1/2*phi(n)	17087	1	1	seg0.11	300
+1.2460	F1 cumulative prime sum + 1/2*phi(n)	17089	1	1	seg0.11	300
+1.2460	F1 sigma(n) + 1/3*emirps	7025	1	1	seg0.9	300
+1.2460	F1 n^3 + 1*primes^2	2419	28	0	seg0.12	300
+1.2460	F1 cumulative phi(n) + 1*composites	16543	28	1	seg0.7	300
+1.2460	F1 d(n) + 1/2*cumulative phi(n)	3409	1	0	seg0.11	300
+1.2460	F1 cumulative phi(n) + 1*composites	3644	28	0	seg0.12	300
+1.2460	F1 n^3 + -1*emirps	15688	1	0	seg0.8	300
+1.2460	F1 sigma(n) + 1/3*d(n)	2159	1	0	seg0.7	300
+1.2460	F1 cumulative prime sum + 2*fibonacci	13567	1	1	seg0.15	300
+1.2460	F1 n + 3*primes^3	6017	28	1	seg0.12	300
+1.2460	F1 primes + 1/3*cumulative prime sum	10931	28	0	seg0.14	300
+1.2460	F1 primes^3 + 2*primes digit sum	8318	28	0	seg0.13	300
+1.2460	F1 d(n) + 2*composites	13404	28	0	seg0.14	300
+1.2460	F1 composites + 1/3*primes digit sum	13366	28	0	seg0.9	300
+1.2460	F1 cumulative phi(n) + 1*primes^2	2905	1	1	seg0.8	300
+1.2460	F1 sigma(n) + 2*emirps	6465	1	0	seg0.7	300
+1.2460	F1 cumulative prime sum + 1*n^2	7343	1	0	seg0.13	300
+1.2460	F1 n^3 + 1/2*sigma(n)	17483	28	0	seg0.14	300
+1.2460	F1 triangular + -1*emirps	8938	1	1	seg0.14	300
+1.2460	F1 n^3 + 1/2*sigma(n)	2685	28	0	seg0.15	300
+1.2460	F1 fibonacci + -1*composites	2057	28	0	seg0.14	300
+1.2460	F1 sigma(n) + 1/3*cumulative phi(n)	5631	1	1	seg0.11	300
+1.2460	F1 cumulative phi(n) + -1*primes digit sum	13731	1	1	seg0.14	300
+1.2460	F1 primes^3 + -1*primes digit sum	15013	1	1	seg0.15	300
+1.2460	F1 primes^3 + -1*primes digit sum	15015	1	1	seg0.15	300
+1.2460	F1 phi(n) + 2*primes digit sum	7179	28	1	seg0.15	300
+1.2454	F1 n^2 + 1/3*primes^2	12527	28	1	seg0.14	300
+1.2454	F1 composites + 2*emirps	86	28	0	seg0.12	300
+1.2454	F1 composites + 1*primes reversed digits	9936	1	0	seg0.7	300
+1.2454	F1 primes digit sum + 2*primes reversed digits	1204	1	1	seg0.8	300
+1.2454	F1 n^3 + 1/3*composites	16933	28	0	seg0.13	300
+1.2454	F1 fibonacci + 1/2*phi(n)	15529	1	1	seg0.9	300
+1.2454	F1 cumulative prime sum + -1*fibonacci	3110	1	0	seg0.8	300
+1.2454	F1 prime gaps + 1*n^2	2156	28	1	seg0.11	300
+1.2454	F1 prime gaps + 1*triangular	4943	28	1	seg0.12	300
+1.2454	F1 n + 3*d(n)	9640	28	0	seg0.9	300
+1.2454	F1 n + 3*d(n)	9642	28	0	seg0.9	300
+1.2454	F1 interleave composites | primes^3	1706	28	1	seg0.14	300
+1.2454	F1 n + 1/2*composites	10682	28	0	seg0.9	300
+1.2454	F1 n^2 + 1*primes^2	10966	1	0	seg0.12	300
+1.2454	F1 n + 3*primes reversed digits	7398	1	0	seg0.11	300
+1.2454	F1 phi(n) + 3*sigma(n)	4620	28	1	seg0.13	300
+1.2454	F1 fibonacci + -1*composites	4472	28	0	seg0.14	300
+1.2454	F1 n + 3*cumulative phi(n)	12227	1	1	seg0.11	300
+1.2454	F1 pell + 1/2*primes^2	11943	1	0	seg0.11	300
+1.2454	F1 triangular + -1*cumulative phi(n)	8689	1	1	seg0.8	300
+1.2454	F1 pell + 2*sigma(n)	14485	1	0	seg0.9	300
+1.2454	F1 phi(n) + 2*primes^3	6983	1	1	seg0.9	300
+1.2454	F1 fibonacci + -1*composites	17018	28	0	seg0.14	300
+1.2454	F1 cumulative prime sum + 1/3*lucas	5652	28	1	seg0.7	300
+1.2454	F1 n + 1*d(n)	18863	1	0	seg0.9	300
+1.2454	F1 cumulative prime sum + 3*primes^2	9741	28	0	seg0.11	300
+1.2454	F1 n + 1*primes digit sum	6691	28	0	seg0.14	300
+1.2454	F1 lucas + 3*emirps	8123	28	0	seg0.14	300
+1.2454	F1 interleave n | primes reversed digits	5578	28	1	seg0.15	300
+1.2454	F1 cumulative prime sum + -1*sigma(n)	4969	1	0	seg0.8	300
+1.2454	F1 pell + 1/3*primes^2	1203	1	1	seg0.11	300
+1.2454	F1 cumulative phi(n) + 3*primes^3	9061	1	1	seg0.15	300
+1.2454	F1 cumulative phi(n) + 1/2*primes reversed digits	456	28	0	seg0.12	300
+1.2454	F1 primes^2 + 1/2*primes reversed digits	3864	1	0	seg0.11	300
+1.2454	F1 fibonacci + 3*primes^3	18296	28	1	seg0.7	300
+1.2454	F1 primes + 3*cumulative phi(n)	8934	1	1	seg0.13	300
+1.2454	F1 cumulative phi(n) + 2*emirps	16084	1	0	seg0.7	300
+1.2454	F1 cumulative prime sum + 1*emirps	1720	1	1	seg0.11	300
+1.2454	F1 n^3 + 3*d(n)	9526	28	1	seg0.9	300
+1.2454	F1 interleave primes | primes reversed digits	10132	1	1	seg0.8	300
+1.2454	F1 prime gaps + 1/3*primes^3	10994	1	0	seg0.11	300
+1.2454	F1 interleave cumulative phi(n) | emirps	8533	28	0	seg0.9	300
+1.2454	F1 prime gaps + 1/2*primes^3	19496	1	1	seg0.8	300
+1.2454	F1 pell + 3*primes digit sum	15473	28	0	seg0.13	300
+1.2454	F1 n^3 + 1*primes^3	3513	28	0	seg0.13	300
+1.2454	F1 triangular + 1/3*d(n)	8639	28	0	seg0.12	300
+1.2454	F1 cumulative prime sum + 2*emirps	13613	1	0	seg0.13	300
+1.2454	F1 cumulative prime sum + -1*primes^3	11970	28	0	seg0.7	300
+1.2454	F1 n^2 + 2*sigma(n)	302	28	0	seg0.13	300
+1.2454	F1 interleave composites | emirps	10499	1	1	seg0.14	300
+1.2454	F1 composites + 3*primes^3	9094	1	1	seg0.15	300
+1.2454	F1 primes^3 + 1/3*primes digit sum	10194	28	0	seg0.7	300
+1.2454	F1 cumulative prime sum + -1*n^3	15344	28	0	seg0.7	300
+1.2454	F1 d(n) + 3*emirps	10197	28	1	seg0.14	300
+1.2454	F1 lucas + 1/2*sigma(n)	10373	1	0	seg0.14	300
+1.2454	F1 emirps + 1*primes digit sum	11361	28	1	seg0.14	300
+1.2454	F1 sigma(n) + -1*primes^3	3033	1	0	seg0.8	300
+1.2454	F1 pell + 1/2*phi(n)	7165	1	0	seg0.7	300
+1.2454	F1 cumulative prime sum + 1/2*lucas	17569	28	0	seg0.9	300
+1.2454	F1 primes + 3*primes reversed digits	15771	1	0	seg0.9	300
+1.2454	F1 primes + 3*primes reversed digits	15770	1	0	seg0.9	300
+1.2454	F1 cumulative phi(n) + 1/2*composites	13026	28	0	seg0.14	300
+1.2454	F1 emirps + -1*primes^2	16634	1	1	seg0.7	300
+1.2454	F1 phi(n) + 2*sigma(n)	6571	1	0	seg0.14	300
+1.2454	F1 cumulative phi(n) + 1*primes^3	5292	1	1	seg0.11	300
+1.2454	F1 prime gaps + 3*n^3	1261	28	0	seg0.14	300
+1.2454	F1 prime gaps + 1*pell	15483	28	1	seg0.14	300
+1.2454	F1 n + 3*primes digit sum	14237	28	0	seg0.8	300
+1.2454	F1 fibonacci + -1*primes reversed digits	7005	28	0	seg0.9	300
+1.2454	F1 pell + 3*cumulative phi(n)	9880	28	1	seg0.11	300
+1.2454	F1 cumulative phi(n) + 2*primes digit sum	3691	28	0	seg0.15	300
+1.2454	F1 cumulative prime sum + 1/3*pell	4228	28	1	seg0.13	300
+1.2454	F1 n^2 + 1/2*composites	13848	28	0	seg0.7	300
+1.2454	F1 primes + -1*cumulative phi(n)	2682	1	1	seg0.11	300
+1.2454	F1 primes + 1/3*primes digit sum	7344	28	1	seg0.7	300
+1.2454	F1 composites + 1*emirps	316	1	1	seg0.12	300
+1.2454	F1 primes^2 + -1*primes digit sum	12882	28	1	seg0.9	300
+1.2454	F1 prime gaps + 1/2*emirps	13628	28	0	seg0.14	300
+1.2447	F1 n + 3*primes reversed digits	1927	28	0	seg0.7	300
+1.2447	F1 pell + 1/3*phi(n)	8628	1	1	seg0.12	300
+1.2447	F1 primes + 1*emirps	15806	1	1	seg0.7	300
+1.2447	F1 cumulative phi(n) + 1/2*primes^3	8266	28	1	seg0.7	300
+1.2447	F1 lucas + 3*primes^3	12411	28	0	seg0.9	300
+1.2447	F1 prime gaps + 3*sigma(n)	8923	1	1	seg0.7	300
+1.2447	F1 triangular + 1*composites	705	28	1	seg0.8	300
+1.2447	F1 primes + 2*triangular	17363	1	1	seg0.15	300
+1.2447	F1 sigma(n) + 2*cumulative phi(n)	15662	28	1	seg0.8	300
+1.2447	F1 d(n) + 1/2*emirps	5913	28	1	seg0.14	300
+1.2447	F1 n + 1*d(n)	416	1	0	seg0.8	300
+1.2447	F1 prime gaps + -1*n^3	10763	1	1	seg0.9	300
+1.2447	F1 n + 2*primes digit sum	1042	1	1	seg0.9	300
+1.2447	F1 primes + 1/2*emirps	9137	28	0	seg0.7	300
+1.2447	F1 phi(n) + 1/3*primes digit sum	1410	1	1	seg0.12	300
+1.2447	F1 lucas + 1/3*sigma(n)	6561	28	0	seg0.7	300
+1.2447	F1 cumulative prime sum + 1/3*n^3	9278	28	1	seg0.12	300
+1.2447	F1 primes + 1/2*pell	5295	1	1	seg0.13	300
+1.2447	F1 primes + 1/3*n	7809	1	0	seg0.8	300
+1.2447	F1 lucas + 1/3*sigma(n)	2987	28	0	seg0.11	300
+1.2447	F1 lucas + 1/3*sigma(n)	11517	28	0	seg0.11	300
+1.2447	F1 lucas + 1/3*sigma(n)	2986	28	0	seg0.11	300
+1.2447	F1 prime gaps + 2*composites	14311	28	0	seg0.9	300
+1.2447	F1 interleave n^3 | phi(n)	10505	28	1	seg0.7	300
+1.2447	F1 prime gaps + 1/3*n	18894	28	0	seg0.12	300
+1.2447	F1 interleave n^3 | phi(n)	19566	28	0	seg0.15	300
+1.2447	F1 lucas + 1/3*primes^3	14236	1	0	seg0.12	300
+1.2447	F1 cumulative phi(n) + 1/3*primes^3	12484	28	1	seg0.12	300
+1.2447	F1 primes^3 + 3*primes reversed digits	2278	1	0	seg0.7	300
+1.2447	F1 lucas + 1*emirps	13509	28	1	seg0.15	300
+1.2447	F1 lucas + 1*emirps	13511	28	1	seg0.15	300
+1.2447	F1 d(n) + -1*primes^3	8098	28	1	seg0.9	300
+1.2447	F1 cumulative prime sum + 3*cumulative phi(n)	5043	1	0	seg0.15	300
+1.2447	F1 primes + -1*phi(n)	9921	1	0	seg0.12	300
+1.2447	F1 composites + 3*primes reversed digits	12789	1	1	seg0.11	300
+1.2447	F1 n^3 + -1*emirps	15679	1	0	seg0.8	300
+1.2447	F1 prime gaps + -1*composites	18090	28	1	seg0.14	300
+1.2447	F1 primes^3 + 1/3*primes digit sum	4545	1	1	seg0.8	300
+1.2447	F1 prime gaps + 2*n^2	13243	28	1	seg0.11	300
+1.2447	F1 pell + -1*emirps	3815	1	0	seg0.11	300
+1.2447	F1 pell + -1*emirps	3816	1	0	seg0.11	300
+1.2447	F1 interleave phi(n) | emirps	11348	1	0	seg0.12	300
+1.2447	F1 primes + 1*n^2	18699	28	1	seg0.11	300
+1.2447	F1 prime gaps + 2*n^2	570	1	0	seg0.9	300
+1.2447	F1 primes + 1*composites	5417	1	0	seg0.12	300
+1.2447	F1 n^2 + 2*phi(n)	6747	28	0	seg0.9	300
+1.2447	F1 cumulative phi(n) + -1*primes^2	10851	1	0	seg0.11	300
+1.2447	F1 interleave phi(n) | emirps	7792	1	1	seg0.14	300
+1.2447	F1 composites + 3*primes^2	10582	1	1	seg0.14	300
+1.2447	F1 primes^3 + 1/3*primes reversed digits	3965	1	0	seg0.13	300
+1.2447	F1 primes + 3*d(n)	8576	28	1	seg0.13	300
+1.2447	F1 cumulative prime sum + 1/3*triangular	9902	1	1	seg0.8	300
+1.2447	F1 cumulative phi(n) + 1*primes reversed digits	7526	1	1	seg0.11	300
+1.2447	F1 prime gaps + 3*emirps	8840	1	0	seg0.11	300
+1.2447	F1 prime gaps + 1/2*n^3	16674	1	0	seg0.9	300
+1.2447	F1 cumulative prime sum + 3*n^2	9234	1	0	seg0.9	300
+1.2447	F1 triangular + 1/2*cumulative phi(n)	12278	28	0	seg0.7	300
+1.2447	F1 n + 2*phi(n)	15007	28	1	seg0.11	300
+1.2447	F1 n + 1/3*primes reversed digits	13621	1	1	seg0.7	300
+1.2447	F1 n^2 + 3*sigma(n)	5829	1	0	seg0.13	300
+1.2447	F1 emirps + 1*primes digit sum	18283	28	1	seg0.12	300
+1.2447	F1 primes^2 + 1/3*primes reversed digits	13560	1	0	seg0.7	300
+1.2447	F1 prime gaps + 1/3*phi(n)	16402	28	0	seg0.7	300
+1.2447	F1 cumulative prime sum + 1/3*lucas	8732	1	1	seg0.12	300
+1.2447	F1 phi(n) + 1/3*cumulative phi(n)	1775	28	0	seg0.9	300
+1.2447	F1 prime gaps + 3*n	474	28	1	seg0.15	300
+1.2447	F1 prime gaps + 2*primes^3	13898	28	1	seg0.11	300
+1.2447	F1 n^3 + -1*cumulative phi(n)	9167	28	0	seg0.14	300
+1.2447	F1 prime gaps + 1/3*primes reversed digits	7430	28	0	seg0.9	300
+1.2447	F1 cumulative prime sum + 3*emirps	7315	28	0	seg0.8	300
+1.2447	F1 fibonacci + 1*primes digit sum	13825	1	0	seg0.8	300
+1.2447	F1 primes + 1/2*d(n)	11302	1	0	seg0.7	300
+1.2447	F1 d(n) + 3*composites	2248	28	1	seg0.7	300
+1.2447	F1 triangular + 3*primes^3	6670	28	1	seg0.11	300
+1.2447	F1 phi(n) + 1*cumulative phi(n)	40	28	0	seg0.7	300
+1.2447	F1 sigma(n) + -1*d(n)	17000	1	0	seg0.12	300
+1.2447	F1 phi(n) + 2*primes digit sum	18797	1	1	seg0.12	300
+1.2447	F1 prime gaps + 1/2*sigma(n)	11502	28	1	seg0.11	300
+1.2447	F1 cumulative prime sum + 3*sigma(n)	15219	1	0	seg0.9	300
+1.2447	F1 cumulative prime sum + 2*cumulative phi(n)	17006	1	1	seg0.12	300
+1.2447	F1 primes digit sum + -1*primes reversed digits	5581	28	1	seg0.15	300
+1.2447	F1 n^2 + -1*primes^3	1312	28	1	seg0.7	300
+1.2447	F1 n^3 + 2*composites	13895	28	0	seg0.13	300
+1.2447	F1 n^2 + 3*phi(n)	17934	1	1	seg0.12	300
+1.2447	F1 d(n) + 3*primes digit sum	19165	1	0	seg0.14	300
+1.2447	F1 interleave cumulative prime sum | sigma(n)	12112	28	0	seg0.11	300
+1.2447	F1 fibonacci + 3*sigma(n)	478	28	1	seg0.14	300
+1.2441	F1 cumulative phi(n) + -1*primes digit sum	9034	28	1	seg0.14	300
+1.2441	F1 interleave n^3 | primes reversed digits	16075	1	1	seg0.9	300
+1.2441	F1 lucas + 3*primes^2	5123	28	1	seg0.8	300
+1.2441	F1 sigma(n) + 3*primes^2	10443	1	0	seg0.9	300
+1.2441	F1 pell + 1*primes reversed digits	288	1	0	seg0.14	300
+1.2441	F1 interleave n | emirps	8934	28	1	seg0.15	300
+1.2441	F1 phi(n) + 3*sigma(n)	16093	1	1	seg0.11	300
+1.2441	F1 primes + 1/2*primes digit sum	13934	1	0	seg0.15	300
+1.2441	F1 cumulative phi(n) + 3*primes^2	13272	28	1	seg0.12	300
+1.2441	F1 d(n) + 1*cumulative phi(n)	2325	28	0	seg0.8	300
+1.2441	F1 sigma(n) + 2*primes^2	16992	1	0	seg0.11	300
+1.2441	F1 primes + 1/3*cumulative phi(n)	4365	1	0	seg0.7	300
+1.2441	F1 fibonacci + 1/3*cumulative phi(n)	10615	1	0	seg0.9	300
+1.2441	F1 cumulative phi(n) + -1*primes reversed digits	18034	1	0	seg0.8	300
+1.2441	F1 lucas + 1*cumulative phi(n)	2717	28	1	seg0.11	300
+1.2441	F1 lucas + 1*cumulative phi(n)	2719	28	1	seg0.11	300
+1.2441	F1 n^2 + 1/3*primes reversed digits	7530	1	0	seg0.12	300
+1.2441	F1 cumulative prime sum + 1*phi(n)	18236	28	1	seg0.9	300
+1.2441	F1 triangular + 3*composites	5746	1	0	seg0.7	300
+1.2441	F1 phi(n) + 3*sigma(n)	19238	1	0	seg0.12	300
+1.2441	F1 fibonacci + 1/2*cumulative phi(n)	18913	1	1	seg0.7	300
+1.2441	F1 triangular + 3*primes^2	14163	28	0	seg0.8	300
+1.2441	F1 cumulative phi(n) + 1/2*primes reversed digits	455	28	0	seg0.12	300
+1.2441	F1 fibonacci + 1/2*composites	16610	1	1	seg0.11	300
+1.2441	F1 n^2 + -1*phi(n)	10594	28	1	seg0.12	300
+1.2441	F1 triangular + 1*primes^3	4100	28	1	seg0.7	300
+1.2441	F1 phi(n) + -1*cumulative phi(n)	1767	1	1	seg0.12	300
+1.2441	F1 n^2 + 1/3*composites	16175	28	1	seg0.15	300
+1.2441	F1 prime gaps + 3*triangular	2724	28	1	seg0.14	300
+1.2441	F1 composites + 2*primes^3	6883	28	0	seg0.7	300
+1.2441	F1 cumulative prime sum + 3*n	15653	28	0	seg0.14	300
+1.2441	F1 n^3 + 1/2*primes reversed digits	14902	28	1	seg0.13	300
+1.2441	F1 pell + -1*primes^3	8447	1	1	seg0.11	300
+1.2441	F1 n^3 + 1/2*primes reversed digits	14900	28	1	seg0.13	300
+1.2441	F1 prime gaps + 2*n^2	12081	1	0	seg0.13	300
+1.2441	F1 primes + 3*sigma(n)	16788	1	1	seg0.12	300
+1.2441	F1 n^3 + 1/3*phi(n)	14282	28	1	seg0.13	300
+1.2441	F1 lucas + -1*primes reversed digits	19177	28	1	seg0.15	300
+1.2441	F1 interleave cumulative phi(n) | primes^3	17739	1	1	seg0.14	300
+1.2441	F1 prime gaps + 3*primes reversed digits	6606	28	1	seg0.11	300
+1.2441	F1 n + -1*d(n)	11679	28	0	seg0.9	300
+1.2441	F1 n + 1/3*primes reversed digits	13323	28	0	seg0.9	300
+1.2441	F1 lucas + 1*composites	15528	28	0	seg0.7	300
+1.2441	F1 lucas + 1*primes^2	15118	28	1	seg0.15	300
+1.2441	F1 sigma(n) + 1*primes reversed digits	14846	28	0	seg0.8	300
+1.2441	F1 d(n) + 1*composites	14568	1	0	seg0.7	300
+1.2441	F1 primes + 2*prime gaps	17815	1	1	seg0.13	300
+1.2441	F1 primes + 3*n^3	6741	1	1	seg0.13	300
+1.2441	F1 n^2 + 1*primes^2	19387	28	0	seg0.15	300
+1.2441	F1 n^3 + 1/2*primes digit sum	737	28	0	seg0.14	300
+1.2441	F1 fibonacci + 1*primes^2	10420	28	1	seg0.15	300
+1.2441	F3 phi(p-1)	10807	1	1	seg0.15	300
+1.2441	F1 lucas + 2*primes^3	8451	1	1	seg0.14	300
+1.2441	F1 prime gaps + 2*cumulative phi(n)	7161	28	0	seg0.9	300
+1.2441	F1 sigma(n) + 2*d(n)	14044	1	0	seg0.8	300
+1.2441	F1 sigma(n) + -1*composites	1943	28	0	seg0.8	300
+1.2441	F1 fibonacci + 1*primes^2	10418	28	1	seg0.15	300
+1.2441	F1 cumulative prime sum + 1/2*n^2	18703	28	1	seg0.9	300
+1.2441	F1 n + 1/2*primes^2	1274	28	1	seg0.13	300
+1.2441	F1 interleave primes | primes^3	4106	28	0	seg0.7	300
+1.2441	F1 prime gaps + 2*emirps	1526	1	0	seg0.7	300
+1.2441	F1 d(n) + -1*primes reversed digits	19155	28	1	seg0.11	300
+1.2441	F1 cumulative phi(n) + 1/3*primes digit sum	5928	1	1	seg0.9	300
+1.2441	F1 primes + -1*n^3	4581	1	0	seg0.11	300
+1.2441	F1 primes + 1*fibonacci	16215	1	1	seg0.15	300
+1.2441	F1 cumulative prime sum + 1/3*lucas	8586	1	1	seg0.13	300
+1.2441	F1 cumulative prime sum + 1*primes^2	17393	1	0	seg0.8	300
+1.2441	F1 composites + 1/3*primes^3	19086	28	0	seg0.9	300
+1.2441	F1 cumulative prime sum + 1*primes^2	17394	1	0	seg0.8	300
+1.2441	F1 primes^3 + 1*primes reversed digits	13689	28	1	seg0.9	300
+1.2441	F1 d(n) + 2*primes^2	651	28	1	seg0.9	300
+1.2441	F1 n^3 + 1/3*emirps	4977	1	1	seg0.12	300
+1.2441	F1 lucas + -1*composites	18814	28	0	seg0.14	300
+1.2441	F1 pell + 1/2*cumulative phi(n)	1619	28	0	seg0.13	300
+1.2441	F3 sigma(p+1)	8070	1	0	seg0.12	300
+1.2441	F1 triangular + 3*primes reversed digits	7642	28	0	seg0.15	300
+1.2441	F1 primes + 1/3*fibonacci	9704	1	1	seg0.14	300
+1.2441	F1 primes + -1*cumulative phi(n)	17429	28	1	seg0.15	300
+1.2441	F1 prime gaps + 1*pell	16990	1	0	seg0.12	300
+1.2441	F1 sigma(n) + 1/2*primes reversed digits	6260	28	1	seg0.12	300
+1.2441	F1 cumulative prime sum + -1*emirps	1918	28	0	seg0.15	300
+1.2441	F1 n + 1/3*primes^2	3671	28	0	seg0.15	300
+1.2441	F1 n^2 + 1/2*primes^2	7829	1	0	seg0.8	300
+1.2441	F1 primes digit sum + -1*primes reversed digits	16817	28	1	seg0.9	300
+1.2441	F1 sigma(n) + 1/2*primes digit sum	5956	28	0	seg0.13	300
+1.2441	F1 cumulative prime sum + 2*n^2	8702	28	1	seg0.11	300
+1.2441	F1 triangular + 2*composites	14326	1	1	seg0.12	300
+1.2441	F1 pell + 2*primes^3	583	1	1	seg0.15	300
+1.2441	F1 cumulative prime sum + 2*n^2	17340	1	1	seg0.12	300
+1.2441	F1 n + 1/2*d(n)	2681	1	1	seg0.8	300
+1.2441	F1 fibonacci + 3*primes^2	18851	1	1	seg0.7	300
+1.2441	F1 d(n) + 1/3*cumulative phi(n)	18349	1	1	seg0.12	300
+1.2441	F1 primes + 1*composites	19425	28	0	seg0.8	300
+1.2441	F1 lucas + 1/3*cumulative phi(n)	5359	28	0	seg0.8	300
+1.2441	F1 cumulative prime sum + 1/2*emirps	8329	1	0	seg0.8	300
+1.2441	F1 interleave n^3 | primes reversed digits	7944	28	1	seg0.13	300
+1.2441	F1 interleave n^3 | primes reversed digits	7946	28	1	seg0.13	300
+1.2441	F1 cumulative prime sum + -1*n^2	8227	28	1	seg0.13	300
+1.2434	F1 prime gaps + 1/3*composites	10516	1	1	seg0.9	300
+1.2434	F1 prime gaps + 1*n^3	9912	28	1	seg0.7	300
+1.2434	F1 primes + 1*d(n)	7328	1	1	seg0.12	300
+1.2434	F1 interleave n^3 | primes^3	2173	1	1	seg0.8	300
+1.2434	F1 primes + 1/3*cumulative phi(n)	18083	28	1	seg0.12	300
+1.2434	F1 n + 3*primes^3	17897	28	0	seg0.15	300
+1.2434	F1 prime gaps + 1/2*cumulative prime sum	7548	28	0	seg0.13	300
+1.2434	F1 n^3 + 2*emirps	16643	28	0	seg0.9	300
+1.2434	F1 cumulative prime sum + -1*n^2	13006	28	0	seg0.13	300
+1.2434	F1 n + 2*primes^2	1716	1	0	seg0.9	300
+1.2434	F1 n^3 + -1*d(n)	5867	1	1	seg0.15	300
+1.2434	F1 pell + 2*primes reversed digits	18039	1	1	seg0.15	300
+1.2434	F1 cumulative phi(n) + 1*primes digit sum	19094	1	1	seg0.14	300
+1.2434	F1 sigma(n) + 1*primes^3	10568	1	1	seg0.11	300
+1.2434	F1 cumulative prime sum + 2*n	7064	1	1	seg0.15	300
+1.2434	F1 sigma(n) + 1/2*d(n)	5815	28	0	seg0.14	300
+1.2434	F1 cumulative prime sum + 1/2*n	5576	28	1	seg0.11	300
+1.2434	F1 prime gaps + 1*triangular	4842	28	1	seg0.7	300
+1.2434	F1 prime gaps + 3*n	472	28	1	seg0.15	300
+1.2434	F1 interleave cumulative prime sum | cumulative phi(n)	15991	1	0	seg0.12	300
