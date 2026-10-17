@@ -731,7 +731,7 @@ def campaigns(threads):
             l2_verify("layer2", "verify-words", "bigram_words.tsv"),
             l2_screen("layer2", "periodic", seg, "file:data/core.ksb", "periodic_core.tsv", T,
                       ["mode=periodic", "ms=2:14", "litf=0"], hours=1.5),
-            l2_verify("layer2", "verify-periodic", "periodic_core.tsv", top=20, hours=0.3),
+            l2_verify("layer2", "verify-periodic", "periodic_core.tsv", top=100, hours=0.3),
             # variant A1: the keyword folded into the stream (one pointer); single layer, English-bigram score
             l2_screen("layer2", "combined", seg, "file:data/combined.ksb", "bigram_combined.tsv", T,
                       ["mode=bigram", "kw=data/keyword_none.txt", "litf=0", "isigns=1"], hours=0.6),

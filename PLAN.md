@@ -430,8 +430,9 @@ engine `work/layer2` (output `results/layer2/`).
   excess; kscreen is blind to it (IoC 1.18 at the true offset of a plant). `work/layer2` decodes both layers in one beam and
   scores English bigrams (true key ~ +7 per rune, random ~ -15); periodic mode covers any keyword of period m. Selftest 14/14
   (plants with and without literal F, both alphabets, both models, a keyword outside the list; random streams best -4.77).
-- **First slice negative:** An End's prime streams (p, p-1, p+1) x DIVINITY / FIRFUMFERENFE / CIRCUMFERENCE, every option and
-  offset, 8 sections: 512 M decodes, best -4.53 per rune; 0 of 15 hits survive whole-window verification.
+- **First slices negative:** An End's prime streams (p, p-1, p+1) x DIVINITY / FIRFUMFERENFE / CIRCUMFERENCE, every option and
+  offset, 8 sections: 512 M decodes, best -4.53 per rune; 0 of 15 hits survive whole-window verification. Periodic mode, 20 Cicada
+  streams x any keyword of period 2-14 (no literal F): 111 M decodes, 0 of the 100 best survive keyword estimation + re-decoding.
 - **Queued:** campaign `layer2` for the desktop (115 streams x the solved keys, 20 streams x 30 keywords, periodic mode,
   folded-key variant; about 13 h on 16 threads). Proposed next: time-seeded Java / Python generators (millisecond seeds of
   2012-2014 are outside the 32-bit sweeps), crib-filtered sweeps ("AN INSTRUCTION" fits 0.8's heading under letter spelling),

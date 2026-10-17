@@ -19,7 +19,7 @@ has a positive control (a planted key the method finds) and a null control.
 | H-DRST | the key restarts after each surviving doublet (a doublet as a visible "reset" mark) | coincidences of the runes following each pair of doublets, t = 1..30 | **excluded**: LP2 z -0.32 (random restart points: median +0.28, max +2.48); three plants z +17 .. +25 |
 | H-MISS | any prime-based key at ANY offset (p_n + b, phi(p_n) = p_n - 1): such a key never takes one value, which dents the unigrams in the shape of the English frequencies | matched filter over the 29 rune counts, 29 shifts x {identity, Atbash} | **disfavoured (p ~ 0.05)**: LP2 max z +1.89; 40 planted prime keys (n ~ 10^7): median +3.55, 38 of 40 above +1.89. Extends the prime/totient coverage far beyond the 20,000 values of the kscreen library, for Cicada's two alphabets |
 | - | the within-word lag-5 echo is concentrated in quoted speech (tick-mark spans) | lag-5 coincidences inside the 6 quote spans | no: 2 inside, 1.9 expected |
-| **H-LAYER** | **the solved pages' two methods stacked**: a keyword Vigenere inside (Welcome / Koan 2, optionally their literal-F rule), a number stream with the anti-repeat rule outside | new engine `work/layer2`: beam over the outer stream's re-draws, inner keyword decoded per state, English-bigram score | engine validated (selftest 14/14); **first slice negative**: An End's prime streams x the three solved keys, 512 M decodes, best -4.53 per rune against about +7 for a true key; 0 of 15 hits survive whole-window verification. Full campaign queued for the desktop |
+| **H-LAYER** | **the solved pages' two methods stacked**: a keyword Vigenere inside (Welcome / Koan 2, optionally their literal-F rule), a number stream with the anti-repeat rule outside | new engine `work/layer2`: beam over the outer stream's re-draws, inner keyword decoded per state, English-bigram score | engine validated (selftest 14/14); **two slices negative**: An End's prime streams x the three solved keys (512 M decodes, best -4.53 per rune against about +7 for a true key, 0 of 15 hits survive verification); 20 Cicada streams x any keyword of period 2-14 (111 M decodes, 0 of 100 survive). Full campaign queued for the desktop |
 
 **Relation to the desktop's family simulations of the same day** (`work/log/phase9_families.md`, written in parallel):
 that study shows that every structureless additive key looks like "random + 81% avoid-repeat" to any statistic, so only
@@ -124,6 +124,14 @@ outer signs, literal F on/off, identity and Atbash, skip and coin, every offset 
 sections as its own window (a fresh start per section or one pad through LP2): 512 M decodes in 14 min (6 threads).
 Best -4.53 per rune (all sections -5.10 .. -4.53, the null's range); the 15 best re-decoded over their whole windows give
 -6.7 .. -7.9 per rune (IoC 1.05-1.10), level with their matched nulls; **0 of 15 pass. Negative.**
+
+**Second slice, any keyword** (`results/layer2/periodic_core20.tsv`, `_verify.txt`): periodic mode, the 20 Cicada streams of
+`CORE20` (primes, phi, sigma, n, n^2, triangular, Fibonacci, Lucas, pi / e / phi / sqrt2 digits, 3301*n, ...), every keyword
+of period 2-14 without literal F, both outer signs, skip and coin, every offset, 8 sections: 111 M decodes, best column z
+9.97. Caveat: chance z here (about 10) overlaps the weaker periodic plants (10.4-17.7), so the screen alone cannot rank a
+true key first; the verification therefore took the top 100. Each was turned into a keyword (best English shift per
+column) and re-decoded in bigram mode over its whole window: best -7.80 per rune, **0 of 100 pass. Negative** (a true
+key gives +6.8 .. +8.1).
 
 **Queued for the desktop** (`python jobs/overnight.py run layer2`, about 13 h on 16 CPU threads; no GPU port):
 the 115 core number streams x the three solved keys; 20 Cicada streams x 30 Cicada keywords; any keyword of period
