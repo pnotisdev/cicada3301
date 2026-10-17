@@ -64,6 +64,6 @@ float = res53), unconfirmed against a Ruby. Seeds from a float (`random.seed(tim
 
 Each generator swept 13.22 billion millisecond timestamps (2013-09-01 to 2014-02-01 UTC); 59 minutes of GPU time in all (py3 2,195 s, java 1,332 s). No sweep recorded a score at or above the +300 floor, so
 there was nothing to verify (`results/prng/time_gpu/<gen>_<month>_verify.txt`). Speeds were 5.8-6.2 M seeds/s for py3 and 9.4-10.6 M seeds/s for java. Java's second map `abs(nextInt()) % 29` (java-abs) and ruby were
-not swept beyond the 2014-01-04/06 demo; 20 months (2012-01 .. 2013-08) are left: about 2.4 hours for py3 and java together at these speeds (`python work/phpmt/time_gpu.py run <gen> --hours H` resumes, skipping finished months).
+not swept beyond the 2014-01-04/06 demo; 20 months (2012-01 .. 2013-08) are left: about 3.9 hours for py3 and java together at these speeds (py3 2.4 h, java 1.5 h; an earlier version of this note said 2.4 h for both) (`python work/phpmt/time_gpu.py run <gen> --hours H` resumes, skipping finished months).
 This rules out these months for these two generators on section 0.7 only.
 
