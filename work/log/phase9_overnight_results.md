@@ -58,8 +58,8 @@ replicates of the two short windows alone (random keystreams, seeds 100-123):
 
 ## GPU lane results (2026-10-17, 00:36-04:35, all negative)
 
-- **kscreen-restarts, kscreen-recurrences, kscreen-multipliers:** best IoC 1.40 or below in every screen except none above the 1.40 rule that survived
-  its whole-window verification (0 of 8 / 8 / 10 / 15 re-decoded hits keep IoC >= 1.4 or beat their own random offsets). Order-3 recurrences
+- **kscreen-restarts, kscreen-recurrences, kscreen-multipliers:** no screen reached the 1.40 threshold (best 1.37-1.38), and no hit survived the whole-window
+  verification (0 of 8 / 8 / 10 / 15 re-decoded hits keep IoC >= 1.4 and beat their own random offsets). Order-3 recurrences
   (9.2e9 decodes) peaked at 1.368 and the library x 28 multipliers (5.7e9 decodes) at 1.381; with this many decodes the chance maximum
   is higher than the single "matched null" of the report (1.318, far fewer decodes), which is why the verification step decides.
 - **prng-all** (a fresh seed per section, all 8 sections, all 2^32 seeds of PHP < 7.1 mt_rand, glibc random() and 2^31 of .NET Random):
