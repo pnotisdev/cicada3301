@@ -144,10 +144,9 @@ A new Claude session on the desktop (runner alias `desktop`, RTX 2080 Ti, 32 GB)
 | 62 | "Build the coverage-and-power ledger first, then decide what goes to the GPU." | `docs/NEGATIVE_SPACE.md`: for every family tried, what was excluded and how well. |
 | 63 | "Not now. Keep the GPU free." | No GPU job was started after the ledger. |
 | 64 | (the laptop's `kscreen-typo` pushes, `f7b8998` .. `f096a8c`) | Final results read as data: negative; the summary's 'CANDIDATE' line is a verify-rule artefact (log 1b). |
-| 65 | "Yes: run the CPU tests properly (GPU tests skip), privacy-scan, commit the other session's work, then merge research/new-hypotheses." | Second session committed (9faf953) after a clean scan and a CPU test run; the branch merged (conflicts: the crib files, PLAN.md, the PR docs); engines rebuilt; gates and the layer2 selftest passed. GPU tests not run. |
+| 65 | "Yes: run the CPU tests properly (GPU tests skip), privacy-scan, commit the other session's work, then merge research/new-hypotheses." | Second session committed (9faf953) after a clean scan and a CPU test run; the branch merged (conflicts: the crib files, PLAN.md, the PR docs); engines rebuilt; gates and the layer2 selftest passed. Then, on the user's go ("Yes, run the GPU unit tests of the merged tree now ... nothing else on the GPU"): the six GPU test modules passed, 30 tests, 0 skipped. |
 
-- **Open after this session:** the GPU candidates in `docs/NEGATIVE_SPACE.md` section 6 (remaining millisecond months, per-page seeds, full-seed boundary-free sweeps) wait for a GPU grant; the GPU tests of the merged
-  tree (bgmt, bgmt64, stepmt, step28) should be run once when the GPU is free.
+- **Open after this session:** the GPU candidates in `docs/NEGATIVE_SPACE.md` section 6 (remaining millisecond months, per-page seeds, full-seed boundary-free sweeps) wait for a GPU grant.
 
 ## Decisions that stand
 
