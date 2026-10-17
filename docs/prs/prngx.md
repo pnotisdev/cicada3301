@@ -44,6 +44,18 @@ offset) pairs x 28 x 8 x 8 windows = 4.6 x 10^10 decodes, 29 min on 12 threads):
 matched null of random sequences with the same lengths, and 28 for a planted primes key (which is also found in the
 equivalent sequences 2p, 3p, ...). **Negative**: no OEIS sequence is the key's first ~36 terms at any offset.
 
+**KDF / stream-cipher lane** (`kdf_streams.py`, `results/prngx/kdf/`): for each of the 23,976 Cicada-lore strings (the
+`hashscan` lore list: Cicada phrases and numbers, every word and 2-4-word phrase of the solved pages, the keyword list,
+case/space variants) the keystreams of RC4 and RC4-drop768 (the passphrase as key), AES-128-CTR (key MD5) and AES-256-CTR
+(key SHA-256) with a zero nonce, ChaCha20 (key SHA-256), PBKDF2-HMAC-{SHA-1, SHA-256, SHA-512} with an empty salt and
+1, 1000 and 4096 iterations, and scrypt (N = 1024, r = 8, p = 1), each turned into key values by two maps (b % 29, and
+reject b >= 232 then % 29): 719,280 keystreams through the `seq` lane (start offset 0, 28 multipliers, both signs, Atbash,
+both anti-repeat models) on LP2 page 0. The stream generators match test vectors (RC4 "Key"/"Plaintext", the RFC 6070
+PBKDF2 vector, AES-CTR first block = AES-ECB of zero) and a planted RC4 passphrase is recovered at rank 1 through the
+whole pipeline (`tests/test_kdf_streams.py`). Best screen score 20 (noise ceiling ~20); the whole-section re-decode of
+the best 20 (with long streams and random-string controls) gives 0.075-0.089 against 0.078 for random strings.
+**Negative.**
+
 **Stage B** (the other 92% of the 32-bit seeds) is queued in `campaign.py` in chunks of 2^28 seeds for `rand48`, `msvc`
 and `java` (about 1.7, 2.3 and 3.4 hours on a 16-thread CPU; java also covers the negative ints). Results of the chunks that finished on the laptop are in
 `results/prngx/*_b_*.tsv`; the rest is for the desktop (see below). `mt` and `pymt` full sweeps cost ~6 h each on CPU.

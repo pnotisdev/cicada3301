@@ -171,6 +171,11 @@ fn raw_n(g: Gen, seed: i64, count: usize) -> Vec<u32> {
         }
         Gen::Seq => {
             let (idx, off) = ((seed / 128) as usize, (seed % 128) as usize);
+            // PRNGX_SEQ_OFFMAX limits the start offsets that are tried (default: all 128)
+            let offmax: usize = env::var("PRNGX_SEQ_OFFMAX").ok().and_then(|v| v.parse().ok()).unwrap_or(128);
+            if off >= offmax {
+                return v;
+            }
             if let Some(s) = seqs().get(idx) {
                 for i in 0..count {
                     match s.get(off + i) {
