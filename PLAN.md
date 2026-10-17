@@ -422,6 +422,8 @@ Details: `work/log/phase9_overnight_results.md`, `phase9_art.md`, `phase9_chain.
 
 - **KDF lane and the laptop's new branch (14:30):** the 719,280 passphrase key streams (RC4 / AES-CTR / ChaCha20 / PBKDF2 / scrypt) are negative on the boundary-free score (best 58, whole-section -8.9 to -10.2 per rune). `research/new-hypotheses` (keyless exclusions, the two-layer screen `layer2`, millisecond-timestamp seeds) was reviewed, not merged (`docs/prs/new-hypotheses.md`): its generator vectors re-check independently (86 of 86); accept after two changes.
 
+- **64-bit CUDA port for `prng-time` (14:20; `work/log/phase10_prng_time_gpu.md`, `docs/GPU_PORT.md`):** `bgmt64.cu` / `bg64.py` sweep py3, ruby and java with 64-bit (millisecond-timestamp) seeds; gate `test_bgmt64` 8/8 against independent CPython / java.util.Random references; 6.4 M (py3, ruby) and 10.8 M (java) seeds/s, so the full 2012-2014 window is about 2.9 h / 1.7 h per generator (`time_gpu.py`, not started). Demo, 2014-01-04/06 UTC, 172.8 M timestamps per generator: 0 candidates (agrees with the laptop's CPU sweep).
+
 ### Phase 5 – Validation and reporting
 - A plaintext counts as solved only if it scores well across a whole segment (word hits and IoC about 1.8)
   and the same rule works on the next page.

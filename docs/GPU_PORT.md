@@ -8,6 +8,7 @@ before it uses the GPU.
 |---|---|---|---|
 | keystream screen | `work/kscreen/src/main.rs` | `work/kscreen/gpu.py`, `kscreen.cu` | one (keystream, start offset, multiplier) task: every model and window |
 | seed sweeps (PHP / glibc / .NET, and py3 / mt32 / mt31 / java / msvc / drand48 / ruby) | `work/phpmt/src/main.rs`, `gens.rs` | `work/phpmt/gpu.py`, `phpmt.cu` | one seed: both key maps (160 values each), 8 windows x 16 variants |
+| seed sweeps with 64-bit seeds (py3 / ruby / java: millisecond timestamps), boundary-free score | independent Python references (CPython `random`, `java.util.Random` from its specification: `work/phpmt/ref_keys64.py`) and the 32-bit kernel `bgmt.cu` below 2^32 | `work/phpmt/bg64.py`, `bgmt64.cu` (built by `make_bgmt64.py`) | one seed: both key maps, the windows x 16 variants |
 
 Not ported: the annealing key-free alphabet search (`work/walk`, already scales with threads and has no large
 independent batch), and the numpy dictionary screens (`work/attack.py`, small).
@@ -55,6 +56,18 @@ Measured when the ports were written (2026-10-17):
 | seed sweep, php, seeds 0..8 M, 8 windows | score histogram identical over 1.02 G decodes; every hit with score >= 12 identical (1,811) |
 | speed, keystream screen | 2.3-4x the full 16-thread CPU on the 8 section windows, 1.8x on the 46 page windows |
 | speed, seed sweep | 1.6 M seeds/s against 0.23 M/s: 6.8x. A full 2^32 sweep of all 8 windows is about 45 min instead of 5.4 h |
+
+## 64-bit seeds (`prng-time`, 2026-10-17)
+
+A program run in 2012-2014 that seeded from a MILLISECOND clock is not covered by the 32-bit sweeps: Java's `Random` keeps 48 seed bits and CPython / Ruby seed MT19937 with the two 32-bit words of an integer above 2^32.
+`bgmt64.cu` is `bgmt.cu` changed by exact-snippet substitution (`make_bgmt64.py`; the build fails if `bgmt.cu` changes) for the generators py3, ruby and java (and `java-abs`, the second Java map `abs(nextInt()) % 29`):
+`mt_state` takes the two-word `init_by_array`, Java takes the whole seed (a seed below 2^32 stays a sign-extended int, so every earlier result is unchanged). The candidate record keeps the low 32 bits of the seed and
+`bg64.sweep` restores the rest from the chunk base. Gates (`work/tests/test_bgmt64.py`, `python work/tests/run_gate.py work.tests.test_bgmt64`, 8 tests, none may skip): the kernel text equals the build; keys equal INDEPENDENT
+references at 2^31, 2^32 - 1, 2^32, 2^33, 2^40 + 12345, 2^48 - 1 and 25 random 2012-2014 timestamps for all four generators; below 2^32 keys and every decode score equal the 32-bit kernel; above 2^32 every score of
+every variant equals the Python reference decoder on the independent keys; seven planted timestamp seeds (one in a chunk straddling 2^32) are recovered at rank 1 with the right map, sign and alphabet; random ciphertext gives
+no candidate; the whole-section check (`bg64.py verify`, keys from `ref_keys64.py`) confirms a plant and rejects a wrong seed. Speed on the RTX 2080 Ti, one window: py3 / ruby 6.4 M seeds/s, java 10.8 M seeds/s, so the full
+2012-01 .. 2014-02 window (6.58e10 ms timestamps) is about 2.9 h per py3 / ruby and 1.7 h per java map set (`work/phpmt/time_gpu.py`, month by month, resumable). Limits: no Ruby is available, so the ruby keys are checked
+against the documented rule on top of CPython's MT19937 only.
 
 ## What the kernels do
 
