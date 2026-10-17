@@ -273,7 +273,7 @@ def step28_summary():
              if (RES / "kscreen" / f"step28_null{r}.tsv").exists()]
     out = [f"- controls: {last_line(STEP28_SELFTEST) or 'not run'}"]
     top = max(lb.items(), key=lambda kv: kv[1])
-    out.append(f"- {len(lb)} windows of 300 steps, 1,447 library streams x every offset x variants A/B x modes drop/keep x 12 multipliers: "
+    out.append(f"- {len(lb)} windows of 300 steps, 1,447 library streams x every offset x variants A/B/C x modes drop/keep x 12 multipliers: "
                f"best IoC {top[1]:.3f} ({top[0]})")
     if nulls:
         nmax = {w: max(n.get(w, 0) for n in nulls) for w in lb}
@@ -306,7 +306,7 @@ def prng_step_steps():
         ver = RES / "prng" / f"step_{gen}_07_verify.txt"
         done = lambda log=log: "swept" in log.read_text(encoding="utf-8", errors="replace") if log.exists() else False
         steps.append(Step(f"prng-step/{gen}", [PY, str(WORK / "phpmt" / "step.py"), "sweep", gen, "07", "0", str(2 ** 32), str(tsv)],
-                          hours=1.0, outputs=[tsv], stderr_to=log, done_check=done, device="cuda"))
+                          hours=1.4, outputs=[tsv], stderr_to=log, done_check=done, device="cuda"))
         steps.append(Step(f"prng-step/{gen}-verify", [PY, str(WORK / "phpmt" / "step_verify.py"), str(tsv), "--gen", gen],
                           hours=0.05, outputs=[ver], stdout_to=ver))
     return steps
@@ -554,19 +554,19 @@ def campaigns(threads):
     C.append(Campaign(
         "kscreen-step28", "Relative-rank chain cipher: the plaintext enters the STEP c_i - c_{i-1}, keyed mod 28",
         "The doublet fingerprint is also what a cipher gives whose ciphertext step is never zero (research note C1, "
-        "work/log/research_2026-10-17.md): D_i = 1 + (q_i + m*K_j) mod 28 (variant A) or 2^(q_i + m*log K_j) (variant B), with "
-        "the rare zero step as a 'ditto' that consumes a key value or not. In the c domain the plaintext is a random walk and "
+        "work/log/research_2026-10-17.md): D_i = 1 + (q_i + m*K_j) mod 28 (variant A), 2^(q_i + m*log K_j) (variant B) or the (q_i + m*K_j) mod 28-th of the "
+        "28 runes other than c_{i-1} (variant C, rank), with the rare zero step as a 'ditto' that consumes a key value or not. In the c domain the plaintext is a random walk and "
         "every earlier screen was blind to it; in the step domain the decoder is a plain subtraction with no beam. "
         "work/kscreen/step28.py counts the class histogram at every (stream, offset) for the 1,447-stream library and every "
-        "unit multiplier of Z28, with planted-key recovery (both variants and modes), CPU/CUDA agreement and matched nulls; "
+        "unit multiplier of Z28, with planted-key recovery (variants A, B, C and both modes), CPU/CUDA agreement and matched nulls; "
         "work/step_periodicity.py scans periodic keys (lags to 3,000).",
         step28_steps(), step28_summary))
 
     C.append(Campaign(
         "prng-step", "Seeded-PRNG pads for the step-domain cipher, window 0.7: all ten generators",
         "Research note C2: the seed sweeps of the ordinary cipher (c = p + k) cannot see a key that enters the STEP "
-        "c_i - c_{i-1}. work/phpmt/step.py runs the ten generators of phpmt.cu over all 2^32 seeds and scores, per seed, 96 "
-        "settings on the first 240 steps of section 0.7 (variant A with keys mod 28 / variant B with log2 of the non-zero "
+        "c_i - c_{i-1}. work/phpmt/step.py runs the ten generators of phpmt.cu over all 2^32 seeds and scores, per seed, 144 "
+        "settings on the first 240 steps of section 0.7 (variants A and C with keys mod 28 / variant B with log2 of the non-zero "
         "keys of Z29, both key maps, zero steps spending a key value or not, the 12 unit multipliers of Z28) by the index "
         "of coincidence of the decoded classes. Gates: keys equal the Rust engine for both alphabets, scores equal the numpy "
         "reference, planted seeds recovered for every generator, random ciphertext gives no candidate (work/tests/test_stepmt.py).",

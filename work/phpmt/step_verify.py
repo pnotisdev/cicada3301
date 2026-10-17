@@ -50,7 +50,7 @@ def verify(gen, seed, window, variant, mp, mode, m):
     prev = int(c[start - 1]) if start else (int(lp.runes_of(stats.SEGS[sec - 1])[-1]) if sec > 7 else -1)
     J = step28.step_classes(c[start:], prev, variant)
     count = len(J) + 50
-    if variant == "A":
+    if variant != "B":
         key = rust_keys(gen, seed, 28, count)[mp]
     else:
         k = rust_keys(gen, seed, 29, count)[mp]

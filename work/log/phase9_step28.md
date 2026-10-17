@@ -54,3 +54,12 @@ index of coincidence of the decoded classes. 2^32 seeds take about an hour per g
   seed at IoC 1.8 beyond the window while a neighbouring seed falls to 1.0.
 - **A mistake worth recording:** a multiplier that is not a unit of Z28 (7, for instance) leaves only four key values and inflates every IoC to
   about 1.26; the sweeps use the 12 units only (the debugging test used 7 by mistake and looked like a leak).
+
+**Variant C (rank), added later the same morning.** The cipher "never repeat the previous rune" can also be built as a rank: c_i is the
+r_i-th of the 28 runes other than c_{i-1}, in alphabet order, r_i = (q_i + m K_j) mod 28. This is not a translation-equivariant function of the
+step, so it is a different decoder from variant A: J_i = c_i - [c_i > c_{i-1}]. It is in `step28.py` (planted keys recovered in both modes, the
+other variants blind), in the periodicity scan and in the seed sweeps (144 settings per seed and window). Periodicity result with a
+structured null (random sections of LP2's lengths with the anti-repeat rule, 40 replicates, the same 6 settings x per-section and concatenated
+scans): LP2's largest z is 4.97 (variant C, concatenated sections, lag 781 in non-zero steps), 5 of 40 random replicates reach it: nothing.
+A planted-seed gate note: a multiplier m and m + 14 differ only where the key is odd, and English keeps about 77% of its coincidences under a
+shift of 14 classes, so on 240 steps the two can swap places (once in 30 plants); the long verification separates them.

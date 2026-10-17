@@ -7,7 +7,7 @@ reference `ref_scores` (built on step28.py and the Rust `keys` mode) is the chec
 
 gen: php glibc net py3 mt32 mt31 java msvc drand48 ruby (the generators of phpmt.cu / src/gens.rs). Windows: `07` = the first
 NS steps of section 0.7 (one pad from the start of LP2); `all` = every section at both pad starts (a fresh seed per section).
-Per seed and window (240 steps) the kernel scores 96 settings: variant A (keys mod 28) / B (log2 of the non-zero keys of Z29) x key map 0/1 x
+Per seed and window (240 steps) the kernel scores 144 settings: variant A (keys mod 28) / B (log2 of the non-zero keys of Z29) / C (rank) x key map 0/1 x
 zero steps spending a key value or not x the 12 unit multipliers of Z28. Score = index of coincidence of the decoded classes.
 """
 import os
@@ -28,6 +28,7 @@ from gpu_common import NVRTC_OPTIONS  # noqa: E402
 
 NS = 240                         # steps per window (key values per seed: K = 256 in stepmt.cu)
 NC, NM = 28, 12
+NCOMBO = 144                     # 3 variants x 2 key maps x 2 modes x 12 multipliers
 HB = 64
 BLOCK = 128
 CCAP = 1 << 20
@@ -55,11 +56,11 @@ def make_windows(spec):
 
 
 def window_arrays(wins):
-    """J[nw][2 variants][NS] (255 = zero step) and key indices [nw][2 modes (drop, keep)][NS]"""
-    J = np.zeros((len(wins), 2, NS), np.uint8)
+    """J[nw][3 variants A, B, C][NS] (255 = zero step) and key indices [nw][2 modes (drop, keep)][NS]"""
+    J = np.zeros((len(wins), 3, NS), np.uint8)
     ix = np.zeros((len(wins), 2, NS), np.uint8)
     for w, (_, prev, runes) in enumerate(wins):
-        for v, variant in enumerate("AB"):
+        for v, variant in enumerate("ABC"):
             J[w, v] = step28.step_classes(runes, prev, variant)
         for m, mode in enumerate(("drop", "keep")):
             ix[w, m] = step28.key_index(step28.step_classes(runes, prev, "A"), mode)
@@ -71,7 +72,7 @@ def combo_parts(c):
     mi, c = c % NM, c // NM
     mode, c = c % 2, c // 2
     mp, var = c % 2, c // 2
-    return "AB"[var], mp, ("drop", "keep")[mode], step28.UNITS[mi]
+    return "ABC"[var], mp, ("drop", "keep")[mode], step28.UNITS[mi]
 
 
 def ref_scores(k28, k29, wins):
@@ -80,14 +81,14 @@ def ref_scores(k28, k29, wins):
     J, ix = window_arrays(wins)
     out = {}
     for w in range(len(wins)):
-        for combo in range(96):
+        for combo in range(NCOMBO):
             variant, mp, mode, m = combo_parts(combo)
-            if variant == "A":
+            if variant != "B":
                 key = np.asarray(k28[mp], np.int64)
             else:
                 v = np.asarray(k29[mp], np.int64)
                 key = step28.LOG2[v[v != 0]]
-            Jw = J[w, 0 if variant == "A" else 1].astype(np.int64)
+            Jw = J[w, "ABC".index(variant)].astype(np.int64)
             idx = ix[w, 0 if mode == "drop" else 1].astype(np.int64)
             ok = (Jw != 255) & (idx < len(key))
             d = (Jw[ok] - (m * key[idx[ok]]) % NC) % NC
@@ -119,11 +120,11 @@ class Step:
 
     def scores(self, lo, n):
         """GPU scores {(seed, window, combo): (ss, n)} of the seeds lo..lo+n (DUMP=1 build)"""
-        d = self.cp.zeros(n * len(self.wins) * 96, self.cp.uint32)
+        d = self.cp.zeros(n * len(self.wins) * NCOMBO, self.cp.uint32)
         self.launch(lo, n, 1e9, d)
-        d = d.get().reshape(n, len(self.wins), 96)
+        d = d.get().reshape(n, len(self.wins), NCOMBO)
         return {(lo + g, w, c): (int(d[g, w, c] & 0xFFFF), int(d[g, w, c] >> 16))
-                for g in range(n) for w in range(len(self.wins)) for c in range(96)}
+                for g in range(n) for w in range(len(self.wins)) for c in range(NCOMBO)}
 
     def keys(self, lo, n):
         """GPU key sets (DUMP=2 build): {seed: (k28 [2][K], k29 [2][K])}"""
@@ -139,7 +140,7 @@ def mode_sweep(a):
     wins = make_windows(spec)
     S = Step(gen, wins)
     info = gpu_common.device_info()
-    print(f"step: {gen} sweep of {hi - lo} seeds, {len(wins)} windows x 96 settings on CUDA {info['name']}", file=sys.stderr, flush=True)
+    print(f"step: {gen} sweep of {hi - lo} seeds, {len(wins)} windows x 144 settings on CUDA {info['name']}", file=sys.stderr, flush=True)
     cand = np.zeros((0, 2), np.uint32)
     hist = np.zeros(HB, np.uint64)
     t_start = last = time.time()

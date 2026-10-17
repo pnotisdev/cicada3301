@@ -7,6 +7,8 @@ and the plaintext enters the STEP, keyed mod 28:
     variant A (additive):        D_i = 1 + ((q_i + m*K_j) mod 28)           q_i = plaintext class 0..27
     variant B (multiplicative):  D_i = 2^((q_i + m*L_j) mod 28) mod 29      L_j = log2(K_j), key values 0 have no log
                                  and are dropped from the stream (2 is a primitive root mod 29)
+    variant C (rank):            c_i is the r_i-th of the 28 runes other than c_{i-1}, in alphabet order,
+                                 r_i = (q_i + m*K_j) mod 28 (the cipher "never repeat the previous rune" built as a rank)
 m runs over the units of Z28. A zero step (the 0.66% doublets) is the "ditto": it consumes no key value (mode `drop`) or
 one key value (mode `keep`). The decoder is therefore a plain subtraction, no beam: for a window of steps the
 class histogram of (J_t - m*K[o + idx_t]) mod 28 is counted at every (stream, offset), and a true key makes it
@@ -93,7 +95,10 @@ def step_classes(c, prev, variant):
     D = (c - before) % Q
     J = np.full(len(c), 255, np.int64)
     nz = D != 0
-    J[nz] = (D[nz] - 1) if variant == "A" else LOG2[D[nz]]
+    if variant == "C":
+        J[nz] = c[nz] - (c[nz] > before[nz])                         # rank among the runes other than the previous one
+    else:
+        J[nz] = (D[nz] - 1) if variant == "A" else LOG2[D[nz]]
     if prev < 0:
         J[0] = 255
     return J
@@ -110,7 +115,7 @@ def key_arrays(streams, variant):
     out = []
     for name, v in streams:
         v = np.asarray(v, np.int64)
-        out.append((name, (v % NC) if variant == "A" else LOG2[v[v != 0]]))
+        out.append((name, LOG2[v[v != 0]] if variant == "B" else v % NC))
     return out
 
 
@@ -124,8 +129,12 @@ def encrypt(q, key, variant, mode, m, o0, ditto, prev=3):
                 j += 1
         else:
             s = (int(qi) + m * int(key[j])) % NC
-            D = 1 + s if variant == "A" else int(POW2[s])
             j += 1
+            if variant == "C":
+                cur = s if s < cur else s + 1                           # the s-th rune other than the previous one
+                c.append(cur)
+                continue
+            D = 1 + s if variant == "A" else int(POW2[s])
         cur = (cur + D) % Q
         c.append(cur)
     return np.array(c), prev
@@ -212,7 +221,7 @@ def windows_of(n):
     return out
 
 
-def screen(lib_raw, wins, engine="cuda", variants=("A", "B"), modes=("drop", "keep"), log=None, thr_ioc=None):
+def screen(lib_raw, wins, engine="cuda", variants=("A", "B", "C"), modes=("drop", "keep"), log=None, thr_ioc=None):
     """returns rows (window, variant, mode, m, ioc, stream name, offset) of the best (stream, offset) per setting"""
     gpu = Gpu() if engine == "cuda" else None
     rows = []
@@ -265,7 +274,7 @@ def cmd_screen(a):
     best = summarize(rows, wins)
     lib_label = os.path.relpath(a.library, ROOT).replace(os.sep, "/") if os.path.exists(a.library) else a.library
     lines = [f"# step28 library={lib_label} streams={len(lib)} pairs~{pairs} n={a.n} windows={len(wins)} engine={a.engine} "
-             f"variants=A,B modes=drop,keep multipliers={len(UNITS)}",
+             f"variants=A,B,C modes=drop,keep multipliers={len(UNITS)}",
              "# window\tvariant\tmode\tm\tioc\tstream\toffset\tstream_index"]
     for r in rows:
         lines.append(f"{r[0]}\t{r[1]}\t{r[2]}\t{r[3]}\t{r[4]:.4f}\t{r[5]}\t{r[6]}\t{r[8]}")
@@ -360,7 +369,7 @@ def cmd_selftest(a):
     print(f"null: best IoC of 6 random streams x 12 multipliers x 2 real windows = {cpu_null:.3f} (expect < 1.20)")
     ok &= cpu_null < 1.20
     # control 3 (positive): every variant/mode recovered at the exact stream and offset, for two multipliers
-    for variant, mode in itertools.product(("A", "B"), ("drop", "keep")):
+    for variant, mode in itertools.product(("A", "B", "C"), ("drop", "keep")):
         for m in (1, 5):
             streams, w, (sname, o0) = plant_case(rng, variant, mode, m)
             rows = screen(streams, [("plant", w[1], w[2])], a.engine, variants=(variant,), modes=(mode,))

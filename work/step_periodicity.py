@@ -16,6 +16,9 @@ import numpy as np
 import lp
 import stats
 
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "kscreen"))
+import step28  # noqa: E402
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 Q = 29
 NC = 28
@@ -25,18 +28,10 @@ for _e in range(NC):
 MAXLAG = 3000
 
 
-def steps(c, prev):
-    c = np.asarray(c, np.int64)
-    before = np.concatenate([[prev], c[:-1]])
-    D = (c - before) % Q
-    if prev < 0:
-        D[0] = 0
-    return D
-
-
-def classes(D, variant, mode):
-    """J with -1 for an unusable step; mode drop removes the zero steps"""
-    J = np.where(D == 0, -1, (D - 1) if variant == "A" else LOG2[D])
+def classes(c, prev, variant, mode):
+    """step classes of the ciphertext c (previous rune `prev`), -1 for a zero step; mode drop removes the zero steps"""
+    J = step28.step_classes(c, prev, variant).astype(np.int64)
+    J[J == 255] = -1
     return J[J >= 0] if mode == "drop" else J
 
 
@@ -82,20 +77,9 @@ def planted(rng, variant, mode, period, n=3000):
     p = np.array(lp.runes_of(toks))[:n]
     p = np.where(p == 14, 6, p)
     q = np.where(p > 14, p - 1, p)
-    key = rng.integers(0, NC, period)
+    key = np.resize(rng.integers(0, NC, period), len(q) + 10)           # the periodic key, in the class domain
     ditto = rng.random(len(q)) < 0.0066
-    c, cur, j = [], 3, 0
-    for qi, dit in zip(q, ditto):
-        if dit:
-            D = 0
-            j += mode == "keep"
-        else:
-            s = (int(qi) + int(key[j % period])) % NC
-            D = 1 + s if variant == "A" else pow(2, s, Q)
-            j += 1
-        cur = (cur + D) % Q
-        c.append(cur)
-    return np.array(c), 3
+    return step28.encrypt(q, key, variant, mode, 1, 0, ditto, prev=3)
 
 
 def main():
@@ -106,11 +90,11 @@ def main():
     P("")
     P("Controls (English classes, key of the given period, one 3000-step section; the scan must put the planted lag first):")
     ctl_ok = True
-    for variant in ("A", "B"):
+    for variant in ("A", "B", "C"):
         for mode in ("drop", "keep"):
             for period in (97, 400, 1200):
                 c, prev = planted(rng, variant, mode, period)
-                lags, z = scan(classes(steps(c, prev), variant, mode))
+                lags, z = scan(classes(c, prev, variant, mode))
                 k = int(np.argmax(z))
                 hit = int(lags[k]) % period == 0
                 found = hit and z[k] > 5.5
@@ -120,21 +104,21 @@ def main():
     nulls = []
     for _ in range(20):
         c = rng.integers(0, Q, 3000)
-        nulls.append(max(scan(classes(steps(c, 3), v, m))[1].max() for v in ("A", "B") for m in ("drop", "keep")))
+        nulls.append(max(scan(classes(c, 3, v, m))[1].max() for v in ("A", "B", "C") for m in ("drop", "keep")))
     P(f"  null (20 random sections, max over the 4 settings): max z {max(nulls):.2f}, median {np.median(nulls):.2f}")
     P("")
     P("LP2 (max z over lags; the largest of ~3,000 lags x settings is about 4 by chance):")
     secs = sections()
-    allD = []
-    for variant in ("A", "B"):
+    allz = []
+    for variant in ("A", "B", "C"):
         for mode in ("drop", "keep"):
             rows = []
             for i, c, prev in secs:
-                lags, z = scan(classes(steps(c, prev), variant, mode))
+                lags, z = scan(classes(c, prev, variant, mode))
                 if len(z):
                     k = int(np.argmax(z))
                     rows.append((z[k], int(lags[k]), f"0.{i}"))
-            Jcat = np.concatenate([classes(steps(c, prev), variant, "keep") for _, c, prev in secs])
+            Jcat = np.concatenate([classes(c, prev, variant, "keep") for _, c, prev in secs])
             if mode == "drop":
                 Jcat = Jcat[Jcat >= 0]
             lags, z = scan(Jcat, max_lag=MAXLAG)
@@ -142,6 +126,33 @@ def main():
             rows.sort(reverse=True)
             top = ", ".join(f"{s} z={zz:+.2f}@{l}" for zz, l, s in rows[:3])
             P(f"  {variant}/{mode:4s}: concatenated sections: max z {z[k]:+.2f} at lag {int(lags[k])}; per section, top 3: {top}")
+            allz += [rows[0][0], z[k]]
+    obs = max(allz)
+    reps = 40
+    nullmax = []
+    for _ in range(reps):                      # the same statistic on random sections of LP2's lengths (anti-repeat rule included)
+        fake = []
+        for i, c, prev in secs:
+            r, last = [], 3
+            for _ in range(len(c)):
+                x = int(rng.integers(0, Q))
+                while x == last and rng.random() < 0.82:
+                    x = int(rng.integers(0, Q))
+                r.append(x)
+                last = x
+            fake.append((i, np.array(r), prev))
+        m = 0.0
+        for variant in ("A", "B", "C"):
+            for mode in ("drop", "keep"):
+                for i, c, prev in fake:
+                    z = scan(classes(c, prev, variant, mode))[1]
+                    m = max(m, z.max() if len(z) else 0)
+                Jcat = np.concatenate([classes(c, prev, variant, "keep") for _, c, prev in fake])
+                Jcat = Jcat[Jcat >= 0] if mode == "drop" else Jcat
+                m = max(m, scan(Jcat, max_lag=MAXLAG)[1].max())
+        nullmax.append(m)
+    P(f"  largest z of all scopes and settings: LP2 {obs:.2f}; {reps} random replicates of the same statistic: "
+      f"median {np.median(nullmax):.2f}, max {max(nullmax):.2f}, replicates >= LP2: {sum(x >= obs for x in nullmax)}")
     P("")
     P("controls " + ("passed" if ctl_ok else "FAILED"))
     text = "\n".join(out)

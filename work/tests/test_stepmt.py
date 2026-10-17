@@ -81,14 +81,14 @@ class StepSweep(unittest.TestCase):
         for gi, gen in enumerate(GENS):
             seed = int(rng.integers(100000, 2 ** 31 - 5000))
             r28, r29 = rust_keys(gen, seed, seed + 1, 28)[seed], rust_keys(gen, seed, seed + 1, 29)[seed]
-            for variant, mp, mode, m in (("A", gi % 2, "drop", 5), ("B", (gi + 1) % 2, "keep", 3)):
+            for variant, mp, mode, m in (("A", gi % 2, "drop", 5), ("B", (gi + 1) % 2, "keep", 3), ("C", gi % 2, "keep", 11)):
                 toks = attack.synthetic_tokens(300, start=int(rng.integers(5000, 40000)))
                 p = np.array(lp.runes_of(toks))[:ST.NS]
                 p = np.where(p == 14, 6, p)
                 q = np.where(p > 14, p - 1, p)
                 ditto = rng.random(len(q)) < 0.0066
                 ditto[20] = True                      # a zero step makes the two modes differ
-                key = r28[mp] if variant == "A" else step28.LOG2[r29[mp][r29[mp] != 0]]
+                key = step28.LOG2[r29[mp][r29[mp] != 0]] if variant == "B" else r28[mp]
                 c, prev = step28.encrypt(q, key, variant, mode, m, 0, ditto)
                 S = ST.Step(gen, [("plant", prev, c)])
                 S.hist[:] = 0
@@ -99,7 +99,11 @@ class StepSweep(unittest.TestCase):
                 best = got[np.argmax(got[:, 1] >> 16)]
                 combo = int(best[1]) & 0xFF
                 self.assertEqual(int(best[0]), seed, (gen, variant, "seed"))
-                self.assertEqual(ST.combo_parts(combo), (variant, mp, mode, m), (gen, variant, "setting"))
+                got_v, got_mp, got_mode, got_m = ST.combo_parts(combo)
+                # m and m + 14 differ only where the key is odd and English keeps ~77% of its coincidences under a shift by 14,
+                # so on 240 steps the two can swap places; the long verification separates them
+                self.assertEqual((got_v, got_mp, got_mode), (variant, mp, mode), (gen, variant, "setting"))
+                self.assertIn(got_m, (m, (m + 14) % 28), (gen, variant, "multiplier"))
                 self.assertGreater(int(best[1]) >> 16, 1500)
 
     def test_random_ciphertext_gives_no_candidate(self):

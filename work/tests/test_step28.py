@@ -28,7 +28,7 @@ class Model(unittest.TestCase):
     def test_encrypt_then_decode_with_the_key_gives_the_plaintext(self):
         """independent of the screen: subtract the key from the step classes and get the plaintext back exactly"""
         rng = np.random.default_rng(1)
-        for variant in ("A", "B"):
+        for variant in ("A", "B", "C"):
             for mode in ("drop", "keep"):
                 key = S.key_arrays([("k", rng.integers(0, S.Q, 400, dtype=np.int64))], variant)[0][1]
                 q = rng.integers(0, 28, 200)
@@ -49,13 +49,13 @@ class Model(unittest.TestCase):
 class Screen(unittest.TestCase):
     def test_planted_keys_are_recovered_and_the_other_variant_is_blind(self):
         rng = np.random.default_rng(2)
-        for variant, mode, m in (("A", "drop", 3), ("A", "keep", 1), ("B", "drop", 5), ("B", "keep", 11)):
+        for variant, mode, m in (("A", "drop", 3), ("A", "keep", 1), ("B", "drop", 5), ("B", "keep", 11), ("C", "drop", 13), ("C", "keep", 9)):
             streams, w, (sname, o0) = S.plant_case(rng, variant, mode, m)
             rows = S.screen(streams, [("p", w[1], w[2])], "cpu", variants=(variant,), modes=(mode,))
             top = max(rows, key=lambda r: r[4])
             self.assertEqual((top[3], top[5], top[6]), (m, sname, o0), (variant, mode))
             self.assertGreater(top[4], 1.5)
-            other = "B" if variant == "A" else "A"
+            other = "B" if variant != "B" else "A"
             blind = S.screen(streams, [("p", w[1], w[2])], "cpu", variants=(other,), modes=(mode,))
             self.assertLess(max(r[4] for r in blind), 1.3)
 
@@ -77,14 +77,14 @@ class Screen(unittest.TestCase):
 class Periodicity(unittest.TestCase):
     def test_planted_period_is_found_and_random_is_not(self):
         rng = np.random.default_rng(5)
-        for variant, mode in (("A", "drop"), ("B", "keep")):
+        for variant, mode in (("A", "drop"), ("B", "keep"), ("C", "keep")):
             c, prev = SP.planted(rng, variant, mode, 211)
-            lags, z = SP.scan(SP.classes(SP.steps(c, prev), variant, mode))
+            lags, z = SP.scan(SP.classes(c, prev, variant, mode))
             k = int(np.argmax(z))
             self.assertEqual(int(lags[k]) % 211, 0)
             self.assertGreater(z[k], 5.5)
         c = rng.integers(0, S.Q, 3000)
-        self.assertLess(SP.scan(SP.classes(SP.steps(c, 3), "A", "keep"))[1].max(), 5.5)
+        self.assertLess(SP.scan(SP.classes(c, 3, "A", "keep"))[1].max(), 5.5)
 
 
 if __name__ == "__main__":

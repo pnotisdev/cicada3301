@@ -1,6 +1,6 @@
 // CUDA seed sweep for the STEP-DOMAIN cipher (work/kscreen/step28.py, research note C2): one thread = one seed. It generates
 // the first K = 256 outputs of the chosen generator, derives the key maps for 28 classes (variant A: K mod 28 natively) and
-// for 29 values (variant B: log2 of the non-zero values), and for each window, variant, map, mode and unit multiplier
+// for 29 values (variant B: log2 of the non-zero values), and for each window, variant (A, B, C), map, mode and unit multiplier
 // m of Z28 counts the class histogram of (J_t - m*key) mod 28 over NS steps. Score = index of coincidence (random 1.0,
 // English 1.8). The generators are the ones of phpmt.cu (validated against the Rust engine and CPython/NumPy), with the
 // key alphabet size KM as a template parameter; tests/test_stepmt.py checks both instantiations against the Rust `keys` mode.
@@ -279,11 +279,11 @@ step_kernel(const u8 *__restrict__ wJ, const u8 *__restrict__ widx, const u64 se
             nl[m] = c;
         }
         for (int wi = 0; wi < NW; wi++)
-            for (int var = 0; var < 2; var++)
+            for (int var = 0; var < 3; var++)                          // 0 = A (step, keys mod 28), 1 = B (log2 of Z29 keys), 2 = C (rank, keys mod 28)
                 for (int map = 0; map < 2; map++) {
-                    const u8 *key = var == 0 ? k28[map] : lg[map];
-                    const int nk = var == 0 ? K : nl[map];
-                    const u8 *J = wJ + (wi * 2 + var) * NS;
+                    const u8 *key = var == 1 ? lg[map] : k28[map];
+                    const int nk = var == 1 ? nl[map] : K;
+                    const u8 *J = wJ + (wi * 3 + var) * NS;
                     for (int mode = 0; mode < 2; mode++) {
                         const u8 *ix = widx + (wi * 2 + mode) * NS;
                         for (int mi = 0; mi < NM; mi++) {
@@ -303,7 +303,7 @@ step_kernel(const u8 *__restrict__ wJ, const u8 *__restrict__ widx, const u64 se
                             for (int d = 0; d < NC; d++) ss += (u32)h[d][tid] * (u32)h[d][tid];
                             const int combo = ((var * 2 + map) * 2 + mode) * NM + mi;
 #if DUMP == 1
-                            dump[(g * NW + wi) * 96 + combo] = ss | ((u32)n << 16);
+                            dump[(g * NW + wi) * 144 + combo] = ss | ((u32)n << 16);
 #endif
                             const float ioc = n > 1 ? (float)NC * (float)(ss - n) / ((float)n * (float)(n - 1)) : 0.0f;
                             int b = (int)((ioc - 0.8f) * 100.0f);
