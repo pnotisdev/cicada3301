@@ -112,7 +112,7 @@ fn raw_n(g: Gen, seed: i64, count: usize) -> Vec<u32> {
             if g == Gen::Mt {
                 init_genrand(seed as u32, &mut s);
             } else {
-                // CPython random.seed(n) (and Ruby Random.new(n) for n >= 2^32): the 32-bit words of |n|, least
+                // CPython random.seed(n) (Ruby's documented Random.new(n) for n >= 2^32 too, unverified): the 32-bit words of |n|, least
                 // significant first; one word below 2^32 (all earlier sweeps), two up to 2^64 (millisecond timestamps)
                 let n = seed.unsigned_abs();
                 if n >> 32 == 0 {

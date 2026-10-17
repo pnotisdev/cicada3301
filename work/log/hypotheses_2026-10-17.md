@@ -105,14 +105,16 @@ in each state:
 - `verify.py`: whole-window re-decode (beam 64) and the same setting at 20 random offsets of the same stream (offsets
   within 50 of the hit excluded); a candidate needs +2.0 per rune and a margin of 5 over that matched null.
 
-**Controls** (`work/layer2/selftest.py`, `results/layer2/selftest.txt`): SELFTEST PASSED, 14 of 14.
+**Controls** (`work/layer2/selftest.py`, `results/layer2/selftest.txt`): SELFTEST PASSED, 14 of 14. Since the desktop's
+review every plant is written by `work/layer2/plant_ref.py` (the two-layer cipher in Python, from the library's stream
+values), not by the engine's own `plant` mode; the figures below are from that run.
 - Three bigram plants (DIVINITY in phi(p_n) with literal F, skip; FIRFUMFERENFE in pi base 29, Atbash, inner and
   outer sign -1, coin; CIRCUMFERENCE in phi(n), literal F, Atbash, coin), 3 windows each: all 9 found at the true
   offset (one at -1) with the right keyword, +7.2 .. +8.2 per rune; whole-window re-decode +7.3 .. +8.2 against matched
-  nulls of -7.4 .. -9.8.
-- Blindness: kscreen at the true offset of the first plant gives IoC 1.182.
-- Periodic mode, a keyword not in the file (period 6): all 3 windows found, keyword recovered (as a rotation),
-  decoded text readable (+6.8 .. +8.1 per rune against -9 .. -10).
+  nulls of -6.7 .. -9.8.
+- Blindness: kscreen at the true offset of the first plant gives IoC 1.197 (1.182 with the engine's own plant).
+- Periodic mode, a keyword not in the file (period 6): all 3 windows found (z 10.3 .. 17.3), keyword recovered (as a
+  rotation), decoded text readable.
 - Null: 3 random streams x 3,000 offsets x the solved keys (every phase, sign, literal F, alphabet) x 8 LP2 windows:
   best -4.77 per rune.
 - A first selftest run failed one check for a design reason, not a method failure: the matched null drew an offset one

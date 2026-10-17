@@ -2,7 +2,7 @@
 //!
 //! Generators (a seed -> a stream of raw 32-bit values -> key values 0..28 by one of several "maps"):
 //!   mt     std MT19937, init_genrand(seed): C++ std::mt19937, PHP >= 7.1 mt_srand, numpy RandomState(seed)
-//!   pymt   MT19937, init_by_array(32-bit words of |seed|): Python random.seed(int), Ruby Random.new(int); one word
+//!   pymt   MT19937, init_by_array(32-bit words of |seed|): Python random.seed(int) (Ruby Random.new(int) by its docs, unverified); one word
 //!          below 2^32, two words above (e.g. a millisecond timestamp, see the prng-time campaign)
 //!   (java takes the full 48-bit seed of java.util.Random(long), so millisecond timestamps need no change there)
 //!   msvc   Microsoft C rand(): s = s * 214013 + 2531011; (s >> 16) & 0x7fff
@@ -146,7 +146,7 @@ fn raw_n(g: Gen, seed: i64, count: usize) -> Vec<u32> {
             if g == Gen::Mt {
                 init_genrand(seed as u32, &mut s);
             } else {
-                // CPython random.seed(n) (and Ruby Random.new(n) for n >= 2^32): the 32-bit words of |n|, least
+                // CPython random.seed(n) (Ruby's documented Random.new(n) for n >= 2^32 too, unverified): the 32-bit words of |n|, least
                 // significant first; one word below 2^32 (all earlier sweeps), two up to 2^64 (millisecond timestamps)
                 let n = seed.unsigned_abs();
                 if n >> 32 == 0 {
@@ -805,7 +805,8 @@ fn variant_parts(v: u8) -> (u8, u8, i32, bool) {
 }
 
 /// PRNGX_MAPS=a,b,..: sweep / bgsweep only these key maps (default: every map of the generator). The prng-time campaign
-/// uses it to keep the maps a language that seeds with two 32-bit words can produce (pymt: 2 randrange, 3 Ruby rand(n), 5 random()).
+/// uses it to keep the maps a language that seeds with two 32-bit words can produce (pymt: 2 randrange, 5 random(), and 3, Ruby's
+/// documented rand(n), not checked against a Ruby).
 fn sweep_maps(g: Gen) -> Vec<u8> {
     match env::var("PRNGX_MAPS") {
         Ok(s) if !s.trim().is_empty() => {

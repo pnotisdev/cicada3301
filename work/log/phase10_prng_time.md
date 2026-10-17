@@ -12,7 +12,7 @@ any year, but not two common ways a 2012-2014 program seeds from the clock in mi
 |---|---|---|---|
 | Java | `new Random(System.currentTimeMillis())` | 48 bits of the long (java.util.Random keeps 48) | no (32-bit seeds only) |
 | Python 2/3 | `random.seed(int(time.time() * 1000))` | MT19937 `init_by_array` with the 32-bit words of the int: two words above 2^32 | no (one word only) |
-| Ruby | `Random.new(ms)`, `srand(ms)` | the same two-word `init_by_array` | no |
+| Ruby | `Random.new(ms)`, `srand(ms)` | the same two-word `init_by_array` by Ruby's documentation (**not checked against a Ruby**) | no |
 | PHP, C, .NET, Perl | `mt_srand`, `srand`, `new Random(int)`, `srand` | truncated to 32 bits | yes |
 
 The window is 2012-01-01 .. 2014-02-01 UTC (1325376000000 .. 1391212800000 ms), about 6.6e10 seeds per generator, swept
@@ -29,15 +29,18 @@ The page images carry no EXIF dates and the PDF is a 2017 "Print To PDF" re-rend
 - `work/prngx/time_campaign.py`: `list`, `run <gen> <YYYY-MM | YYYY-MM-DD:YYYY-MM-DD>`: one boundary-free sweep
   (`bgsweep`, English rune-bigram score of the first 120 runes of section 0.7, skip and coin models, both signs, plain
   and Atbash), then the whole-section check. Maps: Java 0 `nextInt(29)`, 1 `(int)(nextDouble()*29)`,
-  2 `Math.abs(nextInt()) % 29`; Python/Ruby 2 `randrange` / `randint` / `choice` (top 5 bits, rejection), 3 Ruby
-  `rand(n)` (low 5 bits, rejection), 5 `random() * 29`. The other MT maps (0, 1, 4) belong to languages that never seed
+  2 `Math.abs(nextInt()) % 29`; Python 2 `randrange` / `randint` / `choice` (top 5 bits, rejection), 5 `random() * 29`, and
+  3 (low 5 bits, rejection), Ruby's documented `rand(n)`: the Ruby part is unverified (no Ruby on either machine to make
+  vectors from; the review of this branch asked for that to be said). The other MT maps (0, 1, 4) belong to languages that never seed
   with two words and are left out.
 - `work/prngx/time_verify.py`: rebuilds a candidate's keys with code independent of the Rust engine (CPython's own
   `random.Random`; the java.util.Random specification in `ref/gen_vectors.py`), decodes the whole section with the
   bigram beam `work/phpmt/bg.py::ref_decode` (which the Rust decoder mirrors) and compares with 8 random timestamps of
   the same month. Candidate: at least +2.0 per rune and 5 above every control (a true key keeps about +10 per rune).
-- Campaign `prng-time` in `jobs/overnight.py`: build, vectors, gate (`tests/test_prngx_time.py`), then one step per
-  (month, generator), Java and Python alternating, newest month first.
+- Campaign `prng-time` in `jobs/overnight.py`, one step per (month, generator), newest month first. On a validated GPU it
+  runs the desktop's 64-bit port (`work/phpmt/time_gpu.py`, gate `tests/test_bgmt64`: java, py3, java-abs, ruby); without
+  one, the CPU engine above (build, vectors, gate `tests/test_prngx_time`, Java and Python alternating). Both gates go
+  through `work/tests/run_gate.py`, which fails when a test is skipped.
 
 ## Validation (all on the laptop)
 
@@ -51,7 +54,9 @@ The page images carry no EXIF dates and the PDF is a 2017 "Print To PDF" re-rend
 - **Planted timestamp seeds** (English windows, skip / coin, both signs, plain / Atbash): Java 1388534412345 map 0,
   Java 1370000004242 map 1 (coin, sign -1, Atbash), Python 1389052800777 map 2 (coin, sign -1), Python 1325400000123
   map 5 (Atbash): each at rank 1 with the exact seed, map, sign and alphabet, screen score +988 (sweeps of +-100,000 seeds).
-  The whole-section check gives +8.11 per rune for both checked plants, against controls of at most -9.9.
+  The whole-section check gives +8.11 per rune for both checked plants, against controls of at most -9.9. (These plants were
+  written by the engine's `plant` mode; since the review the tests plant with keys built outside the engine, see the last
+  section, and the seeds are still found at rank 1.)
 - **Null.** Random ciphertext through 200,000 seeds: best +59 (Java) and +58 (Python), against +988 for a plant and the
   +300 floor for a candidate.
 - **Tests.** `tests/test_prngx_time.py` (5 tests: vectors, engine keys = independent keys, planted seeds, null, whole-section
@@ -65,7 +70,12 @@ generator on a 16-thread CPU; the whole window about 210 h for both. **The full 
 boundary-free CUDA sweep (`work/phpmt/bgmt.cu`) did 2^32 seeds of a generator in about 18 minutes, so 6.6e10 is about
 4.6 h per generator once the kernels take 64-bit seeds.
 
-## GPU port (for the desktop; gates of docs/GPU_PORT.md)
+## GPU port (spec as written for the desktop; DONE there the same day)
+
+The desktop built it at 14:20 (`work/log/phase10_prng_time_gpu.md`): `bgmt64.cu` / `bg64.py` / `time_gpu.py`, gate
+`test_bgmt64` 8/8 against independent CPython and java.util.Random references (stricter than comparing with `prngx keys`,
+which was not on `main` yet), 6.4 M (py3, ruby) and 10.8 M (java) seeds/s, so the whole window is about 9 h for java, py3,
+java-abs and ruby together. Its demo of 2014-01-04/06 agrees with the laptop's: 0 candidates. The spec that was handed over:
 
 1. Seeds as 64-bit integers in the generator section shared by `phpmt.cu` / `bgmt.cu` / `stepmt.cu` (`lo` and the
    per-thread offset as `unsigned long long`).
@@ -95,3 +105,15 @@ ended higher; a planted timestamp seed is near +300 at the gate and scores +988.
 - Generators whose seeds are 32-bit anyway (they are in the earlier sweeps).
 - A fresh timestamp seed per section: the campaign uses section 0.7 (one pad from the first LP2 rune), like the first
   pass of every earlier sweep.
+
+## Changes after the desktop's review (15:10; `docs/prs/new-hypotheses.md`)
+
+- **Gate fails on skips.** `prng-time/gate` runs `work/tests/run_gate.py work.tests.test_prngx_time` (the GPU path
+  `run_gate.py work.tests.test_bgmt64`); `unittest discover` reported `OK` even with every test skipped.
+- **Independent plants.** `time_verify.plant_windows` writes the planted ciphertext from keys built outside the engine
+  (CPython `random.Random`, the java.util.Random specification) under the engine's anti-repeat rule; the tests use it, so a
+  plant found at rank 1 now shows that the engine finds what Java or Python would write. `test_prngx_time`: 5/5, 0 skipped.
+- **Ruby qualified.** No Ruby on either machine: map 3 and the GPU path's `ruby` are Ruby's documented `rand(n)` and seeding
+  on CPython's MT19937, not checked against a Ruby. Said so in every place that mentioned Ruby.
+- **GPU path wired.** On a validated GPU the campaign runs `time_gpu.py run <gen> --only <month>` (gate `test_bgmt64`); the
+  CPU engine is the fallback.

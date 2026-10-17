@@ -442,16 +442,19 @@ engine `work/layer2` (output `results/layer2/`).
   offset, 8 sections: 512 M decodes, best -4.53 per rune; 0 of 15 hits survive whole-window verification. Periodic mode, 20 Cicada
   streams x any keyword of period 2-14 (no literal F): 111 M decodes, 0 of the 100 best survive keyword estimation + re-decoding.
 - **prng-time (`work/log/phase10_prng_time.md`):** generators seeded with a millisecond timestamp of 2012-2014, outside the 32-bit
-  sweeps: Java `new Random(currentTimeMillis())` (48-bit seed) and CPython / Ruby integer seeds above 2^32 (two-word `init_by_array`;
+  sweeps: Java `new Random(currentTimeMillis())` (48-bit seed) and CPython integer seeds above 2^32 (two-word `init_by_array`; Ruby by its documentation, unverified;
   `prngx pymt` now seeds like CPython for any integer). Vectors from CPython and the Java specification 119/119, engine keys equal
   independent keys, planted timestamp seeds at rank 1 (+988 against a random-ciphertext best of +59), whole-section check
-  (`time_verify.py`). Campaign `prng-time`: one sweep per UTC month, newest first; about 210 h on a CPU, so the full window wants the
-  CUDA kernels extended to 64-bit seeds (spec in the log). Demo on LP2, the weekend of 2014-01-04/05 (172.8 M timestamps per
+  (`time_verify.py`). Campaign `prng-time`: one sweep per UTC month, newest first; on a validated GPU it runs the desktop's 64-bit
+  port (`time_gpu.py`, about 9 h for the window), otherwise the CPU engine (about 210 h). Demo on LP2, the weekend of 2014-01-04/05 (172.8 M timestamps per
   generator): best screen +59 for both, no row near +300, 0 candidates after the whole-section check. Negative.
 - **Queued:** campaign `layer2` for the desktop (115 streams x the solved keys, 20 streams x 30 keywords, periodic mode,
-  folded-key variant; about 13 h on 16 threads). Proposed next: time-seeded Java / Python generators (millisecond seeds of
-  2012-2014 are outside the 32-bit sweeps), crib-filtered sweeps ("AN INSTRUCTION" fits 0.8's heading under letter spelling),
-  direction-switching keys.
+  folded-key variant; about 13 h on 16 threads). Proposed next: crib-filtered sweeps ("AN INSTRUCTION" fits 0.8's heading under
+  letter spelling), direction-switching keys.
+- **Review of this branch (desktop, 14:30) answered (15:10):** main merged in; `prng-time` gated by `run_gate.py` (fails on skipped
+  tests) and pointed at the GPU port; the prngx and layer2 controls now plant with independent code (`time_verify.plant_windows`,
+  `work/layer2/plant_ref.py`): `test_prngx_time` 5/5, `test_layer2` 3/3, `layer2/selftest.py` 14/14; Ruby marked unverified
+  (no Ruby on either machine). Response at the end of `docs/prs/new-hypotheses.md`.
 
 ### Phase 5 – Validation and reporting
 - A plaintext counts as solved only if it scores well across a whole segment (word hits and IoC about 1.8)

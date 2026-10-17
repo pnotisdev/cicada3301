@@ -7,8 +7,9 @@
 The 32-bit seed sweeps cover every second-resolution time(NULL) seed, but not these:
   java  java.util.Random(long): 48-bit seed, e.g. new Random(System.currentTimeMillis()); maps 0 nextInt(29),
         1 (int)(nextDouble()*29), 2 Math.abs(nextInt()) % 29
-  pymt  CPython random.seed(int) / Ruby Random.new(int) with an integer >= 2^32, e.g. int(time.time() * 1000): MT19937
-        init_by_array with two 32-bit words; maps 2 randrange / randint / choice, 3 Ruby rand(n), 5 random() * 29
+  pymt  CPython random.seed(int) with an integer >= 2^32, e.g. int(time.time() * 1000): MT19937 init_by_array with two 32-bit
+        words; maps 2 randrange / randint / choice, 5 random() * 29, and 3 (low 5 bits with rejection), which is Ruby's
+        documented rand(n) for a Random.new(int) seeded the same way: NOT checked against a Ruby (none on either machine)
         (the maps of the other languages, 0 / 1 / 4, cannot come with a two-word seed and are left out: PRNGX_MAPS)
 Each run is one boundary-free sweep (`prngx bgsweep`, English rune-bigram score of the first 120 runes, skip and coin
 anti-repeat models, both signs, plain and Atbash) followed by the whole-section check of its best rows (time_verify.py).

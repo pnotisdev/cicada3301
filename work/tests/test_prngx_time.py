@@ -48,9 +48,11 @@ class PrngTime(unittest.TestCase):
             self.assertEqual(got, [int(x) for x in time_verify.keys(gen, seed, mp, 200)], (gen, seed, mp))
 
     def plant_and_sweep(self, d, gen, seed, mp, model, sign, atb, maps):
+        """plant with keys built OUTSIDE the engine (time_verify: CPython / the java.util.Random specification), sweep with the engine"""
+        import time_verify
         planted, tsv = os.path.join(d, f"{gen}.txt"), os.path.join(d, f"{gen}.tsv")
-        self.run_bin("plant", gen, os.path.join(DATA, "english.txt"), str(seed), str(mp), str(model), str(sign), str(atb),
-                     "0.18", planted)
+        with open(planted, "w", newline="\n", encoding="utf-8") as f:
+            f.write(time_verify.plant_windows(gen, seed, mp, model, sign, atb, 0.18, os.path.join(DATA, "english.txt")))
         self.run_bin("bgsweep", gen, planted, os.path.join(DATA, "bigram.txt"), str(seed - 3000), str(seed + 3000), tsv, "4",
                      PRNGX_MAPS=maps)
         return planted, tsv

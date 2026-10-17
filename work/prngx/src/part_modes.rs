@@ -109,7 +109,8 @@ fn variant_parts(v: u8) -> (u8, u8, i32, bool) {
 }
 
 /// PRNGX_MAPS=a,b,..: sweep / bgsweep only these key maps (default: every map of the generator). The prng-time campaign
-/// uses it to keep the maps a language that seeds with two 32-bit words can produce (pymt: 2 randrange, 3 Ruby rand(n), 5 random()).
+/// uses it to keep the maps a language that seeds with two 32-bit words can produce (pymt: 2 randrange, 5 random(), and 3, Ruby's
+/// documented rand(n), not checked against a Ruby).
 fn sweep_maps(g: Gen) -> Vec<u8> {
     match env::var("PRNGX_MAPS") {
         Ok(s) if !s.trim().is_empty() => {

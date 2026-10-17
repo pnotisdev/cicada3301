@@ -1,9 +1,11 @@
 """Two-layer screen (work/layer2, hypothesis H-LAYER): planted keyword-inside-stream ciphers are found at their offset with
-their keyword (literal F on and off, plain and Atbash alphabets, skip and coin models), the whole-window re-decode reads
+their keyword (literal F on and off, plain and Atbash alphabets, skip and coin models; planted by the independent Python planter
+plant_ref.py, not by the engine), the whole-window re-decode reads
 the planted text, wrong offsets stay far below the decision threshold, and periodic mode finds a keyword it was not given."""
 import os
 import re
 import subprocess
+import sys
 import tempfile
 import unittest
 
@@ -12,6 +14,7 @@ L2 = os.path.join(os.path.dirname(HERE), "layer2")
 BIN = os.path.join(L2, "target", "release", "layer2" + (".exe" if os.name == "nt" else ""))
 PLAIN = os.path.join(os.path.dirname(HERE), "phpmt", "data", "english.txt")
 CORE = os.path.join(L2, "data", "core.ksb")
+sys.path.insert(0, L2)
 DIVINITY = "23,10,1,10,9,10,16,26"
 FIRFUM = "0,10,4,0,1,19,0,18,4,18,9,0,18"
 
@@ -33,9 +36,12 @@ class Layer2(unittest.TestCase):
         return subprocess.run([BIN, *args], cwd=L2, capture_output=True, text=True, check=True).stdout
 
     def plant(self, d, item, off, mult, model, kw, phase, isign, litf, atb):
+        """planted by the independent Python planter (work/layer2/plant_ref.py), screened by the engine"""
+        import plant_ref
         path = os.path.join(d, "plant.txt")
-        self.run_bin("plant", PLAIN, "file:" + CORE, item, str(off), str(mult), str(model), "0.18", "3", kw, str(phase),
-                     str(isign), str(litf), str(atb), path)
+        with open(path, "w", newline="\n", encoding="utf-8") as f:
+            f.write(plant_ref.plant(PLAIN, CORE, item, off, mult, model, 0.18, 3, [int(x) for x in kw.split(",")], phase, isign,
+                                    litf, atb))
         return path
 
     def bigram_screen(self, d, plant, item, kwline, offs):

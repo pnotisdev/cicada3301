@@ -69,6 +69,43 @@ def keys(gen, seed, mp, n):
     return np.array(java_keys(seed, mp, n) if gen == "java" else pymt_keys(seed, mp, n))
 
 
+def plant_windows(gen, seed, mp, model, sign, atb, keep, plain_path, coin_seed=3):
+    """Encrypt every window of a plaintext windows file with the keys of `seed`, built by the independent code above (not by the
+    engine), under the anti-repeat rule of the engine's `plant` mode: model 0 re-draws (up to 5 times) and model 1 spends one key value
+    as a coin, each with probability 1 - keep per collision. Returns the windows file text ('W planted_<name> -1', R, L)."""
+    rng = random.Random(coin_seed)
+    out = []
+    with open(plain_path, encoding="utf-8") as f:
+        lines = f.read().splitlines()
+    for i, line in enumerate(lines):
+        if not line.startswith("W "):
+            continue
+        name = line.split()[1]
+        runes = [int(x) for x in lines[i + 1][2:].split()]
+        lens = lines[i + 2][2:] if i + 2 < len(lines) and lines[i + 2].startswith("L ") else ""
+        key = keys(gen, seed, mp, 4 * len(runes) + 64)
+        j, prev, c = 0, -1, []
+        for p in runes:
+            t = 28 - p if atb else p
+            y = (t + sign * int(key[j])) % 29
+            j += 1
+            if model == 0:
+                tries = 0
+                while prev >= 0 and y == prev and rng.random() >= keep and tries < 5:
+                    y = (t + sign * int(key[j])) % 29
+                    j += 1
+                    tries += 1
+            elif prev >= 0 and y == prev:
+                j += 1                                   # the coin value
+                if rng.random() >= keep:
+                    y = (t + sign * int(key[j])) % 29
+                    j += 1
+            c.append(y)
+            prev = y
+        out += [f"W planted_{name} -1", "R " + " ".join(map(str, c)), "L " + lens]
+    return "\n".join(out) + "\n"
+
+
 def month_bounds(seed):
     """[first ms, last ms + 1) of the UTC month that contains the timestamp `seed`"""
     import datetime as dt

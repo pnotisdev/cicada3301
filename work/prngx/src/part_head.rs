@@ -2,7 +2,7 @@
 //!
 //! Generators (a seed -> a stream of raw 32-bit values -> key values 0..28 by one of several "maps"):
 //!   mt     std MT19937, init_genrand(seed): C++ std::mt19937, PHP >= 7.1 mt_srand, numpy RandomState(seed)
-//!   pymt   MT19937, init_by_array(32-bit words of |seed|): Python random.seed(int), Ruby Random.new(int); one word
+//!   pymt   MT19937, init_by_array(32-bit words of |seed|): Python random.seed(int) (Ruby Random.new(int) by its docs, unverified); one word
 //!          below 2^32, two words above (e.g. a millisecond timestamp, see the prng-time campaign)
 //!   (java takes the full 48-bit seed of java.util.Random(long), so millisecond timestamps need no change there)
 //!   msvc   Microsoft C rand(): s = s * 214013 + 2531011; (s >> 16) & 0x7fff

@@ -56,3 +56,18 @@ Read as data on the desktop at about 14:30. None of the branch's code was run (n
 
 **Most valuable next step from the branch: the 64-bit CUDA port of the boundary-free sweep (`phpmt.cu` / `bgmt.cu`), spec in `work/log/phase10_prng_time.md` (about 4.6 h per generator for the full 2012-2014 window once
 ported, against 210 CPU hours).** The generator gates it asks for (keys equal to `prngx keys` for the vector seeds, planted seeds recovered, random ciphertext without candidates) are the project's usual ones.
+
+## Response from the laptop (2026-10-17, about 15:10; branch commits after the merge of main c31c6a9)
+
+Every change the verdict asks for is made; nothing else in the branch's results changes.
+
+| review item | change | evidence |
+|---|---|---|
+| merge conflict in `PLAN.md` | `main` merged into the branch (c31c6a9); the desktop's four Phase 9 bullets kept first, then Phase 10 | `git merge-tree` against `main` is now clean |
+| 1. the gate passes on skipped tests | `prng-time/gate` runs `work/tests/run_gate.py work.tests.test_prngx_time` (and the GPU path `run_gate.py work.tests.test_bgmt64`); both fail on a skip | `GATE PASSED`, 5 tests, 0 skipped (laptop) |
+| 1. Ruby claimed, not verified | no Ruby on either machine, so the claim is qualified everywhere (campaign text, `time_campaign.py`, the engine comments, the log, `CAMPAIGNS.md`, `PLAN.md`): map 3 is "Ruby's documented `rand(n)`, not checked against a Ruby"; the GPU path's `ruby` generator is labelled the same way in the runner summary | text changes only |
+| 2. plants made by the engine itself | `time_verify.plant_windows` plants with keys built outside the engine (CPython `random.Random`; the java.util.Random specification) under the engine's anti-repeat rule; `work/layer2/plant_ref.py` writes the two-layer cipher in Python from the library's stream values; `test_prngx_time`, `test_layer2` and `layer2/selftest.py` now plant only that way | `test_prngx_time` 5/5, `test_layer2` 3/3 (both through `run_gate.py`, 0 skipped); `layer2/selftest.py` 14/14 with the independent plants (`results/layer2/selftest.txt`); all prngx suites 10/10 |
+| most valuable next step: the GPU port | done on the desktop (3a0cc99); the campaign now uses it: on a validated GPU `prng-time` runs `work/phpmt/time_gpu.py run <gen> --only <month>` behind `test_bgmt64` (java, py3, java-abs, ruby; about 9 h for the window), the CPU engine stays the fallback (about 210 h) | `python jobs/overnight.py list -v` on a CUDA machine: gate + 100 month steps |
+
+Not changed, as the review says: coverage is section 0.7 with one pad from the first LP2 rune; the `layer2` negatives cover the solved keys and the
+20 core streams, not seeded-generator streams. The commit author name on the laptop is the user's decision (see the end of `docs/SESSION_LOG.md`).

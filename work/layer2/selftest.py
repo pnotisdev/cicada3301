@@ -2,6 +2,7 @@
 
     python work/layer2/selftest.py [--threads N] [--out results/layer2/selftest.txt]
 
+Every plant is written by plant_ref.py (the two-layer cipher in Python, from the library's stream values), not by the engine.
 Positive (mode=bigram): held-out English (data/plain.txt, 3 windows of ~400 runes) enciphered with a solved-page keyword
 inside (with and without the literal-F rule, plain and Atbash alphabet, both inner signs) and a library number stream
 outside (skip and coin models, both outer signs). The screen over offsets 0..4000 of that stream must put each window's
@@ -47,6 +48,15 @@ def run(args, binary=BIN, cwd=HERE):
     return r.stdout
 
 
+def write_plant(path, item, off, mult, model, coin_seed, kw, phase, isign, litf, atb):
+    """plant with the independent Python planter (plant_ref.py), not the engine's own plant mode"""
+    import plant_ref
+    text = plant_ref.plant(os.path.join(HERE, "data", "plain.txt"), os.path.join(HERE, "data", "core.ksb"), item, off, mult, model, 0.18,
+                           coin_seed, kw, phase, isign, litf, atb)
+    with open(path, "w", newline="\n", encoding="utf-8") as f:
+        f.write(text)
+
+
 def keywords():
     out = {}
     for line in open(os.path.join(HERE, "data", "keywords.txt"), encoding="utf-8"):
@@ -90,8 +100,7 @@ def main():
     for pi, (item, off, mult, model, kw, ph, isign, litf, atb) in enumerate(PLANTS):
         plant = os.path.join(TMP, f"selftest_plant{pi}.txt")
         tsv = os.path.join(TMP, f"selftest_plant{pi}.tsv")
-        run(["plant", "data/plain.txt", fam, item, str(off), str(mult), str(model), "0.18", str(10 + pi),
-             ",".join(map(str, kws[kw])), str(ph), str(isign), str(litf), str(atb), rel(plant)])
+        write_plant(plant, item, off, mult, model, 10 + pi, kws[kw], ph, isign, litf, atb)
         run(["screen", rel(plant), fam, rel(tsv), "mode=bigram", f"kw={rel(solved)}", f"only={item}", "offs=0:4000",
              f"threads={a.threads}"])
         best = window_bests(tsv)
@@ -125,8 +134,7 @@ def main():
     item, off, mult, model, kwv, ph, isign, litf, atb = PERIODIC
     plant = os.path.join(TMP, "selftest_periodic.txt")
     tsv = os.path.join(TMP, "selftest_periodic.tsv")
-    run(["plant", "data/plain.txt", fam, item, str(off), str(mult), str(model), "0.18", "77", ",".join(map(str, kwv)),
-         str(ph), str(isign), str(litf), str(atb), rel(plant)])
+    write_plant(plant, item, off, mult, model, 77, kwv, ph, isign, litf, atb)
     run(["screen", rel(plant), fam, rel(tsv), "mode=periodic", f"only={item}", "ms=2:12", "litf=0", f"offs={off - 300}:{off + 2300}",
          f"threads={a.threads}"])
     best = window_bests(tsv)
