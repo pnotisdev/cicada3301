@@ -21,3 +21,15 @@ The library's own best was 1.366 on 409 M decodes and the 300-stream random null
 Verification: **0 of 15** re-decoded hits keep IoC >= 1.4 over the whole window. **Negative** for these four families at 300 runes per section.
 
 Not covered: F2; other pairings and ratios of the F1 core streams; pointer schemes that need bases longer than 20,000 values (F_i or i^2 as an index); windows after the first 300 runes of each section. The null was the existing 300-stream random null, smaller than the family.
+
+## Round 2: DeepSeek's second batch, asked directly through the pi harness (22:20)
+
+`work/ask_deepseek.py` (pi, provider deepseek, model deepseek-flash, medium thinking, no tools, no project files, no session; 2 min 51 s) was sent one self-contained prompt: the puzzle facts, the flat-IoC fingerprint, the screen's rule, the excluded list, round 1's result and
+the four constraints round 1 had broken (uniform marginal mod 29, no affine duplicates of library streams, exact counts, no base longer than 20,000 values). The prompt and the reply are kept in the git-ignored `work/ref/deepseek/` (third-party text is data).
+The reply obeyed the constraints (exact uniformity proofs, exact counts, 'all five are long shots', lore marked UNSURE, no invented citations). Its five families, as rebuilt by `work/kscreen/sacred.py --round 2` (my own code, not run as sent):
+G1 n^-1 mod p, G2 discrete log mod p, G3 g^n mod p (p = 59, 233, 349, 523, 929, all = 1 mod 29, whole periods so the stream is exactly uniform), G4 n^3 mod p (p = 59, 233, 929), G5 the sum of the two base-29 digits of n (period 841): **19 streams**, none excluded by the flat IoC, none a duplicate.
+All are periodic with period 58-928 (the drift-period scan had already excluded periods up to about 400 key-agnostically, so effectively p = 523 and 929 and the borderline 349 are the open ones).
+
+**Control** (`sacred_selftest.py --set sacred2`, `results/kscreen/sacred2_selftest.txt`): 5 families x 2 plants x 3 windows: **30 of 30 windows recovered**, IoC 1.56-2.10 (periodic streams are found at an equivalent offset, e.g. 24 for the truth 256 at period 58).
+**Result** (`results/kscreen/sacred2_segments.tsv`, `_verify.txt`): 1,250,080 decodes (1 s on the CPU; the GPU was not used): **best IoC 1.249** (G1 inverse mod 233, seg0.9); per family G1 1.249, G2 1.214, G3 1.202, G4 1.210, G5 1.213; verification **0 of 15**. **Negative.**
+(The random null in the report, 1.318, is the library campaign's 300 streams over 188 M decodes; at 1.25 M decodes the best of random keys is lower, so no comparison is made with it.)

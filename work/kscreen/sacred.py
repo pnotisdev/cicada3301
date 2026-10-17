@@ -5,6 +5,9 @@
     F4  base-29 digits of the reciprocals and ratios of the book's two numbers: 1/3301, 1/1033, 3301/1033, 1033/3301, 1/(3301 * 1033)  (digits in bases 10, 16 and 60 are not uniform mod 29: excluded as keys by LP2's flat IoC)
     F5  rational functions of the prime residue r = p mod 29, e.g. r / (r - 1) (primes at a pole are skipped)
 
+    --round 2: the five families DeepSeek proposed next (G1 n^-1, G2 discrete log, G3 g^n, G4 n^3, all mod p for p = 59, 233, 349, 523, 929 reduced mod 29, whole periods so the stream is exactly uniform; G5 the sum of the two
+    base-29 digits of n): data/sacred2.ksb, sacred2.tsv
+
 Every stream is dropped when (a) LP2's flat IoC already excludes it as a key (predicted IoC under English > 1.003, as export.py's library flag) or (b) it equals a library stream up to an affine map c -> a c + b
 (the screen's multiplier and the free constant offset cover those). What is left is listed in data/sacred.tsv with its family.
 
@@ -130,7 +133,42 @@ def f5():
     return out
 
 
-def main():
+P2 = [59, 233, 349, 523, 929]
+
+
+def n_for(period):
+    return period * ((L + period - 1) // period)
+
+
+def primroot(p):
+    fs = [q for q in range(2, p) if (p - 1) % q == 0 and all(q % r for r in range(2, int(q ** 0.5) + 1))]
+    return next(g for g in range(2, p) if all(pow(g, (p - 1) // q, p) != 1 for q in fs))
+
+
+def g_families():
+    out = {}
+    for p in P2:
+        per = p - 1
+        n = n_for(per)
+        g = primroot(p)
+        out[f"G1 inverse mod {p}"] = np.array([pow(i % per + 1, p - 2, p) % N for i in range(n)], dtype=np.int64)
+        log, x = [0] * p, 1
+        for e in range(per):
+            log[x] = e
+            x = x * g % p
+        out[f"G2 discrete log mod {p}"] = np.array([log[i % per + 1] % N for i in range(n)], dtype=np.int64)
+        x, v = 1, []
+        for _ in range(n):
+            v.append(x % N)
+            x = x * g % p
+        out[f"G3 g^n mod {p}"] = np.array(v, dtype=np.int64)
+        if p in (59, 233, 929):                  # gcd(3, p - 1) = 1: the cube is a permutation
+            out[f"G4 n^3 mod {p}"] = np.array([pow(i % per + 1, 3, p) % N for i in range(n)], dtype=np.int64)
+    out["G5 base-29 digit sum"] = np.array([(i % 841 // N + i % 841 % N) % N for i in range(24 * 841)], dtype=np.int64)
+    return out
+
+
+def main(rnd=1):
     os.makedirs(OUT, exist_ok=True)
     print("building the library for the duplicate check ...")
     lib = export.library()
@@ -139,15 +177,18 @@ def main():
         c = canon(v)
         if c is not None:
             seen.setdefault(c, name)
-    base = {}
-    base.update(keystreams.number_keystreams())
-    base.update(export.new_number_families())
-    missing = [c for c in CORE if c not in base]
-    assert not missing, f"core streams missing from the library: {missing}"
     P = keystreams.english_distribution()
     cand = {}
-    for fam, fn in (("F1", lambda: f1(base)), ("F3", f3), ("F4", f4), ("F5", f5)):
-        cand.update(fn())
+    if rnd == 1:
+        base = {}
+        base.update(keystreams.number_keystreams())
+        base.update(export.new_number_families())
+        missing = [c for c in CORE if c not in base]
+        assert not missing, f"core streams missing from the library: {missing}"
+        for fn in (lambda: f1(base), f3, f4, f5):
+            cand.update(fn())
+    else:
+        cand.update(g_families())
     kept, stats = {}, {}
     for name, v in cand.items():
         fam = name.split()[0]
@@ -168,12 +209,13 @@ def main():
         seen[c] = name
         kept[name] = v
         s["kept"] += 1
-    rows = export.write_ksb(os.path.join(OUT, "sacred.ksb"), kept, os.path.join(OUT, "sacred.tsv"))
+    tag = "sacred" if rnd == 1 else "sacred2"
+    rows = export.write_ksb(os.path.join(OUT, tag + ".ksb"), kept, os.path.join(OUT, tag + ".tsv"))
     for fam, s in sorted(stats.items()):
         print(fam, s)
-    print(f"sacred.ksb: {len(rows)} streams")
+    print(f"{tag}.ksb: {len(rows)} streams")
     return stats
 
 
 if __name__ == "__main__":
-    main()
+    main(2 if "--round" in sys.argv and sys.argv[sys.argv.index("--round") + 1] == "2" else 1)

@@ -12,12 +12,13 @@ import sys
 import selftest as S
 
 HERE = S.HERE
+TAG = "sacred"
 FAMILY = "file:data/sacred.ksb"
 
 
 def items():
     out = {}
-    with open(os.path.join(HERE, "data", "sacred.tsv"), encoding="utf-8") as f:
+    with open(os.path.join(HERE, "data", TAG + ".tsv"), encoding="utf-8") as f:
         next(f)
         for line in f:
             name = line.split("\t")[0]
@@ -28,17 +29,21 @@ def items():
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--threads", type=int, default=os.cpu_count())
-    ap.add_argument("--out", default=os.path.join(S.OUT, "sacred_selftest.txt"))
+    ap.add_argument("--set", default="sacred", help="sacred (round 1) or sacred2 (round 2)")
+    ap.add_argument("--out", default=None)
     a = ap.parse_args()
+    global TAG, FAMILY
+    TAG, FAMILY = a.set, f"file:data/{a.set}.ksb"
+    a.out = a.out or os.path.join(S.OUT, f"{a.set}_selftest.txt")
     os.makedirs(S.TMP, exist_ok=True)
     by_fam = items()
     lines, ok, ci = [], True, 0
-    for fam in ("F1", "F3", "F4", "F5"):
+    for fam in sorted(by_fam):
         names = by_fam[fam]
         for k, (idx, off, mult, model, subst) in enumerate(((0, "1234", 1, 0, 0), (len(names) // 2, "5321", 28, 1, 1))):
             item = names[idx]
-            plant = os.path.join(S.TMP, f"sacred_plant{ci}.txt")
-            tsv = os.path.join(S.TMP, f"sacred_plant{ci}.tsv")
+            plant = os.path.join(S.TMP, f"{TAG}_plant{ci}.txt")
+            tsv = os.path.join(S.TMP, f"{TAG}_plant{ci}.tsv")
             S.run(["plant", S.rel(S.PLAIN), FAMILY, item, off, str(mult), str(model), "0.18", str(200 + ci), str(subst), S.rel(plant)])
             S.run(["screen", S.rel(plant), FAMILY, S.rel(tsv), f"only={item}", f"threads={a.threads}"])
             best = S.window_bests(tsv)

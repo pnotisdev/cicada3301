@@ -695,6 +695,21 @@ def campaigns(threads):
         lambda: [f"- controls: {last_line(sacred_selftest) or 'not run'}"] + ks_summary([("sacred streams x 8 sections", "sacred_segments.tsv")], "null_segments.tsv",
                                                                                     ["sacred_segments_verify.txt"])))
 
+    sacred2_selftest = RES / "kscreen" / "sacred2_selftest.txt"
+    C.append(Campaign(
+        "kscreen-sacred2", "DeepSeek's second batch: n^-1, discrete log, g^n, n^3 modulo primes = 1 (mod 29), base-29 digit sum",
+        "work/kscreen/sacred.py --round 2 builds 19 streams (G1 inverses, G2 discrete logs, G3 g^n for p = 59, 233, 349, 523, 929; G4 cubes for p = 59, 233, 929; G5 the sum of the two base-29 digits), each repeated over whole "
+        "periods so it is exactly uniform mod 29, all periodic with period 58-928. Same screen as kscreen-sacred. Controls: sacred_selftest.py --set sacred2. Periods up to about 400 were already excluded key-agnostically by the drift-period scan.",
+        [
+            Step("kscreen-sacred2/build", [PY, str(KS / "sacred.py"), "--round", "2"], hours=0.02, outputs=[KS / "data" / "sacred2.ksb"]),
+            Step("kscreen-sacred2/controls", [PY, str(KS / "sacred_selftest.py"), "--set", "sacred2", "--threads", str(T), "--out", str(sacred2_selftest)], hours=0.05,
+                 outputs=[sacred2_selftest], done_check=lambda: "PASSED" in (last_line(sacred2_selftest) or "")),
+            ks_screen("kscreen-sacred2", "library", "data/segments.txt", "file:data/sacred2.ksb", "sacred2_segments.tsv", T, hours=0.05),
+            ks_verify("kscreen-sacred2", "verify", "sacred2_segments.tsv"),
+        ],
+        lambda: [f"- controls: {last_line(sacred2_selftest) or 'not run'}"] + ks_summary([("DeepSeek batch 2 x 8 sections", "sacred2_segments.tsv")], "null_segments.tsv",
+                                                                                      ["sacred2_segments_verify.txt"])))
+
     C.append(Campaign(
         "prng-all", "Seeded-PRNG pads with a fresh seed per section",
         "phpmt sweeps of every seed of PHP<7.1 mt_rand, glibc random() and .NET System.Random on all 8 sections "

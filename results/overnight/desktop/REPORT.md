@@ -1,6 +1,6 @@
 # Overnight campaigns: report from desktop
 
-Generated on desktop at 2026-10-17 22:13:17 by `python jobs/overnight.py`. Thresholds and method: docs/CAMPAIGNS.md.
+Generated on desktop at 2026-10-17 22:22:52 by `python jobs/overnight.py`. Thresholds and method: docs/CAMPAIGNS.md.
 
 **Controls:** unit tests and kscreen selftest passed on desktop; null results below are validated.
 
@@ -116,6 +116,15 @@ work/kscreen/sacred.py builds streams the library lacks: F1 s1 + t*s2 and interl
 - sacred streams x 8 sections: best IoC 1.369 (below the 1.40 threshold; 629,728,288 decodes in 10 min)
 - matched null (random keystreams, same windows/settings): best 1.318
 - verification (sacred_segments_verify.txt): 0 of 15 re-decoded hits keep IoC >= 1.4 over their whole window and beat their own keystream's random offsets by 0.15 (none: noise)
+
+## kscreen-sacred2: DeepSeek's second batch: n^-1, discrete log, g^n, n^3 modulo primes = 1 (mod 29), base-29 digit sum (4/4 steps done)
+
+work/kscreen/sacred.py --round 2 builds 19 streams (G1 inverses, G2 discrete logs, G3 g^n for p = 59, 233, 349, 523, 929; G4 cubes for p = 59, 233, 929; G5 the sum of the two base-29 digits), each repeated over whole periods so it is exactly uniform mod 29, all periodic with period 58-928. Same screen as kscreen-sacred. Controls: sacred_selftest.py --set sacred2. Periods up to about 400 were already excluded key-agnostically by the drift-period scan.
+
+- controls: SACRED SELFTEST PASSED
+- DeepSeek batch 2 x 8 sections: best IoC 1.249 (below the 1.40 threshold; 1,250,080 decodes in 0 min)
+- matched null (random keystreams, same windows/settings): best 1.318
+- verification (sacred2_segments_verify.txt): 0 of 15 re-decoded hits keep IoC >= 1.4 over their whole window and beat their own keystream's random offsets by 0.15 (none: noise)
 
 ## prng-all: Seeded-PRNG pads with a fresh seed per section (6/6 steps done)
 
