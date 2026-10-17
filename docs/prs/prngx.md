@@ -31,11 +31,11 @@
 
 | gen | best screen score (planted 35-44; noise ceiling ~18) | whole-segment top 20 |
 |---|---|---|
-| rand48 | 18 | 0.09-0.10 (random 0.078) |
-| msvc | 18 | same |
-| java | 20 | same |
-| mt | 19 | same |
-| pymt | 20 | same |
+| rand48 | 18 | 0.085-0.118 (random seeds 0.078; a true key ~0.8) |
+| msvc | 18 | 0.082-0.107 |
+| java | 20 | 0.085-0.110 |
+| mt | 19 | 0.085-0.112 |
+| pymt | 20 | 0.086-0.107 |
 
 **OEIS lane** (`oeis.py`, `seq` generator): the 199,075 OEIS sequences with at least 40 terms (median 63; data from
 oeis.org/stripped.gz, CC BY-NC, not committed) as keystreams, at every start offset 0-127, all 28 multipliers, both
