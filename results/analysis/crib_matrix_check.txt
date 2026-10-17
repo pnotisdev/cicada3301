@@ -1,0 +1,20 @@
+section 0.7: 182 cipher words; first words of [8, 5] runes = the 13-rune heading, then [4, 3, 3, 11, 5, 4, 3, 3, 4, 3, 6, 11, 2, 2, 3, 3, 1, 6, 5, 8, 2, 3, 1, 2, 3, 3, 5, 2, 3, 2, 2, 4, 6, 4, 5, 1, 3, 4]
+the 33 crib words cover 141 runes; cipher word separators that fall INSIDE a crib word: 4 ([('FOREVER', 7), ('THINK', 4), ('WORD', 4), ('ANSWER', 6)]); crib word boundaries that are cipher separators: 32 of 32
+key of FIND = [2, 1, 26, 2] (quoted 2 1 26 2); YOU [3, 8, 21] (3 8 21); ARE [8, 5, 13] (8 5 13)
+key sums of the first three blocks [89, 115, 230] (quoted 89, 115, 230), total 434 (quoted 434); plus CANNOT = 57 -> 491 (quoted 491)
+matrix regions T/D/A/C/I/B: S0 115/17/61/46/32/83; S1 201/65/51/57/59/142; S2 255/89/55/90/54/201; S3 206/54/32/45/41/165; S4 192/41/72/62/51/141
+values repeated across different matrices: [32, 41, 51, 54, 201] (quoted 32, 201, 51, 54, 41)
+word-aligned 16-rune spans in the crib: 5 (quoted: exactly five)
+
+Fibonacci residues mod 29: [0, 1, 2, 3, 5, 8, 13, 21, 26, 28] (10 of 29 values, chance 0.345 per rune)
+key values in that set: first 14 body runes 14 of 14 (all 14 by chance: 3.4e-07); remaining 127 body runes 53 (chance expectation 44)
+   slot FIND: 1370 dictionary spellings of 4 runes, 20 give a key entirely inside the set: ['CIND', 'COOL', 'CORD', 'COREA', 'DIOL', 'DIONA', 'DIORY', 'DOOR', 'FIND', 'FOOD', 'FOOL', 'FORD', 'FOUL', 'FOUR']
+   slot YOU: 791 dictionary spellings of 3 runes, 28 give a key entirely inside the set: ['AGNG', 'AID', 'AIM', 'AMD', 'AND', 'ANN', 'AOL', 'FIN', 'FIX', 'FOX', 'HIM', 'HIU', 'HON', 'HONG']
+   slot ARE: 791 dictionary spellings of 3 runes, 39 give a key entirely inside the set: ['ABC', 'ABU', 'AGE', 'AGO', 'AID', 'AND', 'ANY', 'ARC', 'ARE', 'AREA', 'AUD', 'AUE', 'AUI', 'FBI']
+   slot NECESSARILY (8 of 11 in the set): 469 dictionary spellings of 11 runes, 6 give a key entirely inside the set (>= 8 of 11): ['BEASTIOLITY', 'BESTSELLERS', 'GEOGRAPHICAL', 'NECESSARILY', 'PHILADELPHIO', 'WESTMINSTER']
+
+nulls (20000 draws of random dictionary words with the crib's rune lengths on the same ciphertext):
+   values repeated across the five matrices: mean 2.4, P(>= 5) = 0.05 (observed 5)
+   key running total equal to 491 after CANNOT: 0.0000; at any of the 33 word ends: 0.0206
+   key values equal to 0 (plaintext rune = cipher rune): observed 6 of 141 (expected 4.9); null mean 4.4
+   Fibonacci-set keys among the first 14 runes for a random word choice: mean 4.8 of 14 (14 of 14 in 0 draws)

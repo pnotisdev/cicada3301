@@ -406,6 +406,11 @@ Details: `work/log/phase9_overnight_results.md`, `phase9_art.md`, `phase9_chain.
   solved-text word and phrase (12,944 streams) and the step-domain screens are all negative with controls; GPU handed back at 10:00 (resume commands at the end of
   `work/log/phase9_overnight_results.md`). Nothing in LP2 is solved.
 
+- **Midday of 2026-10-17:** community claims handed over by the user (a 27 x 27 'totient map' repo and PDF; the 'FIND YOU ARE NECESSARILY ALONE ...' crib with Fibonacci key matrices; page numerology)
+  were reproduced and given selection-aware nulls (`work/log/phase9_community_claims.md`): no 27-wide structure in 0.7 (the mirror count would see about 100 hidden mirrors); the Fibonacci key of
+  the crib is word-choice selection (20 / 28 / 39 alternative words fit the first three slots); matrix repeats 5 against a null mean 2.4 (P 0.05); the heading + body keys are in none of 199,088 OEIS
+  sequences (exact difference lookup, planted control found); first row 563 / first column 569 of the 121-rune page is 2e-5 for the fixed lines but about 6e-3 for any row and column. Nothing decrypts.
+
 ### Phase 5 – Validation and reporting
 - A plaintext counts as solved only if it scores well across a whole segment (word hits and IoC about 1.8)
   and the same rule works on the next page.

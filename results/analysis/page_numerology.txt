@@ -1,0 +1,26 @@
+74 non-empty page pieces, 15933 runes (random seed 11)
+A. the 121-rune page: first row 563, first column 569, whole page 6045
+   subgrids with circumference 1136, by size k: 5x5: 1, 8x8: 1
+   the 5 x 5 subgrid(s) at (row, col) = [(3, 3)]
+   shuffle null (1000000 shuffles of the same 121 runes): P(first row = 563 and first column = 569) = 2.10e-05 (21 hits);  P(ANY row = 563 and ANY column = 569) = 3.04e-03;  either order = 6.04e-03
+   P(some 5 x 5 circumference = 1136) = 0.009;  P(some k x k circumference, k = 3..11, = 1136) = 0.154;  P(any row/column pair AND a 5 x 5 ring) = 2.10e-05
+   pi(1136) = 189, GP(LAW) = 189; dictionary words with GP sum 189: 30 of 9908 (a three-letter word is one of 30 that fit)
+
+B. page counts 121 and 76: sum 197 (prime: True), pi(197) = 45, difference 45
+   grid sides (11, 11) and (4, 19): sum of the four sides = 45
+   among all 2701 pairs of the 74 non-empty pages: pi(sum) = difference: 9 pairs; side-sum = difference: 37; both: 1
+   the 76-rune page lacks ['O', 'N', 'T', 'Y'] with GP sum 198; last column of the 4 x 19 grid (runes 19, 38, 57, 76) sums to 198
+   shuffle null of the 76 runes: P(last column = 198) = 0.0121; P(some row or column = 198) = 0.209
+   pages with exactly four unused runes and a non-trivial grid: 1; those whose missing-rune sum equals some row or column sum: 1  (the claim is one of these)
+
+C. repeated runs of >= 5 runes inside LP2 (sections 0.7-0.15) and the page difference (dictionary: 9472 spelled words of 4-9 runes)
+   57 page pieces, 12956 runes
+   5 maximal repeats of >= 5 runes (any two places of the text)
+   run B M R N M (length 5) at pages 23/50, windows 16 before / 16 after: words in the difference: none; random-window hit rate 0.11
+   run D J U B E I (length 6) at pages 28/56, windows 16 before / 0 after: words in the difference: [('later-earlier', 'before', 'TRUTH')]; random-window hit rate 0.04
+   run O U N W M (length 5) at pages 29/34, windows 16 before / 16 after: words in the difference: none; random-window hit rate 0.11
+   run O F L OE ING (length 5) at pages 31/53, windows 16 before / 16 after: words in the difference: [('later-earlier', 'after', 'EARTH')]; random-window hit rate 0.11
+   run I M ING Y A (length 5) at pages 45/55, windows 16 before / 14 after: words in the difference: none; random-window hit rate 0.09
+   run lengths of the 5 repeats: 5: 4, 6: 1
+   alignments with a >= 4-rune dictionary word in the difference: 2 of 5; expected by chance 0.5; P(>= 2) = 0.068
+   random-window hit rate per alignment: mean 0.09 (min 0.04, max 0.11)
