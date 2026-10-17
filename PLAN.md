@@ -395,6 +395,13 @@ Details: `work/log/phase9_overnight_results.md`, `phase9_art.md`, `phase9_chain.
   word-index polynomial / grid key checks are negative with planted controls; seed sweeps of ten generators (`prng-step`) validated and queued
   (`work/log/phase9_step28.md`). An independent review corrected the IoC null tail (exact multinomial, random maximum ~1.42 at 240 steps).
 
+- **Word separators (07:30, `work/log/phase9_boundaries.md`):** LP2's word-length sequence has NO serial structure (mean PMI -0.060 under an English table;
+  English +0.050, the solved sections +0.006, z +4.2), and no simple distribution fits the histogram. With LP2's separators imposed on English plaintext a planted
+  seed scores 0 instead of 33 in the dictionary sweeps, so every boundary-aware dictionary search (prng-all, prng-more 0.7, rescreen, dsearch) is a non-result if
+  the separators are not the plaintext's word boundaries (the within-word lag-5 echo argues partly against that). Remedy: boundary-free seed sweeps
+  `prng-bg` (`work/phpmt/bg.py`, bigram log-likelihood, same ten generators; gates in `work/tests/test_bgmt.py`). The Gutenberg table of
+  `wordlen_languages.py` reproduces byte for byte.
+
 ### Phase 5 – Validation and reporting
 - A plaintext counts as solved only if it scores well across a whole segment (word hits and IoC about 1.8)
   and the same rule works on the next page.

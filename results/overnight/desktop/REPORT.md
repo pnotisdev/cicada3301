@@ -1,6 +1,6 @@
 # Overnight campaigns: report from desktop
 
-Generated on desktop at 2026-10-17 07:30:27 by `python jobs/overnight.py`. Thresholds and method: docs/CAMPAIGNS.md.
+Generated on desktop at 2026-10-17 07:32:53 by `python jobs/overnight.py`. Thresholds and method: docs/CAMPAIGNS.md.
 
 **Controls:** unit tests and kscreen selftest passed on desktop; null results below are validated.
 
@@ -184,6 +184,32 @@ py3 (CPython random.seed), mt32 / mt31 (std::mt19937, PHP >= 7.1), java (java.ut
   - mt32: not run
   - ruby: not run
   - py3: not run
+
+## prng-bg: Seeded-PRNG pads with a boundary-free score (English rune-bigram log-likelihood), window 0.7 (and every section) (0/40 steps done)
+
+The dictionary score of the earlier seed sweeps counts words between the transcription's word separators. LP2's word lengths have no serial structure (results/analysis/wordlen_adjacency.txt: mean PMI -0.060 against +0.050 for English and +0.006 for the solved sections), and with LP2's separators imposed on English plaintext a planted seed scores 0 instead of 33 (work/log/phase9_boundaries.md): if the separators are independent of the plaintext words, those sweeps could not see a true key. work/phpmt/bg.py scores a decoded window (120 runes) by the log-likelihood ratio of its plaintext under an English rune-bigram table instead, with the same ten generators, 16 variants and skip/coin beam. Gates: generators identical to phpmt.cu, scores equal to a Python reference, planted seeds recovered for every generator, random ciphertext gives no candidate (work/tests/test_bgmt.py).
+
+- controls (a skipped test counts as failed): not run
+- py3 (07): not run
+- java (07): not run
+- php (07): not run
+- glibc (07): not run
+- mt32 (07): not run
+- msvc (07): not run
+- drand48 (07): not run
+- ruby (07): not run
+- mt31 (07): not run
+- net (07): not run
+- py3 (all): not run
+- java (all): not run
+- php (all): not run
+- glibc (all): not run
+- mt32 (all): not run
+- msvc (all): not run
+- drand48 (all): not run
+- ruby (all): not run
+- mt31 (all): not run
+- net (all): not run
 
 ## kscreen-hashwords: Hash-seed keystreams of every word and phrase of the solved text (1/4 steps done)
 
