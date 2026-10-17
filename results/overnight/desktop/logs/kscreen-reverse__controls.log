@@ -1,0 +1,29 @@
+# <repo>\.venv\Scripts\python.exe <repo>\work\kscreen\chain_selftest.py --engine cuda --out <repo>\results\overnight\desktop\chain_selftest.txt
+# cwd <repo>
+# device cuda
+PASS  chain a=1 planted plant_eng0: best 1.748 item 'primes-1 (totient)' offset 1501 (planted 1500)
+PASS  chain a=1 planted plant_eng1: best 2.050 item 'primes-1 (totient)' offset 1501 (planted 1500)
+PASS  chain a=1 planted plant_eng2: best 1.599 item 'primes-1 (totient)' offset 1501 (planted 1500)
+PASS  chain a=1 planted but screened with a=2: best IoC 1.258 (must stay below 1.4)
+PASS  chain a=7 planted plant_eng0: best 1.761 item 'primes-1 (totient)' offset 1501 (planted 1500)
+PASS  chain a=7 planted plant_eng1: best 2.050 item 'primes-1 (totient)' offset 1501 (planted 1500)
+PASS  chain a=7 planted plant_eng2: best 1.619 item 'primes-1 (totient)' offset 1501 (planted 1500)
+PASS  chain a=7 planted but screened with a=2: best IoC 1.235 (must stay below 1.4)
+PASS  chain a=28 planted plant_eng0: best 1.752 item 'primes-1 (totient)' offset 1501 (planted 1500)
+PASS  chain a=28 planted plant_eng1: best 2.050 item 'primes-1 (totient)' offset 1502 (planted 1500)
+PASS  chain a=28 planted plant_eng2: best 1.603 item 'primes-1 (totient)' offset 1501 (planted 1500)
+PASS  chain a=28 planted but screened with a=2: best IoC 1.260 (must stay below 1.4)
+PASS  backward key, chain a=0, reversed windows plant_eng0: best 1.788 item 'primes-1 (totient)' offset 1096 (key index at the last rune 1096)
+PASS  backward key, chain a=0, reversed windows plant_eng1: best 1.980 item 'primes-1 (totient)' offset 1087 (key index at the last rune 1087)
+PASS  backward key, chain a=0, reversed windows plant_eng2: best 1.931 item 'primes-1 (totient)' offset 1091 (key index at the last rune 1091)
+PASS  backward key, chain a=0, read FORWARD: best IoC 1.240 (must stay below 1.4)
+PASS  backward key, chain a=7, reversed windows plant_eng0: best 1.788 item 'primes-1 (totient)' offset 1092 (key index at the last rune 1092)
+PASS  backward key, chain a=7, reversed windows plant_eng1: best 1.977 item 'primes-1 (totient)' offset 1090 (key index at the last rune 1090)
+PASS  backward key, chain a=7, reversed windows plant_eng2: best 1.879 item 'primes-1 (totient)' offset 1088 (key index at the last rune 1088)
+PASS  backward key, chain a=7, read FORWARD: best IoC 1.233 (must stay below 1.4)
+PASS  null a=1: 30 random keystreams x every offset x 8 LP2 chain windows x 2 signs x 2 models: best IoC 1.278 (must stay below 1.4)
+PASS  null a=7: 30 random keystreams x every offset x 8 LP2 chain windows x 2 signs x 2 models: best IoC 1.278 (must stay below 1.4)
+PASS  null a=28: 30 random keystreams x every offset x 8 LP2 chain windows x 2 signs x 2 models: best IoC 1.306 (must stay below 1.4)
+CHAIN SELFTEST PASSED
+
+# exit code 0, 54 s

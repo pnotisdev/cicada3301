@@ -1,0 +1,8 @@
+# <repo>\.venv\Scripts\python.exe <repo>\work\kscreen\step28.py verify <repo>\results\kscreen\step28_library.tsv --top 8 --out <repo>\results\kscreen\step28_library_verify.txt
+# cwd <repo>
+# device cpu
+# step28 verification of the 8 best windows of results/kscreen/step28_library.tsv: IoC of the decoded classes inside the window / beyond it, to the end of the section (a true key stays near 1.8, a chance maximum falls to 1.0)
+sec0.9@1200 B/drop m=17 stream #571 'sha256-ctr mod :2014' offset 5796: window 1.297, beyond (229 steps) 0.961
+sec0.7@300 A/keep m=27 stream #577 'sha256-chain mod :2014' offset 3355: window 1.285, beyond (128 steps) 1.027
+
+# exit code 0, 1 s

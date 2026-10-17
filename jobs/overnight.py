@@ -324,6 +324,40 @@ def step28_summary():
     return out
 
 
+BG_GENS = ("py3", "java", "php", "glibc", "mt32", "msvc", "drand48", "ruby", "mt31", "net")      # by speed of sweep and plausibility
+BG_SELFTEST = OVM / "prng_bg_selftest.txt"
+
+
+def prng_bg_steps(T, tags=("07",)):
+    """seed sweeps with the boundary-free bigram score (work/phpmt/bg.py): CUDA only"""
+    if DEVICE != "cuda":
+        return []
+    steps = [Step("prng-bg/controls", [PY, "work/tests/run_gate.py", "work.tests.test_bgmt"], hours=0.02, outputs=[BG_SELFTEST],
+                  always=True, stdout_to=BG_SELFTEST, device="cuda")]
+    for tag in tags:
+        for gen in BG_GENS:
+            tsv = RES / "prng" / f"bg_{gen}_{tag}.tsv"
+            log = RES / "prng" / f"bg_{gen}_{tag}.log"
+            ver = RES / "prng" / f"bg_{gen}_{tag}_verify.txt"
+            hi = 2 ** 31 if gen == "net" else 2 ** 32
+            done = lambda log=log: "swept" in log.read_text(encoding="utf-8", errors="replace") if log.exists() else False
+            steps.append(Step(f"prng-bg/{gen}-{tag}", [PY, str(WORK / "phpmt" / "bg.py"), "sweep", gen, tag, "0", str(hi), str(tsv)],
+                              hours=0.3 if tag == "07" else 2.0, outputs=[tsv], stderr_to=log, done_check=done, device="cuda"))
+            steps.append(Step(f"prng-bg/{gen}-{tag}-verify", [PY, str(WORK / "phpmt" / "bg.py"), "verify", str(tsv), "--gen", gen],
+                              hours=0.05, outputs=[ver], stdout_to=ver))
+    return steps
+
+
+def prng_bg_summary(tags=("07",)):
+    out = [f"- controls (a skipped test counts as failed): {last_line(BG_SELFTEST, r'^GATE') or 'not run'}"]
+    for tag in tags:
+        for gen in BG_GENS:
+            sw = last_line(RES / "prng" / f"bg_{gen}_{tag}.log", "swept")
+            ver = first_data_line(RES / "prng" / f"bg_{gen}_{tag}_verify.txt")
+            out.append(f"- {gen} ({tag}): {sw or 'not run'}" + (f"; best-ranked candidate: {ver}" if ver else ""))
+    return out
+
+
 STEP_GENS = ("py3", "php", "glibc", "java", "mt32", "net", "msvc", "drand48", "ruby", "mt31")
 STEP_SELFTEST = OVM / "prng_step_selftest.txt"
 
@@ -586,6 +620,18 @@ def campaigns(threads):
         prng_more_steps(T, ("all",)), lambda: prng_more_summary(("all",))))
 
     C.append(Campaign(
+        "prng-bg", "Seeded-PRNG pads with a boundary-free score (English rune-bigram log-likelihood), window 0.7 (and every section)",
+        "The dictionary score of the earlier seed sweeps counts words between the transcription's word separators. LP2's word lengths have no "
+        "serial structure (results/analysis/wordlen_adjacency.txt: mean PMI -0.060 against +0.050 for English and +0.006 for the solved sections), "
+        "and with LP2's separators imposed on English plaintext a planted seed scores 0 instead of 33 (work/log/phase9_boundaries.md): if the separators "
+        "are independent of the plaintext words, those sweeps could not see a true key. work/phpmt/bg.py scores a decoded window "
+        "(120 runes) by the log-likelihood ratio of its plaintext under an English rune-bigram table instead, with the same ten generators, "
+        "16 variants and skip/coin beam. Gates: generators identical to phpmt.cu, scores equal to a Python reference, planted seeds "
+        "recovered for every generator, random ciphertext gives no candidate (work/tests/test_bgmt.py).",
+        prng_bg_steps(T, ("07",)) + [x for x in prng_bg_steps(T, ("all",)) if not x.id.endswith("controls")],
+        lambda: prng_bg_summary(("07", "all"))))
+
+    C.append(Campaign(
         "kscreen-hashwords", "Hash-seed keystreams of every word and phrase of the solved text",
         "The library holds hash streams for only ~65 Cicada strings. work/kscreen/export_hashwords.py adds sha256/sha512/md5 counter streams and "
         "the sha256 chain, reduced mod 29 and by rejection, for each of the 809 words and two-word phrases of the solved text in upper and lower case "
@@ -745,7 +791,7 @@ def prng_steps(T):
     return steps
 
 
-NEW_GENS = ("py3", "mt32", "mt31", "java", "msvc", "drand48", "ruby")
+NEW_GENS = ("java", "msvc", "drand48", "mt31", "mt32", "ruby", "py3")      # cheapest sweeps first (java, msvc and drand48 take ~3 min per window on the GPU)
 
 
 def prng_more_steps(T, tags=("07", "all")):

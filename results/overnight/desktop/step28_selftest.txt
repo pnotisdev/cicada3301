@@ -1,0 +1,16 @@
+CPU == CUDA on a random library (24 settings): True
+null: best IoC of 6 random streams x 12 multipliers x 2 real windows = 1.155 (expect < 1.20)
+plant A/drop m=1: recovered RANDOM 1 offset 193 m=1 IoC 1.566  (truth RANDOM 1 193) OK
+plant A/drop m=5: recovered RANDOM 4 offset 180 m=5 IoC 1.732  (truth RANDOM 4 180) OK
+plant A/keep m=1: recovered RANDOM 0 offset 335 m=1 IoC 1.769  (truth RANDOM 0 335) OK
+plant A/keep m=5: recovered RANDOM 0 offset 1002 m=5 IoC 1.663  (truth RANDOM 0 1002) OK
+plant B/drop m=1: recovered RANDOM 3 offset 883 m=1 IoC 1.716  (truth RANDOM 3 883) OK
+plant B/drop m=5: recovered RANDOM 4 offset 527 m=5 IoC 1.708  (truth RANDOM 4 527) OK
+plant B/keep m=1: recovered RANDOM 0 offset 371 m=1 IoC 1.862  (truth RANDOM 0 371) OK
+plant B/keep m=5: recovered RANDOM 3 offset 707 m=5 IoC 1.842  (truth RANDOM 3 707) OK
+plant C/drop m=1: recovered RANDOM 3 offset 619 m=1 IoC 1.911  (truth RANDOM 3 619) OK
+plant C/drop m=5: recovered RANDOM 0 offset 1042 m=5 IoC 1.672  (truth RANDOM 0 1042) OK
+plant C/keep m=1: recovered RANDOM 4 offset 81 m=1 IoC 1.827  (truth RANDOM 4 81) OK
+plant C/keep m=5: recovered RANDOM 2 offset 757 m=5 IoC 1.787  (truth RANDOM 2 757) OK
+plant A read as B: best IoC 1.164 (expect < 1.3)
+SELFTEST PASSED

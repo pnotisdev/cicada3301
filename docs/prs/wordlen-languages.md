@@ -60,16 +60,15 @@ runes. Labels and text are fixed.
 ## Review (stronger-model pass, 2026-10-17)
 
 Merged locally. The script was read in full before it was run; it touches the network only under `--fetch`, which was
-**not** used (it downloads about a dozen Project Gutenberg texts; that needs the user's permission). Run without
+**not** used at first (it downloads Project Gutenberg texts; that needed the user's permission, given later). Run without
 `--fetch` it computes everything that depends on the Emerson text only, and those numbers reproduce the branch's
 table exactly: English runes G = 222.7, English letters G = 54.1, "+1 rune in a fraction of multi-rune words" G = 20.4
 (p = 0.025), "2-rune words missing" G = 17.1 (p = 0.071), per-rune insertion G = 143.5, fused boundaries G = 202.9,
 TH spelled as T+H G = 56.0, all digraphs as letters G = 54.1, every other single digraph G = 218-227
-(`results/analysis/wordlen_languages_offline.txt`; the committed `wordlen_languages.txt` with the other corpora is kept
-as written and not reproduced here).
-- **Not reproduced:** the 11-corpus table (other registers, Latin, German, French, Spanish, Italian). It needs the
-  fetch; the code that uses it is the same `words_of` / `hist` / `g_test` path that the Emerson rows exercise, and the
-  histogram and G-test are plain, so I found no reason to doubt it, but it has not been run here.
+(the committed `wordlen_languages.txt`).
+- **The full table reproduces too** (follow-up, after the user allowed the download on 2026-10-17): `--fetch` took the 16 Project Gutenberg texts
+  (15 MB into the git-ignored `work/ref/corpora/`); the regenerated `results/analysis/wordlen_languages.txt` is byte-identical to the branch's, so the
+  language and register rows (all rejected: Latin, German, French, Spanish, Italian p < 1e-57; English registers 1e-23 .. 1e-68 in runes) stand.
 - **The TH finding is real in the data and still only descriptive.** One zero-parameter change (THE becomes a 3-rune
   word) takes G from 223 to 56; no other digraph moves it. Still p = 5e-8, so something else is also missing (fewer
   2-rune words, more 7-8-rune words). Both the model and the cell choices were made after looking.

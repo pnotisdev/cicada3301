@@ -1,0 +1,11 @@
+LP2: 2928 words, mean 4.42, share by length 1..11,12+ (%): 3.4 15.9 24.8 17.6 10.9 8.6 7.3 5.4 2.6 1.7 1.0 0.9
+
+independent draws from a parametric family, fitted by minimum G (df = 11 - parameters):
+  shifted Poisson (L-1 ~ Poisson(lam))             G =   482.1  df = 10  p = 2.95e-97   shares 3.3 11.2 19.1 21.8 18.7 12.8 7.3 3.6 1.5 0.6 0.2 0.1
+  shifted negative binomial (L-1 ~ NB(r, p))       G =   170.1  df = 9  p = 5.93e-32   shares 6.4 14.3 18.5 18.1 14.8 10.8 7.1 4.4 2.6 1.4 0.8 0.8
+  shifted geometric mixture, 2 components          G =  1406.2  df = 8  p = 2.62e-298   shares 22.5 17.4 13.5 10.5 8.1 6.3 4.9 3.8 2.9 2.3 1.8 6.1
+  discretised log-normal (mu, sigma)               G =    85.1  df = 9  p = 1.57e-14   shares 3.3 16.4 22.2 19.1 13.7 9.1 5.8 3.7 2.3 1.5 0.9 1.8
+  discretised gamma (shape, scale)                 G =   123.9  df = 9  p = 2.11e-22   shares 5.1 14.6 19.6 18.8 14.9 10.5 6.8 4.2 2.4 1.4 0.7 1.0
+  discretised Weibull (shape, scale)               G =   261.4  df = 9  p = 3.96e-51   shares 7.4 13.7 17.1 17.4 15.1 11.5 7.7 4.6 2.5 1.2 0.5 1.2
+
+for comparison, the best English-based fits (wordlen_languages.py): +1 rune in 40% of multi-rune words G = 20.4 (df 10, p = 0.026); 2-rune words missing G = 17.1 (df 10, p = 0.07).
