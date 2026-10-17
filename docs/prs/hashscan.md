@@ -23,11 +23,11 @@ screens here tried 65 Cicada strings. A hashed passphrase costs microseconds, so
 ## Results (key starts on LP2 page 0, windows_07)
 | tier | candidates | best screen score | whole-segment check of top 20 |
 |---|---|---|---|
-| lore | 23,976 | 14 | 0.09-0.10 (random 0.078 +- 0.006) |
-| words | 29,722 | 14 | same |
-| dates | 146,327 | 14 | same |
-| pairs | 8,997,555 | 18 | same (best 0.110, z +5.5) |
-| numbers | 10,000,000 | 20 | same (best 0.108) |
+| lore | 23,976 | 14 | 0.075-0.103 (random strings 0.078 +- 0.006) |
+| words | 29,722 | 14 | 0.084-0.102 |
+| dates | 146,327 | 14 | 0.078-0.100 |
+| pairs | 8,997,555 | 18 | 0.093-0.112 (z up to +5.5) |
+| numbers | 10,000,000 | 20 | 0.084-0.110 |
 
 A planted key scores 35-44 on a 60-rune window and 0.8 over a whole segment. **Negative: no passphrase in these
 lists, under any of the 48 stream/map conventions and 8 cipher variants, is the LP2 key.** The throughput on the
