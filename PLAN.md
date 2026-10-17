@@ -420,6 +420,8 @@ Details: `work/log/phase9_overnight_results.md`, `phase9_art.md`, `phase9_chain.
 
 - **GPU, 30 minutes (13:30-13:56):** boundary-free sweeps of every section window over epoch-time seeds 2011-2015 (8 generators) and small integer seeds below 2^27 (php, glibc, py3): 0 candidates at +300 (prioritised ranges, not exhaustive). **Boundary-free OEIS lane (199,088 sequences):** negative, real best 181 / 246 against matched null bests 192 / 230; the top decodes are unreadable (`work/log/phase9_overnight_results.md`).
 
+- **KDF lane and the laptop's new branch (14:30):** the 719,280 passphrase key streams (RC4 / AES-CTR / ChaCha20 / PBKDF2 / scrypt) are negative on the boundary-free score (best 58, whole-section -8.9 to -10.2 per rune). `research/new-hypotheses` (keyless exclusions, the two-layer screen `layer2`, millisecond-timestamp seeds) was reviewed, not merged (`docs/prs/new-hypotheses.md`): its generator vectors re-check independently (86 of 86); accept after two changes.
+
 ### Phase 5 – Validation and reporting
 - A plaintext counts as solved only if it scores well across a whole segment (word hits and IoC about 1.8)
   and the same rule works on the next page.

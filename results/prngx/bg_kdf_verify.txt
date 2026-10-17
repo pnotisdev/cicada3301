@@ -1,0 +1,11 @@
+# boundary-free whole-section check of the best 10 KDF-lane rows of kdf_seqs.txt.tsv: bigram score per rune over 729 runes of section 0.7 (a true key keeps about +10, a wrong one about -10.5), against 8 random strings through the same stream and map
+58	'whatwehauenow'	aes256ctr map 1 mult 2 model 0 sign 1 atb 0: -8.85 per rune (random strings -10.54 +- 0.42)
+58	'whatwehauenow'	aes256ctr map 1 mult 27 model 0 sign -1 atb 0: -8.85 per rune (random strings -10.81 +- 0.58)
+58	'CNOW-TO-BE'	pbkdf2-sha256-1000 map 0 mult 10 model 0 sign 1 atb 1: -9.17 per rune (random strings -10.44 +- 0.36)
+58	'CNOW-TO-BE'	pbkdf2-sha256-1000 map 0 mult 19 model 0 sign -1 atb 1: -9.17 per rune (random strings -10.56 +- 0.60)
+57	'OFTHOUGHTTHEPROFESSOR'	aes256ctr map 1 mult 11 model 0 sign -1 atb 1: -9.66 per rune (random strings -10.76 +- 0.41)
+57	'OFTHOUGHTTHEPROFESSOR'	aes256ctr map 1 mult 11 model 1 sign -1 atb 1: -10.19 per rune (random strings -11.04 +- 0.58)
+57	'OFTHOUGHTTHEPROFESSOR'	aes256ctr map 1 mult 18 model 0 sign 1 atb 1: -9.66 per rune (random strings -10.37 +- 0.45)
+57	'OFTHOUGHTTHEPROFESSOR'	aes256ctr map 1 mult 18 model 1 sign 1 atb 1: -10.19 per rune (random strings -10.69 +- 0.49)
+57	'be_right'	pbkdf2-sha1-1 map 1 mult 2 model 0 sign 1 atb 1: -9.44 per rune (random strings -10.34 +- 0.40)
+57	'be_right'	pbkdf2-sha1-1 map 1 mult 27 model 0 sign -1 atb 1: -9.44 per rune (random strings -10.62 +- 0.44)

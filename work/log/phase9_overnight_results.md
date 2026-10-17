@@ -170,3 +170,10 @@ with the Python reference (`work/prngx/oeis_bg_verify.py`, `results/prngx/bg_oei
 'EHTSUGTHOFIANDILENT...') and the null best ('NMEGHISATBLIPLTR...') are equally unreadable at about +6 per rune, which is what the skip / coin beam makes of a random sequence over 25.5 million seeds and
 55 windows (random sequences at the same settings score -430 +- 100). The OEIS lane is closed as noise; the control of the lane is `work/prngx/oeis_bg_control.py` (planted primes found at rank 1).
 
+## KDF lane (CPU, 13:52-14:05; negative)
+
+The laptop's passphrase library (23,976 candidates from `work/hashscan/data/lore.txt`) through RC4 / RC4-drop768, AES-128/256-CTR, ChaCha20, PBKDF2 (SHA-1/256/512, 1 / 1000 / 4096 iterations) and scrypt, two
+byte maps: 719,280 key streams, swept on the first 120 runes of section 0.7 (offset 0, 28 multipliers, both signs, Atbash, both anti-repeat models; `prngx bgsweep seq`): 92,067,840 settings in 105 s, best score 58
+(the most a decode keeps when it stops at the 40-rune gate; gate +300). Whole-section check of the best 10: -8.85 to -10.19 per rune against -10.4 to -11.0 for random strings through the same stream. Files:
+`results/prngx/bg_kdf.*`, `bg_kdf_verify.txt`.
+
