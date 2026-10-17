@@ -575,6 +575,31 @@ def campaigns(threads):
                             ("library x 46 page restarts", "library_pages.tsv")], "null_pages.tsv",
                            ["library_heads_verify.txt", "library_pages_verify.txt"])))
 
+    C.append(Campaign(
+        "kscreen-typo", "Keystream library restarted at typographic marks",
+        "cicadanotebook.com proposed key restarts at the numbered list of 0.14 (items 1-5 and its 10-dot brackets), at the "
+        "three-dot marks and right after the red headings (work/log/typo_restarts_2026-10-17.md). 22 windows from "
+        "work/typo_restarts.py; the null has the library's size (1,439 random keystreams of 20,000), because windows under "
+        "250 runes are judged against their own maximum. Plants show the power per window length; the solved sections give "
+        "the known answer (their keys run through the marks); one keystream restarted at every list item is a separate "
+        "pooled test.",
+        [
+            Step("kscreen-typo/export", [PY, str(WORK / "typo_restarts.py"), "export"], hours=0.01,
+                 outputs=[KS / "data" / "typo.txt", KS / "data" / "typo_plain.txt"]),
+            ks_screen("kscreen-typo", "library", "data/typo.txt", "file:data/library.ksb", "library_typo.tsv", T, hours=1.0),
+            ks_screen("kscreen-typo", "null", "data/typo.txt", "rand:1439:17", "null_typo.tsv", T, hours=1.0),
+            ks_verify("kscreen-typo", "verify", "library_typo.tsv"),
+            Step("kscreen-typo/plants", [PY, str(WORK / "typo_restarts.py"), "plants"], hours=0.05,
+                 outputs=[RES / "kscreen" / "typo_plants.txt"]),
+            Step("kscreen-typo/known", [PY, str(WORK / "typo_restarts.py"), "known"], hours=0.01,
+                 outputs=[RES / "kscreen" / "typo_known.txt"]),
+            Step("kscreen-typo/pooled", [PY, str(WORK / "typo_restarts.py"), "pooled"], hours=0.1,
+                 outputs=[RES / "kscreen" / "typo_pooled.txt"]),
+            Step("kscreen-typo/summary", [PY, str(WORK / "typo_restarts.py"), "summary"], hours=0.01,
+                 outputs=[RES / "kscreen" / "typo_summary.txt"]),
+        ],
+        lambda: [f"- {line}" for line in (last_line(RES / "kscreen" / "typo_summary.txt", r"windows where") or "not run yet",)]))
+
     lin3_items = 28 * 29 * 29
     per = -(-lin3_items // LIN3_CHUNKS)
     lin3 = [ks_screen("kscreen-recurrences", f"lin3-{k:02d}", "data/segments.txt", "lin:3", f"lin3/chunk{k:02d}.tsv", T,
