@@ -23,18 +23,22 @@ The solved sections (words placed by the Cicadas) have English-like serial struc
 the last column, LP2 scores -0.060 (about 15 standard deviations lower). German verse shows that a language can have a weak lag-1 correlation but it
 still shows mutual information (z +6); LP2 shows neither.
 
-## Evidence 1b: the clause marks do not behave like sentence ends (`work/wordlen_clauses.py`)
+## Evidence 1b: the clause marks (`work/wordlen_clauses.py`) -- weaker than first stated
 
-| | clauses | words per clause (mean, CV) | first word of a clause | last word | all words |
+| | clauses | words per clause (mean, median, CV) | first word of a clause | last word | all words |
 |---|---|---|---|---|---|
-| LP2 | 168 | 19.7, CV **0.94** | 4.02 runes (z +0.7 against shuffled words) | 4.09 | 3.91 |
+| LP2, '.' only | 168 | 19.7, 15, CV 0.94 | 4.02 runes (z +0.7 against shuffled words) | 4.09 | 3.91 |
+| LP2, '.' plus the paragraph / page marks '%' and '&' | 212 | 15.6, 12, CV 0.81 | 3.85 | | 3.91 |
 | solved sections (the Cicadas' own marks) | 95 | 8.7, CV 0.71 | 3.73 (z +0.5) | 4.80 | 3.62 |
-| English prose (sentences) | 3,000 | 16.6, CV 0.70 | **3.14 (z -23)** | 5.61 | 4.09 |
+| English prose (sentences) | 3,000 | 16.6, 14, CV 0.70 | **3.14 (z -23)** | 5.61 | 4.09 |
 
-English sentences are shorter-starting (THE, IT, WE, A ...), longer-ending and regular (CV 0.7); LP2's clause lengths have a CV of 0.94, close to the
-geometric 0.97 of marks laid down at random, and its first and last words are ordinary words. (The solved sections show neither the start effect nor
-the regularity strongly with only 95 clauses, so this control is weaker than the PMI one.) Taken with Evidence 1: LP2's separators and clause marks
-look like they were laid over a continuous stream by a process that copies an English-like length distribution, not like the plaintext's own.
+The regularity of the clause lengths depends on what counts as a clause end: with '.' alone LP2's CV is 0.94 (near the geometric 0.97), with the
+paragraph and page marks added 0.81 and a median of 12 words, which is close to the laptop's independent figure (median 11, mean 14.8 against
+Emerson's 14 and 16.9, `docs/prs/INDEX.md`). So "clause lengths are random" is NOT established and I withdraw that part. What survives under both
+definitions is that the first word of a clause is an ordinary word (3.85-4.02 runes against 3.91 overall), where English sentences start with short
+function words (3.14 against 4.09); an English-like LP2 would have a first-word mean near 2.96, about 5.5 standard errors below the observed 3.85. The solved
+sections show no first-word effect either (95 clauses, too few to say). Taken with Evidence 1 (no serial structure in the word lengths) this still
+points away from the separators being the plaintext's word boundaries, with less weight than the first draft of this note gave it.
 
 ## Evidence 2: no simple distribution fits the length histogram (`work/wordlen_parametric.py`)
 
