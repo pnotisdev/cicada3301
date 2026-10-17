@@ -645,6 +645,60 @@ def campaigns(threads):
         lambda: ks_summary([("12,944 hash streams x 8 sections", "library_hashwords.tsv")], "null_hashwords.tsv",
                            ["library_hashwords_verify.txt"])))
 
+    hyp_selftest = OVM / "hyp_selftest.txt"
+    C.append(Campaign(
+        "kscreen-hyp", "Untested key families H3-H6 of docs/HYPOTHESES.md",
+        "work/kscreen/export_hyp.py: H3 every library stream decimated by d = 2..29; H4 prefix sums and per-word Gematria sums of the solved "
+        "plaintext and of Self-Reliance; H6 pi, e, phi, sqrt2 digits (bases 10, 29) from positions 10^6 and 3301*1033; H5 ciphertext as key "
+        "(the keyed solved sections, LP2 read backwards, and LP2's own ciphertext forwards, i.e. long-lag ciphertext autokey and keys from "
+        "another section; all 28 multipliers). Only streams that keep LP2's flat IoC are screened. LP2's own ciphertext needs the engine's G "
+        "guard (a window must not be deciphered with itself), which only the Rust engine has. Controls: work/kscreen/hyp_selftest.py.",
+        [
+            Step("kscreen-hyp/export", [PY, str(KS / "export_hyp.py")], hours=0.3,
+                 outputs=[KS / "data" / f for f in ("library_hyp.ksb", "library_h5.ksb", "library_self.ksb", "segments_self.txt")]),
+            # always rerun: it validates this machine's build and the guard
+            Step("kscreen-hyp/controls", [PY, str(KS / "hyp_selftest.py"), "--threads", str(T), "--out", str(hyp_selftest)],
+                 hours=0.05, outputs=[hyp_selftest], always=True),
+            ks_screen("kscreen-hyp", "null", "data/segments.txt", "rand:1300:31", "null_hyp.tsv", T, hours=0.6),
+            ks_screen("kscreen-hyp", "library", "data/segments.txt", "file:data/library_hyp.ksb", "library_hyp.tsv", T, hours=0.6),
+            ks_screen("kscreen-hyp", "h5", "data/segments.txt", "file:data/library_h5.ksb", "library_h5.tsv", T, ("mults=all",), hours=0.05),
+            Step("kscreen-hyp/self", [str(KS_BIN), "screen", "data/segments_self.txt", "file:data/library_self.ksb",
+                                      str(RES / "kscreen" / "library_self.tsv"), f"threads={T}", "mults=all"],
+                 cwd=KS, hours=0.05, outputs=[RES / "kscreen" / "library_self.tsv"]),
+            ks_verify("kscreen-hyp", "verify", "library_hyp.tsv"),
+            ks_verify("kscreen-hyp", "verify-h5", "library_h5.tsv"),
+            ks_verify("kscreen-hyp", "verify-self", "library_self.tsv"),
+        ],
+        lambda: [f"- controls on {MACHINE}: {last_line(hyp_selftest) or 'not run'}"]
+        + ks_summary([("H3 decimations, H4 text numbers, H6 deep constants x 8 sections", "library_hyp.tsv"),
+                      ("H5 solved ciphertexts and LP2 backwards x 28 multipliers", "library_h5.tsv"),
+                      ("H5 LP2's own ciphertext forwards (guarded) x 28 multipliers", "library_self.tsv")],
+                     "null_hyp.tsv", ["library_hyp_verify.txt", "library_h5_verify.txt", "library_self_verify.txt"])))
+
+    clock_selftest = OVM / "clock_selftest.txt"
+    clock_steps = [Step("kscreen-clock/controls", [PY, str(KS / "clock_selftest.py"), "--threads", str(T), "--out", str(clock_selftest)],
+                        hours=0.05, outputs=[clock_selftest], always=True)]
+    for ck, n, seed in (("c1", 300, 41), ("p1", 300, 42), ("ct", 150, 43), ("cp", 150, 44), ("pt", 150, 45), ("pp", 150, 46)):
+        for name, fam in (("null", f"rand:300:{seed}"), ("library", "file:data/library.ksb")):
+            tsv = RES / "kscreen" / f"clock_{ck}_{name}.tsv"
+            # CPU only: gpu.py has no clocked pointer
+            clock_steps.append(Step(f"kscreen-clock/{ck}-{name}", [str(KS_BIN), "screen", "data/segments.txt", fam, str(tsv),
+                                                                   f"threads={T}", f"clock={ck}", f"n={n}"],
+                                    cwd=KS, hours=0.08 if name == "null" else 0.35, outputs=[tsv]))
+        clock_steps.append(ks_verify("kscreen-clock", f"{ck}-verify", f"clock_{ck}_library.tsv"))
+    C.append(Campaign(
+        "kscreen-clock", "Clocked key pointer (H3): the pointer moves on by g(rune) instead of 1",
+        "docs/HYPOTHESES.md H3: after each rune the key pointer advances by 1 + its index, its Gematria prime or prime - 1, read from "
+        "the cipher rune (c1, cp, ct) or from the deciphered rune (p1, pp, pt; plaintext only without a substitution or shift). Every "
+        "earlier screen stepped the pointer by one. The 1,447-stream library at every offset on the 8 sections, both signs and "
+        "both anti-repeat models; the prime clocks use 150-rune windows because they consume about 44 key values per rune. "
+        "Controls: work/kscreen/clock_selftest.py (planted keys per clock, blindness of the unclocked screen); a 300-stream null per clock.",
+        clock_steps,
+        lambda: [f"- controls on {MACHINE}: {last_line(clock_selftest) or 'not run'}"]
+        + [x for ck in ("c1", "p1", "ct", "cp", "pt", "pp")
+           for x in ks_summary([(f"clock={ck}, library x 8 sections", f"clock_{ck}_library.tsv")], f"clock_{ck}_null.tsv",
+                               [f"clock_{ck}_library_verify.txt"])]))
+
     C.append(Campaign(
         "kscreen-step28", "Relative-rank chain cipher: the plaintext enters the STEP c_i - c_{i-1}, keyed mod 28",
         "The doublet fingerprint is also what a cipher gives whose ciphertext step is never zero (research note C1, "

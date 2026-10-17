@@ -1,0 +1,9 @@
+H10 with the anti-repeat skip modelled: 3528 machines with memory (a != 0 or a product) x 29 states, Viterbi on each LP2 section, English rune log-likelihood (English text: -2.9542 nats per rune; uniform runes: -4.2331)
+
+LP2: best -3.9417 nats per rune; next -3.9417 (S'=28*S+2*x+28*c+1 x=c-S), -3.9466 (S'=1*S+2*x+1*c+0 x=S-c), -3.9466 (S'=2*S+1*x+0*c+0 x=S-c)
+null (random runes with LP2's avoid-repeat rate, same section lengths): best -3.9435 nats per rune; next -3.9435 (S'=28*S+0*x+1*c+1 x=c+prime(S)-1), -3.9447 (S'=1*S+2*x+1*c+1 x=S-c), -3.9447 (S'=2*S+1*x+0*c+1 x=S-c)
+  PASS  planted with skips (keep 0.18) S'=1*prime(S)+28*x+0*c+0 x=prime(S)-c: -2.9972 nats per rune, best -2.9972
+  PASS  planted with skips (keep 0.18) S'=2*S^2+1*x+2*c+1 x=prime(S)-1-c: -3.0768 nats per rune, best -3.0768
+  PASS  planted with skips (keep 0.18) S'=28*S+0*x+1*c+0 x=prime(S)-1-c: -3.0927 nats per rune, best -3.0927
+
+controls PASSED; LP2 best -3.9417 against null -3.9435; verdict: NULL

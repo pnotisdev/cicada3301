@@ -46,6 +46,8 @@ def load_windows(path):
             wins[-1]["runes"] = np.array(line[2:].split(), dtype=np.uint8)
         elif line.startswith("P "):
             wins[-1]["pv"] = np.array(line[2:].split(), dtype=np.int8)
+        elif line.startswith("G "):
+            raise SystemExit(f"{path}: G lines (self-key guard) are only supported by the Rust engine")
     for w in wins:
         assert (w["runes"] < Q).all(), f"{w['name']}: rune out of range"
         if w["pv"] is None:                       # default: compare with the previous rune (as the Rust engine)
@@ -143,7 +145,10 @@ class Fam:
 
 
 def opts(args):
-    return dict(a.split("=", 1) for a in args)
+    o = dict(a.split("=", 1) for a in args)
+    if o.get("clock", "none") != "none":
+        raise SystemExit("clock= (clocked key pointer) is only supported by the Rust engine")
+    return o
 
 
 def list_u8(s):

@@ -1,0 +1,21 @@
+H10 29-state machines: 512 state updates x 9 cipher rules x 29 start states, 133,632 decodes per section, 8 LP2 sections (12947 runes)
+
+LP2: best mean IoC over 8 sections 1.0259; best single section 1.0516
+    1.0259  S'=0*S+0*x+1*c+0  x=c-S  per section 1.027 1.036 1.028 1.026 1.009 1.027 1.028 1.027
+    1.0259  S'=0*S+0*x+1*c+0  x=S-c  per section 1.027 1.036 1.028 1.026 1.009 1.027 1.028 1.027
+    1.0259  S'=0*S^2+0*x+28*c+0  x=c+S  per section 1.027 1.036 1.028 1.026 1.009 1.027 1.028 1.027
+    1.0259  S'=0*prime(S)+0*x+28*c+0  x=c+S  per section 1.027 1.036 1.028 1.026 1.009 1.027 1.028 1.027
+    1.0259  S'=0*prime(S)+0*x+28*c+1  x=c+S  per section 1.027 1.036 1.028 1.026 1.009 1.027 1.028 1.027
+null 1 (LP2 runes shuffled inside sections): best mean IoC over 8 sections 1.0169; best single section 1.0548
+    1.0169  S'=0*prime(S)-1+2*x+1*c+1  x=S-c  per section 1.033 1.021 1.011 1.013 1.025 1.014 1.013 1.004
+null 2 (LP2 runes shuffled inside sections): best mean IoC over 8 sections 1.0152; best single section 1.0488
+    1.0152  S'=2*S+0*x+1*c+1  x=c+prime(S)-1  per section 1.034 1.018 1.010 1.014 1.015 1.008 1.014 1.009
+
+Positive controls (English sections enciphered with a machine of the family, random S0 per section):
+  PASS  no skip: planted S'=0*S^2+1*x+28*c+1 x=prime(S)-c: its mean IoC 1.764; best 1.764 (S'=0*S+1*x+28*c+1 x=prime(S)-c)
+  PASS  no skip: planted S'=1*S+0*x+2*c+1 x=c-S: its mean IoC 1.764; best 1.764 (S'=1*S+0*x+2*c+1 x=c-S)
+  PASS  no skip: planted S'=2*S^2+28*x+2*c+0 x=c+prime(S)-1: its mean IoC 1.764; best 1.764 (S'=2*S^2+28*x+2*c+0 x=c+prime(S)-1)
+  PASS  skip, memoryless (a = 0): planted S'=0*S+0*x+2*c+1 x=c+prime(S): its mean IoC 1.766; best 1.766 (S'=0*S+0*x+2*c+1 x=c+prime(S))
+  info  skip, with memory: planted S'=1*S^2+1*x+2*c+0 x=c-prime(S)-1: its mean IoC 1.210; best 1.210 (S'=1*S^2+1*x+2*c+0 x=c-prime(S)-1)
+
+controls PASSED; LP2 best mean 1.0259 against shuffled nulls 1.0169, 1.0152; verdict: NULL (LP2 is inside the shuffled-null range)

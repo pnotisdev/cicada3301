@@ -68,7 +68,8 @@ def main():
             break
         checked += 1
         r = subprocess.run([BIN, "verify", windows, fam, h["item"], h["offset"], h["mult"], h["model"], h["window"],
-                            f"controls={args.controls}", *(["dir=back"] if meta.get("dir") == "back" else [])],
+                            f"controls={args.controls}", *(["dir=back"] if meta.get("dir") == "back" else []),
+                            *([f"clock={meta['clock']}"] if meta.get("clock") else [])],
                            cwd=HERE, capture_output=True, text=True)
         m = re.search(r"window (\S+) n (\d+) ioc ([\d.]+) pointer_jumps (\d+)", r.stdout)
         if not m:

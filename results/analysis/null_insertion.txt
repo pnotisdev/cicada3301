@@ -1,0 +1,16 @@
+H8 null on collision: LP2 2928 words; predicted insertion rate 0.0278 per rune
+
+  English runes                    no insertion                             G= 222.7 df=11 p=1.4e-41
+  English runes                    insertion 0.0278 (predicted, 0 fitted)   G= 182.3 df=11 p=3.4e-33
+  English runes                    insertion rate fitted                    G= 144.0 df=10 p=6.4e-26  rate 0.100 (95% 0.076-0.124)
+  English runes, TH spelled T+H    no insertion                             G=  56.0 df=11 p=5.1e-08
+  English runes, TH spelled T+H    insertion 0.0278 (predicted, 0 fitted)   G=  40.1 df=11 p=3.4e-05
+  English runes, TH spelled T+H    insertion rate fitted                    G=  38.7 df=10 p=2.9e-05  rate 0.039 (95% 0.021-0.059)
+
+Control: 100 samples of 2928 words from the TH base with nulls at 0.0278: fitted rate 0.0271 +- 0.0088; the 95% interval covers the truth in 94/100
+Verdict: ALIVE (TH base: G 56.0 without nulls, 40.1 at the predicted rate; fitted rate 0.039, 95% 0.021-0.059)
+
+Coverage: 3 English windows enciphered with 'primes-1 (totient)' under H8 (39 nulls in 1236 runes), screened by the existing kscreen (truth: offsets 1234, 2231, 3228):
+    window h8_0 best 1.7070 item=primes-1 (totient) offset=1234 mult=1 model=0
+    window h8_1 best 2.0180 item=primes-1 (totient) offset=2231 mult=1 model=0
+    window h8_2 best 1.5790 item=primes-1 (totient) offset=3228 mult=1 model=0

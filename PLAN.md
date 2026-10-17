@@ -428,6 +428,20 @@ Details: `work/log/phase9_overnight_results.md`, `phase9_art.md`, `phase9_chain.
 
 - **Keyless tests and their power (19:10, `work/log/phase10_keyless_power.md`):** the laptop's final `kscreen-typo` results (f096a8c, 22 windows): strong negative for the 250-300-rune windows (planted keys clear the null 45/45; the library beats its matched null by at most 0.037 IoC, 5 of 22), weak for the 91-139-rune list items (13/21 recovered); the shared-key test on the five list items (and the laptop's pooled test) found nothing and its power control passes (6 of 6 plants seen); the summary's 'CANDIDATE - inspect' line is a verify-rule artefact (short-window maxima, 1.9-2.0, are below the null's 2.1-2.2). The branch is still not merged (conflicts in the crib files, overlap with the second session's uncommitted files). A general fixed-map scan (any permutation between runes at distance 1-12, across words) is negative but cannot see LP2's 1.5% effect size (detects 6%); a sparse-tap key-recurrence scan (55,440 forms) finds only the known doublet deficit and lag-6 relation and fails its control for three-term forms. Lesson: ciphertext-only statistics see strong effects only; the specific hypotheses worth running are those that become a finite key family for a decode screen.
 
+- **Untested hypotheses (2026-10-17, `docs/HYPOTHESES.md`, details `work/log/phase9_hyp.md`):** H1-H12, each with its blind spot, controls and kill rule. Run so far:
+  - `kscreen-hyp` (CPU, 1 h): 16,071 decimated library streams (H3), text prefix sums (H4), pi / e / phi / sqrt2 from positions 10^6 and 3301*1033 (H6), LP2's ciphertext as its own key forwards
+    (guarded) and backwards (H5, 28 multipliers). Controls 15/15; best 1.3747 against a 1,300-stream null of 1.3553; 0 of 31 hits survive verification. **Negative.** New engine option: G lines
+    (a window is never deciphered with itself).
+  - H8 null on collision: alive as a partial word-length explanation (TH base G 56 -> 40 at the predicted 0.0278 per rune, 0 fitted; fitted 0.039, 95% 0.021-0.059), and it hides nothing
+    from the IoC screens (planted H8 keys found at their exact offsets).
+  - H9 two-time pad between sections under skip drift: power 0.05-0.42, **undecidable** (closes open lead 3).
+  - H10 small 29-state machines (4,608 rules x 29 start states): **null** (1.0259, the step-stream artefact, against shuffled 1.017 / 1.015; controls 4/4), and also with the
+    anti-repeat skip modelled exactly (Viterbi: LP2 -3.942 nats per rune against an avoid-repeat null of -3.944; planted machines -3.00 to -3.09, each the best).
+  - Keyless: no fixed-point rune (rune x word position chi^2 74.1 / 84 df; a fixed letter would add 30-1,010), the payload is byte-random (161 distinct of 256), the S echo is not "-SELVES".
+  - `kscreen-clock` (CPU, 1 h 07 min), H3 clocked pointer: new engine option `clock=` (the pointer moves on by 1 + index, the prime or prime - 1 of the cipher or deciphered
+    rune; default decodes unchanged, 19,200 compared). Controls 19/19; the library on 8 sections for all six clocks, each against its own 300-stream null; 0 of 90 hits survive
+    verification. **Negative.**
+
 ### Phase 5 – Validation and reporting
 - A plaintext counts as solved only if it scores well across a whole segment (word hits and IoC about 1.8)
   and the same rule works on the next page.

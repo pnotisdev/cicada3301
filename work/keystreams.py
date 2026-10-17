@@ -202,9 +202,9 @@ def predicted_ioc(ks, P, sign=1, atbash=False, n=4000):
 
 def period(ks, max_p=5000, probe=3000):
     """Smallest period p <= max_p (exact repetition over `probe` values), else None."""
-    for p in range(1, max_p + 1):
+    for p in np.flatnonzero(ks[1:max_p + 1] == ks[0]) + 1:   # only shifts that repeat the first value can match
         if np.array_equal(ks[p:p + probe], ks[:probe]):
-            return p
+            return int(p)
     return None
 
 

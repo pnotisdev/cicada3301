@@ -1,0 +1,13 @@
+# <repo>\work\kscreen\target\release\kscreen.exe screen data/segments.txt file:data/library.ksb <repo>\results\kscreen\clock_ct_library.tsv threads=8 clock=ct n=150
+# cwd <repo>\work\kscreen
+# device cpu
+kscreen: 1447 items, 8 windows (n<=150), mults [1, 28], models [0, 1], 172162560 decodes, 8 threads
+  9.31% (16028928 decodes) 695599 decodes/s, eta 224 s
+ 28.45% (48977280 decodes) 735858 decodes/s, eta 167 s
+ 47.59% (81925632 decodes) 747201 decodes/s, eta 121 s
+ 66.55% (114577152 decodes) 744823 decodes/s, eta 77 s
+ 84.48% (145447680 decodes) 743183 decodes/s, eta 36 s
+ 92.76% (159695616 decodes) 739215 decodes/s, eta 17 s
+kscreen: 172162560 decodes (0 aborted early) in 232 s; best IoC 1.6115; wrote <repo>\results\kscreen\clock_ct_library.tsv
+
+# exit code 0, 233 s

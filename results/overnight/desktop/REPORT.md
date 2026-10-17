@@ -1,6 +1,6 @@
 # Overnight campaigns: report from desktop
 
-Generated on desktop at 2026-10-17 10:18:28 by `python jobs/overnight.py`. Thresholds and method: docs/CAMPAIGNS.md.
+Generated on desktop at 2026-10-17 15:28:34 by `python jobs/overnight.py`. Thresholds and method: docs/CAMPAIGNS.md.
 
 **Controls:** unit tests and kscreen selftest passed on desktop; null results below are validated.
 
@@ -151,20 +151,20 @@ The doublet fingerprint (c_i - c_{i-1} flat except that 0 is missing) is what a 
 py3 (CPython random.seed), mt32 / mt31 (std::mt19937, PHP >= 7.1), java (java.util.Random), msvc (rand()), drand48 (drand48, Perl) and ruby (Ruby <= 2.7), each with two natural key mappings, all 2^32 seeds, 16 cipher variants (work/phpmt/src/gens.rs; the CUDA port is validated against the Rust engine, which is validated against CPython, NumPy and published vectors). Window 0.7 only: one pad starting at the first unsolved rune.
 
 - window 0.7 (one pad from the start of LP2):
-  - py3: swept 4294967296 seeds in 425 s; best score 22; verification:   screen  18 seed  818920650 seg0.7 model 0 map 1 sign -1 atb 1: full 0.075 (random seeds 0.076 +- 0.007, z -0.1)
-  - mt32: swept 4294967296 seeds in 324 s; best score 22; verification:   screen  18 seed 1234791201 seg0.7 model 1 map 1 sign  1 atb 0: full 0.078 (random seeds 0.076 +- 0.006, z +0.3)
-  - mt31: swept 4294967296 seeds in 330 s; best score 21; verification:   screen  18 seed 1749727333 seg0.7 model 0 map 0 sign -1 atb 1: full 0.074 (random seeds 0.077 +- 0.008, z -0.5)
   - java: swept 4294967296 seeds in 165 s; best score 21; verification:   screen  18 seed  731394255 seg0.7 model 1 map 1 sign  1 atb 0: full 0.074 (random seeds 0.076 +- 0.006, z -0.3)
   - msvc: swept 4294967296 seeds in 171 s; best score 21; verification:   screen  18 seed 1629347255 seg0.7 model 0 map 0 sign -1 atb 0: full 0.095 (random seeds 0.077 +- 0.007, z +2.5)
   - drand48: swept 4294967296 seeds in 171 s; best score 20; verification:   screen  18 seed  606886285 seg0.7 model 1 map 1 sign  1 atb 0: full 0.073 (random seeds 0.076 +- 0.006, z -0.5)
+  - mt31: swept 4294967296 seeds in 330 s; best score 21; verification:   screen  18 seed 1749727333 seg0.7 model 0 map 0 sign -1 atb 1: full 0.074 (random seeds 0.077 +- 0.008, z -0.5)
+  - mt32: swept 4294967296 seeds in 324 s; best score 22; verification:   screen  18 seed 1234791201 seg0.7 model 1 map 1 sign  1 atb 0: full 0.078 (random seeds 0.076 +- 0.006, z +0.3)
   - ruby: swept 4294967296 seeds in 421 s; best score 20; verification:   screen  18 seed 1257362876 seg0.7 model 1 map 0 sign  1 atb 1: full 0.074 (random seeds 0.079 +- 0.007, z -0.8)
+  - py3: swept 4294967296 seeds in 425 s; best score 22; verification:   screen  18 seed  818920650 seg0.7 model 0 map 1 sign -1 atb 1: full 0.075 (random seeds 0.076 +- 0.007, z -0.1)
 
-## kscreen-reverse: Key running BACKWARD through the text, with and without ciphertext feedback (a = 0..28) (131/146 steps done)
+## kscreen-reverse: Key running BACKWARD through the text, with and without ciphertext feedback (a = 0..28) (146/146 steps done)
 
 Every IoC screen so far read the key forward along the text. A key read from the end is covered by reversed windows and the engines' dir=back mode (a re-draw then uses a lower key index, so the used key comes first in pointer order). a = 0 is the ordinary cipher with a backward key; a = 1..28 combine it with ciphertext feedback. Same library, recurrences and polynomials as kscreen-sections; controls: planted backward keys recovered at the exact key index, the same ciphertext read forward not found (work/kscreen/chain_selftest.py).
 
 - controls: CHAIN SELFTEST PASSED
-- 26/29 multipliers done. best IoC per multiplier (library / order-2 recurrences / cubic polynomials; matched null):
+- 29/29 multipliers done. best IoC per multiplier (library / order-2 recurrences / cubic polynomials; matched null):
   - a= 0: 1.332 / 1.315 / 1.249; null 1.344
   - a= 1: 1.328 / 1.290 / 1.225; null 1.338
   - a= 2: 1.320 / 1.306 / 1.270; null 1.311
@@ -191,21 +191,49 @@ Every IoC screen so far read the key forward along the text. A key read from the
   - a=23: 1.338 / 1.361 / 1.245; null 1.336
   - a=24: 1.338 / 1.292 / 1.241; null 1.357
   - a=25: 1.318 / 1.315 / 1.243; null 1.355
+  - a=26: 1.339 / 1.278 / 1.254; null 1.319
+  - a=27: 1.322 / 1.302 / 1.245; null 1.359
+  - a=28: 1.343 / 1.306 / 1.263; null 1.332
 - largest: 1.387 (a=8, library); none reaches the 1.40 threshold
-- failed steps: kscreen-reverse/a26-library (see results/overnight/desktop/logs/)
 
 ## prng-more-all: More seeded-PRNG pads with a fresh seed per section (0/14 steps done)
 
 py3 (CPython random.seed), mt32 / mt31 (std::mt19937, PHP >= 7.1), java (java.util.Random), msvc (rand()), drand48 (drand48, Perl) and ruby (Ruby <= 2.7), each with two natural key mappings, all 2^32 seeds, 16 cipher variants (work/phpmt/src/gens.rs; the CUDA port is validated against the Rust engine, which is validated against CPython, NumPy and published vectors). A fresh seed per section: all 8 windows at once.
 
 - every section:
-  - py3: not run
-  - mt32: not run
-  - mt31: not run
   - java: not run
   - msvc: not run
   - drand48: not run
+  - mt31: not run
+  - mt32: not run
   - ruby: not run
+  - py3: not run
+
+## prng-bg: Seeded-PRNG pads with a boundary-free score (English rune-bigram log-likelihood), window 0.7 (and every section) (0/0 steps done)
+
+The dictionary score of the earlier seed sweeps counts words between the transcription's word separators. LP2's word lengths have no serial structure (results/analysis/wordlen_adjacency.txt: mean PMI -0.060 against +0.050 for English and +0.006 for the solved sections), and with LP2's separators imposed on English plaintext a planted seed scores 0 instead of 33 (work/log/phase9_boundaries.md): if the separators are independent of the plaintext words, those sweeps could not see a true key. work/phpmt/bg.py scores a decoded window (120 runes) by the log-likelihood ratio of its plaintext under an English rune-bigram table instead, with the same ten generators, 16 variants and skip/coin beam. Gates: generators identical to phpmt.cu, scores equal to a Python reference, planted seeds recovered for every generator, random ciphertext gives no candidate (work/tests/test_bgmt.py).
+
+- controls (a skipped test counts as failed): GATE PASSED
+- py3 (07): swept 4294967296 seeds in 1234 s; best score None; candidates >= 300: 0; best-ranked candidate: no candidate reached the sweep's floor
+- java (07): swept 4294967296 seeds in 736 s; best score None; candidates >= 300: 0; best-ranked candidate: no candidate reached the sweep's floor
+- php (07): swept 4294967296 seeds in 799 s; best score None; candidates >= 300: 0; best-ranked candidate: no candidate reached the sweep's floor
+- glibc (07): swept 4294967296 seeds in 778 s; best score None; candidates >= 300: 0; best-ranked candidate: no candidate reached the sweep's floor
+- mt32 (07): swept 4294967296 seeds in 1017 s; best score None; candidates >= 300: 0; best-ranked candidate: no candidate reached the sweep's floor
+- msvc (07): swept 4294967296 seeds in 665 s; best score None; candidates >= 300: 0; best-ranked candidate: no candidate reached the sweep's floor
+- drand48 (07): swept 4294967296 seeds in 720 s; best score None; candidates >= 300: 0; best-ranked candidate: no candidate reached the sweep's floor
+- ruby (07): swept 4294967296 seeds in 1209 s; best score None; candidates >= 300: 0; best-ranked candidate: no candidate reached the sweep's floor
+- mt31 (07): swept 4294967296 seeds in 970 s; best score None; candidates >= 300: 0; best-ranked candidate: no candidate reached the sweep's floor
+- net (07): swept 2147483648 seeds in 335 s; best score None; candidates >= 300: 0; best-ranked candidate: no candidate reached the sweep's floor
+- py3 (all): not run
+- java (all): not run
+- php (all): not run
+- glibc (all): not run
+- mt32 (all): not run
+- msvc (all): not run
+- drand48 (all): not run
+- ruby (all): not run
+- mt31 (all): not run
+- net (all): not run
 
 ## kscreen-hashwords: Hash-seed keystreams of every word and phrase of the solved text (4/4 steps done)
 
@@ -214,6 +242,43 @@ The library holds hash streams for only ~65 Cicada strings. work/kscreen/export_
 - 12,944 hash streams x 8 sections: best IoC 1.371 (below the 1.40 threshold; 8,125,932,544 decodes in 108 min)
 - matched null (random keystreams, same windows/settings): best 1.364
 - verification (library_hashwords_verify.txt): 0 of 15 re-decoded hits keep IoC >= 1.4 over their whole window and beat their own keystream's random offsets by 0.15 (none: noise)
+
+## kscreen-hyp: Untested key families H3-H6 of docs/HYPOTHESES.md (8/8 steps done)
+
+work/kscreen/export_hyp.py: H3 every library stream decimated by d = 2..29; H4 prefix sums and per-word Gematria sums of the solved plaintext and of Self-Reliance; H6 pi, e, phi, sqrt2 digits (bases 10, 29) from positions 10^6 and 3301*1033; H5 ciphertext as key (the keyed solved sections, LP2 read backwards, and LP2's own ciphertext forwards, i.e. long-lag ciphertext autokey and keys from another section; all 28 multipliers). Only streams that keep LP2's flat IoC are screened. LP2's own ciphertext needs the engine's G guard (a window must not be deciphered with itself), which only the Rust engine has. Controls: work/kscreen/hyp_selftest.py.
+
+- controls on desktop: HYP SELFTEST PASSED
+- H3 decimations, H4 text numbers, H6 deep constants x 8 sections: best IoC 1.375 (below the 1.40 threshold; 894,992,864 decodes in 27 min)
+- H5 solved ciphertexts and LP2 backwards x 28 multipliers: best IoC 1.307 (below the 1.40 threshold; 5,633,152 decodes in 1 min)
+- H5 LP2's own ciphertext forwards (guarded) x 28 multipliers: best IoC 1.265 (below the 1.40 threshold; 5,633,152 decodes in 1 min)
+- matched null (random keystreams, same windows/settings): best 1.355
+- verification (library_hyp_verify.txt): 0 of 15 re-decoded hits keep IoC >= 1.4 over their whole window and beat their own keystream's random offsets by 0.15 (none: noise)
+- verification (library_h5_verify.txt): 0 of 8 re-decoded hits keep IoC >= 1.4 over their whole window and beat their own keystream's random offsets by 0.15 (none: noise)
+- verification (library_self_verify.txt): 0 of 8 re-decoded hits keep IoC >= 1.4 over their whole window and beat their own keystream's random offsets by 0.15 (none: noise)
+
+## kscreen-clock: Clocked key pointer (H3): the pointer moves on by g(rune) instead of 1 (18/18 steps done)
+
+docs/HYPOTHESES.md H3: after each rune the key pointer advances by 1 + its index, its Gematria prime or prime - 1, read from the cipher rune (c1, cp, ct) or from the deciphered rune (p1, pp, pt; plaintext only without a substitution or shift). Every earlier screen stepped the pointer by one. The 1,447-stream library at every offset on the 8 sections, both signs and both anti-repeat models; the prime clocks use 150-rune windows because they consume about 44 key values per rune. Controls: work/kscreen/clock_selftest.py (planted keys per clock, blindness of the unclocked screen); a 300-stream null per clock.
+
+- controls on desktop: CLOCK SELFTEST PASSED
+- clock=c1, library x 8 sections: best IoC 1.317 (below the 1.40 threshold; 236,157,440 decodes in 6 min)
+- matched null (random keystreams, same windows/settings): best 1.318
+- verification (clock_c1_library_verify.txt): 0 of 15 re-decoded hits keep IoC >= 1.4 over their whole window and beat their own keystream's random offsets by 0.15 (none: noise)
+- clock=p1, library x 8 sections: best IoC 1.307 (below the 1.40 threshold; 236,157,440 decodes in 10 min)
+- matched null (random keystreams, same windows/settings): best 1.318
+- verification (clock_p1_library_verify.txt): 0 of 15 re-decoded hits keep IoC >= 1.4 over their whole window and beat their own keystream's random offsets by 0.15 (none: noise)
+- clock=ct, library x 8 sections: best IoC 1.611 (**above threshold, see verification**; 172,162,560 decodes in 4 min)
+- matched null (random keystreams, same windows/settings): best 1.593
+- verification (clock_ct_library_verify.txt): 0 of 15 re-decoded hits keep IoC >= 1.4 over their whole window and beat their own keystream's random offsets by 0.15 (none: noise)
+- clock=cp, library x 8 sections: best IoC 1.593 (**above threshold, see verification**; 172,162,560 decodes in 4 min)
+- matched null (random keystreams, same windows/settings): best 1.573
+- verification (clock_cp_library_verify.txt): 0 of 15 re-decoded hits keep IoC >= 1.4 over their whole window and beat their own keystream's random offsets by 0.15 (none: noise)
+- clock=pt, library x 8 sections: best IoC 1.593 (**above threshold, see verification**; 172,162,560 decodes in 10 min)
+- matched null (random keystreams, same windows/settings): best 1.604
+- verification (clock_pt_library_verify.txt): 0 of 15 re-decoded hits keep IoC >= 1.4 over their whole window and beat their own keystream's random offsets by 0.15 (none: noise)
+- clock=pp, library x 8 sections: best IoC 1.687 (**above threshold, see verification**; 172,162,560 decodes in 10 min)
+- matched null (random keystreams, same windows/settings): best 1.619
+- verification (clock_pp_library_verify.txt): 0 of 15 re-decoded hits keep IoC >= 1.4 over their whole window and beat their own keystream's random offsets by 0.15 (none: noise)
 
 ## kscreen-step28: Relative-rank chain cipher: the plaintext enters the STEP c_i - c_{i-1}, keyed mod 28 (0/0 steps done)
 

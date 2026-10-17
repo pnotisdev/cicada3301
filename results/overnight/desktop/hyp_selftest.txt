@@ -1,0 +1,15 @@
+PASS  plant 'dec7:primes-1 (totient)' mult=1 model=0 subst=0 plant_0: best 1.768 at offset 321 (truth 321); re-decode at truth 1.815
+PASS  plant 'dec7:primes-1 (totient)' mult=1 model=0 subst=0 plant_1: best 2.056 at offset 123 (truth 123); re-decode at truth 2.001
+PASS  plant 'dec7:primes-1 (totient)' mult=1 model=0 subst=0 plant_2: best 1.617 at offset 1116 (truth 1116); re-decode at truth 1.764
+PASS  plant 'Self-Reliance prefix sum of prime values' mult=28 model=1 subst=1 plant_0: best 1.732 at offset 2345 (truth 2345); re-decode at truth 1.791
+PASS  plant 'Self-Reliance prefix sum of prime values' mult=28 model=1 subst=1 plant_1: best 2.056 at offset 3342 (truth 3342); re-decode at truth 2.001
+PASS  plant 'Self-Reliance prefix sum of prime values' mult=28 model=1 subst=1 plant_2: best 1.609 at offset 4339 (truth 4339); re-decode at truth 1.756
+PASS  plant 'pi digits (base 29) from position 1000000' mult=1 model=1 subst=0 plant_0: best 1.724 at offset 777 (truth 777); re-decode at truth 1.781
+PASS  plant 'pi digits (base 29) from position 1000000' mult=1 model=1 subst=0 plant_1: best 2.056 at offset 1774 (truth 1774); re-decode at truth 1.998
+PASS  plant 'pi digits (base 29) from position 1000000' mult=1 model=1 subst=0 plant_2: best 1.609 at offset 2771 (truth 2771); re-decode at truth 1.756
+PASS  plant 'LP2 ciphertext (reversed)' mult=7 model=0 subst=1 plant_0: best 1.749 at offset 4321 (truth 4321); re-decode at truth 1.803
+PASS  plant 'LP2 ciphertext (reversed)' mult=7 model=0 subst=1 plant_1: best 2.056 at offset 5318 (truth 5318); re-decode at truth 2.001
+PASS  plant 'LP2 ciphertext (reversed)' mult=7 model=0 subst=1 plant_2: best 1.602 at offset 6315 (truth 6315); re-decode at truth 1.754
+PASS  ciphertext autokey (L = 500, guard on): best 1.782 at offset 0 (truth 0); re-decode over 1197 runes 1.865
+PASS  guard: seg0.8 keyed by its own ciphertext 0-12 runes back: best IoC 29.00 without the G line (degenerate), 1.170 with it
+HYP SELFTEST PASSED

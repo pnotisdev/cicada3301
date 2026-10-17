@@ -1,0 +1,25 @@
+# <repo>\.venv\Scripts\python.exe <repo>\work\kscreen\clock_selftest.py --threads 8 --out <repo>\results\overnight\desktop\clock_selftest.txt
+# cwd <repo>
+# device cpu
+PASS  clock=c1 plant 'primes-1 (totient)' mult=1 model=0 plant_0: best 1.734 at offset 1234 (truth 1234); re-decode at truth 1.791
+PASS  clock=c1 plant 'primes-1 (totient)' mult=1 model=0 plant_1: best 2.063 at offset 2231 (truth 2231); re-decode at truth 2.006
+PASS  clock=c1 plant 'primes-1 (totient)' mult=1 model=0 plant_2: best 1.609 at offset 3228 (truth 3228); re-decode at truth 1.763
+PASS  blindness: the clock=c1 plants screened without the clock: best 1.218 (must stay below 1.4)
+PASS  clock=cp plant 'Self-Reliance prefix sum of prime values' mult=28 model=1 plant_0: best 1.718 at offset 2345 (truth 2345); re-decode at truth 1.803
+PASS  clock=cp plant 'Self-Reliance prefix sum of prime values' mult=28 model=1 plant_1: best 2.032 at offset 3342 (truth 3342); re-decode at truth 2.009
+PASS  clock=cp plant 'Self-Reliance prefix sum of prime values' mult=28 model=1 plant_2: best 1.544 at offset 4339 (truth 4339); re-decode at truth 1.758
+PASS  clock=ct plant 'Self-Reliance prefix sum of prime values' mult=1 model=0 plant_0: best 1.757 at offset 2346 (truth 2345); re-decode at truth 1.813
+PASS  clock=ct plant 'Self-Reliance prefix sum of prime values' mult=1 model=0 plant_1: best 2.040 at offset 3342 (truth 3342); re-decode at truth 2.021
+PASS  clock=ct plant 'Self-Reliance prefix sum of prime values' mult=1 model=0 plant_2: best 1.562 at offset 4339 (truth 4339); re-decode at truth 1.758
+PASS  clock=p1 plant 'primes-1 (totient)' mult=28 model=1 plant_0: best 1.751 at offset 1248 (truth 1234); re-decode at truth 1.803
+PASS  clock=p1 plant 'primes-1 (totient)' mult=28 model=1 plant_1: best 2.069 at offset 2231 (truth 2231); re-decode at truth 2.001
+PASS  clock=p1 plant 'primes-1 (totient)' mult=28 model=1 plant_2: best 1.579 at offset 3259 (truth 3228); re-decode at truth 1.710
+PASS  clock=pp plant 'Self-Reliance prefix sum of prime values' mult=1 model=0 plant_0: best 1.731 at offset 2389 (truth 2345); re-decode at truth 1.803
+PASS  clock=pp plant 'Self-Reliance prefix sum of prime values' mult=1 model=0 plant_1: best 2.047 at offset 3322 (truth 3342); re-decode at truth 2.001
+PASS  clock=pp plant 'Self-Reliance prefix sum of prime values' mult=1 model=0 plant_2: best 1.562 at offset 4330 (truth 4339); re-decode at truth 1.756
+PASS  clock=pt plant 'Self-Reliance prefix sum of prime values' mult=28 model=1 plant_0: best 1.726 at offset 2289 (truth 2345); re-decode at truth 1.803
+PASS  clock=pt plant 'Self-Reliance prefix sum of prime values' mult=28 model=1 plant_1: best 2.040 at offset 3342 (truth 3342); re-decode at truth 2.001
+PASS  clock=pt plant 'Self-Reliance prefix sum of prime values' mult=28 model=1 plant_2: best 1.562 at offset 4369 (truth 4339); re-decode at truth 1.756
+CLOCK SELFTEST PASSED
+
+# exit code 0, 34 s

@@ -47,6 +47,37 @@ const Q: usize = 29;
 /// Decoding then follows the text with a forward pointer into the reversed key; since a re-draw uses a LOWER key index,
 /// in pointer order the used key comes first and the colliding draws follow it (the opposite of the forward model).
 static BACK: AtomicBool = AtomicBool::new(false);
+
+/// clock=<kind> (docs/HYPOTHESES.md H3): after enciphering a rune the key pointer moves on by g instead of 1, where g is
+/// read from the cipher rune c (c1: 1 + index, cp: its Gematria prime, ct: prime - 1) or from the deciphered rune t
+/// (p1, pp, pt; t is the plaintext only if no substitution or shift was applied). Anti-repeat draws still take the
+/// next key value; only the final step after a rune is clocked. Not supported with dir=back or by gpu.py.
+static CLOCK: AtomicUsize = AtomicUsize::new(0);
+const CLOCKS: [&str; 7] = ["none", "c1", "cp", "ct", "p1", "pp", "pt"];
+const GP: [usize; 29] = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109];
+
+fn set_clock(o: &std::collections::HashMap<String, String>) {
+    let k = o.get("clock").map_or(0, |c| CLOCKS.iter().position(|x| x == c).unwrap_or_else(|| panic!("clock={c}: use {CLOCKS:?}")));
+    assert!(k == 0 || !BACK.load(Ordering::Relaxed), "clock= is not supported with dir=back");
+    CLOCK.store(k, Ordering::Relaxed);
+}
+
+/// The pointer after a rune: `nj` is where an unclocked decoder would continue (last key index used + 1).
+#[inline]
+fn clocked(nj: usize, c: usize, t: u8) -> usize {
+    let k = CLOCK.load(Ordering::Relaxed);
+    if k == 0 {
+        return nj;
+    }
+    let r = if k <= 3 { c } else { t as usize };
+    nj - 1 + match k % 3 { 1 => 1 + r, 2 => GP[r], _ => GP[r] - 1 }
+}
+
+/// Key values a decode of n runes may need: n plus slack, times the clock's mean step with a margin.
+fn key_need(n: usize) -> usize {
+    let scale = match CLOCK.load(Ordering::Relaxed) { 0 => 1, 1 | 4 => 19, _ => 55 };
+    (n + n / 4 + 8) * scale
+}
 const HBINS: usize = 400; // IoC histogram, bins of 0.01 over [0, 4)
 
 // ------------------------------------------------------------------ inputs
@@ -61,6 +92,16 @@ struct Win {
     /// c'_i = c_i - a*c_{i-1} and the check compares with (1-a)*c_{i-1}.
     pv: Vec<i32>,
     lens: String,
+    /// `G <index>`: the window's own first rune sits at this index of the keystream (LP2's ciphertext used as its
+    /// own key, export_hyp.py). The decoder then never deciphers rune i with key index g + i, which would give the
+    /// all-zero "plaintext" c_i - c_i. -1 (no G line): no restriction. Not supported with dir=back or by gpu.py.
+    g: i64,
+}
+
+/// The guard index for a decode starting at keystream offset `off`: rune i must not use key index guard + i.
+fn guard_of(w: &Win, off: usize) -> i64 {
+    assert!(w.g < 0 || !BACK.load(Ordering::Relaxed), "{}: G lines are not supported with dir=back", w.name);
+    if w.g >= off as i64 { w.g - off as i64 } else { -1 }
 }
 
 fn load_windows(path: &str) -> Vec<Win> {
@@ -71,7 +112,7 @@ fn load_windows(path: &str) -> Vec<Win> {
             let mut it = rest.split_whitespace();
             let name = it.next().expect("window name").to_string();
             let prev = it.next().map(|x| x.parse().expect("prev rune")).unwrap_or(-1);
-            out.push(Win { name, prev, runes: Vec::new(), pv: Vec::new(), lens: String::new() });
+            out.push(Win { name, prev, runes: Vec::new(), pv: Vec::new(), lens: String::new(), g: -1 });
         } else if let Some(rest) = line.strip_prefix("R ") {
             let w = out.last_mut().expect("R line before W line");
             w.runes = rest.split_whitespace().map(|x| x.parse::<u8>().expect("rune")).collect();
@@ -79,6 +120,8 @@ fn load_windows(path: &str) -> Vec<Win> {
             out.last_mut().expect("L line before W line").lens = rest.to_string();
         } else if let Some(rest) = line.strip_prefix("P ") {
             out.last_mut().expect("P line before W line").pv = rest.split_whitespace().map(|x| x.parse().expect("pv")).collect();
+        } else if let Some(rest) = line.strip_prefix("G ") {
+            out.last_mut().expect("G line before W line").g = rest.trim().parse().expect("G index");
         }
     }
     for w in out.iter_mut() {
@@ -338,6 +381,7 @@ fn take(st: &mut St, t: u8, nj: usize) {
 
 /// Beam decode of c[0..n] with additive key values mk (already multiplied). Returns (best coincidence
 /// pair count sum n_x(n_x-1), runes used). Aborts at `abort_at` runes when the best count is below `abort_s`.
+/// `guard` >= 0 forbids deciphering rune i with key index guard + i (see `Win::g`).
 #[allow(clippy::too_many_arguments)]
 fn ioc_beam(
     c: &[u8],
@@ -351,6 +395,7 @@ fn ioc_beam(
     tb: &Tb,
     cur: &mut Vec<St>,
     extra: &mut Vec<St>,
+    guard: i64,
 ) -> (u32, usize) {
     cur.clear();
     cur.push(St { j: 0, s: 0, cnt: [0; Q] });
@@ -359,6 +404,7 @@ fn ioc_beam(
     for i in 0..n {
         let ci = c[i] as usize;
         let prev: i32 = pvs[i];
+        let bad = if guard >= 0 { guard as usize + i } else { usize::MAX };
         extra.clear();
         let mut idx = 0;
         while idx < cur.len() {
@@ -393,24 +439,24 @@ fn ioc_beam(
                 } else if model == 0 {
                     let k1 = mk[j + 1] as usize;
                     let t1 = tb.sub[ci][k1];
-                    if tb.add[t1 as usize][k0] == pv {
+                    if tb.add[t1 as usize][k0] == pv && j + 1 != bad {
                         let mut s2 = cur[idx];
-                        take(&mut s2, t1, j + 2);
+                        take(&mut s2, t1, clocked(j + 2, ci, t1));
                         extra.push(s2);
                     }
                     let k2 = mk[j + 2] as usize;
                     let t2 = tb.sub[ci][k2];
-                    if tb.add[t2 as usize][k0] == pv && tb.add[t2 as usize][k1] == pv {
+                    if tb.add[t2 as usize][k0] == pv && tb.add[t2 as usize][k1] == pv && j + 2 != bad {
                         let mut s3 = cur[idx];
-                        take(&mut s3, t2, j + 3);
+                        take(&mut s3, t2, clocked(j + 3, ci, t2));
                         extra.push(s3);
                     }
                 } else {
                     let k2 = mk[j + 2] as usize;
                     let t2 = tb.sub[ci][k2];
-                    if tb.add[t2 as usize][k0] == pv {
+                    if tb.add[t2 as usize][k0] == pv && j + 2 != bad {
                         let mut s3 = cur[idx];
-                        take(&mut s3, t2, j + 3);
+                        take(&mut s3, t2, clocked(j + 3, ci, t2));
                         extra.push(s3);
                     }
                 }
@@ -418,9 +464,12 @@ fn ioc_beam(
             if back && model == 1 && prev >= 0 && prev == ci as i32 {
                 // a kept doublet, backward: the coin has the lower key index and the used key follows it
                 take(&mut cur[idx], tb.sub[ci][mk[j + 1] as usize], j + 2);
+            } else if j == bad {
+                cur.swap_remove(idx);
+                continue;
             } else {
                 let nj = if !back && model == 1 && prev == ci as i32 { j + 2 } else { j + 1 };
-                take(&mut cur[idx], t0, nj);
+                take(&mut cur[idx], t0, if back { nj } else { clocked(nj, ci, t0) });
             }
             idx += 1;
         }
@@ -465,7 +514,7 @@ fn ioc_of(s: u32, n: usize) -> f64 {
 }
 
 /// Full decode for verification: like ioc_beam (no abort) but keeps each state's plaintext and pointers.
-fn full_decode(c: &[u8], pvs: &[i32], mk: &[u8], model: u8, n: usize, beam: usize) -> (f64, Vec<u8>, Vec<u32>) {
+fn full_decode(c: &[u8], pvs: &[i32], mk: &[u8], model: u8, n: usize, beam: usize, guard: i64) -> (f64, Vec<u8>, Vec<u32>) {
     #[derive(Clone)]
     struct S2 {
         j: usize,
@@ -519,25 +568,29 @@ fn full_decode(c: &[u8], pvs: &[i32], mk: &[u8], model: u8, n: usize, beam: usiz
                 }
                 continue;
             }
+            let bad = if guard >= 0 { guard as usize + i } else { usize::MAX };
             let nj = if model == 1 && prev == ci as i32 { j + 2 } else { j + 1 };
-            next.push(step(st, tb.sub[ci][k0], j, nj));
+            if j != bad {
+                let t0 = tb.sub[ci][k0];
+                next.push(step(st, t0, j, clocked(nj, ci, t0)));
+            }
             if prev >= 0 {
                 let pv = prev as u8;
                 let k1 = mk[j + 1] as usize;
                 let k2 = mk[j + 2] as usize;
                 if model == 0 {
                     let t1 = tb.sub[ci][k1];
-                    if tb.add[t1 as usize][k0] == pv {
-                        next.push(step(st, t1, j + 1, j + 2));
+                    if tb.add[t1 as usize][k0] == pv && j + 1 != bad {
+                        next.push(step(st, t1, j + 1, clocked(j + 2, ci, t1)));
                     }
                     let t2 = tb.sub[ci][k2];
-                    if tb.add[t2 as usize][k0] == pv && tb.add[t2 as usize][k1] == pv {
-                        next.push(step(st, t2, j + 2, j + 3));
+                    if tb.add[t2 as usize][k0] == pv && tb.add[t2 as usize][k1] == pv && j + 2 != bad {
+                        next.push(step(st, t2, j + 2, clocked(j + 3, ci, t2)));
                     }
                 } else {
                     let t2 = tb.sub[ci][k2];
-                    if tb.add[t2 as usize][k0] == pv {
-                        next.push(step(st, t2, j + 2, j + 3));
+                    if tb.add[t2 as usize][k0] == pv && j + 2 != bad {
+                        next.push(step(st, t2, j + 2, clocked(j + 3, ci, t2)));
                     }
                 }
             }
@@ -603,6 +656,7 @@ fn mode_screen(args: &[String]) {
     let out_path = &args[2];
     let o = opts(&args[3..]);
     BACK.store(o.get("dir").map_or(false, |d| d == "back"), Ordering::Relaxed);
+    set_clock(&o);
     let n_req: usize = get(&o, "n", 300);
     let beam: usize = get(&o, "beam", 16);
     let mults = list_u8(&get(&o, "mults", "1,28".to_string()));
@@ -624,7 +678,7 @@ fn mode_screen(args: &[String]) {
     let wins: Vec<&Win> = all_wins.iter().filter(|w| w.runes.len() >= minlen).collect();
     let wn: Vec<usize> = wins.iter().map(|w| w.runes.len().min(n_req)).collect();
     let nmax = *wn.iter().max().expect("no windows");
-    let need = nmax + nmax / 4 + 8;
+    let need = key_need(nmax);
     let items: Vec<usize> = if let Some(name) = o.get("only") {
         vec![fam.find_item(name)]
     } else if let Some(r) = o.get("items") {
@@ -694,8 +748,9 @@ fn mode_screen(args: &[String]) {
                                 for (wi, w) in wins.iter().enumerate() {
                                     let n = wn[wi];
                                     let ab = if abort_at > 0 && abort_at < n { abort_at } else { 0 };
-                                    let (s, used) =
-                                        ioc_beam(&w.runes, &w.pv, &mk, model, n, beam, ab, abort_s, &tb, &mut cur, &mut extra);
+                                    let (s, used) = ioc_beam(
+                                        &w.runes, &w.pv, &mk, model, n, beam, ab, abort_s, &tb, &mut cur, &mut extra, guard_of(w, off),
+                                    );
                                     let ioc = ioc_of(s, used) as f32;
                                     runs += 1;
                                     if used < n {
@@ -755,7 +810,7 @@ fn mode_screen(args: &[String]) {
     let mut f = BufWriter::new(f);
     writeln!(
         f,
-        "# kscreen screen family={} windows={} n={} beam={} mults={} models={} abort={} runs={} aborted={} secs={:.0} dir={}",
+        "# kscreen screen family={} windows={} n={} beam={} mults={} models={} abort={} runs={} aborted={} secs={:.0} dir={}{}",
         args[1],
         args[0],
         nmax,
@@ -766,7 +821,9 @@ fn mode_screen(args: &[String]) {
         runs,
         aborted,
         secs,
-        if BACK.load(Ordering::Relaxed) { "back" } else { "fwd" }
+        if BACK.load(Ordering::Relaxed) { "back" } else { "fwd" },
+        // only a clocked run names its clock, so the default header stays byte-identical to gpu.py's
+        match CLOCK.load(Ordering::Relaxed) { 0 => String::new(), k => format!(" clock={}", CLOCKS[k]) }
     )
     .unwrap();
     let best = hits.first().map(|h| h.ioc).unwrap_or(0.0);
@@ -817,6 +874,7 @@ fn mode_trace(args: &[String]) {
     let fam = Fam::parse(&args[1]);
     let o = opts(&args[3..]);
     BACK.store(o.get("dir").map_or(false, |d| d == "back"), Ordering::Relaxed);
+    set_clock(&o);
     let n_req: usize = get(&o, "n", 300);
     let beam: usize = get(&o, "beam", 16);
     let mults = list_u8(&get(&o, "mults", "1,28".to_string()));
@@ -838,7 +896,7 @@ fn mode_trace(args: &[String]) {
     };
     let wins: Vec<&Win> = all_wins.iter().filter(|w| w.runes.len() >= minlen).collect();
     let nmax = wins.iter().map(|w| w.runes.len().min(n_req)).max().expect("no windows");
-    let need = nmax + nmax / 4 + 8;
+    let need = key_need(nmax);
     let tb = tables();
     let (mut cur, mut extra) = (Vec::new(), Vec::new());
     let (mut key, mut mk) = (vec![0u8; need], vec![0u8; need]);
@@ -857,7 +915,8 @@ fn mode_trace(args: &[String]) {
                     for (wi, w) in wins.iter().enumerate() {
                         let n = w.runes.len().min(n_req);
                         let ab = if abort_at > 0 && abort_at < n { abort_at } else { 0 };
-                        let (s, used) = ioc_beam(&w.runes, &w.pv, &mk, model, n, beam, ab, abort_s, &tb, &mut cur, &mut extra);
+                        let (s, used) =
+                            ioc_beam(&w.runes, &w.pv, &mk, model, n, beam, ab, abort_s, &tb, &mut cur, &mut extra, guard_of(w, off));
                         writeln!(out, "{item} {off} {m} {model} {wi} {s} {used}").unwrap();
                     }
                 }
@@ -882,6 +941,7 @@ fn mode_plant(args: &[String]) {
     let keep: f64 = args[6].parse().expect("keep");
     let mut rng = Rng(args[7].parse::<u64>().expect("seed") ^ 0x0123_4567_89AB_CDEF);
     let subst = args[8] == "1";
+    set_clock(&opts(&args[10..]));
     let mut d: Vec<u8> = (0..Q as u8).collect();
     if subst {
         for i in (1..Q).rev() {
@@ -892,7 +952,7 @@ fn mode_plant(args: &[String]) {
     let coeffs = fam.coeffs(item);
     let mut out = String::new();
     for (wi, w) in wins.iter().enumerate() {
-        let len = w.runes.len() * 4 + 64;
+        let len = (w.runes.len() * 4).max(key_need(w.runes.len())) + 64;
         let noff = fam.offsets(item, len);
         assert!(noff > 0, "keystream too short to plant");
         let off = (off0 + 997 * wi) % noff;
@@ -920,6 +980,7 @@ fn mode_plant(args: &[String]) {
             }
             c.push(y as u8);
             prev = y;
+            j = clocked(j, y as usize, t as u8);
         }
         out += &format!(
             "# truth plant_{wi} item={} offset={} mult={m} model={model} keep={keep} subst={}\nW plant_{wi} -1\nR {}\nL {}\n",
@@ -946,13 +1007,29 @@ fn mode_verify(args: &[String]) {
     let model: u8 = args[5].parse().expect("model");
     let o = opts(&args[7..]);
     BACK.store(o.get("dir").map_or(false, |d| d == "back"), Ordering::Relaxed);
+    set_clock(&o);
     let n_req: usize = get(&o, "n", 0);
     let beam: usize = get(&o, "beam", 64);
     let coeffs = fam.coeffs(item);
     for w in wins.iter().filter(|w| args[6] == "all" || w.name == args[6]) {
-        let n = if n_req == 0 { w.runes.len() } else { n_req.min(w.runes.len()) };
-        let len = n + n / 4 + 16;
-        let noff = fam.offsets(item, len);
+        let mut n = if n_req == 0 { w.runes.len() } else { n_req.min(w.runes.len()) };
+        let mut len = key_need(n) + 8;
+        // a keystream shorter than the window (e.g. a decimated one): verify over as much of the window as it covers
+        while n > 300 && off >= fam.offsets(item, len) {
+            n -= 50;
+            len = key_need(n) + 8;
+        }
+        let mut noff = fam.offsets(item, len);
+        if off >= noff {
+            // a clocked pointer can need more key than the stream holds: decode as far as the key reaches
+            if let Fam::Ks(_) = &fam {
+                let avail = fam.offsets(item, 1).saturating_sub(off);
+                if avail >= 64 {
+                    len = avail;
+                    noff = fam.offsets(item, len);
+                }
+            }
+        }
         if off >= noff {
             println!("window {} skipped: keystream too short for offset {off}", w.name);
             continue;
@@ -960,7 +1037,7 @@ fn mode_verify(args: &[String]) {
         let mut key = vec![0u8; len];
         fam.fill(item, &coeffs, off, &mut key);
         let mk: Vec<u8> = key.iter().map(|&k| (k as usize * m % Q) as u8).collect();
-        let (ioc, plain, ptr) = full_decode(&w.runes, &w.pv, &mk, model, n, beam);
+        let (ioc, plain, ptr) = full_decode(&w.runes, &w.pv, &mk, model, n, beam, guard_of(w, off));
         let skips = ptr.windows(2).filter(|p| p[1] != p[0] + 1).count();
         println!("window {} n {} ioc {:.4} pointer_jumps {}", w.name, plain.len(), ioc, skips);
         println!("plain {}", join(&plain));
@@ -975,7 +1052,7 @@ fn mode_verify(args: &[String]) {
                 let co = rng.below(noff as u64) as usize;
                 fam.fill(item, &coeffs, co, &mut key);
                 let cmk: Vec<u8> = key.iter().map(|&k| (k as usize * m % Q) as u8).collect();
-                vals.push(full_decode(&w.runes, &w.pv, &cmk, model, n, beam).0);
+                vals.push(full_decode(&w.runes, &w.pv, &cmk, model, n, beam, guard_of(w, co)).0);
             }
             let mx = vals.iter().cloned().fold(0.0f64, f64::max);
             let mean = vals.iter().sum::<f64>() / vals.len() as f64;

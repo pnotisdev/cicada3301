@@ -1,0 +1,14 @@
+# <repo>\work\kscreen\target\release\kscreen.exe screen data/segments.txt rand:300:42 <repo>\results\kscreen\clock_p1_null.tsv threads=8 clock=p1 n=300
+# cwd <repo>\work\kscreen
+# device cpu
+kscreen: 300 items, 8 windows (n<=300), mults [1, 28], models [0, 1], 122150400 decodes, 8 threads
+  7.67% (9364864 decodes) 364673 decodes/s, eta 309 s
+ 23.67% (28908928 decodes) 389131 decodes/s, eta 240 s
+ 39.67% (48452992 decodes) 395976 decodes/s, eta 186 s
+ 55.67% (67997056 decodes) 394899 decodes/s, eta 137 s
+ 71.33% (87133952 decodes) 395250 decodes/s, eta 89 s
+ 88.00% (107492352 decodes) 391564 decodes/s, eta 37 s
+ 96.00% (117264384 decodes) 391738 decodes/s, eta 12 s
+kscreen: 122150400 decodes (117839206 aborted early) in 314 s; best IoC 1.3178; wrote <repo>\results\kscreen\clock_p1_null.tsv
+
+# exit code 0, 314 s
