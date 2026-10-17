@@ -93,6 +93,7 @@ multi-rune words', p 0.085); flat IoC; the repeated 6-gram DJU-BEI (chance: P(>=
 | Sign flips by a rule ('their numbers are the direction'): word length, word sum or key-value parity | yes (decode screen over the library, about 20 rules) | small engine option, then hours | engine option |
 | A model-specific test of the length-clocked walk (relations at lags d and d + 5 powers of one permutation) | no at 1.5% (the general scan needs 6%) | - | a larger effect or a decode-based formulation |
 | Key reuse between sections | no (power 0.05-0.42) | - | - |
+| Book-internal construction: the 0.2 grid and the 0.6 square share one template (5x5, magic, centrally symmetric, 13 distinct values); index facts pi(1033) = 6 x 29, pi(3301) = 16 x 29 | no: analysis, not a key family (`work/squares_check.py`) | a recipe learned from the 0.2 grid (known inputs) and applied to 0.6 would be a candidate generator | - | an idea for the recipe |
 | Alive-but-unexplained: H8 null runes (word lengths), the S-carried echo, the lag-6 relation | observations, not key families | - | a mechanism |
 
 **Reading the table.** Everything above the line of 'engine work' is a seed or stream sweep whose scoring and controls already exist; those are the GPU candidates. The structural hypotheses with real
