@@ -1,6 +1,6 @@
 # Overnight campaigns: report from laptop
 
-Generated on laptop at 2026-10-17 16:52:56 by `python jobs/overnight.py`. Thresholds and method: docs/CAMPAIGNS.md.
+Generated on laptop at 2026-10-17 18:29:40 by `python jobs/overnight.py`. Thresholds and method: docs/CAMPAIGNS.md.
 
 **Controls:** unit tests and kscreen selftest passed on laptop; null results below are validated.
 
@@ -41,11 +41,11 @@ Same library, with the key restarting at each red heading / paragraph start (10 
 - verification (library_heads_verify.txt): 15 of 15 re-decoded hits keep IoC >= 1.4 over their whole window and beat their own keystream's random offsets by 0.15 (CANDIDATE - inspect)
 - verification (library_pages_verify.txt): 15 of 15 re-decoded hits keep IoC >= 1.4 over their whole window and beat their own keystream's random offsets by 0.15 (CANDIDATE - inspect)
 
-## kscreen-typo: Keystream library restarted at typographic marks (2/8 steps done)
+## kscreen-typo: Keystream library restarted at typographic marks (8/8 steps done)
 
 cicadanotebook.com proposed key restarts at the numbered list of 0.14 (items 1-5 and its 10-dot brackets), at the three-dot marks and right after the red headings (work/log/typo_restarts_2026-10-17.md). 22 windows from work/typo_restarts.py; the null has the library's size (1,439 random keystreams of 20,000), because windows under 250 runes are judged against their own maximum. Plants show the power per window length; the solved sections give the known answer (their keys run through the marks); one keystream restarted at every list item is a separate pooled test.
 
-- not run yet
+- windows where the library beats its matched null: 5 of 22 (about half expected by chance)
 
 ## kscreen-recurrences: Every linear recurrence and polynomial key mod 29 (31/31 steps done)
 
