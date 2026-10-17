@@ -21,8 +21,8 @@ description in `docs/prs/<name>.md`. Create a PR from a branch with
 
 ## Small observations that did not get their own branch
 - **The lag-5 echo is carried by the rune S (index 15).** 11 of the 102 within-word lag-5 coincidences are S (10.8%,
-  chance 3.25%, z ~ +4.4; other lags: 0-2%), spread over six of the eight sections. Seven of the eleven words start with
-  S and five have S at the first or last of the two equal positions (e.g. ᛋᚣᛗᛞᚣᛋ, ᛋᚩᛠᚳᛖᛋ, ᛋᛞᛝᚷᛚᛋᛞᛝ). The
+  chance 3.25%, z ~ +4.4; other lags: 0-2%), spread over six of the eight sections. In four of the eleven words the equal
+  S positions are 0 and 5 (e.g. ᛋᚣᛗᛞᚣᛋ, ᛋᚩᛠᚳᛖᛋ, ᛋᛞᛝᚷᛚᛋᛞᛝ, ᛋᛟᚱᚢᚹᛋᛚᛡ), the others at 1-3 and 6-8. The
   aldegonde note `rune-s-lag5-echo.md` reports the same. Any mechanism for the echo has to explain why S.
 - **Clause lengths are English-like**: LP2's '.'-delimited clauses have median 11 and mean 14.8 words (Emerson clauses
   median 14, mean 16.9; the solved pages 6 and 7.7).
