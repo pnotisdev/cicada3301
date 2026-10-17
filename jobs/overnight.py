@@ -100,6 +100,9 @@ PH_GPU = WORK / "phpmt" / "gpu.py"
 SELFTEST_CUDA = OVM / "kscreen_selftest_cuda.txt"
 GPU_VALIDATION = OVM / "gpu_validation.txt"
 CHAIN_SELFTEST = OVM / "chain_selftest.txt"
+L2 = WORK / "layer2"
+L2_BIN = L2 / "target" / "release" / f"layer2{EXE}"
+L2_SELFTEST = OVM / "layer2_selftest.txt"
 DEVICE = "cpu"                   # the device campaigns are built for: "cuda" only after detect_device() validated it
 LANE = "main"                    # runner lane: lanes have their own lock, so a GPU lane and a CPU lane can run together
 # measured on the 2080 Ti against the 16-thread Ryzen 7 2700X (work/log/phase8_gpu.md); only scale the --hours estimates
@@ -156,6 +159,40 @@ def ks_verify(cid, name, tsv_name, top=15, hours=0.05):
     out = RES / "kscreen" / tsv_name.replace(".tsv", "_verify.txt")
     return Step(f"{cid}/{name}", [PY, str(KS / "verify.py"), str(tsv), "--top", str(top), "--out", str(out)],
                 hours=hours, outputs=[out])
+
+
+def l2_screen(cid, name, windows, family, out, threads, extra=(), hours=0.5):
+    tsv = RES / "layer2" / out
+    return Step(f"{cid}/{name}", [str(L2_BIN), "screen", windows, family, str(tsv), f"threads={threads}", *extra],
+                cwd=L2, hours=hours, outputs=[tsv])
+
+
+def l2_verify(cid, name, tsv_name, top=15, hours=0.1):
+    tsv = RES / "layer2" / tsv_name
+    out = RES / "layer2" / tsv_name.replace(".tsv", "_verify.txt")
+    return Step(f"{cid}/{name}", [PY, str(L2 / "verify.py"), str(tsv), "--top", str(top), "--out", str(out)],
+                cwd=L2, hours=hours, outputs=[out])
+
+
+def l2_summary():
+    out = [f"- controls: {last_line(L2_SELFTEST) or 'not run'}"]
+    for label, name, unit in (("null: 20 random streams x the solved keys (bigram)", "null_bigram_solved.tsv", "per rune"),
+                              ("core streams x the solved keys DIVINITY / FIRFUMFERENFE / CIRCUMFERENCE (bigram)", "bigram_solved.tsv", "per rune"),
+                              ("20 Cicada streams x 30 Cicada keywords (bigram)", "bigram_words.tsv", "per rune"),
+                              ("core streams x any keyword of period 2-14 (column z)", "periodic_core.tsv", "z"),
+                              ("variant A1: 20 streams with a solved key folded in, one pointer (bigram)", "bigram_combined.tsv", "per rune")):
+        p = RES / "layer2" / name
+        if not p.exists():
+            out.append(f"- {label}: not run yet")
+            continue
+        head = open(p, encoding="utf-8").readline()
+        m = re.search(r"runs=(\d+).*secs=(\d+)", head)
+        best = next((l.split()[2] for l in open(p, encoding="utf-8") if l.startswith("# best")), "?")
+        out.append(f"- {label}: best {best} {unit}" + (f" ({int(m.group(1)):,} decodes in {int(m.group(2)) / 60:.0f} min)" if m else ""))
+        v = last_line(RES / "layer2" / name.replace(".tsv", "_verify.txt"), r"re-decoded hits pass")
+        if v:
+            out.append(f"  - verification: {v}")
+    return out
 
 
 def ks_best(tsv_name):
@@ -665,6 +702,42 @@ def campaigns(threads):
         "of coincidence of the decoded classes. Gates: keys equal the Rust engine for both alphabets, scores equal the numpy "
         "reference, planted seeds recovered for every generator, random ciphertext gives no candidate (work/tests/test_stepmt.py).",
         prng_step_steps(), prng_step_summary))
+
+    seg = "../kscreen/data/segments.txt"
+    C.append(Campaign(
+        "layer2", "Two layers from the solved pages: keyword Vigenere inside, number stream with the anti-repeat rule outside",
+        "Hypothesis H-LAYER (work/log/hypotheses_2026-10-17.md): q = p + K[phi mod m] with the literal-F rule of Welcome / Koan 2 "
+        "(or without), then c = q + S_j with the skip / coin anti-repeat models. The outer layer explains the doublet deficit and "
+        "the flat statistics, and it hides the inner literal F (LP2 has no F excess); kscreen decodes the outer stream but scores a "
+        "Vigenere text (IoC ~1.1-1.2), so it is blind. work/layer2 keeps a beam over the outer pointer and the inner phase and scores "
+        "the decoded letters with an English rune-bigram table (identity and Atbash alphabets): a true key ~ +7 per rune, random "
+        "~ -15. Periodic mode covers any keyword of period 2-14 by column coincidences; its hits are checked by estimating the keyword "
+        "and rescoring. Controls: work/layer2/selftest.py (plants with and without literal F, both alphabets, both models; kscreen "
+        "blind to them; random streams below +2.0).",
+        [
+            Step("layer2/build", ["cargo", "build", "--release", "--manifest-path", str(L2 / "Cargo.toml")], always=True, hours=0.02),
+            Step("layer2/export", [PY, str(L2 / "export.py")], hours=0.02,
+                 outputs=[L2 / "data" / f for f in ("core.ksb", "core20.ksb", "combined.ksb", "keywords.txt", "keywords_solved.txt",
+                                                    "keyword_none.txt", "plain.txt")]),
+            Step("layer2/selftest", [PY, str(L2 / "selftest.py"), "--threads", str(T), "--out", str(L2_SELFTEST)], hours=0.3,
+                 outputs=[L2_SELFTEST], done_check=lambda: "PASSED" in (last_line(L2_SELFTEST) or "")),
+            l2_screen("layer2", "null", seg, "rand:20:91", "null_bigram_solved.tsv", T,
+                      ["mode=bigram", "kw=data/keywords_solved.txt"], hours=1.1),
+            l2_screen("layer2", "bigram-solved", seg, "file:data/core.ksb", "bigram_solved.tsv", T,
+                      ["mode=bigram", "kw=data/keywords_solved.txt"], hours=6.3),
+            l2_verify("layer2", "verify-solved", "bigram_solved.tsv"),
+            l2_screen("layer2", "bigram-words", seg, "file:data/core20.ksb", "bigram_words.tsv", T,
+                      ["mode=bigram", "kw=data/keywords.txt", "atb=0"], hours=4.0),
+            l2_verify("layer2", "verify-words", "bigram_words.tsv"),
+            l2_screen("layer2", "periodic", seg, "file:data/core.ksb", "periodic_core.tsv", T,
+                      ["mode=periodic", "ms=2:14", "litf=0"], hours=1.5),
+            l2_verify("layer2", "verify-periodic", "periodic_core.tsv", top=20, hours=0.3),
+            # variant A1: the keyword folded into the stream (one pointer); single layer, English-bigram score
+            l2_screen("layer2", "combined", seg, "file:data/combined.ksb", "bigram_combined.tsv", T,
+                      ["mode=bigram", "kw=data/keyword_none.txt", "litf=0", "isigns=1"], hours=0.6),
+            l2_verify("layer2", "verify-combined", "bigram_combined.tsv"),
+        ],
+        l2_summary))
     return C
 
 

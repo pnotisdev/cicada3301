@@ -1,0 +1,15 @@
+PASS  bigram plant 'primes-1 (totient)' kw=DIVINITY litf=1 atb=0 isign=1 mult=1 model=0 plant_0: best +7.483 at offset 1233 (truth 1234) [kw=DIVINITY isign=1 phase=5 litf=1 atb=0]; whole window at truth +7.349, matched null max -7.714
+PASS  bigram plant 'primes-1 (totient)' kw=DIVINITY litf=1 atb=0 isign=1 mult=1 model=0 plant_1: best +8.213 at offset 2231 (truth 2231) [kw=DIVINITY isign=1 phase=3 litf=1 atb=0]; whole window at truth +8.190, matched null max -7.742
+PASS  bigram plant 'primes-1 (totient)' kw=DIVINITY litf=1 atb=0 isign=1 mult=1 model=0 plant_2: best +7.170 at offset 3228 (truth 3228) [kw=DIVINITY isign=1 phase=3 litf=1 atb=0]; whole window at truth +7.587, matched null max -8.010
+PASS  blindness: kscreen re-decode of plant 0 at its true offset: IoC 1.182 (below its 1.40 threshold, so earlier screens could not see H-LAYER)
+PASS  bigram plant 'pi digits (base 29)' kw=FIRFUMFERENFE litf=0 atb=1 isign=28 mult=28 model=1 plant_0: best +7.430 at offset 777 (truth 777) [kw=FIRFUMFERENFE isign=28 phase=0 litf=0 atb=1]; whole window at truth +7.349, matched null max -9.789
+PASS  bigram plant 'pi digits (base 29)' kw=FIRFUMFERENFE litf=0 atb=1 isign=28 mult=28 model=1 plant_1: best +8.213 at offset 1774 (truth 1774) [kw=FIRFUMFERENFE isign=28 phase=0 litf=0 atb=1]; whole window at truth +8.110, matched null max -9.533
+PASS  bigram plant 'pi digits (base 29)' kw=FIRFUMFERENFE litf=0 atb=1 isign=28 mult=28 model=1 plant_2: best +7.267 at offset 2771 (truth 2771) [kw=FIRFUMFERENFE isign=28 phase=0 litf=0 atb=1]; whole window at truth +7.659, matched null max -9.165
+PASS  bigram plant 'phi(n)' kw=CIRCUMFERENCE litf=1 atb=1 isign=1 mult=1 model=1 plant_0: best +7.433 at offset 321 (truth 321) [kw=CIRCUMFERENCE isign=1 phase=6 litf=1 atb=1]; whole window at truth +7.349, matched null max -7.397
+PASS  bigram plant 'phi(n)' kw=CIRCUMFERENCE litf=1 atb=1 isign=1 mult=1 model=1 plant_1: best +8.213 at offset 1318 (truth 1318) [kw=CIRCUMFERENCE isign=1 phase=5 litf=1 atb=1]; whole window at truth +8.102, matched null max -7.410
+PASS  bigram plant 'phi(n)' kw=CIRCUMFERENCE litf=1 atb=1 isign=1 mult=1 model=1 plant_2: best +7.227 at offset 2315 (truth 2315) [kw=CIRCUMFERENCE isign=1 phase=5 litf=1 atb=1]; whole window at truth +7.629, matched null max -7.739
+PASS  periodic plant (keyword not in the file, m=6) plant_0: best z 11.09 at offset 2001 (truth 2000) [m=6 litf=0]; keyword estimate + bigram re-decode: candidate
+PASS  periodic plant (keyword not in the file, m=6) plant_1: best z 17.68 at offset 2997 (truth 2997) [m=6 litf=0]; keyword estimate + bigram re-decode: candidate
+PASS  periodic plant (keyword not in the file, m=6) plant_2: best z 10.39 at offset 3994 (truth 3994) [m=6 litf=0]; keyword estimate + bigram re-decode: candidate
+PASS  null: 3 random streams x 3000 offsets x the solved keywords (all phases, signs, literal F, Atbash) x 8 LP2 windows: best -4.773 per rune (must stay below 2.0)
+SELFTEST PASSED

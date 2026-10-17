@@ -416,6 +416,27 @@ Details: `work/log/phase9_overnight_results.md`, `phase9_art.md`, `phase9_chain.
   plaintext / ciphertext autokeys, per-word keys and Vigenere periods up to 29 are excluded. The lag-5 effect is reproduced by period-5 alphabets per word or a 1.5% lag-5 copy; no family that otherwise fits reproduces its
   concentration on rune S (calibrated P 0.0073). Side scan: the affine relation c' = 24 - 2c at lag 6 (z +5.0, P 0.013 over lags and relations, split-half P 0.035) is an unreplicated lead.
 
+### Phase 10 – New hypotheses: keyless exclusions and the two-layer screen (2026-10-17, laptop)
+Details: `work/log/hypotheses_2026-10-17.md`; probes `work/tmp/hyp/` (output `results/analysis/hypotheses_2026-10-17.txt`);
+engine `work/layer2` (output `results/layer2/`).
+- **Keyless tests with planted controls.** Excluded: a running key plus a progressive (Trithemius) shift (progressive kappa:
+  LP2 +2.30 inside the null, plants +4.1 .. +5.3); multiplicative keystreams c = D(p)*k (no rune has a letter's word-position
+  profile, best G = 49 on 4 df); running keys made uniform by a cumulative sum (step chi-square 130-736 against LP2's 41);
+  the surviving doublets as a ditto code for one letter; a key restart after each surviving doublet (z -0.32, plants +17 .. +25).
+  Disfavoured (p ~ 0.05): any prime-based key at ANY offset for the identity and Atbash alphabets (such keys never take one
+  value; LP2 max z +1.89, plants median +3.55). The lag-5 echo is not concentrated in quoted speech.
+- **H-LAYER, new family:** the solved pages' two methods stacked, a keyword Vigenere inside (optionally with the literal-F
+  rule) and a number stream with the anti-repeat rule outside. It fits the fingerprint and explains why LP2 shows no literal-F
+  excess; kscreen is blind to it (IoC 1.18 at the true offset of a plant). `work/layer2` decodes both layers in one beam and
+  scores English bigrams (true key ~ +7 per rune, random ~ -15); periodic mode covers any keyword of period m. Selftest 14/14
+  (plants with and without literal F, both alphabets, both models, a keyword outside the list; random streams best -4.77).
+- **First slice negative:** An End's prime streams (p, p-1, p+1) x DIVINITY / FIRFUMFERENFE / CIRCUMFERENCE, every option and
+  offset, 8 sections: 512 M decodes, best -4.53 per rune; 0 of 15 hits survive whole-window verification.
+- **Queued:** campaign `layer2` for the desktop (115 streams x the solved keys, 20 streams x 30 keywords, periodic mode,
+  folded-key variant; about 13 h on 16 threads). Proposed next: time-seeded Java / Python generators (millisecond seeds of
+  2012-2014 are outside the 32-bit sweeps), crib-filtered sweeps ("AN INSTRUCTION" fits 0.8's heading under letter spelling),
+  direction-switching keys.
+
 ### Phase 5 – Validation and reporting
 - A plaintext counts as solved only if it scores well across a whole segment (word hits and IoC about 1.8)
   and the same rule works on the next page.

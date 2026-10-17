@@ -99,6 +99,16 @@ A new Claude session on the desktop (runner alias `desktop`, RTX 2080 Ti, 32 GB)
   tests before running them (done for `restart-columns`, `word-internal-lag5`, `wordlen-languages`); run any new queue only one
   at a time; the user allowed commits, pushes, pulls and merges directly (never credentials). Pushed 2026-10-17 02:10.
 
+## 7. The laptop, second session (2026-10-17, from about 10:20, in parallel with the desktop's #42-#50)
+
+| # | User | What was done |
+|---|---|---|
+| 51 | "pull the latest data from my PC/github repo. Then come up with hypothesis and algorithms to maybe solve the book." | Fetched `origin` and fast-forwarded the local `main` (28 commits from the desktop: merges of the laptop branches, review notes). The laptop's own prngx stage-B run (`work/prngx/campaign.py run stageB --gens rand48 msvc java`, started 03:47) was left running; the checkout moved to a new branch `research/new-hypotheses` off `main` (the prngx code and data are identical on both, so the run is unaffected). New work: six keyless tests with planted controls (five families excluded, one disfavoured) and a new engine `work/layer2` for the two-layer hypothesis H-LAYER (keyword Vigenere inside, number stream with the anti-repeat rule outside), with its selftest, a first LP2 run and a `layer2` campaign for the desktop. Details: Phase 10 in `PLAN.md`, `work/log/hypotheses_2026-10-17.md`. |
+
+- **Open after this session:** the stage-B result files of the laptop's prngx run (`results/prngx/*_b_*`) are untracked in this
+  checkout; when the run ends, switch back to `research/prngx-generators` (untracked files move with the checkout) and commit
+  them there. The full `layer2` campaign (about 13 h on 16 CPU threads) is for the desktop: `python jobs/overnight.py run layer2`.
+
 ## Decisions that stand
 
 - **Honesty.** Nothing in LP2 is solved. Every negative needs a positive control (a planted key the method
