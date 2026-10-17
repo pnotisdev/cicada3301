@@ -1,0 +1,24 @@
+Step-domain periodic-key scan, lags 2..3000: z = (equal pairs - pairs*S)/sd, S = sum f^2 of the step classes
+
+Controls (English classes, key of the given period, one 3000-step section; the scan must put the planted lag first):
+  planted A/drop period    97: best lag   485  z =  +9.79  found
+  planted A/drop period   400: best lag  1200  z =  +7.24  found
+  planted A/drop period  1200: best lag  1200  z =  +4.39  below 5.5 (low power at this period)
+  planted A/keep period    97: best lag  1164  z =  +8.51  found
+  planted A/keep period   400: best lag   400  z =  +6.54  found
+  planted A/keep period  1200: best lag  1200  z =  +4.40  below 5.5 (low power at this period)
+  planted B/drop period    97: best lag   485  z =  +9.78  found
+  planted B/drop period   400: best lag  1200  z =  +7.99  found
+  planted B/drop period  1200: best lag  1200  z =  +7.25  found
+  planted B/keep period    97: best lag   291  z = +10.91  found
+  planted B/keep period   400: best lag   400  z =  +7.03  found
+  planted B/keep period  1200: best lag  1200  z =  +9.14  found
+  null (20 random sections, max over the 4 settings): max z 4.41, median 3.74
+
+LP2 (max z over lags; the largest of ~3,000 lags x settings is about 4 by chance):
+  A/drop: concatenated sections: max z +3.03 at lag 2367; per section, top 3: 0.15 z=+3.69@58, 0.13 z=+3.50@790, 0.9 z=+3.39@88
+  A/keep: concatenated sections: max z +3.59 at lag 2148; per section, top 3: 0.14 z=+3.63@702, 0.11 z=+3.61@1295, 0.15 z=+3.45@2718
+  B/drop: concatenated sections: max z +3.03 at lag 2367; per section, top 3: 0.15 z=+3.69@58, 0.13 z=+3.50@790, 0.9 z=+3.39@88
+  B/keep: concatenated sections: max z +3.59 at lag 2148; per section, top 3: 0.14 z=+3.63@702, 0.11 z=+3.61@1295, 0.15 z=+3.45@2718
+
+controls passed
