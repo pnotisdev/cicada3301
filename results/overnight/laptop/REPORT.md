@@ -1,6 +1,6 @@
 # Overnight campaigns: report from laptop
 
-Generated on laptop at 2026-10-17 18:29:40 by `python jobs/overnight.py`. Thresholds and method: docs/CAMPAIGNS.md.
+Generated on laptop at 2026-10-17 20:05:58 by `python jobs/overnight.py`. Thresholds and method: docs/CAMPAIGNS.md.
 
 **Controls:** unit tests and kscreen selftest passed on laptop; null results below are validated.
 
@@ -247,6 +247,43 @@ The library holds hash streams for only ~65 Cicada strings. work/kscreen/export_
 - matched null (random keystreams, same windows/settings): best 1.364
 - verification (library_hashwords_verify.txt): 0 of 15 re-decoded hits keep IoC >= 1.4 over their whole window and beat their own keystream's random offsets by 0.15 (none: noise)
 
+## kscreen-hyp: Untested key families H3-H6 of docs/HYPOTHESES.md (7/8 steps done)
+
+work/kscreen/export_hyp.py: H3 every library stream decimated by d = 2..29; H4 prefix sums and per-word Gematria sums of the solved plaintext and of Self-Reliance; H6 pi, e, phi, sqrt2 digits (bases 10, 29) from positions 10^6 and 3301*1033; H5 ciphertext as key (the keyed solved sections, LP2 read backwards, and LP2's own ciphertext forwards, i.e. long-lag ciphertext autokey and keys from another section; all 28 multipliers). Only streams that keep LP2's flat IoC are screened. LP2's own ciphertext needs the engine's G guard (a window must not be deciphered with itself), which only the Rust engine has. Controls: work/kscreen/hyp_selftest.py.
+
+- controls on laptop: not run
+- H3 decimations, H4 text numbers, H6 deep constants x 8 sections: best IoC 1.375 (below the 1.40 threshold; 894,992,864 decodes in 27 min)
+- H5 solved ciphertexts and LP2 backwards x 28 multipliers: best IoC 1.307 (below the 1.40 threshold; 5,633,152 decodes in 1 min)
+- H5 LP2's own ciphertext forwards (guarded) x 28 multipliers: best IoC 1.265 (below the 1.40 threshold; 5,633,152 decodes in 1 min)
+- matched null (random keystreams, same windows/settings): best 1.355
+- verification (library_hyp_verify.txt): 0 of 15 re-decoded hits keep IoC >= 1.4 over their whole window and beat their own keystream's random offsets by 0.15 (none: noise)
+- verification (library_h5_verify.txt): 0 of 8 re-decoded hits keep IoC >= 1.4 over their whole window and beat their own keystream's random offsets by 0.15 (none: noise)
+- verification (library_self_verify.txt): 0 of 8 re-decoded hits keep IoC >= 1.4 over their whole window and beat their own keystream's random offsets by 0.15 (none: noise)
+
+## kscreen-clock: Clocked key pointer (H3): the pointer moves on by g(rune) instead of 1 (18/18 steps done)
+
+docs/HYPOTHESES.md H3: after each rune the key pointer advances by 1 + its index, its Gematria prime or prime - 1, read from the cipher rune (c1, cp, ct) or from the deciphered rune (p1, pp, pt; plaintext only without a substitution or shift). Every earlier screen stepped the pointer by one. The 1,447-stream library at every offset on the 8 sections, both signs and both anti-repeat models; the prime clocks use 150-rune windows because they consume about 44 key values per rune. Controls: work/kscreen/clock_selftest.py (planted keys per clock, blindness of the unclocked screen); a 300-stream null per clock.
+
+- controls on laptop: not run
+- clock=c1, library x 8 sections: best IoC 1.317 (below the 1.40 threshold; 236,157,440 decodes in 6 min)
+- matched null (random keystreams, same windows/settings): best 1.318
+- verification (clock_c1_library_verify.txt): 0 of 15 re-decoded hits keep IoC >= 1.4 over their whole window and beat their own keystream's random offsets by 0.15 (none: noise)
+- clock=p1, library x 8 sections: best IoC 1.307 (below the 1.40 threshold; 236,157,440 decodes in 10 min)
+- matched null (random keystreams, same windows/settings): best 1.318
+- verification (clock_p1_library_verify.txt): 0 of 15 re-decoded hits keep IoC >= 1.4 over their whole window and beat their own keystream's random offsets by 0.15 (none: noise)
+- clock=ct, library x 8 sections: best IoC 1.611 (**above threshold, see verification**; 172,162,560 decodes in 4 min)
+- matched null (random keystreams, same windows/settings): best 1.593
+- verification (clock_ct_library_verify.txt): 0 of 15 re-decoded hits keep IoC >= 1.4 over their whole window and beat their own keystream's random offsets by 0.15 (none: noise)
+- clock=cp, library x 8 sections: best IoC 1.593 (**above threshold, see verification**; 172,162,560 decodes in 4 min)
+- matched null (random keystreams, same windows/settings): best 1.573
+- verification (clock_cp_library_verify.txt): 0 of 15 re-decoded hits keep IoC >= 1.4 over their whole window and beat their own keystream's random offsets by 0.15 (none: noise)
+- clock=pt, library x 8 sections: best IoC 1.593 (**above threshold, see verification**; 172,162,560 decodes in 10 min)
+- matched null (random keystreams, same windows/settings): best 1.604
+- verification (clock_pt_library_verify.txt): 0 of 15 re-decoded hits keep IoC >= 1.4 over their whole window and beat their own keystream's random offsets by 0.15 (none: noise)
+- clock=pp, library x 8 sections: best IoC 1.687 (**above threshold, see verification**; 172,162,560 decodes in 10 min)
+- matched null (random keystreams, same windows/settings): best 1.619
+- verification (clock_pp_library_verify.txt): 0 of 15 re-decoded hits keep IoC >= 1.4 over their whole window and beat their own keystream's random offsets by 0.15 (none: noise)
+
 ## kscreen-step28: Relative-rank chain cipher: the plaintext enters the STEP c_i - c_{i-1}, keyed mod 28 (0/0 steps done)
 
 The doublet fingerprint is also what a cipher gives whose ciphertext step is never zero (research note C1, work/log/research_2026-10-17.md): D_i = 1 + (q_i + m*K_j) mod 28 (variant A), 2^(q_i + m*log K_j) (variant B) or the (q_i + m*K_j) mod 28-th of the 28 runes other than c_{i-1} (variant C, rank), with the rare zero step as a 'ditto' that consumes a key value or not. In the c domain the plaintext is a random walk and every earlier screen was blind to it; in the step domain the decoder is a plain subtraction with no beam. work/kscreen/step28.py counts the class histogram at every (stream, offset) for the 1,447-stream library and every unit multiplier of Z28, with planted-key recovery (variants A, B, C and both modes), CPU/CUDA agreement and matched nulls; work/step_periodicity.py scans periodic keys (lags to 3,000).
@@ -292,4 +329,5 @@ The 32-bit sweeps cover every time(NULL) seed but not new Random(System.currentT
 
 - gate on laptop: GPU not run; CPU not run
 - generator vectors (Java 48-bit and CPython two-word seeds): not run
-- no month swept yet
+- GPU java: 5 of 25 months done; candidates after the whole-section check: none
+- GPU py3: 5 of 25 months done; candidates after the whole-section check: none

@@ -329,9 +329,19 @@ def summary():
         lines.append(f"windows where the library beats its matched null: {above} of {len(lens)} (about half expected by chance)")
         ver = os.path.join(RES, "library_typo_verify.txt")
         if os.path.exists(ver):
+            hits = []
             with open(ver, encoding="utf-8") as f:
-                tail = [x.rstrip() for x in f if "re-decoded" in x]
-            lines += [f"verification: {x}" for x in tail[-1:]]
+                for x in f:
+                    m = re.match(r"([\d.]+) \(first \d+\) -> ([\d.]+) over (\d+) runes .*window=(\S+)", x)
+                    if m:
+                        hits.append((float(m.group(2)), m.group(4)))
+            beat = [(i, w) for i, w in hits if w in nb and i > nb[w][0]]
+            wins = sorted({w for _, w in hits})
+            # verify.py's own rule compares a hit with random offsets of its own keystream; a window under 150 runes passes
+            # that by chance (its matched null reaches IoC 1.65-2.22), so the window's null best is the test here
+            lines.append(f"verification of the top {len(hits)} hits (work/kscreen/verify.py), all in {', '.join(wins)}: "
+                         f"{len(beat)} beat their window's matched null best (verify.py's own 'CANDIDATE' rule does not use "
+                         "the window's null and is passed by chance in windows this short)")
     for name in ("typo_plants.txt", "typo_known.txt", "typo_pooled.txt"):
         p = os.path.join(RES, name)
         if os.path.exists(p):

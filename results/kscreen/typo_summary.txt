@@ -25,7 +25,7 @@ body_0.14@1471             118         1.727      1.760  sha256-ctr reject :INST
 body_0.15@8                300         1.298      1.293  sha512-ctr mod :program your mind @ 15151 (mult 28, model 1)
 body_0.15@3017             299         1.288      1.358  sha256-chain mod :LIBER PRIMUS @ 19470 (mult 28, model 1)
 windows where the library beats its matched null: 5 of 22 (about half expected by chance)
-verification: 14 of 15 re-decoded hits keep IoC >= 1.4 over their whole window and beat their own keystream's random offsets by 0.15 (CANDIDATE - inspect)
+verification of the top 15 hits (work/kscreen/verify.py), all in body_0.13@1443, item2_0.14@893, item4_0.14@1082: 0 beat their window's matched null best (verify.py's own 'CANDIDATE' rule does not use the window's null and is passed by chance in windows this short)
 
 ## typo_plants.txt
 Planted controls: a library key planted into English twins of the 22 windows (same scored length), screened with the true keystream at every offset; 'clears null' = its IoC beats the best of 1,439 random keystreams on the real LP2 window of that name.

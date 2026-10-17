@@ -521,8 +521,21 @@ engine `work/layer2` (output `results/layer2/`).
     - ciphertext feedback p = G(c_{i-1}, c_i) allows at most 5.53% for the top plaintext rune (random null 5.46%);
     - no LP2 word of 4+ runes repeats;
     - the phrase repeat has chance 4.3e-5 under independent keys, chosen after looking.
-  - **Ideas not yet run:** restarts at typography with the full library, using the second koan and page 56 as controls;
-    Euler-trail nulls; one-rune words as filters; a key-reuse scan anchored on the phrase.
+  - **Ideas not yet run:** Euler-trail nulls; one-rune words as filters; a key-reuse scan anchored on the phrase. The
+    typography restarts ran as `kscreen-typo` (next bullet).
+- **Typographic restarts, `kscreen-typo` (laptop, done by 19:30; write-up 20:45; `work/log/typo_restarts_2026-10-17.md`,
+  `work/typo_restarts.py`):** 22 new restart windows, judged against a matched null of the library's size. The desktop's
+  reading of the same results is two bullets up. **Negative.** Nothing in LP2 is solved.
+  - **Windows:** the 0.14 list's five items, its opening and closing 10-dot marks, the five three-dot marks, and the text
+    right after each red heading.
+  - **Known answers:** in the solved sections, restarting the key at a three-dot mark makes the second koan 209 of 209
+    and 28 of 33 runes wrong, An End 61 of 66; the continuous key gives 0.
+  - **Long windows (282-300 runes):** full power (45 of 45 plants clear their null); the library never reaches its
+    null by more than 0.037.
+  - **Short windows (81-139 runes):** weak power (9 of 21); the library is at or below its null in all 7; the 15
+    verified hits beat none of their windows' nulls. The summary's old "CANDIDATE" line was a verify-rule artefact and
+    now uses the window's null.
+  - **One key restarted at every list item:** 0 settings in 3 of the 5 items' top lists; plants 3 of 3.
 
 ### Phase 5 – Validation and reporting
 - A plaintext counts as solved only if it scores well across a whole segment (word hits and IoC about 1.8)
