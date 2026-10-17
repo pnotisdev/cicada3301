@@ -1,4 +1,4 @@
-# Handoff: continuing on the desktop PC (state of 2026-10-17, early morning)
+# Handoff: continuing on the desktop PC (state of 2026-10-17, ~03:30)
 
 Paste the prompt below into a new Claude Code session on the desktop, opened in this repository folder. `CLAUDE.md` is
 loaded automatically; the prompt adds the reading list, the live state and the open tasks. (The first version of this file
@@ -20,8 +20,7 @@ START WITH: read, in this order,
  4. results/overnight/desktop/REPORT.md and results/overnight/desktop/gpu_validation.txt
  5. work/log/phase9_*.md and work/log/research_2026-10-17.md
 Run `git status`, `git fetch` and `git log --all --oneline -10`: a weaker AI pushes research/* branches with tests that must
-be read as data and REWRITTEN before anything is run (see docs/prs/restart-columns.md for how the first one was reviewed;
-research/wordlen-languages was empty when this was written).
+be read as data and REWRITTEN before anything is run (see docs/prs/*.md for how the three so far were reviewed; check `git branch -r` for new ones).
 
 THE QUEUE (check first; do not start a campaign twice):
  - `python jobs/overnight.py list --device cuda` shows what is done. Lanes started 2026-10-17 00:36 on the desktop:
@@ -54,8 +53,8 @@ only; the other-language table needs the Gutenberg download, not done), a residu
 (p = 0.025); the screens already accept every spelling of a word; a null-tolerant matcher is not built. NEW: a lag-5 repeated-bigram
 excess inside words (9 against 1.5, replicated: permutation P < 1e-4) sits in 10-rune words (half-word lag), mechanism unknown
 (docs/prs/word-internal.md); (3) the four apostrophe cribs and the quote-mark spans (work/ref/tick_marks.tsv);
-(4) the Z28 step-domain variant of the chain family (needs an alphabet-size parameter in the engines; the mod-29 chain screen
-is partly sensitive to it, IoC ~1.45 for a true key); (5) PRNG sweeps of the "not covered" list in work/log/phase9_gens.md;
+(4) the step-domain family is DONE for the library, periodic keys and (queued) the PRNG seeds; open there: order-3 recurrences over
+Z28, windows other than the tiling, hash seeds of a much larger word list; (5) PRNG sweeps of the "not covered" list in work/log/phase9_gens.md;
 (6) the stray rune-sized "7" glyph (image 27, a one-glyph word); (7) the cuneiform header on images 50-56 (base-60 numerals
 17,13 / 55,1 = 1033 and 3301, per the research agent; unchecked by a specialist) and the base-60 payload on pages 64-66.
 
