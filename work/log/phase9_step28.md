@@ -63,3 +63,12 @@ structured null (random sections of LP2's lengths with the anti-repeat rule, 40 
 scans): LP2's largest z is 4.97 (variant C, concatenated sections, lag 781 in non-zero steps), 5 of 40 random replicates reach it: nothing.
 A planted-seed gate note: a multiplier m and m + 14 differ only where the key is odd, and English keeps about 77% of its coincidences under a
 shift of 14 classes, so on 240 steps the two can swap places (once in 30 plants); the long verification separates them.
+
+## Two cheap structural checks on keys that depend on the word layout (exploratory, with planted controls)
+
+- `work/tmp/word_index_poly.py` (`results/analysis/word_index_poly.txt`): for each position j = 0..5 inside the words, the stream of the j-th
+  rune of every word in book order, minus a1*w + a2*w^2 (mod 29, w = word index), 841 pairs: best IoC 1.008-1.040 against 1.012-1.043 for
+  shuffled word orders. Planted control (English first runes + 3w + 5w^2): recovered, IoC 1.89. No polynomial-in-the-word-index key.
+- `work/tmp/grid_key.py` (`results/analysis/grid_key.txt`): the whole book decoded with key a*w + b*j + c*w*j (24,389 triples; w = word index,
+  j = position in the word): best IoC 1.0030 against 1.0036 for a shuffled book; planted control (English + 4w + 7j + 2wj) recovered, IoC 1.76.
+  Both ignore the anti-repeat rule's pointer jumps, so they test keys indexed by the layout, not pointer-driven ones.
