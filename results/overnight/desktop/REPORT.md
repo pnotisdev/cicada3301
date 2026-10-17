@@ -1,6 +1,6 @@
 # Overnight campaigns: report from desktop
 
-Generated on desktop at 2026-10-17 02:09:35 by `python jobs/overnight.py`. Thresholds and method: docs/CAMPAIGNS.md.
+Generated on desktop at 2026-10-17 02:46:25 by `python jobs/overnight.py`. Thresholds and method: docs/CAMPAIGNS.md.
 
 **Controls:** unit tests and kscreen selftest passed on desktop; null results below are validated.
 
@@ -56,13 +56,13 @@ All linear recurrences of order 1-3 mod 29 (Fibonacci, Lucas, Pell, Tribonacci, 
 - verification (poly3_segments_verify.txt): 0 of 8 re-decoded hits keep IoC >= 1.4 over their whole window and beat their own keystream's random offsets by 0.15 (none: noise)
 - verification (lin3_segments_verify.txt): 0 of 10 re-decoded hits keep IoC >= 1.4 over their whole window and beat their own keystream's random offsets by 0.15 (none: noise)
 
-## rescreen: Dictionary screens rerun with the corrected word segmentation (2/4 steps done)
+## rescreen: Dictionary screens rerun with the corrected word segmentation (3/4 steps done)
 
 Screens 1 and 2, the reverse-direction screen and the heading-restart screen were run before the word-wrap fix (wrapped words were split, a handicap for a true key). English-dictionary scoring.
 
 - screen 1 (3 offsets):   0.155  CONTROL random 26                        seg 0.13 off=start    sign=+1 atbash=False b=24
 - screen 2 (all offsets): top 20 non-control:
-- reverse direction: not run
+- reverse direction: reverse direction: 893 keystreams; control max 0.167
 - heading restarts: not run
 
 ## dsearch: Key-free secret-alphabet search, large (0/86 steps done)
@@ -79,12 +79,13 @@ Hash identity tests and 832k passphrase AES/RC4/XOR decryptions, rerun on the co
 - hashes: not run
 - decryptions: not run
 
-## kscreen-multipliers: Keystream library x every key multiplier (0/2 steps done)
+## kscreen-multipliers: Keystream library x every key multiplier (2/2 steps done)
 
 The library again on the 8 sections with all 28 key multipliers (c = p + m*k), e.g. 3301*k = 24*k mod 29.
 
-- library x 28 multipliers: not run yet
+- library x 28 multipliers: best IoC 1.381 (below the 1.40 threshold; 5,729,965,248 decodes in 35 min)
 - matched null (random keystreams, same windows/settings): best 1.318
+- verification (library_segments_allmults_verify.txt): 0 of 15 re-decoded hits keep IoC >= 1.4 over their whole window and beat their own keystream's random offsets by 0.15 (none: noise)
 
 ## prng-all: Seeded-PRNG pads with a fresh seed per section (0/6 steps done)
 

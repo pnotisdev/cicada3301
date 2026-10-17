@@ -30,3 +30,27 @@ z 3.69 (section 0.15, lag 58) and 3.59 over all sections concatenated. No period
 This also excludes every order <= 2 linear recurrence and every polynomial key over Z28 (their periods are at most 784).
 
 **Not covered.** Seed sweeps of the PRNGs in the step domain (research note C2); order-3 recurrences over Z28; windows other than the tiling.
+
+## Seed sweeps in the step domain (research note C2): `work/phpmt/step.py`, `stepmt.cu`, campaign `prng-step`
+
+For each seed of the ten generators the kernel builds the key values for 28 symbols (rand%28, randrange(28), nextInt(28), ...; variant A)
+and for 29 symbols (variant B reads log2 of the non-zero values), then scores 96 settings on the first 240 steps of section 0.7 by the
+index of coincidence of the decoded classes. 2^32 seeds take about an hour per generator on the 2080 Ti (1.3 million seeds per second).
+
+- **Null tail.** The IoC of n counts over 28 classes is (chi2_27 + n - 28)/(n - 1), so the upper tail is chi-square, not Gaussian: at 128
+  steps P(IoC >= 1.42) is 3e-7 (45 hits in 1.9e7 random settings), a random maximum over 4e11 settings is about 1.6, and a planted seed
+  at 1.8 would barely clear it. At 240 steps the random maximum is about 1.33 and a planted seed is 15 standard deviations above it, so the
+  window is 240 steps and each seed needs 256 key values (K = 256). The same correction applies to the library screen of `step28.py`: its
+  null maxima (1.26-1.32 in 300-step windows over 2.5e10 settings) are what chi-square predicts.
+- **Generators with K = 256.** The legacy PHP generator's first reload uses the already-twisted words from output 227 on; the kernel handles it
+  (`tw[]` in `gen_raw`), and the key test compares 256 values of every generator, both alphabets, against the Rust `keysn` mode.
+- **Rust.** `gens::set_km` / `km()` give the generators' key alphabet (29 = every earlier sweep, unchanged: all ten generators' 29-symbol key
+  dumps are byte-identical to the previous build; 28 = the step classes). `phpmt keys ... [km]` and the new `phpmt keysn <gen> <lo> <hi> <out> <km> <count>`
+  dump keys; `work/tests/test_gens.py` checks the 28-symbol keys of the seven new generators against CPython, NumPy and the documented algorithms
+  (php, glibc and .NET follow the same raw-output rules).
+- **Gates (`work/tests/test_stepmt.py`, 5 tests):** keys equal the Rust engine (3 seed ranges including the 2^31 and 2^32 edges, 10 generators, 2 alphabets);
+  every score of 96 settings x 4 windows equals a numpy reference built from step28.py; a planted seed is recovered at rank 1 with its exact setting
+  for every generator and both variants; random ciphertext over 2 x 10^5 seeds gives no candidate; the verifier regenerates keys and keeps a true
+  seed at IoC 1.8 beyond the window while a neighbouring seed falls to 1.0.
+- **A mistake worth recording:** a multiplier that is not a unit of Z28 (7, for instance) leaves only four key values and inflates every IoC to
+  about 1.26; the sweeps use the 12 units only (the debugging test used 7 by mistake and looked like a leak).

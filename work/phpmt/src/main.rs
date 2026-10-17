@@ -9,7 +9,9 @@
 //!   verify <windows.txt> <dict.txt> <seed> <window> <map> <model> <sign> <atb>
 //!                                                 full-length decode of one candidate
 //!   raw    <gen> <lo> <hi> <out.txt>               the first K raw generator outputs of every seed (php/glibc/net)
-//!   keys   <gen> <lo> <hi> <out.txt>               the first K key values of both maps of every seed (every generator)
+//!   keys   <gen> <lo> <hi> <out.txt> [km]          the first K key values of both maps of every seed (every generator);
+//!                                                 km = 28 reduces to the 28 step classes instead of 29 (default 29)
+//!   keysn  <gen> <lo> <hi> <out.txt> <km> <count>   <count> key values of both maps of every seed under the alphabet size km
 //!   scores <gen> <windows.txt> <dict.txt> <lo> <hi> <out.txt>
 //!                                                 the sweep score of every (seed, window, variant), one line each
 //!                                                 (the reference gpu.py is compared with decode by decode)
@@ -287,12 +289,13 @@ fn fast_keys(rng: Gen, seed: u32, keys: &mut [[u8; K]; 2]) {
 /// map 0 = the language's own range call, map 1 = raw % 29.
 #[inline]
 fn key_gen(rng: Gen, n: u32, map: u8) -> u8 {
+    let km = gens::km();
     if map == 1 {
-        return (n % 29) as u8;
+        return (n % km) as u8;
     }
     match rng {
-        Gen::Net => ((n as f64 * (1.0 / 2147483647.0)) * 29.0) as u8, // (int)(Sample() * 29)
-        _ => (29.0 * (n as f64 / 2147483648.0)) as u8,                  // PHP 5 RAND_RANGE
+        Gen::Net => ((n as f64 * (1.0 / 2147483647.0)) * km as f64) as u8, // (int)(Sample() * 29)
+        _ => (km as f64 * (n as f64 / 2147483648.0)) as u8,                  // PHP 5 RAND_RANGE
     }
 }
 
@@ -834,6 +837,9 @@ fn mode_raw(args: &[String]) {
 
 /// seed, then the first K values of key map 0 and of key map 1 (what gpu.py compares with, for every generator)
 fn mode_keys(args: &[String]) {
+    if let Some(km) = args.get(4) {
+        gens::set_km(km.parse().expect("km"));                 // 28: the key alphabet of the step-domain cipher
+    }
     let rng = parse_gen(&args[0]);
     let (lo, hi): (u64, u64) = (args[1].parse().unwrap(), args[2].parse().unwrap());
     let mut f = std::io::BufWriter::new(fs::File::create(&args[3]).unwrap());
@@ -843,6 +849,24 @@ fn mode_keys(args: &[String]) {
         write!(f, "{seed}").unwrap();
         for m in 0..2 {
             for x in keys[m].iter() {
+                write!(f, " {x}").unwrap();
+            }
+        }
+        writeln!(f).unwrap();
+    }
+}
+
+/// seed, then `count` key values of map 0 and of map 1 under the key alphabet km (any count: the step-domain sweep reads 256)
+fn mode_keysn(args: &[String]) {
+    let rng = parse_gen(&args[0]);
+    let (lo, hi): (u64, u64) = (args[1].parse().unwrap(), args[2].parse().unwrap());
+    let mut f = std::io::BufWriter::new(fs::File::create(&args[3]).unwrap());
+    gens::set_km(args[4].parse().expect("km"));
+    let count: usize = args[5].parse().expect("count");
+    for seed in lo..hi {
+        write!(f, "{seed}").unwrap();
+        for m in 0..2u8 {
+            for x in key_stream(rng, seed as u32, m, count) {
                 write!(f, " {x}").unwrap();
             }
         }
@@ -902,6 +926,7 @@ fn main() {
         Some("verify") => mode_verify(&args[2..]),
         Some("raw") => mode_raw(&args[2..]),
         Some("keys") => mode_keys(&args[2..]),
+        Some("keysn") => mode_keysn(&args[2..]),
         Some("scores") => mode_scores(&args[2..]),
         _ => eprintln!("usage: phpmt vectors|plant|sweep|verify|raw|keys|scores ..."),
     }

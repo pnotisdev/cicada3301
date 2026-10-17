@@ -81,6 +81,7 @@ Hours below are rough figures for a 16-thread desktop CPU. The 15 W laptop these
 | `kscreen-reverse` | A key read BACKWARD through the text, ordinary (a = 0) and with ciphertext feedback (a = 1..28): reversed windows + the engines' `dir=back` mode, library / order-2 recurrences / cubic polynomials | Every IoC screen so far read the key forward; the skip rule must be mirrored for a backward key (`phase9_chain.md`) | Planted backward keys recovered at the exact key index, the same ciphertext read forward not found; matched null per a | 3.1 (1.5 on GPU) |
 | `prng-more-all` | The `prng-more` generators with a fresh seed per section (all 8 windows at once) | The single-pad assumption (window 0.7) is only one of the ways a program could key the sections | As `prng-more` | 6.1 (GPU) |
 | `kscreen-step28` | Relative-rank chain cipher: the plaintext enters the STEP c_i - c_{i-1} and is keyed mod 28 (variant A additive, variant B multiplicative via discrete logs; the rare zero step consumes a key value or not): the library x every unit multiplier of Z28 at every offset, plus a periodic-key scan to lag 3,000 | In the c domain the plaintext is a random walk, so every earlier screen was blind to this family (`work/log/research_2026-10-17.md`, C1) | Planted keys (both variants and modes) recovered at the exact stream/offset, wrong variant blind, CPU = CUDA, matched nulls (4 replicates), planted periods found (`step28.py selftest`, `step_periodicity.py`) | 0.3 (CUDA only) |
+| `prng-step` | The ten generators (php, glibc, .NET, py3, mt32, mt31, java, msvc, drand48, ruby) over all 2^32 seeds, scored in the step domain on the first 240 steps of section 0.7: 96 settings per seed (variant A keys mod 28 / B log2 of Z29, both key maps, zero steps spending a key value or not, 12 multipliers) | Research note C2: the ordinary seed sweeps cannot see a key that enters the STEP (`work/log/phase9_step28.md`) | Keys equal the Rust engine for 28 and 29 symbols, scores equal a numpy reference, a planted seed recovered per generator, random ciphertext gives no candidate (`work/tests/test_stepmt.py`) | 10.5 (about 1 h per generator on the GPU; CUDA only) |
 
 ## Decision rules
 
@@ -103,6 +104,8 @@ Hours below are rough figures for a 16-thread desktop CPU. The 15 W laptop these
   English under the exact skip-aware decoder (`attack.decode`).
 
 - **kscreen-step28** (IoC of the decoded classes over 28 symbols; random 1.0, English about 1.8): the window is 300 steps, so a random maximum over 10⁹ settings reaches about 1.30 (four null replicates: per-window maxima 1.26-1.32). A flagged window must beat every null replicate by 0.02 and reach 1.30, then `step28.py verify` continues the winning setting to the end of the section (a true key stays near 1.8).
+
+- **prng-step** (IoC of 240 decoded classes; random 1.0): the null tail is chi-square with 27 degrees of freedom, not Gaussian (P(IoC >= 1.37) = 1e-12 per setting), so a random maximum over 4 x 10^11 settings is about 1.33 and the sweep records every setting >= 1.37; a true seed scores about 1.8. `step_verify.py` regenerates the keys of the best candidates with the Rust engine and decodes the section beyond the window: a true seed keeps about 1.8, a chance maximum falls to 1.0.
 
 **If something passes:**
 1. Rerun its verification by hand.

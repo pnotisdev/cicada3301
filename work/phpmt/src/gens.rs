@@ -14,8 +14,22 @@
 //!   ruby     Ruby <= 2.7 Random.new(n): init_by_array([n])        rand(29): y & 31, retry > 28   int(rand() * 29) (res53)
 //! Every rule is the documented algorithm; work/tests/test_gens.py checks them against CPython, NumPy and published vectors.
 
+use std::sync::atomic::{AtomicU32, Ordering};
+
 pub const N: usize = 624;
 const M: usize = 397;
+
+/// Size of the key alphabet the maps reduce to: 29 for the ordinary cipher (every earlier sweep), 28 for the step-domain
+/// cipher of work/kscreen/step28.py. Set once before generating (the `keys` mode reads it from its last argument).
+static KM: AtomicU32 = AtomicU32::new(29);
+
+pub fn set_km(k: u32) {
+    KM.store(k, Ordering::Relaxed);
+}
+
+pub fn km() -> u32 {
+    KM.load(Ordering::Relaxed)
+}
 
 #[derive(Clone, Copy, PartialEq, Debug)]
 pub enum Kind {
@@ -133,6 +147,8 @@ const MASK48: u64 = (1u64 << 48) - 1;
 const JMUL: u64 = 0x5_DEEC_E66D;
 
 pub fn fill_keys(kind: Kind, seed: u32, map: u8, out: &mut [u8]) {
+    let km = km();
+    let kf = km as f64;
     match kind {
         Kind::Py3 | Kind::Ruby => {
             let mut mt = Mt::init_by_array(&[seed]);
@@ -140,17 +156,17 @@ pub fn fill_keys(kind: Kind, seed: u32, map: u8, out: &mut [u8]) {
                 *o = match (kind, map) {
                     (Kind::Py3, 0) => loop {
                         let r = mt.next_u32() >> 27;
-                        if r < 29 {
+                        if r < km {
                             break r as u8;
                         }
                     },
                     (Kind::Ruby, 0) => loop {
                         let r = mt.next_u32() & 31;
-                        if r <= 28 {
+                        if r < km {
                             break r as u8;
                         }
                     },
-                    _ => (res53(&mut mt) * 29.0) as u8,
+                    _ => (res53(&mut mt) * kf) as u8,
                 };
             }
         }
@@ -160,18 +176,18 @@ pub fn fill_keys(kind: Kind, seed: u32, map: u8, out: &mut [u8]) {
                 *o = match (kind, map) {
                     (Kind::Mt32, 0) => loop {
                         // libstdc++ >= 11: nearly divisionless (Lemire) draw of 0..28
-                        let mut prod = mt.next_u32() as u64 * 29;
-                        if (prod as u32) < 29 {
-                            let thr = 0u32.wrapping_sub(29) % 29;
+                        let mut prod = mt.next_u32() as u64 * km as u64;
+                        if (prod as u32) < km {
+                            let thr = 0u32.wrapping_sub(km) % km;
                             while (prod as u32) < thr {
-                                prod = mt.next_u32() as u64 * 29;
+                                prod = mt.next_u32() as u64 * km as u64;
                             }
                         }
                         break (prod >> 32) as u8;
                     },
-                    (Kind::Mt32, _) => (mt.next_u32() % 29) as u8,
-                    (Kind::Mt31, 0) => ((mt.next_u32() >> 1) % 29) as u8,
-                    _ => (29.0 * ((mt.next_u32() >> 1) as f64 / 2147483648.0)) as u8,
+                    (Kind::Mt32, _) => (mt.next_u32() % km) as u8,
+                    (Kind::Mt31, 0) => ((mt.next_u32() >> 1) % km) as u8,
+                    _ => (kf * ((mt.next_u32() >> 1) as f64 / 2147483648.0)) as u8,
                 };
             }
         }
@@ -185,15 +201,15 @@ pub fn fill_keys(kind: Kind, seed: u32, map: u8, out: &mut [u8]) {
                 *o = if map == 0 {
                     loop {
                         let bits = next(31) as i32;
-                        let val = bits % 29;
-                        if bits.wrapping_sub(val).wrapping_add(28) >= 0 {
+                        let val = bits % km as i32;
+                        if bits.wrapping_sub(val).wrapping_add(km as i32 - 1) >= 0 {
                             break val as u8;
                         }
                     }
                 } else {
                     let hi = next(26) as u64;
                     let lo = next(27) as u64;
-                    ((((hi << 27) + lo) as f64 * (1.0 / 9007199254740992.0)) * 29.0) as u8
+                    ((((hi << 27) + lo) as f64 * (1.0 / 9007199254740992.0)) * kf) as u8
                 };
             }
         }
@@ -202,14 +218,14 @@ pub fn fill_keys(kind: Kind, seed: u32, map: u8, out: &mut [u8]) {
             for o in out.iter_mut() {
                 x = x.wrapping_mul(214013).wrapping_add(2531011);
                 let r = (x >> 16) & 0x7fff;
-                *o = if map == 0 { (r % 29) as u8 } else { ((r * 29) >> 15) as u8 };
+                *o = if map == 0 { (r % km) as u8 } else { ((r * km) >> 15) as u8 };
             }
         }
         Kind::Drand48 => {
             let mut x = ((seed as u64) << 16) | 0x330E;
             for o in out.iter_mut() {
                 x = (x.wrapping_mul(JMUL).wrapping_add(0xB)) & MASK48;
-                *o = if map == 0 { ((x * 29) >> 48) as u8 } else { ((x >> 17) % 29) as u8 };
+                *o = if map == 0 { ((x * km as u64) >> 48) as u8 } else { ((x >> 17) % km as u64) as u8 };
             }
         }
     }
