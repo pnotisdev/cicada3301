@@ -1,0 +1,40 @@
+# GPU lane (about 13 h). Resumable: finished months and campaign steps are skipped on a restart.
+# 1. let the hand-started month sweeps finish or die, then continue them (time_gpu.py skips finished months)
+WAIT | time_gpu.py run
+months-java | {PY} work/phpmt/time_gpu.py run java --hours 1.2
+months-py3 | {PY} work/phpmt/time_gpu.py run py3 --hours 2.2
+pages-epoch-php | {PY} work/phpmt/bg.py sweep php pages 1293840000 1420070400 results/prng/bgtime_php_pages.tsv
+pages-epoch-php-verify | {PY} work/phpmt/bg.py verify results/prng/bgtime_php_pages.tsv --gen php > results/prng/bgtime_php_pages_verify.txt
+pages-epoch-glibc | {PY} work/phpmt/bg.py sweep glibc pages 1293840000 1420070400 results/prng/bgtime_glibc_pages.tsv
+pages-epoch-glibc-verify | {PY} work/phpmt/bg.py verify results/prng/bgtime_glibc_pages.tsv --gen glibc > results/prng/bgtime_glibc_pages_verify.txt
+pages-epoch-mt32 | {PY} work/phpmt/bg.py sweep mt32 pages 1293840000 1420070400 results/prng/bgtime_mt32_pages.tsv
+pages-epoch-mt32-verify | {PY} work/phpmt/bg.py verify results/prng/bgtime_mt32_pages.tsv --gen mt32 > results/prng/bgtime_mt32_pages_verify.txt
+pages-epoch-mt31 | {PY} work/phpmt/bg.py sweep mt31 pages 1293840000 1420070400 results/prng/bgtime_mt31_pages.tsv
+pages-epoch-mt31-verify | {PY} work/phpmt/bg.py verify results/prng/bgtime_mt31_pages.tsv --gen mt31 > results/prng/bgtime_mt31_pages_verify.txt
+pages-epoch-msvc | {PY} work/phpmt/bg.py sweep msvc pages 1293840000 1420070400 results/prng/bgtime_msvc_pages.tsv
+pages-epoch-msvc-verify | {PY} work/phpmt/bg.py verify results/prng/bgtime_msvc_pages.tsv --gen msvc > results/prng/bgtime_msvc_pages_verify.txt
+pages-epoch-drand48 | {PY} work/phpmt/bg.py sweep drand48 pages 1293840000 1420070400 results/prng/bgtime_drand48_pages.tsv
+pages-epoch-drand48-verify | {PY} work/phpmt/bg.py verify results/prng/bgtime_drand48_pages.tsv --gen drand48 > results/prng/bgtime_drand48_pages_verify.txt
+pages-epoch-ruby | {PY} work/phpmt/bg.py sweep ruby pages 1293840000 1420070400 results/prng/bgtime_ruby_pages.tsv
+pages-epoch-ruby-verify | {PY} work/phpmt/bg.py verify results/prng/bgtime_ruby_pages.tsv --gen ruby > results/prng/bgtime_ruby_pages_verify.txt
+pages-small-py3 | {PY} work/phpmt/bg.py sweep py3 pages 0 134217728 results/prng/bgsmall_py3_pages.tsv
+pages-small-py3-verify | {PY} work/phpmt/bg.py verify results/prng/bgsmall_py3_pages.tsv --gen py3 > results/prng/bgsmall_py3_pages_verify.txt
+pages-small-php | {PY} work/phpmt/bg.py sweep php pages 0 134217728 results/prng/bgsmall_php_pages.tsv
+pages-small-php-verify | {PY} work/phpmt/bg.py verify results/prng/bgsmall_php_pages.tsv --gen php > results/prng/bgsmall_php_pages_verify.txt
+pages-small-glibc | {PY} work/phpmt/bg.py sweep glibc pages 0 134217728 results/prng/bgsmall_glibc_pages.tsv
+pages-small-glibc-verify | {PY} work/phpmt/bg.py verify results/prng/bgsmall_glibc_pages.tsv --gen glibc > results/prng/bgsmall_glibc_pages_verify.txt
+pages-small-mt32 | {PY} work/phpmt/bg.py sweep mt32 pages 0 134217728 results/prng/bgsmall_mt32_pages.tsv
+pages-small-mt32-verify | {PY} work/phpmt/bg.py verify results/prng/bgsmall_mt32_pages.tsv --gen mt32 > results/prng/bgsmall_mt32_pages_verify.txt
+pages-small-mt31 | {PY} work/phpmt/bg.py sweep mt31 pages 0 134217728 results/prng/bgsmall_mt31_pages.tsv
+pages-small-mt31-verify | {PY} work/phpmt/bg.py verify results/prng/bgsmall_mt31_pages.tsv --gen mt31 > results/prng/bgsmall_mt31_pages_verify.txt
+pages-small-msvc | {PY} work/phpmt/bg.py sweep msvc pages 0 134217728 results/prng/bgsmall_msvc_pages.tsv
+pages-small-msvc-verify | {PY} work/phpmt/bg.py verify results/prng/bgsmall_msvc_pages.tsv --gen msvc > results/prng/bgsmall_msvc_pages_verify.txt
+pages-small-drand48 | {PY} work/phpmt/bg.py sweep drand48 pages 0 134217728 results/prng/bgsmall_drand48_pages.tsv
+pages-small-drand48-verify | {PY} work/phpmt/bg.py verify results/prng/bgsmall_drand48_pages.tsv --gen drand48 > results/prng/bgsmall_drand48_pages_verify.txt
+pages-small-ruby | {PY} work/phpmt/bg.py sweep ruby pages 0 134217728 results/prng/bgsmall_ruby_pages.tsv
+pages-small-ruby-verify | {PY} work/phpmt/bg.py verify results/prng/bgsmall_ruby_pages.tsv --gen ruby > results/prng/bgsmall_ruby_pages_verify.txt
+# java with the abs() key map and Ruby, millisecond timestamps, newest months first
+months-java-abs | {PY} work/phpmt/time_gpu.py run java-abs --hours 1.5
+months-ruby | {PY} work/phpmt/time_gpu.py run ruby --hours 1.5
+# the full-seed boundary-free sweeps of sections 0.8-0.15 (a fresh seed per section), time-boxed
+prng-bg | {PY} jobs/overnight.py run prng-bg --lane gpu --device cuda --threads 2 --hours 4.5

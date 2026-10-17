@@ -1,0 +1,8 @@
+# CPU lane (about 12 h at 14 threads). Each line is resumable: finished steps of a campaign are skipped on a restart.
+# 1. let the hand-started sign campaign finish or die (it may be killed with the session that started it), then continue it
+WAIT | overnight.py run kscreen-signs
+signs | {PY} jobs/overnight.py run kscreen-signs --threads 14 --device cpu
+# 2. the 25 per-rune periodic sign templates (the Beaufort / Vigenere alternation)
+signs-periodic | {PY} jobs/overnight.py run kscreen-signs-periodic --threads 14 --device cpu
+# 3. the remaining layer2 slices (H1 with known keywords: null, bigram-solved, bigram-words, periodic) on the CPU
+layer2 | {PY} jobs/overnight.py run layer2 --threads 14 --device cpu

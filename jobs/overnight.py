@@ -749,6 +749,34 @@ def campaigns(threads):
             ks_verify("kscreen-signs", f"verify-{n}", f"signs/{n}.tsv", top=5))],
         sign_summary))
 
+    sp_names = []
+    if (KS / "sign_periodic_rules.txt").exists():
+        sp_names = [l.strip() for l in open(KS / "sign_periodic_rules.txt", encoding="utf-8") if l.strip()]
+    sp_selftest = RES / "kscreen" / "sign_periodic_selftest.txt"
+
+    def sp_summary():
+        out = [f"- controls: {last_line(sp_selftest) or 'not run'}"]
+        best = [(b, n) for n in sp_names if (b := ks_best(f"signs_periodic/{n}.tsv")) is not None]
+        if not best:
+            return out + ["- not run yet"]
+        top = max(best)
+        flagged = [n for b, n in best if b >= 1.40]
+        out.append(f"- {len(best)} of {len(sp_names)} templates done; best IoC {top[0]:.3f} ({top[1]}); " + ("above 1.40 for " + ", ".join(flagged) if flagged else "none reaches the 1.40 rule"))
+        return out
+
+    C.append(Campaign(
+        "kscreen-signs-periodic", "Per-rune periodic key-sign templates (period 2-5): the Beaufort / Vigenere alternation as a sign pattern",
+        "c = p + s_i * k with s_i = pattern[i mod L], L = 2..5, one representative per complement class (the complement is the multiplier 28): 25 distinct templates after dropping constants and repeats of shorter patterns "
+        "(work/kscreen/signrules_periodic.py; the engine's S lines). 581 flat-IoC library streams x 8 sections at every offset, about 6.5 min per template on 14 threads. Controls: sign_periodic_selftest.py (independent planter, 3 templates x 3 windows, blindness, null).",
+        [
+            Step("kscreen-signs-periodic/build", [PY, str(KS / "signrules_periodic.py")], hours=0.02, outputs=[KS / "data" / "signs_periodic" / "P2_pm.txt"]),
+            Step("kscreen-signs-periodic/controls", [PY, str(KS / "sign_periodic_selftest.py"), "--threads", str(T), "--out", str(sp_selftest)], hours=0.05,
+                 outputs=[sp_selftest], done_check=lambda: "PASSED" in (last_line(sp_selftest) or "")),
+        ] + [s for n in sp_names for s in (
+            ks_screen("kscreen-signs-periodic", n, f"data/signs_periodic/{n}.txt", "file:data/library_flat.ksb", f"signs_periodic/{n}.tsv", T, hours=0.11),
+            ks_verify("kscreen-signs-periodic", f"verify-{n}", f"signs_periodic/{n}.tsv", top=5))],
+        sp_summary))
+
     sacred3_selftest = RES / "kscreen" / "sacred3_selftest.txt"
     C.append(Campaign(
         "kscreen-sacred3", "Book-derived streams: phi / sigma of 3301 i + 1033 and 1033 i + 3301, primes at index multiples of 58 .. 3301, base-29 digits of 1/45415",
