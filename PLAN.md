@@ -416,6 +416,8 @@ Details: `work/log/phase9_overnight_results.md`, `phase9_art.md`, `phase9_chain.
   plaintext / ciphertext autokeys, per-word keys and Vigenere periods up to 29 are excluded. The lag-5 effect is reproduced by period-5 alphabets per word or a 1.5% lag-5 copy; no family that otherwise fits reproduces its
   concentration on rune S (calibrated P 0.0073). Side scan: the affine relation c' = 24 - 2c at lag 6 (z +5.0, P 0.013 over lags and relations, split-half P 0.035) is an unreplicated lead.
 
+- **Backward-key campaign complete (13:16):** `kscreen-reverse` a = 26..28 ran on the GPU in 15 minutes and is negative; over all 29 values of a the largest library IoC is 1.387 (a = 8), none reaches 1.40, 0 verified hits (`work/log/phase9_overnight_results.md`).
+
 ### Phase 5 – Validation and reporting
 - A plaintext counts as solved only if it scores well across a whole segment (word hits and IoC about 1.8)
   and the same rule works on the next page.

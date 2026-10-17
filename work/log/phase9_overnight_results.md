@@ -129,3 +129,20 @@ same settings; 0 of 15 re-decoded hits keep IoC >= 1.4 over their whole window (
 `work/hashscan` mode `bgsweep` (decoder `decode_bg`, the Rust port of `work/phpmt/bg.py::ref_decode`): 19.2 M candidate passphrases x 4 hashes x 4 stream conventions x 3 byte maps x 8 cipher variants,
 window = first 120 runes of section 0.7. No decode passes the 40-rune gate; best recorded score 54-59 per tier (lore 54, words 58, dates 59, pairs 59, numbers 59); whole-section decodes of the 10 best per tier
 score -9.3 to -10.8 per rune against -10.2 to -10.9 for random strings. Files: `results/hashscan/bg_*.tsv|log`, `bg_*_verify.txt`. This replaces the dictionary-scored negative of the laptop for these lists.
+
+## `kscreen-reverse` completed: a = 26..28 on the GPU (13:01-13:16, 15 minutes; negative)
+
+Resumed when the user offered the GPU for jobs under 30 minutes (`python jobs/overnight.py run kscreen-reverse --lane gpu`; the runner estimated 0.4 h, the GPU run took 15 minutes). The controls
+step passed first (`CHAIN SELFTEST PASSED`: planted keys recovered, random nulls below 1.4, e.g. a = 7 1.278, a = 28 1.306). Best IoC per step (409 M decodes for the library, matched null of 1,300 random streams):
+
+| a | library | null | order-2 recurrences | cubic polynomials | whole-window verification |
+|---|---|---|---|---|---|
+| 26 | 1.3391 | 1.3191 | 1.2777 | 1.2544 | 0 of 10 hits kept |
+| 27 | 1.3223 | 1.3585 | 1.3016 | 1.2447 | 0 of 10 hits kept |
+| 28 | 1.3430 | 1.3320 | 1.3061 | 1.2628 | 0 of 10 hits kept |
+
+With a = 0..25 (above) the campaign is complete (146 of 146 steps): over all 29 values of a, with and without ciphertext feedback, both signs and both anti-repeat models, the key read backward through the
+sections gives a largest library IoC of 1.387 (a = 8), none reaches the 1.40 rule, and no whole-window verification keeps a hit. The backward-key family is closed negative for the library, the order-2
+recurrences and the cubic polynomials. Files: `results/kscreen/chain/rev_*_a26..28*`, `results/overnight/desktop/logs/kscreen-reverse__a2[678]-*.log`.
+
+A second session ('Advanced hypotheses') was running its own CPU campaign `kscreen-hyp` (lane `hyp`) in the same checkout during this run; its files were not touched or committed here.
