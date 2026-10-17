@@ -710,6 +710,21 @@ def campaigns(threads):
         lambda: [f"- controls: {last_line(sacred2_selftest) or 'not run'}"] + ks_summary([("DeepSeek batch 2 x 8 sections", "sacred2_segments.tsv")], "null_segments.tsv",
                                                                                       ["sacred2_segments_verify.txt"])))
 
+    sacred3_selftest = RES / "kscreen" / "sacred3_selftest.txt"
+    C.append(Campaign(
+        "kscreen-sacred3", "Book-derived streams: phi / sigma of 3301 i + 1033 and 1033 i + 3301, primes at index multiples of 58 .. 3301, base-29 digits of 1/45415",
+        "work/kscreen/sacred.py --round 3 builds 15 streams from the book's numbers (leads on the two magic squares from an outside LLM): H1 phi and sigma (d is not flat) of the progressions 3301 i + 1033 and 1033 i + 3301; H2 the primes p_(k i) for "
+        "k = 58, 87, 116, 174, 348, 464, 1033, 3301 (decimations up to 29 were covered by kscreen-hyp); H3 base-29 digits of 1/45415, 45415/1033 and 45415/3301. Same screen as kscreen-sacred. Controls: sacred_selftest.py --set sacred3.",
+        [
+            Step("kscreen-sacred3/build", [PY, str(KS / "sacred.py"), "--round", "3"], hours=0.02, outputs=[KS / "data" / "sacred3.ksb"]),
+            Step("kscreen-sacred3/controls", [PY, str(KS / "sacred_selftest.py"), "--set", "sacred3", "--threads", str(T), "--out", str(sacred3_selftest)], hours=0.05,
+                 outputs=[sacred3_selftest], done_check=lambda: "PASSED" in (last_line(sacred3_selftest) or "")),
+            ks_screen("kscreen-sacred3", "library", "data/segments.txt", "file:data/sacred3.ksb", "sacred3_segments.tsv", T, hours=0.05),
+            ks_verify("kscreen-sacred3", "verify", "sacred3_segments.tsv"),
+        ],
+        lambda: [f"- controls: {last_line(sacred3_selftest) or 'not run'}"] + ks_summary([("book-derived streams x 8 sections", "sacred3_segments.tsv")], "null_segments.tsv",
+                                                                                      ["sacred3_segments_verify.txt"])))
+
     C.append(Campaign(
         "prng-all", "Seeded-PRNG pads with a fresh seed per section",
         "phpmt sweeps of every seed of PHP<7.1 mt_rand, glibc random() and .NET System.Random on all 8 sections "

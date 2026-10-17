@@ -145,10 +145,24 @@ def ref_decode(runes, prev, key, sign, atb, model, tbl, abort_at=None, abort_thr
 # ------------------------------------------------------------------ windows
 
 def make_windows(spec):
-    """[(name, previous rune, NR runes)]: `07` = section 0.7 only; `all` = every unsolved section with more than NR runes"""
+    """[(name, previous rune, NR runes)]: `07` = section 0.7 only; `all` = every unsolved section with more than NR runes;
+    `pages` = the first NR runes of every page that starts inside an unsolved section (not at its first rune) and has at least NR runes of its own, the previous rune being the last rune of the page before"""
     import lp
     import stats
     out = []
+    if spec == "pages":
+        import red_runs
+        starts = {}
+        for seg, pos in red_runs.page_seg_offsets().values():
+            if seg in stats.UNSOLVED:
+                starts.setdefault(seg, set()).add(pos)
+        for seg in stats.UNSOLVED:
+            c = lp.runes_of(stats.SEGS[seg])
+            ps = sorted(starts.get(seg, ()))
+            for a, b in zip(ps, ps[1:] + [len(c)]):
+                if a > 0 and b - a >= NR:
+                    out.append((f"page_0.{seg}@{a}", int(c[a - 1]), np.array(c[a:a + NR])))
+        return out
     for i in stats.UNSOLVED:
         c = lp.runes_of(stats.SEGS[i])
         if (spec == "07" and i != 7) or len(c) < NR + 1:

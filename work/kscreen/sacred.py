@@ -5,6 +5,7 @@
     F4  base-29 digits of the reciprocals and ratios of the book's two numbers: 1/3301, 1/1033, 3301/1033, 1033/3301, 1/(3301 * 1033)  (digits in bases 10, 16 and 60 are not uniform mod 29: excluded as keys by LP2's flat IoC)
     F5  rational functions of the prime residue r = p mod 29, e.g. r / (r - 1) (primes at a pole are skipped)
 
+    --round 3: book-derived streams (H1 phi / sigma / d of 3301 i + 1033 and 1033 i + 3301, H2 primes p_(k i) for the index multiples 58 .. 3301, H3 base-29 digits of 1/45415 and 45415 over 1033 / 3301): data/sacred3.ksb
     --round 2: the five families DeepSeek proposed next (G1 n^-1, G2 discrete log, G3 g^n, G4 n^3, all mod p for p = 59, 233, 349, 523, 929 reduced mod 29, whole periods so the stream is exactly uniform; G5 the sum of the two
     base-29 digits of n): data/sacred2.ksb, sacred2.tsv
 
@@ -168,6 +169,55 @@ def g_families():
     return out
 
 
+def small_primes(limit):
+    s = np.ones(limit + 1, dtype=bool)
+    s[:2] = False
+    for i in range(2, int(limit ** 0.5) + 1):
+        if s[i]:
+            s[i * i::i] = False
+    return np.flatnonzero(s)
+
+
+def arith(n, ps):
+    """phi, sigma, d of n by trial division with the primes ps"""
+    phi, sig, dd, m = n, 1, 1, n
+    for p in ps:
+        p = int(p)
+        if p * p > m:
+            break
+        if m % p == 0:
+            e, pk = 0, 1
+            while m % p == 0:
+                m //= p
+                e += 1
+                pk *= p
+            phi -= phi // p
+            sig *= (pk * p - 1) // (p - 1)
+            dd *= e + 1
+    if m > 1:
+        phi -= phi // m
+        sig *= m + 1
+        dd *= 2
+    return phi, sig, dd
+
+
+def h_families():
+    """round 3: streams from the book's numbers (an outside LLM's leads on the two magic squares, 2026-10-17)"""
+    out = {}
+    ps = small_primes(9000)
+    for a, b in ((3301, 1033), (1033, 3301)):
+        vals = [arith(a * i + b, ps) for i in range(L)]
+        for k, name in enumerate(("phi", "sigma", "d")):
+            out[f"H1 {name}({a}i+{b})"] = np.array([v[k] for v in vals], dtype=np.int64) % N
+    pr = small_primes(160_000_000)
+    for k in (58, 87, 116, 174, 348, 464, 1033, 3301):
+        n = min(L, (len(pr) - 1) // k)
+        out[f"H2 prime p_({k}i)"] = pr[[k * i - 1 for i in range(1, n + 1)]].astype(np.int64) % N
+    for num, den, tag in ((1, 45415, "1/45415"), (45415, 1033, "45415/1033"), (45415, 3301, "45415/3301")):
+        out[f"H3 {tag} base 29"] = digits(num, den, N, L)
+    return out
+
+
 def main(rnd=1):
     os.makedirs(OUT, exist_ok=True)
     print("building the library for the duplicate check ...")
@@ -187,8 +237,10 @@ def main(rnd=1):
         assert not missing, f"core streams missing from the library: {missing}"
         for fn in (lambda: f1(base), f3, f4, f5):
             cand.update(fn())
-    else:
+    elif rnd == 2:
         cand.update(g_families())
+    else:
+        cand.update(h_families())
     kept, stats = {}, {}
     for name, v in cand.items():
         fam = name.split()[0]
@@ -209,7 +261,7 @@ def main(rnd=1):
         seen[c] = name
         kept[name] = v
         s["kept"] += 1
-    tag = "sacred" if rnd == 1 else "sacred2"
+    tag = {1: "sacred", 2: "sacred2", 3: "sacred3"}[rnd]
     rows = export.write_ksb(os.path.join(OUT, tag + ".ksb"), kept, os.path.join(OUT, tag + ".tsv"))
     for fam, s in sorted(stats.items()):
         print(fam, s)
@@ -218,4 +270,4 @@ def main(rnd=1):
 
 
 if __name__ == "__main__":
-    main(2 if "--round" in sys.argv and sys.argv[sys.argv.index("--round") + 1] == "2" else 1)
+    main(int(sys.argv[sys.argv.index("--round") + 1]) if "--round" in sys.argv else 1)

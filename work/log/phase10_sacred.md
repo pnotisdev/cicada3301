@@ -33,3 +33,13 @@ All are periodic with period 58-928 (the drift-period scan had already excluded 
 **Control** (`sacred_selftest.py --set sacred2`, `results/kscreen/sacred2_selftest.txt`): 5 families x 2 plants x 3 windows: **30 of 30 windows recovered**, IoC 1.56-2.10 (periodic streams are found at an equivalent offset, e.g. 24 for the truth 256 at period 58).
 **Result** (`results/kscreen/sacred2_segments.tsv`, `_verify.txt`): 1,250,080 decodes (1 s on the CPU; the GPU was not used): **best IoC 1.249** (G1 inverse mod 233, seg0.9); per family G1 1.249, G2 1.214, G3 1.202, G4 1.210, G5 1.213; verification **0 of 15**. **Negative.**
 (The random null in the report, 1.318, is the library campaign's 300 streams over 188 M decodes; at 1.25 M decodes the best of random keys is lower, so no comparison is made with it.)
+
+## Round 3: streams from the book's numbers (23:50)
+
+After an outside LLM's leads on the two magic squares (`phase10_squares.md`), the cheap streams they suggest were built with `sacred.py --round 3` and screened like the others:
+H1 phi, sigma and d of the progressions 3301 i + 1033 and 1033 i + 3301 (6 built; d(n) is small and not flat, so 2 were dropped by the flat-IoC filter: 4 kept); H2 the primes p_(k i) for k = 58, 87, 116, 174, 348, 464, 1033, 3301 (8 kept; the index multiples from pi(1033) = 6 x 29 and pi(3301) = 16 x 29;
+decimations up to 29 were already covered by `kscreen-hyp`); H3 base-29 digits of 1/45415, 45415/1033 and 45415/3301 (3 kept; 45415 is the proposal's unsupported reading of FIRFUMFERENFE as 'vier funf vier eins funf'; n x 45415 is the library's `n` because 45415 = 1 mod 29). **15 streams, none a duplicate.**
+Not built: the 25-cycles of phi / sigma of the square's numbers (period 25: excluded by the drift-period scan, which is key-agnostic).
+
+**Control** (`sacred_selftest.py --set sacred3`, `results/kscreen/sacred3_selftest.txt`): 3 families x 2 plants x 3 windows, **18 of 18 recovered**.
+**Result** (`results/kscreen/sacred3_segments.tsv`, `_verify.txt`): 6,849,856 decodes (7 s on 12 CPU threads; the GPU was not used by this run): **best IoC 1.273** (H2 p_(464 i) on seg0.11); H1 best 1.265 (sigma(1033i+3301)), H3 best 1.230; verification **0 of 15**. **Negative.**

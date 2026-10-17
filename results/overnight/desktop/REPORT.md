@@ -1,6 +1,6 @@
 # Overnight campaigns: report from desktop
 
-Generated on desktop at 2026-10-17 22:22:52 by `python jobs/overnight.py`. Thresholds and method: docs/CAMPAIGNS.md.
+Generated on desktop at 2026-10-17 23:52:51 by `python jobs/overnight.py`. Thresholds and method: docs/CAMPAIGNS.md.
 
 **Controls:** unit tests and kscreen selftest passed on desktop; null results below are validated.
 
@@ -125,6 +125,15 @@ work/kscreen/sacred.py --round 2 builds 19 streams (G1 inverses, G2 discrete log
 - DeepSeek batch 2 x 8 sections: best IoC 1.249 (below the 1.40 threshold; 1,250,080 decodes in 0 min)
 - matched null (random keystreams, same windows/settings): best 1.318
 - verification (sacred2_segments_verify.txt): 0 of 15 re-decoded hits keep IoC >= 1.4 over their whole window and beat their own keystream's random offsets by 0.15 (none: noise)
+
+## kscreen-sacred3: Book-derived streams: phi / sigma of 3301 i + 1033 and 1033 i + 3301, primes at index multiples of 58 .. 3301, base-29 digits of 1/45415 (4/4 steps done)
+
+work/kscreen/sacred.py --round 3 builds 15 streams from the book's numbers (leads on the two magic squares from an outside LLM): H1 phi and sigma (d is not flat) of the progressions 3301 i + 1033 and 1033 i + 3301; H2 the primes p_(k i) for k = 58, 87, 116, 174, 348, 464, 1033, 3301 (decimations up to 29 were covered by kscreen-hyp); H3 base-29 digits of 1/45415, 45415/1033 and 45415/3301. Same screen as kscreen-sacred. Controls: sacred_selftest.py --set sacred3.
+
+- controls: SACRED SELFTEST PASSED
+- book-derived streams x 8 sections: best IoC 1.273 (below the 1.40 threshold; 6,849,856 decodes in 0 min)
+- matched null (random keystreams, same windows/settings): best 1.318
+- verification (sacred3_segments_verify.txt): 0 of 15 re-decoded hits keep IoC >= 1.4 over their whole window and beat their own keystream's random offsets by 0.15 (none: noise)
 
 ## prng-all: Seeded-PRNG pads with a fresh seed per section (6/6 steps done)
 
@@ -350,5 +359,5 @@ The 32-bit sweeps cover every time(NULL) seed but not new Random(System.currentT
 
 - gate on desktop: GPU not run; CPU not run
 - generator vectors (Java 48-bit and CPython two-word seeds): not run
-- GPU java: 7 of 25 months done; candidates after the whole-section check: none
-- GPU py3: 7 of 25 months done; candidates after the whole-section check: none
+- GPU java: 13 of 25 months done; candidates after the whole-section check: none
+- GPU py3: 8 of 25 months done; candidates after the whole-section check: none
