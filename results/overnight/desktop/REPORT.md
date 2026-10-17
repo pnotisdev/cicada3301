@@ -1,6 +1,6 @@
 # Overnight campaigns: report from desktop
 
-Generated on desktop at 2026-10-17 02:51:28 by `python jobs/overnight.py`. Thresholds and method: docs/CAMPAIGNS.md.
+Generated on desktop at 2026-10-17 03:14:25 by `python jobs/overnight.py`. Thresholds and method: docs/CAMPAIGNS.md.
 
 **Controls:** unit tests and kscreen selftest passed on desktop; null results below are validated.
 
@@ -11,7 +11,7 @@ Cargo builds of the three Rust engines and the generated inputs (fast when nothi
 
 ## selftest: Regression tests and keystream-screen controls (1/1 steps done)
 
-The 71 unit tests (solved pages, transcription, statistics, engines) and the kscreen plant/recover and random-key null. Nothing else is trusted unless this passes.
+The 44 unit tests (solved pages, transcription, statistics, engines) and the kscreen plant/recover and random-key null. Nothing else is trusted unless this passes.
 
 - unit tests on desktop: passed
 - kscreen controls on desktop: SELFTEST PASSED
@@ -33,9 +33,9 @@ Drift-aware periodic-key scan (the old lag scan cannot see periods beyond ~60 un
 - matched null (random keystreams, same windows/settings): best 1.318
 - verification (library_segments_verify.txt): 0 of 15 re-decoded hits keep IoC >= 1.4 over their whole window and beat their own keystream's random offsets by 0.15 (none: noise)
 
-## kscreen-restarts: Keystream library restarted at headings and page starts (6/6 steps done)
+## kscreen-restarts: Keystream library restarted at headings and page starts (5/5 steps done)
 
-Same library, with the key restarting at each red heading / paragraph start (10 windows) and at each page start (46 windows). Caution: windows shorter than ~250 runes (two heading windows of 91 and 121 runes, two page windows of 131 and 137) exceed the 1.40 threshold by chance after ~10^8 decodes; judge them with the per-window extreme-value null of work/kscreen/short_window_null.py (results/analysis/short_window_null_*.txt), not with 1.40.
+Same library, with the key restarting at each red heading / paragraph start (10 windows) and at each page start (46 windows).
 
 - library x 10 heading restarts: best IoC 2.118 (**above threshold, see verification**; 460,443,636 decodes in 2 min)
 - library x 46 page restarts: best IoC 1.679 (**above threshold, see verification**; 2,353,378,584 decodes in 22 min)
@@ -56,14 +56,14 @@ All linear recurrences of order 1-3 mod 29 (Fibonacci, Lucas, Pell, Tribonacci, 
 - verification (poly3_segments_verify.txt): 0 of 8 re-decoded hits keep IoC >= 1.4 over their whole window and beat their own keystream's random offsets by 0.15 (none: noise)
 - verification (lin3_segments_verify.txt): 0 of 10 re-decoded hits keep IoC >= 1.4 over their whole window and beat their own keystream's random offsets by 0.15 (none: noise)
 
-## rescreen: Dictionary screens rerun with the corrected word segmentation (3/4 steps done)
+## rescreen: Dictionary screens rerun with the corrected word segmentation (4/4 steps done)
 
 Screens 1 and 2, the reverse-direction screen and the heading-restart screen were run before the word-wrap fix (wrapped words were split, a handicap for a true key). English-dictionary scoring.
 
 - screen 1 (3 offsets):   0.155  CONTROL random 26                        seg 0.13 off=start    sign=+1 atbash=False b=24
 - screen 2 (all offsets): top 20 non-control:
 - reverse direction: reverse direction: 893 keystreams; control max 0.167
-- heading restarts: not run
+- heading restarts: heading restarts: 893 keystreams; control max 0.975
 
 ## dsearch: Key-free secret-alphabet search, large (0/86 steps done)
 
@@ -94,65 +94,3 @@ phpmt sweeps of every seed of PHP<7.1 mt_rand, glibc random() and .NET System.Ra
 - php: not run
 - glibc: not run
 - net: not run
-
-## kscreen-chain: Ciphertext-feedback ciphers c_i = a*c_{i-1} + p_i + k_i, a = 1..28 (1/141 steps done)
-
-The doublet fingerprint (c_i - c_{i-1} flat except that 0 is missing) is what a cipher with ciphertext feedback gives if the encryptor avoids the shift that would repeat a rune. Every earlier screen assumed c = p + k, so none of them could see such a key. For each multiplier a the 8 sections are rewritten as c' = c_i - a*c_{i-1} with the collision check against (1-a)*c_{i-1} (work/kscreen/chain_windows.py) and screened with the 1,447-keystream library, every order-2 linear recurrence and every cubic polynomial, at every offset, both anti-repeat models, any plaintext language and alphabet.
-
-- controls: not run
-- not run yet
-
-## prng-more: More seeded-PRNG pads, window 0.7: Python, C++/PHP 7, Java, MSVC, drand48/Perl, Ruby (0/14 steps done)
-
-py3 (CPython random.seed), mt32 / mt31 (std::mt19937, PHP >= 7.1), java (java.util.Random), msvc (rand()), drand48 (drand48, Perl) and ruby (Ruby <= 2.7), each with two natural key mappings, all 2^32 seeds, 16 cipher variants (work/phpmt/src/gens.rs; the CUDA port is validated against the Rust engine, which is validated against CPython, NumPy and published vectors). Window 0.7 only: one pad starting at the first unsolved rune.
-
-- window 0.7 (one pad from the start of LP2):
-  - py3: not run
-  - mt32: not run
-  - mt31: not run
-  - java: not run
-  - msvc: not run
-  - drand48: not run
-  - ruby: not run
-
-## kscreen-reverse: Key running BACKWARD through the text, with and without ciphertext feedback (a = 0..28) (1/146 steps done)
-
-Every IoC screen so far read the key forward along the text. A key read from the end is covered by reversed windows and the engines' dir=back mode (a re-draw then uses a lower key index, so the used key comes first in pointer order). a = 0 is the ordinary cipher with a backward key; a = 1..28 combine it with ciphertext feedback. Same library, recurrences and polynomials as kscreen-sections; controls: planted backward keys recovered at the exact key index, the same ciphertext read forward not found (work/kscreen/chain_selftest.py).
-
-- controls: not run
-- not run yet
-
-## prng-more-all: More seeded-PRNG pads with a fresh seed per section (0/14 steps done)
-
-py3 (CPython random.seed), mt32 / mt31 (std::mt19937, PHP >= 7.1), java (java.util.Random), msvc (rand()), drand48 (drand48, Perl) and ruby (Ruby <= 2.7), each with two natural key mappings, all 2^32 seeds, 16 cipher variants (work/phpmt/src/gens.rs; the CUDA port is validated against the Rust engine, which is validated against CPython, NumPy and published vectors). A fresh seed per section: all 8 windows at once.
-
-- every section:
-  - py3: not run
-  - mt32: not run
-  - mt31: not run
-  - java: not run
-  - msvc: not run
-  - drand48: not run
-  - ruby: not run
-
-## kscreen-step28: Relative-rank chain cipher: the plaintext enters the STEP c_i - c_{i-1}, keyed mod 28 (0/0 steps done)
-
-The doublet fingerprint is also what a cipher gives whose ciphertext step is never zero (research note C1, work/log/research_2026-10-17.md): D_i = 1 + (q_i + m*K_j) mod 28 (variant A) or 2^(q_i + m*log K_j) (variant B), with the rare zero step as a 'ditto' that consumes a key value or not. In the c domain the plaintext is a random walk and every earlier screen was blind to it; in the step domain the decoder is a plain subtraction with no beam. work/kscreen/step28.py counts the class histogram at every (stream, offset) for the 1,447-stream library and every unit multiplier of Z28, with planted-key recovery (both variants and modes), CPU/CUDA agreement and matched nulls; work/step_periodicity.py scans periodic keys (lags to 3,000).
-
-- not run yet (CUDA only)
-
-## prng-step: Seeded-PRNG pads for the step-domain cipher, window 0.7: all ten generators (0/0 steps done)
-
-Research note C2: the seed sweeps of the ordinary cipher (c = p + k) cannot see a key that enters the STEP c_i - c_{i-1}. work/phpmt/step.py runs the ten generators of phpmt.cu over all 2^32 seeds and scores, per seed, 96 settings on the first 240 steps of section 0.7 (variant A with keys mod 28 / variant B with log2 of the non-zero keys of Z29, both key maps, zero steps spending a key value or not, the 12 unit multipliers of Z28) by the index of coincidence of the decoded classes. Gates: keys equal the Rust engine for both alphabets, scores equal the numpy reference, planted seeds recovered for every generator, random ciphertext gives no candidate (work/tests/test_stepmt.py).
-
-- controls: not run
-- py3: not run
-- php: not run
-- glibc: not run
-- java: not run
-- mt32: not run
-- net: not run
-- msvc: not run
-- drand48: not run
-- ruby: not run
-- mt31: not run

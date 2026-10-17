@@ -6,7 +6,8 @@ reference `ref_scores` (built on step28.py and the Rust `keys` mode) is the chec
     python work/phpmt/step.py probe
 
 gen: php glibc net py3 mt32 mt31 java msvc drand48 ruby (the generators of phpmt.cu / src/gens.rs). Windows: `07` = the first
-NS steps of section 0.7 (one pad from the start of LP2); `all` = every section at both pad starts (a fresh seed per section).
+NS steps of section 0.7 at key index 0 and at key index 1 (one pad from the start of LP2); `all` = every section with more than NS+1
+runes at both pad starts (a fresh seed per section).
 Per seed and window (240 steps) the kernel scores 144 settings: variant A (keys mod 28) / B (log2 of the non-zero keys of Z29) / C (rank) x key map 0/1 x
 zero steps spending a key value or not x the 12 unit multipliers of Z28. Score = index of coincidence of the decoded classes.
 """
@@ -34,24 +35,29 @@ BLOCK = 128
 CCAP = 1 << 20
 TARGET_S = 0.3                   # seconds per launch (Windows' display watchdog resets the GPU after ~2 s)
 TOPK = 4000
-THR = 1.37                       # candidate floor: P(chi2_27 tail) 1e-12 at 240 steps; a random maximum over 4e11 settings is about 1.33
+THR = 1.45                       # candidate floor: the exact null tail at 240 steps is 3e-13 here (4e-11 at 1.37), a random maximum over 6e11 settings is about 1.42
 KERNEL = HERE / "stepmt.cu"
 GENS = {"php": 0, "glibc": 1, "net": 2, "py3": 3, "mt32": 4, "mt31": 5, "java": 6, "msvc": 7, "drand48": 8, "ruby": 9}
 
 
 def make_windows(spec):
-    """[(name, prev rune, NS runes)]: `07` the first window of section 0.7; `all` every section at pad starts 0 and 1"""
+    """[(name, previous rune, NS runes, first key index)]. `07`: section 0.7 only; `all`: every section with more than NS+1 runes.
+    A section whose previous rune is known gives a window at step 0 and one at step 1 (key index 0 for both). Section 0.7 has no
+    known previous rune: its window starts at step 1 with key index 0 (a pad that begins at the second rune) and with key
+    index 1 (a pad that begins at the first rune, whose own step cannot be read); the name carries "+1"."""
     import lp
     import stats
     out = []
     for i in stats.UNSOLVED:
         c = np.array(lp.runes_of(stats.SEGS[i]))
         prev = int(lp.runes_of(stats.SEGS[i - 1])[-1]) if i > 7 else -1
-        if spec == "07" and i != 7:
+        if (spec == "07" and i != 7) or len(c) < NS + 2:
             continue
         if prev >= 0:
-            out.append((f"sec0.{i}@0", prev, c[:NS]))
-        out.append((f"sec0.{i}@1", int(c[0]), c[1:1 + NS]))
+            out.append((f"sec0.{i}@0", prev, c[:NS], 0))
+        out.append((f"sec0.{i}@1", int(c[0]), c[1:1 + NS], 0))
+        if prev < 0:
+            out.append((f"sec0.{i}@1+1", int(c[0]), c[1:1 + NS], 1))
     return out
 
 
@@ -59,11 +65,12 @@ def window_arrays(wins):
     """J[nw][3 variants A, B, C][NS] (255 = zero step) and key indices [nw][2 modes (drop, keep)][NS]"""
     J = np.zeros((len(wins), 3, NS), np.uint8)
     ix = np.zeros((len(wins), 2, NS), np.uint8)
-    for w, (_, prev, runes) in enumerate(wins):
+    for w, win in enumerate(wins):
+        prev, runes, off = win[1], win[2], (win[3] if len(win) > 3 else 0)
         for v, variant in enumerate("ABC"):
             J[w, v] = step28.step_classes(runes, prev, variant)
         for m, mode in enumerate(("drop", "keep")):
-            ix[w, m] = step28.key_index(step28.step_classes(runes, prev, "A"), mode)
+            ix[w, m] = step28.key_index(step28.step_classes(runes, prev, "A"), mode) + off
     return J, ix
 
 
@@ -178,8 +185,10 @@ def mode_sweep(a):
         variant, mp, mode, m = combo_parts(combo)
         rows.append(f"{x / 1000:.3f}\t{int(seed)}\t{wins[wi][0]}\t{variant}\t{mp}\t{mode}\t{m}")
     Path(out).write_text("\n".join(rows) + "\n", encoding="utf-8", newline="\n")
+    top_bin = max((b for b, c in enumerate(hist) if c), default=0)
     best = (int(cand[order[0], 1] >> 16) / 1000) if len(order) else 0
-    print(f"swept {total} seeds in {secs:.0f} s; best ioc {best:.3f}; candidates >= {thr:.2f}: {len(cand)}", file=sys.stderr, flush=True)
+    print(f"swept {total} seeds in {secs:.0f} s; best candidate ioc {best:.3f}; highest histogram bin ioc >= {0.85 + 0.01 * top_bin:.2f}; "
+          f"candidates >= {thr:.2f}: {len(cand)}", file=sys.stderr, flush=True)
     print("hist " + " ".join(f"{b}:{int(c)}" for b, c in enumerate(hist) if c), file=sys.stderr, flush=True)
     return 0
 

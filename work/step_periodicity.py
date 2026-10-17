@@ -61,6 +61,14 @@ def scan(J, max_lag=MAXLAG, min_pairs=300):
     return lags[ok], z[ok]
 
 
+def concat_scan(secs, variant, mode):
+    """scan of the sections joined in book order (zero steps removed first in mode drop): (lags, z)"""
+    J = np.concatenate([classes(c, prev, variant, "keep") for _, c, prev in secs])
+    if mode == "drop":
+        J = J[J >= 0]
+    return scan(J, max_lag=MAXLAG)
+
+
 def sections():
     out = []
     for i in stats.UNSOLVED:
@@ -101,13 +109,23 @@ def main():
                 ctl_ok &= found or period > 800        # a period of 1200 has only 1800 pairs in 3000 steps: power, not a gate
                 P(f"  planted {variant}/{mode:4s} period {period:5d}: best lag {int(lags[k]):5d}  z = {z[k]:+6.2f}  "
                   f"{'found' if found else 'below 5.5 (low power at this period)' if period > 800 else 'MISSED'}")
+    # the concatenated-sections path: one planted ciphertext (period 300) cut into three "sections" must be found at a multiple of 300
+    for variant in ("A", "C"):
+        c, prev = planted(rng, variant, "keep", 300, n=4500)
+        cut = [(0, c[:1500], prev), (1, c[1500:3000], int(c[1499])), (2, c[3000:], int(c[2999]))]
+        lags, z = concat_scan(cut, variant, "keep")
+        k = int(np.argmax(z))
+        found = int(lags[k]) % 300 == 0 and z[k] > 5.5
+        ctl_ok &= found
+        P(f"  concatenated path, planted {variant}/keep period 300 in 3 sections: best lag {int(lags[k]):5d}  z = {z[k]:+6.2f}  "
+          f"{'found' if found else 'MISSED'}")
     nulls = []
     for _ in range(20):
         c = rng.integers(0, Q, 3000)
         nulls.append(max(scan(classes(c, 3, v, m))[1].max() for v in ("A", "B", "C") for m in ("drop", "keep")))
     P(f"  null (20 random sections, max over the 4 settings): max z {max(nulls):.2f}, median {np.median(nulls):.2f}")
     P("")
-    P("LP2 (max z over lags; the largest of ~3,000 lags x settings is about 4 by chance):")
+    P("LP2 (max z over lags; for one random section the largest z over ~3,000 lags and the settings is typically 4-4.5, up to 5.3):")
     secs = sections()
     allz = []
     for variant in ("A", "B", "C"):
@@ -118,10 +136,7 @@ def main():
                 if len(z):
                     k = int(np.argmax(z))
                     rows.append((z[k], int(lags[k]), f"0.{i}"))
-            Jcat = np.concatenate([classes(c, prev, variant, "keep") for _, c, prev in secs])
-            if mode == "drop":
-                Jcat = Jcat[Jcat >= 0]
-            lags, z = scan(Jcat, max_lag=MAXLAG)
+            lags, z = concat_scan(secs, variant, mode)
             k = int(np.argmax(z))
             rows.sort(reverse=True)
             top = ", ".join(f"{s} z={zz:+.2f}@{l}" for zz, l, s in rows[:3])
@@ -147,9 +162,7 @@ def main():
                 for i, c, prev in fake:
                     z = scan(classes(c, prev, variant, mode))[1]
                     m = max(m, z.max() if len(z) else 0)
-                Jcat = np.concatenate([classes(c, prev, variant, "keep") for _, c, prev in fake])
-                Jcat = Jcat[Jcat >= 0] if mode == "drop" else Jcat
-                m = max(m, scan(Jcat, max_lag=MAXLAG)[1].max())
+                m = max(m, concat_scan(fake, variant, mode)[1].max())
         nullmax.append(m)
     P(f"  largest z of all scopes and settings: LP2 {obs:.2f}; {reps} random replicates of the same statistic: "
       f"median {np.median(nullmax):.2f}, max {max(nullmax):.2f}, replicates >= LP2: {sum(x >= obs for x in nullmax)}")

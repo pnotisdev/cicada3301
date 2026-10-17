@@ -45,7 +45,8 @@ def ioc_of(d):
 
 
 def verify(gen, seed, window, variant, mp, mode, m):
-    sec, start = map(int, re.match(r"sec0\.(\d+)@(\d+)", window).groups())
+    sec, start, off = re.match(r"sec0\.(\d+)@(\d+)(?:\+(\d+))?$", window).groups()
+    sec, start, off = int(sec), int(start), int(off or 0)
     c = np.array(lp.runes_of(stats.SEGS[sec]))
     prev = int(c[start - 1]) if start else (int(lp.runes_of(stats.SEGS[sec - 1])[-1]) if sec > 7 else -1)
     J = step28.step_classes(c[start:], prev, variant)
@@ -55,7 +56,7 @@ def verify(gen, seed, window, variant, mp, mode, m):
     else:
         k = rust_keys(gen, seed, 29, count)[mp]
         key = step28.LOG2[k[k != 0]]
-    idx = step28.key_index(J, mode)
+    idx = step28.key_index(J, mode) + off
     ok = (J != 255) & (idx < len(key))
     dec = np.full(len(J), -1)
     dec[ok] = (J[ok] - (m * key[idx[ok]]) % step28.NC) % step28.NC

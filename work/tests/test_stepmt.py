@@ -89,8 +89,9 @@ class StepSweep(unittest.TestCase):
                 ditto = rng.random(len(q)) < 0.0066
                 ditto[20] = True                      # a zero step makes the two modes differ
                 key = step28.LOG2[r29[mp][r29[mp] != 0]] if variant == "B" else r28[mp]
-                c, prev = step28.encrypt(q, key, variant, mode, m, 0, ditto)
-                S = ST.Step(gen, [("plant", prev, c)])
+                off = gi % 2                          # the pad's first key index inside the window: 0 or 1
+                c, prev = step28.encrypt(q, key, variant, mode, m, off, ditto)
+                S = ST.Step(gen, [("plant", prev, c, off)])
                 S.hist[:] = 0
                 lo = seed - 1500
                 cnt = S.launch(lo, 3000, 1.40)

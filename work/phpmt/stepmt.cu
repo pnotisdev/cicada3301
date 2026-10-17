@@ -306,7 +306,7 @@ step_kernel(const u8 *__restrict__ wJ, const u8 *__restrict__ widx, const u64 se
                             dump[(g * NW + wi) * 144 + combo] = ss | ((u32)n << 16);
 #endif
                             const float ioc = n > 1 ? (float)NC * (float)(ss - n) / ((float)n * (float)(n - 1)) : 0.0f;
-                            int b = (int)((ioc - 0.8f) * 100.0f);
+                            int b = (int)((ioc - 0.85f) * 100.0f);                        // 0.01 bins from 0.85; the last bin collects everything above 1.48
                             b = b < 0 ? 0 : (b > HB - 1 ? HB - 1 : b);
                             atomicAdd(&sh[b], 1u);
                             if (ioc >= thr) {

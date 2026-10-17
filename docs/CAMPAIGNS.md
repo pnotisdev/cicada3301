@@ -103,9 +103,9 @@ Hours below are rough figures for a 16-thread desktop CPU. The 15 W laptop these
 - **rescreen:** the best real keystream must beat the random-control maximum. The top hits must then decode to
   English under the exact skip-aware decoder (`attack.decode`).
 
-- **kscreen-step28** (IoC of the decoded classes over 28 symbols; random 1.0, English about 1.8): the window is 300 steps, so a random maximum over 10⁹ settings reaches about 1.30 (four null replicates: per-window maxima 1.26-1.32). A flagged window must beat every null replicate by 0.02 and reach 1.30, then `step28.py verify` continues the winning setting to the end of the section (a true key stays near 1.8).
+- **kscreen-step28** (IoC of the decoded classes over 28 symbols; random 1.0, English about 1.8): the window is 300 steps, so the random maximum per window over 10⁹–10¹⁰ settings is about 1.25–1.32 (four null replicates; the exact tail gives a Gumbel-like maximum with location about 1.25 and scale about 0.012). A flagged window must beat every null replicate by 0.02 and reach 1.30, then `step28.py verify` continues the winning setting to the end of the section (a true key stays near 1.8).
 
-- **prng-step** (IoC of 240 decoded classes; random 1.0): the null tail is chi-square with 27 degrees of freedom, not Gaussian (P(IoC >= 1.37) = 1e-12 per setting), so a random maximum over 4 x 10^11 settings is about 1.33 and the sweep records every setting >= 1.37; a true seed scores about 1.8. `step_verify.py` regenerates the keys of the best candidates with the Rust engine and decodes the section beyond the window: a true seed keeps about 1.8, a chance maximum falls to 1.0.
+- **prng-step** (IoC of 240 decoded classes; random 1.0): the null tail is the exact multinomial tail, heavier than chi-square (P(IoC >= 1.37) = 4e-11 and P(IoC >= 1.45) = 3e-13 per setting; work/tmp/ioc_tail.py), so a random maximum over 6 x 10^11 settings is about 1.42 and the sweep records every setting >= 1.45; a true seed scores about 1.8. `step_verify.py` regenerates the keys of the best candidates with the Rust engine and decodes the section beyond the window: a true seed keeps about 1.8, a chance maximum falls to 1.0.
 
 **If something passes:**
 1. Rerun its verification by hand.

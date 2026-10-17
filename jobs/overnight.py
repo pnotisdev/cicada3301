@@ -232,6 +232,17 @@ def chain_summary(prefix="", avals=range(1, 29)):
     return out
 
 
+def first_data_line(path):
+    """the first line of a file that is not a '#' header: the best-ranked row of a verification listing"""
+    p = Path(path)
+    if not p.exists():
+        return None
+    for l in open(p, encoding="utf-8", errors="replace"):
+        if l.strip() and not l.startswith("#"):
+            return l.rstrip()
+    return None
+
+
 STEP28_SELFTEST = OVM / "step28_selftest.txt"
 STEP28_NULLS = 4
 
@@ -281,12 +292,13 @@ def step28_summary():
         out.append(f"- matched null ({len(nulls)} replicates of random streams, same pair count): largest per-window best "
                    f"{max(nmax.values()):.3f}; windows where the library beats every replicate by 0.02 and reaches 1.30: "
                    + (", ".join(above) if above else "none"))
-    ver = last_line(RES / "kscreen" / "step28_library_verify.txt")
+    ver = first_data_line(RES / "kscreen" / "step28_library_verify.txt")
     if ver:
-        out.append(f"- verification (best window continued to the end of its section): {ver}")
+        out.append(f"- verification (the best-ranked window continued to the end of its section): {ver}")
     per = RES / "analysis" / "step_periodicity.txt"
     if per.exists():
-        out.append(f"- periodic keys (scan of coincidences at lag 2..3000): {last_line(per) or ''}")
+        out.append(f"- periodic keys (coincidences at lag 2..3000, planted controls and a structured null): "
+                   f"{last_line(per, r'largest z of all scopes') or ''}; {last_line(per, r'^controls') or ''}")
     return out
 
 
@@ -295,29 +307,29 @@ STEP_SELFTEST = OVM / "prng_step_selftest.txt"
 
 
 def prng_step_steps():
-    """seed sweeps of the step-domain cipher: CUDA only (2^32 seeds x 96 settings per generator is about an hour on the GPU)"""
+    """seed sweeps of the step-domain cipher: CUDA only (2^32 seeds x 144 settings x 2 windows per generator is about 2.5 hours on the GPU)"""
     if DEVICE != "cuda":
         return []
-    steps = [Step("prng-step/controls", [PY, "-m", "unittest", "work.tests.test_stepmt", "-v"], hours=0.02, outputs=[STEP_SELFTEST],
-                  always=True, stderr_to=STEP_SELFTEST, device="cuda")]
+    steps = [Step("prng-step/controls", [PY, "work/tests/run_gate.py", "work.tests.test_stepmt"], hours=0.02, outputs=[STEP_SELFTEST],
+                  always=True, stdout_to=STEP_SELFTEST, device="cuda")]
     for gen in STEP_GENS:
         tsv = RES / "prng" / f"step_{gen}_07.tsv"
         log = RES / "prng" / f"step_{gen}_07.log"
         ver = RES / "prng" / f"step_{gen}_07_verify.txt"
         done = lambda log=log: "swept" in log.read_text(encoding="utf-8", errors="replace") if log.exists() else False
         steps.append(Step(f"prng-step/{gen}", [PY, str(WORK / "phpmt" / "step.py"), "sweep", gen, "07", "0", str(2 ** 32), str(tsv)],
-                          hours=1.4, outputs=[tsv], stderr_to=log, done_check=done, device="cuda"))
+                          hours=2.8, outputs=[tsv], stderr_to=log, done_check=done, device="cuda"))
         steps.append(Step(f"prng-step/{gen}-verify", [PY, str(WORK / "phpmt" / "step_verify.py"), str(tsv), "--gen", gen],
                           hours=0.05, outputs=[ver], stdout_to=ver))
     return steps
 
 
 def prng_step_summary():
-    out = [f"- controls: {last_line(STEP_SELFTEST, r'^(OK|FAILED)') or 'not run'}"]
+    out = [f"- controls (a skipped test counts as failed): {last_line(STEP_SELFTEST, r'^GATE') or 'not run'}"]
     for gen in STEP_GENS:
         sw = last_line(RES / "prng" / f"step_{gen}_07.log", "swept")
-        ver = last_line(RES / "prng" / f"step_{gen}_07_verify.txt")
-        out.append(f"- {gen}: {sw or 'not run'}" + (f"; best candidate: {ver}" if ver else ""))
+        ver = first_data_line(RES / "prng" / f"step_{gen}_07_verify.txt")
+        out.append(f"- {gen}: {sw or 'not run'}" + (f"; best-ranked candidate: {ver}" if ver else ""))
     return out
 
 
@@ -566,7 +578,7 @@ def campaigns(threads):
         "prng-step", "Seeded-PRNG pads for the step-domain cipher, window 0.7: all ten generators",
         "Research note C2: the seed sweeps of the ordinary cipher (c = p + k) cannot see a key that enters the STEP "
         "c_i - c_{i-1}. work/phpmt/step.py runs the ten generators of phpmt.cu over all 2^32 seeds and scores, per seed, 144 "
-        "settings on the first 240 steps of section 0.7 (variants A and C with keys mod 28 / variant B with log2 of the non-zero "
+        "settings on the first 240 steps of section 0.7 (at key index 0 and 1) (variants A and C with keys mod 28 / variant B with log2 of the non-zero "
         "keys of Z29, both key maps, zero steps spending a key value or not, the 12 unit multipliers of Z28) by the index "
         "of coincidence of the decoded classes. Gates: keys equal the Rust engine for both alphabets, scores equal the numpy "
         "reference, planted seeds recovered for every generator, random ciphertext gives no candidate (work/tests/test_stepmt.py).",

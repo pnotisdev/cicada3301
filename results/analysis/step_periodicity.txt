@@ -19,15 +19,17 @@ Controls (English classes, key of the given period, one 3000-step section; the s
   planted C/keep period    97: best lag   485  z =  +8.81  found
   planted C/keep period   400: best lag   800  z =  +7.23  found
   planted C/keep period  1200: best lag  2400  z =  +4.09  below 5.5 (low power at this period)
-  null (20 random sections, max over the 4 settings): max z 5.34, median 4.10
+  concatenated path, planted A/keep period 300 in 3 sections: best lag   900  z =  +8.92  found
+  concatenated path, planted C/keep period 300 in 3 sections: best lag   300  z =  +9.79  found
+  null (20 random sections, max over the 4 settings): max z 4.69, median 4.05
 
-LP2 (max z over lags; the largest of ~3,000 lags x settings is about 4 by chance):
+LP2 (max z over lags; for one random section the largest z over ~3,000 lags and the settings is typically 4-4.5, up to 5.3):
   A/drop: concatenated sections: max z +3.03 at lag 2367; per section, top 3: 0.15 z=+3.69@58, 0.13 z=+3.50@790, 0.9 z=+3.39@88
   A/keep: concatenated sections: max z +3.59 at lag 2148; per section, top 3: 0.14 z=+3.63@702, 0.11 z=+3.61@1295, 0.15 z=+3.45@2718
   B/drop: concatenated sections: max z +3.03 at lag 2367; per section, top 3: 0.15 z=+3.69@58, 0.13 z=+3.50@790, 0.9 z=+3.39@88
   B/keep: concatenated sections: max z +3.59 at lag 2148; per section, top 3: 0.14 z=+3.63@702, 0.11 z=+3.61@1295, 0.15 z=+3.45@2718
   C/drop: concatenated sections: max z +4.97 at lag 781; per section, top 3: 0.13 z=+4.36@828, 0.12 z=+3.88@37, 0.11 z=+3.58@319
   C/keep: concatenated sections: max z +4.01 at lag 1541; per section, top 3: 0.15 z=+3.81@1010, 0.8 z=+3.74@279, 0.11 z=+3.58@1449
-  largest z of all scopes and settings: LP2 4.97; 40 random replicates of the same statistic: median 4.53, max 5.31, replicates >= LP2: 5
+  largest z of all scopes and settings: LP2 4.97; 40 random replicates of the same statistic: median 4.49, max 5.48, replicates >= LP2: 4
 
 controls passed

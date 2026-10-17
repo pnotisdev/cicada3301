@@ -34,14 +34,17 @@ This also excludes every order <= 2 linear recurrence and every polynomial key o
 ## Seed sweeps in the step domain (research note C2): `work/phpmt/step.py`, `stepmt.cu`, campaign `prng-step`
 
 For each seed of the ten generators the kernel builds the key values for 28 symbols (rand%28, randrange(28), nextInt(28), ...; variant A)
-and for 29 symbols (variant B reads log2 of the non-zero values), then scores 96 settings on the first 240 steps of section 0.7 by the
+and for 29 symbols (variant B reads log2 of the non-zero values), then scores 144 settings on the first 240 steps of section 0.7 by the
 index of coincidence of the decoded classes. 2^32 seeds take about an hour per generator on the 2080 Ti (1.3 million seeds per second).
 
-- **Null tail.** The IoC of n counts over 28 classes is (chi2_27 + n - 28)/(n - 1), so the upper tail is chi-square, not Gaussian: at 128
-  steps P(IoC >= 1.42) is 3e-7 (45 hits in 1.9e7 random settings), a random maximum over 4e11 settings is about 1.6, and a planted seed
-  at 1.8 would barely clear it. At 240 steps the random maximum is about 1.33 and a planted seed is 15 standard deviations above it, so the
-  window is 240 steps and each seed needs 256 key values (K = 256). The same correction applies to the library screen of `step28.py`: its
-  null maxima (1.26-1.32 in 300-step windows over 2.5e10 settings) are what chi-square predicts.
+- **Null tail (corrected after an independent review).** The IoC of n counts over 28 classes is a multinomial statistic, not a chi-square
+  with 27 degrees of freedom: its upper tail is heavier. Exact tail by dynamic programming over (draws, sum of squared counts), checked by
+  Monte Carlo (`work/tmp/ioc_tail.py`; the review's own DP agreed): at n = 240, P(IoC >= 1.30) = 4.5e-9, 1.37: 4.4e-11, 1.40: 7.0e-12, 1.45: 3.2e-13
+  (chi-square would say 4e-10, 6.6e-13, 3.8e-14, 3.1e-16). A random maximum over 4 x 10^11 settings (96 per seed) is therefore about 1.417
+  and over 6 x 10^11 (144 per seed) about 1.424, NOT 1.33. The sweep floor is 1.45 (about 0.2 chance candidates per generator and window); a true
+  seed scores about 1.8. At 128 steps a planted seed would not have cleared the random maximum, which is why the window is 240 steps
+  (K = 256 key values per seed). The library screen of `step28.py` (300-step windows, 2.5e10 settings, null maxima 1.26-1.32 per window) is
+  consistent with the exact tail (Gumbel-like, location about 1.25, scale about 0.012); the earlier sentence that chi-square predicts those maxima was wrong.
 - **Generators with K = 256.** The legacy PHP generator's first reload uses the already-twisted words from output 227 on; the kernel handles it
   (`tw[]` in `gen_raw`), and the key test compares 256 values of every generator, both alphabets, against the Rust `keysn` mode.
 - **Rust.** `gens::set_km` / `km()` give the generators' key alphabet (29 = every earlier sweep, unchanged: all ten generators' 29-symbol key
@@ -49,7 +52,7 @@ index of coincidence of the decoded classes. 2^32 seeds take about an hour per g
   dump keys; `work/tests/test_gens.py` checks the 28-symbol keys of the seven new generators against CPython, NumPy and the documented algorithms
   (php, glibc and .NET follow the same raw-output rules).
 - **Gates (`work/tests/test_stepmt.py`, 5 tests):** keys equal the Rust engine (3 seed ranges including the 2^31 and 2^32 edges, 10 generators, 2 alphabets);
-  every score of 96 settings x 4 windows equals a numpy reference built from step28.py; a planted seed is recovered at rank 1 with its exact setting
+  every score of 144 settings x 4 windows equals a numpy reference built from step28.py; a planted seed is recovered at rank 1 with its exact setting
   for every generator and both variants; random ciphertext over 2 x 10^5 seeds gives no candidate; the verifier regenerates keys and keeps a true
   seed at IoC 1.8 beyond the window while a neighbouring seed falls to 1.0.
 - **A mistake worth recording:** a multiplier that is not a unit of Z28 (7, for instance) leaves only four key values and inflates every IoC to
@@ -72,3 +75,17 @@ shift of 14 classes, so on 240 steps the two can swap places (once in 30 plants)
 - `work/tmp/grid_key.py` (`results/analysis/grid_key.txt`): the whole book decoded with key a*w + b*j + c*w*j (24,389 triples; w = word index,
   j = position in the word): best IoC 1.0030 against 1.0036 for a shuffled book; planted control (English + 4w + 7j + 2wj) recovered, IoC 1.76.
   Both ignore the anti-repeat rule's pointer jumps, so they test keys indexed by the layout, not pointer-driven ones.
+
+## Independent code review of the step-domain work (2026-10-17, a second agent; every number below was rechecked)
+
+Confirmed and fixed: (1) the null tail (above): the exact multinomial tail is heavier than chi-square, the sweep floor is now 1.45 and the
+docs say so; (2) the runner showed the LAST line of the verification files, i.e. the 8th/10th-ranked row, not the best: now the first data row;
+(3) `prng-step/controls` could pass with every test skipped (no CuPy or Rust build): it now runs `work/tests/run_gate.py`, which fails on a
+skipped test; (4) `make_windows("all")` crashed on section 0.10 (9 runes): sections shorter than NS + 2 are skipped; (5) the sweep for section 0.7
+only tested key index 0 at step 1; a pad that begins at the first rune (whose own step cannot be read) puts key index 1 there: window `sec0.7@1+1`
+added, so the `07` sweep is 2 windows (about 2.5 h per generator); the verifier understands the "+1"; (6) the periodicity scan had no positive
+control for the concatenated-sections path (added) and an optimistic "about 4 by chance" header (corrected).
+Acknowledged, not fixed: the library holds 29-valued streams, so variants A and C read `v % 28` (see the native mod-28 library below if present);
+the sweep is fragile to a third convention for the zero step (121 good steps before the first zero step in the 0.7 window is about chance level);
+both screens assume an uninterrupted key of at least 240-300 steps (a key that restarts per page or line is invisible); Java seeds above 2^31 as
+`long` are not covered; A and B are identical in the periodicity scan (J_B is a bijection of J_A), so only A and C are independent there.
