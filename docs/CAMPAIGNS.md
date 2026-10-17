@@ -109,7 +109,7 @@ Hours below are rough figures for a 16-thread desktop CPU. The 15 W laptop these
 
 - **prng-step** (IoC of 240 decoded classes; random 1.0): the null tail is the exact multinomial tail, heavier than chi-square (P(IoC >= 1.37) = 4e-11 and P(IoC >= 1.45) = 3e-13 per setting; work/tmp/ioc_tail.py), so a random maximum over 6 x 10^11 settings is about 1.42 and the sweep records every setting >= 1.45; a true seed scores about 1.8. `step_verify.py` regenerates the keys of the best candidates with the Rust engine and decodes the section beyond the window: a true seed keeps about 1.8, a chance maximum falls to 1.0.
 
-- **prng-bg** (sum of 10 ln-odds of the bigram table over 120 decoded runes; a true key near +1200, a wrong one far below zero): candidates are the settings >= +300; `bg.py verify` decodes the whole section with Rust key streams and compares the per-rune score with 8 random seeds (a true key keeps about +10 per rune, a wrong one about -12).
+- **prng-bg** (sum of 10 ln-odds of the bigram table over 120 decoded runes; a true key near +1200, a wrong one far below zero): candidates are the settings >= +300; `bg.py verify` decodes the whole section with Rust key streams and compares the per-rune score with 8 random seeds (a true key keeps about +10 per rune, a wrong one about -10.5).
 
 **If something passes:**
 1. Rerun its verification by hand.

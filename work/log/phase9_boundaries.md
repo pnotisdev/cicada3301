@@ -75,7 +75,7 @@ would explain the first and keep the dictionary score working.
 
 `work/phpmt/bg.py` + `bgmt.cu` (generated from phpmt.cu by `make_bgmt.py`): the same ten generators, key maps, 16 variants and skip/coin beam, but the
 score is the log-likelihood ratio of the decoded window (120 runes) under an English rune-bigram table (`data/bigram.txt`, 10 ln-odds, trained on
-Emerson), no separators. A true key scores about +10 per rune, a wrong one about -12. Gates (`work/tests/test_bgmt.py`): generator section identical to
+Emerson), no separators. A true key scores about +10 per rune, a wrong one about -10.5 (measured on whole sections with random strings). Gates (`work/tests/test_bgmt.py`): generator section identical to
 phpmt.cu's, every score of every variant equals a Python reference on the Rust key values, a planted seed is recovered at rank 1 for all ten generators,
 random ciphertext gives no candidate. 2^32 seeds take 6-17 minutes per generator and window on the 2080 Ti. Campaign `prng-bg`.
 

@@ -10,9 +10,9 @@ b = next(i for i, l in enumerate(src) if l.startswith("// ----------------------
 shared = "".join(src[a:b])
 shared = re.sub(r"#\[inline\]\nfn md\(x: i32\) -> i32 \{\n    \(\(x % MOD\) \+ MOD\) % MOD\n\}\n", "", shared)
 assert "fn md(" not in shared and "fn decode_fast" in shared and "fn decode_full" in shared
-parts = {p: open(os.path.join(HERE, "src", f"part_{p}.rs"), encoding="utf-8").read() for p in ("head", "hash", "modes")}
+parts = {p: open(os.path.join(HERE, "src", f"part_{p}.rs"), encoding="utf-8").read() for p in ("head", "hash", "bg", "modes")}
 text = (parts["head"] + parts["hash"] + "\n// ---- decoder: verbatim copy from work/phpmt/src/main.rs (do not edit here) ----\n\n" + shared
-        + parts["modes"])
+        + parts["bg"] + parts["modes"])
 with open(os.path.join(HERE, "src", "main.rs"), "w", newline="\n", encoding="utf-8") as f:
     f.write(text)
 print("wrote src/main.rs,", len(text.splitlines()), "lines")
