@@ -455,6 +455,31 @@ engine `work/layer2` (output `results/layer2/`).
   tests) and pointed at the GPU port; the prngx and layer2 controls now plant with independent code (`time_verify.plant_windows`,
   `work/layer2/plant_ref.py`): `test_prngx_time` 5/5, `test_layer2` 3/3, `layer2/selftest.py` 14/14; Ruby marked unverified
   (no Ruby on either machine). Response at the end of `docs/prs/new-hypotheses.md`.
+- **Correction: words across page breaks (16:00; `work/log/research_cicadanotebook_2026-10-17.md`).** Comparing our one-rune words
+  with cicadanotebook.com's image-audited inventory (83) showed that `lp.word_spans` treats every page break as a word boundary.
+  In fact 32 of the 55 page breaks inside LP2 fall inside a word: no '-' or '.' on either side. In the solved sections, words
+  split by a page break decrypt as single words: WH|O, ADHEREN|CE, STOP|PED. **The images confirm it**
+  (`work/tmp/hyp/page_seam_dots.py`, `results/analysis/page_seams_2026-10-17.txt`): none of the 32 shows a separator dot, all 21
+  marked page breaks show one, and the detector finds 150 of 151 marked line ends with 4 false dots in 388 wraps. Corrected:
+  2,896 words (not 2,928), **83 one-rune words (not 99)**, the site's tokens exactly, 2-rune share 15.5%, within-word lag-5
+  z +3.75 (was +3.67). No conclusion changes; the toolkit fix is pending.
+- **cicadanotebook.com read in full (17:00; `work/log/research_cicadanotebook_2026-10-17.md`).** An AI-assisted notebook of 79
+  controlled sessions; **no solution claimed**. Recomputed on our data (`work/tmp/hyp/notebook_checks.py`, `keyed_floor.py`;
+  `results/analysis/cicadanotebook_checks_2026-10-17.txt`):
+  - **Confirmed:** doublets per section, the phrase, no rune errors, the payload bytes.
+  - **Corrected the other way:** the cuneiform stamp appears 7 times, not 4.
+  - **Separators:** 5 three-dot marks in the unsolved part are in our images too; our master writes each as '-'. Words are
+    unaffected.
+  - **Exact keyless bounds:**
+    - an additive key that ignores the text needs at least 207 doublets on English in the standard order (181-226 per
+      text, 121-172 in five other languages), against LP2's 86, so the encryption must look at the text (collision rule
+      or feedback). A keyed alphabet gets under the floor (cheapest 29-cycle 0.15%) and a lag-1 fit cannot exclude it:
+      open, low priority;
+    - ciphertext feedback p = G(c_{i-1}, c_i) allows at most 5.53% for the top plaintext rune (random null 5.46%);
+    - no LP2 word of 4+ runes repeats;
+    - the phrase repeat has chance 4.3e-5 under independent keys, chosen after looking.
+  - **Ideas not yet run:** restarts at typography with the full library, using the second koan and page 56 as controls;
+    Euler-trail nulls; one-rune words as filters; a key-reuse scan anchored on the phrase.
 
 ### Phase 5 – Validation and reporting
 - A plaintext counts as solved only if it scores well across a whole segment (word hits and IoC about 1.8)
