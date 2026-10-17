@@ -48,6 +48,10 @@ gates in work/tests/test_step28.py and test_stepmt.py; `phpmt keys ... [km]` / `
 ocr.py, separator_audit.py (separators are right; ticks in work/ref/tick_marks.tsv), ornament_dots.py. The weaker AI's three branches
 (restart-columns, word-internal-lag5, wordlen-languages) are reviewed and merged; docs/prs/*.md hold the reviews.
 
+BOUNDARY WARNING (2026-10-17, work/log/phase9_boundaries.md): LP2's word lengths have no serial structure, unlike English and the solved sections, and the dictionary seed sweeps cannot
+see a planted seed when LP2's separators are imposed on English (33 -> 0). Treat the negatives of prng-all, prng-more (0.7), rescreen and dsearch as non-results until `prng-bg` (boundary-free,
+work/phpmt/bg.py) has been run for all generators and sections; the IoC-based screens (kscreen-*, chain, reverse, step28, prng-step, periodicity) never used separators and stand.
+
 OPEN LEADS (no result yet): (1) the campaigns above; (2) word lengths: 2-rune words are 15.9% against 20-24% in English; spelling TH as T+H explains most of it (G 223 -> 56, Emerson
 only; the other-language table needs the Gutenberg download, not done), a residual remains; one extra rune in 40% of multi-rune words fits
 (p = 0.025); the screens already accept every spelling of a word; a null-tolerant matcher is not built. NEW: a lag-5 repeated-bigram
