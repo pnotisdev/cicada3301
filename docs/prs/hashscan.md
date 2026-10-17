@@ -38,3 +38,16 @@ lists, under any of the 48 stream/map conventions and 8 cipher variants, is the 
 - Obvious extensions: more conventions (HMAC, PBKDF2/scrypt/bcrypt with the common cost factors, "seed as a hex
   digest string" streams), the Cicada 2012-2014 puzzle texts as a phrase source, and key offsets other than 0.
 - Not covered: conventions where the passphrase is not the only input (salts, counters in other positions).
+
+## Review (stronger-model pass, 2026-10-17)
+
+Merged locally; the Rust and Python were read before anything ran (no network calls, writes only the output files it is given, subprocess only for its own
+binary and `verify.py`); the crate builds (`md-5`, `sha1`, `sha2` from crates.io) and both tests pass (16 hash/convention streams equal `hashlib` byte for byte;
+planted passphrases are recovered at rank 1 for three settings).
+- **The one reservation is the score, not the code.** `decode_fast` is the phpmt dictionary decoder: it counts dictionary words that sit exactly between the transcription's
+  word separators. LP2's word lengths have no serial structure and a planted seed is invisible to that score once LP2's separators replace the English words'
+  own (33 -> 0, `work/log/phase9_boundaries.md`). If the printed dots are not the plaintext's word boundaries, "no passphrase is the key" is not established by
+  this run. A boundary-free rescore (bigram log-likelihood of the first 120 decoded runes, no separators) of the same candidate lists is the fix and is run next on the desktop CPU
+  (`work/hashscan`, mode `bgsweep`; results in `results/hashscan/bg_*`).
+- The candidate lists are reasonable (lore, words, dates, 9 M word pairs, 10 M numbers); the conventions (4 hashes x 4 counters x 3 byte maps) match the
+  desktop's library streams, whose mod-29 and rejection maps are two of the three.

@@ -43,3 +43,15 @@
   the same unit lengths as LP2.
 - Open: a restart test for the 9 sections that uses the first ~30 columns of every pair with the forward algorithm over
   the skip path (the optimal statistic); my estimate is that it cannot beat Z ~ 4 for English plaintext.
+
+## Review (stronger-model pass, 2026-10-17)
+
+Merged locally from the laptop; the code was read first (pure numpy / local files, no network, no process calls), then the two tests were run (they pass: a
+planted per-unit restart gives Z_sum > 8, a continuous key stays under 3.5). Findings:
+- The LLR statistic and the Monte Carlo null per column are as described; the controls reuse `restart_columns.simulate_units` (rewritten in the earlier review, so
+  unit lengths are the real ones). The conclusion for paragraphs, pages and sentences stands; the statement that a restart at the 9 section starts cannot be
+  tested (control Z_sum 2.7) is correct and is the honest reading of the earlier "no key reuse between segments".
+- `heading_affine.py` scores headings by dictionary words between the heading's own separators; for 8-16 rune strings that is a weak test either way, which the
+  note says. It inherits the separator caveat of `work/log/phase9_boundaries.md` (if the printed dots are not the plaintext's word boundaries a clean hit
+  would be missed), but a heading is short enough that the rune-level reading (any English-shaped 12-rune string under 812 maps) is unaffected by it only in part.
+- `restart_columns`' "word" unit restarts are also separator-dependent; the line, paragraph, page and sentence units are not.

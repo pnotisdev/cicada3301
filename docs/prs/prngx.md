@@ -73,3 +73,15 @@ and `java` (about 1.7, 2.3 and 3.4 hours on a 16-thread CPU; java also covers th
 - Open: other conventions of the same generators (e.g. `random.choice`/`shuffle`-based keys, Python `random()` with 32
   vs 53 bits, `rand() % 29` after `srand(time)` on other libcs), PRNG state recovery from the page-0 text assuming a
   *partial* dictionary, and offsets other than 0 (key starting after a title or heading).
+
+## Review (stronger-model pass, 2026-10-17)
+
+Merged locally; the code was read first. Network use exists only in `oeis.py fetch` (oeis.org/stripped.gz, an explicit command, not run by anything else); the other subprocess calls start the
+crate's own binary. The crate (no dependencies) builds and all five tests pass (65 reference vectors, planted seeds for five generators, the KDF streams against RC4 / PBKDF2 test vectors, a planted RC4
+passphrase through the whole pipeline).
+- **Stage B is not needed on the desktop.** `rand48`, `msvc` and `java` are the desktop's `drand48`, `msvc` and `java` generators, whose full 2^32 seed spaces were swept on the GPU for the window 0.7
+  with the first two key maps of each (the third map of `msvc` and `java` here, `v*29/32767` and `abs(nextInt())%29`, is not covered), both with the dictionary score (`prng-more`) and with the boundary-free bigram score
+  (`prng-bg`, work/log/phase9_boundaries.md): all negative. `mt` (raw%29 and the other five maps) overlaps the desktop's `mt32`/`mt31`/`py3` maps only partly.
+- **Same reservation as hashscan:** the decoder is the dictionary one, so every negative of this PR (the 334 M stage-A seeds per generator, the 199,075 OEIS sequences, the 719,280 KDF streams) is a
+  dictionary-score negative. The OEIS and KDF lanes are the next candidates for a boundary-free rescore.
+- The "primes plant on the 8-section windows" is the only planted control for the page-start and heading windows; the short (14-rune) windows have less power than the 36-rune ones, as the note says.
