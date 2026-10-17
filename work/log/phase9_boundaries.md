@@ -23,6 +23,19 @@ The solved sections (words placed by the Cicadas) have English-like serial struc
 the last column, LP2 scores -0.060 (about 15 standard deviations lower). German verse shows that a language can have a weak lag-1 correlation but it
 still shows mutual information (z +6); LP2 shows neither.
 
+## Evidence 1b: the clause marks do not behave like sentence ends (`work/wordlen_clauses.py`)
+
+| | clauses | words per clause (mean, CV) | first word of a clause | last word | all words |
+|---|---|---|---|---|---|
+| LP2 | 168 | 19.7, CV **0.94** | 4.02 runes (z +0.7 against shuffled words) | 4.09 | 3.91 |
+| solved sections (the Cicadas' own marks) | 95 | 8.7, CV 0.71 | 3.73 (z +0.5) | 4.80 | 3.62 |
+| English prose (sentences) | 3,000 | 16.6, CV 0.70 | **3.14 (z -23)** | 5.61 | 4.09 |
+
+English sentences are shorter-starting (THE, IT, WE, A ...), longer-ending and regular (CV 0.7); LP2's clause lengths have a CV of 0.94, close to the
+geometric 0.97 of marks laid down at random, and its first and last words are ordinary words. (The solved sections show neither the start effect nor
+the regularity strongly with only 95 clauses, so this control is weaker than the PMI one.) Taken with Evidence 1: LP2's separators and clause marks
+look like they were laid over a continuous stream by a process that copies an English-like length distribution, not like the plaintext's own.
+
 ## Evidence 2: no simple distribution fits the length histogram (`work/wordlen_parametric.py`)
 
 If the lengths were independent draws from a textbook distribution, one would fit: shifted Poisson G = 482, negative binomial 170, discretised
