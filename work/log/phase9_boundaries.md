@@ -31,6 +31,9 @@ far better (G 17-20, p 0.03-0.07). So the histogram is English-derived (fewer 2-
 information: consistent with English words in an order unrelated to their lengths, or with separators laid on a continuous stream by a process that
 copies an English-like length distribution.
 
+Also tried (`work/wordlen_stoplist.py`): English with its N most frequent word types removed (a list of content words in no sentence order). Best G:
+Emerson N = 5: 43 (p 1e-5), Walden N = 5: 71, Plato N = 5: 98, Milton N = 0: 125, KJV N = 10: 301; no N gives a fit (the mechanisms above have G 17-20).
+
 ## Evidence 3: what it does to the sweeps (the consequence test)
 
 English (Emerson, 395 runes) enciphered under PHP mt_rand seed 777777 (map 0, model 1), swept over 150,000 seeds with the Rust engine:

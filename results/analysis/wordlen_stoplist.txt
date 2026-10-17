@@ -1,0 +1,16 @@
+LP2: 2928 words; share by length 1..11,12+ (%): 3.4 15.9 24.8 17.6 10.9 8.6 7.3 5.4 2.6 1.7 1.0 0.9
+
+English with the N most frequent word types removed, length in runes (digraph runes single); G / p against LP2 (df 11):
+
+Emerson: N=0: G 227  N=5: G 43  N=10: G 202  N=20: G 645  N=30: G 971  N=40: G 1202  N=50: G 1802  N=75: G 2926  N=100: G 3144  N=150: G 3703  N=200: G 4606  N=300: G 4885
+   best N=5: G = 43.1, p = 1.03e-05; shares 3.7 14.2 22.0 18.1 12.2 10.1 7.1 4.7 3.6 2.1 1.1 0.9
+KJV: N=0: G 495  N=5: G 325  N=10: G 301  N=20: G 500  N=30: G 742  N=40: G 1208  N=50: G 1319  N=75: G 1648  N=100: G 2092  N=150: G 3401  N=200: G 3305  N=300: G 3980
+   best N=10: G = 301.2, p = 4.98e-58; shares 3.7 11.7 23.6 25.0 15.6 8.3 5.5 3.2 1.9 0.8 0.5 0.2
+Walden: N=0: G 209  N=5: G 71  N=10: G 346  N=20: G 556  N=30: G 1025  N=40: G 1336  N=50: G 1558  N=75: G 2694  N=100: G 2676  N=150: G 3618  N=200: G 3698  N=300: G 3948
+   best N=5: G = 71.1, p = 7.40e-11; shares 2.7 16.2 21.5 20.4 13.5 9.3 6.1 4.1 3.1 1.6 0.8 0.7
+Milton: N=0: G 125  N=5: G 216  N=10: G 315  N=20: G 633  N=30: G 855  N=40: G 1274  N=50: G 1625  N=75: G 2434  N=100: G 2736  N=150: G 3584  N=200: G 3644  N=300: G 4474
+   best N=0: G = 125.1, p = 1.69e-21; shares 2.1 19.1 24.0 17.6 13.8 9.3 6.1 4.0 2.3 1.1 0.5 0.3
+Plato: N=0: G 311  N=5: G 98  N=10: G 415  N=20: G 831  N=30: G 1203  N=40: G 1466  N=50: G 1922  N=75: G 2773  N=100: G 3320  N=150: G 3735  N=200: G 4021  N=300: G 4270
+   best N=5: G = 98.3, p = 3.89e-16; shares 3.2 13.3 20.1 18.5 12.8 8.9 8.2 5.5 4.5 2.7 1.3 0.9
+
+Reading: a good fit (p not tiny) at some N would support a text of content words in no sentence order; the best fits of wordlen_languages.py (extra rune in 40% of words, 2-rune words missing) have G 17-20.
