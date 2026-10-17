@@ -710,6 +710,45 @@ def campaigns(threads):
         lambda: [f"- controls: {last_line(sacred2_selftest) or 'not run'}"] + ks_summary([("DeepSeek batch 2 x 8 sections", "sacred2_segments.tsv")], "null_segments.tsv",
                                                                                       ["sacred2_segments_verify.txt"])))
 
+    sign_names = []
+    if (KS / "sign_rules.txt").exists():
+        sign_names = [l.strip() for l in open(KS / "sign_rules.txt", encoding="utf-8") if l.strip()]
+        sign_names.sort(key=lambda n: ("EDACB".index(n[0]), n))               # the lore-most-plausible templates first: length thresholds, within-word comparisons, parity
+    sign_selftest = RES / "kscreen" / "sign_selftest.txt"
+
+    def sign_summary():
+        out = [f"- controls: {last_line(sign_selftest) or 'not run'}"]
+        best, flagged = [], []
+        for n in sign_names:
+            b = ks_best(f"signs/{n}.tsv")
+            if b is not None:
+                best.append((b, n))
+                if b >= 1.40:
+                    flagged.append(n)
+        if not best:
+            return out + ["- not run yet"]
+        top = max(best)
+        out.append(f"- {len(best)} of {len(sign_names)} rules done; best IoC {top[0]:.3f} ({top[1]}); " + ("above 1.40 for " + ", ".join(flagged) if flagged else "none reaches the 1.40 rule"))
+        for n in flagged:
+            line = last_line(RES / "kscreen" / "signs" / f"{n}_verify.txt", r"re-decoded hits")
+            if line:
+                out.append(f"  - {n} verification: {line}")
+        return out
+
+    C.append(Campaign(
+        "kscreen-signs", "Word-level key-sign rules ('their numbers are the direction'): 61 rules over the flat-IoC library",
+        "c = p + s_w * k with the sign s_w of the key for every rune of word w from a rule on word numbers (work/kscreen/signrules.py; engine S lines): parity, mod-3/5/7 half splits, comparisons with the previous word, length thresholds, over "
+        "the current word's length and positions and the previous words' ciphertext (the current word's own ciphertext numbers are circular for an encryptor and excluded; the two orientations of a rule are the multiplier 28). 581 library streams "
+        "(those LP2's flat IoC does not exclude) x 8 sections at every offset, about 6.5 min per rule on 14 threads. Controls: sign_selftest.py (independent planter, 12 windows over 4 rules, blindness without the signs, null).",
+        [
+            Step("kscreen-signs/build", [PY, str(KS / "signrules.py")], hours=0.02, outputs=[KS / "data" / "signs" / "rules.tsv", KS / "data" / "library_flat.ksb"]),
+            Step("kscreen-signs/controls", [PY, str(KS / "sign_selftest.py"), "--threads", str(T), "--out", str(sign_selftest)], hours=0.05,
+                 outputs=[sign_selftest], done_check=lambda: "PASSED" in (last_line(sign_selftest) or "")),
+        ] + [s for n in sign_names for s in (
+            ks_screen("kscreen-signs", n, f"data/signs/{n}.txt", "file:data/library_flat.ksb", f"signs/{n}.tsv", T, hours=0.11),
+            ks_verify("kscreen-signs", f"verify-{n}", f"signs/{n}.tsv", top=5))],
+        sign_summary))
+
     sacred3_selftest = RES / "kscreen" / "sacred3_selftest.txt"
     C.append(Campaign(
         "kscreen-sacred3", "Book-derived streams: phi / sigma of 3301 i + 1033 and 1033 i + 3301, primes at index multiples of 58 .. 3301, base-29 digits of 1/45415",

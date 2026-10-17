@@ -1,6 +1,6 @@
 # Overnight campaigns: report from desktop
 
-Generated on desktop at 2026-10-17 23:52:51 by `python jobs/overnight.py`. Thresholds and method: docs/CAMPAIGNS.md.
+Generated on desktop at 2026-10-18 00:15:02 by `python jobs/overnight.py`. Thresholds and method: docs/CAMPAIGNS.md.
 
 **Controls:** unit tests and kscreen selftest passed on desktop; null results below are validated.
 
@@ -125,6 +125,13 @@ work/kscreen/sacred.py --round 2 builds 19 streams (G1 inverses, G2 discrete log
 - DeepSeek batch 2 x 8 sections: best IoC 1.249 (below the 1.40 threshold; 1,250,080 decodes in 0 min)
 - matched null (random keystreams, same windows/settings): best 1.318
 - verification (sacred2_segments_verify.txt): 0 of 15 re-decoded hits keep IoC >= 1.4 over their whole window and beat their own keystream's random offsets by 0.15 (none: noise)
+
+## kscreen-signs: Word-level key-sign rules ('their numbers are the direction'): 61 rules over the flat-IoC library (3/124 steps done)
+
+c = p + s_w * k with the sign s_w of the key for every rune of word w from a rule on word numbers (work/kscreen/signrules.py; engine S lines): parity, mod-3/5/7 half splits, comparisons with the previous word, length thresholds, over the current word's length and positions and the previous words' ciphertext (the current word's own ciphertext numbers are circular for an encryptor and excluded; the two orientations of a rule are the multiplier 28). 581 library streams (those LP2's flat IoC does not exclude) x 8 sections at every offset, about 6.5 min per rule on 14 threads. Controls: sign_selftest.py (independent planter, 12 windows over 4 rules, blindness without the signs, null).
+
+- controls: SIGN SELFTEST PASSED
+- 1 of 61 rules done; best IoC 1.331 (C_prev_n); none reaches the 1.40 rule
 
 ## kscreen-sacred3: Book-derived streams: phi / sigma of 3301 i + 1033 and 1033 i + 3301, primes at index multiples of 58 .. 3301, base-29 digits of 1/45415 (4/4 steps done)
 
@@ -360,4 +367,4 @@ The 32-bit sweeps cover every time(NULL) seed but not new Random(System.currentT
 - gate on desktop: GPU not run; CPU not run
 - generator vectors (Java 48-bit and CPython two-word seeds): not run
 - GPU java: 13 of 25 months done; candidates after the whole-section check: none
-- GPU py3: 8 of 25 months done; candidates after the whole-section check: none
+- GPU py3: 11 of 25 months done; candidates after the whole-section check: none

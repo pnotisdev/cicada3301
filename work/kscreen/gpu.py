@@ -48,6 +48,8 @@ def load_windows(path):
             wins[-1]["pv"] = np.array(line[2:].split(), dtype=np.int8)
         elif line.startswith("G "):
             raise SystemExit(f"{path}: G lines (self-key guard) are only supported by the Rust engine")
+        elif line.startswith("S "):
+            raise SystemExit(f"{path}: S lines (per-rune key signs) are only supported by the Rust engine")
     for w in wins:
         assert (w["runes"] < Q).all(), f"{w['name']}: rune out of range"
         if w["pv"] is None:                       # default: compare with the previous rune (as the Rust engine)

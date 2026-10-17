@@ -96,6 +96,14 @@ struct Win {
     /// own key, export_hyp.py). The decoder then never deciphers rune i with key index g + i, which would give the
     /// all-zero "plaintext" c_i - c_i. -1 (no G line): no restriction. Not supported with dir=back or by gpu.py.
     g: i64,
+    /// `S <+1|-1 per rune>` (word-level sign rules, signrules.py): rune i is deciphered with the key sign s_i, c_i = p_i + s_i * k, so every key value an attempt for rune i reads (first try, skip, coin)
+    /// is negated when s_i = -1. Empty (no S line): all +1, decodes byte-identical. Not supported with dir=back or by gpu.py.
+    sg: Vec<i8>,
+}
+
+/// a key value read for a rune whose sign is negative
+fn sgn(k: u8, neg: bool) -> usize {
+    if neg && k != 0 { Q - k as usize } else { k as usize }
 }
 
 /// The guard index for a decode starting at keystream offset `off`: rune i must not use key index guard + i.
@@ -112,7 +120,7 @@ fn load_windows(path: &str) -> Vec<Win> {
             let mut it = rest.split_whitespace();
             let name = it.next().expect("window name").to_string();
             let prev = it.next().map(|x| x.parse().expect("prev rune")).unwrap_or(-1);
-            out.push(Win { name, prev, runes: Vec::new(), pv: Vec::new(), lens: String::new(), g: -1 });
+            out.push(Win { name, prev, runes: Vec::new(), pv: Vec::new(), lens: String::new(), g: -1, sg: Vec::new() });
         } else if let Some(rest) = line.strip_prefix("R ") {
             let w = out.last_mut().expect("R line before W line");
             w.runes = rest.split_whitespace().map(|x| x.parse::<u8>().expect("rune")).collect();
@@ -120,6 +128,8 @@ fn load_windows(path: &str) -> Vec<Win> {
             out.last_mut().expect("L line before W line").lens = rest.to_string();
         } else if let Some(rest) = line.strip_prefix("P ") {
             out.last_mut().expect("P line before W line").pv = rest.split_whitespace().map(|x| x.parse().expect("pv")).collect();
+        } else if let Some(rest) = line.strip_prefix("S ") {
+            out.last_mut().expect("S line before W line").sg = rest.split_whitespace().map(|x| x.parse::<i8>().expect("sign")).collect();
         } else if let Some(rest) = line.strip_prefix("G ") {
             out.last_mut().expect("G line before W line").g = rest.trim().parse().expect("G index");
         }
@@ -129,6 +139,7 @@ fn load_windows(path: &str) -> Vec<Win> {
             w.pv = (0..w.runes.len()).map(|i| if i == 0 { w.prev } else { w.runes[i - 1] as i32 }).collect();
         }
         assert_eq!(w.pv.len(), w.runes.len(), "{}: P line length", w.name);
+        assert!(w.sg.is_empty() || (w.sg.len() == w.runes.len() && w.sg.iter().all(|&x| x == 1 || x == -1)), "{}: S line must hold one +1/-1 per rune", w.name);
     }
     for w in &out {
         assert!(w.runes.iter().all(|&r| (r as usize) < Q), "{}: rune out of range", w.name);
@@ -396,14 +407,17 @@ fn ioc_beam(
     cur: &mut Vec<St>,
     extra: &mut Vec<St>,
     guard: i64,
+    sg: &[i8],
 ) -> (u32, usize) {
     cur.clear();
     cur.push(St { j: 0, s: 0, cnt: [0; Q] });
     let klen = mk.len();
     let back = BACK.load(Ordering::Relaxed);
+    assert!(sg.is_empty() || !back, "S lines are not supported with dir=back");
     for i in 0..n {
         let ci = c[i] as usize;
         let prev: i32 = pvs[i];
+        let neg = !sg.is_empty() && sg[i] < 0;
         let bad = if guard >= 0 { guard as usize + i } else { usize::MAX };
         extra.clear();
         let mut idx = 0;
@@ -413,13 +427,13 @@ fn ioc_beam(
                 cur.swap_remove(idx);
                 continue;
             }
-            let k0 = mk[j] as usize;
+            let k0 = sgn(mk[j], neg);
             let t0 = tb.sub[ci][k0];
             if prev >= 0 {
                 let pv = prev as u8;
                 if back {
-                    let k1 = mk[j + 1] as usize;
-                    let k2 = mk[j + 2] as usize;
+                    let k1 = sgn(mk[j + 1], neg);
+                    let k2 = sgn(mk[j + 2], neg);
                     if model == 0 {
                         if tb.add[t0 as usize][k1] == pv {
                             let mut s2 = cur[idx];
@@ -437,14 +451,14 @@ fn ioc_beam(
                         extra.push(s3);
                     }
                 } else if model == 0 {
-                    let k1 = mk[j + 1] as usize;
+                    let k1 = sgn(mk[j + 1], neg);
                     let t1 = tb.sub[ci][k1];
                     if tb.add[t1 as usize][k0] == pv && j + 1 != bad {
                         let mut s2 = cur[idx];
                         take(&mut s2, t1, clocked(j + 2, ci, t1));
                         extra.push(s2);
                     }
-                    let k2 = mk[j + 2] as usize;
+                    let k2 = sgn(mk[j + 2], neg);
                     let t2 = tb.sub[ci][k2];
                     if tb.add[t2 as usize][k0] == pv && tb.add[t2 as usize][k1] == pv && j + 2 != bad {
                         let mut s3 = cur[idx];
@@ -452,7 +466,7 @@ fn ioc_beam(
                         extra.push(s3);
                     }
                 } else {
-                    let k2 = mk[j + 2] as usize;
+                    let k2 = sgn(mk[j + 2], neg);
                     let t2 = tb.sub[ci][k2];
                     if tb.add[t2 as usize][k0] == pv && j + 2 != bad {
                         let mut s3 = cur[idx];
@@ -463,7 +477,7 @@ fn ioc_beam(
             }
             if back && model == 1 && prev >= 0 && prev == ci as i32 {
                 // a kept doublet, backward: the coin has the lower key index and the used key follows it
-                take(&mut cur[idx], tb.sub[ci][mk[j + 1] as usize], j + 2);
+                take(&mut cur[idx], tb.sub[ci][sgn(mk[j + 1], neg)], j + 2);
             } else if j == bad {
                 cur.swap_remove(idx);
                 continue;
@@ -514,7 +528,7 @@ fn ioc_of(s: u32, n: usize) -> f64 {
 }
 
 /// Full decode for verification: like ioc_beam (no abort) but keeps each state's plaintext and pointers.
-fn full_decode(c: &[u8], pvs: &[i32], mk: &[u8], model: u8, n: usize, beam: usize, guard: i64) -> (f64, Vec<u8>, Vec<u32>) {
+fn full_decode(c: &[u8], pvs: &[i32], mk: &[u8], model: u8, n: usize, beam: usize, guard: i64, sg: &[i8]) -> (f64, Vec<u8>, Vec<u32>) {
     #[derive(Clone)]
     struct S2 {
         j: usize,
@@ -535,19 +549,21 @@ fn full_decode(c: &[u8], pvs: &[i32], mk: &[u8], model: u8, n: usize, beam: usiz
         x
     };
     let back = BACK.load(Ordering::Relaxed);
+    assert!(sg.is_empty() || !back, "S lines are not supported with dir=back");
     for i in 0..n {
         let ci = c[i] as usize;
         let prev: i32 = pvs[i];
+        let neg = !sg.is_empty() && sg[i] < 0;
         let mut next: Vec<S2> = Vec::new();
         for st in &cur {
             let j = st.j;
             if j + 3 > mk.len() {
                 continue;
             }
-            let k0 = mk[j] as usize;
+            let k0 = sgn(mk[j], neg);
             if back {
                 let t0 = tb.sub[ci][k0];
-                let (k1, k2) = (mk[j + 1] as usize, mk[j + 2] as usize);
+                let (k1, k2) = (sgn(mk[j + 1], neg), sgn(mk[j + 2], neg));
                 if prev >= 0 && model == 1 && prev == ci as i32 {
                     next.push(step(st, tb.sub[ci][k1], j + 1, j + 2)); // kept doublet: the coin comes first, then the used key
                 } else {
@@ -576,8 +592,8 @@ fn full_decode(c: &[u8], pvs: &[i32], mk: &[u8], model: u8, n: usize, beam: usiz
             }
             if prev >= 0 {
                 let pv = prev as u8;
-                let k1 = mk[j + 1] as usize;
-                let k2 = mk[j + 2] as usize;
+                let k1 = sgn(mk[j + 1], neg);
+                let k2 = sgn(mk[j + 2], neg);
                 if model == 0 {
                     let t1 = tb.sub[ci][k1];
                     if tb.add[t1 as usize][k0] == pv && j + 1 != bad {
@@ -749,7 +765,7 @@ fn mode_screen(args: &[String]) {
                                     let n = wn[wi];
                                     let ab = if abort_at > 0 && abort_at < n { abort_at } else { 0 };
                                     let (s, used) = ioc_beam(
-                                        &w.runes, &w.pv, &mk, model, n, beam, ab, abort_s, &tb, &mut cur, &mut extra, guard_of(w, off),
+                                        &w.runes, &w.pv, &mk, model, n, beam, ab, abort_s, &tb, &mut cur, &mut extra, guard_of(w, off), &w.sg,
                                     );
                                     let ioc = ioc_of(s, used) as f32;
                                     runs += 1;
@@ -916,7 +932,7 @@ fn mode_trace(args: &[String]) {
                         let n = w.runes.len().min(n_req);
                         let ab = if abort_at > 0 && abort_at < n { abort_at } else { 0 };
                         let (s, used) =
-                            ioc_beam(&w.runes, &w.pv, &mk, model, n, beam, ab, abort_s, &tb, &mut cur, &mut extra, guard_of(w, off));
+                            ioc_beam(&w.runes, &w.pv, &mk, model, n, beam, ab, abort_s, &tb, &mut cur, &mut extra, guard_of(w, off), &w.sg);
                         writeln!(out, "{item} {off} {m} {model} {wi} {s} {used}").unwrap();
                     }
                 }
@@ -1037,7 +1053,7 @@ fn mode_verify(args: &[String]) {
         let mut key = vec![0u8; len];
         fam.fill(item, &coeffs, off, &mut key);
         let mk: Vec<u8> = key.iter().map(|&k| (k as usize * m % Q) as u8).collect();
-        let (ioc, plain, ptr) = full_decode(&w.runes, &w.pv, &mk, model, n, beam, guard_of(w, off));
+        let (ioc, plain, ptr) = full_decode(&w.runes, &w.pv, &mk, model, n, beam, guard_of(w, off), &w.sg);
         let skips = ptr.windows(2).filter(|p| p[1] != p[0] + 1).count();
         println!("window {} n {} ioc {:.4} pointer_jumps {}", w.name, plain.len(), ioc, skips);
         println!("plain {}", join(&plain));
@@ -1052,7 +1068,7 @@ fn mode_verify(args: &[String]) {
                 let co = rng.below(noff as u64) as usize;
                 fam.fill(item, &coeffs, co, &mut key);
                 let cmk: Vec<u8> = key.iter().map(|&k| (k as usize * m % Q) as u8).collect();
-                vals.push(full_decode(&w.runes, &w.pv, &cmk, model, n, beam, guard_of(w, co)).0);
+                vals.push(full_decode(&w.runes, &w.pv, &cmk, model, n, beam, guard_of(w, co), &w.sg).0);
             }
             let mx = vals.iter().cloned().fold(0.0f64, f64::max);
             let mean = vals.iter().sum::<f64>() / vals.len() as f64;

@@ -80,3 +80,14 @@ This rules out these months for these two generators on section 0.7 only.
 
 10.7 billion seeds in 1,422 s of GPU time. No row reached the +300 floor, so there was nothing to verify (`results/prng/time_gpu/<gen>_<month>_verify.txt`). With the first slice, py3 and java are swept for 2013-07 .. 2014-01 (seven
 months, section 0.7 only); 18 months (2012-01 .. 2013-06) remain: about 3.4 h for py3 and java (py3 2.0 h, java 1.4 h). Nothing in LP2 is solved.
+
+## Third slice (2026-10-17 23:09 - 2026-10-18 00:10, on the user's go: 'start with the fastest first'): java 2013-06 .. 2013-01, py3 2013-06 .. 2013-03
+
+`time_gpu.py run java --hours 0.5` then `run py3 --hours 0.5`, the GPU otherwise idle (the CPU ran the OEIS rerun beside it).
+
+| generator | months | seeds | GPU time | speed | candidates at +300 |
+|---|---|---|---|---|---|
+| java | 2013-06, 05, 04, 03, 02, 01 | 15.6 billion | 1,742 s | 8.7-9.4 M/s | 0 |
+| py3 | 2013-06, 05, 04, 03 | 10.5 billion | 1,765 s | 5.7-6.3 M/s | 0 |
+
+Swept so far (section 0.7, millisecond timestamps): java 2013-01 .. 2014-01, py3 2013-03 .. 2014-01. Remaining: py3 2012-01 .. 2013-02 (14 months, about 1.7 h) and java 2012-01 .. 2012-12 (12 months, about 1.0 h), about 2.7 h in all. java-abs and ruby not swept beyond the 2-day demo. Nothing in LP2 is solved.
