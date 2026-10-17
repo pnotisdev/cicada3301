@@ -74,3 +74,13 @@ score is the log-likelihood ratio of the decoded window (120 runes) under an Eng
 Emerson), no separators. A true key scores about +10 per rune, a wrong one about -12. Gates (`work/tests/test_bgmt.py`): generator section identical to
 phpmt.cu's, every score of every variant equals a Python reference on the Rust key values, a planted seed is recovered at rank 1 for all ten generators,
 random ciphertext gives no candidate. 2^32 seeds take 6-17 minutes per generator and window on the 2080 Ti. Campaign `prng-bg`.
+
+## Result of the boundary-free sweeps, window 0.7 (`prng-bg`, 07:33-09:55; negative)
+
+All ten generators over every seed (2^32; .NET 2^31), 16 variants each, first 120 runes of section 0.7, score = bigram log-likelihood (10 ln-odds):
+py3 1,234 s, java 736 s, php 799 s, glibc 778 s, mt32 1,017 s, msvc 665 s, drand48 720 s, ruby 1,209 s, mt31 970 s, .NET 335 s (the GPU was shared with the
+backward-key campaign, so these are slow). **No candidate reaches +300 for any generator**; the best path after 40 runes never exceeds about +60 over
+~10^10 seed/variant pairs per generator (a true key is near +300 at 40 runes and +1200 at 120). So a PRNG-seeded pad of these ten generators starting at the
+first unsolved rune is excluded under the single-pad, skip/coin, 16-variant model, WITHOUT relying on LP2's word separators (the earlier dictionary-based
+negatives for window 0.7 now have this boundary-free confirmation). The all-section version (a fresh seed per section) was started and cut by the 10:00 GPU hand-over; resume with
+`python jobs/overnight.py run prng-bg --lane gpu`.

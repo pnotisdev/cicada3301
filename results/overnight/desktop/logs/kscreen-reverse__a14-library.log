@@ -1,0 +1,14 @@
+# <repo>\.venv\Scripts\python.exe <repo>\work\kscreen\gpu.py screen data/chain/segments_a14_rev.txt file:data/library.ksb <repo>\results\kscreen\chain\rev_library_a14.tsv dir=back
+# cwd <repo>\work\kscreen
+# device cuda
+kscreen: 1447 items, 8 windows (n<=300), mults [1, 28], models [0, 1], 409283232 decodes, CUDA NVIDIA GeForce RTX 2080 Ti
+ 10.49% (42940992 decodes) 2145423 decodes/s, eta 171 s
+ 24.97% (102184304 decodes) 1690451 decodes/s, eta 182 s
+ 39.44% (161412416 decodes) 1599559 decodes/s, eta 155 s
+ 54.19% (221810144 decodes) 1569195 decodes/s, eta 119 s
+ 68.80% (281584752 decodes) 1549251 decodes/s, eta 82 s
+ 83.16% (340340400 decodes) 1533345 decodes/s, eta 45 s
+ 90.71% (371243616 decodes) 1533941 decodes/s, eta 25 s
+kscreen: 409283232 decodes (399874121 aborted early) in 257 s; best IoC 1.3365; wrote <repo>\results\kscreen\chain\rev_library_a14.tsv
+
+# exit code 0, 263 s
