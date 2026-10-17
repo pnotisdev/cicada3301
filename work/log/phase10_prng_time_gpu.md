@@ -49,3 +49,21 @@ The laptop's CPU sweep of the same window (py3 and java, 40-48 min each) also fo
 Section 0.7 only (one pad from the first LP2 rune), like the first pass of every earlier sweep. No Ruby is available: the ruby keys are the documented rule on top of CPython's MT19937 (rand(29) = low 5 bits with rejection,
 float = res53), unconfirmed against a Ruby. Seeds from a float (`random.seed(time.time())`), `System.nanoTime()` or microseconds are outside the window. The port is not wired into the laptop branch's `prng-time` campaign
 (unmerged); when that branch merges, its month steps can call `bg64.py sweep` instead of the CPU `bgsweep`.
+
+## First hour of the full window (GPU, 14:31-15:31; negative)
+
+`work/phpmt/time_gpu.py` alternated py3 and java month by month, newest first, on section 0.7 (boundary-free, +300 floor); the run stopped starting months when one would not end before the deadline.
+
+| month (UTC) | seeds | py3 | java (maps nextInt(29), nextDouble) |
+|---|---|---|---|
+| 2014-01 | 2,678,400,000 | 461 s (5.81 M/s), 0 candidates | 279 s (9.60 M/s), 0 candidates |
+| 2013-12 | 2,678,400,000 | 437 s (6.12 M/s), 0 | 284 s (9.43 M/s), 0 |
+| 2013-11 | 2,592,000,000 | 446 s (5.81 M/s), 0 | 272 s (9.52 M/s), 0 |
+| 2013-10 | 2,678,400,000 | 434 s (6.17 M/s), 0 | 252 s (10.62 M/s), 0 |
+| 2013-09 | 2,592,000,000 | 417 s (6.22 M/s), 0 | 245 s (10.59 M/s), 0 |
+
+Each generator swept 13.22 billion millisecond timestamps (2013-09-01 to 2014-02-01 UTC); 59 minutes of GPU time in all (py3 2,195 s, java 1,332 s). No sweep recorded a score at or above the +300 floor, so
+there was nothing to verify (`results/prng/time_gpu/<gen>_<month>_verify.txt`). Speeds were 5.8-6.2 M seeds/s for py3 and 9.4-10.6 M seeds/s for java. Java's second map `abs(nextInt()) % 29` (java-abs) and ruby were
+not swept beyond the 2014-01-04/06 demo; 20 months (2012-01 .. 2013-08) are left: about 2.4 hours for py3 and java together at these speeds (`python work/phpmt/time_gpu.py run <gen> --hours H` resumes, skipping finished months).
+This rules out these months for these two generators on section 0.7 only.
+

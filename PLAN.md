@@ -424,6 +424,8 @@ Details: `work/log/phase9_overnight_results.md`, `phase9_art.md`, `phase9_chain.
 
 - **64-bit CUDA port for `prng-time` (14:20; `work/log/phase10_prng_time_gpu.md`, `docs/GPU_PORT.md`):** `bgmt64.cu` / `bg64.py` sweep py3, ruby and java with 64-bit (millisecond-timestamp) seeds; gate `test_bgmt64` 8/8 against independent CPython / java.util.Random references; 6.4 M (py3, ruby) and 10.8 M (java) seeds/s, so the full 2012-2014 window is about 2.9 h / 1.7 h per generator (`time_gpu.py`, not started). Demo, 2014-01-04/06 UTC, 172.8 M timestamps per generator: 0 candidates (agrees with the laptop's CPU sweep).
 
+- **prng-time, first hour of the full window on the GPU (15:31):** py3 and java, millisecond timestamps 2013-09-01 .. 2014-02-01 UTC (13.2 billion each, 59 min of GPU time), section 0.7: 0 candidates at +300 (`work/log/phase10_prng_time_gpu.md`). 20 months of the 2012-2014 window remain (about 2.4 h for py3 + java); java-abs and ruby only have the 2-day demo.
+
 ### Phase 5 – Validation and reporting
 - A plaintext counts as solved only if it scores well across a whole segment (word hits and IoC about 1.8)
   and the same rule works on the next page.
