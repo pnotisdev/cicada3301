@@ -87,7 +87,7 @@
 | Restart at typographic marks: list items of 0.14, three-dot marks, after red headings (22 windows) | partial |  | [library_typo_verify.txt](kscreen/library_typo_verify.txt), [typo_shared_key.txt](analysis/typo_shared_key.txt) |
 | Key reuse between sections (two-time pad under skip drift) | untestable |  | [pad_reuse_power.txt](analysis/pad_reuse_power.txt) |
 | Transposition | partial |  | [page_seams_2026-10-17.txt](analysis/page_seams_2026-10-17.txt) |
-| Key that starts mid-page: windows of 300 runes at staggered positions across the book | open |  | [README.md](../work/proposals/sliding_window/README.md) |
+| Key that starts mid-page: windows of 300 runes at staggered positions across the book | excluded | 1.332 (null 1.318) | [staggered.tsv](kscreen/staggered.tsv), [staggered_null.tsv](kscreen/staggered_null.tsv), [staggered_windows.py](../work/tmp/staggered_windows.py), [stag_plant_screen.tsv](../work/tmp/stag_plant_screen.tsv) |
 
 ### Cribs, puzzle furniture and outside claims
 

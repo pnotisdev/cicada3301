@@ -132,7 +132,10 @@ re-decode beating 20 random offsets by 0.15, then whole-section verification wit
    <= 1.37.
 5. **Decision rule.** A stream with IoC >= 1.40, +0.15 over its matched null, surviving whole-window verification.
 6. **Cost.** About 12 windows x 1,447 streams x offsets ~ 2.8 M decodes ~ 1-2 min on 14 CPU threads per sign/model
-   combination (about 10 min for all four).
+   combination (about 10 min for all four). **RUN 2026-10-18** (both models, 31 windows, every offset):
+   792,182,494 decodes in 19 min, best IoC 1.3320 against the rand:300:300 null's 1.3184 -- 0.014 over the null,
+   far below the 1.40 rule and the +0.15 verification margin: **negative, the library at mid-page starts is
+   excluded** (plant control 1.6779 at the exact offset; `results/kscreen/staggered.tsv`, `staggered_null.tsv`).
 
 ## H4 (rank 4): per-rune periodic sign templates (Beaufort / Vigenere alternation, period 2-5)
 
@@ -216,4 +219,9 @@ re-decode beating 20 random offsets by 0.15, then whole-section verification wit
   0.986-1.018, the F cell alone carries the excess (`work/tmp/echo_pairs_report.md:170-225`).
 - **Outer-alphabet front-end built and controlled** (`work/kscreen/relabel_export.py`, `work/kscreen/RELABEL.md`,
   `work/tmp/relabel_control.txt`): see H1.
+- **Staggered mid-page windows (audit assumption 5, run to completion).** 31 windows of 300 runes at mid-section
+  offsets across 0.7-0.15 x the 1,447-stream library at every offset, both models: 792,182,494 decodes in 19 min,
+  best IoC 1.3320 vs the rand:300:300 null's 1.3184 (+0.014, rule needs +0.15 and 1.40): negative; a library key
+  starting mid-page is excluded. Plant control recovered at 1.6779 at the exact offset
+  (`results/kscreen/staggered.tsv`, `staggered_null.tsv`, `work/tmp/stag_plant_screen.tsv`).
 - **Methodology audit** with per-assumption tests: `work/tmp/methodology_audit.md`.

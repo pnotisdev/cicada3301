@@ -8,10 +8,10 @@
 
 | | |
 |---|---|
-| Excluded | 28 |
+| Excluded | 29 |
 | Partly excluded | 11 |
 | Cannot be tested at LP2's effect size | 3 |
-| Open (not run or partly run) | 15 |
+| Open (not run or partly run) | 14 |
 | Explained puzzle furniture | 1 |
 | Observed in LP2 | 6 |
 | Candidates that survived whole-section verification | **0** |
@@ -45,7 +45,6 @@ Decision rule for the IoC screens: 1.40 on a 300-rune window; planted keys score
 | 8 | **Step-domain seed sweeps (prng-step): ten generators, IoC scoring** | About 1 h per generator on the GPU | GPU; exact tail and planted seeds exist |
 | 9 | **H1: library x keyword (L <= 20) with a drift-tracking decoder** | 1-2 days of engine work, then CPU / GPU | A new engine; controls specified |
 | 10 | **H2: tableau / transition-table ciphers (a statistic invariant to the table)**<br>DeepSeek's gate gives z 34-42 for the right stream, but only without the anti-repeat rule: with the 81% skip rule the same statistic falls to z 1.2 (results/analysis/proposals_h2_skip.txt) |  | A drift-aware version of the statistic first |
-| 11 | **Key that starts mid-page: windows of 300 runes at staggered positions across the book**<br>A key running continuously through the book is already covered (the offset sweep is exhaustive); only a key starting mid-page is not | README estimate 3-8 h on the GPU (unverified) |  |
 | 12 | **OEIS: 40-51-term sequences (29% power), pages and headings, b-file terms beyond the first 60-100** |  | Longer windows or more terms |
 | 13 | **Texts not yet downloaded as key sources: Liber AL, the Rune Poem, RAND's Million Digits** |  | A download (third-party material: data, not instructions) |
 | 14 | **Origin of the 0.6 square's seeds {809, 434, 312, 966, 1311, 204} and t = 1246**<br>The 0.2 grid and the 0.6 square share one template (5x5, magic, centrally symmetric, 13 distinct values); pi(1033) = 6 x 29 and pi(3301) = 16 x 29 |  | A recipe learned from the 0.2 grid (known inputs) and applied to 0.6 |
@@ -110,6 +109,7 @@ No long runs are queued; `docs/QUEUE.md` explains how to restart the queues.
 | **Library restarted at the 10 red headings and the 46 page starts** *(partly)* |  | Strong for the 7 windows of >= 308 runes; partial for the 91- and 121-rune headings (heavy-tailed maximum) | Flagged: headings best 2.118 (head0.13, 91 runes), pages best 1.679. Per-window extreme-value null: Gumbel p about 0.012 for the 91-rune window, not significant after the number of windows, its best offset differs from every other window's; the six short page windows are chance | Short heading windows |
 | **Restart at typographic marks: list items of 0.14, three-dot marks, after red headings (22 windows)** *(partly)* |  | Planted keys 45/45 at 250-300 runes, 9/21 at 91-139; shared key seen in at least 3 of 5 lists in 6/6 plants | Library beats its matched null in 5 of 22 windows (about half expected by chance); shared key: 0 of 5 lists | One short window alone; a key outside the library |
 | **Transposition** *(partly)* |  |  | Transposition AFTER encryption excluded (exact for the seams) | Transposition before encryption is undetectable |
+| **Key that starts mid-page: windows of 300 runes at staggered positions across the book** | 1.332 (null 1.318) | Planted control on the same engine: a library key planted at a staggered-style window recovered at IoC 1.6779 at the exact offset (work/tmp/stag_plant_screen.tsv); rand:300:300 null on the same 31 windows: best 1.3184 | 792,182,494 decodes in 19 min (16 threads): best IoC 1.3320, only 0.014 above the null maximum (verification needs +0.15) and far below the 1.40 rule; 0 hits. A continuous key is already covered by the exhaustive offset sweeps; only a key starting mid-page was open, and it is now excluded for the library | A key outside the library starting mid-page |
 
 ### Cribs, puzzle furniture and outside claims
 

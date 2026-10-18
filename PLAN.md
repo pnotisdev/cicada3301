@@ -557,6 +557,10 @@ engine `work/layer2` (output `results/layer2/`).
 - **Outer-alphabet front-end built and controlled** (`work/kscreen/relabel_export.py`, `RELABEL.md`): the one family
   no screen covers; plant recovered at 1.6702 after relabelling vs 1.0068-1.0637 unrelabelled, null <= 1.052, wrong
   sigma <= 1.055. Real run: 72 sigmas (29 reflections, 26 affine, 17 keyword alphabets), about 1 h GPU / 6 h CPU.
+- **Staggered mid-page windows (audit assumption 5) run:** 31 windows of 300 runes at mid-section offsets x the
+  library at every offset, both models: 792,182,494 decodes in 19 min, best IoC 1.3320 vs the rand:300:300 null
+  1.3184 (+0.014; rule 1.40 and +0.15): negative, a library key starting mid-page is excluded
+  (`results/kscreen/staggered.tsv`, plant control 1.6779).
 - **Stop-doing list** in `work/log/phase11_review.md` section C: no more plain additive library screens, no
   dictionary-scored leftovers, no short-window restart tests, no new keyless echo statistics, no OEIS/hash/KDF
   lane expansions.

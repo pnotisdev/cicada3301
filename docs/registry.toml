@@ -783,12 +783,16 @@ files = ["results/analysis/proposals_h2_skip.txt"]
 id = "open-sliding"
 group = "layout"
 title = "Key that starts mid-page: windows of 300 runes at staggered positions across the book"
-status = "open"
-priority = 11
-what = "A key running continuously through the book is already covered (the offset sweep is exhaustive); only a key starting mid-page is not"
-cost = "README estimate 3-8 h on the GPU (unverified)"
-log = ["work/log/phase10_proposals_review.md"]
-files = ["work/proposals/sliding_window/README.md"]
+status = "excluded"
+what = "31 staggered 300-rune windows at mid-section offsets across sections 0.7-0.15 (work/tmp/staggered_windows.py), the 1,447-stream library at every offset, both models, both signs free (mults=1)"
+best = 1.332
+null = 1.3184
+chart = true
+control = "Planted control on the same engine: a library key planted at a staggered-style window recovered at IoC 1.6779 at the exact offset (work/tmp/stag_plant_screen.tsv); rand:300:300 null on the same 31 windows: best 1.3184"
+result = "792,182,494 decodes in 19 min (16 threads): best IoC 1.3320, only 0.014 above the null maximum (verification needs +0.15) and far below the 1.40 rule; 0 hits. A continuous key is already covered by the exhaustive offset sweeps; only a key starting mid-page was open, and it is now excluded for the library"
+gap = "A key outside the library starting mid-page"
+log = ["work/log/phase11_review.md"]
+files = ["results/kscreen/staggered.tsv", "results/kscreen/staggered_null.tsv", "work/tmp/staggered_windows.py", "work/tmp/stag_plant_screen.tsv"]
 
 [[experiment]]
 id = "open-oeis-short"
