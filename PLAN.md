@@ -660,3 +660,10 @@ Details: `work/log/echo_dispersion_2026-10-18.md`; protocol:
 - Log every hypothesis tested, with its parameters and score, in `work/log/` so nothing is re-run blindly.
 - Record negative results too. The unsolved section has resisted public effort since 2014, so
   ruling hypotheses out with clear reasons is useful progress.
+
+### M04 hold-key baseline (2026-10-18, `work/log/phase15_m04_baseline.md`, `work/m04/`)
+
+Synthetic crossed gate, no LP2 search; design frozen first. Independent plants (hold-key repair M04, spend-key substitution, and the repository's skip / coin conventions) through the UNCHANGED kscreen engine
+(bank 8 streams x 16 offsets, 512 cells). Regression skip 40/40 and coin 40/40 detected; matched nulls 2/100 flagged (T = 1.1969). **M04: 14/100 above T, 0/100 reach 1.40, 0/100 plaintext accuracy >= 0.95
+(mean 0.154 = the prefix before the first held repair): the old screens are blind to a hold-key repair at this scope. Spend-key substitution: 100/100 detected, accuracy 0.969: visible.** Not evidence that Cicada used M04;
+a matching decoder is a separate decision (registry `open-m04-decoder`).

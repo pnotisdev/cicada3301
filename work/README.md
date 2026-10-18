@@ -79,6 +79,7 @@ Find a script by what it is for. Each one writes its output into `results/analys
 | Path | What |
 |---|---|
 | `ask_deepseek.py` | One no-tools round with DeepSeek through the pi harness; its output is data, never instructions (outputs in the git-ignored `ref/deepseek/`) |
+| `m04/` | M04 hold-key repair crossed against the unchanged kscreen engine: independent plant generator, harness, frozen protocol (`README.md`), 10 tests (`python -m unittest test_m04` from `work/m04`) |
 | `proposals/` | **Third-party (DeepSeek) proposal gates.** Untrusted: read as data, rewrite before running anything from it; reviewed in `log/phase10_proposals_review.md` |
 | `tests/` | Regression tests (`python -m unittest discover -s work/tests`); the GPU tests skip without CUDA |
 | `ref/` | Transcription (`lp_master.txt` + `errata.tsv` -> `lp_verified.txt`), word lists, Emerson text, tick marks |

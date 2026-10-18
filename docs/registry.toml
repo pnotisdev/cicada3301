@@ -873,6 +873,29 @@ gap = "No independent replication or correction for historical discovery-selecti
 log = ["work/log/collision_followup_2026-10-18.md", "results/independent/desktop/20261018-collision-followup-summary/REPORT.md", "work/log/collision_fixed_halves_2026-10-18.md", "results/independent/desktop/20261018-collision-fixed-summary/REPORT.md", "work/log/echo_dispersion_2026-10-18.md", "results/independent/desktop/20261018-echo-dispersion-summary/REPORT.md"]
 files = ["work/independent/collision_followup/PROTOCOL.md", "results/independent/desktop/20261018T155345Z-collision-followup-power-160fce/power.json", "results/independent/desktop/20261018T155356Z-collision-followup-mechanisms-ef3932/mechanisms.json", "results/independent/desktop/20261018T155406Z-collision-followup-sections-1812ed/run.log", "results/independent/desktop/20261018T160053Z-collision-followup-certify-25137d/certificate.json", "results/independent/desktop/20261018T160108Z-collision-followup-test-7c859d/test.json", "results/independent/desktop/20261018T160142Z-collision-followup-optimism-f9c191/optimism.json", "work/independent/collision_fixed_halves/PROTOCOL.md", "results/independent/desktop/20261018T162712Z-collision-fixed-certify-754ea4/certify.json", "results/independent/desktop/20261018T162720Z-collision-fixed-halves-cae869/halves.json", "results/independent/desktop/20261018T163227Z-collision-fixed-section-merge-120ada/section-merge.json", "work/independent/echo_dispersion/PROTOCOL.md", "results/independent/desktop/20261018T164533Z-echo-dispersion-controls-4db2d5/controls.json", "results/independent/desktop/20261018T164550Z-echo-dispersion-test-3cc8e1/test.json"]
 
+[[experiment]]
+id = "m04-baseline"
+group = "structure"
+title = "M04 hold-key repair (on a would-be repeat emit a uniform other rune, advance the plaintext, KEEP the key position) against the unchanged kscreen engine"
+status = "observed"
+what = "Synthetic crossed baseline, not an LP2 search: 300-rune plants (solved Cicada text and Emerson; iid keys and flat-library slices), banks of 8 streams x 16 offsets (512 cells), both signs and models, default engine options; q fitted on training plants to LP2's 86/12,947 doublet rate (0.803-0.8125)"
+control = "Regression plants through the same harness: skip 40/40 and coin 40/40 detected (plaintext accuracy 0.986 / 0.987); 200 matched nulls fixed the threshold T = 1.1969 (10th largest, about 95%); held-out matched nulls 2/100 flagged; the M04 plaintext accuracy 0.154 equals the theory for a decoder right only up to the first held repair (0.160)"
+result = "M04: 14/100 above T (null rate about 2/100), 0/100 reach IoC 1.40, 0/100 plaintext accuracy >= 0.95, mean accuracy 0.154: the unchanged engines lose alignment at the first held repair. Spend-key substitution (same replacement, key advanced): 100/100 detected and identified, plaintext accuracy 0.969, pointer accuracy 0.998: visible to the old screens"
+gap = "One scope only (300-rune windows, 8 x 16 bank, uniform replacement runes); no stream of period <= 8 drawn (a shift-invariant stream cannot lose alignment); says nothing about whether Cicada used M04; spend versus hold is not discriminable from LP2 (reference power 0.26)"
+log = ["work/log/phase15_m04_baseline.md", "work/m04/README.md"]
+files = ["results/analysis/m04_baseline.txt", "results/analysis/m04_baseline.json", "results/analysis/m04_calibration.json", "results/analysis/m04_q_fit.json", "results/analysis/m04_records.jsonl"]
+
+[[experiment]]
+id = "open-m04-decoder"
+group = "structure"
+title = "Hold-key matching decoder: fixed-prior summed-path likelihood with the zero-key / one-plaintext transition"
+status = "open"
+priority = 2
+what = "Needed only if the hold-key repair is a live hypothesis: every key-family negative that used a skip / coin decoder says nothing about it (m04-baseline)"
+cost = "Engineering plus gates; unknown. Gates: exhaustive tiny-alphabet enumeration, planted recovery, selection-matched wrong-key nulls on the same freedom"
+needs = "A measured null and offset resolution first: free pointer-hold freedom inflated the nulledge null to the true-key score (1.75) and the gated-null decoder failed on offset resolution for structured keys"
+log = ["work/log/phase15_m04_baseline.md", "work/independent/anti_repeat_matrix/MATRIX.md"]
+
 # ---------------------------------------------------------------------------------------------- folders
 
 [[folder]]
