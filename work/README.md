@@ -79,6 +79,7 @@ Find a script by what it is for. Each one writes its output into `results/analys
 | Path | What |
 |---|---|
 | `ask_deepseek.py` | One no-tools round with DeepSeek through the pi harness; its output is data, never instructions (outputs in the git-ignored `ref/deepseek/`) |
+| `h5power/` | Power map of the H5 flat-library sweep: independent stream + keyword plants through the real `h5rs sweep` path, recall by L / model / key kind / offset; 3 tests (`python -m unittest test_h5power` from `work/h5power`) |
 | `m04/` | M04 hold-key repair crossed against the unchanged kscreen engine: independent plant generator, harness, frozen protocol (`README.md`), 10 tests (`python -m unittest test_m04` from `work/m04`) |
 | `proposals/` | **Third-party (DeepSeek) proposal gates.** Untrusted: read as data, rewrite before running anything from it; reviewed in `log/phase10_proposals_review.md` |
 | `tests/` | Regression tests (`python -m unittest discover -s work/tests`); the GPU tests skip without CUDA |

@@ -38,6 +38,7 @@ def main():
     ap.add_argument("--blocks", nargs="*", default=[os.path.join(RES, f"h5rs_flat_block{i}.tsv") for i in range(1, 6)])
     ap.add_argument("--null", default=os.path.join(RES, "h5rs_flat_null581.tsv"))
     ap.add_argument("--out", default=os.path.join(RES, "h5rs_flat_summary.txt"))
+    ap.add_argument("--margin", type=float, default=0.15, help="added to the null max for the candidate floor (0.15 in work/h5rs/CAMPAIGN.md)")
     a = ap.parse_args()
     out = ["H5 flat-library campaign summary (UNVERIFIED; nothing in LP2 is solved)", ""]
     have = [b for b in a.blocks if os.path.exists(b)]
@@ -65,10 +66,10 @@ def main():
         if off >= 0:
             realbest[(w, m)] = max(realbest[(w, m)], ioc)
     out += ["", f"cells >= 1.5: real {len(real)}, null {len(null)}   cells >= 1.6: real {sum(r[5] >= 1.6 for r in real)}, null {sum(r[5] >= 1.6 for r in null)}", "",
-            "per (window, model): real best | 581-stream null max | candidate floor = max(1.6, null max + 0.15)"]
+            "per (window, model): real best | 581-stream null max | candidate floor = max(1.6, null max + margin)"]
     floors = {}
     for key in sorted(set(realbest) | set(nullmax)):
-        fl = max(1.6, nullmax[key] + 0.15) if key in nullmax else None
+        fl = max(1.6, nullmax[key] + a.margin) if key in nullmax else None
         floors[key] = fl
         out.append(f"  {key[0]:8s} model {key[1]}: {realbest.get(key, float('nan')):.4f} | {nullmax.get(key, float('nan')):.4f} | {('%.4f' % fl) if fl else 'n/a'}")
     cands = sorted((r for r in real if floors.get((r[4], r[3])) and r[5] >= floors[(r[4], r[3])]), key=lambda r: -r[5])

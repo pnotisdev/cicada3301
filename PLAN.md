@@ -667,3 +667,8 @@ Synthetic crossed gate, no LP2 search; design frozen first. Independent plants (
 (bank 8 streams x 16 offsets, 512 cells). Regression skip 40/40 and coin 40/40 detected; matched nulls 2/100 flagged (T = 1.1969). **M04: 14/100 above T, 0/100 reach 1.40, 0/100 plaintext accuracy >= 0.95
 (mean 0.154 = the prefix before the first held repair): the old screens are blind to a hold-key repair at this scope. Spend-key substitution: 100/100 detected, accuracy 0.969: visible.** Not evidence that Cicada used M04;
 a matching decoder is a separate decision (registry `open-m04-decoder`).
+
+### H5 sweep power map (2026-10-19, `work/log/phase16_h5_power_map.md`, `work/h5power/`)
+
+6,000 independent stream + keyword plants through the real `h5rs sweep` path: recall of the true cell falls from 84% (L = 2) to 7% (L = 20) at IoC 1.6 and from 48% to 4% at 1.8 (skip 58% / 36%, coin 34% / 21%); no dependence on offset or key kind.
+**A negative H5 sweep excludes little** (the 1.8 floor rejects about half of even perfect 300-rune decodes; the engine truncates windows to 300). The overnight queue was re-cut to L = 2..13 (flat library) and L = 2..8 (the 858 streams the flat filter excluded).

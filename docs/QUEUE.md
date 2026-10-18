@@ -50,8 +50,9 @@ A line `0 of N` in a `_verify.txt` is a negative; anything at or above the rule 
 
 ## night2 (2026-10-19, started by hand, not a scheduled task)
 
-`jobs/queues/night2.txt`, about 10-13.5 h on the desktop CPU: the H5 flat-library sweep (`work/h5rs`, 5 offset blocks of 400) -> the campaign-size null (`null581.ksb`, the real 581-stream size: the
-8-stream null undershoots the maximum by 0.26-0.34, `work/h5rs/CAMPAIGN.md`) -> `jobs/night2_summary.py` (candidate rule with that null; writes `results/h5rs_flat_summary.txt`) -> the remaining `layer2` slices.
+`jobs/queues/night2.txt`, about 10-12 h on the desktop CPU (my estimate from 18-19k decodes/s): the H5 sweep (`work/h5rs`) over the flat library at L = 2..13 in 5 offset blocks of 400, the campaign-size null (`null581.ksb`, the real 581-stream size: the
+8-stream null undershoots the maximum by 0.26-0.34) at the same L range, `jobs/night2_summary.py` (candidate rule with that null -> `results/h5rs_flat_summary.txt`), the 858 streams the standalone flat-IoC filter excluded (built by
+`jobs/night2_prepare.py`) at L = 2..8 in two offset blocks (-> `results/h5rs_nonflat_summary.txt`), then the remaining `layer2` slices. The L range follows the power map (`work/log/phase16_h5_power_map.md`): recall falls from 84% at L = 2 to 7% at L = 20.
 Start from the repository root: `Start-Process .venv\Scripts\python.exe -ArgumentList 'jobs\jobqueue.py','night2','jobs\queues\night2.txt' -WindowStyle Hidden`. Status: `results\overnight\desktop\queue\night2.tsv` and the
 per-job logs next to it. A finished job is skipped on a restart (an interrupted H5 block restarts from zero). A candidate is UNVERIFIED until the whole-window re-decode (`work/h5slice`) and the whole-section verification
-of `docs/CAMPAIGNS.md`. Known limits: the grid can miss a true cell at some deep offsets (init abort) and only streams passing the standalone flat-IoC filter are eligible.
+of `docs/CAMPAIGNS.md`. **A negative result excludes little** (recall at the campaign floor averages 28%); the grid can also miss a true cell at the init abort.
