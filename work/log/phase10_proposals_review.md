@@ -1,0 +1,24 @@
+# Review of the 12 DeepSeek proposal gates (`work/proposals/`, 2026-10-18)
+
+Scope: LP2 sections 0.7-0.15. **Nothing in LP2 is solved.** The folder was written by DeepSeek (via the pi harness) and committed in a360a77 / eed00eb before anyone had read it; it was pushed with 00a6a75. It is third-party material: read as data, no code of it is imported by our engines.
+
+## What was checked
+All 12 `run.py` files and `common.py` read; no subprocess, network, eval, file writes or absolute paths. All 12 gates run (`.venv` python, seconds each) and all print PASS. A gate pass shows only that the planted case is recovered in a toy setting (tiny hand-written corpora in `common.py`); it says nothing about LP2.
+
+## Verdicts
+| gate | what it shows | problem | use |
+|---|---|---|---|
+| sign_rules, word_anchors | planted word-number sign / anchor rules are recovered | the plant takes the numbers (n, G, R, F, ... ) from the PLAINTEXT words and the scan reuses the same plaintext-derived numbers: the decoder is handed the answer. 112 rules include orientation duplicates and the circular current-word-ciphertext rules we excluded | superseded: our 61-rule campaign (best IoC 1.388, negative) has controls without that leak |
+| h2_coincidence | coincidence of equal key and equal ciphertext is high at the true offset (z 34) | planted with NO anti-repeat rule. Same statistic, same corpus with the 81% skip rule (`results/analysis/proposals_h2_skip.txt`): z 41.7 -> **1.2** (44 skips in 1600 runes shift the alignment). On LP2 0.7 z 0.7 | needs a drift-aware version before it means anything |
+| outer_alphabet | keyword-mixed alphabet sigma: relabel the ciphertext by sigma, then the ordinary additive decode (IoC is invariant under relabelling, so the true sigma gives plaintext IoC) | the 'enumeration' ranks the planted keyword among the same 10 keywords it was drawn from; one random-alphabet null | the one genuinely new family: cheap to build as a relabelling in front of the existing screen |
+| null_beam | null-aware beam recovers planted per-word nulls (53 found vs 58 planted, 0 hallucinated) | the 'word-length signature 100% consistent' line is a tautology (cipher word lengths are computed from the planted flags); p_null 0.42 and the prior are chosen, not measured; Python prototype | the unkeyed-insertion gap is real (ledger blind spot 9); this is a prototype of the decoder, not evidence of nulls in LP2 |
+| section_depth | shared pad at section starts raises the difference-bigram LL (0.0237 nats/rune, z 9) and the anti-repeat rule leaves 17% | the difference model is trained on and tested against the same toy Markov source; only the first ~36 aligned runes survive the rule (about 0.9 nats in total) | confirms the keyless-power conclusion: undetectable without drift tracking |
+| sliding_window | a 300-rune mid-book key alignment is recovered by a sliding window | toy size. Real gap in ciphertext position (our windows sit at section / page / heading starts), but a key that runs continuously through the book is already covered because the key-offset sweep is exhaustive; only a key that starts mid-page is not | low prior; GPU cost per the README 3-8 h, so not started |
+| lm_power | IoC residual 1.25 vs LL margin 1.03 nats/rune for a two-layer cipher | tiny-corpus LM | argues for an LM rescoring pass, not new evidence |
+| crib_filter | apostrophe / n't / one-rune-word filters reject wrong decodes (true 0/10 rejected, wrong 7/10) | premise (the 4 lone ticks are apostrophes, 83 one-rune words are A or I) comes from our marks layer and is unproven; the planted control is a koan-style toy text | a verifier add-on, not a search; prints a constraint table for LP2 |
+| survivor_doublets | on LP2: 63 in-word doublets over 2813 words, G(coin) 3.0 vs G(uniform) 9.4 | single synthetic draw as control; both models are within chi-square range, so about 3 nats of likelihood ratio | consistent with the 81% coin; changes no decision |
+| word_reversal | per-word reversal of the plaintext is identified by a boundary-aware LL | **premise error**: the README calls reversal 'IoC-blind', but the gate's own output decodes the reversed plant at IoC 1.827; the ordinary IoC screen sees reversed words. Only the boundary-free bigram lane (forward-English bigrams) would lose it | no new blind spot for kscreen |
+| koan_sums | pre-registered test: are the 0.6 square's seeds Gematria sums of 0.5 plaintext words / word pairs / clauses? 0 hits vs null max 0 | the shuffled null also finds 0, so it closes only these three families | overlaps `phase10_squares.md`; closes one more squares idea |
+
+## Net
+Nothing here changes a result. Two items are worth building after a cheap control each: the outer-alphabet relabelling (family not yet covered) and a drift-aware coincidence statistic or an unkeyed-null engine option (both gaps already listed in `docs/NEGATIVE_SPACE.md`). No long run is started.
