@@ -1,0 +1,12 @@
+# night2: about 11.5 h on the desktop CPU (8 engine threads; the layer2 job uses 14). Run: python jobs/jobqueue.py night2 jobs/queues/night2.txt
+# Order: the H5 flat-library sweep in 5 offset blocks, the CAMPAIGN-SIZE null (581 streams, the real size; the 8-stream null undershoots the maximum by 0.26-0.34),
+# the remaining layer2 slices, then the summary. A job that finished ok is skipped on a restart (a restarted H5 block starts that block from zero).
+# Known limits (work/h5rs/CAMPAIGN.md): the grid can miss a true cell at some deep offsets (init abort); only streams passing the standalone flat-IoC filter are eligible.
+h5-block1 | work/h5rs/target/release/h5rs.exe sweep work/h5rs/data/lp2_windows.txt file:work/kscreen/data/library_flat.ksb 0 400 2 20 2 8 results/h5rs_flat_block1.tsv --hits 1.5 --chunk 10 --progress 1 --best
+h5-block2 | work/h5rs/target/release/h5rs.exe sweep work/h5rs/data/lp2_windows.txt file:work/kscreen/data/library_flat.ksb 400 800 2 20 2 8 results/h5rs_flat_block2.tsv --hits 1.5 --chunk 10 --progress 1 --best
+h5-block3 | work/h5rs/target/release/h5rs.exe sweep work/h5rs/data/lp2_windows.txt file:work/kscreen/data/library_flat.ksb 800 1200 2 20 2 8 results/h5rs_flat_block3.tsv --hits 1.5 --chunk 10 --progress 1 --best
+h5-block4 | work/h5rs/target/release/h5rs.exe sweep work/h5rs/data/lp2_windows.txt file:work/kscreen/data/library_flat.ksb 1200 1600 2 20 2 8 results/h5rs_flat_block4.tsv --hits 1.5 --chunk 10 --progress 1 --best
+h5-block5 | work/h5rs/target/release/h5rs.exe sweep work/h5rs/data/lp2_windows.txt file:work/kscreen/data/library_flat.ksb 1600 2000 2 20 2 8 results/h5rs_flat_block5.tsv --hits 1.5 --chunk 10 --progress 1 --best
+h5-null581 | work/h5rs/target/release/h5rs.exe sweep work/h5rs/data/lp2_windows.txt file:work/h5rs/data/null581.ksb 0 2000 2 20 2 8 results/h5rs_flat_null581.tsv --hits 1.5 --chunk 10 --progress 1 --best
+summary | {PY} jobs/night2_summary.py
+layer2 | {PY} jobs/overnight.py run layer2 --threads 14 --device cpu

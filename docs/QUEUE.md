@@ -47,3 +47,11 @@ schtasks /delete /tn LP_queue_cpu /f                # remove the task
 The queues only produce files: `results/kscreen/signs/`, `results/kscreen/signs_periodic/`, `results/layer2/`, `results/prng/` (`time_gpu/`, `bgtime_<gen>_pages.*`, `bgsmall_<gen>_pages.*`), `results/overnight/desktop/` (reports, logs, the queue state). Read them as the earlier logs did
 (`work/log/phase10_signrules.md`, `phase10_pages_py3.md`, `phase10_prng_time_gpu.md`): best score against the rule (IoC 1.40 for kscreen, +300 for the seed sweeps), the verification files, a privacy scan of the added lines (no computer or user names, no absolute paths), then PLAN.md, the ledger and a commit.
 A line `0 of N` in a `_verify.txt` is a negative; anything at or above the rule is a candidate and needs the whole-section verification of `docs/CAMPAIGNS.md` before anyone says more.
+
+## night2 (2026-10-19, started by hand, not a scheduled task)
+
+`jobs/queues/night2.txt`, about 10-13.5 h on the desktop CPU: the H5 flat-library sweep (`work/h5rs`, 5 offset blocks of 400) -> the campaign-size null (`null581.ksb`, the real 581-stream size: the
+8-stream null undershoots the maximum by 0.26-0.34, `work/h5rs/CAMPAIGN.md`) -> `jobs/night2_summary.py` (candidate rule with that null; writes `results/h5rs_flat_summary.txt`) -> the remaining `layer2` slices.
+Start from the repository root: `Start-Process .venv\Scripts\python.exe -ArgumentList 'jobs\jobqueue.py','night2','jobs\queues\night2.txt' -WindowStyle Hidden`. Status: `results\overnight\desktop\queue\night2.tsv` and the
+per-job logs next to it. A finished job is skipped on a restart (an interrupted H5 block restarts from zero). A candidate is UNVERIFIED until the whole-window re-decode (`work/h5slice`) and the whole-section verification
+of `docs/CAMPAIGNS.md`. Known limits: the grid can miss a true cell at some deep offsets (init abort) and only streams passing the standalone flat-IoC filter are eligible.
