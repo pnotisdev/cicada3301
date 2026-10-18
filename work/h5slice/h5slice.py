@@ -12,13 +12,21 @@ unencrypted and consumes no key position).
 
 Decoder (per offset, L):
   outer loop over (offset, L); inner EM over the keyword columns:
+   * init: a w-free nats-scored beam over FREE pointer branches (+1/+2/+3 and the
+     literal-F branch), scored by the per-column SHIFT-MARGINALIZED English log-likelihood
+     (the keyword shift of each column is integrated out over the 29 shifts, so no keyword
+     knowledge is used) minus ln(1/0.028) = 3.58 nats per skip (HYPOTHESES.md:18-20).
+     Each letter placed in a column adds at most ln(29 f_max) ~ 1.3 nats of evidence above
+     the uniform-null level, so a fabricated skip can never pay for itself; the beam buys
+     the real skips on truth because they re-align every later rune (about 1.2 nats per
+     rune of drift, HYPOTHESES.md:22). An early abort kills cells whose best mean score at
+     abort_at runes stays below the unigram-null level + margin (dead nulls, cheaply);
    * estimate the L column shifts w by the maximum-likelihood shift under the English rune
      distribution (the distribution-aware modal class) from p_i = c_i - t_{j(i)};
-   * re-decode with a beam over the skip branches (drift tracking; a skip branch exists only
-     where the collision is consistent with the combined key, as in work/kscreen), pruning
-     the beam by the plaintext log-likelihood (about 0.4 nats/rune on truth, the information
-     budget of HYPOTHESES.md:18-24);
-   * re-estimate w from the best path; repeat until w is stable.
+   * EM over w: a beam over the collision-consistent skip branches only (drift tracking;
+     a skip branch exists only where the collision is consistent with the combined key,
+     as in work/kscreen), pruning the beam by the plaintext log-likelihood; re-estimate w
+     from the best path; repeat until w is stable.
   score = periodic IoC of the decoded columns (mean over columns of 29*sum n(n-1)/(n_c(n_c-1)),
   HYPOTHESES.md:70-78: about 1.8 on truth vs 1.0 +- 0.07 for L = 8, n = 300).
 
@@ -110,6 +118,20 @@ def _ls_matrix(logf):
     if _LS is None:
         _LS = np.array([[logf[(x - v) % Q] for x in range(Q)] for v in range(Q)])
     return _LS
+
+
+_UM = None
+
+
+def uni_mean_logf():
+    """Mean of logf over the UNIFORM letter distribution, (1/29) sum logf: the expected
+    per-letter score of a null column under the unigram model (ln of the geometric mean
+    of the Emerson frequencies). The truth level is mean(logf) = -H(f) nats per letter;
+    the gap (~1.2 nats) is the drift evidence of HYPOTHESES.md:22."""
+    global _UM
+    if _UM is None:
+        _UM = float(np.sum(english_logf())) / Q
+    return _UM
 
 
 # ------------------------------------------------------------------ statistics
@@ -248,12 +270,13 @@ def path_back(node, ks, parents):
     return out
 
 
-def beam_coincidence(c, prev, ts, L, litf, beam, abort_at=0, abort_z=0.0):
-    """Init pass: beam over FREE pointer branches (+1/+2/+3 and the literal-F branch), scored
-    by the running column-coincidence z = (Q s - d)/sqrt(56 d) (layer2's periodic z). The z is
-    w-free (shift-invariant within a column), so the true pointer alignment is found before the
-    keyword columns are known; the LL-EM then starts from its per-column estimate.
-    Returns (ptrs, z) for the best state, or None when the abort fires."""
+def beam_coincidence_z(c, prev, ts, L, litf, beam, abort_at=0, abort_z=0.0):
+    """DEPRECATED (blocker B, kept for reference/regression comparisons): init pass beam
+    over FREE pointer branches (+1/+2/+3 and the literal-F branch), scored by the running
+    column-coincidence z = (Q s - d)/sqrt(56 d) (layer2's periodic z). The z is w-free but
+    the pass overfits: with free branches the beam routes nearly every rune to a column
+    where it matches (z ~ 41 sigma on BOTH the truth plant and random nulls). Do not use.
+    decode() uses beam_coincidence_nats instead. Returns (ptrs, z) or None on abort."""
     n = len(c)
     tlen = len(ts)
     cell = L * Q
@@ -313,14 +336,204 @@ def beam_coincidence(c, prev, ts, L, litf, beam, abort_at=0, abort_z=0.0):
     return path_back(best_state[5], ks, parents), z
 
 
+LN_028 = math.log(0.028)
+
+
+def beam_coincidence_nats(c, prev, ts, L, litf, beam, logf, abort_at=0, abort_ll=0.0):
+    """Init pass (the fixed nats-scored version): a beam over FREE pointer branches
+    (+1/+2/+3 per rune, plus the literal-F branch), scored by the per-column
+    SHIFT-MARGINALIZED English log-likelihood: each state carries the log-domain column
+    products G[col*Q + v] = sum_i logf[(x_i - v) mod 29] over the column's letters, and
+    scores sum_col logsumexp_v G[col, v] + skips * ln(0.028). The keyword shift of each
+    column is integrated out over the 29 shifts (uniform prior), so the pass is w-free
+    (no keyword knowledge); the per-letter gain is bounded by ln(29 f_max) ~ 1.3 nats
+    above the uniform-null level while one skip costs ln(1/0.028) = 3.58 nats
+    (HYPOTHESES.md:18-20) - the free branches can no longer buy coincidence.
+    The beam buys the real skips on truth because they re-align every later rune
+    (about 1.2 nats/rune of drift evidence). States: (j, G, Lc, s, node) with
+    Lc[col] = logsumexp(G[col]) and s = sum(Lc) + skips*ln(0.028); states are merged per
+    pointer j and pruned to `beam` by score. The abort fires ONLY at the abort_at
+    checkpoint (the score drops ~3 nats/rune, so a running >= check would abort every
+    surviving cell on the next rune). Returns (ptrs, score) or None on abort."""
+    n = len(c)
+    tlen = len(ts)
+    M = _ls_matrix(logf)      # M[v][x] = logf[(x - v) % Q]
+    MT = M.T                  # MT[x][v]
+    js = [0]
+    G = [np.zeros(L * Q)]
+    Lc = [np.full(L, math.log(Q))]
+    S = [L * math.log(Q)]
+    nds = [-1]
+    ks_all = []
+    parents = []
+    for i in range(n):
+        ci = c[i]
+        W = len(js)
+        nb = 3 + (1 if (litf and ci == 0) else 0)
+        par = np.repeat(np.arange(W), nb)
+        kidx = []
+        cost = []
+        ql = []
+        for w in range(W):
+            j = js[w]
+            for dk in (0, 1, 2):
+                k = j + dk
+                if k < tlen:
+                    kidx.append(k)
+                    cost.append(dk * LN_028)
+                    ql.append(SUB[ci][ts[k]])
+                else:
+                    kidx.append(0)              # pad; killed by the -inf cost below
+                    cost.append(float("-inf"))
+                    ql.append(0)
+            if nb == 4:
+                kidx.append(j)
+                cost.append(0.0)
+                ql.append(0)
+        N = len(par)
+        kidx = np.array(kidx, dtype=np.int64)
+        cost = np.array(cost)
+        col = np.array(kidx) % L
+        Gmat = np.stack(G)
+        Lcm = np.stack(Lc)
+        Sm = np.array(S)
+        ndm = np.array(nds)
+        G2 = Gmat[par]                          # (N, LQ) fresh copies
+        rows = np.arange(N)
+        idx = col[:, None] * Q + np.arange(Q)[None, :]
+        G2[rows[:, None], idx] += MT[np.array(ql)]
+        upd = G2[rows[:, None], idx]
+        m = upd.max(axis=1)
+        lse2 = m + np.log(np.exp(upd - m[:, None]).sum(axis=1))
+        lse1 = Lcm[par, col]
+        s2 = Sm[par] + (lse2 - lse1) + cost
+        nj = kidx + 1
+        best = {}
+        for t in range(N):
+            njv = nj[t]
+            b = best.get(njv)
+            if b is None or s2[t] > b[0]:
+                best[njv] = (s2[t], t)
+        items = list(best.items())
+        items.sort(key=lambda kv: -kv[1][0])
+        if len(items) > beam:
+            items = items[:beam]
+        if abort_at and i + 1 == abort_at:
+            if not items or items[0][1][0] < abort_ll:
+                return None
+        js2, Gs2, Lc2, S2, nd2 = [], [], [], [], []
+        for njv, (s, t) in items:
+            lcs = Lcm[par[t]]
+            lcs = lcs.copy()
+            lcs[col[t]] = lse2[t]
+            ks_all.append(int(kidx[t]))
+            parents.append(int(ndm[par[t]]))
+            js2.append(int(njv))
+            Gs2.append(G2[t])
+            Lc2.append(lcs)
+            S2.append(s)
+            nd2.append(len(ks_all) - 1)
+        js, G, Lc, S, nds = js2, Gs2, Lc2, S2, nd2
+    if not js:
+        return None
+    best_i = max(range(len(S)), key=lambda k: S[k])
+    return path_back(nds[best_i], ks_all, parents), float(S[best_i])
+
+
+def beam_coincidence_nats_fast(c, prev, ts, L, litf, beam, logf, abort_at=0, abort_ll=0.0):
+    """DRAFT, UNTESTED (2026-10-18 session cut short): vectorized-numpy rewrite of
+    beam_coincidence_nats (~20x faster, aimed at making the LP2 first look feasible:
+    the verified simple version costs ~137 ms/decode, the LP2 grid 2.7M decodes needs
+    the whole decode at <~10 ms). Identical scoring and per-pointer merging; the only
+    changes are fixed-size preallocated state/candidate buffers and numpy candidate
+    construction + lexsort merge instead of Python loops/dicts. MUST be verified against
+    beam_coincidence_nats on the smoke tests (truth plant: expect skips=8 and the same
+    pointers, IoC 1.986 via decode; nulls must abort at the 120 checkpoint) before it is
+    wired into decode(). Note the literal-F branch exists only when ci == 0, and the
+    per-branch cost/offset tiles must be sliced to nb per rune."""
+    n = len(c)
+    tlen = len(ts)
+    M = _ls_matrix(logf)
+    MT = M.T
+    SUBM = np.array(SUB)
+    ts_arr = np.array(ts, dtype=np.int64)
+    B = beam
+    Gmat = np.zeros((B, L * Q))
+    Lcm = np.full((B, L), math.log(Q))
+    Sm = np.zeros(B)
+    ndm = np.full(B, -1, dtype=np.int64)
+    Sm[0] = L * math.log(Q)
+    js = [0]
+    W = 1
+    NMAX = B * 4
+    kidx = np.zeros(NMAX, dtype=np.int64)
+    cost = np.zeros(NMAX)
+    ql = np.zeros(NMAX, dtype=np.int64)
+    G2 = np.zeros((NMAX, L * Q))
+    rows = np.arange(NMAX)
+    offs = np.array([0, 1, 2, 0])
+    costs = np.array([0.0, LN_028, 2.0 * LN_028, 0.0])
+    ks_all = []
+    parents = []
+    for i in range(n):
+        ci = c[i]
+        nb = 4 if (litf and ci == 0) else 3
+        N = W * nb
+        kidx[:N] = np.repeat(np.asarray(js), nb) + np.tile(offs[:nb], W)
+        valid = kidx[:N] < tlen
+        cost[:N] = np.where(valid, np.tile(costs[:nb], W), -1e18)
+        kk = np.maximum(kidx[:N], 0)
+        ql[:N] = SUBM[ci][ts_arr[kk]]
+        if nb == 4:
+            ql[3::4] = 0                     # the literal-F branch letter
+        col = kidx[:N] % L
+        par = np.repeat(np.arange(W), nb)
+        G2[:N] = Gmat[par]
+        idx = col[:, None] * Q + np.arange(Q)[None, :]
+        G2[rows[:N, None], idx] += MT[ql[:N]]
+        upd = G2[rows[:N, None], idx]
+        m = upd.max(axis=1)
+        lse2 = m + np.log(np.exp(upd - m[:, None]).sum(axis=1))
+        lse1 = Lcm[par, col]
+        s2 = Sm[par] + (lse2 - lse1) + cost[:N]
+        nj = kidx[:N] + 1
+        order = np.lexsort((-s2, nj))
+        _, first = np.unique(nj[order], return_index=True)
+        surv = order[first]
+        if surv.size > B:
+            surv = surv[np.argsort(-s2[surv])[:B]]
+        if abort_at and i + 1 == abort_at:
+            if surv.size == 0 or float(s2[surv].max()) < abort_ll:
+                return None
+        m2 = surv.size
+        Gmat[:m2] = G2[surv]
+        Lcm[:m2] = Lcm[par[surv]]
+        Lcm[rows[:m2], col[surv]] = lse2[surv]
+        Sm[:m2] = s2[surv]
+        ndm[:m2] = ndm[par[surv]]
+        ks_all.extend(kidx[surv].tolist())
+        parents.extend(ndm[par[surv]].tolist())
+        js = nj[surv].tolist()
+        W = m2
+    if W == 0:
+        return None
+    best_i = int(np.argmax(Sm[:W]))
+    return path_back(int(ndm[best_i]), ks_all, parents), float(Sm[best_i])
+
+
 def decode(c, prev, tvals, offset, L, model, litf=False, beam=24, max_em=6, logf=None,
-           abort_at=0, abort_margin=0.0, out_path=False, beam_a=12, abort_z=1.8):
+           abort_at=0, abort_margin=0.25, out_path=False, beam_a=12):
     """Decode one window at one (offset, L). Two stages:
-      1. coincidence init: free-branch beam scored by the w-free column z -> pointer alignment
-         -> per-column ML shift w (the distribution-aware modal class);
-      2. EM over w: beam over the collision-consistent skip branches (layer2's outer_cands on
-         the combined key t + w), pruned by the plaintext log-likelihood, re-estimating w from
-         the best path until it is stable; score = periodic IoC of the final columns.
+      1. nats-scored coincidence init (beam_coincidence_nats): free pointer branches
+         scored by the shift-marginalized unigram log-likelihood minus ln(1/0.028) per
+         skip (w-free); early abort when the best mean score at abort_at runes is below
+         the unigram-null level (uni_mean_logf) + abort_margin - dead null cells die
+         cheaply, the true path passes with a wide margin;
+      2. per-column ML shift w, then EM over w: beam over the collision-consistent skip
+         branches pruned by the plaintext log-likelihood, re-estimating w until stable
+         (the EM's own LL abort is NOT used: on the true path the LL equals mean(logf)
+         per rune exactly, so any margin-above-mean threshold would kill the truth plant).
+      score = periodic IoC of the final columns.
     Returns (periodic_ioc, info); info is wcol, or a dict with the full path when out_path.
     On abort or short stream: (0.0, None)."""
     n = len(c)
@@ -332,16 +545,17 @@ def decode(c, prev, tvals, offset, L, model, litf=False, beam=24, max_em=6, logf
         logf = english_logf()
     if L == 0:
         return decode_t_only(c, prev, ts, model, beam)
-    a = beam_coincidence(c, prev, ts, L, litf, beam_a, abort_at, abort_z)
+    abort_ll_init = (abort_at * (uni_mean_logf() + abort_margin) + L * math.log(Q)
+                     if abort_at else 0.0)
+    a = beam_coincidence_nats(c, prev, ts, L, litf, beam_a, logf, abort_at, abort_ll_init)
     if a is None:
         return 0.0, None
-    ptrsA, _zA = a
+    ptrsA, _llA = a
     wcol = est_cols(c, ts, ptrsA, L, logf)
-    abort_ll = abort_at * (float(np.mean(logf)) + abort_margin) if abort_at else 0.0
     last_out = None
     for _ in range(max_em):
         comb = [(ts[j] + wcol[j % L]) % Q for j in range(n + margin)]
-        out = beam_pass(c, prev, comb, model, litf, beam, logf, abort_at, abort_ll)
+        out = beam_pass(c, prev, comb, model, litf, beam, logf, 0, 0.0)
         if out is None:
             break
         last_out = out
@@ -353,7 +567,7 @@ def decode(c, prev, tvals, offset, L, model, litf=False, beam=24, max_em=6, logf
         if not changed:
             break
     if last_out is None:
-        # the LL-EM aborted (its evidence is noise): score the coincidence-init path as-is
+        # the init found no LL-EM path: score the coincidence-init path as-is
         plain = [SUB[c[i]][ts[ptrsA[i]]] for i in range(n)]
         ioc = periodic_ioc(plain, ptrsA, L)
         if out_path:
@@ -495,7 +709,7 @@ def run_chunk(args):
         for L in Ls:
             ioc, _ = decode(c, prev, tvals, off, L, model, cfg["litf"], cfg["beam"], cfg["max_em"],
                             logf, cfg["abort_at"], cfg["abort_margin"], False,
-                            cfg.get("beam_a", 12), cfg.get("abort_z", 1.8))
+                            cfg.get("beam_a", 12))
             decodes += 1
             if ioc > best[0]:
                 best = (ioc, off, L)

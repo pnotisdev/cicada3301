@@ -1,0 +1,234 @@
+{
+  "parameters": {
+    "calibration_source": "results/analysis/cicadanotebook_checks_2026-10-17.txt:9,36",
+    "scope": "Derived iid fresh-pad reference; hold additionally assumes iid uniform plaintext",
+    "Q": 29,
+    "delta": "86/12947",
+    "q0": "10453/12947",
+    "q1": "303137/362516",
+    "qN": "10453/13033",
+    "rho": "10453/375463",
+    "alpha": "10453/362516",
+    "kappa": "59379/10512964",
+    "null_stationary_fraction": "10453/388410"
+  },
+  "units": "Native bigram scores are rounded/clipped 10*log-odds, NOT nats",
+  "provenance": "Derived scenario numbers; not measured power",
+  "sources": {
+    "calibration": "results/analysis/cicadanotebook_checks_2026-10-17.txt:9,36",
+    "ioc": "STATUS.md:19",
+    "bigram_scaling": "work/phpmt/bg.py:52-64",
+    "correct_bigram": "results/analysis/true_key_score.txt:1,13"
+  },
+  "bare_interior": [
+    {
+      "model": "M01",
+      "decoder": "S",
+      "F": "1",
+      "g": "1",
+      "unbounded_post_run": null,
+      "remaining_299": 299.0,
+      "note": null
+    },
+    {
+      "model": "M01",
+      "decoder": "C",
+      "F": "10160901/10512964",
+      "g": "0",
+      "unbounded_post_run": "0",
+      "remaining_299": 0.0,
+      "note": null
+    },
+    {
+      "model": "M02",
+      "decoder": "S",
+      "F": "315753930/315764383",
+      "g": "840/841",
+      "unbounded_post_run": "265233301200/8790973",
+      "remaining_299": 297.1663953864498,
+      "note": null
+    },
+    {
+      "model": "M02",
+      "decoder": "C",
+      "F": "305168640/315764383",
+      "g": "28/841",
+      "unbounded_post_run": "8544721920/8911019863",
+      "remaining_299": 0.9588583744145714,
+      "note": null
+    },
+    {
+      "model": "M03",
+      "decoder": "S",
+      "F": "813/841",
+      "g": "1/29",
+      "unbounded_post_run": "813/812",
+      "remaining_299": 1.0011913845483638,
+      "note": null
+    },
+    {
+      "model": "M03",
+      "decoder": "C",
+      "F": "1",
+      "g": "1",
+      "unbounded_post_run": null,
+      "remaining_299": 299.0,
+      "note": null
+    },
+    {
+      "model": "M04",
+      "decoder": "S",
+      "F": "365010/375463",
+      "g": "0",
+      "unbounded_post_run": "0",
+      "remaining_299": 0.0,
+      "note": null
+    },
+    {
+      "model": "M04",
+      "decoder": "C",
+      "F": "28/29",
+      "g": "0",
+      "unbounded_post_run": "0",
+      "remaining_299": 0.0,
+      "note": null
+    },
+    {
+      "model": "M05",
+      "decoder": "S",
+      "F": "365010/375463",
+      "g": "1/29",
+      "unbounded_post_run": "365010/303137",
+      "remaining_299": 1.203849487855424,
+      "note": null
+    },
+    {
+      "model": "M05",
+      "decoder": "C",
+      "F": "10453585/10512964",
+      "g": "1",
+      "unbounded_post_run": "10453585/59379",
+      "remaining_299": 143.68053860345623,
+      "note": null
+    },
+    {
+      "model": "M06",
+      "decoder": "S",
+      "F": "1",
+      "g": "1",
+      "unbounded_post_run": null,
+      "remaining_299": 299.0,
+      "note": null
+    },
+    {
+      "model": "M06",
+      "decoder": "C",
+      "F": "12861/12947",
+      "g": "1",
+      "unbounded_post_run": "12861/86",
+      "remaining_299": 129.1597725141509,
+      "note": null
+    },
+    {
+      "model": "M07",
+      "decoder": "S",
+      "F": "367504/377957",
+      "g": "0",
+      "unbounded_post_run": "0",
+      "remaining_299": 0.0,
+      "note": null
+    },
+    {
+      "model": "M07",
+      "decoder": "C",
+      "F": "28/29",
+      "g": "0",
+      "unbounded_post_run": "0",
+      "remaining_299": 0.0,
+      "note": null
+    },
+    {
+      "model": "M08",
+      "decoder": "S",
+      "F": "1",
+      "g": "1",
+      "unbounded_post_run": null,
+      "remaining_299": 299.0,
+      "note": null
+    },
+    {
+      "model": "M08",
+      "decoder": "C",
+      "F": "12861/12947",
+      "g": "1",
+      "unbounded_post_run": "12861/86",
+      "remaining_299": 129.1597725141509,
+      "note": null
+    },
+    {
+      "model": "M09",
+      "decoder": "S",
+      "F": "1",
+      "g": "1",
+      "unbounded_post_run": null,
+      "remaining_299": 299.0,
+      "note": null
+    },
+    {
+      "model": "M09",
+      "decoder": "C",
+      "F": "10160901/10512964",
+      "g": "0",
+      "unbounded_post_run": "0",
+      "remaining_299": 0.0,
+      "note": null
+    },
+    {
+      "model": "M11",
+      "decoder": "S",
+      "F": "1",
+      "g": "1",
+      "unbounded_post_run": null,
+      "remaining_299": 299.0,
+      "note": "M11/M12: interior only, real layout changes this"
+    },
+    {
+      "model": "M11",
+      "decoder": "C",
+      "F": "10160901/10512964",
+      "g": "0",
+      "unbounded_post_run": "0",
+      "remaining_299": 0.0,
+      "note": "M11/M12: interior only, real layout changes this"
+    },
+    {
+      "model": "M12",
+      "decoder": "S",
+      "F": "1",
+      "g": "1",
+      "unbounded_post_run": null,
+      "remaining_299": 299.0,
+      "note": "M11/M12: interior only, real layout changes this"
+    },
+    {
+      "model": "M12",
+      "decoder": "C",
+      "F": "10160901/10512964",
+      "g": "0",
+      "unbounded_post_run": "0",
+      "remaining_299": 0.0,
+      "note": "M11/M12: interior only, real layout changes this"
+    }
+  ],
+  "local_noise_ioc_illustration": [
+    1.5658973528826585,
+    1.9997519900926966
+  ],
+  "fixed_adjustment_ioc_lower_bounds": [
+    1.5350434929758265,
+    1.9452435042572935
+  ],
+  "wait_to_net_repair": "375463/10453",
+  "checks_300_initial_collisions": "300/29",
+  "checks_300_net_repairs": "3135900/375463"
+}

@@ -23,9 +23,7 @@ was gated on planted controls:
   share. One caveat on the exact tables (wrong plaintext prefix window; the fix is applied but not re-run;
   the verdict direction is corroborated by the independent review's -0.3-nat measurement on the true window).
 
-## 2. H5 drift-decoder first slice: built, not validated - one real blocker (`work/h5slice/README.md`)
-
-- **Delivered:** `work/h5slice/h5slice.py` - self-contained totient stream, independent two-stack planter with
+## 2. H5 drift-decoder first slice: built, not validated - one real blocker (`work/h5slice/README.md`)- **Delivered:** `work/h5slice/h5slice.py` - self-contained totient stream, independent two-stack planter with
   layer2's anti-repeat models and the literal-F rule, two-stage decode (w-free coincidence init pass, then EM over
   the keyword columns with collision-consistency skip branches), periodic-IoC scoring per
   `docs/HYPOTHESES.md:70-78`. Calibration: plant (Self-Reliance x totient + DIVINITY, offset 1234) gives plain IoC
@@ -40,6 +38,22 @@ was gated on planted controls:
   per-column ML shifts.
 - **Not run:** the (a)-(e) controls and the LP2 first look. Projected LP2 grid (8 windows x 2,001 offsets x
   19 L x 2 models + matched null, about 1.2 M decodes): 25-75 min on 8 workers, unvalidated.
+
+## 2b. H5 init-beam fix applied: the overfit is gone at the smoke level (`work/h5slice/FIX_REPORT.md`)
+
+- **The fix:** `beam_coincidence_nats` - a beam over the free +1/+2/+3 pointer branches scored by the per-column
+  SHIFT-MARGINALIZED English log-likelihood (w integrated out over all 29 shifts per column, so the init stays
+  w-free); per-skip cost ln(1/0.028) = 3.576 nats; per-letter gain bounded by ln(29*f_max) = 1.28 nats. A
+  fabricated skip can no longer pay for itself. Two bugs fixed on the way (the abort checkpoint must fire only at
+  abort_at; the EM's internal LL abort is disabled because truth LL = mean(logf)/rune exactly).
+- **Verified (smoke level):** truth plant (Self-Reliance x totient + DIVINITY, offset 1234, model 0): periodic
+  IoC **1.986**, wcol = DIVINITY **exactly**, init finds 8 skips = the plant's true count; 40/40 random nulls
+  abort at the 120-rune checkpoint (they scored z ~ 41 before the fix).
+- **Open blocker - performance:** the verified init costs ~137 ms/decode; the LP2 grid (2.7 M decodes) needs
+  < ~10 ms. `beam_coincidence_nats_fast` (a ~20x vectorized rewrite, three bugs fixed on review) is in
+  work/h5slice/h5slice.py marked UNTESTED. Next: verify fast vs slow, run the (a)/(b)/(d) controls, then the
+  capped 60-min LP2 first look with 8 matched-null streams (candidates: IoC >= 1.6 AND >= matched-null max +
+  0.15, in-process re-decode).
 
 ## Registry / status updates
 

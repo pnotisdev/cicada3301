@@ -1,0 +1,93 @@
+{
+  "fingerprint": {
+    "work/independent/collision_substitution/gate.py": "9baed049a871a169f8c7e4a2b9cca55b18c879f16ee196fe4af7c94412d6606a",
+    "work/independent/collision_substitution/collision_model.py": "7790d4a1f647f7b6dfadcaed56a96a5c32a6804782a9c373ba23ffce1d0a9b8a",
+    "work/independent/collision_substitution/test_collision_model.py": "a5eb3298e41fc560cdf0a37de15e83d33a4d24b5ede2f516314bba6a9386e924",
+    "work/independent/manual_common.py": "d9213bd62a43ada17b957c6813e7764511a33786d3b0e5e387774cc9a46b916a",
+    "work/lp.py": "23920022fefeb6e3bdee9ae1755a3dec8cf403e1d7ff5be56f69dd3e525e8472",
+    "work/ref/lp_verified.txt": "5eb929d9864e4bc672a1a3c9d180c4b2d196068df1c1e0fa6b8aa38743c42c77"
+  },
+  "config": {
+    "q": "81/100",
+    "null_replicates": 99,
+    "alpha": 0.05,
+    "scan": "812 affine maps x 8 lags x raw/guarded + 3 fixed mixtures",
+    "key_mode": "spend only; hold needs plaintext law"
+  },
+  "units": 12,
+  "n_by_target_position": [
+    2896,
+    2813,
+    2365,
+    1645,
+    1132,
+    815,
+    559,
+    343,
+    187,
+    109,
+    57,
+    25,
+    7,
+    3
+  ],
+  "pair_counts": {
+    "1": 10060,
+    "2": 7247,
+    "3": 4882,
+    "4": 3237,
+    "5": 2105,
+    "6": 1290,
+    "7": 731,
+    "8": 388,
+    "9": 201,
+    "10": 92,
+    "11": 35,
+    "12": 10,
+    "13": 3
+  },
+  "source_classes": {
+    "source_8": [
+      8
+    ],
+    "each_source_other_than_8": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28
+    ]
+  },
+  "note": "Each non-8 source has the listed mean separately, not the sum for all 28.",
+  "unknown": [
+    "hold-key unconditional counts",
+    "guarded unconditional counts",
+    "joint goodness-of-fit and its power",
+    "which rules survive a joint check",
+    "cross-word unconditional numeric means"
+  ],
+  "lp2_decryption": false
+}

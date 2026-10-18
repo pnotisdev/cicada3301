@@ -1,9 +1,13 @@
 # work/h5slice — H5 first slice (drift-tracking decoder for the two-stack model)
 
-Status: **IN PROGRESS — nothing validated yet. No controls have passed; no LP2 scores exist.**
-This README records the design, the measured calibration numbers and the one open
-blocking problem (beam overfit in the coincidence init pass). Do not treat any number
-below as a result against LP2; nothing has been screened yet.
+Status: **IN PROGRESS — init fix applied, single-cell truth verified; CONTROLS (a)–(d) NOT
+yet run; no LP2 scores exist.** Blocker B (the coincidence init overfit) is fixed in
+principle: the nats-scored init recovers the truth plant's pointers and wcol exactly in a
+smoke test. The controls and the LP2 first look are blocked on ONE practical issue: the
+verified implementation costs ~140 ms/decode and the LP2 grid (2.7M decodes) needs
+<~10 ms/decode. A ~20x faster vectorized rewrite exists as
+`beam_coincidence_nats_fast` (**UNTESTED**) and must be verified against the slow version
+before the sweeps run. Details in `FIX_REPORT.md`.
 
 ## Model (docs/HYPOTHESES.md H1, first slice)
 
@@ -26,23 +30,37 @@ below as a result against LP2; nothing has been screened yet.
 * `h5slice.py` — the decoder (self-contained Python + numpy for the light parts):
   streams (`totient`, `random_stream`), `plant` (independent two-stack encryptor with
   the anti-repeat rule, mirrors work/layer2's plant on the combined key), `decode`
-  (two-stage algorithm below), `decode_t_only` (L = 0, the blind old-screen view),
-  `periodic_ioc`, `load_windows` (kscreen window format), the multiprocessing sweep
-  (`run_sweep`, `init_worker`, `run_chunk`) and `redecode`/`latin_render` for
-  verification.
-* `calib.py` — the calibration script whose numbers are quoted below.
+  (two-stage algorithm below), `beam_coincidence_nats` (the fixed nats-scored init),
+  `beam_coincidence_nats_fast` (UNTESTED vectorized draft, ~20x faster),
+  `beam_coincidence_z` (the deprecated z-scored init, kept for regression comparisons),
+  `decode_t_only` (L = 0, the blind old-screen view), `periodic_ioc`, `load_windows`
+  (kscreen window format), the multiprocessing sweep (`run_sweep`, `init_worker`,
+  `run_chunk`) and `redecode`/`latin_render` for verification.
+* `calib.py` — the calibration script (needs its numbers re-measured once the fast init
+  is verified; the smoke numbers below are from `_smoke.py`).
 * `control.py` / `control.txt` — the mandatory controls (a)–(e): **not written/run yet**.
+* `FIX_REPORT.md` — the init-fix session report: what was changed, what was verified,
+  what is still open.
+* `_smoke.py`, `_dbg.py`, `_dbg2.py` — scratch scripts from the fix session (truth plant
+  + null smoke test; init beam trajectory; abort isolation).
 
 ## Algorithm as implemented (`h5slice.decode`)
 
 Outer loop over (offset, L); inner EM over the keyword columns:
 
-1. **Coincidence init pass** (`beam_coincidence`): a beam over FREE pointer branches
-   (+1, +2, +3 per rune, plus the literal-F branch), states carrying per-column count
-   vectors, scored by the w-free running column-coincidence z = (29·s − d)/√(56·d)
-   (work/layer2's periodic z; s, d = ordered equal-letter pairs / pairs within columns).
-   The z is shift-invariant, so the pointer alignment is sought before w is known.
-   **This pass is the open problem — see "blocker" below.**
+1. **Nats-scored coincidence init pass** (`beam_coincidence_nats`, the fix for blocker B):
+   a beam over FREE pointer branches (+1, +2, +3 per rune, plus the literal-F branch),
+   scored by the per-column SHIFT-MARGINALIZED English log-likelihood: each state keeps
+   the log-domain column products G[col, v] = sum_i logf[(x_i - v) mod 29], scored as
+   sum_col logsumexp_v G[col, v] + skips * ln(0.028). The keyword shift of each column is
+   integrated out over the 29 shifts (uniform prior), so the pass is **w-free** (no
+   keyword knowledge). A letter placed in a column adds at most ln(29 f_max) ~ 1.3 nats
+   of evidence above the uniform-null level, while one skip costs ln(1/0.028) = 3.58
+   nats (HYPOTHESES.md:18-20): a fabricated skip can no longer pay for itself (the old
+   z-scored version reached z ~ 41 sigma on both truth and nulls). The beam buys the
+   REAL skips on truth because re-alignment is worth ~1.2 nats per later rune.
+   Early abort: at the abort_at checkpoint (e.g. rune 120) a cell whose best mean score
+   is below the unigram-null level + margin is a dead null and returns without the EM.
 2. **Per-column w estimate** (`est_cols`): from the best path's columns
    x_i = c_i − t_{j(i)}, the ML shift per column under the English rune distribution
    (Self-Reliance via work/sim.py, add-0.5 smoothed): w_col = argmax_v Σ logf[(x−v) mod 29]
@@ -51,95 +69,98 @@ Outer loop over (offset, L); inner EM over the keyword columns:
    (work/layer2's `outer_cands` applied to the combined key t + w_est: one skip, then a
    double skip, are offered exactly where the collision is consistent; model 1 offers
    its re-draw branch and advances the pointer by 2 when the ciphertext rune repeats).
-   Pruned by cumulative plaintext log-likelihood (the ~0.4 nats/rune of HYPOTHESES.md:22),
-   early-aborted when the evidence at rune 120 stays below mean + 0.15 nats/rune.
-   w is re-estimated from the best path until stable (max 6 iterations).
+   Pruned by cumulative plaintext log-likelihood; w is re-estimated from the best path
+   until stable (max 6 iterations). The EM's own LL abort is NOT used: on the true path
+   the LL equals mean(logf) per rune exactly, so any margin-above-mean threshold would
+   kill the truth plant (and the uniform-mean level the old code used is a no-op on
+   nulls, which overfit the per-column shifts upward).
 4. **Score**: the periodic IoC of the final re-decoded columns
    p_i = c_i − t_{j(i)} − w_(j(i) mod L), i.e. the mean over columns of
    29·Σ n_x(n_x−1) / (n_col(n_col−1)) (HYPOTHESES.md:70-78: ≈1.8 on truth vs 1.0±0.07
    for L=8, n=300). Literal Fs are counted in the column of the current pointer.
 
-## Measured calibration numbers (calib.py, plant = Self-Reliance runes 3000:3300,
-totient + DIVINITY at offset 1234, model 0, keep 0.19, seed 42)
+## Calibration numbers measured so far (fix session, `_smoke.py`/`_dbg.py`; NOT the
+full control set)
 
-* Plain window IoC 1.936 (300 runes); planted cipher IoC 1.016, 3 doublets — the plant
-  looks like LP2 (flat IoC, few doublets), as required.
-* **Blocker A (solved): the no-skip seed is a trap for LL-EM.** Starting the EM from the
-  no-skip pointer, the per-column ML estimate is a compromise over phase mixtures
-  (measured: [23,4,11,24,12,26,24,24] vs DIVINITY [23,10,1,10,9,10,16,26]); the LL-EM
-  converges to that fixed point (final periodic IoC 1.042, ll/rune −3.63 — the mixture
-  text has a peaked unigram distribution but no column coincidence). Conclusion: the
-  beam's init must be found with the w-free coincidence objective, not the LL.
-* **Blocker B (open): the coincidence init pass overfits.** With free branches the beam
-  fabricates coincidence generically — even on random ciphertext + random stream it
-  reached z ≈ 41σ (183 skips: it routes nearly every rune to a column where it matches).
-  Measured: truth plant z 41.9σ (195 skips); random null z 40.9σ (183 skips). A hard cap
-  of 20 skips lowered this (truth 7.0, null 4.3) but early fabrication still beats the
-  true path before its coincidence accrues; a per-skip penalty of 0.4σ did not cure the
-  null (20 random decodes: mean 10.9σ, max 14.0σ). The early-coincidence gain (one match
-  at small d is worth several σ) dominates any flat per-skip σ-penalty. The pass is
-  therefore NOT usable as committed; decode() as wired inherits this failure.
-* Timing: one full LL-EM decode (n = 300, L = 8, beam 24, max_em 5) = 8.5 ms single
-  core. The coincidence pass was not timed before the stop order.
-* decode_t_only (t alone, control (b)) and all controls: not run.
+Plant = Self-Reliance runes 3000:3300, totient + DIVINITY at offset 1234, model 0,
+keep 0.19, seed 42 (per calib.py).
 
-## Candidate fixes for blocker B (next work)
+* Model constants: H(f) = 2.954 nats (truth-path LL per rune), uniform-null level
+  (1/29)Σlogf = −4.230 nats per rune → ~1.28 nats/rune of drift evidence; per-letter
+  gain bound ln(29 f_max) = 1.28 nats < 3.58 nats per skip.
+* **Truth plant, single cell (1234, 8, model 0), no abort**: periodic IoC **1.986**,
+  wcol = **[23, 10, 1, 10, 9, 10, 16, 26] = DIVINITY exactly**, ~140 ms/decode.
+* **Truth plant init alone**: 8 skips found (= the plant's true skip count), score
+  −897 nats (−2.99/rune) vs the no-skip null level −1242 nats (−4.14/rune): the beam
+  tracks the true drift, and the separation at rune 120 is −359 vs the abort threshold
+  −463 (margin 0.15) — wide.
+* **Nulls (random windows + random streams, L=8)**: 40/40 aborted at the 120-rune
+  checkpoint (ioc 0.0) with abort margin 0.15 — the overfit is gone (the old z init
+  scored random nulls at z ≈ 41σ; these return no score at all). The non-aborted tail
+  distribution has NOT been measured yet (the smoke loop division-by-zeroed because
+  every null aborted).
+* **Blocker A (solved, unchanged)**: the no-skip seed is a trap for LL-EM; the init
+  must be found with the w-free objective, which is what step 1 now does.
+* **Blocker B (fixed in principle)**: the z-scored free-branch init is replaced by the
+  nats-scored shift-marginalized init above. Verified on the truth plant (IoC 1.986,
+  DIVINITY exact) and on nulls (all abort).
+* **Performance — THE open issue**: the verified init costs ~137 ms/decode (Python
+  loops in the candidate build + dict merge; the EM adds ~10 ms on survivors). The LP2
+  grid (8 windows x 2001 offsets x 19 L x 9 streams = 2.7M decodes) needs the whole
+  decode at < ~10 ms. `beam_coincidence_nats_fast` is a vectorized rewrite aimed at
+  ~5-8 ms/decode, currently UNTESTED: verify it against the slow version (same truth
+  pointers, same null aborts) and then wire it into `decode()` before any sweep.
+* decode_t_only (t alone, control (b) of the old list) and controls (c), (d), (e): not
+  run.
 
-1. **Score the init beam in nats, not σ.** With the LL objective each fabricated match
-   gains at most log(1/min P(x)) − log(1/29) ≈ 2–3 nats while a skip costs ln(1/0.028)
-   ≈ 3.6 nats (HYPOTHESES.md:18-20) — the currency is bounded. This requires w during
-   the beam: run the free-branch Viterbi with the per-column ML w re-estimated every
-   few runes (online EM), or marginalize w per column over the 29 shifts.
-2. Consistency-conditioned branches with a coarse w search: for each column, branch
-   points are only ~1/29 of runes; a small multi-start over plausible per-column shifts
-   (top-2 ML candidates per column) makes the true skip set available without free
-   branches.
-3. Penalize per MATCH (not per skip) in the z score, or use the normalized column IoC
-   (d-independent early) plus a skip prior, so early fabrication cannot pay for itself.
+## Controls to run once the fast init is verified (control.py → control.txt)
 
-## Controls to run once blocker B is fixed (control.py → control.txt)
-
-Thresholds are the task's, scored by the periodic IoC of section 4:
+Thresholds are the task's, scored by the periodic IoC of the final columns:
 
 * (a) plant Emerson/Self-Reliance, t = totient + w = DIVINITY (L=8), model 0, keep 0.19
-  (q = 0.81), fixed offset 1234: the search over offsets 0..2000 × L 1..20 × models {0,1}
-  must return exactly (1234, 8, model 0) with periodic IoC ≥ 1.6 (expect ≈1.8–1.9);
-  re-decode at truth must give wcol = DIVINITY exactly.
-* (b) the same plant decoded with t alone (L = 0, decode_t_only): IoC < 1.2 (blindness
-  of the old screen).
-* (c) wrong-L (7, 9, 16, …) at the true offset and wrong offsets (±1, ±100): all < 1.4.
-* (d) null: 8 random streams × 8 random offsets, L = 8, model 0, random ciphertext
-  windows: best periodic IoC < 1.45.
+  (q = 0.81), fixed offset 1234: the search over offsets 0..2000 x L 1..20 x models
+  {0,1} must return exactly (1234, 8, model 0) with periodic IoC ≥ 1.6 (expect ≈1.9–2.0;
+  the single-cell decode already gives 1.986 with wcol = DIVINITY); re-decode at truth
+  must give wcol = DIVINITY exactly.
+* (b) random-key nulls: ≥ 8 uniform random keys x random windows, same settings (L=8,
+  model 0), best periodic IoC < 1.45.
+* (c) the no-keyword plant (same t, L=1 constant key) decoded with L=8 must stay < 1.4
+  — NOTE: L=1 is nested in the L=8 model class (w = const is an L=8 keyword), so this
+  control is expected to FAIL as stated (the decode is a legitimate fit with all-equal
+  wcol); if so, report it as a model-identification caveat (a wcol-degeneracy check
+  flags it) rather than a decoder bug.
+* (d) wrong-L (7, 9, 16, …) at the true offset and wrong offsets (±1, ±100): all < 1.4.
 * (e) the plant with the literal-F rule on must be recovered exactly (offset, L) with
   IoC ≥ 1.6.
-* Extra: a b = 7 plant decoded at truth (the constant must be absorbed: wcol = DIVINITY
-  + 7 mod 29).
 
 ## LP2 first look (not run)
 
 Grid: the 8 section windows (first 300 runes of work/kscreen/data/segments.txt, prev from
-the W line) × offsets 0..2000 × L 2..20 × models {0, 1}, t = totient, litf = 0; the same
-grid on one random stream per window as the matched null (same multiplicity, 38,004
-decodes per window/model). 608,304 decodes per stream × 2 (totient + null). Any window
-reaching ≥ 1.6 periodic IoC is re-decoded in-process (beam 64, max_em 10) and reported as
-a CANDIDATE (not a decryption); the per-window best is compared with the matched null max.
+the W line) × offsets 0..2000 × L 2..20 × model 0, t = totient, litf = 0; the same grid
+on 8 random streams as the matched null. 8 × 2001 × 19 × 9 = 2,737,368 decodes. Any
+window ≥ 1.6 periodic IoC AND ≥ its matched-null max + 0.15 is re-decoded in-process
+(beam 64, max_em 10) and reported as a CANDIDATE (not a decryption); the per-window best
+is compared with the matched null max.
 
-Runtime scaling (measured single-core decode 8.5 ms, before the init pass): ≈1.2M decodes
-× ~10–30 ms / 8 workers ≈ 25–75 min wall, with the 120-rune aborts cutting nulls. This
-must be re-measured once the init pass is fixed.
+Runtime scaling: at the verified ~140 ms/decode the grid is ~13 h on 8 workers —
+infeasible. With the verified fast init (~5-8 ms/decode) it is ~35-55 min and the init
+abort (null cells die at rune 120) keeps it near the low end. Cap 60 min on 8 workers;
+report the partial and the scaling if it does not finish.
 
 ## What remains for the full library sweep (campaign design)
 
-1. Fix blocker B; pass controls (a)–(e) above + the blindness and null lines; write the
-   numbers into control.txt and the registry row open-h1.
-2. LP2 first look as above; report per-window best vs matched null; re-decode and
+1. Verify `beam_coincidence_nats_fast` against the slow init (truth pointers + null
+   aborts); wire it into `decode()`; re-measure calib timing.
+2. Run controls (a)–(e) above (at least (a), (b), (d) gate the LP2 run); write the
+   numbers into control.txt and the registry row.
+3. LP2 first look as above; report per-window best vs matched null; re-decode and
    whole-section verification for anything ≥ 1.6 per docs/CAMPAIGNS.md (a CANDIDATE is
    not a decryption; only a full-section English verify counts).
-3. Library sweep: every stream of work/keystreams.py + the export families (× mult 1,
+4. Library sweep: every stream of work/keystreams.py + the export families (× mult 1,
    28, sign ±1, forward/reverse where meaningful) through the same grid, with its own
    matched-null replicate per stream and the predicted-IoC filter first
    (HYPOTHESES.md:10-14). Cost: ≈1,500 streams × 2 signs × 2001 offsets × 19 L ≈ 10^8
    decodes ≈ 100–300 core-hours in Python — the Rust engine (work/layer2 pattern) is the
    right home once the algorithm is frozen; the Python slice is the reference.
-4. Extend later: H2's σ-invariant coincidence statistic, H3 clocked pointers, the
+5. Extend later: H2's σ-invariant coincidence statistic, H3 clocked pointers, the
    H1/H2 random-jump add-on, and litf = 1 variants of the LP2 look.
