@@ -1,6 +1,6 @@
 # Overnight campaigns: report from desktop
 
-Generated on desktop at 2026-10-18 14:25:24 by `python jobs/overnight.py`. Thresholds and method: docs/CAMPAIGNS.md.
+Generated on desktop at 2026-10-18 19:43:57 by `python jobs/overnight.py`. Thresholds and method: docs/CAMPAIGNS.md.
 
 **Controls:** unit tests and kscreen selftest passed on desktop; null results below are validated.
 
@@ -8,7 +8,6 @@ Generated on desktop at 2026-10-18 14:25:24 by `python jobs/overnight.py`. Thres
 
 Cargo builds of the three Rust engines and the generated inputs (fast when nothing changed).
 
-- failed steps: setup/build-kscreen (see results/overnight/desktop/logs/)
 
 ## selftest: Regression tests and keystream-screen controls (1/1 steps done)
 
@@ -134,12 +133,12 @@ c = p + s_w * k with the sign s_w of the key for every rune of word w from a rul
 - controls: SIGN SELFTEST PASSED
 - 61 of 61 rules done; best IoC 1.388 (C_cur_ws); none reaches the 1.40 rule
 
-## kscreen-signs-periodic: Per-rune periodic key-sign templates (period 2-5): the Beaufort / Vigenere alternation as a sign pattern (2/52 steps done)
+## kscreen-signs-periodic: Per-rune periodic key-sign templates (period 2-5): the Beaufort / Vigenere alternation as a sign pattern (52/52 steps done)
 
 c = p + s_i * k with s_i = pattern[i mod L], L = 2..5, one representative per complement class (the complement is the multiplier 28): 25 distinct templates after dropping constants and repeats of shorter patterns (work/kscreen/signrules_periodic.py; the engine's S lines). 581 flat-IoC library streams x 8 sections at every offset, about 6.5 min per template on 14 threads. Controls: sign_periodic_selftest.py (independent planter, 3 templates x 3 windows, blindness, null).
 
 - controls: SIGN PERIODIC SELFTEST PASSED
-- not run yet
+- 25 of 25 templates done; best IoC 1.400 (P5_ppmmp); none reaches the 1.40 rule
 
 ## kscreen-sacred3: Book-derived streams: phi / sigma of 3301 i + 1033 and 1033 i + 3301, primes at index multiples of 58 .. 3301, base-29 digits of 1/45415 (4/4 steps done)
 

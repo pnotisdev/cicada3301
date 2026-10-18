@@ -44,7 +44,7 @@
 | Key running backward through the text, with and without ciphertext feedback (a = 0..28) | excluded | 1.387 (null 1.335) | [chain](kscreen/chain) |
 | Step-domain cipher: the plaintext enters c_i - c_(i-1), keyed mod 28 (variants A, B, C) | excluded | 1.297 (null 1.320) | [step_periodicity.txt](analysis/step_periodicity.txt) |
 | Clocked key pointer: after each rune the pointer advances by 1 + index, prime or prime - 1 (six clocks) | excluded |  | [clock_c1_library.tsv](kscreen/clock_c1_library.tsv), [clock_pp_library_verify.txt](kscreen/clock_pp_library_verify.txt) |
-| Per-rune periodic sign templates (period 2-5: the Beaufort / Vigenere alternation) | open |  | [sign_periodic_selftest.txt](kscreen/sign_periodic_selftest.txt) |
+| Per-rune periodic sign templates (period 2-5: the Beaufort / Vigenere alternation) | excluded | 1.400 (null 1.318) | [P5_ppmmp.tsv](kscreen/signs_periodic/P5_ppmmp.tsv), [P5_pmmmm.tsv](kscreen/signs_periodic/P5_pmmmm.tsv), [sign_periodic_selftest.txt](kscreen/sign_periodic_selftest.txt) |
 
 ### Seeded generators, passphrases and sequences as keys
 

@@ -87,7 +87,9 @@ def chunks(offs, ls, models, ch):
     out = []
     for m in models:
         for a in range(0, len(offs), ch):
-            out.append((m, offs[a], offs[min(a + ch, len(offs))], ls))
+            # off1 is an exclusive range bound over offset VALUES: the next chunk's
+            # start, or len(offs) for the last chunk (offs = 0..2000 -> bound 2001).
+            out.append((m, offs[a], offs[a + ch] if a + ch < len(offs) else len(offs), ls))
     return out
 
 
@@ -177,6 +179,9 @@ def main():
     def log(s=""):
         print(s, flush=True)
         lines.append(s)
+        # incremental write: the output survives a killed run
+        with open(OUT, "w", encoding="utf-8") as f:
+            f.write("\n".join(lines) + "\n")
 
     log(f"# control.txt - H5 first slice controls, abort ({ABORT_AT}, {ABORT_MARGIN}), "
         f"fast_init=True, {WORKERS} workers, cap {CAP_S // 60} min")

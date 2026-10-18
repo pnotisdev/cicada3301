@@ -761,12 +761,16 @@ log = ["work/log/phase9_overnight_results.md", "docs/QUEUE.md"]
 id = "open-sign-periodic"
 group = "streams"
 title = "Per-rune periodic sign templates (period 2-5: the Beaufort / Vigenere alternation)"
-status = "open"
-priority = 5
-cost = "About 2.7 h CPU"
-needs = "Nothing: 25 templates built, control 9/9 windows (sign_periodic_selftest.txt); queued but never run"
-log = ["work/log/phase10_signrules.md", "work/log/phase10_overnight_queue.md"]
-files = ["results/kscreen/sign_periodic_selftest.txt"]
+status = "excluded"
+what = "c = p + s_i * k with s_i = pattern[i mod L], L = 2..5, one representative per complement class: 25 distinct templates; 581 flat-IoC library streams x 8 sections at every offset, both models"
+best = 1.4
+null = 1.318
+chart = true
+control = "sign_periodic_selftest.py: independent planter, 3 templates x 3 windows, blindness and null - SIGN PERIODIC SELFTEST PASSED"
+result = "25 of 25 templates done (about 6.5 min per template on 16 threads): best screen IoC 1.400 (P5_ppmmp), none reaches the 1.40 rule; 0 of 5 verified hits per template keep IoC >= 1.4 over the whole window (every hit falls to 1.04-1.13): negative"
+gap = "Sign patterns beyond period 5 per rune; the pointer-direction mechanism (both orientations, 18 conventions) remains open"
+log = ["work/log/phase12_review2.md", "work/log/phase10_signrules.md"]
+files = ["results/kscreen/signs_periodic/P5_ppmmp.tsv", "results/kscreen/signs_periodic/P5_pmmmm.tsv", "results/kscreen/sign_periodic_selftest.txt"]
 
 [[experiment]]
 id = "open-months"

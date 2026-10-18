@@ -1,0 +1,15 @@
+# control.txt - H5 first slice controls, abort (120, 0.9), fast_init=True, 4 workers, cap 45 min
+# machine: 16 logical procs at ~100% load (screen campaign); Python 3.14.6
+# plant: Self-Reliance 3000:3300, totient + DIVINITY, offset 1234, model 0, keep 0.19, seed 42
+# started 2026-10-18 19:36:35
+
+== control (a): truth plant grid offsets 0..2000 x L 1..20 x models {0,1} ==
+ctrl-a truth grid: 80040 decodes, 80022 aborted (100.0%), 162/162 chunks in 107s (748 decodes/s wall, 4 workers)
+  grid argmax: IoC 1.9856 at (offset 1234, L 8, model 0)
+  decode at (off 1234, L 8, model 0): IoC 1.9856 wcol [23, 10, 1, 10, 9, 10, 16, 26]
+  truth cell ok: IoC >= 1.6 and wcol == DIVINITY
+  CONTROL (a) PASS: argmax exactly (1234, 8, model 0), IoC 1.9856 >= 1.6
+  runner-up cells with IoC >= 1.5: [(1.9856, 1234, 8, 0), (1.3166, 182, 10, 1), (1.2646, 1880, 20, 0), (1.212, 1557, 17, 0), (1.1647, 1234, 8, 1), (1.1628, 1319, 14, 1), (1.1515, 473, 20, 1), (1.1446, 1234, 12, 0)]
+  (a) wall 110s
+
+== control (b): 8 random-window/random-stream nulls, same grid; all < 1.45 ==

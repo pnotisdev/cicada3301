@@ -111,21 +111,23 @@ def _kernel(c, ts, SUBM, MT, L, litf, beam, abort_at, abort_ll, ln028, n, tlen):
                 if s2[t] > s2u[found]:
                     s2u[found] = s2[t]
                     tu[found] = t
-        # truncate: stable sort by -score (insertion sort), only when over beam
+        # stable sort by -score (insertion sort) ALWAYS, exactly like the slow version's
+        # unconditional items.sort: the abort check below reads s2u[0] as the max, and in
+        # the unsorted case s2u[0] is the first-inserted nj's score, not the max.
+        for a in range(1, ucount):
+            xnj = nju[a]
+            xs = s2u[a]
+            xt = tu[a]
+            b = a - 1
+            while b >= 0 and s2u[b] < xs:
+                nju[b + 1] = nju[b]
+                s2u[b + 1] = s2u[b]
+                tu[b + 1] = tu[b]
+                b -= 1
+            nju[b + 1] = xnj
+            s2u[b + 1] = xs
+            tu[b + 1] = xt
         if ucount > B:
-            for a in range(1, ucount):
-                xnj = nju[a]
-                xs = s2u[a]
-                xt = tu[a]
-                b = a - 1
-                while b >= 0 and s2u[b] < xs:
-                    nju[b + 1] = nju[b]
-                    s2u[b + 1] = s2u[b]
-                    tu[b + 1] = tu[b]
-                    b -= 1
-                nju[b + 1] = xnj
-                s2u[b + 1] = xs
-                tu[b + 1] = xt
             ucount = B
         if abort_at and i + 1 == abort_at:
             if ucount == 0 or s2u[0] < abort_ll:

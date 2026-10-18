@@ -150,11 +150,21 @@ in-word positions; the word-end insertion mechanism is excluded for them.
   ~44% chance of zero nulls per unconditioned plant). collision_substitution passed static review (no
   arithmetic bugs found; not executed).
 
+## 9. Sign-template campaign complete: 25 of 25 templates, negative
+
+`kscreen-signs-periodic` finished (after a mid-run interruption from my own kill of a healthy step and a Ctrl+C
+from an interrupted wait - both recorded in the runner logs and resumed). Verdict: 25/25 per-rune periodic sign
+templates (period 2-5) screened over the 581 flat-IoC streams x 8 sections, best screen IoC 1.400 (P5_ppmmp) -
+none reaches the 1.40 rule, and 0 of 5 verified hits per template keep IoC >= 1.4 whole-window (every hit falls
+to 1.04-1.13). SIGN PERIODIC SELFTEST PASSED. Registry row open-sign-periodic -> excluded; the pointer-direction
+mechanism (both orientations, 18 conventions) remains open.
+
 ## Registry / status updates
 
 - `open-outer-alphabet`: 0.7 gate AND the all-sections keyword run both negative; the 26 affine multipliers on
   sections 0.8-0.15 remain open.
 - New rows: `advsep` (excluded), `prime-domain` (excluded), `nulledge` (excluded for 0%/100% word-edge variants;
   the 42% mixture untestable as formulated, measured).
+- `open-sign-periodic`: campaign complete, 25/25 templates negative -> excluded.
 - `echo-mechanisms`: word-end null insertion excluded for the echoes (targets not word-final, 32/80 vs 34.7).
 - `obs-flat`: DJU-BEI sharpened to the word-aligned pair DJU->BEI (section 6).

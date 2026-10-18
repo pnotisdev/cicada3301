@@ -8,10 +8,10 @@
 
 | | |
 |---|---|
-| Excluded | 32 |
+| Excluded | 33 |
 | Partly excluded | 11 |
 | Cannot be tested at LP2's effect size | 3 |
-| Open (not run or partly run) | 14 |
+| Open (not run or partly run) | 13 |
 | Explained puzzle furniture | 1 |
 | Observed in LP2 | 7 |
 | Candidates that survived whole-section verification | **0** |
@@ -23,13 +23,13 @@ Decision rule for the IoC screens: 1.40 on a 300-rune window; planted keys score
 | Campaign | Best | Matched null | Verdict |
 |---|---|---|---|
 | Ciphertext feedback c_i = a*c_(i-1) + p_i + k, a = 1..28 (library, order-2 recurrences, cubic polynomials) | 1.415 | 1.320 | Largest 1.415 (a = 17, library, section 0.11) falls to 1.073 over its whole 1,894-rune window (its own random offsets: mean 1.047, max 1.056); no other hit verified |
+| Per-rune periodic sign templates (period 2-5: the Beaufort / Vigenere alternation) | 1.400 | 1.318 | 25 of 25 templates done (about 6.5 min per template on 16 threads): best screen IoC 1.400 (P5_ppmmp), none reaches the 1.40 rule; 0 of 5 verified hits per template keep IoC >= 1.4 over the whole window (every hit falls to 1.04-1.13): negative |
 | Word-level key-sign rules ('their numbers are the direction'): 61 non-circular rules over 581 flat-IoC library streams | 1.388 | 1.370 | About 2 x 10^10 decodes; best rule C_cur_ws 1.388; 0 of 5 verified hits per rule; five sign-flat streams screened separately: best 1.293 |
 | Key running backward through the text, with and without ciphertext feedback (a = 0..28) | 1.387 | 1.335 | Largest 1.387 (a = 8, library); none reaches 1.40 |
 | Library x all 28 key multipliers (c = p + m*k, for example 3301*k = 24*k mod 29) | 1.381 | 1.318 | 5,729,965,248 decodes in 35 min; 0 of 15 hits verified |
 | Decimated library (d = 2..29), prefix / word sums of the solved plaintext and Self-Reliance, pi / e / phi / sqrt2 at 10^6 and 3301 x 1033 | 1.375 | 1.355 | 894,992,864 decodes in 27 min; 0 of 15 hits verified |
 | Hash streams of the 12,944 words and phrases of the solved text (sha256 / sha512 / md5 counter streams and chains) | 1.371 | 1.364 | 8,125,932,544 decodes in 108 min; 0 of 15 hits verified |
 | Combinations of number-theoretic streams, functions at the primes, reciprocals, prime residues (1,063 streams) | 1.369 | 1.318 | 629,728,288 decodes in 10 min; 0 of 15 hits verified |
-| Every linear recurrence of order 1-3 and every polynomial up to degree 3, mod 29, every start state | 1.368 | 1.318 | Best per family: order 1 1.194, order 2 1.272, polynomials 1.232, order 3 1.368 (9,188,617,984 decodes in 63 min); 0 hits verified |
 
 ## Left to do (suggested order)
 
@@ -39,7 +39,6 @@ Decision rule for the IoC screens: 1.40 on a 300-rune window; planted keys score
 | 2 | **Unkeyed insertions (an extra rune per word that consumes no key value) and extra key advance at word separators / line / page breaks**<br>Every decoder moves the key pointer only forward at a collision; the '+1 rune in 42% of words' fit is the motivation, and 2026-10-18 adds a second: the lag-6 echo rate (0.0272 +/- 0.0047) equals the avoided-collision rate (0.0269-0.0282). H8 as defined (the null spends the colliding attempt's key value) is aligned and already visible to kscreen: alive as a partial explanation of the word lengths (G 56 -> 40); the unkeyed variant is not decoded. 2026-10-18: the nulledge option is built - deterministic word-edge nulls (0% / 100% of edges) are excluded, and the 42% mixture is measured to have no powered IoC decoder (registry row nulledge); what remains here is the extra key advance at word separators / line / page breaks | About 3-4 h of engine work (the nulledge part is done), then about 7 min of CPU per variant | A per-rune extra-advance line in the engine for the layout events (work/proposals/null_beam is an untrusted prototype of the decoder) |
 | 3 | **Pointer-direction sign mechanism ('their numbers are the direction'), both orientations, 18 conventions** | About 12 h CPU per convention | An engine option for key values before the start offset |
 | 4 | **Boundary-free seed sweeps of sections 0.8-0.15 over the FULL seed space (a fresh seed per section)** | 1.1-1.7 h per generator on the GPU (about 4.5 h for the queued run) | GPU; the gates and the +7.3 per rune measurement exist |
-| 5 | **Per-rune periodic sign templates (period 2-5: the Beaufort / Vigenere alternation)** | About 2.7 h CPU | Nothing: 25 templates built, control 9/9 windows (sign_periodic_selftest.txt); queued but never run |
 | 6 | **Remaining millisecond-timestamp months: java-abs 2012-01 / 02, ruby 2012-01 .. 2012-11** | About 1.5 h GPU | GPU |
 | 7 | **Remaining layer2 slices: solved keys x streams, 20 streams x 30 keywords, any keyword of period 2-14** | About 3 h CPU | Nothing; controls exist |
 | 8 | **Step-domain seed sweeps (prng-step): ten generators, IoC scoring** | About 1 h per generator on the GPU | GPU; exact tail and planted seeds exist |
@@ -72,6 +71,7 @@ No long runs are queued; `docs/QUEUE.md` explains how to restart the queues.
 | **Key running backward through the text, with and without ciphertext feedback (a = 0..28)** | 1.387 (null 1.335) | Planted backward keys recovered at the exact key index; the same ciphertext read forward not found | Largest 1.387 (a = 8, library); none reaches 1.40 |  |
 | **Step-domain cipher: the plaintext enters c_i - c_(i-1), keyed mod 28 (variants A, B, C)** | 1.297 (null 1.320) | Plants recovered in both variants; periods 97 and 400 at z 6.5-11 | Periodic scan: largest z 4.97 for LP2 against a null maximum 5.48 (4 of 40 replicates exceed LP2) | Seed sweeps of the step-domain cipher (prng-step, see open) |
 | **Clocked key pointer: after each rune the pointer advances by 1 + index, prime or prime - 1 (six clocks)** |  | 18/18 planted keys | 300-rune clocks c1 1.317 and p1 1.307; prime clocks ct 1.611, cp 1.593, pt 1.593, pp 1.687 against matched nulls 1.593, 1.573, 1.604, 1.619 (short-window maxima); 0 of 15 hits verified per clock | Keys that start beyond the first ~9,000 terms for the prime clocks |
+| **Per-rune periodic sign templates (period 2-5: the Beaufort / Vigenere alternation)** | 1.400 (null 1.318) | sign_periodic_selftest.py: independent planter, 3 templates x 3 windows, blindness and null - SIGN PERIODIC SELFTEST PASSED | 25 of 25 templates done (about 6.5 min per template on 16 threads): best screen IoC 1.400 (P5_ppmmp), none reaches the 1.40 rule; 0 of 5 verified hits per template keep IoC >= 1.4 over the whole window (every hit falls to 1.04-1.13): negative | Sign patterns beyond period 5 per rune; the pointer-direction mechanism (both orientations, 18 conventions) remains open |
 
 ### Seeded generators, passphrases and sequences as keys
 

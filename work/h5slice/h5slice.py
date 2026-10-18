@@ -546,12 +546,29 @@ def beam_coincidence_nats_fast(c, prev, ts, L, litf, beam, logf, abort_at=0, abo
     return path_back(int(ndm[best_i]), ks_all, parents), float(Sm[best_i])
 
 
+_NB_INIT_FN = None
+
+
+def _fast_init_fn():
+    """The fast_init=True backend: the verified numba port of the init (h5slice_nb),
+    falling back to the verified numpy v3 rewrite (beam_coincidence_nats_fast) when
+    numba cannot be imported."""
+    global _NB_INIT_FN
+    if _NB_INIT_FN is None:
+        try:
+            import h5slice_nb as _nb
+            _NB_INIT_FN = _nb.beam_coincidence_nats_numba
+        except Exception:
+            _NB_INIT_FN = beam_coincidence_nats_fast
+    return _NB_INIT_FN
+
+
 def decode(c, prev, tvals, offset, L, model, litf=False, beam=24, max_em=6, logf=None,
            abort_at=0, abort_margin=0.25, out_path=False, beam_a=12, fast_init=False):
     """Decode one window at one (offset, L). Two stages:
       1. nats-scored coincidence init (beam_coincidence_nats by default; fast_init=True
-         selects beam_coincidence_nats_fast, whose v3 rewrite is NOT yet verified -
-         see FAST_REPORT.md): free pointer branches
+         selects the verified numba port with the v3 numpy rewrite as fallback - see
+         FAST_REPORT.md / verify_nb.py): free pointer branches
          scored by the shift-marginalized unigram log-likelihood minus ln(1/0.028) per
          skip (w-free); early abort when the best mean score at abort_at runes is below
          the unigram-null level (uni_mean_logf) + abort_margin - dead null cells die
@@ -574,7 +591,7 @@ def decode(c, prev, tvals, offset, L, model, litf=False, beam=24, max_em=6, logf
         return decode_t_only(c, prev, ts, model, beam)
     abort_ll_init = (abort_at * (uni_mean_logf() + abort_margin) + L * math.log(Q)
                      if abort_at else 0.0)
-    init_fn = beam_coincidence_nats_fast if fast_init else beam_coincidence_nats
+    init_fn = _fast_init_fn() if fast_init else beam_coincidence_nats
     a = init_fn(c, prev, ts, L, litf, beam_a, logf, abort_at, abort_ll_init)
     if a is None:
         return 0.0, None
@@ -737,7 +754,7 @@ def run_chunk(args):
         for L in Ls:
             ioc, _ = decode(c, prev, tvals, off, L, model, cfg["litf"], cfg["beam"], cfg["max_em"],
                             logf, cfg["abort_at"], cfg["abort_margin"], False,
-                            cfg.get("beam_a", 12))
+                            cfg.get("beam_a", 12), cfg.get("fast_init", True))
             decodes += 1
             if ioc > best[0]:
                 best = (ioc, off, L)
