@@ -125,6 +125,31 @@ in-word positions; the word-end insertion mechanism is excluded for them.
   **excluded** - no library key hides behind one extra key value per word boundary, with or without one extra
   per line / page break.
 
+## 8. Review of the second model's work/independent (agent verdicts, `work/tmp/independent_review.md`)
+
+- **Affine outer sigmas redundant: CONFIRMED with full rigor.** All 28 x 29 x 28 = 22,736 (a, b, m') settings:
+  decoding sigma_inv(c) with multiplier m' is elementwise the sigma-image of decoding the plain ciphertext with
+  m = a*m' mod 29, with identical pointer paths, collision/coin weights and IoC (|delta| < 1e-12); every engine
+  branch is a mod-29 equality test. Each pending relabel setting equals an unrelabelled screen at a multiplier
+  inside the completed 28-multiplier campaign (`docs/registry.toml` multipliers row): nothing to run. Caveat: the
+  library export has since grown 1,439 -> 1,447 streams, so a CURRENT-library multipliers rerun is a library
+  refresh (about 35 min GPU / 2 h CPU), not new affine coverage - queued behind the sign campaign.
+- **PGP bytes:** 7A35090F = b"z5\t\x0f" (correct; z5z5 would be 7A357A35), but the string is already in the repo
+  as keystream hash seeds (`work/grid60.py:105`, `work/prng_screen.py:85`) and thousands of screened streams;
+  the Z5-book provenance remains external and unverified.
+- **Lag-6-gated keyless-null statistic (echo_nulls): real idea, broken gate.** The summed-path statistic with a
+  fixed null prior fixes the free-beam overfit: on a Welcome x totient plant it separates truth from 16 random
+  keys at z = +45.9 (rank p = 0.059; rho-freedom inflation only +10..+35 nats vs the free per-word beam's
+  1.7547-IoC blowup, `work/tmp/nulledge_report.md:25-29`). BUT its gate fails as specified: (a) on the totient
+  stream the true offset 3 is not separated from offset 4 at n = 300 (S(4) = +206.01 vs S(3) = +205.70 - the
+  plant's skip redraws let wrong offsets realign at the first redraw site, margin ~2 nats x first-redraw
+  position); (b) gate replicas on random keys with their own criterion: 3 of 6 plants fail the >= 10-nat gate.
+  Do not authorize a screen from this gate. If pursued: require neighbor-offset separation (+/-1..3), a
+  totient/structured-key plant control, and neighbor offsets in the verify controls. Bugs listed in
+  `work/tmp/independent_review.md` (offset-valley arc design echo_nulls.py:65-86,213-260; random-key-only plants;
+  ~44% chance of zero nulls per unconditioned plant). collision_substitution passed static review (no
+  arithmetic bugs found; not executed).
+
 ## Registry / status updates
 
 - `open-outer-alphabet`: 0.7 gate AND the all-sections keyword run both negative; the 26 affine multipliers on
