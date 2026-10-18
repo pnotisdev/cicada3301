@@ -75,6 +75,24 @@ was gated on planted controls:
   work/h5slice/h5slice_nb.py, a numba port (numba 0.67 installed) with exact slow semantics, one compile bug
   fixed, parity UNVERIFIED, expected 10-50x; verify with _nb_check.py before wiring.
 
+## 2c. H5 pipeline COMPLETE: numba verified, all controls pass, LP2 first look negative (`work/h5slice/verify_nb.log`, `control.txt`, `lp2_look.txt`)
+
+- **Numba parity PASS**: 48/48 init, 24/24 decode, truth (IoC 1.986, wcol = DIVINITY, 8 skips), 40/40 null
+  aborts at (120, 0.9); one numba bug fixed (the truncation sort must run unconditionally so the abort
+  checkpoint reads the max). **Speedups 5.4-17.3x** (truth init 65.0 -> 3.82 ms, null decode 25.2 -> 1.46 ms):
+  the 5x gate is met on every measurement; no Rust port needed for this slice.
+- **Controls ALL PASS** (abort 120/0.9, 4 workers): (a) the truth grid argmax is EXACTLY (1234, 8, model 0)
+  with IoC 1.9856 and wcol = DIVINITY (runners-up <= 1.3166); (b) 8 random nulls on the same grid: global max
+  1.3537 < 1.45; (c) the L=1/L=8 degeneracy recorded as a model-class note (no-keyword plant at L=8 -> IoC
+  2.1830, all-equal wcol); (d) wrong-L {7,9,16} and offsets +-1/+100 all abort.
+- **LP2 first look: PARTIAL GRID, NO candidates.** 5,327,600/5,474,736 cells in the 45-min cap (offsets
+  0..1949 complete for every (window, stream, model) except seg0.15's nulls at 0..1924; only offsets 1950..2000
+  and 1925..1949 for seg0.15's nulls unrun). Best real periodic IoC per window 1.2377-1.4840 vs matched-null
+  max 1.3635-1.5306; the best real cell anywhere (seg0.11, 1.4840 at (1160, 19, model 1)) sits below its own
+  matched null and below 1.6: **zero cells reached 1.6, zero candidates**. A first-look negative for
+  H5/totient on the first 300 runes of the 8 sections (L 2..20, both models, offsets 0..1949) - NOT an
+  exclusion: litf=1, the other library streams, H2/H3-style keys and the missing offsets remain.
+
 ## Registry / status updates
 
 - `nulledge` row: gap updated - the 42% mixture is untestable for the measured reason of offset resolution on

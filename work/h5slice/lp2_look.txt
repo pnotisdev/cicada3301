@@ -1,0 +1,283 @@
+# lp2_look.txt - H5 first slice, capped LP2 first look
+# machine: 16 logical procs at ~100% load (screen campaign); Python 3.14.6
+# windows: seg0.7, seg0.8, seg0.9, seg0.11, seg0.12, seg0.13, seg0.14, seg0.15 (first 300 runes each), stream 0 = totient, streams 1..8 = uniform matched nulls (random_stream seeds 9000..)
+# grid: offsets 0..2000 x L 2..20 x models {0,1}; abort (120, 0.9); fast_init=True (verified numba init); 4 workers; cap 45 min
+# cells total: 8 x 9 x 2001 x 19 x 2 = 5474736
+# started 2026-10-18 19:49:06
+
+[lp2] 100/11664 chunks, 47500 decodes, 1635 decodes/s wall, 29s
+[lp2] 200/11664 chunks, 95000 decodes, 1680 decodes/s wall, 57s
+[lp2] 300/11664 chunks, 142500 decodes, 1709 decodes/s wall, 83s
+[lp2] 400/11664 chunks, 190000 decodes, 1738 decodes/s wall, 109s
+[lp2] 500/11664 chunks, 237500 decodes, 1785 decodes/s wall, 133s
+[lp2] 600/11664 chunks, 285000 decodes, 1808 decodes/s wall, 158s
+[lp2] 700/11664 chunks, 332500 decodes, 1841 decodes/s wall, 181s
+[lp2] 800/11664 chunks, 380000 decodes, 1848 decodes/s wall, 206s
+[lp2] 900/11664 chunks, 427500 decodes, 1865 decodes/s wall, 229s
+[lp2] 1000/11664 chunks, 475000 decodes, 1877 decodes/s wall, 253s
+[lp2] 1100/11664 chunks, 522500 decodes, 1876 decodes/s wall, 278s
+[lp2] 1200/11664 chunks, 570000 decodes, 1881 decodes/s wall, 303s
+[lp2] 1300/11664 chunks, 617500 decodes, 1883 decodes/s wall, 328s
+[lp2] 1400/11664 chunks, 665000 decodes, 1896 decodes/s wall, 351s
+[lp2] 1500/11664 chunks, 712500 decodes, 1913 decodes/s wall, 372s
+[lp2] 1600/11664 chunks, 760000 decodes, 1923 decodes/s wall, 395s
+[lp2] 1700/11664 chunks, 807500 decodes, 1936 decodes/s wall, 417s
+[lp2] 1800/11664 chunks, 855000 decodes, 1939 decodes/s wall, 441s
+[lp2] 1900/11664 chunks, 902500 decodes, 1941 decodes/s wall, 465s
+[lp2] 2000/11664 chunks, 950000 decodes, 1948 decodes/s wall, 488s
+[lp2] 2100/11664 chunks, 997500 decodes, 1941 decodes/s wall, 514s
+[lp2] 2200/11664 chunks, 1045000 decodes, 1943 decodes/s wall, 538s
+[lp2] 2300/11664 chunks, 1092500 decodes, 1949 decodes/s wall, 561s
+[lp2] 2400/11664 chunks, 1140000 decodes, 1952 decodes/s wall, 584s
+[lp2] 2500/11664 chunks, 1187500 decodes, 1958 decodes/s wall, 606s
+[lp2] 2600/11664 chunks, 1235000 decodes, 1962 decodes/s wall, 629s
+[lp2] 2700/11664 chunks, 1282500 decodes, 1969 decodes/s wall, 652s
+[lp2] 2800/11664 chunks, 1330000 decodes, 1975 decodes/s wall, 673s
+[lp2] 2900/11664 chunks, 1377500 decodes, 1975 decodes/s wall, 697s
+[lp2] 3000/11664 chunks, 1425000 decodes, 1978 decodes/s wall, 720s
+[lp2] 3100/11664 chunks, 1472500 decodes, 1976 decodes/s wall, 745s
+[lp2] 3200/11664 chunks, 1520000 decodes, 1970 decodes/s wall, 772s
+[lp2] 3300/11664 chunks, 1567500 decodes, 1964 decodes/s wall, 798s
+[lp2] 3400/11664 chunks, 1615000 decodes, 1961 decodes/s wall, 824s
+[lp2] 3500/11664 chunks, 1662500 decodes, 1961 decodes/s wall, 848s
+[lp2] 3600/11664 chunks, 1710000 decodes, 1960 decodes/s wall, 872s
+[lp2] 3700/11664 chunks, 1757500 decodes, 1959 decodes/s wall, 897s
+[lp2] 3800/11664 chunks, 1805000 decodes, 1957 decodes/s wall, 922s
+[lp2] 3900/11664 chunks, 1852500 decodes, 1954 decodes/s wall, 948s
+[lp2] 4000/11664 chunks, 1900000 decodes, 1954 decodes/s wall, 972s
+[lp2] 4100/11664 chunks, 1947500 decodes, 1948 decodes/s wall, 1000s
+[lp2] 4200/11664 chunks, 1995000 decodes, 1946 decodes/s wall, 1025s
+[lp2] 4300/11664 chunks, 2042500 decodes, 1947 decodes/s wall, 1049s
+[lp2] 4400/11664 chunks, 2090000 decodes, 1948 decodes/s wall, 1073s
+[lp2] 4500/11664 chunks, 2137500 decodes, 1948 decodes/s wall, 1097s
+[lp2] 4600/11664 chunks, 2185000 decodes, 1951 decodes/s wall, 1120s
+[lp2] 4700/11664 chunks, 2232500 decodes, 1955 decodes/s wall, 1142s
+[lp2] 4800/11664 chunks, 2280000 decodes, 1958 decodes/s wall, 1164s
+[lp2] 4900/11664 chunks, 2327500 decodes, 1961 decodes/s wall, 1187s
+[lp2] 5000/11664 chunks, 2375000 decodes, 1965 decodes/s wall, 1209s
+[lp2] 5100/11664 chunks, 2422500 decodes, 1967 decodes/s wall, 1232s
+[lp2] 5200/11664 chunks, 2470000 decodes, 1971 decodes/s wall, 1253s
+[lp2] 5300/11664 chunks, 2517500 decodes, 1974 decodes/s wall, 1275s
+[lp2] 5400/11664 chunks, 2565000 decodes, 1975 decodes/s wall, 1299s
+[lp2] 5500/11664 chunks, 2612500 decodes, 1978 decodes/s wall, 1321s
+[lp2] 5600/11664 chunks, 2660000 decodes, 1977 decodes/s wall, 1345s
+[lp2] 5700/11664 chunks, 2707500 decodes, 1978 decodes/s wall, 1369s
+[lp2] 5800/11664 chunks, 2755000 decodes, 1980 decodes/s wall, 1392s
+[lp2] 5900/11664 chunks, 2802500 decodes, 1978 decodes/s wall, 1417s
+[lp2] 6000/11664 chunks, 2850000 decodes, 1978 decodes/s wall, 1441s
+[lp2] 6100/11664 chunks, 2897500 decodes, 1975 decodes/s wall, 1467s
+[lp2] 6200/11664 chunks, 2945000 decodes, 1976 decodes/s wall, 1491s
+[lp2] 6300/11664 chunks, 2992500 decodes, 1977 decodes/s wall, 1514s
+[lp2] 6400/11664 chunks, 3040000 decodes, 1976 decodes/s wall, 1539s
+[lp2] 6500/11664 chunks, 3087500 decodes, 1978 decodes/s wall, 1561s
+[lp2] 6600/11664 chunks, 3135000 decodes, 1978 decodes/s wall, 1585s
+[lp2] 6700/11664 chunks, 3182500 decodes, 1978 decodes/s wall, 1609s
+[lp2] 6800/11664 chunks, 3230000 decodes, 1979 decodes/s wall, 1632s
+[lp2] 6900/11664 chunks, 3277500 decodes, 1979 decodes/s wall, 1656s
+[lp2] 7000/11664 chunks, 3325000 decodes, 1980 decodes/s wall, 1679s
+[lp2] 7100/11664 chunks, 3372500 decodes, 1980 decodes/s wall, 1703s
+[lp2] 7200/11664 chunks, 3420000 decodes, 1979 decodes/s wall, 1728s
+[lp2] 7300/11664 chunks, 3467500 decodes, 1980 decodes/s wall, 1751s
+[lp2] 7400/11664 chunks, 3515000 decodes, 1979 decodes/s wall, 1776s
+[lp2] 7500/11664 chunks, 3562500 decodes, 1978 decodes/s wall, 1802s
+[lp2] 7600/11664 chunks, 3610000 decodes, 1977 decodes/s wall, 1826s
+[lp2] 7700/11664 chunks, 3657500 decodes, 1977 decodes/s wall, 1850s
+[lp2] 7800/11664 chunks, 3705000 decodes, 1977 decodes/s wall, 1874s
+[lp2] 7900/11664 chunks, 3752500 decodes, 1976 decodes/s wall, 1899s
+[lp2] 8000/11664 chunks, 3800000 decodes, 1977 decodes/s wall, 1922s
+[lp2] 8100/11664 chunks, 3847500 decodes, 1976 decodes/s wall, 1947s
+[lp2] 8200/11664 chunks, 3895000 decodes, 1975 decodes/s wall, 1972s
+[lp2] 8300/11664 chunks, 3942500 decodes, 1973 decodes/s wall, 1998s
+[lp2] 8400/11664 chunks, 3990000 decodes, 1971 decodes/s wall, 2025s
+[lp2] 8500/11664 chunks, 4037500 decodes, 1971 decodes/s wall, 2049s
+[lp2] 8600/11664 chunks, 4085000 decodes, 1969 decodes/s wall, 2075s
+[lp2] 8700/11664 chunks, 4132500 decodes, 1967 decodes/s wall, 2101s
+[lp2] 8800/11664 chunks, 4180000 decodes, 1967 decodes/s wall, 2125s
+[lp2] 8900/11664 chunks, 4227500 decodes, 1967 decodes/s wall, 2149s
+[lp2] 9000/11664 chunks, 4275000 decodes, 1969 decodes/s wall, 2172s
+[lp2] 9100/11664 chunks, 4322500 decodes, 1968 decodes/s wall, 2196s
+[lp2] 9200/11664 chunks, 4370000 decodes, 1970 decodes/s wall, 2219s
+[lp2] 9300/11664 chunks, 4417500 decodes, 1971 decodes/s wall, 2242s
+[lp2] 9400/11664 chunks, 4465000 decodes, 1970 decodes/s wall, 2266s
+[lp2] 9500/11664 chunks, 4512500 decodes, 1971 decodes/s wall, 2289s
+[lp2] 9600/11664 chunks, 4560000 decodes, 1971 decodes/s wall, 2314s
+[lp2] 9700/11664 chunks, 4607500 decodes, 1971 decodes/s wall, 2338s
+[lp2] 9800/11664 chunks, 4655000 decodes, 1972 decodes/s wall, 2360s
+[lp2] 9900/11664 chunks, 4702500 decodes, 1972 decodes/s wall, 2385s
+[lp2] 10000/11664 chunks, 4750000 decodes, 1972 decodes/s wall, 2409s
+[lp2] 10100/11664 chunks, 4797500 decodes, 1971 decodes/s wall, 2434s
+[lp2] 10200/11664 chunks, 4845000 decodes, 1972 decodes/s wall, 2457s
+[lp2] 10300/11664 chunks, 4892500 decodes, 1973 decodes/s wall, 2479s
+[lp2] 10400/11664 chunks, 4940000 decodes, 1973 decodes/s wall, 2504s
+[lp2] 10500/11664 chunks, 4987500 decodes, 1973 decodes/s wall, 2528s
+[lp2] 10600/11664 chunks, 5035000 decodes, 1972 decodes/s wall, 2554s
+[lp2] 10700/11664 chunks, 5082500 decodes, 1972 decodes/s wall, 2577s
+[lp2] 10800/11664 chunks, 5130000 decodes, 1973 decodes/s wall, 2600s
+[lp2] 10900/11664 chunks, 5177500 decodes, 1972 decodes/s wall, 2625s
+[lp2] 11000/11664 chunks, 5225000 decodes, 1973 decodes/s wall, 2648s
+[lp2] 11100/11664 chunks, 5272500 decodes, 1972 decodes/s wall, 2673s
+[lp2] 11200/11664 chunks, 5320000 decodes, 1973 decodes/s wall, 2697s
+grid: 5327600 decodes (5325356 aborted, 100.0%) in 2700s (1973 decodes/s wall, 4 workers); 11216/11664 chunks (PARTIAL)
+
+== per-window: best periodic IoC (totient grid) vs matched-null max ==
+window    real best IoC            @ (off,L,m)  null max null surv hits>=1.6
+seg0.7           1.2683           (736, 17, 0)    1.4714       244         0
+seg0.8           1.3424            (25, 18, 0)    1.4110       208         0
+seg0.9           1.3335          (1380, 18, 0)    1.5306       226         0
+seg0.11          1.4840          (1160, 19, 1)    1.4914       322         0
+seg0.12          1.3114           (497, 12, 0)    1.4776       276         0
+seg0.13          1.2377           (343, 13, 0)    1.3635       258         0
+seg0.14          1.3925          (1255, 17, 1)    1.4500       250         0
+seg0.15          1.3924           (385, 20, 1)    1.4362       254         0
+
+== candidates (real IoC >= 1.6 AND >= matched-null max + 0.15, over the completed grid) ==
+  none
+
+== PARTIAL-GRID STATEMENT (the cap stopped the grid early) ==
+completed 11216/11664 chunks in 2700s; blocks are 25-offset x 19-L chunks, submitted in offset-block-major order, so each of the 8x9x2 = 144 (window, stream, model) combos has the same offset prefix. Completed offset coverage per combo (block list):
+  win seg0.7, stream 0, model 0: offsets 0-1949
+  win seg0.7, stream 0, model 1: offsets 0-1949
+  win seg0.7, stream 1, model 0: offsets 0-1949
+  win seg0.7, stream 1, model 1: offsets 0-1949
+  win seg0.7, stream 2, model 0: offsets 0-1949
+  win seg0.7, stream 2, model 1: offsets 0-1949
+  win seg0.7, stream 3, model 0: offsets 0-1949
+  win seg0.7, stream 3, model 1: offsets 0-1949
+  win seg0.7, stream 4, model 0: offsets 0-1949
+  win seg0.7, stream 4, model 1: offsets 0-1949
+  win seg0.7, stream 5, model 0: offsets 0-1949
+  win seg0.7, stream 5, model 1: offsets 0-1949
+  win seg0.7, stream 6, model 0: offsets 0-1949
+  win seg0.7, stream 6, model 1: offsets 0-1949
+  win seg0.7, stream 7, model 0: offsets 0-1949
+  win seg0.7, stream 7, model 1: offsets 0-1949
+  win seg0.7, stream 8, model 0: offsets 0-1949
+  win seg0.7, stream 8, model 1: offsets 0-1949
+  win seg0.8, stream 0, model 0: offsets 0-1949
+  win seg0.8, stream 0, model 1: offsets 0-1949
+  win seg0.8, stream 1, model 0: offsets 0-1949
+  win seg0.8, stream 1, model 1: offsets 0-1949
+  win seg0.8, stream 2, model 0: offsets 0-1949
+  win seg0.8, stream 2, model 1: offsets 0-1949
+  win seg0.8, stream 3, model 0: offsets 0-1949
+  win seg0.8, stream 3, model 1: offsets 0-1949
+  win seg0.8, stream 4, model 0: offsets 0-1949
+  win seg0.8, stream 4, model 1: offsets 0-1949
+  win seg0.8, stream 5, model 0: offsets 0-1949
+  win seg0.8, stream 5, model 1: offsets 0-1949
+  win seg0.8, stream 6, model 0: offsets 0-1949
+  win seg0.8, stream 6, model 1: offsets 0-1949
+  win seg0.8, stream 7, model 0: offsets 0-1949
+  win seg0.8, stream 7, model 1: offsets 0-1949
+  win seg0.8, stream 8, model 0: offsets 0-1949
+  win seg0.8, stream 8, model 1: offsets 0-1949
+  win seg0.9, stream 0, model 0: offsets 0-1949
+  win seg0.9, stream 0, model 1: offsets 0-1949
+  win seg0.9, stream 1, model 0: offsets 0-1949
+  win seg0.9, stream 1, model 1: offsets 0-1949
+  win seg0.9, stream 2, model 0: offsets 0-1949
+  win seg0.9, stream 2, model 1: offsets 0-1949
+  win seg0.9, stream 3, model 0: offsets 0-1949
+  win seg0.9, stream 3, model 1: offsets 0-1949
+  win seg0.9, stream 4, model 0: offsets 0-1949
+  win seg0.9, stream 4, model 1: offsets 0-1949
+  win seg0.9, stream 5, model 0: offsets 0-1949
+  win seg0.9, stream 5, model 1: offsets 0-1949
+  win seg0.9, stream 6, model 0: offsets 0-1949
+  win seg0.9, stream 6, model 1: offsets 0-1949
+  win seg0.9, stream 7, model 0: offsets 0-1949
+  win seg0.9, stream 7, model 1: offsets 0-1949
+  win seg0.9, stream 8, model 0: offsets 0-1949
+  win seg0.9, stream 8, model 1: offsets 0-1949
+  win seg0.11, stream 0, model 0: offsets 0-1949
+  win seg0.11, stream 0, model 1: offsets 0-1949
+  win seg0.11, stream 1, model 0: offsets 0-1949
+  win seg0.11, stream 1, model 1: offsets 0-1949
+  win seg0.11, stream 2, model 0: offsets 0-1949
+  win seg0.11, stream 2, model 1: offsets 0-1949
+  win seg0.11, stream 3, model 0: offsets 0-1949
+  win seg0.11, stream 3, model 1: offsets 0-1949
+  win seg0.11, stream 4, model 0: offsets 0-1949
+  win seg0.11, stream 4, model 1: offsets 0-1949
+  win seg0.11, stream 5, model 0: offsets 0-1949
+  win seg0.11, stream 5, model 1: offsets 0-1949
+  win seg0.11, stream 6, model 0: offsets 0-1949
+  win seg0.11, stream 6, model 1: offsets 0-1949
+  win seg0.11, stream 7, model 0: offsets 0-1949
+  win seg0.11, stream 7, model 1: offsets 0-1949
+  win seg0.11, stream 8, model 0: offsets 0-1949
+  win seg0.11, stream 8, model 1: offsets 0-1949
+  win seg0.12, stream 0, model 0: offsets 0-1949
+  win seg0.12, stream 0, model 1: offsets 0-1949
+  win seg0.12, stream 1, model 0: offsets 0-1949
+  win seg0.12, stream 1, model 1: offsets 0-1949
+  win seg0.12, stream 2, model 0: offsets 0-1949
+  win seg0.12, stream 2, model 1: offsets 0-1949
+  win seg0.12, stream 3, model 0: offsets 0-1949
+  win seg0.12, stream 3, model 1: offsets 0-1949
+  win seg0.12, stream 4, model 0: offsets 0-1949
+  win seg0.12, stream 4, model 1: offsets 0-1949
+  win seg0.12, stream 5, model 0: offsets 0-1949
+  win seg0.12, stream 5, model 1: offsets 0-1949
+  win seg0.12, stream 6, model 0: offsets 0-1949
+  win seg0.12, stream 6, model 1: offsets 0-1949
+  win seg0.12, stream 7, model 0: offsets 0-1949
+  win seg0.12, stream 7, model 1: offsets 0-1949
+  win seg0.12, stream 8, model 0: offsets 0-1949
+  win seg0.12, stream 8, model 1: offsets 0-1949
+  win seg0.13, stream 0, model 0: offsets 0-1949
+  win seg0.13, stream 0, model 1: offsets 0-1949
+  win seg0.13, stream 1, model 0: offsets 0-1949
+  win seg0.13, stream 1, model 1: offsets 0-1949
+  win seg0.13, stream 2, model 0: offsets 0-1949
+  win seg0.13, stream 2, model 1: offsets 0-1949
+  win seg0.13, stream 3, model 0: offsets 0-1949
+  win seg0.13, stream 3, model 1: offsets 0-1949
+  win seg0.13, stream 4, model 0: offsets 0-1949
+  win seg0.13, stream 4, model 1: offsets 0-1949
+  win seg0.13, stream 5, model 0: offsets 0-1949
+  win seg0.13, stream 5, model 1: offsets 0-1949
+  win seg0.13, stream 6, model 0: offsets 0-1949
+  win seg0.13, stream 6, model 1: offsets 0-1949
+  win seg0.13, stream 7, model 0: offsets 0-1949
+  win seg0.13, stream 7, model 1: offsets 0-1949
+  win seg0.13, stream 8, model 0: offsets 0-1949
+  win seg0.13, stream 8, model 1: offsets 0-1949
+  win seg0.14, stream 0, model 0: offsets 0-1949
+  win seg0.14, stream 0, model 1: offsets 0-1949
+  win seg0.14, stream 1, model 0: offsets 0-1949
+  win seg0.14, stream 1, model 1: offsets 0-1949
+  win seg0.14, stream 2, model 0: offsets 0-1949
+  win seg0.14, stream 2, model 1: offsets 0-1949
+  win seg0.14, stream 3, model 0: offsets 0-1949
+  win seg0.14, stream 3, model 1: offsets 0-1949
+  win seg0.14, stream 4, model 0: offsets 0-1949
+  win seg0.14, stream 4, model 1: offsets 0-1949
+  win seg0.14, stream 5, model 0: offsets 0-1949
+  win seg0.14, stream 5, model 1: offsets 0-1949
+  win seg0.14, stream 6, model 0: offsets 0-1949
+  win seg0.14, stream 6, model 1: offsets 0-1949
+  win seg0.14, stream 7, model 0: offsets 0-1949
+  win seg0.14, stream 7, model 1: offsets 0-1949
+  win seg0.14, stream 8, model 0: offsets 0-1949
+  win seg0.14, stream 8, model 1: offsets 0-1949
+  win seg0.15, stream 0, model 0: offsets 0-1949
+  win seg0.15, stream 0, model 1: offsets 0-1949
+  win seg0.15, stream 1, model 0: offsets 0-1924
+  win seg0.15, stream 1, model 1: offsets 0-1924
+  win seg0.15, stream 2, model 0: offsets 0-1924
+  win seg0.15, stream 2, model 1: offsets 0-1924
+  win seg0.15, stream 3, model 0: offsets 0-1924
+  win seg0.15, stream 3, model 1: offsets 0-1924
+  win seg0.15, stream 4, model 0: offsets 0-1924
+  win seg0.15, stream 4, model 1: offsets 0-1924
+  win seg0.15, stream 5, model 0: offsets 0-1924
+  win seg0.15, stream 5, model 1: offsets 0-1924
+  win seg0.15, stream 6, model 0: offsets 0-1924
+  win seg0.15, stream 6, model 1: offsets 0-1924
+  win seg0.15, stream 7, model 0: offsets 0-1924
+  win seg0.15, stream 7, model 1: offsets 0-1924
+  win seg0.15, stream 8, model 0: offsets 0-1924
+  win seg0.15, stream 8, model 1: offsets 0-1924
+  All per-window scores above are over the completed grid ONLY.
+# finished 2026-10-18 20:34:07

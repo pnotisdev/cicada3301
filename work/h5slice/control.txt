@@ -13,3 +13,33 @@ ctrl-a truth grid: 80040 decodes, 80022 aborted (100.0%), 162/162 chunks in 107s
   (a) wall 110s
 
 == control (b): 8 random-window/random-stream nulls, same grid; all < 1.45 ==
+ctrl-b null grids: 640320 decodes, 640072 aborted (100.0%), 1296/1296 chunks in 560s (1144 decodes/s wall, 4 workers)
+  null 0: max IoC 1.3275 at (off 1068, L 10, model 0)
+  null 1: max IoC 1.3030 at (off 548, L 16, model 0)
+  null 2: max IoC 1.2219 at (off 1785, L 20, model 0)
+  null 3: max IoC 1.2912 at (off 1192, L 20, model 1)
+  null 4: max IoC 1.3179 at (off 140, L 18, model 0)
+  null 5: max IoC 1.2684 at (off 105, L 20, model 0)
+  null 6: max IoC 1.2420 at (off 1694, L 16, model 0)
+  null 7: max IoC 1.3537 at (off 1933, L 19, model 0)
+  null global max IoC 1.3537 at (7, 1933, 19, 0)
+  CONTROL (b) PASS: everything < 1.45 periodic IoC
+  (b) wall 560s
+
+== control (c): no-keyword plant (L=1 constant key) decoded at L=8 (degeneracy note) ==
+  no-keyword plant at L=8: IoC 2.1830, wcol [7, 7, 7, 7, 7, 7, 7, 7]
+  wcol all-equal: True
+  NOTE: L=1 is nested in the L=8 model class (a constant keyword IS an L=8 keyword);
+  a fit here is a legitimate model-identification caveat, NOT a decoder failure.
+
+== control (d): wrong-L decodes of the truth plant stay < 1.4 ==
+  wrongL7: IoC 0.0000 (aborted)
+  wrongL9: IoC 0.0000 (aborted)
+  wrongL16: IoC 0.0000 (aborted)
+  off-1 (extra info): IoC 0.0000 (aborted)
+  off+1 (extra info): IoC 0.0000 (aborted)
+  off+100 (extra info): IoC 0.0000 (aborted)
+  CONTROL (d) PASS: wrong-L IoC < 1.4
+
+CONTROLS VERDICT: PASS  (a=True b=True d=True; (c) recorded as model-class note)
+# finished 2026-10-18 19:47:46
