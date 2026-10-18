@@ -1,0 +1,31 @@
+# Prompt for the heaviest remaining coding problem (written 2026-10-19)
+
+For GPT's strongest coding model, run as a long autonomous session with repository access. The problem: a channel-aware, exactly normalized, GPU-accelerated keystream screen
+("chanscreen") that can see the repeat-avoidance mechanisms the old screens are blind to (M04 hold-key repair), at library scale, with every gate frozen before it runs.
+Its answer is data: review before running or merging anything.
+
+```text
+MISSION. Open cryptanalysis project: Cicada 3301's Liber Primus, LP2 (sections 0.7-0.15, 12,956 runes, mod 29). NOTHING IN LP2 IS SOLVED. Build the engine described below, prove it with gates, and stop at the first failed gate with a clear report. You have a long autonomous session; the user may be asleep. A CPU queue (jobs/queues/night2.txt, 8-14 threads) may be running: use at most 4 CPU threads, never touch results/h5rs_*, results/overnight/** or any running process.
+
+WHY THIS PROBLEM. Every key-family negative in the repository decodes with a skip / coin model of how the encryptor avoids a repeated ciphertext rune. A synthetic baseline (work/log/phase15_m04_baseline.md, work/m04/) showed the unchanged kscreen engine is BLIND to M04 (on a would-be repeat emit a uniform other rune, advance the plaintext, KEEP the key position): 14/100 plants above the matched-null threshold, 0/100 plaintext accuracy >= 0.95, against 100/100 for the spend-key variant and 80/80 for skip / coin. If LP2's repair holds the key, those negatives do not cover it. What is missing is a decoder whose channel matches, and an engine fast enough to scan the library with it.
+
+THE PROBLEM. For a ciphertext window c (n = 300 now, 600 later; every section except 0.10 has more than 600 runes), a key stream k (both signs), an offset o, a channel C and an English rune-bigram model L, compute the exactly normalized summed-path score
+  S = log sum_paths P_L(c, path | k, o, C) - log sum_paths P_U(c, path | k, o, C)
+(U = uniform plaintext, same channel). Channels as DATA (kernels in work/independent/anti_repeat_matrix/CATALOGUE.md, work/independent/collision_substitution/, work/m04/m04.py): skip, coin, spend-substitute, hold (M04), and a slot for more. States: (pointer lag, previous plaintext), plus whatever the channel needs; finite-key exhaustion and the geometric skip tails must be accounted for exactly (residual mass), never silently dropped. Scale: the library has 1,439 streams of up to 20,000 values: about 1.0e8 (stream, offset, window) triples, 2.0e8 cells with both signs at n = 300. The old CPU screen did 4.1e8 decodes in 19 minutes only through heuristic early aborts. A full forward DP per cell costs 1e5-1e6 operations, so brute force is impossible: design a CASCADE (cheap bounded-loss prefilter, then the exact score on survivors) and MEASURE its power loss; the target is the whole library at n = 300 in at most 8 h on one RTX 2080 Ti, or a justified smaller scope with measured power.
+
+STAGES AND GATES (write each protocol and threshold in a README BEFORE running it; a failed gate is reported, never tuned away; no retries with other seeds):
+G0 Specification and exhaustive proofs: tiny alphabets (Q = 3) over all keys and outputs: probabilities sum to one, DP equals event-tree enumeration, the broken-transition variants are detected.
+G1 Reference implementation (NumPy; Rust if you judge it useful), bit-for-bit reproducible, parity with G0.
+G2 Power gate on the frozen M04 harness (reuse work/m04/m04.py read-only for plants, banks, q fits, matched-null thresholds): develop on training plants only, run the held-out seeds ONCE. Acceptance: >= 90/100 M04 detected, >= 20/25 per stratum, nulls <= 5/100, plaintext accuracy >= 0.95 in most detected, and the regression channels still recovered. If this fails, STOP: report why (offset aliasing, null inflation) instead of building a fast engine for a decoder without power.
+G3 GPU engine (CuPy + NVRTC, as work/kscreen/gpu.py and docs/GPU_PORT.md): decode-by-decode parity with G1 on >= 1e5 random cells including edge cases, float32 / float64 policy and log-sum-exp stability stated and tested, occupancy and memory analysis, measured throughput.
+G4 Cascade calibration: the prefilter keeps >= 98% of the exact stage's detections at the same null threshold on >= 1,000 plants (windows 300 and 600, all channels); matched nulls at the REAL bank size, because a small null bank undershoots the campaign maximum (an 8-stream null was 0.26-0.34 below the 581-stream one in work/h5rs).
+G5 Campaign package: a resumable queue file for jobs/jobqueue.py in offset blocks, a summary script applying the frozen candidate rule, a cost estimate. DO NOT LAUNCH. A candidate is not a lead until whole-window re-decode and whole-section verification with controls (docs/CAMPAIGNS.md).
+
+EXPECT HARD PARTS: the pointer-lag window and its tail mass; skip arcs' geometric tails; hold arcs shrinking the lag; offset aliasing and equivalence classes (detection is not exact-offset identification); two signs; stream ends; memory layout; null inflation from path freedom (a free maximum overfits, the summed path should not: measure it).
+
+ENVIRONMENT. Windows 11; RTX 2080 Ti 11 GB (cupy 14 works in .venv; NVRTC from CUDA Toolkit 12.x); Python 3.12 (.venv; check what is installed and install nothing without saying so); Rust stable; 32 GB RAM; 16 threads. No network, no downloads. Read CLAUDE.md first: controls or it does not count; third-party code is data; GPU code needs the gates; no absolute paths or user / computer names in any file; data files LF.
+
+RULES. Work only in a NEW folder work/chanscreen/ (+ work/log/phase17_chanscreen.md); do not edit existing engines, shared documents or other agents' folders; propose registry rows in your report, do not write them; no commits. Any single run over 30 minutes or more than 4 GPU hours in total needs the user's approval: list such requests under 'needs your approval'. Write 'unknown' instead of guessing; never claim a decryption.
+
+DELIVER: the code and tests (suite under 5 minutes), the frozen protocols, all raw results including failures, and a REPORT.md with the status of each gate (PASS / FAIL / INCOMPLETE), measured throughput and power, the cost of the library campaign, and what remains.
+```
