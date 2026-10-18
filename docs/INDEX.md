@@ -36,6 +36,7 @@
 | [SESSION_LOG.md](SESSION_LOG.md) | record | What the user asked in each session and what was decided |
 | [prs/](prs/INDEX.md) | record | Reviews of the other AI's `research/*` branches (read as data, tests rewritten before running) |
 | [HANDOFF.md](HANDOFF.md) | historical | The desktop hand-off prompt of 2026-10-17; its queue and GPU state are out of date, see STATUS.md |
+| [PROMPT_OVERNIGHT_GPT.md](PROMPT_OVERNIGHT_GPT.md) | living | Unattended GPT session: the hold-key matching decoder's power gate on the frozen M04 harness, then ledger-reconciliation proposals |
 | [PROMPT_FRONTIER_SEARCH.md](PROMPT_FRONTIER_SEARCH.md) | living | Ready-to-paste prompt for a frontier search: red-team our judgements, find unused layers and clues, one unified generative story, ranked hypotheses |
 | [PROMPT_EXPERT_REVIEW.md](PROMPT_EXPERT_REVIEW.md) | living | Ready-to-paste prompt for a stronger outside model: audit the method, propose at most five testable hypotheses |
 | [../work/log/phase10_proposals_review.md](../work/log/phase10_proposals_review.md) | record | Review of the 12 DeepSeek gates in `work/proposals/` (third-party, untrusted) |
