@@ -9,13 +9,19 @@ informational consistency checks only. **Nothing in LP2 is solved.**
 
 ```
 proposals/
-  common.py          shared helpers (rune conversion, anti-repeat encryptor, skip-aware beam, IoC)
+  common.py          shared helpers (rune conversion, anti-repeat encryptor, skip-checked beam, IoC)
   sign_rules/        [2]+my enumeration   +/- sign of the key per word from word-level numbers (112 rules)
   word_anchors/      [2]                  per-word anchor schedules into a key stream (16 schedules)
   h2_coincidence/    [13]                 tableau-invariant coincidence statistic (H2 screen gate)
   outer_alphabet/    [3],[25]             keyword-mixed outer alphabet: blindness + recovery gate
   null_beam/         [0],[7],[23]         unkeyed per-word null runes: null-aware vs null-blind beam
   section_depth/     [1],[10],[15]        shared pad at section starts: power of the difference statistic
+  sliding_window/    [new]                mid-book key alignment recoverable by a sliding window
+  lm_power/          [new]                IoC blindness vs LL separation for a two-layer cipher
+  crib_filter/       [new]                apostrophe / n't / one-rune-word decode filters (+ LP2 table)
+  survivor_doublets/ [new]                per-word-length distribution of the 86 surviving doublets
+  word_reversal/     [new]                per-word plaintext reversal: LL-detectable, IoC-blind
+  koan_sums/         [new]                pre-registered squares close-out (0.5 plaintext vs 0.6 seeds)
 ```
 
 Each folder contains:
@@ -59,7 +65,13 @@ code 0 = gate passed, 1 = failed.
 | outer_alphabet | [3]+[25] keyed alphabet tiers | Tier 1 ~14 h |
 | null_beam | [0],[7],[23],[29] unkeyed nulls | window 0.7 first (~2.4 h/generator) |
 | section_depth | [1],[10],[15],[21],[26] reuse family | stage 1 < 1 h (needs the rune LM later) |
+| sliding_window | new: full-book sliding export | ~3-8 h on the GPU (staggered, 581 streams) |
+| lm_power | new: LM rescoring of every prior negative | LM training once (~30-40 h), rescore ~1 h |
+| crib_filter | new: filters for every verifier | minutes |
+| survivor_doublets | new: anti-repeat model discrimination | minutes |
+| word_reversal | new: sign-campaign engine variant | minutes |
+| koan_sums | new: squares-line close-out | minutes |
 
+All twelve gates pass on the committed code (`work\proposals\run_all.bat`).
 The one common dependency the gates deliberately do **not** use (to stay self-contained) is the
-rune language model; `section_depth` documents why it will be needed (skip drift destroys the
-unigram statistic over a full section).
+rune language model; `section_depth` and `lm_power` document, in numbers, why it will be needed.
