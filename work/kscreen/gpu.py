@@ -150,6 +150,8 @@ def opts(args):
     o = dict(a.split("=", 1) for a in args)
     if o.get("clock", "none") != "none":
         raise SystemExit("clock= (clocked key pointer) is only supported by the Rust engine")
+    if o.get("nulledge", "0") != "0":
+        raise SystemExit("nulledge= (word-edge keyless nulls) is only supported by the Rust engine")
     return o
 
 

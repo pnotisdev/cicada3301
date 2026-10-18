@@ -565,6 +565,21 @@ engine `work/layer2` (output `results/layer2/`).
   dictionary-scored leftovers, no short-window restart tests, no new keyless echo statistics, no OEIS/hash/KDF
   lane expansions.
 
+### Phase 12 – Outer-alphabet gate, prime domain, and the unkeyed-insertion decoder (2026-10-18, `work/log/phase12_review2.md`)
+
+- **Outer-alphabet gate (H1): 72 sigma settings (44 distinct: 26 affine multipliers, 1 reflection family, 17
+  keyword alphabets) x the library on window 0.7, both key signs and models: best 1.3811 (aff:8:0/aff:21:0,
+  sha256-ctr:1311 offset 14398), null 1.2874: negative. Sections 0.8-0.15 with these sigmas remain open
+  (about 5 h CPU / 1.5-2 h GPU).
+- **Prime domain excluded** (registry row `prime-domain`): prime->prime affine feedback at lags 1-8 and the
+  mixed index/prime domains at lags 5-6 never beat their nulls (plant chi2/n 1.97 vs LP2 0.44): the GP prime
+  order is not the arithmetic domain; index order remains the working domain.
+- **Keyless word-edge nulls** (engine option `nulledge=1|2`, built and controlled, selftest passed): the
+  0%/100% deterministic variants are excluded (best 1.4163/1.4294 vs matched nulls 1.3901/1.3849; every hit
+  falls to 1.04-1.06 over the whole window); the 42% mixture has no powered IoC decoder (free beam null 1.75 =
+  the truth's level). Word-end nulls are also excluded as the echo source (targets word-final 32/80 vs 34.7
+  expected).
+
 ### Phase 5 – Validation and reporting
 - A plaintext counts as solved only if it scores well across a whole segment (word hits and IoC about 1.8)
   and the same rule works on the next page.

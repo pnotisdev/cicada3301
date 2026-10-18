@@ -1,6 +1,6 @@
 # Overnight campaigns: report from desktop
 
-Generated on desktop at 2026-10-18 06:24:36 by `python jobs/overnight.py`. Thresholds and method: docs/CAMPAIGNS.md.
+Generated on desktop at 2026-10-18 13:58:18 by `python jobs/overnight.py`. Thresholds and method: docs/CAMPAIGNS.md.
 
 **Controls:** unit tests and kscreen selftest passed on desktop; null results below are validated.
 
@@ -16,7 +16,7 @@ The 71 unit tests (solved pages, transcription, statistics, engines) and the ksc
 - unit tests on desktop: passed
 - kscreen controls on desktop: SELFTEST PASSED
 - kscreen controls through the CUDA port on desktop: SELFTEST PASSED
-- GPU validation on desktop: GPU VALIDATION PASSED
+- GPU validation on desktop: GPU VALIDATION FAILED: CUDA probe
 
 ## analysis: Fingerprint analyses (2/2 steps done)
 
@@ -132,6 +132,13 @@ c = p + s_w * k with the sign s_w of the key for every rune of word w from a rul
 
 - controls: SIGN SELFTEST PASSED
 - 61 of 61 rules done; best IoC 1.388 (C_cur_ws); none reaches the 1.40 rule
+
+## kscreen-signs-periodic: Per-rune periodic key-sign templates (period 2-5): the Beaufort / Vigenere alternation as a sign pattern (2/52 steps done)
+
+c = p + s_i * k with s_i = pattern[i mod L], L = 2..5, one representative per complement class (the complement is the multiplier 28): 25 distinct templates after dropping constants and repeats of shorter patterns (work/kscreen/signrules_periodic.py; the engine's S lines). 581 flat-IoC library streams x 8 sections at every offset, about 6.5 min per template on 14 threads. Controls: sign_periodic_selftest.py (independent planter, 3 templates x 3 windows, blindness, null).
+
+- controls: SIGN PERIODIC SELFTEST PASSED
+- not run yet
 
 ## kscreen-sacred3: Book-derived streams: phi / sigma of 3301 i + 1033 and 1033 i + 3301, primes at index multiples of 58 .. 3301, base-29 digits of 1/45415 (4/4 steps done)
 
@@ -368,4 +375,5 @@ The 32-bit sweeps cover every time(NULL) seed but not new Random(System.currentT
 - generator vectors (Java 48-bit and CPython two-word seeds): not run
 - GPU java: 25 of 25 months done; candidates after the whole-section check: none
 - GPU py3: 25 of 25 months done; candidates after the whole-section check: none
-- GPU java-abs: 10 of 25 months done; candidates after the whole-section check: none
+- GPU java-abs: 23 of 25 months done; candidates after the whole-section check: none
+- GPU ruby (Ruby rule unverified): 14 of 25 months done; candidates after the whole-section check: none

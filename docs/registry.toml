@@ -475,10 +475,36 @@ title = "Named lag-6 echo source mechanisms: plaintext-F replacement, collision 
 status = "excluded"
 what = "Mechanisms for the within-word lag-6 relation c' = 24 - 2c (80/1290 hits, +35.1 excess): the solved pages' literal-F convention in disguise; T applied to the previous rune at a would-be doublet (W3(a)); an affine autokey chain (see lag-feedback)"
 control = "F-replacement: English F at word positions >= 6 occurs at 0.0056 (n = 1,013,590 corpus positions, sd 0.0001) against the observed echo rate 0.0272 +/- 0.0047 - excluded at > 4 sd. W3(a): predicts c_(i-1) = c_(i-6) at every echo site, observed 3/80 vs null 2.8/80"
-result = "All three named mechanisms excluded; the echo rate equals the avoided-collision rate (0.0272 +/- 0.0047 vs 0.0269-0.0282) but does not track it by section (correlation -0.38, n = 9, underpowered): the coincidence stays an open observation"
+result = "All three named mechanisms excluded; the echo rate equals the avoided-collision rate (0.0272 +/- 0.0047 vs 0.0269-0.0282) but does not track it by section (correlation -0.38, n = 9, underpowered): the coincidence stays an open observation. 2026-10-18: a null rune inserted at word ends is also excluded for the echo (echo targets word-final 32/80 vs 34.7 expected, z -0.6; lag-5 37/104 vs 40.3)"
 gap = "A sparse word-internal rewrite (the echo-two-tap family) remains untestable as before"
-log = ["work/log/phase11_review.md"]
-files = ["work/tmp/w3_sharp_test.txt", "work/tmp/echo_vs_skip_rate.txt", "work/tmp/frate_pos6.txt", "work/tmp/lag6_residual_quick.py", "work/tmp/echo_pairs_report.md"]
+log = ["work/log/phase11_review.md", "work/log/phase12_review2.md"]
+files = ["work/tmp/w3_sharp_test.txt", "work/tmp/echo_vs_skip_rate.txt", "work/tmp/frate_pos6.txt", "work/tmp/lag6_residual_quick.py", "work/tmp/echo_pairs_report.md", "work/tmp/echo_word_final.txt"]
+
+[[experiment]]
+id = "prime-domain"
+group = "structure"
+title = "Affine feedback in the GP prime domain and mixed index/prime domains: r = PRIME[c_(i+d)] - a*PRIME[c_i] - b (mod 29), d = 1..8, all a, b, within words"
+status = "excluded"
+what = "The arithmetic-domain variant of the rune-order assumption: prime->prime at lags 1..8 and the mixed index->prime / prime->index domains at lags 5, 6; chi-square of the residual vs uniform, 200-shuffle null per lag; the same-a marginal-cancelling z over 336 effective settings"
+control = "Plant (d=6, a=1) on the keyed solved sections: chi2/n 1.97 vs LP2's 0.44 (4.5x power), z 13.9, 0/200 null exceedances; residual recovers the plaintext primes at 83.6% of positions (57/57 on unambiguous residues)"
+result = "LP2 never beats its null: real max chi2 4152.1 / 953.5 / 40.8 vs combined null max 4423.8 / 1106.3 / 60.8; same-a z tops 3.24 / 2.60 / 3.22 over 336 settings (look-elsewhere P 0.22-0.85). The GP prime order is not the arithmetic domain; index order remains the working domain. PRIME mod 29 covers only 24 of 29 residues (16.4% unrepresentable, 13.7% ambiguous)"
+gap = "Other arithmetic domains (e.g. prime values mod larger moduli, rune-value rings) not scanned"
+log = ["work/log/phase12_review2.md"]
+files = ["work/tmp/prime_scan_report.md", "work/tmp/prime_scan_results.json"]
+
+[[experiment]]
+id = "nulledge"
+group = "structure"
+title = "Keyless word-edge nulls: every word-final or word-initial rune consumes no key value and is not scored (nulledge=1|2)"
+status = "excluded"
+what = "Engine option nulledge in work/kscreen (default bit-identical, selftest passed); 8 section windows x the library, mults 1, models 0,1, both variants, matched rand nulls"
+best = 1.4294
+null = 1.3849
+control = "Plant with a keyless null at EVERY word edge on the Welcome/primes plant: blindness 1.207/1.219 (1.078 at the true offset), recovery 1.670/1.667 at the exact offset, rand null 1.355/1.325: controls pass"
+result = "nulledge=1 best 1.4163 (about 229 scored letters: the short-window heavy tail) vs matched null 1.3901; nulledge=2 best 1.4294 vs 1.3849; every flagged hit falls to 1.037-1.063 over the whole window against matched random-offset controls max 1.067-1.146: negative. The 42%-of-words mixture (the word-length model's rate) has no powered IoC decoder: the free per-word beam recovers the 42% plant (1.71) but inflates the random-key null to 1.75 (per-word null freedom = key-phase freedom); the deterministic reading misaligns at the first null-free word (1.27)"
+gap = "The 42% mixture itself (untestable as formulated); nulls inside words; extra key advance at layout events; keys outside the library"
+log = ["work/log/phase12_review2.md"]
+files = ["work/kscreen/NULLEDGE.md", "work/tmp/nulledge_control.txt", "work/tmp/nulledge_report.md", "results/kscreen/nulledge1_segments.tsv", "results/kscreen/nulledge2_segments.tsv", "results/kscreen/nulledge1_segments_verify.txt", "results/kscreen/nulledge2_segments_verify.txt"]
 
 [[experiment]]
 id = "walk-evolving"
@@ -679,11 +705,11 @@ group = "structure"
 title = "Keyword-mixed outer alphabet around an additive key: relabel the ciphertext by sigma, then the ordinary screen"
 status = "open"
 priority = 1
-what = "IoC is invariant under relabelling, so the true sigma gives plaintext IoC; the family is not covered by any screen above. BUILT AND CONTROLLED 2026-10-18 (work/kscreen/relabel_export.py + RELABEL.md): plant c = sigma(p + k) recovered at IoC 1.6702 after relabelling vs 1.0068-1.0637 unrelabelled, null <= 1.052, wrong sigma <= 1.055, end-to-end 1.6702 at the true offset only"
-cost = "Control: minutes (done). Real run: 72 settings (29 reflections + 26 affine multipliers + 17 keyword alphabets from lp.KEYWORDS), each one relabel + one ordinary library screen: about 1 h on the GPU, about 6 h on 14 CPU threads (per-window cost about 0.8 min GPU / 5 min CPU, from lib-sections' 19 min / 8 sections x 28 multipliers)"
-needs = "Nothing: batch-relabel the windows, run the ordinary screen, verify by the CAMPAIGNS rule"
-log = ["work/log/phase10_proposals_review.md", "work/log/phase11_review.md"]
-files = ["work/kscreen/relabel_export.py", "work/kscreen/RELABEL.md", "work/tmp/relabel_control.txt"]
+what = "IoC is invariant under relabelling, so the true sigma gives plaintext IoC; the family is not covered by any screen above. BUILT AND CONTROLLED 2026-10-18 (work/kscreen/relabel_export.py + RELABEL.md): plant c = sigma(p + k) recovered at IoC 1.6702 after relabelling vs 1.0068-1.0637 unrelabelled, null <= 1.052, wrong sigma <= 1.055, end-to-end 1.6702 at the true offset only. GATE RUN 2026-10-18 on window 0.7: 72 sigma settings (26 affine multipliers, 29 reflections, 17 keyword alphabets; the reflections collapse to one distinct setting - a shift of the negated alphabet, absorbed by the screen's substitution freedom - so 44 distinct), each 51.1 M decodes, mults 1,28 models 0,1: best 1.3811 (aff:8:0/aff:21:0, sha256-ctr mod :1311 offset 14398; second kw:PRIMES 1.3669), all below 1.40; single-window null 1.2874"
+cost = "Control: minutes (done). Gate: done (72 x about 55 s CPU). All sections x the 44 distinct sigmas: about 5 h CPU / 1.5-2 h GPU"
+needs = "Nothing: batch-relabel the windows, run the ordinary screen, verify by the CAMPAIGNS rule; sections 0.8-0.15 with these sigmas remain open"
+log = ["work/log/phase10_proposals_review.md", "work/log/phase11_review.md", "work/log/phase12_review2.md"]
+files = ["work/kscreen/relabel_export.py", "work/kscreen/RELABEL.md", "work/tmp/relabel_control.txt", "work/tmp/relabel_gate/summary.txt", "work/tmp/relabel_gate/null.tsv"]
 
 [[experiment]]
 id = "open-unkeyed"
@@ -691,10 +717,10 @@ group = "structure"
 title = "Unkeyed insertions (an extra rune per word that consumes no key value) and extra key advance at word separators / line / page breaks"
 status = "open"
 priority = 2
-what = "Every decoder moves the key pointer only forward at a collision; the '+1 rune in 42% of words' fit is the motivation, and 2026-10-18 adds a second: the lag-6 echo rate (0.0272 +/- 0.0047) equals the avoided-collision rate (0.0269-0.0282). H8 as defined (the null spends the colliding attempt's key value) is aligned and already visible to kscreen: alive as a partial explanation of the word lengths (G 56 -> 40); the unkeyed variant is not decoded"
-cost = "About 3-4 h of engine work, then about 7 min of CPU per variant"
-needs = "An optional pointer-stay at word-final runes and a per-rune extra-advance line in the engine (work/proposals/null_beam is an untrusted prototype of the decoder)"
-log = ["work/log/phase10_review.md", "work/log/phase10_proposals_review.md", "work/log/phase11_review.md"]
+what = "Every decoder moves the key pointer only forward at a collision; the '+1 rune in 42% of words' fit is the motivation, and 2026-10-18 adds a second: the lag-6 echo rate (0.0272 +/- 0.0047) equals the avoided-collision rate (0.0269-0.0282). H8 as defined (the null spends the colliding attempt's key value) is aligned and already visible to kscreen: alive as a partial explanation of the word lengths (G 56 -> 40); the unkeyed variant is not decoded. 2026-10-18: the nulledge option is built - deterministic word-edge nulls (0% / 100% of edges) are excluded, and the 42% mixture is measured to have no powered IoC decoder (registry row nulledge); what remains here is the extra key advance at word separators / line / page breaks"
+cost = "About 3-4 h of engine work (the nulledge part is done), then about 7 min of CPU per variant"
+needs = "A per-rune extra-advance line in the engine for the layout events (work/proposals/null_beam is an untrusted prototype of the decoder)"
+log = ["work/log/phase10_review.md", "work/log/phase10_proposals_review.md", "work/log/phase11_review.md", "work/log/phase12_review2.md"]
 files = ["work/proposals/null_beam/README.md", "results/analysis/null_insertion.txt"]
 
 [[experiment]]

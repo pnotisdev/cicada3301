@@ -19,12 +19,24 @@
 //! Modes:
 //!   screen <windows.txt> <family> <out.tsv> [n=300] [beam=16] [mults=1,28|all|a,b,..] [models=0,1]
 //!          [threads=T] [top=2000] [abort=150:1.2|0] [only=<item>] [items=a:b] [minlen=50] [dir=back]
+//!          [nulledge=0|1|2]
 //!   trace  <windows.txt> <family> <out.txt> [same options as screen] [offs=a:b]
 //!          (one line per decode, for the decode-by-decode comparison with the GPU port)
 //!   plant  <plain_windows.txt> <family> <item> <offset> <mult> <model> <keep> <seed> <subst 0|1> <out.txt>
 //!   verify <windows.txt> <family> <item> <offset> <mult> <model> <window|all> [n=0] [beam=64] [controls=K]
+//!          [nulledge=0|1|2]
 //!          (controls=K also decodes K random offsets of the same keystream: a keystream-matched null)
 //!   info   <family>
+//!
+//! nulledge=1|2 (docs: work/kscreen/NULLEDGE.md; the keyless word-edge null of NEGATIVE_SPACE.md blind spot 9):
+//! the word edges come from the window's L line, which lists the CIPHERTEXT word lengths (a null adds a rune,
+//! so a nulled word's L entry includes it). Every word-FINAL (1) or word-INITIAL (2) rune is a keyless null:
+//! it is NOT scored, it does NOT advance the key pointer, and it is invisible to the anti-repeat prev chain
+//! (the next rune's collision check compares against the last scored rune). This tests the "null at every word
+//! edge" variant; the ~42%-of-words mixture is NOT testable by a single-window IoC screen (NULLEDGE.md,
+//! measured). A window whose L line is missing, whose lengths do not sum to its rune count, or that carries a
+//! P line (per-position prev values) gets no null positions and decodes exactly as with nulledge=0. nulledge=0
+//! runs the untouched original code path, byte-identical to before.
 //!
 //! Families:
 //!   file:<path.ksb>      keystreams written by export.py (binary "KSB1"); offsets 0..len-need
@@ -55,6 +67,10 @@ static BACK: AtomicBool = AtomicBool::new(false);
 static CLOCK: AtomicUsize = AtomicUsize::new(0);
 const CLOCKS: [&str; 7] = ["none", "c1", "cp", "ct", "p1", "pp", "pt"];
 const GP: [usize; 29] = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109];
+
+/// nulledge=0|1|2: 0 off (the untouched decode); 1 = each word-FINAL rune (per the window's L line) is a
+/// candidate keyless null; 2 = each word-INITIAL rune. See `null_positions` and NULLEDGE.md for the semantics.
+static NULLEDGE: AtomicUsize = AtomicUsize::new(0);
 
 fn set_clock(o: &std::collections::HashMap<String, String>) {
     let k = o.get("clock").map_or(0, |c| CLOCKS.iter().position(|x| x == c).unwrap_or_else(|| panic!("clock={c}: use {CLOCKS:?}")));
@@ -91,6 +107,8 @@ struct Win {
     /// hypotheses c_i = a*c_{i-1} + p_i + k_i are screened (chain_windows.py): there the window holds
     /// c'_i = c_i - a*c_{i-1} and the check compares with (1-a)*c_{i-1}.
     pv: Vec<i32>,
+    /// whether the window's pv came from an explicit P line (per-position prev values; nulledge falls back for it)
+    has_p: bool,
     lens: String,
     /// `G <index>`: the window's own first rune sits at this index of the keystream (LP2's ciphertext used as its
     /// own key, export_hyp.py). The decoder then never deciphers rune i with key index g + i, which would give the
@@ -120,14 +138,16 @@ fn load_windows(path: &str) -> Vec<Win> {
             let mut it = rest.split_whitespace();
             let name = it.next().expect("window name").to_string();
             let prev = it.next().map(|x| x.parse().expect("prev rune")).unwrap_or(-1);
-            out.push(Win { name, prev, runes: Vec::new(), pv: Vec::new(), lens: String::new(), g: -1, sg: Vec::new() });
+            out.push(Win { name, prev, runes: Vec::new(), pv: Vec::new(), has_p: false, lens: String::new(), g: -1, sg: Vec::new() });
         } else if let Some(rest) = line.strip_prefix("R ") {
             let w = out.last_mut().expect("R line before W line");
             w.runes = rest.split_whitespace().map(|x| x.parse::<u8>().expect("rune")).collect();
         } else if let Some(rest) = line.strip_prefix("L ") {
             out.last_mut().expect("L line before W line").lens = rest.to_string();
         } else if let Some(rest) = line.strip_prefix("P ") {
-            out.last_mut().expect("P line before W line").pv = rest.split_whitespace().map(|x| x.parse().expect("pv")).collect();
+            let w = out.last_mut().expect("P line before W line");
+            w.pv = rest.split_whitespace().map(|x| x.parse().expect("pv")).collect();
+            w.has_p = true;
         } else if let Some(rest) = line.strip_prefix("S ") {
             out.last_mut().expect("S line before W line").sg = rest.split_whitespace().map(|x| x.parse::<i8>().expect("sign")).collect();
         } else if let Some(rest) = line.strip_prefix("G ") {
@@ -145,6 +165,53 @@ fn load_windows(path: &str) -> Vec<Win> {
         assert!(w.runes.iter().all(|&r| (r as usize) < Q), "{}: rune out of range", w.name);
     }
     out
+}
+
+/// The word-edge null positions for a window under the current `nulledge` (0: none, 1: each word's LAST rune,
+/// 2: each word's FIRST rune). Words come from the window's L line, which lists the CIPHERTEXT word lengths:
+/// a keyless null adds a rune, so a nulled word's L entry includes it (NULLEDGE.md). Safety fallbacks return no
+/// positions (the decode is then byte-identical to nulledge=0 for that window): nulledge off, a P line present
+/// (its prev values are per-position and cannot skip over nulls), the L line missing/not parseable, a word of
+/// length 0, or the lengths not summing to the window's rune count.
+fn null_positions(w: &Win) -> Vec<bool> {
+    let kind = NULLEDGE.load(Ordering::Relaxed);
+    if kind == 0 || w.has_p {
+        return Vec::new();
+    }
+    let lens: Vec<usize> = match w.lens.split_whitespace().map(|x| x.parse()).collect::<Result<Vec<usize>, _>>() {
+        Ok(v) => v,
+        Err(_) => return Vec::new(),
+    };
+    if lens.iter().any(|&l| l == 0) || lens.iter().sum::<usize>() != w.runes.len() {
+        return Vec::new();
+    }
+    let mut flags = vec![false; w.runes.len()];
+    let mut b = 0usize;
+    for &l in &lens {
+        let e = b + l;
+        flags[if kind == 1 { e - 1 } else { b }] = true;
+        b = e;
+    }
+    flags
+}
+
+/// (null flags, collision-check values) for a window: the pvs array with the keyless nulls made invisible to the
+/// anti-repeat chain, i.e. the check value of a rune after a null is the last SCORED rune's value, not the
+/// null's. With no null positions this is just the window's own pvs.
+fn null_adjust(w: &Win) -> (Vec<bool>, Vec<i32>) {
+    let flags = null_positions(w);
+    if flags.is_empty() {
+        return (flags, w.pv.clone());
+    }
+    let mut pv = vec![0i32; w.runes.len()];
+    let mut last = w.pv[0];
+    for i in 0..w.runes.len() {
+        pv[i] = last;
+        if !flags[i] {
+            last = if i + 1 < w.pv.len() { w.pv[i + 1] } else { w.runes[i] as i32 };
+        }
+    }
+    (flags, pv)
 }
 
 struct Ks {
@@ -391,8 +458,16 @@ fn take(st: &mut St, t: u8, nj: usize) {
 }
 
 /// Beam decode of c[0..n] with additive key values mk (already multiplied). Returns (best coincidence
-/// pair count sum n_x(n_x-1), runes used). Aborts at `abort_at` runes when the best count is below `abort_s`.
+/// pair count sum n_x(n_x-1), letters used, complete): `letters` is the scored-letter count for a complete
+/// decode (rune count minus the keyless-null positions, so it equals n when `nulls` is empty) and `complete`
+/// is false exactly for an abort or an empty beam. Aborts at `abort_at` runes when the best count over the
+/// letters scored so far is below `abort_ioc` (with no nulls this reproduces the original `abort_s` gate
+/// exactly).
 /// `guard` >= 0 forbids deciphering rune i with key index guard + i (see `Win::g`).
+/// `nulls` (empty unless nulledge > 0): nulls[i] = rune i is a keyless null (the last rune of its word for
+/// nulledge=1, the first for 2). It is NOT scored and does NOT advance the key pointer; `pvs` is then the
+/// null-adjusted array (see `null_adjust`), so a null is invisible to the anti-repeat chain. With `nulls`
+/// empty this is exactly the original decode.
 #[allow(clippy::too_many_arguments)]
 fn ioc_beam(
     c: &[u8],
@@ -403,18 +478,31 @@ fn ioc_beam(
     beam: usize,
     abort_at: usize,
     abort_s: u32,
+    abort_ioc: f64,
     tb: &Tb,
     cur: &mut Vec<St>,
     extra: &mut Vec<St>,
     guard: i64,
     sg: &[i8],
-) -> (u32, usize) {
+    nulls: &[bool],
+) -> (u32, usize, bool) {
     cur.clear();
     cur.push(St { j: 0, s: 0, cnt: [0; Q] });
     let klen = mk.len();
     let back = BACK.load(Ordering::Relaxed);
     assert!(sg.is_empty() || !back, "S lines are not supported with dir=back");
     for i in 0..n {
+        if !nulls.is_empty() && nulls[i] {
+            // a keyless null: not scored, the key pointer and the prev chain stay put
+            if i + 1 == abort_at {
+                let best = cur.iter().map(|s| s.s).max().unwrap_or(0);
+                let letters = i + 1 - (0..=i).filter(|&r| nulls[r]).count();
+                if ioc_of(best, letters) < abort_ioc {
+                    return (best, abort_at, false);
+                }
+            }
+            continue;
+        }
         let ci = c[i] as usize;
         let prev: i32 = pvs[i];
         let neg = !sg.is_empty() && sg[i] < 0;
@@ -489,7 +577,7 @@ fn ioc_beam(
         }
         cur.extend_from_slice(extra);
         if cur.is_empty() {
-            return (0, i.max(2));
+            return (0, i.max(2), false);
         }
         if cur.len() > 1 {
             let mut a = 0;
@@ -515,12 +603,20 @@ fn ioc_beam(
         }
         if i + 1 == abort_at {
             let best = cur.iter().map(|s| s.s).max().unwrap_or(0);
-            if best < abort_s {
-                return (best, abort_at);
+            let below = if nulls.is_empty() {
+                // the original integer gate, unchanged for nulledge=0
+                best < abort_s
+            } else {
+                // keyless nulls are not scored, so the gate uses the letters scored so far
+                ioc_of(best, i + 1 - (0..=i).filter(|&r| nulls[r]).count()) < abort_ioc
+            };
+            if below {
+                return (best, abort_at, false);
             }
         }
     }
-    (cur.iter().map(|s| s.s).max().unwrap_or(0), n)
+    let letters = if nulls.is_empty() { n } else { (0..n).filter(|&i| !nulls[i]).count() };
+    (cur.iter().map(|s| s.s).max().unwrap_or(0), letters, true)
 }
 
 fn ioc_of(s: u32, n: usize) -> f64 {
@@ -528,7 +624,9 @@ fn ioc_of(s: u32, n: usize) -> f64 {
 }
 
 /// Full decode for verification: like ioc_beam (no abort) but keeps each state's plaintext and pointers.
-fn full_decode(c: &[u8], pvs: &[i32], mk: &[u8], model: u8, n: usize, beam: usize, guard: i64, sg: &[i8]) -> (f64, Vec<u8>, Vec<u32>) {
+/// `nulls`: the keyless-null positions (see ioc_beam; `pvs` must then be the null-adjusted array); a null is
+/// not scored and does not advance the pointer. Empty = the original decode, byte-identical.
+fn full_decode(c: &[u8], pvs: &[i32], mk: &[u8], model: u8, n: usize, beam: usize, guard: i64, sg: &[i8], nulls: &[bool]) -> (f64, Vec<u8>, Vec<u32>) {
     #[derive(Clone)]
     struct S2 {
         j: usize,
@@ -551,6 +649,10 @@ fn full_decode(c: &[u8], pvs: &[i32], mk: &[u8], model: u8, n: usize, beam: usiz
     let back = BACK.load(Ordering::Relaxed);
     assert!(sg.is_empty() || !back, "S lines are not supported with dir=back");
     for i in 0..n {
+        if !nulls.is_empty() && nulls[i] {
+            // a keyless null: not scored, pointer and prev chain stay put
+            continue;
+        }
         let ci = c[i] as usize;
         let prev: i32 = pvs[i];
         let neg = !sg.is_empty() && sg[i] < 0;
@@ -673,6 +775,9 @@ fn mode_screen(args: &[String]) {
     let o = opts(&args[3..]);
     BACK.store(o.get("dir").map_or(false, |d| d == "back"), Ordering::Relaxed);
     set_clock(&o);
+    let nulledge: usize = get(&o, "nulledge", 0);
+    assert!(nulledge <= 2, "nulledge=0|1|2 (0 = off; word-edge keyless nulls, see NULLEDGE.md)");
+    NULLEDGE.store(nulledge, Ordering::Relaxed);
     let n_req: usize = get(&o, "n", 300);
     let beam: usize = get(&o, "beam", 16);
     let mults = list_u8(&get(&o, "mults", "1,28".to_string()));
@@ -692,6 +797,7 @@ fn mode_screen(args: &[String]) {
     assert!(mults.iter().all(|&m| m >= 1 && (m as usize) < Q), "multipliers 1..28");
 
     let wins: Vec<&Win> = all_wins.iter().filter(|w| w.runes.len() >= minlen).collect();
+    let nulls: Vec<(Vec<bool>, Vec<i32>)> = wins.iter().map(|w| null_adjust(w)).collect();
     let wn: Vec<usize> = wins.iter().map(|w| w.runes.len().min(n_req)).collect();
     let nmax = *wn.iter().max().expect("no windows");
     let need = key_need(nmax);
@@ -730,7 +836,7 @@ fn mode_screen(args: &[String]) {
     ));
     std::thread::scope(|sc| {
         for tid in 0..threads {
-            let (fam, items, wins, wn, mults, models) = (&fam, &items, &wins, &wn, &mults, &models);
+            let (fam, items, wins, wn, mults, models, nulls) = (&fam, &items, &wins, &wn, &mults, &models, &nulls);
             let (next, done_runs, merged) = (&next, &done_runs, &merged);
             sc.spawn(move || {
                 let tb = tables();
@@ -764,20 +870,20 @@ fn mode_screen(args: &[String]) {
                                 for (wi, w) in wins.iter().enumerate() {
                                     let n = wn[wi];
                                     let ab = if abort_at > 0 && abort_at < n { abort_at } else { 0 };
-                                    let (s, used) = ioc_beam(
-                                        &w.runes, &w.pv, &mk, model, n, beam, ab, abort_s, &tb, &mut cur, &mut extra, guard_of(w, off), &w.sg,
+                                    let (s, used, full) = ioc_beam(
+                                        &w.runes, &nulls[wi].1, &mk, model, n, beam, ab, abort_s, abort_ioc, &tb, &mut cur, &mut extra, guard_of(w, off), &w.sg, &nulls[wi].0,
                                     );
                                     let ioc = ioc_of(s, used) as f32;
                                     runs += 1;
-                                    if used < n {
+                                    if !full {
                                         aborted += 1;
                                     }
                                     hist[((ioc * 100.0) as usize).min(HBINS - 1)] += 1;
                                     let h = Hit { ioc, item: item as u32, off: off as u32, mult: m, model, win: wi as u16, n: used as u16 };
-                                    if used == n && ioc > wbest[wi].ioc {
+                                    if full && ioc > wbest[wi].ioc {
                                         wbest[wi] = h;
                                     }
-                                    if used == n && ioc > thr {
+                                    if full && ioc > thr {
                                         hits.push(h);
                                         if hits.len() >= 2 * top {
                                             keep_top(&mut hits, top);
@@ -826,7 +932,7 @@ fn mode_screen(args: &[String]) {
     let mut f = BufWriter::new(f);
     writeln!(
         f,
-        "# kscreen screen family={} windows={} n={} beam={} mults={} models={} abort={} runs={} aborted={} secs={:.0} dir={}{}",
+        "# kscreen screen family={} windows={} n={} beam={} mults={} models={} abort={} runs={} aborted={} secs={:.0} dir={}{}{}",
         args[1],
         args[0],
         nmax,
@@ -839,7 +945,9 @@ fn mode_screen(args: &[String]) {
         secs,
         if BACK.load(Ordering::Relaxed) { "back" } else { "fwd" },
         // only a clocked run names its clock, so the default header stays byte-identical to gpu.py's
-        match CLOCK.load(Ordering::Relaxed) { 0 => String::new(), k => format!(" clock={}", CLOCKS[k]) }
+        match CLOCK.load(Ordering::Relaxed) { 0 => String::new(), k => format!(" clock={}", CLOCKS[k]) },
+        // likewise only a nulledge run names it, so nulledge=0 headers stay byte-identical
+        match NULLEDGE.load(Ordering::Relaxed) { 0 => String::new(), k => format!(" nulledge={k}") }
     )
     .unwrap();
     let best = hits.first().map(|h| h.ioc).unwrap_or(0.0);
@@ -891,6 +999,9 @@ fn mode_trace(args: &[String]) {
     let o = opts(&args[3..]);
     BACK.store(o.get("dir").map_or(false, |d| d == "back"), Ordering::Relaxed);
     set_clock(&o);
+    let nulledge: usize = get(&o, "nulledge", 0);
+    assert!(nulledge <= 2, "nulledge=0|1|2 (0 = off; word-edge keyless nulls, see NULLEDGE.md)");
+    NULLEDGE.store(nulledge, Ordering::Relaxed);
     let n_req: usize = get(&o, "n", 300);
     let beam: usize = get(&o, "beam", 16);
     let mults = list_u8(&get(&o, "mults", "1,28".to_string()));
@@ -911,6 +1022,7 @@ fn mode_trace(args: &[String]) {
         })
     };
     let wins: Vec<&Win> = all_wins.iter().filter(|w| w.runes.len() >= minlen).collect();
+    let nulls: Vec<(Vec<bool>, Vec<i32>)> = wins.iter().map(|w| null_adjust(w)).collect();
     let nmax = wins.iter().map(|w| w.runes.len().min(n_req)).max().expect("no windows");
     let need = key_need(nmax);
     let tb = tables();
@@ -931,8 +1043,8 @@ fn mode_trace(args: &[String]) {
                     for (wi, w) in wins.iter().enumerate() {
                         let n = w.runes.len().min(n_req);
                         let ab = if abort_at > 0 && abort_at < n { abort_at } else { 0 };
-                        let (s, used) =
-                            ioc_beam(&w.runes, &w.pv, &mk, model, n, beam, ab, abort_s, &tb, &mut cur, &mut extra, guard_of(w, off), &w.sg);
+                        let (s, used, _full) =
+                            ioc_beam(&w.runes, &nulls[wi].1, &mk, model, n, beam, ab, abort_s, abort_ioc, &tb, &mut cur, &mut extra, guard_of(w, off), &w.sg, &nulls[wi].0);
                         writeln!(out, "{item} {off} {m} {model} {wi} {s} {used}").unwrap();
                     }
                 }
@@ -1024,10 +1136,14 @@ fn mode_verify(args: &[String]) {
     let o = opts(&args[7..]);
     BACK.store(o.get("dir").map_or(false, |d| d == "back"), Ordering::Relaxed);
     set_clock(&o);
+    let nulledge: usize = get(&o, "nulledge", 0);
+    assert!(nulledge <= 2, "nulledge=0|1|2 (0 = off; word-edge keyless nulls, see NULLEDGE.md)");
+    NULLEDGE.store(nulledge, Ordering::Relaxed);
     let n_req: usize = get(&o, "n", 0);
     let beam: usize = get(&o, "beam", 64);
     let coeffs = fam.coeffs(item);
     for w in wins.iter().filter(|w| args[6] == "all" || w.name == args[6]) {
+        let nulls = null_adjust(w);
         let mut n = if n_req == 0 { w.runes.len() } else { n_req.min(w.runes.len()) };
         let mut len = key_need(n) + 8;
         // a keystream shorter than the window (e.g. a decimated one): verify over as much of the window as it covers
@@ -1053,7 +1169,7 @@ fn mode_verify(args: &[String]) {
         let mut key = vec![0u8; len];
         fam.fill(item, &coeffs, off, &mut key);
         let mk: Vec<u8> = key.iter().map(|&k| (k as usize * m % Q) as u8).collect();
-        let (ioc, plain, ptr) = full_decode(&w.runes, &w.pv, &mk, model, n, beam, guard_of(w, off), &w.sg);
+        let (ioc, plain, ptr) = full_decode(&w.runes, &nulls.1, &mk, model, n, beam, guard_of(w, off), &w.sg, &nulls.0);
         let skips = ptr.windows(2).filter(|p| p[1] != p[0] + 1).count();
         println!("window {} n {} ioc {:.4} pointer_jumps {}", w.name, plain.len(), ioc, skips);
         println!("plain {}", join(&plain));
@@ -1068,7 +1184,7 @@ fn mode_verify(args: &[String]) {
                 let co = rng.below(noff as u64) as usize;
                 fam.fill(item, &coeffs, co, &mut key);
                 let cmk: Vec<u8> = key.iter().map(|&k| (k as usize * m % Q) as u8).collect();
-                vals.push(full_decode(&w.runes, &w.pv, &cmk, model, n, beam, guard_of(w, co), &w.sg).0);
+                vals.push(full_decode(&w.runes, &nulls.1, &cmk, model, n, beam, guard_of(w, co), &w.sg, &nulls.0).0);
             }
             let mx = vals.iter().cloned().fold(0.0f64, f64::max);
             let mean = vals.iter().sum::<f64>() / vals.len() as f64;

@@ -1,0 +1,14 @@
+plaintext: Welcome (segment 1), 299 runes in 73 complete words within the first 300, IoC 1.6671
+variant 1 (final nulls): a keyless null at EVERY one of the 73 word edges; window has 372 ciphertext runes (299 planted + 73 nulls), L = ciphertext word lengths incl. nulls
+PASS  (a) blindness: default engine (nulledge=0) on the nulled window best IoC 1.207 (<= 1.3); at the true offset 100: 1.078
+PASS  (b) positive: nulledge=1 best IoC 1.670 at item=primes offset=100 mult=1 model=0 (must be >= 1.6 at offset 100)
+PASS  (c) null: rand:300:301 with nulledge=1 best IoC 1.355 (must be <= 1.37)
+info  42%-of-multi-rune-words mixture (word-final nulls): nulledge=1 best IoC 1.268 (no power: the decoder cannot know which words carry the null; see NULLEDGE.md)
+info  nulledge=1 on the un-nulled plant: best IoC 1.258 (expected ~1.0: the model does not fit null-free text)
+variant 2 (initial nulls): a keyless null at EVERY one of the 73 word edges; window has 372 ciphertext runes (299 planted + 73 nulls), L = ciphertext word lengths incl. nulls
+PASS  (a) blindness: default engine (nulledge=0) on the nulled window best IoC 1.219 (<= 1.3); at the true offset 100: 1.076
+PASS  (b) positive: nulledge=2 best IoC 1.667 at item=primes offset=100 mult=1 model=0 (must be >= 1.6 at offset 100)
+PASS  (c) null: rand:300:302 with nulledge=2 best IoC 1.325 (must be <= 1.37)
+info  42%-of-multi-rune-words mixture (word-initial nulls): nulledge=2 best IoC 1.254 (no power: the decoder cannot know which words carry the null; see NULLEDGE.md)
+info  nulledge=2 on the un-nulled plant: best IoC 1.323 (expected ~1.0: the model does not fit null-free text)
+CONTROLS PASSED
