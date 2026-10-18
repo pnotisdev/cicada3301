@@ -1,0 +1,6 @@
+ECHO REPLICATION (within-word pairs via lp.word_spans, LP2 sections 0.7-0.15)
+lag 5, equality: pairs=2105 hits=104 expected=72.59 excess=+31.4 z_binom=+3.75
+lag 5, (S,S) pairs: hits=11 expected=2.50 z_binom=+5.37
+  reference (echo_position.txt:3-4,13-14): pairs 2105, hits 104, expected 72.9, z +3.65; (S,S) hits 11, expected 2.4, z +5.86
+lag 6, c' = 24-2c mod 29: pairs=1290 hits=80 expected=44.48 excess=+35.5 z_binom=+5.42
+  reference (results/analysis/echo_position.txt:21-22): pairs 1290, hits 80, expected 44.9, excess +35.1, z +5.16 (shuffle-based)

@@ -1,0 +1,27 @@
+SCOPE EXTENSION: same affine sweep with 4 pair scopes x d in {5,6}; 200-shuffle null per scope-lag combo.
+scopes: word (boundary at ' ','.','&','#'), clause (boundary at '.'), linepage (boundary at '\n','%'), all (any consecutive pair inside a section).
+chi2 is b-invariant (L1) so 28 distinct scores per (scope,lag); b rows kept for spec compliance.
+scope=word     d=5  n=  2105  top chi2=   40.63 at (a,b)=(16,0) ioc=1.0060   null max=  62.17 mean= 44.80 p99=  61.24
+        next: (a,b)=(16,1) chi2=   40.63 ioc=1.0060
+        next: (a,b)=(16,2) chi2=   40.63 ioc=1.0060
+scope=word     d=6  n=  1290  top chi2=   64.86 at (a,b)=(27,0) ioc=1.0286   null max=  67.74 mean= 45.01 p99=  65.36
+        next: (a,b)=(27,1) chi2=   64.86 ioc=1.0286
+        next: (a,b)=(27,2) chi2=   64.86 ioc=1.0286
+scope=clause   d=5  n= 12120  top chi2=   40.22 at (a,b)=(8,0) ioc=1.0010   null max=  60.17 mean= 45.37 p99=  59.77
+        next: (a,b)=(8,1) chi2=   40.22 ioc=1.0010
+        next: (a,b)=(8,2) chi2=   40.22 ioc=1.0010
+scope=clause   d=6  n= 11954  top chi2=   39.36 at (a,b)=(14,0) ioc=1.0010   null max=  62.34 mean= 45.18 p99=  61.48
+        next: (a,b)=(14,1) chi2=   39.36 ioc=1.0010
+        next: (a,b)=(14,2) chi2=   39.36 ioc=1.0010
+scope=linepage d=5  n=  9989  top chi2=   49.08 at (a,b)=(11,0) ioc=1.0021   null max=  64.31 mean= 45.14 p99=  62.43
+        next: (a,b)=(11,1) chi2=   49.08 ioc=1.0021
+        next: (a,b)=(11,2) chi2=   49.08 ioc=1.0021
+scope=linepage d=6  n=  9398  top chi2=   39.46 at (a,b)=(24,0) ioc=1.0012   null max=  62.29 mean= 45.38 p99=  59.88
+        next: (a,b)=(24,1) chi2=   39.46 ioc=1.0012
+        next: (a,b)=(24,2) chi2=   39.46 ioc=1.0012
+scope=all      d=5  n= 12911  top chi2=   44.17 at (a,b)=(11,0) ioc=1.0013   null max=  61.34 mean= 45.49 p99=  59.93
+        next: (a,b)=(11,1) chi2=   44.17 ioc=1.0013
+        next: (a,b)=(11,2) chi2=   44.17 ioc=1.0013
+scope=all      d=6  n= 12902  top chi2=   36.82 at (a,b)=(15,0) ioc=1.0007   null max=  65.48 mean= 45.12 p99=  63.02
+        next: (a,b)=(15,1) chi2=   36.82 ioc=1.0007
+        next: (a,b)=(15,2) chi2=   36.82 ioc=1.0007

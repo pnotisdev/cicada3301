@@ -1,0 +1,19 @@
+﻿section  pairs  hits  expect  echo_excess_rate  dblts  adj_pairs  avoided_rate
+  7       79    6    2.7  +0.0415             4    729  0.0234
+  8      106    6    3.7  +0.0221             6   1145  0.0223
+  9      184   10    6.3  +0.0199             9   1729  0.0222
+  10       0    0    0.0  (no eligible pairs)       0      9  0.0000
+  11     178   13    6.1  +0.0386            10   1894  0.0225
+  12     100    5    3.4  +0.0155            11   1021  0.0459
+  13     152   11    5.2  +0.0379            13   1524  0.0364
+  14     154    9    5.3  +0.0240            12   1589  0.0322
+  15     337   20   11.6  +0.0249            21   3316  0.0270
+
+corr(echo_rate, avoided_rate) = -0.38  (n=9 sections)
+mean echo 0.0280 sd 0.0092; mean avoided 0.0290 sd 0.0081
+
+solved plaintext F-rate at word positions >= 6 (lag-6-eligible targets):
+  F at pos>=6: 3/73 = 0.0411  (overall English F ~0.022)
+
+An End (seg 16) as real-data null:
+  within-word lag6 pairs=1 hits=0 expected~0.0  residual chi2=28.0

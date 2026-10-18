@@ -539,6 +539,28 @@ engine `work/layer2` (output `results/layer2/`).
   - **Ideas not yet run:** restarts at typography with the full library, using the second koan and page 56 as controls;
     Euler-trail nulls; one-rune words as filters; a key-reuse scan anchored on the phrase.
 
+### Phase 11 – Outside-in review: audit, ranked next tests, stop-doing (2026-10-18, `work/log/phase11_review.md`)
+
+- **Methodology audit** (`work/tmp/methodology_audit.md`): the five assumptions most likely wrong, ranked, each with
+  evidence and a minutes-level falsifier: (1) separators = plaintext words (4 sd word-length correlation, 33 -> 0
+  plant); (2) skip/coin with one key value per rune, forward-only (repo's blind spot 9; +1-rune fit p 0.085);
+  (3) key = global-position stream (echoes strictly word-internal; planted echoes spread +162/+321 across
+  boundaries); (4) additive mod 29 in GP indices (lag-6 relation is multiplicative; W3 alive); (5) 300-rune windows
+  at starts (45/45 vs 13/21 power curve; staggered-window test is about 2.8 M decodes, minutes).
+- **New controlled negatives (all in the registry):** the affine lag-feedback autokey family
+  c_i = p_i + a*c_(i-d) + b (d 1..8, all a,b, four separator scopes, nonlinear maps at lag 6) is excluded: LP2 best
+  chi2 64.86 = the known echo, below the 200-shuffle null max 67.74; plant 73/73 recovered at chi2/n 2.25. Two more
+  named echo mechanisms dead: plaintext-F replacement (English F at word positions >= 6 is 0.0056 vs the echo rate
+  0.0272 +/- 0.0047) and the collision twist W3(a) (3/80 vs null 2.8). The echo rate equals the avoided-collision
+  rate but does not track it by section (r -0.38, n = 9): open observation. Echo pairs spread over sections and
+  vocabulary (0 repeated hit-bearing words); the lag-6 residual is not plaintext (IoC 1.029 vs shuffle max 1.018).
+- **Outer-alphabet front-end built and controlled** (`work/kscreen/relabel_export.py`, `RELABEL.md`): the one family
+  no screen covers; plant recovered at 1.6702 after relabelling vs 1.0068-1.0637 unrelabelled, null <= 1.052, wrong
+  sigma <= 1.055. Real run: 72 sigmas (29 reflections, 26 affine, 17 keyword alphabets), about 1 h GPU / 6 h CPU.
+- **Stop-doing list** in `work/log/phase11_review.md` section C: no more plain additive library screens, no
+  dictionary-scored leftovers, no short-window restart tests, no new keyless echo statistics, no OEIS/hash/KDF
+  lane expansions.
+
 ### Phase 5 – Validation and reporting
 - A plaintext counts as solved only if it scores well across a whole segment (word hits and IoC about 1.8)
   and the same rule works on the next page.

@@ -1,0 +1,13 @@
+WORD-HEAD / EDGE PROBE (LP2, positions fixed, 200-shuffle null for each pool):
+pooled head runes = word positions 0..d-1 for every word with len >= d+1 cut at word end;
+word_initial = first rune of each word; word_final = last rune of each word.
+d=1  n= 2896  ioc=0.998  chi2_vs_uniform= 22.91  null max= 48.66  mean=27.55
+d=2  n= 5709  ioc=0.999  chi2_vs_uniform= 20.23  null max= 50.15  mean=26.47
+d=3  n= 8074  ioc=0.999  chi2_vs_uniform= 23.61  null max= 40.99  mean=26.25
+d=4  n= 9719  ioc=1.000  chi2_vs_uniform= 23.73  null max= 38.47  mean=26.35
+d=5  n=10851  ioc=1.000  chi2_vs_uniform= 22.99  null max= 38.03  mean=26.46
+d=6  n=11666  ioc=1.000  chi2_vs_uniform= 23.60  null max= 34.79  mean=26.39
+d=7  n=12225  ioc=1.000  chi2_vs_uniform= 25.65  null max= 33.02  mean=26.53
+d=8  n=12568  ioc=1.000  chi2_vs_uniform= 24.32  null max= 31.93  mean=26.45
+word_initial   n= 2896  ioc=0.998  chi2_vs_uniform= 22.91  null max= 48.66  mean=27.55
+word_final     n= 2896  ioc=1.002  chi2_vs_uniform= 33.24  null max= 46.66  mean=28.33

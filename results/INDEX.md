@@ -71,8 +71,10 @@
 | Two layers: a keyword Vigenere inside a number stream with the anti-repeat rule outside (H1, the laptop's layer2) | partial |  | [bigram_combined.tsv](layer2/bigram_combined.tsv), [combined_control.txt](layer2/combined_control.txt), [selftest.txt](layer2/selftest.txt) |
 | Per-word period-5 twist skeleton (key state T^(j mod 5), T(x) = 24 - 2x) | excluded |  | [skeleton5.txt](analysis/skeleton5.txt) |
 | Two-tap echo rules (copy or affine image of the rune 5 and 6 back, inside words) and rewrites of plaintext repeats | untestable |  | [echo_values.txt](analysis/echo_values.txt) |
+| Affine lag-feedback autokey: c_i = p_i + a*c_(i-d) + b within words, d = 1..8, all a, b (6496 settings), four separator scopes, plus nonlinear maps (x^2, x^3, x^-1, 2^x, 3^x) at lag 6 | excluded |  | [lag_feedback_scope_extension.txt](../work/tmp/lag_feedback_scope_extension.txt), [lag_feedback_plant.txt](../work/tmp/lag_feedback_plant.txt), [lag_feedback_nonlinear.txt](../work/tmp/lag_feedback_nonlinear.txt), [lag_feedback_head_probe.txt](../work/tmp/lag_feedback_head_probe.txt), [lag_feedback_null_shuffles.txt](../work/tmp/lag_feedback_null_shuffles.txt), [lag_feedback_an_end.txt](../work/tmp/lag_feedback_an_end.txt) |
+| Named lag-6 echo source mechanisms: plaintext-F replacement, collision twist W3(a), autokey chain | excluded |  | [w3_sharp_test.txt](../work/tmp/w3_sharp_test.txt), [echo_vs_skip_rate.txt](../work/tmp/echo_vs_skip_rate.txt), [frate_pos6.txt](../work/tmp/frate_pos6.txt), [lag6_residual_quick.py](../work/tmp/lag6_residual_quick.py), [echo_pairs_report.md](../work/tmp/echo_pairs_report.md) |
 | Evolving-alphabet walk (period-5 alphabets per word, alphabet changes per word, skip on repeat; aldegonde's length-clocked walk) | untestable |  | [perm_relations.txt](analysis/perm_relations.txt) |
-| Keyword-mixed outer alphabet around an additive key: relabel the ciphertext by sigma, then the ordinary screen | open |  | [README.md](../work/proposals/outer_alphabet/README.md) |
+| Keyword-mixed outer alphabet around an additive key: relabel the ciphertext by sigma, then the ordinary screen | open |  | [relabel_export.py](../work/kscreen/relabel_export.py), [RELABEL.md](../work/kscreen/RELABEL.md), [relabel_control.txt](../work/tmp/relabel_control.txt) |
 | Unkeyed insertions (an extra rune per word that consumes no key value) and extra key advance at word separators / line / page breaks | open |  | [README.md](../work/proposals/null_beam/README.md), [null_insertion.txt](analysis/null_insertion.txt) |
 | H2: tableau / transition-table ciphers (a statistic invariant to the table) | open |  | [proposals_h2_skip.txt](analysis/proposals_h2_skip.txt) |
 
@@ -102,7 +104,7 @@
 | Test | Status | Best (null) | Files |
 |---|---|---|---|
 | Doublet deficit: 0.63% of adjacent pairs against 3.45% expected | observed |  | [seploss.txt](analysis/seploss.txt) |
-| Within-word lag-5 echo | observed |  | [echo_position.txt](analysis/echo_position.txt), [lag5_check.txt](analysis/lag5_check.txt) |
-| Within-word lag-6 relation c' = 24 - 2c | observed |  | [echo_values.txt](analysis/echo_values.txt), [lag5_affine.txt](analysis/lag5_affine.txt) |
+| Within-word lag-5 echo | observed |  | [echo_position.txt](analysis/echo_position.txt), [lag5_check.txt](analysis/lag5_check.txt), [echo_pairs_report.md](../work/tmp/echo_pairs_report.md) |
+| Within-word lag-6 relation c' = 24 - 2c | observed |  | [echo_values.txt](analysis/echo_values.txt), [lag5_affine.txt](analysis/lag5_affine.txt), [lag_feedback_scope_extension.txt](../work/tmp/lag_feedback_scope_extension.txt), [w3_sharp_test.txt](../work/tmp/w3_sharp_test.txt) |
 | Word lengths: no serial structure, fewer 2-rune words than English | observed |  | [wordlen.txt](analysis/wordlen.txt), [wordlen_adjacency.txt](analysis/wordlen_adjacency.txt), [wordlen_parametric.txt](analysis/wordlen_parametric.txt) |
 | Flat unigrams and bigrams, no coincidence peak at any lag, no literal-F excess, repeated 6-gram DJU-BEI | observed |  | [segment_stats.txt](analysis/segment_stats.txt), [assumption_checks.txt](analysis/assumption_checks.txt) |

@@ -1,0 +1,10 @@
+nonlinear feedback, d=6 (word scope): r = (c_i - f(c_{i-6}) - b) mod 29, b swept 0..28
+(chi2 is b-invariant here too: b shifts the residual histogram cyclically)
+LP2 within-word pairs at lag 6: n=1290
+  f=x^2   chi2=   21.70
+  f=x^3   chi2=   27.45
+  f=x^-1  chi2=   26.64
+  f=2^x   chi2=   36.22
+  f=3^x   chi2=   25.25
+null (50 shuffles, max over 5 functions x 29 b): max=67.60 mean=38.38 p99=67.60
+LP2 best nonlinear chi2 = 36.22 vs null max 67.60

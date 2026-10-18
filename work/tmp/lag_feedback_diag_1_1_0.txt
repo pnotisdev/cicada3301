@@ -1,0 +1,80 @@
+=== top setting (d=1, a=1) residual histogram r = (c_i - c_{i-1}) mod 29, within-word pairs n=10060 ===
+chi2 = 275.17, IoC (lp.ioc normalised) = 1.0246
+top bins:
+  r= 9 (  N) count=  397 expected= 346.9 excess=  +50.1 contrib=    7.2
+  r=23 (  D) count=  390 expected= 346.9 excess=  +43.1 contrib=    5.4
+  r=13 (  P) count=  381 expected= 346.9 excess=  +34.1 contrib=    3.4
+  r=27 ( IA) count=  380 expected= 346.9 excess=  +33.1 contrib=    3.2
+  r=10 (  I) count=  377 expected= 346.9 excess=  +30.1 contrib=    2.6
+  r=20 (  L) count=  373 expected= 346.9 excess=  +26.1 contrib=    2.0
+  r= 2 ( TH) count=  373 expected= 346.9 excess=  +26.1 contrib=    2.0
+  r= 7 (  W) count=  372 expected= 346.9 excess=  +25.1 contrib=    1.8
+  r=24 (  A) count=  371 expected= 346.9 excess=  +24.1 contrib=    1.7
+  r=14 (  X) count=  369 expected= 346.9 excess=  +22.1 contrib=    1.4
+  r=19 (  M) count=  368 expected= 346.9 excess=  +21.1 contrib=    1.3
+  r=21 (ING) count=  366 expected= 346.9 excess=  +19.1 contrib=    1.1
+  (sum of other 17 bins contrib = 242.3)
+
+top within-word adjacent digrams (observed vs 10,060/841 = 11.96 expected if uniform):
+  I-TH  count=23
+  B-U   count=23
+  TH-F   count=23
+  G-L   count=22
+  IA-L   count=22
+  F-A   count=22
+  A-E   count=22
+  S-OE  count=21
+  R-IA  count=21
+  H-R   count=21
+
+doubles (c_i == c_{i-1}) within words: 63 of 10060 (expected 346.9, z=-15.51)
+
+chi2 by word position of the LATER rune (p = i - word_start):
+  p=  1 n= 2813 chi2= 103.20
+  p=  2 n= 2365 chi2=  92.15
+  p=  3 n= 1645 chi2=  71.54
+  p=  4 n= 1132 chi2=  50.75
+  p=  5 n=  815 chi2=  58.52
+  p=  6 n=  559 chi2=  37.55
+  p= 7+ n=  731 chi2=  36.13
+
+chi2 by section (0.7..0.15):
+  0.7 n=  571 chi2=  39.02
+  0.8 n=  890 chi2=  52.34
+  0.9 n= 1346 chi2=  65.52
+  0.10 n=    7 chi2=  22.00
+  0.11 n= 1459 chi2=  58.76
+  0.12 n=  797 chi2=  33.88
+  0.13 n= 1175 chi2=  56.94
+  0.14 n= 1234 chi2=  59.01
+  0.15 n= 2581 chi2=  95.51
+
+cross-word-boundary pairs at lag 1: n=2887, chi2=94.94
+  cross doubles (r=0): 23 of 2887 (expected 99.6)
+  top cross bins:
+    r= 2 ( TH) count=  131 expected=  99.6 excess=  +31.4
+    r=13 (  P) count=  122 expected=  99.6 excess=  +22.4
+    r=10 (  I) count=  120 expected=  99.6 excess=  +20.4
+    r=16 (  T) count=  115 expected=  99.6 excess=  +15.4
+    r=25 ( AE) count=  114 expected=  99.6 excess=  +14.4
+    r= 9 (  N) count=  113 expected=  99.6 excess=  +13.4
+    r=26 (  Y) count=  108 expected=  99.6 excess=   +8.4
+    r=12 ( EO) count=  106 expected=  99.6 excess=   +6.4
+
+specific-setting shuffle nulls (200 shuffles, same word cuts):
+  within (n=10060):      real chi2 = 275.17 | null mean=27.56 p99=46.55 max=60.96
+  cross  (n=2887): real chi2 = 94.94 | null mean=28.49 p99=51.30 max=58.27
+
+distinct (d,a) maxima, word scope, d 1..8 (chi2 is b-invariant):
+  d=1 a= 1 chi2=  275.17 ioc=1.0246
+  d=6 a=27 chi2=   64.86 ioc=1.0286
+  d=4 a=24 chi2=   47.51 ioc=1.0060
+  d=4 a=16 chi2=   44.46 ioc=1.0051
+  d=7 a= 2 chi2=   43.67 ioc=1.0215
+  d=7 a=16 chi2=   43.67 ioc=1.0215
+  d=8 a=13 chi2=   43.41 ioc=1.0398
+  d=4 a=14 chi2=   42.53 ioc=1.0045
+  d=6 a= 4 chi2=   41.98 ioc=1.0108
+  d=2 a=20 chi2=   41.84 ioc=1.0019
+  d=5 a=16 chi2=   40.63 ioc=1.0060
+  d=1 a=19 chi2=   39.78 ioc=1.0012

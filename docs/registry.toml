@@ -457,6 +457,30 @@ log = ["work/log/phase10_echo_values.md"]
 files = ["results/analysis/echo_values.txt"]
 
 [[experiment]]
+id = "lag-feedback"
+group = "structure"
+title = "Affine lag-feedback autokey: c_i = p_i + a*c_(i-d) + b within words, d = 1..8, all a, b (6496 settings), four separator scopes, plus nonlinear maps (x^2, x^3, x^-1, 2^x, 3^x) at lag 6"
+status = "excluded"
+what = "The residual r = c_i - a*c_(i-d) - b must be plaintext at in-word positions >= d; scored by chi-square against uniform (invariant to any plaintext-alphabet permutation), 200-shuffle null per scope-lag"
+control = "Plant (d,a,b) = (6,27,24) on the keyed solved sections: 73/73 residual positions recovered exactly, chi2 164.16 (chi2/n 2.25) against null max 67.7; wrong settings silent; solved keyed sections null-like on the same sweep"
+result = "LP2 best chi2 275.17 at (d,a) = (1,1) - the doublet deficit itself (the r = 0 cell holds 63 within-word equal pairs against 346.9 expected, z -15.5, 84% of the chi2; it also crosses word boundaries, 23 vs 99.6, so it is a global digram property, not an autokey); the echo setting (6,27,24) scores 64.86 below its null max 67.74 (p99 65.36) and its whole excess is the residual cell r = 0 (F); clause / line / all scopes best 36.8-49.1 vs null max 60.2-65.5; nonlinear best 36.2 vs 67.6; word heads, initials and finals are uniform"
+gap = "The echo itself remains a sparse word-internal rewrite (rate 0.0272 +/- 0.0047); no (d,a,b) makes the residual plaintext"
+log = ["work/log/phase11_review.md"]
+files = ["work/tmp/lag_feedback_scope_extension.txt", "work/tmp/lag_feedback_plant.txt", "work/tmp/lag_feedback_nonlinear.txt", "work/tmp/lag_feedback_head_probe.txt", "work/tmp/lag_feedback_null_shuffles.txt", "work/tmp/lag_feedback_an_end.txt"]
+
+[[experiment]]
+id = "echo-mechanisms"
+group = "structure"
+title = "Named lag-6 echo source mechanisms: plaintext-F replacement, collision twist W3(a), autokey chain"
+status = "excluded"
+what = "Mechanisms for the within-word lag-6 relation c' = 24 - 2c (80/1290 hits, +35.1 excess): the solved pages' literal-F convention in disguise; T applied to the previous rune at a would-be doublet (W3(a)); an affine autokey chain (see lag-feedback)"
+control = "F-replacement: English F at word positions >= 6 occurs at 0.0056 (n = 1,013,590 corpus positions, sd 0.0001) against the observed echo rate 0.0272 +/- 0.0047 - excluded at > 4 sd. W3(a): predicts c_(i-1) = c_(i-6) at every echo site, observed 3/80 vs null 2.8/80"
+result = "All three named mechanisms excluded; the echo rate equals the avoided-collision rate (0.0272 +/- 0.0047 vs 0.0269-0.0282) but does not track it by section (correlation -0.38, n = 9, underpowered): the coincidence stays an open observation"
+gap = "A sparse word-internal rewrite (the echo-two-tap family) remains untestable as before"
+log = ["work/log/phase11_review.md"]
+files = ["work/tmp/w3_sharp_test.txt", "work/tmp/echo_vs_skip_rate.txt", "work/tmp/frate_pos6.txt", "work/tmp/lag6_residual_quick.py", "work/tmp/echo_pairs_report.md"]
+
+[[experiment]]
 id = "walk-evolving"
 group = "structure"
 title = "Evolving-alphabet walk (period-5 alphabets per word, alphabet changes per word, skip on repeat; aldegonde's length-clocked walk)"
@@ -616,18 +640,18 @@ id = "obs-lag5"
 group = "observed"
 title = "Within-word lag-5 echo"
 status = "observed"
-result = "z +3.7 (calibrated P 0.007), carried by the rune S (11 of 102 coincidences); strictly word-internal and flat over the position in the word: a mechanism must know where words begin and end"
-log = ["work/log/phase10_echo_position.md", "docs/prs/word-internal.md"]
-files = ["results/analysis/echo_position.txt", "results/analysis/lag5_check.txt"]
+result = "z +3.7 (calibrated P 0.007), carried by the rune S (11 of 102 coincidences); strictly word-internal and flat over the position in the word: a mechanism must know where words begin and end. 2026-10-18: hits spread over sections and vocabulary (no hit-bearing word repeats, 0/93), multi-hit words 9 vs 3.05 (Poisson p 0.004, confounded with source concentration), the 11 S,S pairs: 3 word-final, 4 at word position 0"
+log = ["work/log/phase10_echo_position.md", "docs/prs/word-internal.md", "work/log/phase11_review.md"]
+files = ["results/analysis/echo_position.txt", "results/analysis/lag5_check.txt", "work/tmp/echo_pairs_report.md"]
 
 [[experiment]]
 id = "obs-lag6"
 group = "observed"
 title = "Within-word lag-6 relation c' = 24 - 2c"
 status = "observed"
-result = "z +5.0 (P 0.005-0.013 after the look-elsewhere correction, split-half replicates); strictly word-internal"
-log = ["work/log/phase10_echo_values.md"]
-files = ["results/analysis/echo_values.txt", "results/analysis/lag5_affine.txt"]
+result = "z +5.0 (P 0.005-0.013 after the look-elsewhere correction, split-half replicates); strictly word-internal. 2026-10-18: the excess is entirely the residual cell r = 0 (chi2 64.9 vs null max 67.7 over 6496 affine settings); the rate 0.0272 +/- 0.0047 equals the avoided-collision rate but does not track it by section (r -0.38, n = 9); named source mechanisms (F-replacement, W3(a) twist, autokey chain) excluded"
+log = ["work/log/phase10_echo_values.md", "work/log/phase11_review.md"]
+files = ["results/analysis/echo_values.txt", "results/analysis/lag5_affine.txt", "work/tmp/lag_feedback_scope_extension.txt", "work/tmp/w3_sharp_test.txt"]
 
 [[experiment]]
 id = "obs-wordlen"
@@ -655,11 +679,11 @@ group = "structure"
 title = "Keyword-mixed outer alphabet around an additive key: relabel the ciphertext by sigma, then the ordinary screen"
 status = "open"
 priority = 1
-what = "IoC is invariant under relabelling, so the true sigma gives plaintext IoC; the family is not covered by any screen above"
-cost = "Build: minutes (a relabelling in front of kscreen). Run: DeepSeek's estimate for tier 1 is about 14 h on the GPU (unverified)"
-needs = "A planted-key control with a random-alphabet null on one window before any run"
-log = ["work/log/phase10_proposals_review.md"]
-files = ["work/proposals/outer_alphabet/README.md"]
+what = "IoC is invariant under relabelling, so the true sigma gives plaintext IoC; the family is not covered by any screen above. BUILT AND CONTROLLED 2026-10-18 (work/kscreen/relabel_export.py + RELABEL.md): plant c = sigma(p + k) recovered at IoC 1.6702 after relabelling vs 1.0068-1.0637 unrelabelled, null <= 1.052, wrong sigma <= 1.055, end-to-end 1.6702 at the true offset only"
+cost = "Control: minutes (done). Real run: 72 settings (29 reflections + 26 affine multipliers + 17 keyword alphabets from lp.KEYWORDS), each one relabel + one ordinary library screen: about 1 h on the GPU, about 6 h on 14 CPU threads (per-window cost about 0.8 min GPU / 5 min CPU, from lib-sections' 19 min / 8 sections x 28 multipliers)"
+needs = "Nothing: batch-relabel the windows, run the ordinary screen, verify by the CAMPAIGNS rule"
+log = ["work/log/phase10_proposals_review.md", "work/log/phase11_review.md"]
+files = ["work/kscreen/relabel_export.py", "work/kscreen/RELABEL.md", "work/tmp/relabel_control.txt"]
 
 [[experiment]]
 id = "open-unkeyed"
@@ -667,10 +691,10 @@ group = "structure"
 title = "Unkeyed insertions (an extra rune per word that consumes no key value) and extra key advance at word separators / line / page breaks"
 status = "open"
 priority = 2
-what = "Every decoder moves the key pointer only forward at a collision; the '+1 rune in 42% of words' fit is the motivation. H8 as defined (the null spends the colliding attempt's key value) is aligned and already visible to kscreen: alive as a partial explanation of the word lengths (G 56 -> 40); the unkeyed variant is not decoded"
+what = "Every decoder moves the key pointer only forward at a collision; the '+1 rune in 42% of words' fit is the motivation, and 2026-10-18 adds a second: the lag-6 echo rate (0.0272 +/- 0.0047) equals the avoided-collision rate (0.0269-0.0282). H8 as defined (the null spends the colliding attempt's key value) is aligned and already visible to kscreen: alive as a partial explanation of the word lengths (G 56 -> 40); the unkeyed variant is not decoded"
 cost = "About 3-4 h of engine work, then about 7 min of CPU per variant"
 needs = "An optional pointer-stay at word-final runes and a per-rune extra-advance line in the engine (work/proposals/null_beam is an untrusted prototype of the decoder)"
-log = ["work/log/phase10_review.md", "work/log/phase10_proposals_review.md"]
+log = ["work/log/phase10_review.md", "work/log/phase10_proposals_review.md", "work/log/phase11_review.md"]
 files = ["work/proposals/null_beam/README.md", "results/analysis/null_insertion.txt"]
 
 [[experiment]]

@@ -1,0 +1,42 @@
+==============================================================================
+relabel_control: outer-alphabet front-end (work/kscreen/relabel_export.py)
+model planted: c_i = sigma(p_i + k_i) mod 29, k_i = i mod 29, no anti-repeat events
+plaintext: solved section 0.1 (Welcome), first 300 runes, IoC 1.6702 (rule: >= 1.40)
+null plaintext: np.random.default_rng(20261017), 300 i.i.d. uniform runes, 5 replicates
+wrong sigmas: the other family's sigma + 4 random shuffles, 5 decodes
+==============================================================================
+
+--- sigma = atbash
+mixed alphabet (sigma[x] = rune at tableau position x): EA IA Y AE A D OE ING L M E B T S X P EO J I N H W G C R O TH U F
+(a) unrelabelled  : IoC of c - k               = 1.0068   (noise expected, ~1.0)
+(b) relabelled    : IoC of sigma_inv(c) - k     = 1.6702   (== plaintext IoC, >= 1.5)
+(c) null           : IoC over 5 replicates       = 0.989 0.998 1.017 0.974 0.991  mean 0.994 max 1.017
+(d) wrong sigma    : IoC over 5 wrong sigmas     = 1.055 0.995 0.983 1.029 1.007  mean 1.014 max 1.055
+
+--- sigma = kw:DIVINITY
+mixed alphabet (sigma[x] = rune at tableau position x): D I U N T Y F TH O R C G W H J EO P X S B E M L ING OE A AE IA EA
+(a) unrelabelled  : IoC of c - k               = 1.0637   (noise expected, ~1.0)
+(b) relabelled    : IoC of sigma_inv(c) - k     = 1.6702   (== plaintext IoC, >= 1.5)
+(c) null           : IoC over 5 replicates       = 0.984 1.004 1.052 0.969 1.030  mean 1.008 max 1.052
+(d) wrong sigma    : IoC over 5 wrong sigmas     = 1.022 1.004 1.039 1.036 0.994  mean 1.019 max 1.039
+
+==============================================================================
+end-to-end: real Rust engine, family = the planted key (600 uniform splitmix64 values)
+218 offsets x 2 models x 1 window per run; the true key sits at offset 0 only
+==============================================================================
+[ unrel] window best IoC 1.1729   top hit: 1.1729	relabel-plant	84	1	1	win	300
+[   rel] window best IoC 1.6702   top hit: 1.6702	relabel-plant	0	1	0	win	300
+[  null] window best IoC 1.1348   top hit: 1.1348	relabel-plant	20	1	1	win	300
+[ wrong] window best IoC 1.1581   top hit: 1.1581	relabel-plant	89	1	1	win	300
+
+window files: work/tmp/relabel_w_{unrel,rel,null,wrong}.txt; key family: work/tmp/relabel_plant.ksb
+
+==============================================================================
+batch relabelling of the real LP2 windows (front-end for a real run)
+==============================================================================
+  work/kscreen/data/relabel/atbash/segments.txt
+  work/kscreen/data/relabel/atbash/heads.txt
+  work/kscreen/data/relabel/atbash/pages.txt
+  work/kscreen/data/relabel/kw_DIVINITY/segments.txt
+  work/kscreen/data/relabel/kw_DIVINITY/heads.txt
+  work/kscreen/data/relabel/kw_DIVINITY/pages.txt
