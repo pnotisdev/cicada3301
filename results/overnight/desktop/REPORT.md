@@ -1,6 +1,6 @@
 # Overnight campaigns: report from desktop
 
-Generated on desktop at 2026-10-18 19:43:57 by `python jobs/overnight.py`. Thresholds and method: docs/CAMPAIGNS.md.
+Generated on desktop at 2026-10-18 20:40:15 by `python jobs/overnight.py`. Thresholds and method: docs/CAMPAIGNS.md.
 
 **Controls:** unit tests and kscreen selftest passed on desktop; null results below are validated.
 
