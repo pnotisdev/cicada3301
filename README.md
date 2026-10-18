@@ -1,43 +1,15 @@
 # Liber Primus (Cicada 3301): cryptanalysis workspace
 
-```text
-                         OOO  @@@@@  OOO
-                        OOOOO@@@'@@@OOOOO
-                         OOO@@@@@@@@@OOO
-                              @@@@@
-                             @@@@@@@
-                           @@@@@@@@@@@
-                         .@@@@@@@@@@@@@.
-                      ..  @@@@@@@@@@@@@  ..
-                   ..  :   @@@@@@@@@@@   :  ..
-                 ..  :   :,  @@@@@@@  ,:   :  ..
-                ..  :   :, : ####### : ,:   :  ..
-               ..  :   :   : ======= :   :   :  ..
-              ..  :   :   :  #######  :   :   :  ..
-             ..  :   :   :  #########  :   :   :  ..
-            ..  :   :,  :  .=========.  :  ,:   :  ..
-            .. :   :,  :  ..#########..  :  ,:   : ..
-            .     :,, :  .. ######### ..  : ,,:     .
-           .. :  : , :  .. ,=========, ..  : , :  : ..
-           ..   :  ,  ..  ,,#########,,  ..  ,  :   ..
-           . : :  :,..   ,,  #######  ,,   ..,:  : : .
-           .      ..    ,    =======    ,    ..      .
-           .:  : .,    ,     #######     ,    ,. :  :.
-           .  ..  ,   ,       #####       ,   ,  ..  .
-           ..     ,            ===            ,     ..
-                  ,                           ,
+<p align="center">
+  <img src="assets/ascii-banner.jpg" alt="An ASCII-art cicada, wings spread, in red on black" width="100%">
+</p>
 
-                      C I C A D A    3 3 0 1
-                     L I B E R    P R I M U S
-
-            [ the unsolved pages are still unsolved ]
-```
-
-ᚳᛁᚳᚪᛞᚪ · ᛚᛁᛒᛖᚱ ᛈᚱᛁᛗᚢᛋ
+<p align="center"><b>C I C A D A &nbsp; 3 3 0 1 &nbsp;·&nbsp; L I B E R &nbsp; P R I M U S</b><br>
+<i>the unsolved pages are still unsolved</i><br>
+ᚳᛁᚳᚪᛞᚪ · ᛚᛁᛒᛖᚱ ᛈᚱᛁᛗᚢᛋ</p>
 
 Tools, data and results from a systematic attempt on the unsolved part of Cicada 3301's *Liber Primus* (the 2014 rune book): **LP2, sections 0.7-0.15, 12,956 runes**.
 Every claim can be re-run, and every negative result comes with a positive control showing that the method would have found a real answer.
-(The cicada above is an ASCII drawing, not the original logo.)
 
 <!-- status:begin -->
 | As of 2026-10-18 | |
@@ -129,6 +101,7 @@ README.md  STATUS.md       this page; the done / left page (generated)
 CLAUDE.md                  working rules for AI agents (controls or it didn't happen; privacy; third-party material)
 PLAN.md                    research plan and results, phase by phase
 LiberPrimus.pdf            the book (print of the 75 original page images)
+assets/                    ascii-banner.jpg, the banner at the top of this page
 docs/                      INDEX.md (map), registry.toml (the ledger), CAMPAIGNS, NEGATIVE_SPACE, HYPOTHESES, RUNNING, QUEUE, GPU_PORT, SESSION_LOG, prs/
 results/                   INDEX.md + index.html (generated), then one folder per kind of result (kscreen, prng, prngx, hashscan, layer2, walk, analysis, overnight/<pc>)
 work/                      README.md (code map); lp.py and the analysis scripts, Rust / CUDA engines (kscreen, phpmt, walk), log/ (one write-up per experiment), tests/, ref/, orig/
