@@ -1,5 +1,5 @@
 # parity.txt - h5rs vs h5slice_nb parity gate
-# started 2026-10-18 21:15:38; machine: 16 logical procs; Python 3.14.6, numpy 2.5.2
+# started 2026-10-18 21:38:14; machine: 16 logical procs; Python 3.14.6, numpy 2.5.2
 # reference: h5slice_nb init + h5slice.decode(fast_init=True), beam_a 12, beam 24, max_em 5, abort (120, 0.9)
 # plant: Self-Reliance 3000:3300, totient + DIVINITY, offset 1234, model 0, keep 0.19, seed 42
 
@@ -23,9 +23,9 @@
   engine fast: 104 checks, 0 fails -> PASS
 
 == throughput (decode/s; campaign workhorse = aborting null cells) ==
-  bench 1 thread(s): # h5rs bench: engine fast, threads 1, budget 5s/thread | # null-abort cells decoded: 19213 in 5.00s | null_abort_rate_dec_per_s 3842 | null_abort_rate_per_thread 3842 | # projection for the full library sweep (880,000,000 decodes): | projection_hours_8_threads 229022.3
-  bench 8 thread(s): # h5rs bench: engine fast, threads 8, budget 5s/thread | # null-abort cells decoded: 83176 in 5.00s | null_abort_rate_dec_per_s 16634 | null_abort_rate_per_thread 2079 | # projection for the full library sweep (880,000,000 decodes): | projection_hours_8_threads 52903.3
-  full truth decode (init+EM, no abort): 1167 dec/s single-threaded
-  SUMMARY: single-thread 3842 dec/s; 8-thread 16634 dec/s; 880M-decodes projection 52903.3 h at 8 threads
+  bench 1 thread(s): # h5rs bench: engine fast, threads 1, budget 5s/thread | # null-abort cells decoded: 20448 in 5.00s | null_abort_rate_dec_per_s 4090 | null_abort_rate_per_thread 4090 | # projection for the full library sweep (880,000,000 decodes): | projection_hours_8_threads 215181.6
+  bench 8 thread(s): # h5rs bench: engine fast, threads 8, budget 5s/thread | # null-abort cells decoded: 81297 in 5.00s | null_abort_rate_dec_per_s 16258 | null_abort_rate_per_thread 2032 | # projection for the full library sweep (880,000,000 decodes): | projection_hours_8_threads 54127.5
+  full truth decode (init+EM, no abort): 1180 dec/s single-threaded
+  SUMMARY: single-thread 4090 dec/s; 8-thread 16258 dec/s; 880M-decodes projection 54127.5 h at 8 threads
 
 PARITY VERDICT: PASS (312 checks, 0 fails) in 19s

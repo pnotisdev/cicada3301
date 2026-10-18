@@ -1,0 +1,52 @@
+# h5rs flat-library sweep extension - campaign controls (see CAMPAIGN.md)
+# all paths relative to the repo root; run `python work/h5rs/run_controls.py`
+
+# (a) plant: totient+DIVINITY window via the new file: path over library_flat.ksb
+$ work/h5rs/target/release/h5rs.exe sweep work/h5rs/data/truth.txt file:work/kscreen/data/library_flat.ksb:primes-1 (totient) 1233 1236 7 10 0 1 work/h5rs/control_a_file.tsv
+h5rs sweep file:work/kscreen/data/library_flat.ksb:primes-1 (totient): streams=1 windows=1 L 7..10 models=0 offs 1233..1236 engine=fast threads=1 hits>=1.5 chunk=10 best=false
+cells=12 (valid 12, short-stream skipped 0)
+chunk 1/1 offs 1233..1236 cells=12/12 decoded=12 skipped=0 hits=1 rate=2787/s elapsed=0s eta=0s
+done chunks=1 cells=12 decoded=12 skipped=0 hits=1 rate=2707/s elapsed=0s
+[exit 0]
+== a-file-plant-found: PASS row (1234, 8, 0) present exactly once: [('primes-1 (totient)', 1234, 8, 0, 'truth', 1.985593)]
+== a-file-ioc: PASS IoC = 1.985593 vs 1.9856 (4-dec rounded)
+== a-file-no-other-1.6: PASS grid rows: [(1234, 8, 0, 1.9856)]
+  overall grid max: (1234, 8, 0, 1.985593)
+$ work/h5rs/target/release/h5rs.exe sweep work/h5rs/data/truth.txt tot 1233 1236 7 10 0 1 work/h5rs/control_a_tot.tsv
+[exit 0]
+== a-tot-agrees: PASS tot path best: (1.9856, 1234, 8) vs (1.9856, 1234, 8)
+$ work/h5rs/target/release/h5rs.exe decode work/h5rs/data/truth.txt 1234 8 0
+ioc=1.9855925113 wcol=23,10,1,10,9,10,16,26 skips=8
+[exit 0]
+== a-decode-agrees: PASS decode: ioc=1.9855925113 wcol=23,10,1,10,9,10,16,26 skips=8
+== a-three-paths-same-value: PASS file: row IoC == tot sweep best == decode IoC (same f64)
+# (b) null: 4 random streams (seeds 9000..9003), small grid, both models, --best
+$ work/h5rs/target/release/h5rs.exe sweep work/h5rs/data/lp2_windows.txt file:work/h5rs/data/null4.ksb 0 50 2 20 2 1 work/h5rs/control_b.tsv --best
+[stderr] [780 chars, truncated] h5rs sweep file:work/h5rs/data/null4.ksb: streams=4 windows=8 L 2..20 models=0,1 offs 0..50 engine=fast threads=1 hits>=1.5 chunk=10 best=true
+cells=60800 (valid 60800, short-stream skipped 0)
+chunk 1 ...  elapsed=15s eta=0s
+done chunks=5 cells=60800 decoded=60800 skipped=0 hits=0 rate=4019/s elapsed=15s
+[exit 0]
+== b-null-max-under-1.45: PASS max IoC over 60800 null cells = 1.2356 (< 1.45)
+  null rows >= 1.5: 0; per-(stream,window,model) best cells: 64
+# (b2) grid equivalence: rand:9000 (old path) vs file:null4.ksb:rand-9000 (new path)
+$ work/h5rs/target/release/h5rs.exe sweep work/h5rs/data/lp2_windows.txt rand:9000 0 50 2 20 0 1 work/h5rs/control_b_old.tsv --hits 0
+[exit 0]
+$ work/h5rs/target/release/h5rs.exe sweep work/h5rs/data/lp2_windows.txt file:work/h5rs/data/null4.ksb:rand-9000 0 50 2 20 0 1 work/h5rs/control_b_new.tsv --hits 0
+[stderr] [782 chars, truncated] h5rs sweep file:work/h5rs/data/null4.ksb:rand-9000: streams=1 windows=8 L 2..20 models=0 offs 0..50 engine=fast threads=1 hits>=0 chunk=10 best=false
+cells=7600 (valid 7600, short-stream skipped 0)
+ch ... s elapsed=2s eta=0s
+done chunks=5 cells=7600 decoded=7600 skipped=0 hits=7600 rate=3913/s elapsed=2s
+[exit 0]
+== b2-rand-file-equivalent: PASS all 7600 cells of 8 windows x 50 offsets x 19 L identical (IoC to 4 decimals)
+# (c) KSB1 reader reproduces known streams: 'primes-1 (totient)'
+== c-lib-has-totient: PASS 581 streams parsed from library_flat.ksb
+== c-file-equals-sieve: PASS library totient (20000 values) == independent sieve totient
+$ work/h5rs/target/release/h5rs.exe totient 20000
+stdout [52886 chars, truncated] 1 2 4 6 10 12 16 18 22 28 1 7 11 13 17 23 0 2 8 12 14 20 24 1 9 13 15 19 21 25 10 14 20 22 3 5 11 17 21 27 4 6 16 18 22 24 7 19 23 25 0 6 8 18 24 1 7 9 15 19 21 2 16 20 22 26 11 17 27 0 4 10 18 24 1 5 ...  12 16 22 1 11 6 14 18 27 20 26 11 17 0 6 12 1 11 23 8 15 21 2 14 26 5 11 23 27 5 13 19 6 18 24 7 15
+[exit 0]
+== c-rust-equals-sieve: PASS h5rs totient (20000 values) == independent sieve totient
+== c-file-equals-rust: PASS library totient == h5rs internal totient (so the file: path reads it correctly)
+== c-streams-structure: PASS 581 streams, 'primes' present, names spot: ['(p+1)/2', '(p-1)/2', '1/3301 digits (base 29)']
+
+CONTROLS: 13 PASS, 0 FAIL, 13 checks

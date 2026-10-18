@@ -1497,6 +1497,42 @@ fn load_windows(path: &str) -> Vec<Win> {
     out
 }
 
+// ------------------------------------------------------------------ KSB1 keystream files
+
+struct Ks {
+    name: String,
+    v: Vec<u8>,
+}
+
+fn rd_u32(b: &[u8], p: &mut usize) -> u32 {
+    let v = u32::from_le_bytes([b[*p], b[*p + 1], b[*p + 2], b[*p + 3]]);
+    *p += 4;
+    v
+}
+
+/// The kscreen KSB1 keystream format (work/kscreen/export.py -> work/kscreen/src load_ksb):
+/// magic "KSB1", u32 LE count, then per stream: u16 LE name length, UTF-8 name, u32 LE
+/// stream length, the values mod 29. Format constants are copied from work/kscreen/src.
+fn load_ksb(path: &str) -> Vec<Ks> {
+    let b = fs::read(path).unwrap_or_else(|e| panic!("{path}: {e}"));
+    assert!(b.len() >= 8 && &b[..4] == b"KSB1", "{path}: not a KSB1 keystream file");
+    let mut p = 4;
+    let n = rd_u32(&b, &mut p) as usize;
+    let mut out = Vec::with_capacity(n);
+    for _ in 0..n {
+        let l = u16::from_le_bytes([b[p], b[p + 1]]) as usize;
+        p += 2;
+        let name = String::from_utf8(b[p..p + l].to_vec()).expect("utf-8 keystream name");
+        p += l;
+        let len = rd_u32(&b, &mut p) as usize;
+        let v = b[p..p + len].to_vec();
+        p += len;
+        assert!(v.iter().all(|&x| (x as usize) < Q), "{name}: key value out of range");
+        out.push(Ks { name, v });
+    }
+    out
+}
+
 // splitmix64 (bench windows and rand streams only)
 struct Rng(u64);
 
@@ -1820,6 +1856,10 @@ fn cmd_sweep(args: &[String]) {
     let out_path = get(args, &mut pos, "out.tsv");
     let mut engine = default_engine();
     let mut hits_thresh = 1.6f64;
+    let mut hits_set = false;
+    let mut chunk = 10i64;
+    let mut progress_every = 1usize;
+    let mut best = false;
     while pos < args.len() {
         match args[pos].as_str() {
             "--engine" => {
@@ -1828,7 +1868,20 @@ fn cmd_sweep(args: &[String]) {
             }
             "--hits" => {
                 hits_thresh = args[pos + 1].parse().unwrap();
+                hits_set = true;
                 pos += 2;
+            }
+            "--chunk" => {
+                chunk = args[pos + 1].parse().unwrap();
+                pos += 2;
+            }
+            "--progress" => {
+                progress_every = args[pos + 1].parse().unwrap();
+                pos += 2;
+            }
+            "--best" => {
+                best = true;
+                pos += 1;
             }
             other => panic!("bad flag {other}"),
         }
@@ -1836,6 +1889,16 @@ fn cmd_sweep(args: &[String]) {
     if engine == Engine::Fast && !avx2_available() {
         eprintln!("engine 'fast' requires AVX2+FMA; using fastscalar");
         engine = Engine::FastScalar;
+    }
+    if let Some(spec) = stream.strip_prefix("file:") {
+        if !hits_set {
+            hits_thresh = 1.5;
+        }
+        cmd_sweep_file(
+            &path, spec, off0, off1, L0, L1, model, threads, &out_path, engine, hits_thresh,
+            chunk, progress_every, best,
+        );
+        return;
     }
     let wins = load_windows(&path);
     let n = 300usize;
@@ -1931,6 +1994,242 @@ fn cmd_sweep(args: &[String]) {
             writeln!(o, "  hit\t{:.4}\t{}\t{}", hi, ho, hl).unwrap();
         }
     }
+}
+
+// ------------------------------------------------------------------ flat-library sweep (file:)
+
+/// The flat-library sweep: iterate every stream of a KSB1 file over the (window, offset, L,
+/// model) grid in offset-block-major chunks (a wall cap gives every (window, stream, model)
+/// the same offset prefix - the lp2_look convention), writing ONE TSV with columns
+/// stream offset L model window IoC for every cell with IoC >= hits (default 1.5), flushed
+/// after every chunk; a progress line goes to stderr every N chunks. model = 2 runs both
+/// models. --best appends the best cell per (stream, window, model) regardless of the
+/// threshold. Streams shorter than offset + 300 + 107 are skipped without a decode. The
+/// tot/rand sweep (above) is unchanged and bit-identical.
+#[allow(clippy::too_many_arguments)]
+fn cmd_sweep_file(
+    path: &str,
+    spec: &str,
+    off0: i64,
+    off1: i64,
+    L0: usize,
+    L1: usize,
+    model: u8,
+    threads: usize,
+    out_path: &str,
+    engine: Engine,
+    hits_thresh: f64,
+    chunk: i64,
+    progress_every: usize,
+    best: bool,
+) {
+    assert!(off1 > off0, "off1 must be > off0");
+    assert!(chunk >= 1, "--chunk must be >= 1");
+    assert!(model <= 2, "file: mode model must be 0, 1 or 2 (both)");
+    // spec: "<path>[ :<item>]". Split at the LAST ':' so Windows drive letters
+    // ("D:\...") stay part of the path; a lone drive prefix ("D:") means no item.
+    let (ksb_path, item) = match spec.rsplit_once(':') {
+        Some((p, it)) if p.len() > 1 => (p.to_string(), Some(it.to_string())),
+        _ => (spec.to_string(), None),
+    };
+    let mut streams = load_ksb(&ksb_path);
+    if let Some(it) = &item {
+        if it != "all" {
+            streams.retain(|k| &k.name == it);
+            assert!(!streams.is_empty(), "no stream named {it:?} in {ksb_path}");
+        }
+    }
+    let models: Vec<u8> = if model == 2 { vec![0, 1] } else { vec![model] };
+    let wins = load_windows(path);
+    let n = 300usize;
+    let margin = n / 4 + 32;
+    let nstreams = streams.len();
+    let nw = wins.len();
+    let nLs = L1 - L0 + 1;
+    let nmodels = models.len();
+    // per-stream exclusive offset bound: offset + n + margin <= len (decode's own check)
+    let bounds: Vec<i64> = streams
+        .iter()
+        .map(|k| {
+            let m = k.v.len() as i64 - (n + margin) as i64;
+            m.clamp(0, off1)
+        })
+        .collect();
+    let per_win = nw as u64 * nLs as u64 * nmodels as u64;
+    let valid_cells: u64 = bounds
+        .iter()
+        .map(|&b| (b - off0).clamp(0, off1 - off0) as u64)
+        .sum::<u64>()
+        * per_win;
+    let all_cells: u64 = (off1 - off0) as u64 * nstreams as u64 * per_win;
+    let model_csv: Vec<String> = models.iter().map(|m| m.to_string()).collect();
+    eprintln!(
+        "h5rs sweep file:{spec}: streams={nstreams} windows={nw} L {L0}..{L1} \
+         models={} offs {off0}..{off1} engine={} threads={threads} hits>={hits_thresh} \
+         chunk={chunk} best={best}",
+        model_csv.join(","),
+        engine.name()
+    );
+    eprintln!(
+        "cells={all_cells} (valid {valid_cells}, short-stream skipped {})",
+        all_cells - valid_cells
+    );
+    let mut out = BufWriter::new(fs::File::create(out_path).unwrap());
+    writeln!(
+        out,
+        "# h5rs sweep file:{spec} windows={nw} L {L0}..{L1} models={} offs {off0}..{off1} \
+         engine={} threads={threads} hits>={hits_thresh} chunk={chunk}",
+        model_csv.join(","),
+        engine.name()
+    )
+    .unwrap();
+    out.flush().unwrap();
+    let t0 = std::time::Instant::now();
+    let bests: Vec<std::sync::Mutex<(f64, i64, usize)>> = (0..nstreams * nw * nmodels)
+        .map(|_| std::sync::Mutex::new((0.0f64, -1i64, 0usize)))
+        .collect();
+    let mut chunk_idx: usize = 0;
+    let mut cum: u64 = 0;
+    let mut decoded_total: u64 = 0;
+    let mut skipped_total: u64 = 0;
+    let mut hits_total: u64 = 0;
+    let mut off_cur = off0;
+    while off_cur < off1 {
+        let cb0 = off_cur;
+        let cb1 = (off_cur + chunk).min(off1);
+        off_cur = cb1;
+        let cells_in_block =
+            (cb1 - cb0) as u64 * nstreams as u64 * nw as u64 * nLs as u64 * nmodels as u64;
+        let rows: std::sync::Mutex<Vec<(usize, i64, usize, u8, usize, f64)>> =
+            std::sync::Mutex::new(Vec::new());
+        let counter = std::sync::atomic::AtomicU64::new(0);
+        let decoded = std::sync::atomic::AtomicU64::new(0);
+        let skipped = std::sync::atomic::AtomicU64::new(0);
+        std::thread::scope(|scope| {
+            let streams = &streams;
+            let wins = &wins;
+            let bounds = &bounds;
+            let models = &models;
+            for _ in 0..threads {
+                let rows = &rows;
+                let counter = &counter;
+                let decoded = &decoded;
+                let skipped = &skipped;
+                let bests = &bests;
+                scope.spawn(move || {
+                    let li_mod = nLs as u64 * nmodels as u64;
+                    let wi_mod = nw as u64 * li_mod;
+                    let si_mod = nstreams as u64 * wi_mod;
+                    loop {
+                        let k = counter.fetch_add(1, std::sync::atomic::Ordering::Relaxed);
+                        if k >= cells_in_block {
+                            break;
+                        }
+                        let off_local = (k / si_mod) as i64;
+                        let r1 = k % si_mod;
+                        let si = (r1 / wi_mod) as usize;
+                        let r2 = r1 % wi_mod;
+                        let wi = (r2 / li_mod) as usize;
+                        let r3 = r2 % li_mod;
+                        let li = (r3 / nmodels as u64) as usize;
+                        let mi = (r3 % nmodels as u64) as usize;
+                        let off = cb0 + off_local;
+                        if off >= bounds[si] {
+                            skipped.fetch_add(1, std::sync::atomic::Ordering::Relaxed);
+                            continue;
+                        }
+                        let win = &wins[wi];
+                        let d = decode(
+                            &win.runes,
+                            win.prev,
+                            &streams[si].v,
+                            off,
+                            L0 + li,
+                            models[mi],
+                            false,
+                            24,
+                            5,
+                            12,
+                            120,
+                            0.9,
+                            engine,
+                        );
+                        decoded.fetch_add(1, std::sync::atomic::Ordering::Relaxed);
+                        if d.ioc >= hits_thresh {
+                            rows.lock().unwrap().push((si, off, L0 + li, models[mi], wi, d.ioc));
+                        }
+                        if best {
+                            let idx = (si * nw + wi) * nmodels + mi;
+                            let mut b = bests[idx].lock().unwrap();
+                            if d.ioc > b.0 {
+                                *b = (d.ioc, off, L0 + li);
+                            }
+                        }
+                    }
+                });
+            }
+        });
+        let mut rows = rows.into_inner().unwrap();
+        rows.sort_by(|a, b| (a.0, a.1, a.2, a.3, a.4).cmp(&(b.0, b.1, b.2, b.3, b.4)));
+        for (si, off, L, m, wi, ioc) in &rows {
+            writeln!(
+                out,
+                "{}\t{off}\t{L}\t{m}\t{}\t{ioc:.6}",
+                streams[*si].name.replace('\t', " "),
+                wins[*wi].name
+            )
+            .unwrap();
+        }
+        hits_total += rows.len() as u64;
+        out.flush().unwrap();
+        cum += cells_in_block;
+        decoded_total += decoded.load(std::sync::atomic::Ordering::Relaxed);
+        skipped_total += skipped.load(std::sync::atomic::Ordering::Relaxed);
+        chunk_idx += 1;
+        if chunk_idx % progress_every == 0 || off_cur >= off1 {
+            let el = t0.elapsed().as_secs_f64();
+            let rate = cum as f64 / el.max(1e-9);
+            let eta = if rate > 0.0 {
+                (all_cells.saturating_sub(cum)) as f64 / rate
+            } else {
+                0.0
+            };
+            eprintln!(
+                "chunk {chunk_idx}/{} offs {cb0}..{cb1} cells={cum}/{all_cells} \
+                 decoded={decoded_total} skipped={skipped_total} hits={hits_total} \
+                 rate={rate:.0}/s elapsed={el:.0}s eta={eta:.0}s",
+                ((off1 - off0 + chunk - 1) / chunk) as u64
+            );
+        }
+    }
+    let el = t0.elapsed().as_secs_f64();
+    let rate = cum as f64 / el.max(1e-9);
+    eprintln!(
+        "done chunks={chunk_idx} cells={cum} decoded={decoded_total} skipped={skipped_total} \
+         hits={hits_total} rate={rate:.0}/s elapsed={el:.0}s"
+    );
+    if best {
+        writeln!(out, "# best per (stream, window, model); off=-1 means no cells decoded").unwrap();
+        for si in 0..nstreams {
+            for wi in 0..nw {
+                for mi in 0..nmodels {
+                    let b = *bests[(si * nw + wi) * nmodels + mi].lock().unwrap();
+                    writeln!(
+                        out,
+                        "best\t{}\t{}\t{}\t{}\t{}\t{:.6}",
+                        streams[si].name.replace('\t', " "),
+                        b.1,
+                        b.2,
+                        models[mi],
+                        wins[wi].name,
+                        b.0
+                    )
+                    .unwrap();
+                }
+            }
+        }
+    }
+    out.flush().unwrap();
 }
 
 // ------------------------------------------------------------------ bench
@@ -2039,6 +2338,9 @@ fn main() {
              \x20 decode <window.txt> <offset> <L> <model> [--engine e] [--no-abort] [--litf] [--beam n] [--max-em n] [--beam-a n]\n\
              \x20 parity <cells.txt> [actual.txt] [--engine e]\n\
              \x20 sweep <windows.txt> <stream> <off0> <off1> <L0> <L1> <model> <threads> <out.tsv> [--hits t] [--engine e]\n\
+             \x20   stream: tot | rand:<seed> | file:<lib.ksb>[:name|all] (file: model 0|1|2;\n\
+             \x20   file: flags --chunk <offs> --progress <N> --best; file: tsv columns are\n\
+             \x20   stream offset L model window IoC for cells with IoC >= --hits, default 1.5)\n\
              \x20 bench [--threads T] [--secs S] [--engine e] [--full <truth.txt>]\n\
              \x20 totient <n>"
         );
