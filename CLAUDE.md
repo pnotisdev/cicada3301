@@ -46,6 +46,8 @@ Nothing in LP2 is solved yet. Never imply otherwise.
 - **Privacy.** The repository may become public. Never write a computer's real name, the Windows user name or
   absolute home/repository paths into tracked files. Refer to the PCs by their runner aliases (`laptop`,
   `desktop`, stored in the git-ignored `.lp_machine`). Record relative paths in result headers. The runner scrubs
-  its own logs; check anything else before committing.
+  its own logs; check anything else before committing. Before EVERY commit, scan the added lines for the
+  Windows user name, `C:\Users`, `D:\Github`, `miniconda`, `AppData`, and any absolute repository path, and
+  scrub scratch logs first (helper: `jobs/jobqueue.py` has `scrub_text`).
 - **Keep files in the repository.** Deliverables, figures and notes go in the repository folder, not in temp
   folders.
