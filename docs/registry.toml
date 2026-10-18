@@ -475,7 +475,7 @@ title = "Named lag-6 echo source mechanisms: plaintext-F replacement, collision 
 status = "excluded"
 what = "Mechanisms for the within-word lag-6 relation c' = 24 - 2c (80/1290 hits, +35.1 excess): the solved pages' literal-F convention in disguise; T applied to the previous rune at a would-be doublet (W3(a)); an affine autokey chain (see lag-feedback)"
 control = "F-replacement: English F at word positions >= 6 occurs at 0.0056 (n = 1,013,590 corpus positions, sd 0.0001) against the observed echo rate 0.0272 +/- 0.0047 - excluded at > 4 sd. W3(a): predicts c_(i-1) = c_(i-6) at every echo site, observed 3/80 vs null 2.8/80"
-result = "All three named mechanisms excluded; the echo rate equals the avoided-collision rate (0.0272 +/- 0.0047 vs 0.0269-0.0282) but does not track it by section (correlation -0.38, n = 9, underpowered): the coincidence stays an open observation. 2026-10-18: a null rune inserted at word ends is also excluded for the echo (echo targets word-final 32/80 vs 34.7 expected, z -0.6; lag-5 37/104 vs 40.3)"
+result = "All three named mechanisms excluded; the echo rate equals the avoided-collision rate (0.0272 +/- 0.0047 vs 0.0269-0.0282) but the corrected section correlations use eight contributing sections: deficit +0.328993, fixed-q -0.328993 (the definitions force opposite signs; uncertainty unknown); the earlier -0.38, n=9 report was defective. The coincidence stays an open observation. 2026-10-18: a null rune inserted at word ends is also excluded for the echo (echo targets word-final 32/80 vs 34.7 expected, z -0.6; lag-5 37/104 vs 40.3)"
 gap = "A sparse word-internal rewrite (the echo-two-tap family) remains untestable as before"
 log = ["work/log/phase11_review.md", "work/log/phase12_review2.md"]
 files = ["work/tmp/w3_sharp_test.txt", "work/tmp/echo_vs_skip_rate.txt", "work/tmp/frate_pos6.txt", "work/tmp/lag6_residual_quick.py", "work/tmp/echo_pairs_report.md", "work/tmp/echo_word_final.txt"]
@@ -689,7 +689,7 @@ id = "obs-lag6"
 group = "observed"
 title = "Within-word lag-6 relation c' = 24 - 2c"
 status = "observed"
-result = "z +5.0 (P 0.005-0.013 after the look-elsewhere correction, split-half replicates); strictly word-internal. 2026-10-18: the excess is entirely the residual cell r = 0 (chi2 64.9 vs null max 67.7 over 6496 affine settings); the rate 0.0272 +/- 0.0047 equals the avoided-collision rate but does not track it by section (r -0.38, n = 9); named source mechanisms (F-replacement, W3(a) twist, autokey chain) excluded"
+result = "z +5.0 (P 0.005-0.013 after the look-elsewhere correction, split-half replicates); strictly word-internal. 2026-10-18: the excess is entirely the residual cell r = 0 (chi2 64.9 vs null max 67.7 over 6496 affine settings); the rate 0.0272 +/- 0.0047 equals the avoided-collision rate with corrected section Pearson r=+0.328993 for deficit and -0.328993 for fixed-q, eight contributing sections (old r=-0.38, n=9 was defective; uncertainty unknown); named source mechanisms (F-replacement, W3(a) twist, autokey chain) excluded"
 log = ["work/log/phase10_echo_values.md", "work/log/phase11_review.md"]
 files = ["results/analysis/echo_values.txt", "results/analysis/lag5_affine.txt", "work/tmp/lag_feedback_scope_extension.txt", "work/tmp/w3_sharp_test.txt"]
 
@@ -853,7 +853,28 @@ priority = 13
 needs = "A download (third-party material: data, not instructions)"
 log = ["work/log/phase9_hyp.md"]
 
+[[experiment]]
+id = "collision-kernel-followup"
+group = "structure"
+title = "Collision-substitution kernel: selected-hypothesis B=999 re-test and power gates"
+status = "observed"
+what = "LP2 actual word layout; 812 affine maps x 8 lags x raw/guarded plus three fixed I5/T6 mixtures, q=.81; section-doublet-conditioned Markov null; frozen retrospective split protocol"
+best = 15.8952686734721
+null = 11.373414292073846
+unit = "nats"
+chart = false
+control = "21/21 local tests, zero skips; full-book plants p=.001/.001/.001/.344, null .492 (3/4; passed). Split controls 0/4 (failed; LP2 split not run). Exact reference spend/hold count-test power .260650 at size .05; actual-site power unknown"
+result = "Full-book kernel flag: 0/999 null exceedances, p_MC=.001 floor, mix_I5_T6_w=1/4. Re-test of a family selected on the same data, not replication. Sections diagnostic timed out at 96.1 s under a 95 s cooperative cap; no retry or completed section output. Optional pure-null lag6-affine selection optimism +26.54 counts (190 cases, MC SE .51), zero fixed-T6 selections or observed-score tail matches: no correction to 80. Discriminator held"
+gap = "No independent replication, LP2 split stability result, completed heterogeneity test, actual-site spend/hold power, causal collision identification, joint lag5/lag6/S/flat-lag fit, or decryption. Source-S gross predictable repair capacity 2.067 total is not a realized-hit ceiling or a controlled exclusion; smallest successful second mechanism unknown"
+log = ["work/log/collision_followup_2026-10-18.md", "results/independent/desktop/20261018-collision-followup-summary/REPORT.md"]
+files = ["work/independent/collision_followup/PROTOCOL.md", "results/independent/desktop/20261018T155345Z-collision-followup-power-160fce/power.json", "results/independent/desktop/20261018T155356Z-collision-followup-mechanisms-ef3932/mechanisms.json", "results/independent/desktop/20261018T155406Z-collision-followup-sections-1812ed/run.log", "results/independent/desktop/20261018T160053Z-collision-followup-certify-25137d/certificate.json", "results/independent/desktop/20261018T160108Z-collision-followup-test-7c859d/test.json", "results/independent/desktop/20261018T160142Z-collision-followup-optimism-f9c191/optimism.json"]
+
 # ---------------------------------------------------------------------------------------------- folders
+
+[[folder]]
+path = "results/independent"
+what = "Isolated foreground hypothesis gates, one fresh UTC/unique folder per invocation under a runner alias; original run.log, fingerprints, control and diagnostic JSON, and recorded failures"
+read = "results/independent/desktop/20261018-collision-followup-summary/REPORT.md"
 
 [[folder]]
 path = "results/overnight"

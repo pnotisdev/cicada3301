@@ -593,6 +593,27 @@ engine `work/layer2` (output `results/layer2/`).
 - **Sign-template campaign running** (`kscreen-signs-periodic`, 25 templates, control 9/9): every template so
   far negative (best 1.32-1.36 falling to 1.05-1.15 whole-window).
 
+### Collision follow-up – authorized single-pass gates (2026-10-18)
+
+Details: `work/log/collision_followup_2026-10-18.md`; all artifact paths and failures:
+`results/independent/desktop/20261018-collision-followup-summary/REPORT.md`.
+21/21 local tests passed on every invocation; frozen code/protocol/seeds unchanged.
+- Exact reference spend/hold count-test power: **26.07%** at size .05 with 35 hidden
+  repairs among 80 independent sites (nonrandom power 20.63% at size 3.40%): HOLD
+  discriminator. Actual-site power remains unknown; no discriminator run.
+- Section bootstrap timed out at 96.1 s under the 95 s cooperative cap; last
+  progress 81/199. No completed section artifact, no retry, not an LP2 negative.
+- B=999 controls: full-book plants .001/.001/.001/.344, null .492; gate PASSED.
+  Split plants .292/.595/.718/.221, null .433; 0/4, gate FAILED; LP2 split NOT RUN.
+- Permitted full test: **15.895269 nats**, mix_I5_T6_w=1/4; 0/999 exceedances,
+  **p_MC=.001 (floor)**; null max 11.373414. Selected-hypothesis re-test, not replication.
+- Pure-null optimism: selected lag-6 affine maps +26.54 counts (190 cases; MC SE
+  .51), but zero fixed-T6 selections and zero observed-score tail matches. True
+  inflation of the observed 80 remains unknown; no subtraction is justified.
+- Source-S-only gross predictable repair capacity: .614 first-target, 1.452 shared,
+  2.067 total; not a realized ceiling or controlled exclusion. Smallest successful
+  second mechanism remains unknown. Nothing in LP2 is solved.
+
 ### Phase 5 – Validation and reporting
 - A plaintext counts as solved only if it scores well across a whole segment (word hits and IoC about 1.8)
   and the same rule works on the next page.

@@ -12,6 +12,7 @@
 
 | Folder | Content | Start with |
 |---|---|---|
+| [independent/](independent/) | Isolated foreground hypothesis gates, one fresh UTC/unique folder per invocation under a runner alias; original run.log, fingerprints, control and diagnostic JSON, and recorded failures | results/independent/desktop/20261018-collision-followup-summary/REPORT.md |
 | [overnight/](overnight/) | Runner state, logs, REPORT.md (the verdict per campaign) and selftests, one folder per PC alias | results/overnight/desktop/REPORT.md |
 | [kscreen/](kscreen/) | Keystream-library IoC screens: top hits (tsv), per-window bests, re-decoded hits (_verify.txt), controls (_selftest.txt); chain/, signs/, signs_extra/, lin3/, typo_items/ | a *_verify.txt file; '0 of N' is a negative |
 | [prng/](prng/) | Seed sweeps: bg_* (boundary-free, window 0.7), bgtime_* and bgsmall_* (epoch seconds, small seeds, per-page), time_gpu/ (millisecond months), php/glibc/net_* (dictionary scores) | a *_verify.txt file; 'no candidate reached the sweep's floor' is a negative |
@@ -81,6 +82,7 @@
 | Unkeyed insertions (an extra rune per word that consumes no key value) and extra key advance at word separators / line / page breaks | open |  | [README.md](../work/proposals/null_beam/README.md), [null_insertion.txt](analysis/null_insertion.txt) |
 | H1: library x keyword (L <= 20) with a drift-tracking decoder | open |  | [README.md](../work/h5slice/README.md), [h5slice.py](../work/h5slice/h5slice.py) |
 | H2: tableau / transition-table ciphers (a statistic invariant to the table) | open |  | [proposals_h2_skip.txt](analysis/proposals_h2_skip.txt) |
+| Collision-substitution kernel: selected-hypothesis B=999 re-test and power gates | observed | 15.895 (null 11.373) | [PROTOCOL.md](../work/independent/collision_followup/PROTOCOL.md), [power.json](independent/desktop/20261018T155345Z-collision-followup-power-160fce/power.json), [mechanisms.json](independent/desktop/20261018T155356Z-collision-followup-mechanisms-ef3932/mechanisms.json), [run.log](independent/desktop/20261018T155406Z-collision-followup-sections-1812ed/run.log), [certificate.json](independent/desktop/20261018T160053Z-collision-followup-certify-25137d/certificate.json), [test.json](independent/desktop/20261018T160108Z-collision-followup-test-7c859d/test.json), [optimism.json](independent/desktop/20261018T160142Z-collision-followup-optimism-f9c191/optimism.json) |
 
 ### Restarts, reuse and layout
 

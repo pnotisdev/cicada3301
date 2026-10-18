@@ -55,6 +55,17 @@ was gated on planted controls:
   capped 60-min LP2 first look with 8 matched-null streams (candidates: IoC >= 1.6 AND >= matched-null max +
   0.15, in-process re-decode).
 
+- **Fast path parity verified, speed not met, abort recalibrated** (`work/h5slice/FAST_REPORT.md`): the fixed
+  v2 rewrite agrees with the slow init on 48/48 init checks, 24/24 decode cells, the truth plant (IoC 1.986,
+  wcol = DIVINITY, 8 skips) and 40 nulls (<= 1e-6 nats; three real bugs found and fixed: node-id chain
+  corruption, an unclamped index, an unstable sort). Speed: 191.7 ms vs 167.6 ms (0.9x) - numpy scatter/gather
+  is the bottleneck; v3 (cyclic-correlation rewrite) written but UNVERIFIED, decode() defaults to the slow init.
+  CORRECTION to the earlier smoke claim: '40/40 nulls abort at 120 (margin 0.15)' does not reproduce on the
+  current code (0/40 abort; nulls sit 0.59-0.86 nats/rune above the null level at rune 120, truth delta
+  +1.011); recalibrated abort: abort_at=120, abort_margin=0.9. Controls (a)/(b)/(d) and the LP2 first look still
+  not run. Next: verify v3 (parity + speed); if numpy-Python cannot reach >= 10x, port the init to the layer2
+  Rust pattern; then controls and the capped LP2 look.
+
 ## Registry / status updates
 
 - `nulledge` row: gap updated - the 42% mixture is untestable for the measured reason of offset resolution on

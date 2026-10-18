@@ -1,9 +1,18 @@
 # Collision follow-up A–E — human-run only
 
-**UNEXECUTED / UNVALIDATED. Nothing in LP2 is solved.** No program, test, syntax
-check, simulation or discriminator was executed by the assistant. Existing files
-were not edited. See [PROTOCOL.md](PROTOCOL.md) for evidence with file/line citations,
-frozen choices, assumptions, limits and commands.
+**Executed once on human authorization, 2026-10-18. Nothing in LP2 is solved.**
+21/21 unit tests passed; B=999 full controls passed and the full re-test flagged at
+p_MC=.001. Split controls failed (0/4), so LP2 split was NOT RUN. Section bootstrap
+timed out without a completed artifact. Reference spend/hold count-test power is
+26.07%; discriminator HELD. No experiment was retried, and frozen source, tests,
+protocol and seeds were unchanged.
+
+Results and all original artifacts, including the failure:
+`results/independent/desktop/20261018-collision-followup-summary/REPORT.md`.
+
+See [PROTOCOL.md](PROTOCOL.md) for the original frozen choices, assumptions, limits
+and commands. Its pre-execution status is preserved as part of the fingerprinted
+protocol, not a statement that the newly authorized runs have not happened.
 
 | Request | Deliverable | Important limit |
 |---|---|---|

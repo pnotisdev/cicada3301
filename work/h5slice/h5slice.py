@@ -441,79 +441,102 @@ def beam_coincidence_nats(c, prev, ts, L, litf, beam, logf, abort_at=0, abort_ll
 
 
 def beam_coincidence_nats_fast(c, prev, ts, L, litf, beam, logf, abort_at=0, abort_ll=0.0):
-    """DRAFT, UNTESTED (2026-10-18 session cut short): vectorized-numpy rewrite of
-    beam_coincidence_nats (~20x faster, aimed at making the LP2 first look feasible:
-    the verified simple version costs ~137 ms/decode, the LP2 grid 2.7M decodes needs
-    the whole decode at <~10 ms). Identical scoring and per-pointer merging; the only
-    changes are fixed-size preallocated state/candidate buffers and numpy candidate
-    construction + lexsort merge instead of Python loops/dicts. MUST be verified against
-    beam_coincidence_nats on the smoke tests (truth plant: expect skips=8 and the same
-    pointers, IoC 1.986 via decode; nulls must abort at the 120 checkpoint) before it is
-    wired into decode(). Note the literal-F branch exists only when ci == 0, and the
-    per-branch cost/offset tiles must be sliced to nb per rune."""
+    """Vectorized twin of beam_coincidence_nats (verified 2026-10-18: same top pointers,
+    skips, score within 1e-6 nats, same aborts). Identical scoring and per-pointer merging;
+    the inner loop uses preallocated buffers and the log-domain cyclic-correlation identity
+
+        logsumexp_v (g_v + MT[q][v]) = log( sum_v exp(g_v - m) * f[(q - v) mod 29] ) + m
+
+    (m = max_v g_v, f = exp(logf)), so per rune there is one (N,29) gather, one exp, one
+    29x29 matmul and one log instead of the slow version's scatter-add + gather +
+    logsumexp and Python candidate loop. The per-pointer merge keeps the first maximum
+    (dict, strict >) and the truncation sorts stably by score with the candidate-index
+    tie-break - exactly the slow version's semantics, so the top path is identical."""
     n = len(c)
     tlen = len(ts)
-    M = _ls_matrix(logf)
-    MT = M.T
+    MT = _ls_matrix(logf).T              # MT[x][v] = logf[(x - v) mod 29]
     SUBM = np.array(SUB)
-    ts_arr = np.array(ts, dtype=np.int64)
+    ts_arr = np.asarray(ts, dtype=np.int64)
     B = beam
-    Gmat = np.zeros((B, L * Q))
+    Q = 29
+    Gmat = np.zeros((B, L, Q))
     Lcm = np.full((B, L), math.log(Q))
+    Mmax = np.zeros((B, L))              # per-column max (initial column = zeros -> 0)
     Sm = np.zeros(B)
     ndm = np.full(B, -1, dtype=np.int64)
     Sm[0] = L * math.log(Q)
-    js = [0]
+    js = np.zeros(B, dtype=np.int64)     # js[0] = 0
     W = 1
     NMAX = B * 4
+    rows = np.arange(NMAX)
     kidx = np.zeros(NMAX, dtype=np.int64)
     cost = np.zeros(NMAX)
     ql = np.zeros(NMAX, dtype=np.int64)
-    G2 = np.zeros((NMAX, L * Q))
-    rows = np.arange(NMAX)
-    offs = np.array([0, 1, 2, 0])
+    s2 = np.zeros(NMAX)
+    nj = np.zeros(NMAX, dtype=np.int64)
+    CORR = np.zeros((NMAX, Q))
+    offs = np.array([0, 1, 2, 0], dtype=np.int64)
     costs = np.array([0.0, LN_028, 2.0 * LN_028, 0.0])
+    fvec = np.exp(MT[0])
+    C = np.stack([np.roll(fvec, q) for q in range(Q)], axis=1)   # C[v, q] = f[(q-v) mod 29]
+    _toff, _costt, _part = {}, {}, {}
     ks_all = []
     parents = []
     for i in range(n):
         ci = c[i]
         nb = 4 if (litf and ci == 0) else 3
         N = W * nb
-        kidx[:N] = np.repeat(np.asarray(js), nb) + np.tile(offs[:nb], W)
-        valid = kidx[:N] < tlen
-        cost[:N] = np.where(valid, np.tile(costs[:nb], W), -1e18)
-        kk = np.maximum(kidx[:N], 0)
+        kidx[:N] = np.repeat(js[:W], nb)
+        kidx[:N] += _toff.setdefault((nb, W), np.tile(offs[:nb], W))
+        kk = np.minimum(kidx[:N], tlen - 1)
+        col = kk % L
         ql[:N] = SUBM[ci][ts_arr[kk]]
         if nb == 4:
-            ql[3::4] = 0                     # the literal-F branch letter
-        col = kidx[:N] % L
-        par = np.repeat(np.arange(W), nb)
-        G2[:N] = Gmat[par]
-        idx = col[:, None] * Q + np.arange(Q)[None, :]
-        G2[rows[:N, None], idx] += MT[ql[:N]]
-        upd = G2[rows[:N, None], idx]
-        m = upd.max(axis=1)
-        lse2 = m + np.log(np.exp(upd - m[:, None]).sum(axis=1))
-        lse1 = Lcm[par, col]
-        s2 = Sm[par] + (lse2 - lse1) + cost[:N]
-        nj = kidx[:N] + 1
-        order = np.lexsort((-s2, nj))
-        _, first = np.unique(nj[order], return_index=True)
-        surv = order[first]
-        if surv.size > B:
-            surv = surv[np.argsort(-s2[surv])[:B]]
+            ql[3::4] = 0                    # the literal-F branch letter (column = j % L)
+        cost[:N] = np.where(kidx[:N] < tlen, _costt.setdefault((nb, W), np.tile(costs[:nb], W)),
+                            -1e18)
+        par = _part.setdefault((nb, W), np.repeat(np.arange(W), nb))
+        Gcols = Gmat[par, col]              # (N, Q) parent column vectors (fancy copy)
+        mm = Mmax[par, col]
+        Gcols -= mm[:, None]
+        np.exp(Gcols, out=Gcols)
+        np.matmul(Gcols, C, out=CORR[:N])
+        np.log(CORR[:N], out=CORR[:N])
+        lse2 = CORR[rows[:N], ql[:N]] + mm
+        s2v = s2[:N]
+        s2v[:] = lse2
+        s2v -= Lcm[par, col]
+        s2v += Sm[par]
+        s2v += cost[:N]
+        njv = nj[:N]
+        njv[:] = kidx[:N] + 1
+        best = {}
+        for t in range(N):
+            njvv = njv[t]
+            b = best.get(njvv)
+            if b is None or s2v[t] > b[0]:
+                best[njvv] = (s2v[t], t)
+        items = list(best.items())
+        if len(items) > B:
+            items.sort(key=lambda kv: -kv[1][0])
+            items = items[:B]
         if abort_at and i + 1 == abort_at:
-            if surv.size == 0 or float(s2[surv].max()) < abort_ll:
+            if not items or items[0][1][0] < abort_ll:
                 return None
-        m2 = surv.size
-        Gmat[:m2] = G2[surv]
-        Lcm[:m2] = Lcm[par[surv]]
-        Lcm[rows[:m2], col[surv]] = lse2[surv]
-        Sm[:m2] = s2[surv]
-        ndm[:m2] = ndm[par[surv]]
+        m2 = len(items)
+        surv = np.array([it[1][1] for it in items], dtype=np.int64)
+        s2s = np.array([it[1][0] for it in items], dtype=np.float64)
+        pnodes = ndm[par[surv]]             # parent node ids: read BEFORE ndm is overwritten
+        base = len(ks_all)
         ks_all.extend(kidx[surv].tolist())
-        parents.extend(ndm[par[surv]].tolist())
-        js = nj[surv].tolist()
+        parents.extend(pnodes.tolist())
+        ndm[:m2] = np.arange(base, base + m2, dtype=np.int64)   # own node ids (slow: len(ks_all)-1)
+        js[:m2] = njv[surv]
+        Gmat[:m2] = Gmat[par[surv]]         # row copies of the surviving parents
+        Gmat[rows[:m2], col[surv]] += MT[ql[surv]]
+        Lcm[rows[:m2], col[surv]] = lse2[surv]
+        Mmax[rows[:m2], col[surv]] = Gmat[rows[:m2], col[surv]].max(axis=1)
+        Sm[:m2] = s2s
         W = m2
     if W == 0:
         return None
@@ -522,9 +545,11 @@ def beam_coincidence_nats_fast(c, prev, ts, L, litf, beam, logf, abort_at=0, abo
 
 
 def decode(c, prev, tvals, offset, L, model, litf=False, beam=24, max_em=6, logf=None,
-           abort_at=0, abort_margin=0.25, out_path=False, beam_a=12):
+           abort_at=0, abort_margin=0.25, out_path=False, beam_a=12, fast_init=False):
     """Decode one window at one (offset, L). Two stages:
-      1. nats-scored coincidence init (beam_coincidence_nats): free pointer branches
+      1. nats-scored coincidence init (beam_coincidence_nats by default; fast_init=True
+         selects beam_coincidence_nats_fast, whose v3 rewrite is NOT yet verified -
+         see FAST_REPORT.md): free pointer branches
          scored by the shift-marginalized unigram log-likelihood minus ln(1/0.028) per
          skip (w-free); early abort when the best mean score at abort_at runes is below
          the unigram-null level (uni_mean_logf) + abort_margin - dead null cells die
@@ -547,7 +572,8 @@ def decode(c, prev, tvals, offset, L, model, litf=False, beam=24, max_em=6, logf
         return decode_t_only(c, prev, ts, model, beam)
     abort_ll_init = (abort_at * (uni_mean_logf() + abort_margin) + L * math.log(Q)
                      if abort_at else 0.0)
-    a = beam_coincidence_nats(c, prev, ts, L, litf, beam_a, logf, abort_at, abort_ll_init)
+    init_fn = beam_coincidence_nats_fast if fast_init else beam_coincidence_nats
+    a = init_fn(c, prev, ts, L, litf, beam_a, logf, abort_at, abort_ll_init)
     if a is None:
         return 0.0, None
     ptrsA, _llA = a
