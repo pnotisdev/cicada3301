@@ -533,6 +533,8 @@ def beam_coincidence_nats_fast(c, prev, ts, L, litf, beam, logf, abort_at=0, abo
         ndm[:m2] = np.arange(base, base + m2, dtype=np.int64)   # own node ids (slow: len(ks_all)-1)
         js[:m2] = njv[surv]
         Gmat[:m2] = Gmat[par[surv]]         # row copies of the surviving parents
+        Lcm[:m2] = Lcm[par[surv]]           # FULL row copies: every column, not just the one
+        Mmax[:m2] = Mmax[par[surv]]         # just updated - otherwise lse1/mm at the next rune
         Gmat[rows[:m2], col[surv]] += MT[ql[surv]]
         Lcm[rows[:m2], col[surv]] = lse2[surv]
         Mmax[rows[:m2], col[surv]] = Gmat[rows[:m2], col[surv]].max(axis=1)

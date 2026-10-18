@@ -1,0 +1,53 @@
+[     0.0s] Command: echo-dispersion-controls; output: results/independent/desktop/20261018T164533Z-echo-dispersion-controls-4db2d5
+[     0.0s] CPU only; no network, builds, background jobs, or shared-engine writes.
+[     0.0s] Nothing in LP2 is solved. These are bounded hypothesis tests, not translations.
+[     3.1s] test_budget_mgf_envelope_spends_all_repair_choices (test_collision_model.CollisionModelTests.test_budget_mgf_envelope_spends_all_repair_choices) ... ok
+[     3.1s] test_copy1_cancels_the_repair (test_collision_model.CollisionModelTests.test_copy1_cancels_the_repair) ... ok
+[     3.1s] test_copy_family_cannot_force_nonidentity_T_mean (test_collision_model.CollisionModelTests.test_copy_family_cannot_force_nonidentity_T_mean) ... ok
+[     3.1s] test_exact_conditional_null_counts (test_collision_model.CollisionModelTests.test_exact_conditional_null_counts) ... ok
+[     3.1s] test_fast_scan_matches_direct_kernel (test_collision_model.CollisionModelTests.test_fast_scan_matches_direct_kernel) ... ok
+[     3.1s] test_first_eligible_T6 (test_collision_model.CollisionModelTests.test_first_eligible_T6) ... ok
+[     3.1s] test_forward_enumerator_and_kernel (test_collision_model.CollisionModelTests.test_forward_enumerator_and_kernel) ... ok
+[     3.1s] test_group (test_collision_model.CollisionModelTests.test_group) ... ok
+[     3.1s] test_nonfixed_rune_symmetry (test_collision_model.CollisionModelTests.test_nonfixed_rune_symmetry) ... ok
+[     3.1s] test_normalization_and_independent_overlay (test_collision_model.CollisionModelTests.test_normalization_and_independent_overlay) ... ok
+[     3.1s] test_retaining_a_colliding_key_needs_plaintext_differences (test_collision_model.CollisionModelTests.test_retaining_a_colliding_key_needs_plaintext_differences) ... ok
+[     3.1s] test_two_point_recurrence_against_enumeration (test_collision_model.CollisionModelTests.test_two_point_recurrence_against_enumeration) ... ok
+[     3.1s] test_binomial_against_enumeration (test_followup.FollowupTests.test_binomial_against_enumeration) ... ok
+[     3.1s] test_exact_power_null_and_planted_oracle (test_followup.FollowupTests.test_exact_power_null_and_planted_oracle) ... ok
+[     3.1s] test_float_moments_against_exact_rational (test_followup.FollowupTests.test_float_moments_against_exact_rational) ... ok
+[     3.1s] test_heterogeneity_positive_and_null_wiring (test_followup.FollowupTests.test_heterogeneity_positive_and_null_wiring) ... ok
+[     3.1s] test_hidden_labels_count_convolution_exact (test_followup.FollowupTests.test_hidden_labels_count_convolution_exact) ... ok
+[     3.1s] test_plant_likelihood_and_no_echo_null_wiring (test_followup.FollowupTests.test_plant_likelihood_and_no_echo_null_wiring) ... ok
+[     3.1s] test_section_q_own_doublets (test_followup.FollowupTests.test_section_q_own_doublets) ... ok
+[     3.1s] test_single_frozen_score_against_direct_kernel (test_followup.FollowupTests.test_single_frozen_score_against_direct_kernel) ... ok
+[     3.1s] test_split_fixed_disjoint_complete (test_followup.FollowupTests.test_split_fixed_disjoint_complete) ... ok
+[     3.1s] 
+[     3.1s] ----------------------------------------------------------------------
+[     3.1s] Ran 21 tests in 3.006s
+[     3.1s] 
+[     3.1s] OK
+[     5.3s] test_conditioning_against_exact_subset_enumeration (test_dispersion.DispersionTests.test_conditioning_against_exact_subset_enumeration) ... ok
+[     5.3s] test_equal_rates_fixed_count_and_reproducibility (test_dispersion.DispersionTests.test_equal_rates_fixed_count_and_reproducibility) ... ok
+[     5.3s] test_even_systematic_sampling_matches_marginals (test_dispersion.DispersionTests.test_even_systematic_sampling_matches_marginals) ... ok
+[     5.3s] test_hundred_bins_reset_and_keep_short_tails (test_dispersion.DispersionTests.test_hundred_bins_reset_and_keep_short_tails) ... ok
+[     5.3s] test_invalid_inputs (test_dispersion.DispersionTests.test_invalid_inputs) ... ok
+[     5.3s] test_regular_gaps_and_clustered_counts_wiring (test_dispersion.DispersionTests.test_regular_gaps_and_clustered_counts_wiring) ... ok
+[     5.3s] test_tail_direction_ties_and_three_scale_penalty (test_dispersion.DispersionTests.test_tail_direction_ties_and_three_scale_penalty) ... ok
+[     5.3s] 
+[     5.3s] ----------------------------------------------------------------------
+[     5.3s] Ran 7 tests in 1.912s
+[     5.3s] 
+[     5.3s] OK
+[     5.3s] {'B': 999, 'total_echo_hits': 80, 'relation': 'within-word T6 raw, no I5 or other maps', 'scales': ['section', 'eligible100', 'gaps'], 'bin_size': 100, 'bin_origin': 'first eligible pair of each section; include short terminal bin', 'gap': 'internal inter-hit gaps in eligible-pair order, exposure-adjusted; no cross-section gaps', 'direction': 'lower tail only', 'alpha': 0.05, 'multiplicity': 'Bonferroni over exactly 3 scales', 'null': 'independent inhomogeneous Bernoulli site law, conditioned on exactly 80 hits', 'rates': 'raw-T6 pair marginal by local word position; prior own-doublet q_s fixed, not refitted to sites', 'controls': '4 matched Bernoulli negatives, 4 random-phase systematic evenly-spaced positives', 'caveat': 'motivated by previous same-data smoothness; not independent replication or a forward-cipher null'}
+[    11.4s] Bernoulli 0: {'statistics': {'section': 8.315330725835818, 'eligible100': 14.252908258427006, 'gaps': 0.8331285216150199}, 'lower_exceedances': {'section': 732, 'eligible100': 566, 'gaps': 726}, 'p_lower': {'section': 0.733, 'eligible100': 0.567, 'gaps': 0.727}, 'p_bonferroni': {'section': 1.0, 'eligible100': 1.0, 'gaps': 1.0}, 'p_omnibus': 1.0, 'flag': False}
+[    11.4s] Bernoulli 1: {'statistics': {'section': 6.606526324124239, 'eligible100': 10.23515342375982, 'gaps': 0.6230389768937321}, 'lower_exceedances': {'section': 574, 'eligible100': 264, 'gaps': 201}, 'p_lower': {'section': 0.575, 'eligible100': 0.265, 'gaps': 0.202}, 'p_bonferroni': {'section': 1.0, 'eligible100': 0.795, 'gaps': 0.6060000000000001}, 'p_omnibus': 0.6060000000000001, 'flag': False}
+[    11.4s] Bernoulli 2: {'statistics': {'section': 10.67704527479634, 'eligible100': 13.714469237643634, 'gaps': 0.5537842893197723}, 'lower_exceedances': {'section': 877, 'eligible100': 514, 'gaps': 66}, 'p_lower': {'section': 0.878, 'eligible100': 0.515, 'gaps': 0.067}, 'p_bonferroni': {'section': 1.0, 'eligible100': 1.0, 'gaps': 0.201}, 'p_omnibus': 0.201, 'flag': False}
+[    11.4s] Bernoulli 3: {'statistics': {'section': 2.5355607888404146, 'eligible100': 10.427847942409702, 'gaps': 0.5724569297902813}, 'lower_exceedances': {'section': 81, 'eligible100': 276, 'gaps': 90}, 'p_lower': {'section': 0.082, 'eligible100': 0.277, 'gaps': 0.091}, 'p_bonferroni': {'section': 0.246, 'eligible100': 0.8310000000000001, 'gaps': 0.273}, 'p_omnibus': 0.246, 'flag': False}
+[    11.4s] evenly_spaced 0: {'statistics': {'section': 0.13894047052493477, 'eligible100': 0.902695572475348, 'gaps': 0.0005432095495486156}, 'lower_exceedances': {'section': 0, 'eligible100': 0, 'gaps': 0}, 'p_lower': {'section': 0.001, 'eligible100': 0.001, 'gaps': 0.001}, 'p_bonferroni': {'section': 0.003, 'eligible100': 0.003, 'gaps': 0.003}, 'p_omnibus': 0.003, 'flag': True}
+[    11.5s] evenly_spaced 1: {'statistics': {'section': 0.3044400233363287, 'eligible100': 1.6714327000068228, 'gaps': 0.0005095709747701123}, 'lower_exceedances': {'section': 0, 'eligible100': 0, 'gaps': 0}, 'p_lower': {'section': 0.001, 'eligible100': 0.001, 'gaps': 0.001}, 'p_bonferroni': {'section': 0.003, 'eligible100': 0.003, 'gaps': 0.003}, 'p_omnibus': 0.003, 'flag': True}
+[    11.5s] evenly_spaced 2: {'statistics': {'section': 0.2453902151973959, 'eligible100': 1.5609277673497377, 'gaps': 0.0005818729860696257}, 'lower_exceedances': {'section': 0, 'eligible100': 0, 'gaps': 0}, 'p_lower': {'section': 0.001, 'eligible100': 0.001, 'gaps': 0.001}, 'p_bonferroni': {'section': 0.003, 'eligible100': 0.003, 'gaps': 0.003}, 'p_omnibus': 0.003, 'flag': True}
+[    11.5s] evenly_spaced 3: {'statistics': {'section': 0.3044400233363287, 'eligible100': 1.6714327000068228, 'gaps': 0.0006064853288162924}, 'lower_exceedances': {'section': 0, 'eligible100': 0, 'gaps': 0}, 'p_lower': {'section': 0.001, 'eligible100': 0.001, 'gaps': 0.001}, 'p_bonferroni': {'section': 0.003, 'eligible100': 0.003, 'gaps': 0.003}, 'p_omnibus': 0.003, 'flag': True}
+[    11.5s] Controls passed=True
+[    11.6s] Saved controls.json; nothing in LP2 solved
+[    11.6s] FINISHED

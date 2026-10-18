@@ -66,6 +66,15 @@ was gated on planted controls:
   not run. Next: verify v3 (parity + speed); if numpy-Python cannot reach >= 10x, port the init to the layer2
   Rust pattern; then controls and the capped LP2 look.
 
+- **v3 verified, speed fails; numba port is the path** (`work/h5slice/V3_REPORT.md`): v3 (correlation-trick) parity
+  PASS after fixing one real bug (stale Lcm/Mmax rows in the survivor update): 48/48 init, 24/24 decode, truth
+  IoC 1.986 wcol = DIVINITY, 40/40 nulls abort with the recalibrated abort (120, 0.9); the L=16 super-period
+  degeneracy aborts too, so control (a)'s argmax is safe. Speed on the loaded machine: 1.0-1.1x - the 5x gate
+  FAILS (~20 numpy calls per rune at 20-170 us under a saturated CPU). Controls (a)/(b)/(d) and the LP2 look
+  NOT run (control.py written, unexecuted; the grid would be ~3.7 h at 44 ms/decode). NEW LEAD:
+  work/h5slice/h5slice_nb.py, a numba port (numba 0.67 installed) with exact slow semantics, one compile bug
+  fixed, parity UNVERIFIED, expected 10-50x; verify with _nb_check.py before wiring.
+
 ## Registry / status updates
 
 - `nulledge` row: gap updated - the 42% mixture is untestable for the measured reason of offset resolution on

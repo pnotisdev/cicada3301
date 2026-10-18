@@ -25,8 +25,8 @@ tvals = H.totient(4000)
 OFF = 1234
 c = H.plant(plain, tvals, OFF, H.DIVINITY, 0, keep=0.19, litf=False, b=0, seed=42)
 
-MARGIN = 0.15
-ABORT_AT = 120
+MARGIN = 0.9   # recalibrated abort (FAST_REPORT.md sec 2: truth delta +1.011 at rune 120
+ABORT_AT = 120  # vs null max delta 0.863; headroom ~0.11-0.15 both sides)
 
 
 def skips(ptrs):
@@ -151,9 +151,11 @@ for _ in range(40):
 t_fast = (time.perf_counter() - t0) / 40
 print(f"  truth cell init: slow {t_slow * 1000:.1f} ms, fast {t_fast * 1000:.2f} ms, "
       f"speedup {t_slow / t_fast:.1f}x")
-if t_slow / t_fast < 10:
+if t_slow / t_fast < 5:
     fails += 1
-    print("  FAIL: speedup < 10x")
+    print("  FAIL: speedup < 5x (the task gate; Rust port recommended)")
+elif t_slow / t_fast < 10:
+    print("  WARN: speedup >= 5x (task gate met) but < 10x (README target)")
 
 wc = [rng.randrange(29) for _ in range(300)]
 t0 = time.perf_counter()
@@ -166,6 +168,42 @@ for _ in range(100):
 t_nf = (time.perf_counter() - t0) / 100
 print(f"  null cell init w/ abort: slow {t_ns * 1000:.1f} ms, fast {t_nf * 1000:.2f} ms, "
       f"speedup {t_ns / t_nf:.1f}x")
+
+print("== phase 7: full decode timing (truth cell, abort 120/0.9) ==")
+for fast in (False, True):
+    H.decode(c, -1, tvals, OFF, 8, 0, litf=False, beam=24, max_em=5, logf=logf,
+             abort_at=ABORT_AT, abort_margin=MARGIN, fast_init=fast)  # warm
+reps = 4
+t0 = time.perf_counter()
+for _ in range(reps):
+    H.decode(c, -1, tvals, OFF, 8, 0, litf=False, beam=24, max_em=5, logf=logf,
+             abort_at=ABORT_AT, abort_margin=MARGIN, fast_init=False)
+t_ds = (time.perf_counter() - t0) / reps
+t0 = time.perf_counter()
+for _ in range(reps):
+    H.decode(c, -1, tvals, OFF, 8, 0, litf=False, beam=24, max_em=5, logf=logf,
+             abort_at=ABORT_AT, abort_margin=MARGIN, fast_init=True)
+t_df = (time.perf_counter() - t0) / reps
+print(f"  truth decode: slow {t_ds * 1000:.1f} ms, fast {t_df * 1000:.2f} ms, "
+      f"speedup {t_ds / t_df:.1f}x")
+
+# null decode with abort (the sweep workhorse: nulls die at rune 120)
+wc2 = [rng.randrange(29) for _ in range(300)]
+for fast in (False, True):
+    H.decode(wc2, -1, tvals, 0, 8, 0, litf=False, beam=24, max_em=5, logf=logf,
+             abort_at=ABORT_AT, abort_margin=MARGIN, fast_init=fast)
+t0 = time.perf_counter()
+for _ in range(4):
+    H.decode(wc2, -1, tvals, 0, 8, 0, litf=False, beam=24, max_em=5, logf=logf,
+             abort_at=ABORT_AT, abort_margin=MARGIN, fast_init=False)
+t_nds = (time.perf_counter() - t0) / 4
+t0 = time.perf_counter()
+for _ in range(20):
+    H.decode(wc2, -1, tvals, 0, 8, 0, litf=False, beam=24, max_em=5, logf=logf,
+             abort_at=ABORT_AT, abort_margin=MARGIN, fast_init=True)
+t_ndf = (time.perf_counter() - t0) / 20
+print(f"  null decode w/ abort: slow {t_nds * 1000:.1f} ms, fast {t_ndf * 1000:.2f} ms, "
+      f"speedup {t_nds / t_ndf:.1f}x")
 
 print()
 print(f"RESULT: {'PASS' if fails == 0 else 'FAIL'} ({fails} failures)")

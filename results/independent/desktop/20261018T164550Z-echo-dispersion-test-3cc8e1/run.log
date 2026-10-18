@@ -1,0 +1,45 @@
+[     0.0s] Command: echo-dispersion-test; output: results/independent/desktop/20261018T164550Z-echo-dispersion-test-3cc8e1
+[     0.0s] CPU only; no network, builds, background jobs, or shared-engine writes.
+[     0.0s] Nothing in LP2 is solved. These are bounded hypothesis tests, not translations.
+[     2.1s] test_budget_mgf_envelope_spends_all_repair_choices (test_collision_model.CollisionModelTests.test_budget_mgf_envelope_spends_all_repair_choices) ... ok
+[     2.1s] test_copy1_cancels_the_repair (test_collision_model.CollisionModelTests.test_copy1_cancels_the_repair) ... ok
+[     2.1s] test_copy_family_cannot_force_nonidentity_T_mean (test_collision_model.CollisionModelTests.test_copy_family_cannot_force_nonidentity_T_mean) ... ok
+[     2.1s] test_exact_conditional_null_counts (test_collision_model.CollisionModelTests.test_exact_conditional_null_counts) ... ok
+[     2.1s] test_fast_scan_matches_direct_kernel (test_collision_model.CollisionModelTests.test_fast_scan_matches_direct_kernel) ... ok
+[     2.1s] test_first_eligible_T6 (test_collision_model.CollisionModelTests.test_first_eligible_T6) ... ok
+[     2.1s] test_forward_enumerator_and_kernel (test_collision_model.CollisionModelTests.test_forward_enumerator_and_kernel) ... ok
+[     2.1s] test_group (test_collision_model.CollisionModelTests.test_group) ... ok
+[     2.1s] test_nonfixed_rune_symmetry (test_collision_model.CollisionModelTests.test_nonfixed_rune_symmetry) ... ok
+[     2.1s] test_normalization_and_independent_overlay (test_collision_model.CollisionModelTests.test_normalization_and_independent_overlay) ... ok
+[     2.1s] test_retaining_a_colliding_key_needs_plaintext_differences (test_collision_model.CollisionModelTests.test_retaining_a_colliding_key_needs_plaintext_differences) ... ok
+[     2.1s] test_two_point_recurrence_against_enumeration (test_collision_model.CollisionModelTests.test_two_point_recurrence_against_enumeration) ... ok
+[     2.1s] test_binomial_against_enumeration (test_followup.FollowupTests.test_binomial_against_enumeration) ... ok
+[     2.1s] test_exact_power_null_and_planted_oracle (test_followup.FollowupTests.test_exact_power_null_and_planted_oracle) ... ok
+[     2.1s] test_float_moments_against_exact_rational (test_followup.FollowupTests.test_float_moments_against_exact_rational) ... ok
+[     2.1s] test_heterogeneity_positive_and_null_wiring (test_followup.FollowupTests.test_heterogeneity_positive_and_null_wiring) ... ok
+[     2.1s] test_hidden_labels_count_convolution_exact (test_followup.FollowupTests.test_hidden_labels_count_convolution_exact) ... ok
+[     2.1s] test_plant_likelihood_and_no_echo_null_wiring (test_followup.FollowupTests.test_plant_likelihood_and_no_echo_null_wiring) ... ok
+[     2.1s] test_section_q_own_doublets (test_followup.FollowupTests.test_section_q_own_doublets) ... ok
+[     2.1s] test_single_frozen_score_against_direct_kernel (test_followup.FollowupTests.test_single_frozen_score_against_direct_kernel) ... ok
+[     2.1s] test_split_fixed_disjoint_complete (test_followup.FollowupTests.test_split_fixed_disjoint_complete) ... ok
+[     2.1s] 
+[     2.1s] ----------------------------------------------------------------------
+[     2.1s] Ran 21 tests in 2.053s
+[     2.1s] 
+[     2.1s] OK
+[     3.2s] test_conditioning_against_exact_subset_enumeration (test_dispersion.DispersionTests.test_conditioning_against_exact_subset_enumeration) ... ok
+[     3.2s] test_equal_rates_fixed_count_and_reproducibility (test_dispersion.DispersionTests.test_equal_rates_fixed_count_and_reproducibility) ... ok
+[     3.2s] test_even_systematic_sampling_matches_marginals (test_dispersion.DispersionTests.test_even_systematic_sampling_matches_marginals) ... ok
+[     3.2s] test_hundred_bins_reset_and_keep_short_tails (test_dispersion.DispersionTests.test_hundred_bins_reset_and_keep_short_tails) ... ok
+[     3.2s] test_invalid_inputs (test_dispersion.DispersionTests.test_invalid_inputs) ... ok
+[     3.2s] test_regular_gaps_and_clustered_counts_wiring (test_dispersion.DispersionTests.test_regular_gaps_and_clustered_counts_wiring) ... ok
+[     3.2s] test_tail_direction_ties_and_three_scale_penalty (test_dispersion.DispersionTests.test_tail_direction_ties_and_three_scale_penalty) ... ok
+[     3.2s] 
+[     3.2s] ----------------------------------------------------------------------
+[     3.2s] Ran 7 tests in 1.008s
+[     3.2s] 
+[     3.2s] OK
+[     3.2s] {'B': 999, 'total_echo_hits': 80, 'relation': 'within-word T6 raw, no I5 or other maps', 'scales': ['section', 'eligible100', 'gaps'], 'bin_size': 100, 'bin_origin': 'first eligible pair of each section; include short terminal bin', 'gap': 'internal inter-hit gaps in eligible-pair order, exposure-adjusted; no cross-section gaps', 'direction': 'lower tail only', 'alpha': 0.05, 'multiplicity': 'Bonferroni over exactly 3 scales', 'null': 'independent inhomogeneous Bernoulli site law, conditioned on exactly 80 hits', 'rates': 'raw-T6 pair marginal by local word position; prior own-doublet q_s fixed, not refitted to sites', 'controls': '4 matched Bernoulli negatives, 4 random-phase systematic evenly-spaced positives', 'caveat': 'motivated by previous same-data smoothness; not independent replication or a forward-cipher null'}
+[     7.1s] {'statistics': {'section': 1.3365599722806056, 'eligible100': 6.474629932768162, 'gaps': 0.7987435092529963}, 'p_lower': {'section': 0.024, 'eligible100': 0.03, 'gaps': 0.687}, 'p_bonferroni': {'section': 0.07200000000000001, 'eligible100': 0.09, 'gaps': 1.0}, 'p_omnibus': 0.07200000000000001, 'flag': False}
+[     7.2s] Saved test.json; nothing in LP2 solved
+[     7.2s] FINISHED

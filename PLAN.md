@@ -614,6 +614,46 @@ Details: `work/log/collision_followup_2026-10-18.md`; all artifact paths and fai
   2.067 total; not a realized ceiling or controlled exclusion. Smallest successful
   second mechanism remains unknown. Nothing in LP2 is solved.
 
+### Fixed-rule halves and section blocks – authorized follow-up (2026-10-18)
+
+Frozen new protocol: `work/independent/collision_fixed_halves/PROTOCOL.md`.
+Details: `work/log/collision_fixed_halves_2026-10-18.md`; all artifacts/logs:
+`results/independent/desktop/20261018-collision-fixed-summary/REPORT.md`.
+17/17 invocations FINISHED, each once under 95 s; 27/27 unit tests each, zero skips.
+- NO selection: raw T6/I5, q=.81, same halves. T6 A +3.198569 nats (p=.004),
+  B +8.803375 (p=.001); meets positive-in-both criterion, adjusted p=.008.
+  I5 A +3.394918 (p=.003), B -.224223 (p=.016); fails required positive score
+  in B despite adjusted conjunction tail p=.032. Not an exclusion of lag5 echoes.
+- New coarse per-rule controls pass: I5 2/2 per half; T6 1/2 in A, 2/2 in B;
+  no null flag. Rules fixed before these runs, not before whole-LP2 discovery:
+  retrospective consistency, NOT untouched replication or collision causality.
+- Section diagnostic now completed in eight blocks (20.6-33.6 s each), same
+  199 original seeds and refit procedure; prior timeout preserved. Expected
+  79.298359 vs observed 80; shape statistic 1.336559, upper-tail p=.990;
+  overall discrepancy 1.354594, p=.995. Observed residuals unusually small;
+  high upper-tail p does not validate the model. Plug-in selected-family
+  diagnostic, heterogeneity-sized power unknown. Nothing in LP2 is solved.
+
+### Echo-site dispersion – three frozen scales, matched controls (2026-10-18)
+
+Details: `work/log/echo_dispersion_2026-10-18.md`; protocol:
+`work/independent/echo_dispersion/PROTOCOL.md`; raw artifacts and full report:
+`results/independent/desktop/20261018-echo-dispersion-summary/REPORT.md`.
+- Fixed lower-tail T6-HIT dispersion: section counts, per-section disjoint bins
+  of 100 eligible pairs, internal gap CV in eligible exposure. No scale/offset/
+  rule/tail tuning. Independent inhomogeneous Bernoulli before conditioning on
+  total 80; prior own-doublet q_s frozen, exact conditional finite sampling.
+- Controls PASSED: 0/4 Bernoulli flags, 4/4 evenly spaced flags. Same total and
+  one-site inclusion marginals; positive plants differ in joint regularity.
+  Fully regular 80-hit controls do not measure partial/35-repair power.
+- LP2 B=999 raw lower p=.024/.030/.687; three-scale Bonferroni .072/.090/1.000;
+  omnibus **.072, no flag**. Counts somewhat smooth; internal gaps not unusually
+  regular. Not an exclusion of weak regularity or proof of randomness.
+- Both invocations FINISHED, once each, 11.6/7.2 s, 28/28 tests each. Site-process
+  null is NOT an exact forward-cipher null; shared-position dependence and q_s
+  uncertainty omitted. Motivated by prior same-data smoothness, not independent
+  replication. No retuning, new exclusion or decryption; nothing in LP2 solved.
+
 ### Phase 5 – Validation and reporting
 - A plaintext counts as solved only if it scores well across a whole segment (word hits and IoC about 1.8)
   and the same rule works on the next page.
