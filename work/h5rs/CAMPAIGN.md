@@ -1,7 +1,11 @@
 # work/h5rs — flat-library campaign (H5 first slice over the 581-stream library)
 
 Status: **CONTROLS PASS (13/13, `campaign_control.txt`), parity gate re-PASS (312/0) on the
-modified binary, CAMPAIGN NOT LAUNCHED** (parent wrap-up order: stopped before launch).
+modified binary, PRE-LAUNCH REVIEW DONE (3/3 new plants pass the real file: path - the four
+pre-launch controls and their numbers are in `prelaunch_controls.txt`; null-size
+justification below: the +0.15-over-8-stream margin is NOT justified at campaign size and
+is replaced by the measured 581-stream null max; block-resumable launcher + merge tested),
+CAMPAIGN NOT LAUNCHED**.
 Nothing in LP2 is solved; every candidate below is unverified until the whole-section rule
 of `docs/CAMPAIGNS.md` passes.
 
@@ -67,28 +71,139 @@ h5rs sweep <windows.txt> file:<lib.ksb>[:<name>|all] <off0> <off1> <L0> <L1> <mo
   (20,000 values) equals an independent prime sieve mod 29 and the h5rs internal totient
   (so the file: path reads the stream the internal `tot` path uses).
 
-## Launch (NOT DONE YET - parent wrap-up order stopped here)
+## Pre-launch controls (prelaunch_controls.txt; `python work/h5rs/prelaunch_plant.py` +
+`python work/h5rs/record_prelaunch.py` reproduce them)
+
+Three NEW plants through the REAL file: path, each planted in Python with the exact
+h5slice semantics (`h5slice.plant`: model 0 = skip, keep 0.19, seed 42, litf False, b 0;
+plaintext = Self-Reliance runes 3000:3300; keywords via `lp.word_to_key`), written as a
+300-rune window in the h5rs format (real prev rune kept), then swept with the REAL binary
+(`engine fast`, abort (120, 0.9)) over the FULL grid 0..1999 x L 2..20 x both models =
+76,000 cells, with the matched 8-stream null (`null8.ksb`) over the same window/grid.
+The library stream values were verified first == the h5slice/keystreams generators
+(`primes` = first primes mod 29; `primes-1 (totient)` = (p-1) mod 29). All numbers are in
+`prelaunch_controls.txt`; the binary used is SHA-256
+`884199A82496DA3E0386CA6CB1FAC92C43DC21E2D4D8DE75D7C5D1726B405B67` (built 2026-10-18
+21:37; source == the `src/main.rs` committed in 4603f48, unchanged in HEAD 01b31fe).
+
+| control | stream (non-totient) | keyword (L) | offset | window | plant cell IoC | argmax | null max m0 (8 str) | margin | verdict |
+|---|---|---|---|---|---|---|---|---|---|
+| (a) | `primes` | FIRFUMFERENFE (13) | 1300 | seg0.8 | **1.850136** | plant cell | 1.370050 | +0.480086 | **PASS** |
+| (b) | `primes` | CIRCUMFERENCE (13) | 1600 | seg0.11 | **1.917336** | plant cell | 1.515595 | +0.401741 | **PASS** |
+| (c) | `primes-1 (totient)` | DIVINITY (8) | 1422 (deep) | seg0.14 | **1.935617** | plant cell | 1.480890 | +0.454727 | **PASS** |
+| (c1500) | `primes-1 (totient)` | DIVINITY (8) | 1500 (deep) | seg0.14 | aborts at truth cell | - | 1.521969 | - | documented finding |
+
+* (a): the sweep found exactly one cell >= 1.5, the plant cell; model-1 best 1.286893.
+  Rust reports wcol = FIRFUMFERENFE + 1 (same IoC to 10 decimals as the Python decode's
+  exact wcol - the periodic IoC is relabeling-invariant; the whole-window Python re-decode
+  (beam 64, max_em 10) recovers the exact keyword).
+* (b): two cells >= 1.5, both at the plant's (1600, 13): model 0 = 1.917336 (the plant),
+  model 1 = 1.608606 (the model-1 decode of a model-0 plant; below the plant cell).
+* (c): exactly one cell >= 1.5, the plant cell; wcol = DIVINITY exact in every engine.
+* (c1500) FINDING: at offset 1500 the truth cell is killed by the campaign's init abort
+  (120, 0.9) in Python and all Rust engines (`h5rs decode` -> ABORT); the 12-beam
+  coincidence init loses the true path at this offset (beam luck - it survives at ~half of
+  the deep offsets probed: 1400/1420/1422/1520/1650/1900/1950 survive, the rest abort).
+  `--no-abort` on the scalar engine recovers wcol = DIVINITY exactly (ioc 1.6984). Control
+  (c) therefore uses 1422, the closest clean deep offset. Consequence for the campaign:
+  the grid can MISS a true cell at some offsets (a whole-window re-decode of near-miss
+  cells is NOT in the candidate rule; accepted risk, documented here).
+* Engine tie-flip caveat: on non-gate cells the `fast`/`fastscalar` engines can flip a
+  near-tie against the `scalar`/numba reference (c1500 no-abort: fast gives a junk wcol at
+  IoC 0.9964, scalar gives DIVINITY at 1.6984). Under the campaign abort both agree
+  (ABORT). The parity gate (24 cells) still passes; candidate verification is the Python
+  whole-window re-decode, which is the reference.
+
+## Null-size justification (prelaunch_controls.txt, "null-size" section)
+
+The candidate rule compares each cell against the 8-stream matched-null max + 0.15. To
+justify (or replace) that margin at the REAL campaign size, the null side was measured for
+the real seg0.8 window at 581 streams (`data/null581.ksb`, seeds 9000..9580, uniform
+replicates of the h5rs splitmix64 generator) over the full grid 0..1999 x L 2..20 x both
+models = 44,156,000 cells (31.5 min at the measured 23.4k/s, 8 threads):
+
+* 8-stream null max (seg0.8): model 0 = 1.361300, model 1 = 1.336213 (0 cells >= 1.5).
+* 581-stream null max (seg0.8): **model 0 = 1.617168, model 1 = 1.676032**; 23 cells
+  >= 1.5, 3 cells >= 1.6 (one m0, two m1) - `prelaunch_null581.tsv`.
+* Growth 8 -> 581 streams: **+0.255868 (m0), +0.339819 (m1)** -> the +0.15 margin over
+  the 8-stream null is **NOT justified at campaign size and MUST BE REPLACED by the
+  measured 581-stream value**: the effective candidate floor becomes
+  max(1.6, nullmax581 + 0.15) = **1.7672 (m0) / 1.8260 (m1)** on seg0.8.
+* Gumbel cross-check (method-of-moments on the 581 per-stream maxima): m0 mu=1.2910
+  beta=0.0596, fitted E[max n=581] = 1.7050 vs observed 1.6172 (fitted growth 0.2555 vs
+  observed 0.2559); m1 mu=1.2349 beta=0.0582, fitted 1.6386 vs observed 1.6760 (fitted
+  growth 0.2492 vs observed 0.3398). The measured maxima are consistent with the Gumbel
+  fit, so no extrapolation is needed - the measured values are used.
+* Consequence for the controls: the three plants pass against the 8-stream null max (the
+  task's control specification) with margins +0.480/+0.402/+0.455; all three still clear
+  the measured seg0.8 581-floor (1.7672, m0). The OTHER windows' 581-stream maxima are
+  unmeasured (the 8-stream per-window spread is ~1.22-1.52, so a naive +0.256/+0.340
+  growth extrapolation would put plant (b)'s seg0.11 floor near its IoC); the per-window
+  campaign-scale null max should therefore be MEASURED, not extrapolated - run the null
+  sweep with `null581.ksb` (see Launch: `set NULLKSB=...`), +4.2 h at 23.4k/s, or accept
+  a window-uniform provisional floor of 1.7672/1.8260.
+
+(see also "expected null max ~1.3" in the candidate-rule section below)
+
+## Launch (block-resumable; NOT DONE YET)
 
 ```
-Start-Process -FilePath cmd.exe -ArgumentList '/c','work\h5rs\launch_campaign.bat' -WindowStyle Hidden
+Start-Process -FilePath cmd.exe -ArgumentList '/c','work\h5rs\launch_campaign_blocks.bat' -WindowStyle Hidden
 ```
 
-`launch_campaign.bat` (run from the repo root) does, in one detached job:
+`launch_campaign_blocks.bat` (run from the repo root, detached) runs:
 
-1. the real sweep: 581 streams -> `results/h5rs_flat_sweep.tsv` + `results/h5rs_flat_sweep.log`
-2. then the matched-null sweep: `data/null8.ksb` (8 replicates, seeds 9000..9007) over the
-   same grid -> `results/h5rs_flat_null.tsv` + `results/h5rs_flat_null.log` (with `--best`)
+1. the real sweep in **5 offset blocks of 400** (0-399, 400-799, 800-1199, 1200-1599,
+   1600-1999). Each block is one engine run: 581 streams x 8 windows x 400 offsets x
+   19 L x 2 models = 70.6 M decodes (~1.0-1.2 h at 16.6-20.8k/s), writing
+   `results/h5rs_flat_block<N>.tsv` + `results/h5rs_flat_block<N>.log` (with `--best`);
+   a block is finished when `results/h5rs_flat_block<N>.done` exists;
+2. then the matched-null sweep: `%NULLKSB%` (a variable at the top of the launcher;
+   default `data/null8.ksb`, ~5 min; per the Null-size justification the campaign-scale
+   matched null should use `data/null581.ksb`, ~4.2 h) over the full grid ->
+   `results/h5rs_flat_null.tsv` + `results/h5rs_flat_null.log` (with `--best`).
 
-### Kill / resume (NOT resumable)
+After all 5 blocks, merge once (checked by the block test below):
 
-* The job is **not resumable**: a kill discards nothing except the partial TSV is left
-  behind, and a restart begins **from zero** (the launcher recreates both outputs).
+```
+python work/h5rs/merge_blocks.py results/h5rs_flat_sweep.tsv ^
+     results/h5rs_flat_block1.tsv results/h5rs_flat_block2.tsv results/h5rs_flat_block3.tsv ^
+     results/h5rs_flat_block4.tsv results/h5rs_flat_block5.tsv
+```
+
+`merge_blocks.py` concatenates the blocks, errors on duplicate cells, re-sorts the rows
+into the engine's canonical chunk-major order and re-merges the per-block `best` sections
+into per-(stream, window, model) maxima; with `--expect <mono.tsv>` it verifies the merge
+against a monolithic sweep. **Block machinery tests (done, `work/tmp/h5rs_blocktest/`):**
+(1) 2 random streams (`null2.ksb`, seeds 9000..9001) x 8 windows, offsets 0..39 split into
+two blocks of 20, merged and compared against one monolithic 0..40 sweep with `--hits 0`:
+24,320 data rows IDENTICAL, 32 best rows IDENTICAL. (2) The launcher itself was exercised
+via a transformed copy (null2.ksb, 5 blocks of offsets 0..20 .. 80..100, null sweep
+0..100, outputs under `work/tmp/h5rs_blocktest/`): pass 1 runs all 5 blocks + the null
+sweep and writes all `.done` markers (exit 0); pass 2 after deleting block 3's `.done`
+skips blocks 1/2/4/5 and the null sweep and re-runs only block 3; the 5 block TSVs merge
+to the monolithic 0..100 sweep (MERGE CHECK: PASS). Two launcher bugs found and fixed by
+this test: the `where.exe` existence check always failed for the relative binary path
+(so the launcher would never have started anything; replaced by `if not exist`), and a
+parenthesized-batch parse hazard in the failure echo (rewritten goto-style). The real
+campaign was NOT run by this review.
+
+### Kill / reboot (resumable per block)
+
+* A kill (or a reboot during a block) loses only the CURRENT block: its partial TSV/log are
+  recreated when the launcher re-runs that block from its block start (~1.0-1.2 h of
+  re-decode). Finished blocks are kept - the launcher skips every block whose `.done`
+  marker exists, and skips the null sweep when `results/h5rs_flat_null.done` exists.
+* The 5 blocks must be merged only AFTER all 5 exist; a partial merge is just discarded
+  and re-merged.
 * Kill: `taskkill /F /T /PID <pid>` where `<pid>` is the launched cmd's PID, or
-  `taskkill /F /IM h5rs.exe` (kills the engine; the bat then runs step 2 and exits).
-* Check: `Get-Content results\h5rs_flat_sweep.log -Tail 3` (chunk counter, cells, rate,
-  eta) and `(Get-Item results\h5rs_flat_sweep.tsv).Length` / row count.
-* Restart: rerun the launcher. Before a restart after a kill, the partial TSV/log are
-  overwritten automatically — move them aside first if you want the partial grid.
+  `taskkill /F /IM h5rs.exe` (kills the engine; the bat then marks the block FAILED and
+  stops). A block that FAILS (non-zero exit) does not get its `.done` marker and is
+  re-run on the next launch.
+* Check: `Get-Content results\h5rs_flat_block<N>.log -Tail 3` (chunk counter, cells, rate,
+  eta) and `(Get-Item results\h5rs_flat_block<N>.tsv).Length`.
+* Restart: rerun the launcher. Before a restart after a kill, move the partial TSV aside
+  first if you want to inspect the partial grid (it is overwritten otherwise).
 
 ## Reading the TSV
 
@@ -98,15 +213,20 @@ Start-Process -FilePath cmd.exe -ArgumentList '/c','work\h5rs\launch_campaign.ba
   (stream, offset, L, model, window).
 * The null TSV additionally ends with a `best ...` section: the best cell per
   (stream, window, model) even below 1.5. The **window's matched-null max** for the
-  candidate rule = the max of the 8 null `best` IoCs for that (window, model).
+  candidate rule = the max of the null `best` IoCs for that (window, model) — per the
+  null-size justification this must be the 581-stream max (see the rule below), not the
+  8-stream one.
 
-## Candidate rule (applied AFTER the sweep, not by the engine)
+## Candidate rule (UNCHANGED in structure by the pre-launch review; applied AFTER the sweep, not by the engine)
 
 A real-sweep cell is a CANDIDATE (flagged UNVERIFIED) iff:
 
 1. its periodic IoC >= **1.6** AND >= **the window's matched-null max + 0.15**
-   (matched null: the 8 replicate streams of the same grid, same window and model;
-   expected null max ~1.3 over 608,000 cells/window), then
+   (matched null: same grid, same window and model. The pre-launch null-size
+   measurement REPLACES the 8-stream basis: at campaign size (581 streams) the null max
+   on seg0.8 is 1.6172 (m0) / 1.6760 (m1), so the effective floor is the measured
+   581-stream per-window null max + 0.15 = 1.7672/1.8260 on seg0.8 - see "Null-size
+   justification"; the 8-stream sweep is kept as a cross-check), then
 2. it is re-decoded WHOLE-WINDOW in Python (`work/h5slice`, beam 64, max_em 10, verified
    init — the h5slice.redecode conventions of `work/h5slice/lp2_look.py`), and
 3. only if the whole-window re-decode holds, the whole-section English verification of
@@ -115,13 +235,17 @@ A real-sweep cell is a CANDIDATE (flagged UNVERIFIED) iff:
 
 A cell passing 1-3 is still not a decryption until the whole-section verification passes.
 Every candidate so far, from any method, has been selection noise
-(`docs/CAMPAIGNS.md`).
+(`docs/CAMPAIGNS.md`). Known caveat (pre-launch control c1500): the grid's init abort
+(120, 0.9) can kill a true cell at some offsets, so the rule can miss a true key; that is
+accepted for this first slice (no near-miss re-decode).
 
 ## Expected wall time
 
-353,248,000 + 4,864,000 (null) decodes; at the 8-thread rate measured by the last parity
-run (16,258 dec/s under desktop load; ~16.6-18.8k idle) the real sweep is ~6.0-6.2 h and
-the null sweep ~5 min. The log's per-chunk `eta` lines are the live estimate once launched.
+353,248,000 + 4,864,000 (null8) decodes; at the 8-thread rate measured by the null-size
+run (23.4k dec/s under the current load; the parity run measured 16.3-18.8k) the 5 real
+blocks are ~1.0-1.2 h each (~5-6 h total) and the null8 sweep ~5 min. If the null sweep
+uses `null581.ksb` (recommended by the null-size justification), add ~4.2 h. The log's
+per-chunk `eta` lines are the live estimate once launched.
 
 ## Files
 
@@ -130,6 +254,21 @@ the null sweep ~5 min. The log's per-chunk `eta` lines are the live estimate onc
 * `gen_nulls.py` - regenerates `data/null8.ksb` / `data/null4.ksb` (h5rs splitmix64,
   replicated bit-exactly; the streams match the internal `rand:9000..9007` generator -
   control (b2)).
+* `gen_null581.py` - generates `data/null581.ksb` (581 replicates, seeds 9000..9580, the
+  null-size justification asset).
 * `run_controls.py` - runs and records all controls -> `campaign_control.txt` (13/13 PASS).
-* `launch_campaign.bat` - the detached launcher (real sweep, then null sweep).
-* `results/h5rs_flat_sweep.tsv|log`, `results/h5rs_flat_null.tsv|log` - campaign outputs.
+* `prelaunch_plant.py` - plants the four pre-launch controls in Python (h5slice semantics,
+  stream verification) -> `data/plant_{a,b,c,c1500}_*.txt`.
+* `record_prelaunch.py` - computes the control numbers from the sweep TSVs ->
+  `prelaunch_controls.txt`.
+* `merge_blocks.py` - merges the 5 per-block TSVs (re-sort + best re-merge + `--expect`
+  check against a monolithic sweep).
+* `launch_campaign_blocks.bat` - the block-resumable detached launcher (5 real blocks,
+  then the null sweep; `set NULLKSB=` picks the null size). `launch_campaign.bat` (the old
+  single-shot launcher) is kept but superseded.
+* `data/plant_{a,b,c,c1500}_*.txt` - the pre-launch plant windows; `sweep_{a,b,c,c1500}_{real,null}.tsv`
+  - their sweeps; `prelaunch_null581.tsv|log` - the 581-stream null-size run;
+  `prelaunch_null8_seg0.8.tsv` - the 8-stream comparison on the same window;
+  `data/null2.ksb`, `work/tmp/h5rs_blocktest/` - the block-machinery test assets.
+* `results/h5rs_flat_block1..5.tsv|log` + `.done` markers, merged into
+  `results/h5rs_flat_sweep.tsv`; `results/h5rs_flat_null.tsv|log` - campaign outputs.

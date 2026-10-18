@@ -12,8 +12,7 @@ echo == h5rs flat-library campaign start %date% %time% == > results\h5rs_flat_sw
 echo == h5rs flat-library campaign start %date% %time% == > results\h5rs_flat_null.log
 
 rem 1) real sweep: 581 library streams x 8 windows x 2000 offsets x 19 L x 2 models
-%windir%\System32\where.exe %BIN% >nul 2>nul
-if errorlevel 1 (
+if not exist "%BIN%" (
   echo ERROR: %BIN% not found - build it first: cargo build --release in work\h5rs >> results\h5rs_flat_sweep.log
   exit /b 1
 )
