@@ -36,6 +36,7 @@
 | [SESSION_LOG.md](SESSION_LOG.md) | record | What the user asked in each session and what was decided |
 | [prs/](prs/INDEX.md) | record | Reviews of the other AI's `research/*` branches (read as data, tests rewritten before running) |
 | [HANDOFF.md](HANDOFF.md) | historical | The desktop hand-off prompt of 2026-10-17; its queue and GPU state are out of date, see STATUS.md |
+| [PROMPT_EXPERT_REVIEW.md](PROMPT_EXPERT_REVIEW.md) | living | Ready-to-paste prompt for a stronger outside model: audit the method, propose at most five testable hypotheses |
 | [../work/log/phase10_proposals_review.md](../work/log/phase10_proposals_review.md) | record | Review of the 12 DeepSeek gates in `work/proposals/` (third-party, untrusted) |
 
 ## Code and data
