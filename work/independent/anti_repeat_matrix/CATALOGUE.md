@@ -1,7 +1,7 @@
 # Anti-repeat misspecification: concrete channels and pointer semantics
 
 **UNEXECUTED / UNVALIDATED. Nothing in LP2 is solved.** No Python, build, test,
-benchmark, simulation or search was run to prepare this package. Only this new
+benchmark, simulation or cryptanalytic search was run to prepare this package. Only this new
 folder is written. The existing collision-substitution package is imported by
 the proposed human gate, not edited or executed by the author.
 
@@ -29,7 +29,9 @@ are explicitly design choices, and algebraic numbers are marked derived.
   comparison and unscored: `work/kscreen/src/main.rs:190-235,532-540`.
 * **A:** extra word and line/page advances: `work/kscreen/src/main.rs:237-268`;
   `work/kscreen/ADVSEP.md:23-40`. A word boundary coinciding with a break adds
-  both advances, not just one (`ADVSEP.md:27-33`).
+  both advances, not just one (`ADVSEP.md:27-33`). The exporter preserves repeated
+  B entries at a position (`work/kscreen/export.py:39-50`); line and page tokens
+  must not be deduplicated by an independent layout reader.
 
 There IS already some off-model power evidence, so 'no test exists' is too broad:
 
@@ -163,7 +165,7 @@ matches repaired sites but gets the kept-collision pointer update wrong.
 
 This deliberately simple substitution is the existing collision module's guarded
 I_1 fallback, evaluated with the new calibrated q0:
-`../collision_substitution/collision_model.py:repair_distribution,kernel`.
+`work/independent/collision_substitution/collision_model.py:36-60`.
 No history-tap selection is fitted in this catalogue. Original plaintext at a
 repaired position is ambiguous with an ordinary plaintext giving the same output;
 language redundancy/side information would be needed to choose that branch.
@@ -236,8 +238,8 @@ convention: A above. Matching decoder: advsep=1 with skip.
 
 ### M12 — Word AND line/page advance plus M01
 
-As M11, but `A_i=W_i+B_i`, where B_i is the exported line/page break flag.
-Coincident events add. Total Delta j=A_i+1 or A_i+2. Marginal kernel and rate
+As M11, but `A_i=W_i+B_i`, where B_i counts exported line/page break entries
+at that position, including duplicates. Coincident events add. Total Delta j=A_i+1 or A_i+2. Marginal kernel and rate
 again equal M01's. Matching decoder: advsep=2 with skip. No layout advance before
 the window's first rune is inferred; such an advance is absorbed by start offset.
 

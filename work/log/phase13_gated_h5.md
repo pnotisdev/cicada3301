@@ -1,0 +1,48 @@
+# Phase 13: the corrected gated-null gate and the H5 drift-decoder first slice (2026-10-18)
+
+Scope: LP2 sections 0.7-0.15. **Nothing in LP2 is solved.** Two builds from round 6-7 completed; both are honest
+partials with measured blockers. Files: `work/tmp/gated_null_*.py|json|md`, `work/h5slice/`.
+
+## 1. The corrected gated-null gate: FAILS - no LP2 screen authorized (`work/tmp/gated_null_report.md`)
+
+The fixed-prior summed statistic (reimplemented from the second model's idea, with the review's required fixes)
+was gated on planted controls:
+
+- **The overfit fix works.** DP validated against a closed-form oracle; Viterbi recovers the plant (296/300
+  letters = 98.7%, null recall 6/10). Against random keys: z(S_true) = +18.11 (64-setting grid) / +15.67
+  (16-setting grid) - the free-beam's 1.75-IoC inflation does not recur.
+- **But the gate fails on structured keys, permanently.** The corrected gate (neighbor offsets +/-1..3 AND the
+  matched-null side, >= 10 nats) fails all three totient plants with margins 8.33-8.71 nats, and the margin is
+  CONSTANT in n (8.40/8.37/8.36 at n = 300/600/900): the statistic cannot resolve a +/-1 key offset on a
+  totient-structured key at any window length - the +1 neighbor realigns for free via one decoder null at the
+  first eligible position, the -1 neighbor at the first hidden skip redraw. 5 of 12 random-key plants spuriously
+  pass the gate (the reviewer's coin-flip reproduces).
+- **Verdict:** the 42%-of-words keyless-null mixture remains untestable, now for the measured reason of OFFSET
+  RESOLUTION on structured keys (not null inflation). The only paths left: a bigram-scored statistic (the
+  reviewer's variant) with a load-bearing value gate, or a null prior conditioned on something the key does not
+  share. One caveat on the exact tables (wrong plaintext prefix window; the fix is applied but not re-run;
+  the verdict direction is corroborated by the independent review's -0.3-nat measurement on the true window).
+
+## 2. H5 drift-decoder first slice: built, not validated - one real blocker (`work/h5slice/README.md`)
+
+- **Delivered:** `work/h5slice/h5slice.py` - self-contained totient stream, independent two-stack planter with
+  layer2's anti-repeat models and the literal-F rule, two-stage decode (w-free coincidence init pass, then EM over
+  the keyword columns with collision-consistency skip branches), periodic-IoC scoring per
+  `docs/HYPOTHESES.md:70-78`. Calibration: plant (Self-Reliance x totient + DIVINITY, offset 1234) gives plain IoC
+  1.936 vs cipher IoC 1.016 - LP2-like; LL-EM decode 8.5 ms single-core.
+- **Blocker found:** (1) solved - seeding the EM from the no-skip pointer traps it in a mixture fixed point
+  (wcol [23,4,11,24,12,26,24,24] vs DIVINITY [23,10,1,10,9,10,16,26], periodic IoC 1.042); (2) OPEN - the
+  coincidence init pass with free pointer branches fabricates coincidence generically (z about 41 sigma on BOTH
+  the truth plant and random nulls): with ~3 free pointer choices per rune the beam routes each rune to a
+  matching column; a skip cap and a flat per-skip sigma-penalty do not cure it. The fix (specified): score the
+  init beam in nats with a bounded per-match gain (about 2-3 nats vs the 3.6-nat skip cost,
+  `docs/HYPOTHESES.md:18-24`), or consistency-conditioned branches with a small multi-start over the top-2
+  per-column ML shifts.
+- **Not run:** the (a)-(e) controls and the LP2 first look. Projected LP2 grid (8 windows x 2,001 offsets x
+  19 L x 2 models + matched null, about 1.2 M decodes): 25-75 min on 8 workers, unvalidated.
+
+## Registry / status updates
+
+- `nulledge` row: gap updated - the 42% mixture is untestable for the measured reason of offset resolution on
+  structured keys (gated-null row files).
+- `open-h1` row: the first slice exists with its blocker; the fix (nats-scored init beam) is the next step.

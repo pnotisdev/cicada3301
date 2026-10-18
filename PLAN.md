@@ -580,6 +580,19 @@ engine `work/layer2` (output `results/layer2/`).
   the truth's level). Word-end nulls are also excluded as the echo source (targets word-final 32/80 vs 34.7
   expected).
 
+- **Affine outer sigmas closed by algebra (2026-10-18).** sigma(x) = a*x + b: the ordinary screen with key
+  multiplier a decodes c - a*k = a*p + b (an IoC-invariant permutation of the plaintext), so the completed
+  28-multiplier campaign (5.7 B decodes, negative) covers every affine sigma - verified over all 22,736
+  (a, b, m') settings with |dIoC| < 1e-12. The keyword-alphabet run (17 + Atbash, all sections, best 1.3895 vs
+  null 1.3346) is negative; only arbitrary non-affine permutations remain open (not sweepable). A current-library
+  multipliers rerun (1,439 -> 1,447 streams) is a library refresh, queued.
+- **Second model's work/independent reviewed** (`work/tmp/independent_review.md`): PGP 7A35090F bytes correct
+  but already in-repo as keystream seeds; its lag-6 gated-null statistic fixes the free-beam overfit (z +45.9 vs
+  random keys) but its gate fails (offset valley on structured keys, 3/6 random plants); the corrected gate and
+  the H5 drift-decoder slice are being built with the review's required fixes.
+- **Sign-template campaign running** (`kscreen-signs-periodic`, 25 templates, control 9/9): every template so
+  far negative (best 1.32-1.36 falling to 1.05-1.15 whole-window).
+
 ### Phase 5 – Validation and reporting
 - A plaintext counts as solved only if it scores well across a whole segment (word hits and IoC about 1.8)
   and the same rule works on the next page.

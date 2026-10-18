@@ -79,6 +79,7 @@
 | Evolving-alphabet walk (period-5 alphabets per word, alphabet changes per word, skip on repeat; aldegonde's length-clocked walk) | untestable |  | [perm_relations.txt](analysis/perm_relations.txt) |
 | Keyword-mixed outer alphabet around an additive key: relabel the ciphertext by sigma, then the ordinary screen | open |  | [relabel_export.py](../work/kscreen/relabel_export.py), [RELABEL.md](../work/kscreen/RELABEL.md), [relabel_control.txt](../work/tmp/relabel_control.txt), [summary.txt](../work/tmp/relabel_gate/summary.txt), [relabel_all_summary.txt](../work/tmp/relabel_all_summary.txt), [relabel_all_kw_KOAN.tsv](kscreen/relabel_all_kw_KOAN.tsv), [relabel_all_kw_PRIMES.tsv](kscreen/relabel_all_kw_PRIMES.tsv), [relabel_all_atbash.tsv](kscreen/relabel_all_atbash.tsv), [relabel_all_null.tsv](kscreen/relabel_all_null.tsv) |
 | Unkeyed insertions (an extra rune per word that consumes no key value) and extra key advance at word separators / line / page breaks | open |  | [README.md](../work/proposals/null_beam/README.md), [null_insertion.txt](analysis/null_insertion.txt) |
+| H1: library x keyword (L <= 20) with a drift-tracking decoder | open |  | [README.md](../work/h5slice/README.md), [h5slice.py](../work/h5slice/h5slice.py) |
 | H2: tableau / transition-table ciphers (a statistic invariant to the table) | open |  | [proposals_h2_skip.txt](analysis/proposals_h2_skip.txt) |
 
 ### Restarts, reuse and layout

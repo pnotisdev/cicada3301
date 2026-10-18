@@ -13,6 +13,9 @@ from itertools import product
 from pathlib import Path
 import sys
 
+# Imports must not create __pycache__ files in shared helper/kernel folders.
+sys.dont_write_bytecode = True
+
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent))
 from manual_common import execute, lp_module, relative, sha256
@@ -74,6 +77,10 @@ def kernel_checks(run):
         for held_key in range(R.Q):
             require(sum((p + held_key) % R.Q == a for p in range(R.Q)) == 1,
                     "Uniform-new-plaintext mask; not an English assertion")
+    for a, p, k in product(range(R.Q), repeat=3):
+        feedback = (a + p + k) % R.Q
+        require((feedback == a) == ((p + k) % R.Q == 0), "Feedback collision target transform")
+        require((feedback - a - k) % R.Q == p, "Feedback positive emission control")
     run.log(f"Kernel identities: {checked} rows; full alphabets, plus stationary-null and retained-key countercontrols.")
     return dict(checked_rows=checked, hold_english_calibration="unknown",
                 infinite_retry_tail="summed geometrically, not truncated", passed=True)
@@ -211,6 +218,20 @@ def stateful_checks(run):
                     counter[next_state] += weight
         matrix, _ = R.transition_and_event("M04", mode, True, masked, 0, 0)
         require(tuple(F(counter[s], norm) for s in (0, 1)) == matrix[int(unequal)], "Hold comparison-state matrix")
+    # Null NORMAL row, independently enumerated over candidate/repair outputs.
+    q, norm = R.QN, R.Q * (R.Q - 1) * R.QN.denominator
+    for mode, masked in product(("S", "C"), (False, True)):
+        counter = Counter()
+        for candidate, r in product(range(R.Q), range(1, R.Q)):
+            branches = ([(candidate, 1, q.denominator)] if candidate else
+                        [(0, 1, q.denominator - q.numerator), (r, 0, q.numerator)])
+            for y, dj, weight in branches:
+                supported = (dj == 0) if masked else bool(R.decoder_outputs_at_end(
+                    y, 0, (candidate, 0, 0), 0, mode, dj))
+                if supported:
+                    counter[int(dj == 0)] += weight
+        matrix, _ = R.transition_and_event("M07", mode, True, masked, 0, 0)
+        require(tuple(F(counter[s], norm) for s in (0, 1)) == matrix[0], "Null NORMAL matrix")
     # Null: enumerate every off-previous padding symbol and its exact retry.
     for a in range(R.Q):
         for r in range(R.Q):
@@ -245,7 +266,12 @@ def signal_controls(run):
     observed = [(1 - R.RHO) * p + R.RHO * (1 - p) / (R.Q - 1) for p in pi]
     f = 1 - R.Q * R.RHO / (R.Q - 1)
     require(R.Q * sum(p * p for p in observed) - 1 == f * f * (R.Q * sum(p * p for p in pi) - 1), "Local-noise IoC attenuation")
-    run.log("Signal controls: affine-phase counterexample, independent wrong-key null, exact local-noise attenuation.")
+    shifted = [(1 - R.RHO) * pi[i] + R.RHO * pi[(i - 1) % R.Q] for i in range(R.Q)]
+    source_contrast = R.Q * sum(p * p for p in pi) - 1
+    shifted_contrast = R.Q * sum(p * p for p in shifted) - 1
+    require((1 - 2 * R.RHO) ** 2 * source_contrast <= shifted_contrast <= source_contrast,
+            "Plaintext-adjustment IoC bounds")
+    run.log("Signal controls: affine-phase counterexample, independent wrong-key null, exact local-noise attenuation/bounds.")
 
 
 def layouts(run):
@@ -281,7 +307,10 @@ def layouts(run):
 
 def theoretical_numbers():
     result = dict(parameters=R.parameters(), units="Native bigram scores are rounded/clipped 10*log-odds, NOT nats",
-                  provenance="Derived scenario numbers; not measured power", bare_interior=[])
+                  provenance="Derived scenario numbers; not measured power",
+                  sources=dict(calibration="results/analysis/cicadanotebook_checks_2026-10-17.txt:9,36",
+                               ioc="STATUS.md:19", bigram_scaling="work/phpmt/bg.py:52-64",
+                               correct_bigram="results/analysis/true_key_score.txt:1,13"), bare_interior=[])
     for mid in R.IDS:
         if mid == "M10":
             continue
@@ -293,6 +322,8 @@ def theoretical_numbers():
                                                  note="M11/M12: interior only, real layout changes this" if mid in ("M11", "M12") else None))
     f = 1 - R.Q * R.RHO / (R.Q - 1)
     result["local_noise_ioc_illustration"] = [float(1 + f * f * (i - 1)) for i in (F(8, 5), F(103, 50))]
+    result["fixed_adjustment_ioc_lower_bounds"] = [float(1 + (1 - 2 * R.RHO) ** 2 * (i - 1))
+                                                    for i in (F(8, 5), F(103, 50))]
     result["wait_to_net_repair"] = str(1 / R.RHO)
     result["checks_300_initial_collisions"] = str(F(300, R.Q))
     result["checks_300_net_repairs"] = str(300 * R.RHO)
@@ -320,7 +351,7 @@ def action(run, args):
                 summaries.append(dict(section=window["section"], **{k: v for k, v in row.items()
                                       if k != "conditional_lengths_after_positions"}))
             run.log(f"Reference reset matrix written for section 0.{window['section']}; not a beam-power result.")
-        run.save("matrix_summary.json", dict(reset_before_event=True, measured=False, rows=summaries,
+        run.save("matrix_summary.json", dict(reset_before_event=True, layout_exogenous=True, measured=False, rows=summaries,
                   warning="Averaging resets before every hypothetical first event. Earlier errors, offset gauge, pruning and resynchronization are not modelled."))
     run.check()
     require(snapshot() == before, "Inputs/code changed during gate; incomplete, rerun on a stable snapshot")

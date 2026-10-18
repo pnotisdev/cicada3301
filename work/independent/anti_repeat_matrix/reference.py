@@ -35,7 +35,9 @@ ONE = F(1)
 
 
 def parameters():
-    return {"Q": Q, "delta": str(DELTA), "q0": str(Q0), "q1": str(Q1),
+    return {"calibration_source": "results/analysis/cicadanotebook_checks_2026-10-17.txt:9,36",
+            "scope": "Derived iid fresh-pad reference; hold additionally assumes iid uniform plaintext",
+            "Q": Q, "delta": str(DELTA), "q0": str(Q0), "q1": str(Q1),
             "qN": str(QN), "rho": str(RHO), "alpha": str(ALPHA),
             "kappa": str(KAPPA), "null_stationary_fraction": str(QN / (Q + QN))}
 
@@ -239,7 +241,9 @@ def window_matrix(window):
         for name, mode, null_kind, adv_kind in DECODERS:
             if mid == "M10":
                 out.append(dict(model=mid, decoder=name, reset_oracle_mean=None,
-                                actual_beam_power="unknown", reason="no mod-29 collision event"))
+                                actual_beam_power="unknown", actual_beam_run_length="unknown",
+                                actual_true_key_ioc="unknown", actual_true_key_bigram_score="unknown",
+                                reason="no mod-29 collision event; different native domain"))
                 continue
             mask = window["final"] if null_kind == 1 else window["initial"] if null_kind == 2 else [False] * n
             actual_adv = window["word"] if mid == "M11" else window["word_break"] if mid == "M12" else [0] * n
@@ -267,6 +271,7 @@ def window_matrix(window):
                             reset_oracle_immediate_phase_support=immediate,
                             conditional_lengths_after_positions=by_position,
                             actual_beam_run_length="unknown", actual_beam_power="unknown",
+                            actual_true_key_ioc="unknown", actual_true_key_bigram_score="unknown",
                             plaintext_warning=("uniform-plaintext hold reference" if mid == "M04" else
                                                "wrong native emission/domain" if mid == "M09" else
                                                "local symbol corruption" if mid in ("M06", "M08") else None)))

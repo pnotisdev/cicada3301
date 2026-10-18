@@ -502,7 +502,7 @@ best = 1.4294
 null = 1.3849
 control = "Plant with a keyless null at EVERY word edge on the Welcome/primes plant: blindness 1.207/1.219 (1.078 at the true offset), recovery 1.670/1.667 at the exact offset, rand null 1.355/1.325: controls pass"
 result = "nulledge=1 best 1.4163 (about 229 scored letters: the short-window heavy tail) vs matched null 1.3901; nulledge=2 best 1.4294 vs 1.3849; every flagged hit falls to 1.037-1.063 over the whole window against matched random-offset controls max 1.067-1.146: negative. The 42%-of-words mixture (the word-length model's rate) has no powered IoC decoder: the free per-word beam recovers the 42% plant (1.71) but inflates the random-key null to 1.75 (per-word null freedom = key-phase freedom); the deterministic reading misaligns at the first null-free word (1.27)"
-gap = "The 42% mixture itself (untestable as formulated); nulls inside words; extra key advance at layout events; keys outside the library"
+gap = "The 42% mixture itself: untestable, now for the measured reason of OFFSET RESOLUTION - a fixed-prior summed statistic (work/tmp/gated_null_report.md) fixes the null inflation (z +15.7 to +18.1 vs random keys, Viterbi 296/300) but cannot resolve +/-1 offsets on totient-structured keys at any n <= 900 (neighbor margin 8.4 nats, constant in n; the +1 neighbor realigns via one free decoder null, the -1 at the first hidden redraw; 5 of 12 random-key plants spuriously pass the gate); nulls inside words; extra key advance at layout events; keys outside the library"
 log = ["work/log/phase12_review2.md"]
 files = ["work/kscreen/NULLEDGE.md", "work/tmp/nulledge_control.txt", "work/tmp/nulledge_report.md", "results/kscreen/nulledge1_segments.tsv", "results/kscreen/nulledge2_segments.tsv", "results/kscreen/nulledge1_segments_verify.txt", "results/kscreen/nulledge2_segments_verify.txt"]
 
@@ -804,9 +804,10 @@ group = "structure"
 title = "H1: library x keyword (L <= 20) with a drift-tracking decoder"
 status = "open"
 priority = 9
-cost = "1-2 days of engine work, then CPU / GPU"
-needs = "A new engine; controls specified"
-log = ["docs/HYPOTHESES.md"]
+cost = "First slice built 2026-10-18 (work/h5slice/): decode with a known stream, unknown keyword L 2-20, EM over columns with skip branches; one open blocker - the coincidence init pass fabricates signal on nulls (z ~41 on truth AND nulls) - next: nats-scored init beam (2-3 nats per match vs the 3.6-nat skip cost), then the (a)-(e) controls, then the LP2 grid (25-75 min unvalidated)"
+needs = "Fix the init beam; then a new engine for the 10^8-decode library sweep (port to the layer2 Rust pattern)"
+log = ["docs/HYPOTHESES.md", "work/log/phase13_gated_h5.md"]
+files = ["work/h5slice/README.md", "work/h5slice/h5slice.py"]
 
 [[experiment]]
 id = "open-h2"

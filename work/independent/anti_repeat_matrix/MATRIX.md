@@ -33,6 +33,11 @@ Stop at the first mismatch; later resynchronization is not counted. No actual
 score/prune decision is made. A zero means no uninterrupted continuation from
 that aligned state, NOT no possible later recovery or no detectable IoC.
 
+The reference also treats observed word/break masks as EXOGENOUS ciphertext
+formatting, not an outcome of an English word-length/insertion process. If those
+boundaries are generated jointly with the null locations, their conditional law
+is **unknown**; the geometric fixed-mask average is not its posterior prediction.
+
 This reset assumption is consequential for wrong edge/layout readers, which may
 already have misaligned before t. Start-offset searches can absorb a leading
 constant displacement too. The provided numerical generator labels the reset
@@ -40,8 +45,11 @@ explicitly and does not turn it into full-search power.
 
 ## 2. The actual repository decoder arcs
 
-Use forward key direction, multiplier absorbed into K, and no feedback transform
-unless explicitly named. From current key j, observed y, previous comparison a:
+Use forward key direction, multiplier absorbed into K, default clock=none, no
+self-key G guard and no custom P collision array unless explicitly named. The
+flags use valid full-window L/B layout data; their invalid-input fallback is not
+silently substituted. Clock's default and transformations are at
+`work/kscreen/src/main.rs:89-104`; P/G/S input meanings at `:119-138`. From current key j, observed y, previous comparison a:
 
 **Skip S** (S/C sources):
 
@@ -119,8 +127,9 @@ measurement or claim of a new exclusion is hidden in this table.
 
 The following coefficient tables give a numeric rational function for EVERY
 truth/decoder pair. The layout itself is deterministic, not a rate to guess.
-Let W_i, B_i and n_e(i) be the real word-start, break and edge-null flags (A/N
-sources). Put D_0(i)=0, D_1(i)=W_i, D_2(i)=W_i+B_i. For a scalar channel let F_i
+Let W_i and n_e(i) be real word-start and edge-null flags, and B_i the MULTIPLICITY
+of exported break entries at position i (A/N sources). Repeated line/page entries
+must be preserved (`work/kscreen/export.py:39-50`), not converted to a boolean. Put D_0(i)=0, D_1(i)=W_i, D_2(i)=W_i+B_i. For a scalar channel let F_i
 be phase-preservation probability at a future site and g_t its conditional
 post-first-avoid preservation probability. Then
 
@@ -170,9 +179,13 @@ Define `P_m=q0*(Q-1)/Q^m` for m>=2; these are M02's repaired total-draw masses.
 | M05 | 2 | alpha | rho | 1 | 1 |
 
 All entries are exact rational numbers with Q/parameters supplied in the
-catalogue. The gate independently enumerates the decoder-reachable draw prefixes
-and checks these coefficients; infinite-loop tails are summed geometrically,
-not silently dropped.
+catalogue. For M03/M05, d>=3 gives zero. For M02 and ANY d>=1, the general rule is
+`F_S=sum(P_m,m=d+1..d+3)`, `F_C=P_(d+1)+P_(d+3)`; replace P_m by
+`(Q-1)/Q^(m-1)` for conditional g. Thus coincident word/line/page advances are
+handled without assuming a maximum B multiplicity. The gate independently
+enumerates decoder-reachable draw prefixes and tests the general formula at the
+explicit fixture advances d=0..4; infinite tails are summed geometrically, not
+silently dropped.
 
 ### 4c. M06/M08 and the positive-key-consumption N columns
 
@@ -298,11 +311,20 @@ IoC is
 
     1 + f^2*(I_plain-1).                                   (6)
 
-The benchmark range I would become about **1.566–2.000**, still above its cited
-screen threshold, under these assumptions. This is not an executed plant or a
+This stationary channel calculation gives every output a preceding comparison;
+a window with no comparison before its first output has a small boundary
+correction. The benchmark range I would become about **1.566–2.000**, still above
+its cited screen threshold, under these assumptions. This is not an executed plant or a
 power guarantee, but it disproves 'one substitution necessarily loses the whole
-remaining key alignment'. M08 has a fixed-shift channel instead; its score loss
-needs the plaintext frequencies, not just the one IoC number.
+remaining key alignment'. M08 has a fixed-shift channel instead. Its exact unigram change needs the
+plaintext frequencies, but Cauchy-Schwarz gives a useful iid-reference bound:
+
+    (1-2*rho)^2*(I_plain-1) <= I_adjusted-1 <= I_plain-1.
+
+With I's benchmark range, this bounds M08's ordinary-path IoC to about
+**1.535–2.060**, also above the cited screen threshold under this reference.
+The lower bound, not a newly measured IoC, is derived from the same R-calibrated
+rho. Neither local-error model warrants a blanket pointer-catastrophe claim.
 
 For bigrams, with source joint frequencies B and error channel matrix A,
 `B_decoded=A^T B A` and `E[score]=sum(B_decoded[a,b]*table[a,b])`. The true-key
@@ -345,8 +367,13 @@ in native scaled units, not literal nats (`work/phpmt/bg.py:41,52-64`).
 
 **Do not build again:** M01; M02's tiny retry tail without evidence of material
 pruning loss; M03; M09 feedback; M10 step domain; M11/M12 deterministic layout
-advances. Their matching graph/lane already exists. More keys, broader sweeps and
-GPU work do not answer this misspecification question.
+advances. Their matching graph/lane already exists. This does NOT mean every seed/hash
+family has already been searched in every such domain: coverage is the product
+of key family, kernel, layout and window, not the union of separate campaigns.
+Feedback's library lane does not automatically validate ordinary seed-sweep
+negatives against feedback; step-domain seed coverage likewise requires its own
+controls and recorded scope. More keys, broader sweeps and GPU work do not by
+themselves answer this misspecification question.
 
 This ranking is structural, not a posterior probability ranking. Actual complete
 crossed power values, including all priors, pruning and selection-matched nulls,
