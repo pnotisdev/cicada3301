@@ -1,7 +1,10 @@
 # The detached job queues (2026-10-18)
 
+**Status (2026-10-18 10:35): stopped, nothing is running.** The first run (01:25 - 08:37) did its direct jobs (the sign campaign, 16 page sweeps, the ms months; `work/log/phase10_overnight_queue.md`) but every runner-based job (periodic templates, layer2, prng-bg) crashed because the driver was first called `jobs/queue.py` and shadowed Python's `queue` module (renamed
+`jobs/jobqueue.py`). The user then asked for no more long runs: both tasks were ended and deleted. To use the queues again, recreate the tasks as below or run `python jobs/jobqueue.py <lane> jobs/queues/<lane>.txt` by hand.
+
 Two queues keep the desktop busy for about 12 hours and **keep running when the interactive session that started them ends** (a usage limit, a closed window). They are ordinary Windows scheduled tasks (`LP_queue_cpu`, `LP_queue_gpu`, run once, started immediately,
-parent `svchost.exe`), each running `jobs/queue.py` on a queue file in `jobs/queues/`. Nothing in LP2 is solved; every job is a test with a planted control and a null (see the campaign descriptions in `docs/CAMPAIGNS.md` and `docs/NEGATIVE_SPACE.md`).
+parent `svchost.exe`), each running `jobs/jobqueue.py` on a queue file in `jobs/queues/`. Nothing in LP2 is solved; every job is a test with a planted control and a null (see the campaign descriptions in `docs/CAMPAIGNS.md` and `docs/NEGATIVE_SPACE.md`).
 
 ## What the drivers do
 

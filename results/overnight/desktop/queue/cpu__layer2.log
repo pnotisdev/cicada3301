@@ -1,0 +1,22 @@
+# 2026-10-18 06:26:59 start: {PY} jobs/overnight.py run layer2 --threads 14 --device cpu
+[06:26:59] [device] cpu (--device cpu)
+[06:26:59] [overnight] desktop lane main: 2 campaigns, 13 steps to run (~13.8 h by the rough estimates), 14 threads, device cpu
+
+== setup: Build engines and data
+[06:26:59] [1/13 setup/build-phpmt cpu] start (est. 0.02 h)
+Traceback (most recent call last):
+  File "<repo>\jobs\overnight.py", line 1600, in <module>
+    main()
+  File "<repo>\jobs\overnight.py", line 1593, in main
+    cmd_run(args)
+  File "<repo>\jobs\overnight.py", line 1496, in cmd_run
+    ok = run_step(s, args.dry_run, label)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<repo>\jobs\overnight.py", line 1407, in run_step
+    rc = run_cmd(step, env, log, label)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<repo>\jobs\overnight.py", line 1341, in run_cmd
+    q = queue.Queue()
+        ^^^^^^^^^^^
+AttributeError: module 'queue' has no attribute 'Queue'
+# 2026-10-18 06:26:59 exit 1

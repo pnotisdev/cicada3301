@@ -29,3 +29,8 @@ a decode with another rule's signs at about 50% agreement stays below 1.40 (1.07
 Campaign `kscreen-signs` (`python jobs/overnight.py run kscreen-signs --device cpu`): 61 rules x 581 streams x 8 sections at every offset, mults 1 and 28, both anti-repeat models; one rule is 355 M decodes, about 6.4 minutes on 14 CPU threads (about 6.5 h in all); lore-most-plausible templates first (length thresholds, within-word
 comparisons, parity, then comparisons and half splits). First rule done by hand: C_prev_n, best IoC 1.331.
 Decision rule as for every kscreen: IoC >= 1.40 on the first 300 runes, then whole-window re-decode against the keystream's random offsets (`verify.py`). The total number of decodes is about 2 x 10^10, where random keys reach about 1.37, so the rule has a thin margin.
+
+## Result (2026-10-18, the campaign finished about 06:26)
+
+61 rules, 21.7 billion decodes: **best IoC 1.388** (C_cur_ws), B7_prev_pf 1.388, B5_cur_wp and B5_cur_w 1.380, A_prev_pf 1.371, C_cur_n 1.366; **none at or above 1.40**; whole-window verification of the top 5 hits of every rule: 0 kept (`results/kscreen/signs/<rule>.tsv`, `_verify.txt`). Noise-level for about 2 x 10^10 random decodes.
+The five sign-flat excluded streams: best 1.293 (`results/kscreen/signs_extra/`). **Negative** for the value-sign mechanism and these rules. Not built: the pointer-direction mechanism (both orientations; `phase10_deepseek_round4.md`); the 25 periodic per-rune templates are built and controlled but not run (`phase10_overnight_queue.md`).

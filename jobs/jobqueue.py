@@ -1,6 +1,6 @@
 """Detached job queue: runs the jobs of a queue file one after another, resumable, independent of any interactive session.
 
-    python jobs/queue.py <queue name> <queue file> [<scheduled task to delete when done>]            # e.g. python jobs/queue.py cpu jobs/queues/cpu.txt
+    python jobs/jobqueue.py <queue name> <queue file> [<scheduled task to delete when done>]            # e.g. python jobs/jobqueue.py cpu jobs/queues/cpu.txt
 
 Queue file: one job per line, `name | command`; blank lines and lines starting with # are ignored. `{PY}` is the interpreter that runs this driver. A trailing `> path` sends the job's stdout to that repository-relative file (its stderr goes to the job log).
 A line `WAIT | <text>` holds the queue until no python.exe process whose command line contains <text> has been seen for two minutes (at most 8 h) (so a job started by hand finishes before the queue takes over; jobs themselves must be resumable).
@@ -11,6 +11,8 @@ The queues are meant to be started by Task Scheduler (`schtasks`), which keeps t
 import ctypes
 import datetime
 import os
+import platform
+import re
 import shlex
 import subprocess
 import sys
@@ -19,6 +21,27 @@ import time
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "results", "overnight", "desktop", "queue")
 ES_CONTINUOUS, ES_SYSTEM_REQUIRED = 0x80000000, 0x00000001
+
+
+def scrub_text(t):
+    """no absolute repository or home paths and no computer name in anything the queue writes into the repository (CLAUDE.md, privacy)"""
+    for r in {ROOT, ROOT.replace("\\", "/"), ROOT.replace("/", "\\")}:
+        t = t.replace(r, "<repo>")
+    home = os.path.expanduser("~")
+    for h in {home, home.replace("\\", "/")}:
+        t = t.replace(h, "~")
+    host = platform.node()
+    if len(host) >= 5:
+        t = re.sub(re.escape(host), "<host>", t, flags=re.IGNORECASE)
+    return t
+
+
+def scrub_file(path):
+    if os.path.exists(path):
+        with open(path, encoding="utf-8", errors="replace", newline="") as f:
+            t = f.read()
+        with open(path, "w", encoding="utf-8", newline="") as f:
+            f.write(scrub_text(t))
 
 
 def now():
@@ -95,6 +118,9 @@ def main():
                 if out_file:
                     so.close()
                 lg.write(f"# {now()} exit {rc}\n")
+            scrub_file(log)
+            if out_file:
+                scrub_file(os.path.join(ROOT, out_file))
             with open(state, "a", encoding="utf-8", newline="\n") as f:
                 f.write(f"{n}\t{t0}\t{'ok' if rc == 0 else 'failed'}\t{now()}\t{rc}\n")
     finally:

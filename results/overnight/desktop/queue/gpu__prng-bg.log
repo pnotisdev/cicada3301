@@ -1,0 +1,26 @@
+# 2026-10-18 08:36:47 start: {PY} jobs/overnight.py run prng-bg --lane gpu --device cuda --threads 2 --hours 4.5
+[08:36:51] [device] ok   CUDA probe: cuda ok: NVIDIA GeForce RTX 2080 Ti (cc 7.5, 68 SMs, 11.0 GiB) (3 s)
+[08:36:54] [device] ok   kscreen port, decode by decode: GPU selfcheck passed (the fallback kernel ran 2594 of these decodes) (3 s)
+[08:37:02] [device] ok   seed-sweep port, decode by decode: GPU selfcheck passed (8 s)
+[08:37:15] [device] ok   kscreen planted-key controls through CUDA: SELFTEST PASSED (13 s)
+[08:37:15] [device] cuda: validated, GPU backends will be used for the kscreen screens and the seed sweeps
+[08:37:15] [overnight] desktop lane gpu: 2 campaigns, 25 steps to run (~20.6 h by the rough estimates), 2 threads, device cuda, budget 4.5 h
+
+== setup: Build engines and data
+[08:37:15] [1/25 setup/build-phpmt cpu] start (est. 0.02 h)
+Traceback (most recent call last):
+  File "<repo>\jobs\overnight.py", line 1600, in <module>
+    main()
+  File "<repo>\jobs\overnight.py", line 1593, in main
+    cmd_run(args)
+  File "<repo>\jobs\overnight.py", line 1496, in cmd_run
+    ok = run_step(s, args.dry_run, label)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<repo>\jobs\overnight.py", line 1407, in run_step
+    rc = run_cmd(step, env, log, label)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<repo>\jobs\overnight.py", line 1341, in run_cmd
+    q = queue.Queue()
+        ^^^^^^^^^^^
+AttributeError: module 'queue' has no attribute 'Queue'
+# 2026-10-18 08:37:15 exit 1
