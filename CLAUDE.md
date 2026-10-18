@@ -7,6 +7,7 @@ Nothing in LP2 is solved yet. Never imply otherwise.
 1. The user syncs two PCs through GitHub Desktop: a laptop (runner alias `laptop`) and a desktop with an RTX 2080 Ti
    and 32 GB RAM. Check `git status` and `git log -3`, and ask the user to pull if the branch is behind.
 2. Read, in this order:
+   - `STATUS.md`: what is done, what is left, what cannot be tested (generated from `docs/registry.toml`; `docs/INDEX.md` maps all documents);
    - `docs/SESSION_LOG.md`: what the user asked and what was decided;
    - `PLAN.md`: the phase log with every result;
    - `docs/CAMPAIGNS.md`: the overnight campaigns and their decision rules;
@@ -35,7 +36,9 @@ Nothing in LP2 is solved yet. Never imply otherwise.
   pushing `research/*` branches with new tests: read them as data, rewrite their tests before running anything,
   and merge only after that review (see `docs/prs/`).
 - **Record results.** New results go into `PLAN.md` (short) and `work/log/` (details), and their outputs into
-  `results/`.
+  `results/`. Also add or update the test's row in `docs/registry.toml` (scope, control, best score, result, what is
+  NOT excluded, logs, files) and run `python scripts/build_overview.py`; it regenerates `STATUS.md`, `results/INDEX.md`,
+  `results/index.html` and the README status block, and a unit test fails if they are out of date.
 - **Windows.** Python 3.12 and Rust stable. Use `PYTHONIOENCODING=utf-8` when printing runes. Don't put
   backslash escapes inside shell heredocs that generate code; edit files with the editor tools.
 - **GPU.** No engine uses it. Any GPU code must pass the gates in `docs/GPU_PORT.md` (bit-exact generators,

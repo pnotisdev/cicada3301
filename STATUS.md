@@ -1,0 +1,154 @@
+# Status: Liber Primus, LP2 (sections 0.7-0.15, 12,956 runes)
+
+*Generated from [docs/registry.toml](docs/registry.toml) by `scripts/build_overview.py`; do not edit by hand. Updated 2026-10-18.*
+
+**Nothing in LP2 is solved.** Each line below is a statement of the form: a planted key of this kind, in this much text, would have been found by this test, and nothing was found. The control column says how well the test is known to work; the last column says what the negative does NOT exclude.
+
+## At a glance
+
+| | |
+|---|---|
+| Excluded | 26 |
+| Partly excluded | 11 |
+| Cannot be tested at LP2's effect size | 3 |
+| Open (not run or partly run) | 15 |
+| Explained puzzle furniture | 1 |
+| Observed in LP2 | 6 |
+| Candidates that survived whole-section verification | **0** |
+
+Decision rule for the IoC screens: 1.40 on a 300-rune window; planted keys score 1.6-2.06, random keys top out near 1.37 at 10^10 decodes. A hit counts only after whole-section verification with a positive and a null control (docs/CAMPAIGNS.md).
+
+### Highest screen scores (300-rune windows, IoC)
+
+| Campaign | Best | Matched null | Verdict |
+|---|---|---|---|
+| Ciphertext feedback c_i = a*c_(i-1) + p_i + k, a = 1..28 (library, order-2 recurrences, cubic polynomials) | 1.415 | 1.320 | Largest 1.415 (a = 17, library, section 0.11) falls to 1.073 over its whole 1,894-rune window (its own random offsets: mean 1.047, max 1.056); no other hit verified |
+| Word-level key-sign rules ('their numbers are the direction'): 61 non-circular rules over 581 flat-IoC library streams | 1.388 | 1.370 | About 2 x 10^10 decodes; best rule C_cur_ws 1.388; 0 of 5 verified hits per rule; five sign-flat streams screened separately: best 1.293 |
+| Key running backward through the text, with and without ciphertext feedback (a = 0..28) | 1.387 | 1.335 | Largest 1.387 (a = 8, library); none reaches 1.40 |
+| Library x all 28 key multipliers (c = p + m*k, for example 3301*k = 24*k mod 29) | 1.381 | 1.318 | 5,729,965,248 decodes in 35 min; 0 of 15 hits verified |
+| Decimated library (d = 2..29), prefix / word sums of the solved plaintext and Self-Reliance, pi / e / phi / sqrt2 at 10^6 and 3301 x 1033 | 1.375 | 1.355 | 894,992,864 decodes in 27 min; 0 of 15 hits verified |
+| Hash streams of the 12,944 words and phrases of the solved text (sha256 / sha512 / md5 counter streams and chains) | 1.371 | 1.364 | 8,125,932,544 decodes in 108 min; 0 of 15 hits verified |
+| Combinations of number-theoretic streams, functions at the primes, reciprocals, prime residues (1,063 streams) | 1.369 | 1.318 | 629,728,288 decodes in 10 min; 0 of 15 hits verified |
+| Every linear recurrence of order 1-3 and every polynomial up to degree 3, mod 29, every start state | 1.368 | 1.318 | Best per family: order 1 1.194, order 2 1.272, polynomials 1.232, order 3 1.368 (9,188,617,984 decodes in 63 min); 0 hits verified |
+
+## Left to do (suggested order)
+
+| # | Item | Cost | Needs |
+|---|---|---|---|
+| 1 | **Keyword-mixed outer alphabet around an additive key: relabel the ciphertext by sigma, then the ordinary screen**<br>IoC is invariant under relabelling, so the true sigma gives plaintext IoC; the family is not covered by any screen above | Build: minutes (a relabelling in front of kscreen). Run: DeepSeek's estimate for tier 1 is about 14 h on the GPU (unverified) | A planted-key control with a random-alphabet null on one window before any run |
+| 2 | **Unkeyed insertions (an extra rune per word that consumes no key value) and extra key advance at word separators / line / page breaks**<br>Every decoder moves the key pointer only forward at a collision; the '+1 rune in 42% of words' fit is the motivation. H8 as defined (the null spends the colliding attempt's key value) is aligned and already visible to kscreen: alive as a partial explanation of the word lengths (G 56 -> 40); the unkeyed variant is not decoded | About 3-4 h of engine work, then about 7 min of CPU per variant | An optional pointer-stay at word-final runes and a per-rune extra-advance line in the engine (work/proposals/null_beam is an untrusted prototype of the decoder) |
+| 3 | **Pointer-direction sign mechanism ('their numbers are the direction'), both orientations, 18 conventions** | About 12 h CPU per convention | An engine option for key values before the start offset |
+| 4 | **Boundary-free seed sweeps of sections 0.8-0.15 over the FULL seed space (a fresh seed per section)** | 1.1-1.7 h per generator on the GPU (about 4.5 h for the queued run) | GPU; the gates and the +7.3 per rune measurement exist |
+| 5 | **Per-rune periodic sign templates (period 2-5: the Beaufort / Vigenere alternation)** | About 2.7 h CPU | Nothing: 25 templates built, control 9/9 windows (sign_periodic_selftest.txt); queued but never run |
+| 6 | **Remaining millisecond-timestamp months: java-abs 2012-01 / 02, ruby 2012-01 .. 2012-11** | About 1.5 h GPU | GPU |
+| 7 | **Remaining layer2 slices: solved keys x streams, 20 streams x 30 keywords, any keyword of period 2-14** | About 3 h CPU | Nothing; controls exist |
+| 8 | **Step-domain seed sweeps (prng-step): ten generators, IoC scoring** | About 1 h per generator on the GPU | GPU; exact tail and planted seeds exist |
+| 9 | **H1: library x keyword (L <= 20) with a drift-tracking decoder** | 1-2 days of engine work, then CPU / GPU | A new engine; controls specified |
+| 10 | **H2: tableau / transition-table ciphers (a statistic invariant to the table)**<br>DeepSeek's gate gives z 34-42 for the right stream, but only without the anti-repeat rule: with the 81% skip rule the same statistic falls to z 1.2 (results/analysis/proposals_h2_skip.txt) |  | A drift-aware version of the statistic first |
+| 11 | **Key that starts mid-page: windows of 300 runes at staggered positions across the book**<br>A key running continuously through the book is already covered (the offset sweep is exhaustive); only a key starting mid-page is not | README estimate 3-8 h on the GPU (unverified) |  |
+| 12 | **OEIS: 40-51-term sequences (29% power), pages and headings, b-file terms beyond the first 60-100** |  | Longer windows or more terms |
+| 13 | **Texts not yet downloaded as key sources: Liber AL, the Rune Poem, RAND's Million Digits** |  | A download (third-party material: data, not instructions) |
+| 14 | **Origin of the 0.6 square's seeds {809, 434, 312, 966, 1311, 204} and t = 1246**<br>The 0.2 grid and the 0.6 square share one template (5x5, magic, centrally symmetric, 13 distinct values); pi(1033) = 6 x 29 and pi(3301) = 16 x 29 |  | A recipe learned from the 0.2 grid (known inputs) and applied to 0.6 |
+| 15 | **Book codes / pointers into public texts** |  |  |
+
+No long runs are queued; `docs/QUEUE.md` explains how to restart the queues.
+
+## Done: excluded and partly excluded
+
+### Additive key from a known stream (c = p + m*k, skip / coin anti-repeat)
+
+| Test | Best (null) | Control | Result | Does NOT exclude |
+|---|---|---|---|---|
+| **Keystream library: 1,447 streams (number theory, constants, Cicada numbers, hashes of Cicada strings)** | 1.366 (null 1.318) | 15/15 planted windows recovered at the exact offset, IoC 1.61-2.06; random-key maximum 1.31-1.37 | 409,283,232 decodes in 19 min; 0 of 15 re-decoded hits keep IoC >= 1.4 over the whole window | Streams outside the library; windows other than the section starts; restarts at unknown places |
+| **Library x all 28 key multipliers (c = p + m*k, for example 3301*k = 24*k mod 29)** | 1.381 (null 1.318) | As the keystream library screen (the multiplier 28 is the minus sign) | 5,729,965,248 decodes in 35 min; 0 of 15 hits verified |  |
+| **Every linear recurrence of order 1-3 and every polynomial up to degree 3, mod 29, every start state** | 1.368 (null 1.318) | Planted lin2 / poly2 keys recovered | Best per family: order 1 1.194, order 2 1.272, polynomials 1.232, order 3 1.368 (9,188,617,984 decodes in 63 min); 0 hits verified | Order >= 4; sparse taps (the keyless residual scan has no power for three-term forms) |
+| **Hash streams of the 12,944 words and phrases of the solved text (sha256 / sha512 / md5 counter streams and chains)** | 1.371 (null 1.364) | Same screen as the keystream library; a null of the same number of random streams | 8,125,932,544 decodes in 108 min; 0 of 15 hits verified | Other hash conventions and passphrases not in the solved text |
+| **Decimated library (d = 2..29), prefix / word sums of the solved plaintext and Self-Reliance, pi / e / phi / sqrt2 at 10^6 and 3301 x 1033** | 1.375 (null 1.355) | 12/12 planted windows | 894,992,864 decodes in 27 min; 0 of 15 hits verified | Liber AL and the Rune Poem (not downloaded); RAND's Million Digits; per-word sums and base-10 digits fail flatness |
+| **Ciphertext as the key: solved ciphertexts and LP2 backwards (28 multipliers), LP2 forwards with the self-key guard** | 1.307 (null 1.355) | A planted autokey with L = 500 found through the guard | Solved ciphertexts and LP2 backwards: best 1.307; LP2 forwards (guarded): best 1.265; 0 of 8 hits verified each | Other texts' ciphertexts (the Welcome page fails flatness) |
+| **Combinations of number-theoretic streams, functions at the primes, reciprocals, prime residues (1,063 streams)** | 1.369 (null 1.318) | 24/24 planted keys at IoC 1.6-2.06 | 629,728,288 decodes in 10 min; 0 of 15 hits verified | Order-4 recurrences with chosen coefficients (not built); other pairings |
+| **Inverses, discrete logs, g^n and cubes modulo primes = 1 (mod 29), base-29 digit sum (19 periodic streams)** | 1.249 (null 1.318) | 30/30 planted windows at IoC 1.56-2.10 | 1,250,080 decodes; 0 of 15 hits verified | Other primes and generators; any non-periodic family |
+| **Book-derived streams: phi / sigma of 3301 i + 1033 and 1033 i + 3301, primes at index multiples 58..3301, base-29 digits of 1/45415 (15 streams)** | 1.273 (null 1.318) | 18/18 planted windows | 6,849,856 decodes; 0 of 15 hits verified | Other constructions from the squares; the origin of the 0.6 seeds |
+| **Word-level key-sign rules ('their numbers are the direction'): 61 non-circular rules over 581 flat-IoC library streams** | 1.388 (null 1.370) | 12/12 planted windows over 4 rules, blind without the signs (sign_selftest.py, independent planter) | About 2 x 10^10 decodes; best rule C_cur_ws 1.388; 0 of 5 verified hits per rule; five sign-flat streams screened separately: best 1.293 | Pointer-direction mechanism (both orientations, 18 conventions); circular current-word-ciphertext rules; rules that flip more than about 20% of runes are covered only by this campaign |
+| **Ciphertext feedback c_i = a*c_(i-1) + p_i + k, a = 1..28 (library, order-2 recurrences, cubic polynomials)** | 1.415 (null 1.320) | a = 1, 7, 28 plants recovered; wrong a not | Largest 1.415 (a = 17, library, section 0.11) falls to 1.073 over its whole 1,894-rune window (its own random offsets: mean 1.047, max 1.056); no other hit verified | Lag > 1 with a multiplier (only differences are covered) |
+| **Key running backward through the text, with and without ciphertext feedback (a = 0..28)** | 1.387 (null 1.335) | Planted backward keys recovered at the exact key index; the same ciphertext read forward not found | Largest 1.387 (a = 8, library); none reaches 1.40 |  |
+| **Step-domain cipher: the plaintext enters c_i - c_(i-1), keyed mod 28 (variants A, B, C)** | 1.297 (null 1.320) | Plants recovered in both variants; periods 97 and 400 at z 6.5-11 | Periodic scan: largest z 4.97 for LP2 against a null maximum 5.48 (4 of 40 replicates exceed LP2) | Seed sweeps of the step-domain cipher (prng-step, see open) |
+| **Clocked key pointer: after each rune the pointer advances by 1 + index, prime or prime - 1 (six clocks)** |  | 18/18 planted keys | 300-rune clocks c1 1.317 and p1 1.307; prime clocks ct 1.611, cp 1.593, pt 1.593, pp 1.687 against matched nulls 1.593, 1.573, 1.604, 1.619 (short-window maxima); 0 of 15 hits verified per clock | Keys that start beyond the first ~9,000 terms for the prime clocks |
+
+### Seeded generators, passphrases and sequences as keys
+
+| Test | Best (null) | Control | Result | Does NOT exclude |
+|---|---|---|---|---|
+| **Ten seeded generators over all 2^32 seeds (net: 2^31), boundary-free bigram score, window 0.7** |  | Planted seeds at rank 1 for every generator; a true key scores +7.3 per rune on Cicada's solved text and passes +300 in 99.6-100% of 120-rune windows | 0 candidates at +300 in every sweep (335-1,234 s each on the 2080 Ti) | One pad from the start of 0.7 only; a pad that starts after an unknown discard; sections 0.8-0.15 over the full seed space (see open); ISAAC, filtered LFSRs, string / float seeds |
+| **Epoch-second seeds 2011-2015 (8 generators) and small seeds below 2^27, on every section** |  | As the boundary-free full-seed sweep (planted seeds at rank 1, +7.3 per rune) | 0 candidates at +300 | Other time bases; seeds above the listed ranges |
+| **Per-page seeds: 8 generators x (epoch seconds 2011-2015, seeds below 2^27) on the 44 page windows** |  | work/tests/test_bgmt_pages.py: window set, planted seed recovered with every other window silent, random ciphertext silent | 16 sweeps, 0 candidates at +300 in every one | Other seed ranges; net and java excluded by their seed width |
+| **Millisecond timestamps 2012-01 .. 2014-01 as seeds (Java 48-bit, CPython two-word seeds, Java abs() map, Ruby), window 0.7** *(partly)* |  | Generator vectors and a gate with planted seeds | java and py3: 25/25 months (66 billion seeds each); java-abs: 23/25; ruby: 14/25; 0 candidates in every month | java-abs 2012-01 and 2012-02; ruby 2012-01 .. 2012-11 |
+| **Dictionary-scored seed sweeps: PHP, glibc, .NET on all 8 sections; seven more generators on window 0.7** *(partly)* |  | Planted seeds score about 35-44; but a planted seed scores 0 once LP2's word lengths are imposed (33 -> 0) | Best screen score 20-22 for every generator (the random-seed maximum); the best candidates re-decode over the whole segment at 0.07-0.10 against about 0.077 for random seeds (z -1.3 .. +3.5), where a true key scores about 0.8 | BLIND if LP2's separators are not the plaintext's word boundaries: superseded by prng-bg for window 0.7 |
+| **Human-plausible seeds (334 M per generator) for MT init_by_array, MSVC, Java, drand48; 3-6 key maps each** *(partly)* |  |  | Stage A negative; stage B: rand48 8 of 16 chunks done and negative, the rest not run on dictionary scoring | Dictionary scoring is separator-blind; the boundary-free sweeps cover the 32-bit seeds |
+| **199,088 OEIS integer sequences as keys (mod 29), boundary-free score** *(partly)* |  | A true key scores +7.3 per rune on Cicada's text: 97% power for the 98,667 sequences with 64 or more terms, 81% for 46,891 with 52-63 terms, 29% for 53,530 with 40-51 terms; about 75% sequence-weighted | No candidate after the whole-window check | 40-51-term sequences at 29% power; keys beginning late in short sequences; terms beyond the first 60-100 |
+| **Passphrases to hash streams (19.2 M candidates, MD5 / SHA-1 / SHA-256 / SHA-512) and KDF streams (719,280)** *(partly)* |  | Gates with planted keys; wrong key scores -10.5 per rune | 0 candidates | Other sections; other KDF settings; passphrases not in the lists |
+| **Dictionary screens (screen 1, screen 2, reverse direction, heading restarts) with the corrected word segmentation** *(partly)* |  |  | Screen 1's best (0.155) is a random control stream; screen 2 has no non-control hit above the control maximum; reverse direction control max 0.167 over 893 keystreams; heading restarts control max 0.975 | Dictionary scores are blind if the separators are not the plaintext's word boundaries |
+
+### Cipher structure beyond c = p + k
+
+| Test | Best (null) | Control | Result | Does NOT exclude |
+|---|---|---|---|---|
+| **Periodic keys (drift-aware matched filter that allows for the skip rule's key drift)** |  | Planted periodic keys detected 8/8 up to 400, 7/8 at 800, 6/8 at 1,600, 0/8 at 3,200 | LP2 max 3.03 against null max 3.55: NULL | Periods longer than about 400 |
+| **Plaintext / ciphertext autokey (lag <= 8), monoalphabetic, Vigenere (period <= 29), per-word key, progressive, multiplicative and cumulative keys** |  | Strong for the fingerprint; H-PROG moderate; prime keys only 'disfavoured' | None of these families reproduces LP2 | Longer lags; the fingerprint cannot tell structureless keys apart |
+| **Small state machines: 4,608 rules x 29 start states, with and without the skip modelled** |  | Planted machines rank first at IoC 1.76 and score -3.0 against -3.94 | No machine of the family fits LP2 | Machines outside the family |
+| **Per-word keys: constant, linear, quadratic, periodic (<= 7), recurrences of order <= 3; same word -> same cipher** |  | Strong for cribs; the dictionary-based tests are blind if separators are not word boundaries | Excluded: one key per word, key by position in the word | The word-based tests if the separators are not boundaries |
+| **Key-free search for a secret outer alphabet behind a per-word additive key (walk dsearch, m = 1..8 position phases)** *(partly)* |  | Synthetic recovery 29/29 in the earlier run; the large run's synthetic m = 5 control recovers 14 of 29 symbols | LP2 is indistinguishable from the surrogates: z between -2.4 and +2.3 over the 16 settings | Dictionary-type scoring is blind if separators are not word boundaries |
+| **Two layers: a keyword Vigenere inside a number stream with the anti-repeat rule outside (H1, the laptop's layer2)** *(partly)* |  | Plants 12/12 in A1; bigram mode 9/9; the periodic mode is weak (chance z about 10 overlaps weak plants) | A1: best -5.63 per rune, 0 of 15 hits pass | The other slices (solved keys x streams, 20 streams x 30 keywords, any keyword of period 2-14); library x L <= 20 with drift tracking |
+| **Per-word period-5 twist skeleton (key state T^(j mod 5), T(x) = 24 - 2x)** |  |  | LP2 lacks the lag 3 / 4 excess (about -6 sd together): a periodic per-word key is excluded |  |
+
+### Restarts, reuse and layout
+
+| Test | Best (null) | Control | Result | Does NOT exclude |
+|---|---|---|---|---|
+| **Key restart at every page, paragraph, line, sentence or word** |  | Planted restarts give Z 17-236 | LP2 Z -1.1 .. +2.1 | Restart at the 9 section starts: not testable (control only Z 2.7) |
+| **Library restarted at the 10 red headings and the 46 page starts** *(partly)* |  | Strong for the 7 windows of >= 308 runes; partial for the 91- and 121-rune headings (heavy-tailed maximum) | Flagged: headings best 2.118 (head0.13, 91 runes), pages best 1.679. Per-window extreme-value null: Gumbel p about 0.012 for the 91-rune window, not significant after the number of windows, its best offset differs from every other window's; the six short page windows are chance | Short heading windows |
+| **Restart at typographic marks: list items of 0.14, three-dot marks, after red headings (22 windows)** *(partly)* |  | Planted keys 45/45 at 250-300 runes, 9/21 at 91-139; shared key seen in at least 3 of 5 lists in 6/6 plants | Library beats its matched null in 5 of 22 windows (about half expected by chance); shared key: 0 of 5 lists | One short window alone; a key outside the library |
+| **Transposition** *(partly)* |  |  | Transposition AFTER encryption excluded (exact for the seams) | Transposition before encryption is undetectable |
+
+### Cribs, puzzle furniture and outside claims
+
+| Test | Best (null) | Control | Result | Does NOT exclude |
+|---|---|---|---|---|
+| **Heading = DIVINITY WITHIN; body = 'FIND YOU ARE ...'; title cribs** |  | Planted control found by the lookup | In none of the sequences; the Fibonacci key is word-choice selection; null elsewhere |  |
+| **27 x 27 layout, page numerology, totient walk** |  |  | No 27-wide structure (sensitive to about 100 hidden mirrors); numerology is chance after counting the choices; the walk rule is undefined |  |
+| **The 256-byte base-60 payload (pages 64-66), corrected bytes** |  |  | Byte-random, not a permutation or S-box; 0 hash matches; no decryption (the best, an AES-192 'hit' at printable 0.48, is the kind of coincidence hundreds of tries produce) |  |
+
+## Cannot be tested at LP2's effect size
+
+| Item | Finding |
+|---|---|
+| **Two-tap echo rules (copy or affine image of the rune 5 and 6 back, inside words) and rewrites of plaintext repeats** | Not excluded; not testable on LP2 alone; leaves the key layer untouched |
+| **Evolving-alphabet walk (period-5 alphabets per word, alphabet changes per word, skip on repeat; aldegonde's length-clocked walk)** | The one family the fingerprint leaves standing, and no test has power for it *(The scan detects copy rates of 6%; LP2 shows 1.5%)* |
+| **Key reuse between sections (two-time pad under skip drift)** | Undecidable from the ciphertext *(Power 0.05-0.42 for a planted full-section reuse)* |
+
+## Explained puzzle furniture
+
+| Item | Finding |
+|---|---|
+| **Page-30 grid, the Some Wisdom word square (1033), the page-14 square (3301)** | Explained puzzle furniture, not a key |
+
+## What LP2 shows (any solution has to explain it)
+
+| Item | Finding |
+|---|---|
+| **Transcription and corrections** | An independent OCR re-read confirms the LP2 transcription. Corrections: one rune-order error on a solved page (BELIEVE); 5 byte errors in the 256-byte payload (3 also in Dukotah's canon_256.bin); no merged doublets anywhere; word boundaries authentic (0 of 2,334 transcribed word dots missing) |
+| **Doublet deficit: 0.63% of adjacent pairs against 3.45% expected** | 81% enforcement (the skip / coin anti-repeat rule); boundary-blind; the surviving in-word doublets are consistent with the coin model (G 3.0 against 9.4 for uniform; informational, one synthetic control) |
+| **Within-word lag-5 echo** | z +3.7 (calibrated P 0.007), carried by the rune S (11 of 102 coincidences); strictly word-internal and flat over the position in the word: a mechanism must know where words begin and end |
+| **Within-word lag-6 relation c' = 24 - 2c** | z +5.0 (P 0.005-0.013 after the look-elsewhere correction, split-half replicates); strictly word-internal |
+| **Word lengths: no serial structure, fewer 2-rune words than English** | 2-rune words 15.5% against 20-27% in English (rejected in runes, p about 10^-45); best simple fit: one extra rune in about 42% of multi-rune words (G 16.5, df 10, p 0.085); spelling TH as T + H explains most of it (G 223 -> 56) |
+| **Flat unigrams and bigrams, no coincidence peak at any lag, no literal-F excess, repeated 6-gram DJU-BEI** | 458 ciphertext F against 447 +/- 21 expected (z +0.5): LP2 does not follow the solved pages' literal-F convention in one layer; the repeated DJU-BEI has chance probability 0.16 (P(>= 1)) |
+
+## Where things are
+
+| I want to... | Open |
+|---|---|
+| see every result with its control and files | [results/INDEX.md](results/INDEX.md), or `results/index.html` in a browser |
+| read the per-campaign verdicts of a PC | `results/overnight/<alias>/REPORT.md` |
+| read why a test was run and how it was controlled | the log named per row in the registry (`work/log/`) |
+| see what each doc is | [docs/INDEX.md](docs/INDEX.md) |
+| find a script | [work/README.md](work/README.md) |
+| see the plan phase by phase | [PLAN.md](PLAN.md) |

@@ -1,5 +1,9 @@
 # Results of long runs
 
+**Start here:** [INDEX.md](INDEX.md) lists every result by question, with its control and files; `index.html` (open it in a browser) adds a chart of the best score of each campaign against the 1.40 rule and a filter. Both are generated from `../docs/registry.toml`. This page documents the file formats.
+
+**How to read a result in 30 seconds.** Open the `*_verify.txt` of the campaign: `0 of N re-decoded hits ... (none: noise)` or `no candidate reached the sweep's floor` is a negative. Then check the campaign's `*_selftest.txt` ends with `PASSED` (the planted key was recovered): without that, a negative means nothing. A per-PC verdict summary is `overnight/<alias>/REPORT.md`.
+
 | File | Produced by | Notes |
 |---|---|---|
 | `prng/php_07.tsv`, `.log` | `phpmt sweep php` on segment 0.7 | top 4,000 (seed, variant) candidates of all 2^32 PHP<7.1 mt_rand seeds |

@@ -1,5 +1,7 @@
 # Handoff: continuing on the desktop PC (state of 2026-10-17, ~03:30)
 
+> **Historical (kept for the trail).** The queue, GPU state and open leads below are from 2026-10-17 and are out of date. For the current state read `STATUS.md` and `docs/registry.toml`; `docs/INDEX.md` maps the documents.
+
 Paste the prompt below into a new Claude Code session on the desktop, opened in this repository folder. `CLAUDE.md` is
 loaded automatically; the prompt adds the reading list, the live state and the open tasks. (The first version of this file
 set up the PC, wrote the console logging and the CUDA ports; all of that is done. `docs/SESSION_LOG.md`, section 6, is the
