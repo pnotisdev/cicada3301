@@ -93,6 +93,21 @@ was gated on planted controls:
   H5/totient on the first 300 runes of the 8 sections (L 2..20, both models, offsets 0..1949) - NOT an
   exclusion: litf=1, the other library streams, H2/H3-style keys and the missing offsets remain.
 
+## 2d. H5 Rust port: parity-clean, ~14.7 h for the full library sweep (`work/h5rs/README.md`, `parity.txt`)
+
+- **Parity PASS: 312 checks, 0 fails.** Three engines (scalar = numba-exact port; fastscalar = no-exponentials;
+  fast = AVX2 + copy-on-write arena + table ln, bit-identical to fastscalar) match h5slice_nb exactly on 24
+  grid cells (offsets {1234,1000,1500,777} x L {7,8,12} x models {0,1}, init and full decode at abort 0 and 120),
+  the truth cell (IoC 1.9856, wcol = DIVINITY, 8 skips) and 4 random null windows (4/4 aborts); totient
+  bit-identical. Seven real divergences caught and fixed (a Zen1 VHADDPD miscompile, stale thread-local stamp
+  ids, a shuffle-immediate convention, a tie-flipping vector reduction reverted to sequential order for
+  bit-exact ties, a packed sort key truncation, arg-parse and AVX2 dispatch bugs).
+- **Throughput: 3,842 dec/s single-threaded, 16,634 dec/s on 8 threads under load** (best 18.8k); the full
+  880M-decode library sweep = 14.7 h at 8 threads (the parity.txt label says hours but the value is seconds).
+  The rate is ~5.6x the numba reference - the per-candidate dot sum must stay sequential for bit-exact
+  tie-break parity, and the machine was loaded. The >= 20k dec/s gate is NOT met under load; the CLI and sweep
+  driver exist and are parity-gated but provisional - re-measure on an idle machine before a campaign.
+
 ## Registry / status updates
 
 - `nulledge` row: gap updated - the 42% mixture is untestable for the measured reason of offset resolution on

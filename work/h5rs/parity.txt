@@ -1,0 +1,31 @@
+# parity.txt - h5rs vs h5slice_nb parity gate
+# started 2026-10-18 21:15:38; machine: 16 logical procs; Python 3.14.6, numpy 2.5.2
+# reference: h5slice_nb init + h5slice.decode(fast_init=True), beam_a 12, beam 24, max_em 5, abort (120, 0.9)
+# plant: Self-Reliance 3000:3300, totient + DIVINITY, offset 1234, model 0, keep 0.19, seed 42
+
+== 0. embedded constants (src/logf.rs) ==
+  ok: src/logf.rs matches H.english_logf() bit-exactly (uni -4.230290225017084, ln29 3.367295829986474, ln028 -3.575550768806933)
+
+== reference sanity (the Python side must reproduce the verified truth) ==
+  truth no-abort: IoC 1.9856 wcol [23, 10, 1, 10, 9, 10, 16, 26] skips 8
+  ok: IoC >= 1.6, wcol == DIVINITY, 8 skips
+  null reference: 4/4 init aborts at (120, 0.9) in Python
+
+== build ==
+  ok: cargo build --release
+
+== totient cross-check (Rust internal vs h5slice.totient) ==
+  ok: totient(4000) identical
+
+== parity: engines scalar, fastscalar, fast ==
+  engine scalar: 104 checks, 0 fails -> PASS
+  engine fastscalar: 104 checks, 0 fails -> PASS
+  engine fast: 104 checks, 0 fails -> PASS
+
+== throughput (decode/s; campaign workhorse = aborting null cells) ==
+  bench 1 thread(s): # h5rs bench: engine fast, threads 1, budget 5s/thread | # null-abort cells decoded: 19213 in 5.00s | null_abort_rate_dec_per_s 3842 | null_abort_rate_per_thread 3842 | # projection for the full library sweep (880,000,000 decodes): | projection_hours_8_threads 229022.3
+  bench 8 thread(s): # h5rs bench: engine fast, threads 8, budget 5s/thread | # null-abort cells decoded: 83176 in 5.00s | null_abort_rate_dec_per_s 16634 | null_abort_rate_per_thread 2079 | # projection for the full library sweep (880,000,000 decodes): | projection_hours_8_threads 52903.3
+  full truth decode (init+EM, no abort): 1167 dec/s single-threaded
+  SUMMARY: single-thread 3842 dec/s; 8-thread 16634 dec/s; 880M-decodes projection 52903.3 h at 8 threads
+
+PARITY VERDICT: PASS (312 checks, 0 fails) in 19s
