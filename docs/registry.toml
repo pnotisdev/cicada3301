@@ -507,6 +507,20 @@ log = ["work/log/phase12_review2.md"]
 files = ["work/kscreen/NULLEDGE.md", "work/tmp/nulledge_control.txt", "work/tmp/nulledge_report.md", "results/kscreen/nulledge1_segments.tsv", "results/kscreen/nulledge2_segments.tsv", "results/kscreen/nulledge1_segments_verify.txt", "results/kscreen/nulledge2_segments_verify.txt"]
 
 [[experiment]]
+id = "advsep"
+group = "structure"
+title = "Layout key-pointer advance: one extra key value per word boundary, with and without one extra per line / page break (advsep=1|2)"
+status = "excluded"
+what = "Engine option advsep in work/kscreen (default bit-identical, selftest passed; B lines with separator positions added to the windows export); 8 section windows x the library, mults 1, models 0,1, both variants, matched rand nulls"
+best = 1.3288
+null = 1.3682
+control = "Independent Python re-encryption of the Welcome/primes plant: default engine blind (1.213, 1.097 at the true offset), advsep=1 recovers 1.667 at offset 100, rand:300:301 null 1.286, B-line variant recovered at 1.659: controls pass"
+result = "advsep=1 best 1.3191 below its matched null 1.3682 (no power); advsep=2 best 1.3288 vs null 1.3055, far below 1.40; 0 of 5 and 0 of 5 top hits keep IoC >= 1.40 over the whole window (all fall to 1.04-1.15): negative"
+gap = "Advance counts other than 1 per event; advances at only about 42% of word edges; breaks beyond the transcription; keys outside the library"
+log = ["work/log/phase12_review2.md"]
+files = ["work/kscreen/ADVSEP.md", "work/tmp/advsep_control.txt", "work/tmp/advsep_report.md", "results/kscreen/advsep1_segments.tsv", "results/kscreen/advsep2_segments.tsv", "results/kscreen/advsep1_segments_verify.txt", "results/kscreen/advsep2_segments_verify.txt"]
+
+[[experiment]]
 id = "walk-evolving"
 group = "structure"
 title = "Evolving-alphabet walk (period-5 alphabets per word, alphabet changes per word, skip on repeat; aldegonde's length-clocked walk)"
@@ -693,9 +707,9 @@ id = "obs-flat"
 group = "observed"
 title = "Flat unigrams and bigrams, no coincidence peak at any lag, no literal-F excess, repeated 6-gram DJU-BEI"
 status = "observed"
-result = "458 ciphertext F against 447 +/- 21 expected (z +0.5): LP2 does not follow the solved pages' literal-F convention in one layer; the repeated DJU-BEI has chance probability 0.16 (P(>= 1))"
-log = ["PLAN.md", "work/log/phase10_review.md"]
-files = ["results/analysis/segment_stats.txt", "results/analysis/assumption_checks.txt"]
+result = "458 ciphertext F against 447 +/- 21 expected (z +0.5): LP2 does not follow the solved pages' literal-F convention in one layer; the repeated 6-gram DJU-BEI has chance probability 0.16 (P(>= 1)). 2026-10-18 sharper finding: DJU and BEI are two 3-rune words, each occurring exactly twice, always as the adjacent pair DJU->BEI - the ONLY repeated adjacent word-pair in all 2,887 pairs of LP2 (within-section word-shuffle null: P(any pair >= 2 occurrences) = 0.016, P(DJU->BEI >= 2) = 0 of 1000), and the second occurrence is the book's final two words (0.15 ends ... CEAIMCX DJU BEI)"
+log = ["PLAN.md", "work/log/phase10_review.md", "work/log/phase12_review2.md"]
+files = ["results/analysis/segment_stats.txt", "results/analysis/assumption_checks.txt", "work/tmp/pair_repeat.txt", "work/tmp/dju_context.txt", "work/tmp/dju_counts.txt"]
 
 # -------------------------------------------------------------------------------------------- what is left
 
@@ -705,11 +719,11 @@ group = "structure"
 title = "Keyword-mixed outer alphabet around an additive key: relabel the ciphertext by sigma, then the ordinary screen"
 status = "open"
 priority = 1
-what = "IoC is invariant under relabelling, so the true sigma gives plaintext IoC; the family is not covered by any screen above. BUILT AND CONTROLLED 2026-10-18 (work/kscreen/relabel_export.py + RELABEL.md): plant c = sigma(p + k) recovered at IoC 1.6702 after relabelling vs 1.0068-1.0637 unrelabelled, null <= 1.052, wrong sigma <= 1.055, end-to-end 1.6702 at the true offset only. GATE RUN 2026-10-18 on window 0.7: 72 sigma settings (26 affine multipliers, 29 reflections, 17 keyword alphabets; the reflections collapse to one distinct setting - a shift of the negated alphabet, absorbed by the screen's substitution freedom - so 44 distinct), each 51.1 M decodes, mults 1,28 models 0,1: best 1.3811 (aff:8:0/aff:21:0, sha256-ctr mod :1311 offset 14398; second kw:PRIMES 1.3669), all below 1.40; single-window null 1.2874"
-cost = "Control: minutes (done). Gate: done (72 x about 55 s CPU). All sections x the 44 distinct sigmas: about 5 h CPU / 1.5-2 h GPU"
-needs = "Nothing: batch-relabel the windows, run the ordinary screen, verify by the CAMPAIGNS rule; sections 0.8-0.15 with these sigmas remain open"
+what = "IoC is invariant under relabelling, so the true sigma gives plaintext IoC; the family is not covered by any screen above. BUILT AND CONTROLLED 2026-10-18 (work/kscreen/relabel_export.py + RELABEL.md): plant c = sigma(p + k) recovered at IoC 1.6702 after relabelling vs 1.0068-1.0637 unrelabelled, null <= 1.052, wrong sigma <= 1.055, end-to-end 1.6702 at the true offset only. GATE 2026-10-18 on window 0.7: 72 sigma settings (44 distinct; the reflections collapse to one by shift-invariance of IoC), each 51.1 M decodes: best 1.3811, null 1.2874. ALL-SECTIONS KEYWORD RUN 2026-10-18: 17 keyword alphabets + Atbash x the library on the 8 section windows, both signs and models (about 3.6 B decodes): best 1.3895 (kw:KOAN), kw:PRIMES 1.3773, all below 1.40; matched rand:300:300 null recorded in results/kscreen/relabel_all_null.tsv"
+cost = "Control: minutes (done). 0.7 gate and the all-sections keyword run: done. Remaining: the 26 affine multipliers x all 8 sections (about 3 h CPU)"
+needs = "Nothing: batch-relabel the windows, run the ordinary screen, verify by the CAMPAIGNS rule; the affine-multiplier set on sections 0.8-0.15 remains open"
 log = ["work/log/phase10_proposals_review.md", "work/log/phase11_review.md", "work/log/phase12_review2.md"]
-files = ["work/kscreen/relabel_export.py", "work/kscreen/RELABEL.md", "work/tmp/relabel_control.txt", "work/tmp/relabel_gate/summary.txt", "work/tmp/relabel_gate/null.tsv"]
+files = ["work/kscreen/relabel_export.py", "work/kscreen/RELABEL.md", "work/tmp/relabel_control.txt", "work/tmp/relabel_gate/summary.txt", "work/tmp/relabel_all_summary.txt", "results/kscreen/relabel_all_kw_KOAN.tsv", "results/kscreen/relabel_all_kw_PRIMES.tsv", "results/kscreen/relabel_all_atbash.tsv", "results/kscreen/relabel_all_null.tsv"]
 
 [[experiment]]
 id = "open-unkeyed"

@@ -92,10 +92,38 @@ targets would concentrate at word-final positions (expected about 54.5 of 80). O
 against 34.7 expected by chance (z -0.6); lag-5: 37 of 104 against 40.3 expected. The echoes sit at uniform
 in-word positions; the word-end insertion mechanism is excluded for them.
 
+## 6. New observation: DJU->BEI, the only repeated adjacent word-pair, ends the book (`work/tmp/pair_repeat.txt`)
+
+- The two DJU-BEI occurrences are word-aligned: 0.13 words [28:31] DJU + [31:34] BEI and 0.15 words
+  [3310:3313] DJU + [3313:3316] BEI (`work/tmp/dju_words.txt`); DJU and BEI each occur exactly twice in all of
+  LP2, both times as this pair (`work/tmp/dju_counts.txt`).
+- Over all 2,887 adjacent word-pairs of LP2, DJU->BEI is the ONLY pair that occurs twice. Within-section
+  word-shuffle null (1,000 replicates, exact for the word multisets): P(any pair >= 2) = 0.016; P(DJU->BEI >= 2)
+  = 0 of 1,000. The second occurrence is the book's final two words (0.15 ends ... CEAIMCX DJU BEI).
+- This corrects the older '6-gram repeat chance 0.16' statement (registry obs-flat row updated): the repeat is
+  word-aligned, unique among all pairs, and book-ending - the three facts together are what any explanation of
+  the book's structure must address (a deliberate ending echo of 0.13's sixth word, key reuse between those two
+  positions, or a word-scoped key convention - none decided).
+
+## 7. All-sections keyword relabel and the layout pointer advance (both negative)
+
+- **Keyword alphabets x all sections** (`work/tmp/relabel_all_summary.txt`, `results/kscreen/relabel_all_*.tsv`):
+  17 keywords + Atbash, 8 section windows, both key signs and models, about 3.6 B decodes: best 1.3895 (kw:KOAN),
+  kw:PRIMES 1.3773, kw:FIRFUMFERENFE 1.3669, atbash 1.3663 - all below 1.40; matched null
+  (`results/kscreen/relabel_all_null.tsv`) recorded. The 26 affine multipliers x all sections remain open
+  (about 3 h CPU). B lines (separator positions, added for advsep) pass through the relabel front-end unchanged.
+- **Layout pointer advance** (`advsep=1|2` in work/kscreen, `work/kscreen/ADVSEP.md`, `work/tmp/advsep_report.md`):
+  controls passed (blindness 1.213 / 1.097 at truth, recovery 1.667 at offset 100, null 1.286, B-line plant
+  1.659; selftest passed). LP2: advsep=1 best 1.3191 below its matched null 1.3682 (no power); advsep=2 best
+  1.3288 vs null 1.3055; 0 of 5 and 0 of 5 top hits keep IoC >= 1.40 whole-window (all fall to 1.04-1.15):
+  **excluded** - no library key hides behind one extra key value per word boundary, with or without one extra
+  per line / page break.
+
 ## Registry / status updates
 
-- `open-outer-alphabet`: gate run recorded (negative on window 0.7 for the 44 distinct sigmas; sections 0.8-0.15
-  with these sigmas remain open).
-- New rows: `prime-domain` (excluded: the GP prime order is not the arithmetic domain); `nulledge` (excluded for
-  the 0%/100% word-edge variants; the 42% mixture untestable as formulated, measured).
+- `open-outer-alphabet`: 0.7 gate AND the all-sections keyword run both negative; the 26 affine multipliers on
+  sections 0.8-0.15 remain open.
+- New rows: `advsep` (excluded), `prime-domain` (excluded), `nulledge` (excluded for 0%/100% word-edge variants;
+  the 42% mixture untestable as formulated, measured).
 - `echo-mechanisms`: word-end null insertion excluded for the echoes (targets not word-final, 32/80 vs 34.7).
+- `obs-flat`: DJU-BEI sharpened to the word-aligned pair DJU->BEI (section 6).

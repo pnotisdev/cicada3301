@@ -15,7 +15,7 @@ Every claim can be re-run, and every negative result comes with a positive contr
 | As of 2026-10-18 | |
 |---|---|
 | **Solved** | **Nothing.** LP2 (sections 0.7-0.15, 12,956 runes) is still undecoded |
-| Tests on record | 60: 31 excluded, 11 partly excluded, 3 untestable at LP2's effect size, 14 still open |
+| Tests on record | 61: 32 excluded, 11 partly excluded, 3 untestable at LP2's effect size, 14 still open |
 | Highest full-window screen score | IoC 1.415 (chain; fails whole-window verification) against the rule 1.40; a planted key lands at 1.6-2.06 |
 | Candidates that survived whole-section verification | **0** |
 | Live pages | [STATUS.md](STATUS.md) (done / left) and [results/INDEX.md](results/INDEX.md) (every result, with its control) |
@@ -27,8 +27,12 @@ Each of these is a test that was **controlled** (a planted key of that kind is r
 
 | When | Test | Result |
 |---|---|---|
-| 2026-10-18 | Affine lag-feedback autokey c_i = p_i + a·c_(i-d) + b (d 1-8, all a/b, four scopes, nonlinear maps) and named echo mechanisms (F-replacement, collision twist W3(a)) | excluded: LP2 best χ² 64.9 (= the echo itself) vs null max 67.7; plant power χ²/n 2.25 vs LP2 0.05; F at eligible positions 0.56% vs echo rate 2.72% |
-| 2026-10-18 | Keyword-mixed outer alphabet (c = σ(p + k)): relabel front-end built and controlled | plant recovered at IoC 1.67 relabelled vs 1.01-1.06 unrelabelled; null ≤ 1.05, wrong σ ≤ 1.06; real run of 72 sigmas ready (about 1 h GPU) |
+| 2026-10-18 | Outer-alphabet gate: 72 sigma settings (44 distinct) x library on window 0.7; keyword alphabets + Atbash running on all sections | gate best IoC 1.381 (aff:8:0, sha256-ctr:1311) vs null 1.287 |
+| 2026-10-18 | Prime-space / mixed-domain affine feedback (d 1-8, all a/b) | null (plant chi²/n 1.97 vs LP2 0.44): the GP prime order is not the arithmetic domain |
+| 2026-10-18 | Keyless word-edge nulls (nulledge=1/2, new engine option; selftest passed) | excluded for 0%/100% of edges (best 1.416/1.429 vs nulls 1.390/1.385; every hit falls to 1.04-1.06 whole-window); the 42% mixture is measured untestable (free-beam null 1.75 = truth level) |
+| 2026-10-18 | Echo source mechanisms: F-replacement, collision twist W3(a), word-end nulls | all dead (F at eligible positions 0.56% vs echo 2.72%; 3/80 vs 2.8 expected; targets word-final 32/80 vs 34.7) |
+| 2026-10-18 | Affine lag-feedback autokey c_i = p_i + a·c_(i-d) + b (d 1-8, all a/b, four scopes, nonlinear maps) | excluded: LP2 best χ² 64.9 (= the echo itself) vs null max 67.7; plant power χ²/n 2.25 vs LP2 0.05 |
+| 2026-10-18 | Keyword-mixed outer alphabet (c = σ(p + k)): relabel front-end built and controlled | plant recovered at IoC 1.67 relabelled vs 1.01-1.06 unrelabelled; null ≤ 1.05, wrong σ ≤ 1.06 |
 | 2026-10-18 | 61 word-level key-sign rules ("their numbers are the direction") over 581 library streams, 2 x 10^10 decodes | best IoC **1.388**, 0 verified hits; 5 sign-flat streams: 1.293 |
 | 2026-10-18 | Per-page seeds, 8 generators x 2 seed ranges (16 sweeps, 44 page windows); millisecond-timestamp seeds 2012-2014 (java, py3 complete; java-abs 23/25 months, ruby 14/25) | 0 candidates |
 | 2026-10-18 | DeepSeek's 12 proposal gates reviewed (`work/proposals/`) | all pass on toy plants, none changes a result; two have flaws (a plaintext-number leak, a statistic that dies under the anti-repeat rule) |

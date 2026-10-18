@@ -152,6 +152,8 @@ def opts(args):
         raise SystemExit("clock= (clocked key pointer) is only supported by the Rust engine")
     if o.get("nulledge", "0") != "0":
         raise SystemExit("nulledge= (word-edge keyless nulls) is only supported by the Rust engine")
+    if o.get("advsep", "0") != "0":
+        raise SystemExit("advsep= (extra key advances at word boundaries / layout breaks) is only supported by the Rust engine")
     return o
 
 

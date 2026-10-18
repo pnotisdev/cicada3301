@@ -125,9 +125,12 @@ def lp2_ciphertext():
 
 def write_self_windows(path, starts):
     with open(path, "w", newline="\n") as f:
-        for name, prev, runes, lens in export.segment_windows():
+        for name, prev, runes, lens, breaks in export.segment_windows():
             g = starts[int(name.split(".")[1])]
-            f.write(f"W {name} {prev}\nR {' '.join(map(str, runes))}\nL {' '.join(map(str, lens))}\nG {g}\n")
+            f.write(f"W {name} {prev}\nR {' '.join(map(str, runes))}\nL {' '.join(map(str, lens))}\n")
+            if breaks:
+                f.write(f"B {' '.join(map(str, breaks))}\n")
+            f.write(f"G {g}\n")
 
 
 def keep(ks, P, label):

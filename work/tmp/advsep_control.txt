@@ -1,0 +1,11 @@
+plaintext: Welcome (segment 1), 299 runes in 73 complete words within the first 300, IoC 1.6671
+PASS  self-check: independent Python re-encryption (advances off) reproduces the engine's plant byte for byte (299 runes; pins the key stream and the splitmix64 plant RNG)
+advanced plant: 299 ciphertext runes, L = the plain window's word lengths, 72 word boundaries each consuming one extra key value (no line/page breaks in the window)
+PASS  (a) blindness: default engine (advsep=0) on the advanced window best IoC 1.213 (<= 1.3); at the true offset 100: 1.097
+PASS  (b) positive: advsep=1 best IoC 1.667 at item=primes offset=100 mult=1 model=0 (must be >= 1.6 at offset 100)
+PASS  (c) null: rand:300:301 with advsep=1 best IoC 1.286 (must be <= 1.37)
+info  advsep=1 on the un-advanced plant: best IoC 1.228 (expected ~1.0: the model does not fit ordinary text)
+PASS  advsep=2 on the advanced plant decodes identically to advsep=1 (no B line: no line/page breaks, so the option has nothing extra to advance at)
+PASS  (b2) B-line positive: advsep=2 recovers the word-boundary + 7 synthetic-break plant at offset 100 with IoC 1.659 (>= 1.6)
+info  advsep=1 on the B-line plant: IoC 1.106 at offset 100 (misaligned: it does not know the breaks; expected ~1.0)
+CONTROLS PASSED

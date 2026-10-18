@@ -141,8 +141,9 @@ def sigma_name(spec):
 def relabel_windows_file(path, sigma, out_path):
     """Relabel every rune value in a kscreen windows file by sigma_inv.
 
-    Handles W (name, prev) and R (rune list) lines; L lines pass through unchanged.
-    P / S / G lines raise: those hypotheses do not commute with an outer relabelling.
+    Handles W (name, prev) and R (rune list) lines; L (word lengths) and B (separator positions)
+    lines pass through unchanged - they carry positions, not rune values, and commute with an outer
+    relabelling. P / S / G lines raise: those hypotheses do not commute with an outer relabelling.
     """
     inv = sigma_inverse(sigma)
     with open(path, encoding="utf-8") as f:
@@ -158,7 +159,7 @@ def relabel_windows_file(path, sigma, out_path):
             out.append(f"W {name} {prev}")
         elif tag == "R":
             out.append("R " + " ".join(str(inv[int(x)]) for x in rest.split()))
-        elif tag == "L":
+        elif tag in ("L", "B"):
             out.append(line)
         else:
             raise ValueError(

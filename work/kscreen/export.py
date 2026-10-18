@@ -11,6 +11,10 @@ data/library.ksb    keystream library (binary "KSB1"): keystreams.number_keystre
 data/library.tsv    per keystream: length, period, predicted ciphertext IoC under English plaintext. LP2 has
                     0.9999 +- 0.0006, so a key whose prediction exceeds ~1.003 is already excluded globally
                     (the screen still runs it).
+
+Window format: W name prev / R runes / L word lengths / optional B line. The B line lists the window-relative
+rune positions where a line or page break (the transcription's line/page separators) sits between two runes;
+the engine's advsep=2 option advances the key pointer there (docs: ADVSEP.md).
 """
 import hashlib
 import json
@@ -32,10 +36,26 @@ OUT = os.path.join(HERE, "data")
 KEEP = 2000          # periodic keystreams are stored as one period + KEEP values (enough for windows up to ~1500)
 
 
+def break_positions(toks, start, end):
+    """Window-relative rune positions p where a line or page break (the transcription's '\n' / '%') sits between
+    rune p-1 and rune p, i.e. after p runes of the window. Only interior positions count (a break at or after
+    the window edge moves no pointer inside the window); the engine's advsep=2 advances the key pointer there."""
+    out, k = [], 0
+    for t in toks:
+        if isinstance(t, int):
+            k += 1
+        elif t in ("\n", "%"):
+            if start < k < end:
+                out.append(k - start)
+    return out
+
+
 def write_windows(path, items):
     with open(path, "w", newline="\n") as f:
-        for name, prev, runes, lens in items:
+        for name, prev, runes, lens, breaks in items:
             f.write(f"W {name} {prev}\nR {' '.join(map(str, runes))}\nL {' '.join(map(str, lens))}\n")
+            if breaks:
+                f.write(f"B {' '.join(map(str, breaks))}\n")
 
 
 def segment_windows():
@@ -47,7 +67,7 @@ def segment_windows():
             continue
         prev = lp.runes_of(segs[i - 1])[-1] if i > 7 else -1
         lens = [b - a for _, a, b in lp.word_spans(segs[i], c)]
-        out.append((f"seg0.{i}", prev, c, lens))
+        out.append((f"seg0.{i}", prev, c, lens, break_positions(segs[i], 0, len(c))))
     return out
 
 
@@ -56,7 +76,7 @@ def sub_window(seg, start, name):
     c = lp.runes_of(segs[seg])
     spans = [(a, b) for _, a, b in lp.word_spans(segs[seg], c)]
     lens = [b - a for a, b in spans if a >= start]
-    return (name, c[start - 1] if start > 0 else -1, c[start:], lens)
+    return (name, c[start - 1] if start > 0 else -1, c[start:], lens, break_positions(segs[seg], start, len(c)))
 
 
 def head_windows():

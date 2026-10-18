@@ -1,13 +1,14 @@
 # Overnight campaigns: report from desktop
 
-Generated on desktop at 2026-10-18 13:58:18 by `python jobs/overnight.py`. Thresholds and method: docs/CAMPAIGNS.md.
+Generated on desktop at 2026-10-18 14:25:24 by `python jobs/overnight.py`. Thresholds and method: docs/CAMPAIGNS.md.
 
 **Controls:** unit tests and kscreen selftest passed on desktop; null results below are validated.
 
-## setup: Build engines and data (3/3 steps done)
+## setup: Build engines and data (2/3 steps done)
 
 Cargo builds of the three Rust engines and the generated inputs (fast when nothing changed).
 
+- failed steps: setup/build-kscreen (see results/overnight/desktop/logs/)
 
 ## selftest: Regression tests and keystream-screen controls (1/1 steps done)
 
