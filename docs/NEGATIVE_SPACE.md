@@ -76,6 +76,7 @@ not run (the negative says nothing about the effect size LP2 shows).
 | 27 x 27 layout; page numerology; totient walk | no 27-wide structure (sensitive to about 100 hidden mirrors); numerology is chance after counting the choices; the walk rule is undefined | `phase9_community_claims.md` |
 | Base-60 payload (256 bytes) | byte-random, not a permutation or S-box; 832,204 AES / RC4 / XOR passphrase decryptions none; hash identity none | `phase4_items4-6.md`, `phase9_hyp.md` |
 | Book codes / pointers into public texts | AI-campaign repo: best z 5.2, below its noise replicates; not run here | research notes |
+| Reddit (r/Cipher, October 2026): page 12 = TWENTY FOUR PAGES WERE WRITTEN FOR YOU TO FIND THE SECRET PATH TO THE END via a ×7 mod-29 "multiplier", a SUMUS subtraction and a 5×6 vowel-first Bifid; page 56 = TWENTY FOUR MONTHS ...; page 28 = an IP address | false. Page 56 (LP2 numbering) is the solved An End. 261 runes cannot give 56 through one-to-one stages. The method has no anti-repeat step (about 10 doublets per page against page 12's 1; LP2 86 against about 490). The sentence's word lengths fit nowhere in LP2. 82,944 readings per page are null on page 12 and 53 pages, with plants 24/24. | `factcheck_page12_2026-10-18.md` |
 
 ## 5. The observations any open hypothesis must explain
 

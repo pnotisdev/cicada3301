@@ -537,6 +537,26 @@ engine `work/layer2` (output `results/layer2/`).
   - **Ideas not yet run:** restarts at typography with the full library, using the second koan and page 56 as controls;
     Euler-trail nulls; one-rune words as filters; a key-reuse scan anchored on the phrase.
 
+### Phase 11 – Outside claims (2026-10-18, laptop)
+- **Reddit fact check: "Liber Primus page 12 is officially 100% solved" (`work/log/factcheck_page12_2026-10-18.md`,
+  `work/factcheck_page12.py`, output `results/analysis/factcheck_page12_2026-10-18.txt`).** An r/Cipher post claimed page 12
+  gives TWENTY FOUR PAGES WERE WRITTEN FOR YOU TO FIND THE SECRET PATH TO THE END. The stated method: a "Dynamic Multiplier
+  7 Mod-29" stage, a SUMUS subtraction and a 5×6 vowel-first Bifid. No code, square or keys were published. **False:**
+  - In the LP2 file numbering, page 12 (12.jpg, image 29, 261 runes) is unsolved, but the post's page 56 is An End, whose
+    known solution does not match its text. In book numbering, page 12 is plain runes (The Loss of Divinity).
+  - One-to-one stages turn 261 runes into 261 symbols; the sentence has 56.
+  - The method has no anti-repeat step. It leaves about 10 doublets per page against page 12's 1 (1 of 1,000 simulated
+    pages are that low), and about 490 over LP2 against 86 (P about 1e-112).
+  - The sentence's word lengths fit no 15-word run in LP2. The 5×6 Bifid is not a bijection: 958 of 960 English windows
+    cannot be encrypted with a rune square.
+  - 82,944 readings per page (9 multipliers × 8 SUMUS stages × 2 origins × rune and letter squares × 12 periods ×
+    2 overflow rules). Page 12 is inside a 200-text null on every statistic: best rune score −8.37 against a null
+    median of −8.33, and the sentence matches at most 12 of 56 runes (null median 12). Pages above all 20 of their own
+    length-matched nulls: 2, 1, 1 and 0 of 53 across the four statistics (chance about 2.5). Planted pages were
+    recovered 24 of 24, each as the top decode.
+
+  Nothing in LP2 is solved.
+
 ### Phase 5 – Validation and reporting
 - A plaintext counts as solved only if it scores well across a whole segment (word hits and IoC about 1.8)
   and the same rule works on the next page.

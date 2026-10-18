@@ -1,0 +1,121 @@
+Fact check: 'Liber Primus page 12 is officially 100% solved' (r/Cipher post, October 2026)
+Claimed plaintext: TWENTY FOUR PAGES WERE WRITTEN FOR YOU TO FIND THE SECRET PATH TO THE END
+Method as stated: 'Dynamic Multiplier 7 Mod-29 framework' + 'post-multiplier SUMUS key subtractor array' + '5x6 Vowel-First
+Polybius fractionation square (Bifid Style)'; no code, square, key values or intermediate numbers were published.
+Transcription: work/ref/lp_verified.txt. Script: work/factcheck_page12.py. Write-up: work/log/factcheck_page12_2026-10-18.md.
+
+A. WHICH PAGE IS 'PAGE 12'?
+   Transcription pages tp map to the original images as image = tp + 2 (tp 0 = image 01, A Warning); the 2014 LP2 release
+   numbers its 58 files 0.jpg-57.jpg = images 17-74; LiberPrimus.pdf puts 'Intus' (image 02) before A Warning (image 01).
+   page 12:
+     LP2 file number (0.jpg-57.jpg)             image 29 = tp 27: unsolved section 0.9, runes 1059-1319 (261 runes); first words (ciphertext): CI RCW EAEOT THCHU IAWOE GEOP UPTH GYUAM WCEINGREADTH JIPHFXINGPN BCAGSOE XEAPAOGFCIAJ
+     whole-book image number (00-74)            image 12 = tp 10: SOLVED section 0.4 (The Loss of Divinity), runes 394-585 (192 runes); first words: MOST THINGS ARE NOT WORTH PRESERUING ADHERENCE WE FOLLOW DOGMA SO THAT
+     LiberPrimus.pdf page                       image 11 = tp 9: SOLVED section 0.4 (The Loss of Divinity), runes 187-393 (207 runes); first words: WE HAUE WHAT WE HAUE NOW BY LUCC AND WE WILL NOT
+     this project's transcription page index    image 14 = tp 12: SOLVED section 0.5 (A Koan), runes 0-225 (226 runes); first words: A COAN DURING A LESSON THE MASTER EXPLAINED THE I THE I
+   page 28:
+     LP2 file number (0.jpg-57.jpg)             image 45 = tp 43: unsolved section 0.13, runes 234-502 (269 runes); first words (ciphertext): NPFPC JTHBIW DWINGEAIAWL WJNAOE TDXYERD RTEOICP ING THOEGJTH YS EAH FBL IAELDXA
+     whole-book image number (00-74)            image 28 = tp 26: unsolved section 0.9, runes 786-1058 (273 runes); first words (ciphertext): IASCE WB NLING THNIEA BIARFEIW NFMUGN JLCR INGYXSAOERXC BAE FUAEAW LN JX
+     LiberPrimus.pdf page                       image 27 = tp 25: unsolved section 0.9, runes 523-785 (263 runes); first words (ciphertext): WIAEARAEWIADATHC XU PTSUE GTHIAL ESEAINGXPX NOE DOEB NWUIEOLD I THYG OEPIA EA
+     this project's transcription page index    image 30 = tp 28: unsolved section 0.9, runes 1320-1591 (272 runes); first words (ciphertext): GTHFJGC BIMLEOEAW NAEWG OHATNJ YINGTIAING U OFY MUB TFP RO XOINGB ETOX
+   page 56:
+     LP2 file number (0.jpg-57.jpg)             image 73 = tp 71: SOLVED section 0.16 (An End), runes 0-84 (85 runes); first words: AN END WITHIN THE DEEP WEB THERE EXISTS A PAGE THAT HASHES
+     whole-book image number (00-74)            image 56 = tp 54: unsolved section 0.14, runes 1349-1588 (240 runes); first words (ciphertext): SW TH NSIHB XEAING BULOEUN UTHOMA NDAEEO AEYAS YINGIAMGEONP EACHINGL FGIA IIAAFBP
+     LiberPrimus.pdf page                       image 55 = tp 53: unsolved section 0.14, runes 1121-1348 (228 runes); first words (ciphertext): UAECEOCY IAAETECF SH SRUTH ISINGMDAEUEAUA NINGC EPWX UXAE NPCHRYWLXRB MAEOEYO CEOM HAEXTHBOE
+     this project's transcription page index    image 58 = tp 56: unsolved section 0.15, runes 231-503 (273 runes); first words (ciphertext): PIAEAIA SYMDYS BDJD ONTL CAING RGHG JWF AUEO DTMJI INGAE XPCPEA OEABIIS
+
+   An End (LP2 56.jpg, image 73) with the project's exact rule (key phi(p_n) = p_n - 1, one literal F; tests/expected_solved.txt):
+     AN END. WITHIN THE DEEP WEB THERE EXISTS A PAGE THAT HASHES TO. 36367763ab73783c7af284446c 59466b4cd653239a311cb7116 d4618dee09a8425893dc7500b 464fdaf1672d7bef5e891c6e227 4568926a49fb4f45132c2a8b4 IT IS THE DUTY OF EUERY PILGRIM TO SEEC OUT THIS PAGE
+   The post's page-56 text begins 'TWENTY FOUR MONTHS WAS HERE'. LP2 56.jpg is this solved page; image 56 (book numbering)
+   is unsolved, but then the post's page 12 is image 12, a page of The Loss of Divinity, which is written in plain runes.
+
+   Page 28 '108.192.168.50 GATEWAY': LP2 28.jpg (image 45, tp 43, section 0.13 runes 234-502) has 0 numerals among its runes; the Gematria Primus has no digits.
+     108.192.168.50 is_private=False is_global=True; in 192.168.0.0/16: False (RFC 1918 needs 192.168 as the first two octets, so this is no LAN address).
+
+B. LENGTH AND WORD PATTERN
+   Claimed sentence: 15 words, 56 runes in the Gematria Primus spelling (59 letters). Rune word lengths [6, 4, 5, 4, 7, 3, 3, 2, 4, 2, 6, 3, 2, 2, 3]; letter word lengths [6, 4, 5, 4, 7, 3, 3, 2, 4, 3, 6, 4, 2, 3, 3].
+   LP2 12.jpg: 261 runes, 65 words (the first and last may continue on the next / previous page); first word lengths [2, 3, 3, 4, 3, 3, 3, 5, 9, 9, 6, 10, 5, 2, 2].
+   Every stage named in the post maps one symbol to one symbol (a multiplier mod 29, a periodic subtraction, a Bifid square),
+   so a whole-page decryption has 261 symbols: the 56-rune sentence would leave 205 runes (79% of the page) unexplained.
+   In all of LP2 (2896 words, 2782 runs of 15 consecutive words) the claimed rune word lengths occur 0 times (chance 2.2e-09); the letter lengths 0 times (chance 4.0e-09).
+   Best partial fit anywhere: 9 of 15 word lengths. In every solved section the separators are the plaintext's word
+   boundaries, so a correct plaintext of a page must have the page's word lengths (unless the separators were redrawn).
+
+C. THE 5x6 BIFID AS A MAP
+   A Bifid needs every re-paired coordinate to be a cell. In a 5 x 6 square a column index 6 can land where a row is read
+   (or a row index 6 where a column is read in 6 x 5), and the 30th cell is empty: the map is not a bijection.
+   rune squares: 958 of 960 English windows of 261 symbols cannot be encrypted at all (8 squares x 12 periods x 10)
+   letter squares: 480 of 960 English windows of 261 symbols cannot be encrypted at all (8 squares x 12 periods x 10)
+   Decrypting page 12 itself with the rune squares (strict) leaves 3.1-10.7% of its positions without a plaintext symbol (mean 7.3%).
+   Claimed sentence in runes: a 5x6 Bifid decryption can output it in 22539 of 98880 placements (8 squares x periods 0, 2-60 x every offset in a 261-symbol page; 285 square/period pairs). The other placements need a pair that is not a cell.
+   Claimed sentence in letters: a 5x6 Bifid decryption can output it in 67862 of 131040 placements (8 squares x periods 0, 2-60 x every offset in a 331-symbol page; 287 square/period pairs). The other placements need a pair that is not a cell.
+
+D. THE CLAIMED PIPELINE IN EVERY READING WE COULD DEFINE
+   Readings per text: 82,944 decodes = multiplier 9 (none, *7, *25 (= /7), *7^(i+1), *25^(i+1), *7(i+1), *(7+i), -7i, +7i) x SUMUS stage 8 x position origin 2 (page start, section start 1059)
+   x [rune path: 2 orders x 8 rune squares | letter path: 8 letter squares] x 12 periods (whole text, 2-12) x 2 overflow rules (strict, wrap). 5.6 s.
+   Scores: mean English bigram score per adjacent pair (10 ln-odds; Cicada's solved text +7.3 per rune, random about -10);
+   'claim' = the most positions any placement of the claimed sentence shares with the output (56 runes / 59 letters).
+   Calibration: Cicada's solved text scores +7.40 (runes) and +7.40 (letters); the claimed sentence +8.18 / +8.79.
+
+   PAGE 12 (LP2 12.jpg, 261 runes):
+     rune  best score -8.37  ('rune BMK', 1059, '*(7+i)', 'SUMUS runes, add', 'R1 filled by columns, 5x6', 8, 'wrap')
+           output: FAELTHOBRUCEANEOEXHCOEUOEBEATHOEGHEOIARINGTHXLXCAIASISPPPREAMATPDMOLYWWOSNTEAAESSTTSEOFJTHLYIARMFRUMMELYFTRYTHTACTHCEUYDNROEBIGXEEAGRUMUOAULEPIMNINGOM
+     rune  best claim match 12 of 56  ('rune MKB', 1059, '*25^(i+1)', 'no key', 'R3 AEIOU + the rest in GP order, 6x5', 6, 'wrap')
+     latin best score -4.46  ('latin MKB', 0, '+7i', 'SUMUS primes mod 29, subtract', 'L2 filled by columns, 5x6', 2, 'strict')
+           output: QTJCJIFAWVUOEBEKNFPETDAMPEPTIECALTTWHUAMPASDIAIAIBTROFVDNAREJATFEVURGIRTHBVHGONOVNFAUSMEHTBAFENTMITFARPAQPXVAPOBLULONTPABAEAMOTFPINAPADEXATOFUNTPAKUNT
+     latin best claim match 15 of 59  ('latin MKB', 1059, '*7', 'SUMUS primes mod 29, subtract', 'L2 AEIOU + the rest, 6x5', 9, 'strict')
+
+   POSITIVE CONTROL: 24 planted pages (261 runes of Cicada's solved text, the claimed sentence spliced in at a
+   random place, a random reading with an invertible multiplier and a strict square; plaintext symbols that no 5x6 Bifid can
+   produce are replaced first), each run through the same grid.
+     seed 1000: top +6.82 (planted text +6.82, 0 decodes above it) recovered 100%, claim match 56 of 56 (0 sentence runes replaced), 4 replaced in all; planted rune MKB -7i / SUMUS primes mod 29, subtract / p 6
+     seed 1001: top +5.66 (planted text +5.66, 0 decodes above it) recovered 100%, claim match 55 of 56 (1 sentence runes replaced), 20 replaced in all; planted rune BMK -7i / no key / p 3
+     seed 1002: top +4.29 (planted text +4.29, 0 decodes above it) recovered 100%, claim match 52 of 56 (4 sentence runes replaced), 23 replaced in all; planted rune BMK -7i / SUMUS runes, add / p 9
+     seed 1003: top +6.76 (planted text +6.76, 0 decodes above it) recovered 100%, claim match 56 of 56 (0 sentence runes replaced), 12 replaced in all; planted rune MKB *25^(i+1) / SUMUS runes, add / p 6
+     seed 1004: top +4.92 (planted text +4.92, 0 decodes above it) recovered 100%, claim match 53 of 56 (3 sentence runes replaced), 23 replaced in all; planted rune BMK none / SUMUS runes, subtract / p 2
+     seed 1005: top +5.85 (planted text +5.85, 0 decodes above it) recovered 100%, claim match 54 of 56 (2 sentence runes replaced), 14 replaced in all; planted rune MKB +7i / SUMUS A=0, add / p 4
+     seed 1006: top +6.29 (planted text +6.29, 0 decodes above it) recovered 100%, claim match 53 of 56 (3 sentence runes replaced), 12 replaced in all; planted rune BMK *7 / SUMUS primes mod 29, subtract / p 4
+     seed 1007: top +5.00 (planted text +5.00, 0 decodes above it) recovered 100%, claim match 54 of 56 (2 sentence runes replaced), 18 replaced in all; planted rune MKB -7i / SUMUS A=0, subtract / p 8
+     seed 1008: top +5.97 (planted text +5.97, 0 decodes above it) recovered 100%, claim match 54 of 56 (2 sentence runes replaced), 11 replaced in all; planted rune MKB *7^(i+1) / SUMUS A=0, subtract / p 3
+     seed 1009: top +4.87 (planted text +4.87, 0 decodes above it) recovered 100%, claim match 52 of 56 (4 sentence runes replaced), 19 replaced in all; planted rune BMK *25^(i+1) / SUMUS runes, add / p 0
+     seed 1010: top +4.02 (planted text +4.02, 0 decodes above it) recovered 100%, claim match 53 of 56 (3 sentence runes replaced), 19 replaced in all; planted rune BMK *25^(i+1) / SUMUS primes mod 29, subtract / p 12
+     seed 1011: top +6.78 (planted text +6.78, 0 decodes above it) recovered 100%, claim match 56 of 56 (0 sentence runes replaced), 10 replaced in all; planted rune MKB none / SUMUS primes mod 29, subtract / p 3
+     seed 1012: top +5.62 (planted text +5.62, 0 decodes above it) recovered 100%, claim match 54 of 56 (2 sentence runes replaced), 14 replaced in all; planted rune BMK none / SUMUS A=0, subtract / p 3
+     seed 1013: top +5.68 (planted text +5.68, 0 decodes above it) recovered 100%, claim match 48 of 56 (8 sentence runes replaced), 26 replaced in all; planted rune MKB *7^(i+1) / no key / p 9
+     seed 1014: top +4.10 (planted text +4.10, 0 decodes above it) recovered 100%, claim match 50 of 56 (6 sentence runes replaced), 26 replaced in all; planted rune BMK *7^(i+1) / SUMUS primes mod 29, subtract / p 11
+     seed 1015: top +4.93 (planted text +4.93, 0 decodes above it) recovered 100%, claim match 51 of 56 (5 sentence runes replaced), 28 replaced in all; planted rune BMK *25 (= /7) / SUMUS primes mod 29, subtract / p 8
+     seed 1016: top +5.20 (planted text +5.20, 0 decodes above it) recovered 100%, claim match 53 of 56 (3 sentence runes replaced), 19 replaced in all; planted rune BMK +7i / SUMUS runes, Beaufort / p 5
+     seed 1017: top +3.83 (planted text +3.83, 0 decodes above it) recovered 100%, claim match 49 of 56 (7 sentence runes replaced), 29 replaced in all; planted rune BMK *25 (= /7) / SUMUS A=0, subtract / p 12
+     seed 1018: top +5.28 (planted text +5.28, 0 decodes above it) recovered 100%, claim match 47 of 56 (9 sentence runes replaced), 22 replaced in all; planted rune BMK none / SUMUS runes, Beaufort / p 11
+     seed 1019: top +6.06 (planted text +6.06, 0 decodes above it) recovered 100%, claim match 54 of 56 (2 sentence runes replaced), 11 replaced in all; planted rune MKB none / SUMUS runes, Beaufort / p 6
+     seed 1020: top +4.08 (planted text +4.08, 0 decodes above it) recovered 100%, claim match 51 of 56 (5 sentence runes replaced), 31 replaced in all; planted rune BMK -7i / SUMUS runes, add / p 0
+     seed 1021: top +6.18 (planted text +6.18, 0 decodes above it) recovered 100%, claim match 56 of 56 (0 sentence runes replaced), 16 replaced in all; planted rune MKB *7^(i+1) / no key / p 12
+     seed 1022: top +5.40 (planted text +5.40, 0 decodes above it) recovered 100%, claim match 52 of 56 (4 sentence runes replaced), 20 replaced in all; planted rune BMK *25 (= /7) / SUMUS A=0, add / p 8
+     seed 1023: top +7.81 (planted text +7.81, 0 decodes above it) recovered 100%, claim match 55 of 56 (1 sentence runes replaced), 10 replaced in all; planted rune MKB *25^(i+1) / SUMUS A=0, add / p 11
+     recovered (top decode = the planted text at >= 95% of positions): 24 of 24; top scores +3.83 .. +7.81; claim match 47 .. 56
+     letter Bifid alone (24 plants, letter squares x periods x overflow rules): recovered 24 of 24, top scores +3.81 .. +8.37
+
+   NULL CONTROL: the same grid on 200 texts of 261 runes (half uniform random, half shuffles of page 12).
+     rune best score     null median -8.33, 95% -7.55, max -7.03; page 12 -8.37: 105 of 200 nulls reach it
+     rune claim match    null median +12.00, 95% +13.00, max +15.00; page 12 +12.00: 190 of 200 nulls reach it
+     letter best score   null median -4.34, 95% -3.66, max -3.23; page 12 -4.46: 139 of 200 nulls reach it
+     letter claim match  null median +14.00, 95% +15.00, max +15.00; page 12 +15.00: 28 of 200 nulls reach it
+
+   EVERY UNSOLVED PAGE (LP2 0.jpg-55.jpg; the post: 'the mathematical master key is holding up flawlessly'):
+     53 pages (3 skipped because they straddle two sections: tp [30, 48, 65]), each against 20 null texts of its own length (half uniform random, half shuffles of the page); 92,316,672 decodes.
+     rune best score per page -9.14 .. -3.07; letter -4.96 .. -0.29; claim match runes 10 .. 14 of 56, letters 12 .. 15 of 59
+     rune best score    : pages above all 20 of their nulls 2 of 53 (no signal: about 2.5, fewer with ties); median nulls reaching the page 9
+     rune claim match   : pages above all 20 of their nulls 1 of 53 (no signal: about 2.5, fewer with ties); median nulls reaching the page 18
+     letter best score  : pages above all 20 of their nulls 1 of 53 (no signal: about 2.5, fewer with ties); median nulls reaching the page 11
+     letter claim match : pages above all 20 of their nulls 0 of 53 (no signal: about 2.5, fewer with ties); median nulls reaching the page 17
+     largest rune excess over its own null median: LP2 55.jpg (tp 70, 76 runes) -3.07 against null median -4.63, max -2.67; ('rune MKB', 3240, '*7^(i+1)', 'SUMUS primes mod 29, add', 'R3 AEIOU + the rest in GP order, 5x6', 0, 'wrap')
+       output: BERWTFNGNWAINGTOEAINGTBCJBUYGRWEUTINGUETIANITRTCMINGIXNPIEEIUEAUREMECFWEEACDELOERERYTLDI
+     largest latin excess over its own null median: LP2 13.jpg (tp 28, 272 runes) -3.64 against null median -4.64, max -3.78; ('latin MKB', 1320, '*25^(i+1)', 'SUMUS A=0, add', 'L2 AEIOU + the rest, 6x5', 4, 'strict')
+       output: EPACAQBBBEONHENANNOFOAUGDSANUBWTFAEMPDIPALUGWSKROOIBEMPEYWBJOSEMEMNEBBAKNCGIBHACBEANDYWAOAIPETPULBEMTNBEVEOAOSAKQUBVDFTHECMDFGBPOEHVURDLEMPETVUAAPNFUR
+
+E. THE FINGERPRINT THE PIPELINE WOULD LEAVE
+   Doublets (the same rune twice in a row): page 12 has 1 in 260 adjacent pairs. Ciphertexts made by the claimed
+   pipeline from Cicada's text (1,000 random readings): mean 9.85 per page (sd 3.26), 1 of 1,000 at or below 1.
+   All of LP2: 86 doublets in 12,947 pairs; the pipeline's rate 3.79% predicts 490; P(<= 86) = 1.2e-112. The pipeline has no anti-repeat step, and every LP2 page shows the deficit.
+   IoC (x29): page 12 0.985; pipeline ciphertexts 1.075 +- 0.089 (constant multiplier only 1.128 +- 0.099): not decisive at 261 runes.
+
+Done in 2099 s.

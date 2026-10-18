@@ -154,6 +154,12 @@ A new Claude session on the desktop (runner alias `desktop`, RTX 2080 Ti, 32 GB)
 
 - **Open after this session:** the GPU candidates in `docs/NEGATIVE_SPACE.md` section 6 (remaining millisecond months, per-page seeds, full-seed boundary-free sweeps) wait for a GPU grant.
 
+## 9. The laptop, third session (2026-10-18)
+
+| # | User | What was done |
+|---|---|---|
+| 72 | "pull the latest commit data from main, from my PC. Then fact check this in a new branch:" followed by the link to an r/Cipher post ("UPDATE: Liber Primus Page 12 is officially 100% ...") and "they say:" with the post's text pasted (page 12 = TWENTY FOUR PAGES WERE WRITTEN FOR YOU TO FIND THE SECRET PATH TO THE END by a "Dynamic Multiplier 7 Mod-29" stage, a SUMUS subtraction and a 5×6 vowel-first Bifid; earlier "blueprints" for pages 56 and 28) | After a fetch, local `main` was already at the desktop's 5663967. `main` has 14 commits that `research/typo-restarts` lacks; that branch keeps its 3 unmerged commits. New branch `factcheck/reddit-page12` off `main`. During the session the desktop pushed ccdba20 (detached job queues), and the checkout was switched to `main` and fast-forwarded outside this session (GitHub Desktop, by the reflog). The fact-check branch had no commits yet, so it was moved onto ccdba20; the uncommitted work came along unchanged. Reddit could not be opened from here (both the fetch tool and the built-in browser refuse it), so the pasted text was the source and no comments were read. `work/factcheck_page12.py` writes `results/analysis/factcheck_page12_2026-10-18.txt`; the write-up is `work/log/factcheck_page12_2026-10-18.md`. **The claim is false.** In the LP2 numbering, page 56 is the solved An End; in book numbering, page 12 is plain runes. 261 runes cannot give a 56-rune sentence through one-to-one stages. The method has no anti-repeat step: about 10 doublets per page against page 12's 1. 82,944 readings per page were at null level on page 12 and on 53 unsolved pages, with 24 of 24 planted pages recovered. |
+
 ## Decisions that stand
 
 - **Honesty.** Nothing in LP2 is solved. Every negative needs a positive control (a planted key the method
