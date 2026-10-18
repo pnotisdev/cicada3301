@@ -110,8 +110,14 @@ in-word positions; the word-end insertion mechanism is excluded for them.
 - **Keyword alphabets x all sections** (`work/tmp/relabel_all_summary.txt`, `results/kscreen/relabel_all_*.tsv`):
   17 keywords + Atbash, 8 section windows, both key signs and models, about 3.6 B decodes: best 1.3895 (kw:KOAN),
   kw:PRIMES 1.3773, kw:FIRFUMFERENFE 1.3669, atbash 1.3663 - all below 1.40; matched null
-  (`results/kscreen/relabel_all_null.tsv`) recorded. The 26 affine multipliers x all sections remain open
-  (about 3 h CPU). B lines (separator positions, added for advsep) pass through the relabel front-end unchanged.
+  (`results/kscreen/relabel_all_null.tsv`) 1.3346. B lines (separator positions, added for advsep) pass through
+  the relabel front-end unchanged.
+- **Affine outer sigmas are redundant (verified algebraically, 2026-10-18).** For sigma(x) = a*x + b, the ordinary
+  screen with key multiplier a decodes c - a*k = a*p + b, a permutation of the plaintext, so its IoC equals the
+  relabelled screen's: the `multipliers` row (all 28 multipliers x the library on all sections, 5.7 B decodes,
+  negative, best 1.381 vs null 1.318) already closes every affine sigma. The planned all-sections affine-multiplier
+  rerun was cancelled as redundant (the second model's MATH.md makes the same claim). Only arbitrary non-affine
+  permutations sigma remain open, which is not a sweepable family.
 - **Layout pointer advance** (`advsep=1|2` in work/kscreen, `work/kscreen/ADVSEP.md`, `work/tmp/advsep_report.md`):
   controls passed (blindness 1.213 / 1.097 at truth, recovery 1.667 at offset 100, null 1.286, B-line plant
   1.659; selftest passed). LP2: advsep=1 best 1.3191 below its matched null 1.3682 (no power); advsep=2 best
