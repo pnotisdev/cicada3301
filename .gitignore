@@ -37,3 +37,8 @@ work/ref/deepseek/
 work/tmp/advsep_bitcheck/kscreen_old.exe
 
 work/h5rs/target/
+
+# --- chanscreen (GPT, 2026-10-19): per-case raw records (about 300 KB each, hundreds of cases) and local builds stay out of git; the frozen protocol, code, tests,
+#     summaries, thresholds, hashes and logs are tracked. The raw records are reproducible from the frozen seeds; a SHA-256 manifest of them is committed instead. ---
+work/chanscreen/raw/
+work/chanscreen/build/
