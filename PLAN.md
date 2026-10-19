@@ -672,3 +672,10 @@ a matching decoder is a separate decision (registry `open-m04-decoder`).
 
 6,000 independent stream + keyword plants through the real `h5rs sweep` path: recall of the true cell falls from 84% (L = 2) to 7% (L = 20) at IoC 1.6 and from 48% to 4% at 1.8 (skip 58% / 36%, coin 34% / 21%); no dependence on offset or key kind.
 **A negative H5 sweep excludes little** (the 1.8 floor rejects about half of even perfect 300-rune decodes; the engine truncates windows to 300). The overnight queue was re-cut to L = 2..13 (flat library) and L = 2..8 (the 858 streams the flat filter excluded).
+
+### chanscreen: hold-key matching decoder (2026-10-19, `work/log/phase17_chanscreen.md`, `work/chanscreen/`)
+
+GPT built it, Claude reviewed and finished the follow-up. No LP2 ciphertext scored. v1 dense summed-path DP: G0-G2 PASS (M04 plants 100/100, nulls 4/100), G3 GPU port FAIL.
+v2 sparse all-offsets Rust engine: E0-E2 PASS (exact on the Q3 grid, all 693,940 stored cells to 1.3e-11 nats); full 82-window campaign projected at about 15 wall hours on 4 workers.
+**E3' FAIL:** the union bound at T300 = 29.80 nats does not hold under one common null (exact finite-key counterexamples, 2.07x the bound at Q29/n300). **F4 guard min(S, S_W) >= T PASS:** exact tails under both nulls on the
+full Q3 grid (48,708 bounds), and on the 380 saved held records 280/280 plants kept, 0/100 nulls (max -132.15). The literal wrong-offset count fails on +-15 alias cells (403 of 2,240 passes at t = 10). E3-E5 wait for adoption of the guard.

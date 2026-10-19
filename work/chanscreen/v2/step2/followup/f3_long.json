@@ -1,0 +1,67 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "n": 300,
+      "repeated_pattern": false,
+      "key_pattern": "constant",
+      "offsets": 2001,
+      "max_error_nats": 8.86757334228605e-12
+    },
+    {
+      "n": 300,
+      "repeated_pattern": false,
+      "key_pattern": "cycling",
+      "offsets": 2001,
+      "max_error_nats": 8.86757334228605e-12
+    },
+    {
+      "n": 300,
+      "repeated_pattern": true,
+      "key_pattern": "constant",
+      "offsets": 2001,
+      "max_error_nats": 7.048583938740194e-12
+    },
+    {
+      "n": 300,
+      "repeated_pattern": true,
+      "key_pattern": "cycling",
+      "offsets": 2001,
+      "max_error_nats": 7.048583938740194e-12
+    },
+    {
+      "n": 600,
+      "repeated_pattern": false,
+      "key_pattern": "constant",
+      "offsets": 2001,
+      "max_error_nats": 2.000888343900442e-11
+    },
+    {
+      "n": 600,
+      "repeated_pattern": false,
+      "key_pattern": "cycling",
+      "offsets": 2001,
+      "max_error_nats": 2.000888343900442e-11
+    },
+    {
+      "n": 600,
+      "repeated_pattern": true,
+      "key_pattern": "constant",
+      "offsets": 2001,
+      "max_error_nats": 2.1827872842550278e-11
+    },
+    {
+      "n": 600,
+      "repeated_pattern": true,
+      "key_pattern": "cycling",
+      "offsets": 2001,
+      "max_error_nats": 2.1827872842550278e-11
+    }
+  ],
+  "penalty_nats": {
+    "300": 8.526893637448726,
+    "600": 17.082305313818683
+  },
+  "note": "Conservative skip5/coin bound only on stated sufficient-horizon scope; not deployment authorization",
+  "seconds": 0.9749783000152092
+}

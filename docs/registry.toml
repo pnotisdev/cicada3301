@@ -892,9 +892,9 @@ title = "Hold-key matching decoder: fixed-prior summed-path likelihood with the 
 status = "open"
 priority = 2
 what = "Needed only if the hold-key repair is a live hypothesis: every key-family negative that used a skip / coin decoder says nothing about it (m04-baseline)"
-cost = "Engineering plus gates; unknown. Gates: exhaustive tiny-alphabet enumeration, planted recovery, selection-matched wrong-key nulls on the same freedom"
-needs = "A measured null and offset resolution first: free pointer-hold freedom inflated the nulledge null to the true-key score (1.75) and the gated-null decoder failed on offset resolution for structured keys"
-log = ["work/log/phase15_m04_baseline.md", "work/independent/anti_repeat_matrix/MATRIX.md"]
+cost = "Built as chanscreen (work/chanscreen/): v1 G0-G2 PASS, G3 (GPU) FAIL; v2 sparse all-offsets CPU engine E0-E2 PASS (all 693,940 stored cells to 1.3e-11 nats). Full 82-window LP2 campaign projected at about 15 wall hours on 4 workers (not run)"
+needs = "A frozen acceptance rule, then real-bank sanity nulls (E3), 200 library-scale plants (E4) and the campaign package (E5). The planned common-null proof failed (E3', exact finite-key counterexamples); the guard rule min(S, S_W) >= T passed its exact checks (F4, 280/280 saved plants kept, 0/100 nulls) and awaits adoption. The literal wrong-offset count check fails on +-15 alias cells of true plants and needs an alias exclusion"
+log = ["work/log/phase15_m04_baseline.md", "work/independent/anti_repeat_matrix/MATRIX.md", "work/log/phase17_chanscreen.md", "work/chanscreen/v2/REPORT.md", "work/chanscreen/v2/step2/REPORT.md", "work/chanscreen/v2/step2/followup/REPORT.md"]
 
 [[experiment]]
 id = "h5-power-map"

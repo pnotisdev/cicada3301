@@ -1,0 +1,89 @@
+{
+  "status": "PASS",
+  "threshold": -135.15812268992306,
+  "conditions": {
+    "hold_total": true,
+    "hold_strata": true,
+    "hold_accuracy": true,
+    "null_size": true,
+    "spend": true,
+    "skip": true,
+    "coin": true
+  },
+  "summary": {
+    "m04": {
+      "n": 100,
+      "detected": 100,
+      "by_stratum": {
+        "cicada|iid": 25,
+        "cicada|lib": 25,
+        "english|iid": 25,
+        "english|lib": 25
+      },
+      "accurate_detected": 100,
+      "mean_winner_accuracy": 0.9886333333333335,
+      "mean_true_accuracy": 0.9888000000000001,
+      "alias_identified": 100,
+      "exact_identified": 98
+    },
+    "spend": {
+      "n": 100,
+      "detected": 100,
+      "by_stratum": {
+        "cicada|iid": 25,
+        "cicada|lib": 25,
+        "english|iid": 25,
+        "english|lib": 25
+      },
+      "accurate_detected": 100,
+      "mean_winner_accuracy": 0.9815999999999998,
+      "mean_true_accuracy": 0.9815666666666665,
+      "alias_identified": 100,
+      "exact_identified": 100
+    },
+    "skip": {
+      "n": 40,
+      "detected": 40,
+      "by_stratum": {
+        "cicada|iid": 10,
+        "cicada|lib": 10,
+        "english|iid": 10,
+        "english|lib": 10
+      },
+      "accurate_detected": 40,
+      "mean_winner_accuracy": 0.99925,
+      "mean_true_accuracy": 0.99925,
+      "alias_identified": 40,
+      "exact_identified": 40
+    },
+    "coin": {
+      "n": 40,
+      "detected": 40,
+      "by_stratum": {
+        "cicada|iid": 10,
+        "cicada|lib": 10,
+        "english|iid": 10,
+        "english|lib": 10
+      },
+      "accurate_detected": 40,
+      "mean_winner_accuracy": 0.99925,
+      "mean_true_accuracy": 0.9993333333333332,
+      "alias_identified": 40,
+      "exact_identified": 39
+    },
+    "null": {
+      "n": 100,
+      "detected": 4,
+      "by_stratum": {
+        "cicada|iid": 2,
+        "cicada|lib": 0,
+        "english|iid": 2,
+        "english|lib": 0
+      }
+    }
+  },
+  "distinct_starts": {
+    "cicada": 171,
+    "english": 190
+  }
+}

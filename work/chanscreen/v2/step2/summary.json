@@ -1,0 +1,50 @@
+{
+  "E3_proof_status": "FAIL",
+  "E3_sanity": "INCOMPLETE: blocked by proof failure",
+  "E4": "INCOMPLETE: blocked by proof failure",
+  "E5": "INCOMPLETE: review only, no queue",
+  "thresholds": {
+    "300": {
+      "window_count": 82,
+      "N_cells": 8742403760,
+      "LR_threshold_integer": 8742403760000,
+      "T_nats": 29.799206297530528,
+      "per_cell_bound": "1/8742403760000"
+    },
+    "600": {
+      "window_count": 66,
+      "N_cells": 7036568880,
+      "LR_threshold_integer": 7036568880000,
+      "T_nats": 29.5821417922927,
+      "per_cell_bound": "1/7036568880000"
+    }
+  },
+  "thresholds_certified_for_common_null": false,
+  "counters": {
+    "status": "PASS",
+    "output_comparisons": 340800,
+    "normalized_L_trees": 34080,
+    "exact_tail_inequalities": 46602,
+    "no_exhaustion_common_law_checks": 20928,
+    "comparison_digest": "cad68f0fe4cef11079ff2614940bf85d77202324e6e34901be7e33e1bb90b7f5"
+  },
+  "real_bank_null_maxima": null,
+  "real_bank_gap": null,
+  "plants_completed": 0,
+  "detection_and_identification": null,
+  "Viterbi_accuracy": null,
+  "wall_projections_hours": {
+    "sanity_5x300_3x600": 2.0190039217065165,
+    "conditional_200_plants_at_20k_key_values_scoring_only": 0.0832188468515283,
+    "n300_82_window_campaign_four_workers": 14.964441574400269
+  },
+  "estimate_caveats": "Inherited v2 synthetic benchmark interpolation, not new timing. Traceback, export/checkpoints, model mismatch and contention extra/unknown.",
+  "resources": {
+    "proof_seconds": 5.329691099992488,
+    "threads_used": 1,
+    "GPU_compute_seconds": 0,
+    "program_external_API_calls": 0,
+    "session_cost": "unknown"
+  },
+  "no_LP2_search": true
+}

@@ -1,0 +1,141 @@
+{
+  "status": "PASS",
+  "comparisons": 340800,
+  "all_offset_passes": 96000,
+  "normalized_trees": 34080,
+  "long_tail_offset_checks": 405,
+  "max_nonzero_classes": {
+    "hold": 2,
+    "spend": 2,
+    "skip": 1,
+    "skip5": 1,
+    "coin": 1
+  },
+  "mutations": {
+    "wrong_end": {
+      "key": [
+        0
+      ],
+      "cipher": [
+        0
+      ],
+      "sign": -1,
+      "q": "0",
+      "channel": "hold",
+      "model": 0,
+      "correct": [
+        "1/3",
+        "0"
+      ],
+      "mutated": [
+        "0",
+        "0"
+      ]
+    },
+    "lost_scale": {
+      "key": [
+        0,
+        0
+      ],
+      "cipher": [
+        0,
+        0
+      ],
+      "sign": -1,
+      "q": "0",
+      "channel": "hold",
+      "model": 0,
+      "correct": [
+        "1/9",
+        "0",
+        "0"
+      ],
+      "mutated": [
+        "1/3",
+        "0",
+        "0"
+      ]
+    },
+    "coin_missing_slot": {
+      "key": [
+        0,
+        0
+      ],
+      "offset": 0,
+      "sign": -1,
+      "q": "0",
+      "channel": "coin",
+      "model": 0,
+      "n": 2
+    },
+    "hold_spends": {
+      "key": [
+        0,
+        0
+      ],
+      "offset": 0,
+      "sign": -1,
+      "q": "3/5",
+      "channel": "hold",
+      "model": 0,
+      "n": 3
+    },
+    "merge_r": {
+      "key": [
+        0,
+        0
+      ],
+      "cipher": [
+        1,
+        0,
+        0
+      ],
+      "sign": -1,
+      "q": "3/5",
+      "channel": "hold",
+      "model": 1,
+      "correct": [
+        "1/300",
+        "0",
+        "0"
+      ],
+      "mutated": [
+        "1/900",
+        "0",
+        "0"
+      ]
+    },
+    "replacement_denominator": {
+      "key": [
+        0,
+        0
+      ],
+      "offset": 0,
+      "sign": -1,
+      "q": "3/5",
+      "channel": "spend",
+      "model": 0,
+      "n": 2
+    },
+    "skip_drops_tail": {
+      "key": [
+        0,
+        0,
+        0
+      ],
+      "offset": 0,
+      "sign": -1,
+      "q": "3/5",
+      "channel": "skip",
+      "model": 0,
+      "n": 2
+    }
+  },
+  "comparison_trace_sha256": "3447136de74e31b5ff066129d9b1465c94f2c4202c9761a3551473c7bfc3525c",
+  "seconds": 25.373133999994025,
+  "hashes": {
+    "README.md": "d2f16575a9072e54739a3108a8e5e34d8ca93aa110b77b502d6389669fb42ad9",
+    "sparse.py": "1ffb58843430b30ca9f5fe06f71edeb73473f35ef2651ae9b2f1b5916e551223",
+    "e0.py": "266b58db09a0c62307c3ee5935cdc2b87ab835c684f536b534b85201e27456bf"
+  }
+}
