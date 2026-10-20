@@ -993,10 +993,34 @@ title = "One word-aware collision-repair mechanism for the doublet deficit and t
 status = "observed"
 what = "Simulation, English plaintext (digraph and letter spelling), iid key, LP2's section layout, q = 0.81, 50-60 replicates per mechanism: uniform repair, repair writing T(c_-6) = 24 - 2c_-6 in-word, a shared T(c_-6) / copy-c_-5 repair budget, key rewind, insertion, word-scoped counters, and a negative control (2c_-1 - c_-6)"
 control = "M0 (uniform repair) and M7 (wrong map) reproduce the doublets and no echo; the measurement script reproduces LP2's logged numbers (lag 6 in-word 80 / 44.5, z +5.32)"
-result = "No mechanism reproduces every anomaly: no Level 2 lead. A shared repair budget (M2, a = 0.8-1.0) reproduces the doublet deficit, the lag-6 relation (0.0203-0.0257 vs LP2 0.0275 per pair) and the lag-5 echo (0.0106-0.0138 vs 0.0144) with zero excess across word gaps and flat unigrams / bigrams. None reproduces the S carrier of the lag-5 echo (S5 2-3 vs 11) or the word-length histogram (insertion at repairs moves G by < 8). Prediction 'lag-6 hits are independent': LP2 6 multi-hit words, 3 consecutive (M1 plants 4.2 +- 2.2, 2.4 +- 1.7): met, but not discriminating. Follow-ups (sections 7-8): the S carrier is calibrated at P < 0.002 over 29 sources x lags 2-8 (S 11 hits vs 2.3); English plaintext has S..S at lag 5 at 0.13 per S pair (-SELVES, SENSES), as LP2 (0.149), but no simulated cipher keeps the coincidence on cipher S (a period-5 key in 60% of words gives the overall lag-5 excess with S,S 3.2; a literal-S rule contradicts the flat S count). Word lengths: no plaintext spelling or language fits (letter-spelled English G 63-233 by text, Latin / German / Romance 253-1609; best one-parameter segmentation p 1e-4); Old English not tested"
+result = "No mechanism reproduces every anomaly: no Level 2 lead. A shared repair budget (M2, a = 0.8-1.0) reproduces the doublet deficit, the lag-6 relation (0.0203-0.0257 vs LP2 0.0275 per pair) and the lag-5 echo (0.0106-0.0138 vs 0.0144) with zero excess across word gaps and flat unigrams / bigrams. None reproduces the S carrier of the lag-5 echo (S5 2-3 vs 11) or the word-length histogram (insertion at repairs moves G by < 8). Prediction 'lag-6 hits are independent': LP2 6 multi-hit words, 3 consecutive (M1 plants 4.2 +- 2.2, 2.4 +- 1.7): met, but not discriminating. Follow-ups (sections 7-8): the S carrier is calibrated at P < 0.002 over 29 sources x lags 2-8 (S 11 hits vs 2.3); English plaintext has S..S at lag 5 at 0.13 per S pair (-SELVES, SENSES), as LP2 (0.149), but no simulated cipher keeps the coincidence on cipher S (a period-5 key in 60% of words gives the overall lag-5 excess with S,S 3.2; a literal-S rule contradicts the flat S count). Word lengths: no plaintext spelling or language fits (letter-spelled English G 63-233 by text, Latin / German / Romance 253-1609; best one-parameter segmentation p 1e-4); Old English not tested. Section 9: the 11 S,S sites do not have the length / position shape of English S____S words (LLR -10.8; English-S shape P < 5e-5, other-rune shape P 0.43), so the plaintext reading of the S carrier is disfavoured; the solved pages have no S carrier but no power (21-30 S pairs); a period-5 key in some words is not excluded (lag 10 has no power, P 0.09)"
 gap = "The T6 map and lag 6 are taken from the data (look-elsewhere P 0.005); a repair that is a function of c_-6 cannot be told apart from the keyless echo-two-tap family on LP2 alone; structured keys, other q, non-English plaintext not simulated"
 log = ["work/log/phase25_mechanisms.md"]
-files = ["work/mech25/sim25.py", "work/mech25/measure.py", "work/mech25/fit_and_predict.py", "work/mech25/lag5_s.py", "work/mech25/lag5_s2.py", "work/mech25/wordlen25.py", "work/mech25/wordlen25b.py", "results/analysis/mech25.txt", "results/analysis/mech25_fit.txt", "results/analysis/lag5_s.txt", "results/analysis/lag5_s2.txt", "results/analysis/wordlen25.txt", "results/analysis/wordlen25b.txt"]
+files = ["work/mech25/sim25.py", "work/mech25/measure.py", "work/mech25/fit_and_predict.py", "work/mech25/lag5_s.py", "work/mech25/lag5_s2.py", "work/mech25/wordlen25.py", "work/mech25/wordlen25b.py", "work/mech25/solved_p5.py", "results/analysis/solved_p5.txt", "results/analysis/mech25.txt", "results/analysis/mech25_fit.txt", "results/analysis/lag5_s.txt", "results/analysis/lag5_s2.txt", "results/analysis/wordlen25.txt", "results/analysis/wordlen25b.txt"]
+
+[[experiment]]
+id = "discord-464-table"
+group = "claims"
+title = "Community claim: the 464 words of four solved sections in 16 x 29 have balanced column word lengths (R = 0.2515); 928 = 2 x 464 rune-words in segments 12-14 as a two-panel grille carrier"
+status = "explained"
+what = "Independent reproduction from the repo transcription; R calibrated by permutation (4,000,000), by 228,347 464-word slices of ten English books in GP spelling, and by selection nulls over section subsets and widths; preregistered panel-pairing test on the 928-word carrier (8 layouts, word-length correlation and identical words, Bonferroni over 16)"
+control = "Pairing test: planted panel copies at 5% / 10% / 25% of cells detected 100 / 100 each; null false positives 3 / 300"
+result = "Every count and R = 77321/307435 reproduce. R is P 1.4e-3 under permutation and 0.17% of English slices, not explained by English word-length structure, but after the selection of sections and width an equally good cell appears in 22% (subset search) to 77% (divisor widths) of nulls. Passage-removal and question-construction percentages are what any selected low-R sequence shows. The 928-word carrier shows no balance (panel R 0.94 / 1.18) and no panel pairing (smallest p 0.135; 0 identical words)"
+gap = "The grille itself is not testable: the hole sets (magic-square / hollow-table GP values), the overlay rule and the readout are not specified by the claim"
+log = ["work/log/phase26_464_table.md"]
+files = ["work/phase26_464_table.py", "work/phase26_464_followup.py", "work/phase26_clause_tail.py", "work/phase26_words.py", "work/log/phase26_464_table_output.txt", "work/log/phase26_464_followup_output.txt", "work/log/phase26_clause_tail_output.txt"]
+
+[[experiment]]
+id = "grid30-caption"
+group = "claims"
+title = "The page-30 grid caption (two words, 4 + 5 runes): preregistered decryption family from the solved pages' rules and the grid's own numbers"
+status = "excluded"
+what = "53,014 decryptions counted before scoring: shift, Atbash, Atbash + shift, the solved keywords, totient-prime stream, literal F, and keys from the grid (16 values, k, p_k, Fibonacci steps, spiral / reverse orders, mod 29, both signs, every start); scored by two English words and by Gematria-sum relations; nulls: 4,000 uniform captions, LP2 9-rune slices, caption permutations"
+control = "Planted keys from the family recovered 300 of 300"
+result = "0 two-word decryptions (null mean 0.008); Gematria-sum relations at chance (both sums in the sequence 7 vs 2.5, p 0.13; word 1 = 149 = p_35 is a Level 1 coincidence). Not decoded"
+gap = "Keyed methods outside the family (an unknown keyword or text, LP2 running keys, another alphabet order), non-English or runic-spelling text, a key taken from the grid image rather than its numbers; glyphs 2-9 rest on the transcription"
+log = ["work/log/phase27_grid30_caption.md", "work/log/phase4_grid30.md"]
+files = ["work/grid30_caption.py", "results/grid30_caption/run.log", "results/grid30_caption/results.json", "results/grid30_caption/observed_hits.txt"]
 
 [[experiment]]
 id = "collision-kernel-followup"
@@ -1061,6 +1085,11 @@ read = "results/independent/desktop/20261018-collision-followup-summary/REPORT.m
 path = "results/book_key_screen"
 what = "Phase 23 stage-1 book-key screen (booknight queue): per-book, per-chunk beam scores of the table-free decoder; stage-1 hits are unverified candidates"
 read = "work/log/phase23_book_key_decoder.md"
+
+[[folder]]
+path = "results/grid30_caption"
+what = "Phase 27: the page-30 caption against a preregistered decryption family, with nulls and planted controls"
+read = "work/log/phase27_grid30_caption.md"
 
 [[folder]]
 path = "results/overnight"

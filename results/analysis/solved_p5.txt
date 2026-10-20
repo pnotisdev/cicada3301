@@ -1,0 +1,15 @@
+(1) SOLVED pages (sections 0-6, 16, 17; LP1), in-word lag-5 equality
+  ciphertext: 2977 runes, 406 in-word lag-5 pairs, 23 equal (expected 22.4); S: 1 hits / 1.26 expected, 21 S-source pairs; top sources E 10/3.1 z+3.7, OE 1/0.2 z+1.0, ING 1/0.3 z+0.9; shuffle max-z 95th pct 3.02
+  plaintext: 2977 runes, 406 in-word lag-5 pairs, 31 equal (expected 25.5); S: 1 hits / 1.72 expected, 30 S-source pairs; top sources E 18/6.5 z+4.3, T 5/1.6 z+2.3, G 1/0.1 z+1.2; shuffle max-z 95th pct 2.87
+  per-section layer: 0: A Warning; 1: Welcome; 2: Some Wisdom; 3: A Koan; 4: The Loss of Divinity; 5: A Koan; 6: An Instruction; 16: An End; 17: Parable
+
+(2) period-5 key in a fraction f of words: in-word equality at lags 5, 10, 15. LP2 z (against the section-shuffle expectation) vs plants f=0.6 and f=0 (English, LP2 layout, 100 replicates each)
+  LP2: lag 5: 104/73.7 of 2105 pairs, z +3.53; lag 10: 2/3.2 of 92 pairs, z -0.68; lag 15: 0/0.0 of 0 pairs, z +0.00
+  plants f=0.0: lag 5: z -0.28 +- 0.97; lag 10: z -0.05 +- 0.90; lag 15: z -0.00 +- 0.29; P(plant z >= LP2 z): lag 5 0.00, lag 10 0.67, lag 15 0.86; P(plant z <= LP2 z) at lag 10: 0.33
+  plants f=0.6: lag 5: z +3.67 +- 1.31; lag 10: z +0.93 +- 1.30; lag 15: z -0.04 +- 0.09; P(plant z >= LP2 z): lag 5 0.54, lag 10 0.91, lag 15 0.84; P(plant z <= LP2 z) at lag 10: 0.09
+
+(3) the 11 S,S sites: features (position of the later S in the word, distance to the word end)
+  LP2 S,S sites: later-S positions [5, 5, 5, 5, 6, 6, 6, 7, 8, 8, 8], distances to end [0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 5]; word-final 3 of 11
+  English (Emerson+Walden+Republic, in-word lag-5 equal pairs): S pairs 2480: word-final 0.68, position 5 0.53; other runes 11581: word-final 0.31, position 5 0.31
+  LP2 other equal lag-5 pairs (93): word-final 0.37, position 5 0.34
+  log-likelihood ratio (English-S shape vs English-other shape) of the 11 LP2 sites: -10.80; draws from the other-rune shape (20,000): mean -12.05, P(>= obs) = 0.4280; draws from the S shape: mean +7.73, P(<= obs) = 0.000; LP2's own other-rune sites resampled: mean -7.69, P(>= obs) = 0.7183

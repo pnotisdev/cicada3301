@@ -1,0 +1,46 @@
+== A. Is the chi-square approximation to the permutation p-value usable? ==
+  w=4: R_obs 0.1468; simulated P(R<=obs) = 6.91e-02; chi2_3 approx = 6.82e-02
+  w=8: R_obs 0.3453; simulated P(R<=obs) = 6.52e-02; chi2_7 approx = 6.68e-02
+  w=16: R_obs 0.2515; simulated P(R<=obs) = 1.40e-03; chi2_15 approx = 1.61e-03
+  w=29: R_obs 0.9787; simulated P(R<=obs) = 5.00e-01; chi2_28 approx = 5.04e-01
+  family A (all subsets x divisor widths 4..64): 1450 cells; observed min p = 1.61e-03 at sections (0, 1, 3, 5) w=16
+  family B (all subsets with >=100 words, w=16): 485 cells; observed min p = 5.28e-04 at sections (0, 1, 3, 6, 17) w=16
+  family C (all subsets >=100 words x w=8..32, remainder dropped): 12125 cells; observed min p = 4.93e-06 at sections (1, 3, 5) w=32
+  chosen cell (sections 0,1,3,5; w=16): chi2-approx p = 1.61e-03
+
+== B. Selection null: shuffle word lengths inside each section, repeat the whole family search ==
+  family A (all subsets x divisor widths 4..64): null min-p median 6.86e-04, 5% quantile 4.78e-05; P(null min p <= observed 1.61e-03) = 0.7720 (193/250); P(null min p <= chosen-cell p 1.61e-03) = 0.7720
+  family B (all subsets with >=100 words, w=16): null min-p median 6.87e-03, 5% quantile 1.97e-04; P(null min p <= observed 5.28e-04) = 0.1080 (27/250); P(null min p <= chosen-cell p 1.61e-03) = 0.2240
+  family C (all subsets >=100 words x w=8..32, remainder dropped): null min-p median 1.50e-04, 5% quantile 1.11e-05; P(null min p <= observed 4.93e-06) = 0.0360 (9/250); P(null min p <= chosen-cell p 1.61e-03) = 0.9960
+
+== C. Passage-removal percentages (koan-passage-removal-assessment.txt) ==
+  reproduced: R after removing words 299-314 = 0.390274 (claim 0.390274); starts with a higher R: 13 (claim 13)
+  within A Koan (193 starts): higher R: 3 (claim 3); frac of koan starts that raise R at all: 0.751 (claim 0.751)
+  588 of 400000 random permutations have R <= 0.2515 (these are the 'selected' look-alikes)
+  in R<=0.2515 look-alikes: median R after removing a random 16-block = 0.241 (real table: 0.277); fraction of starts raising R at all 0.421
+  look-alikes: median over sequences of the BEST single removal R = 0.392 (real table max 0.419); fraction of sequences whose R after removal at the 22 clause-aligned starts reaches >= 0.390 at least once: 0.156
+  best-of-22 clause-aligned removal: real table is top 2.895% of all 449 starts; in R<=0.2515 look-alikes the best clause-aligned start is top 3.118% (median), and the real value is exceeded (rank <= 2.895%) in 0.495 of look-alikes
+  -> compare with the report's 3.12% (fraction of starts), which treats the passage as pre-chosen
+
+== D. Question-construction: one clause carries 67.76% of the net Welcome x man/master residual dot ==
+  Welcome residual col 1 = -9.2258 (claim -9.2258); net dot = -277.3387 (claim -17195/62 = -277.3387)
+  clause 0.2.0.14 contribution -187.935 (claim -187.935); share 0.6776 (claim 0.6776); max share 0.6776
+  null (koan lengths shuffled, clause sizes kept): net dot mean 0.3, sd 136.1; observed net -277.3 -> P(net <= obs) = 0.0207
+  null: max single-clause share (same sign as net): median 0.700; P(max share >= 0.6776) = 0.515; among nulls with |net| >= observed: 0.000 (n=4081)
+
+== E. Two-panel pairing test on the 928 rune-words of LP2 segments 12-14 ==
+  3000 null shuffles of panel 2; 8 pairings x 2 statistics = 16 tests (Bonferroni alpha = 0.0031)
+  29x16 id          : corr(lengths) -0.000 (p 0.491); identical rune-word pairs 0 (null mean 0.0, p 1.000)
+  29x16 hflip       : corr(lengths) -0.058 (p 0.896); identical rune-word pairs 0 (null mean 0.0, p 1.000)
+  29x16 vflip       : corr(lengths) +0.031 (p 0.249); identical rune-word pairs 0 (null mean 0.0, p 1.000)
+  29x16 rot180      : corr(lengths) -0.083 (p 0.966); identical rune-word pairs 0 (null mean 0.0, p 1.000)
+  16x29^T id        : corr(lengths) +0.051 (p 0.135); identical rune-word pairs 0 (null mean 0.0, p 1.000)
+  16x29^T hflip     : corr(lengths) +0.039 (p 0.209); identical rune-word pairs 0 (null mean 0.0, p 1.000)
+  16x29^T vflip     : corr(lengths) +0.019 (p 0.325); identical rune-word pairs 0 (null mean 0.0, p 1.000)
+  16x29^T rot180    : corr(lengths) +0.001 (p 0.478); identical rune-word pairs 0 (null mean 0.0, p 1.000)
+  smallest p = 0.1353; threshold 0.0031; any detection: False
+  positive control (plant pairing, random variant, fraction q of cells copied) / null calibration:
+    q = 0.05: detected 100/100
+    q = 0.10: detected 100/100
+    q = 0.25: detected 100/100
+    null (shuffled panel 2, same decision rule): false positives 3/300

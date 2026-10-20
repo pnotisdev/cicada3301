@@ -64,6 +64,8 @@ Find a script by what it is for. Each one writes its output into `results/analys
 | `book_key_screen.py` | Phase 23 LP2 screen of the cited books with the table-free beam decoder (stage 1, frozen rule; run by the `booknight` queue) |
 | `book_key_pairs.py` | The same through lag-2..8 rune-pair counts, with a table tuned to flatten the pairs (`results/analysis/book_key_pairs.txt`) |
 | `book_key_decoder.py` | Table-invariant, drift-tracking decoder for a candidate book key (table-free beam + exact skip-rule Viterbi EM) and its gate: plants with a flattening table, nulls, power and cost (`results/analysis/book_key_decoder.txt`); no LP2 run |
+| `grid30_caption.py` | Phase 27: the page-30 caption against a preregistered family of the solved pages' rules and the grid's numbers (`count`, `run`; `results/grid30_caption/`) |
+| `phase26_464_table.py`, `phase26_464_followup.py`, `phase26_clause_tail.py`, `phase26_words.py` | Phase 26: audit of the community "464-word table" (R calibration, selection nulls, removal checks, 928-word carrier pairing test) |
 | `word_structure.py` | Does the word segmentation depend on the neighbouring runes, and is there a schedule by position in the word or by (length, position)? Three keyless tests, each with planted controls and shuffle nulls (`--quick` for a minute; `results/analysis/word_structure.txt`) |
 | `typo_restarts.py`, `typo_shared_key.py`, `typo_shared_key_power.py` | Restarts at typographic marks |
 | `chain_lag.py` | Ciphertext feedback: coincidences at lag P |

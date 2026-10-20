@@ -1,0 +1,85 @@
+== 1. Facts reproduced from work/lp.py + work/ref/lp_verified.txt ==
+  segment  0 A Warning          words   45 runes   184
+  segment  1 Welcome            words  124 runes   515
+  segment  2 Some Wisdom        words   31 runes   157
+  segment  3 A Koan             words  208 runes   778
+  segment  4 Loss of Divinity   words  181 runes   755
+  segment  5 Koan 2             words   87 runes   319
+  segment  6 An Instruction     words   18 runes    89
+  segment 16 An End             words   25 runes    85
+  segment 17 Parable            words   20 runes    95
+  4 sections (Warning, Welcome, Koan, Koan 2): words 464, runes 1796  (claim: 464, 1796)
+  pi(3301) = 464;  16*29 = 464
+  R(16 columns, 29 rows) = 77321/307435 = 0.251503569860   (claim 77321/307435 = 0.251503569860)
+  R at 29 columns x 16 rows = 0.9787; at 8 cols = 0.3453; 58 cols = 0.9443
+  segments 12-14 rune-words [224, 349, 355] total 928 (claim 224/349/355 = 928), runes 4134 (claim 4134), number tokens 5 (claim 5)
+  word 464 = ᛋᚠᚾ (3 runes), word 465 = ᚢᚦᛟᚷᛖᚪᛟᛇᛇ (9 runes)  (claim ᛋᚠᚾ / ᚢᚦᛟᚷᛖᚪᛟᛇᛇ)
+  tokens between word 464 and 465: [' ']  (a plain word separator only -> no printed panel boundary)
+
+== 2a. Permutation null (same 464 lengths shuffled; 16 columns) ==
+  4000000 permutations: mean R = 0.9992 (theory 1), sd 0.3575; P(R <= 0.2515) = 5690/4000000 = 1.42e-03  (plus-one: 1.42e-03)
+  chi2_15/15 approximation: P = 1.61e-03
+
+== 2c. Where does a low R come from? ==
+  within-row variance / total variance = 0.9997  (random expectation ~ 1)
+  ACF lags 1..16 of the 464 lengths: -0.11 +0.04 -0.04 +0.03 +0.01 -0.00 +0.04 +0.02 -0.05 -0.02 -0.01 +0.12 +0.03 -0.00 -0.07 -0.05
+  row-composition null (words shuffled inside their own row): mean R = 1.000, sd 0.357; P(R <= 0.2515) = 0.0014
+  shuffling whole rows leaves R unchanged: 0.251504
+  clause units in the 464 table: 53 (mean 8.8 words)
+  clause-order shuffle (clauses intact, order random): mean R = 1.001, sd 0.362, P(R <= 0.2515) = 0.0016
+
+== 2b. Look-elsewhere on the solved LP text ==
+  family A: every non-empty subset of the 9 solved sections x every width 4..64 dividing n (>=4 rows): 1450 cells
+    R quantiles 1/5/25/50/75/95%: 0.194 0.366 0.701 0.936 1.179 1.803
+    cells with R <= 0.2515: 25 (1.724%); R <= 0.5: 147
+    lowest: sections (0, 5) w=4 n=132 R=0.0352
+    lowest: sections (0, 1, 6, 16, 17) w=4 n=232 R=0.0507
+    lowest: sections (2, 16) w=4 n=56 R=0.0572
+    lowest: sections (0, 1, 2, 5, 16, 17) w=4 n=332 R=0.0824
+    lowest: sections (0, 1, 6, 16, 17) w=8 n=232 R=0.1026
+    lowest: sections (0, 1, 3, 5) w=4 n=464 R=0.1468
+  family A2 (contiguous runs of whole sections in book order only): 122 cells, min R = 0.1480, cells <= 0.2515: 3
+  family B: subsets with >=100 words x every w in 8..32 (trailing partial row dropped): 12125 cells; quantiles 1/5/25/50% 0.326 0.472 0.706 0.891; cells <= 0.2515: 40 (0.330%)
+  family B at w=16 only: 485 subsets, median R 0.621, fraction <= 0.2515: 2.062%; rank of the chosen 4-section subset 10 of 485
+  R(w=16) of named selections:
+    sections (0, 1, 3, 5): n=464 R16=0.252
+    sections (0, 1, 2, 3, 4, 5, 6): n=694 R16=0.813
+    sections (0, 1, 2, 3, 4, 5, 6, 16, 17): n=739 R16=0.798
+    sections (1, 3, 5): n=419 R16=0.242
+    sections (0, 1, 3): n=377 R16=0.217
+    sections (3,): n=208 R16=0.854
+    sections (1,): n=124 R16=0.809
+    sections (3, 5): n=295 R16=0.494
+
+== 2b2. 464-word slices of English prose in GP-rune spelling (stride 8 words) ==
+  emerson        74891 words,  9304 slices: mean word length 4.13; w=16 R mean 1.029 sd 0.379, 1%/5% quantile 0.359/0.490, frac<=0.2515 0.0025
+  kjv           792180 words, 98965 slices: mean word length 3.79; w=16 R mean 1.029 sd 0.404, 1%/5% quantile 0.363/0.496, frac<=0.2515 0.0015
+  republic      217472 words, 27126 slices: mean word length 4.08; w=16 R mean 0.994 sd 0.374, 1%/5% quantile 0.323/0.461, frac<=0.2515 0.0022
+  zarathustra   113582 words, 14140 slices: mean word length 4.08; w=16 R mean 0.990 sd 0.363, 1%/5% quantile 0.338/0.481, frac<=0.2515 0.0014
+  origin        209326 words, 26108 slices: mean word length 4.59; w=16 R mean 1.013 sd 0.366, 1%/5% quantile 0.356/0.496, frac<=0.2515 0.0012
+  walden        117248 words, 14598 slices: mean word length 4.01; w=16 R mean 1.013 sd 0.373, 1%/5% quantile 0.333/0.477, frac<=0.2515 0.0038
+  parlost        81096 words, 10079 slices: mean word length 4.22; w=16 R mean 1.035 sd 0.374, 1%/5% quantile 0.363/0.495, frac<=0.2515 0.0009
+  meditations    72049 words,  8949 slices: mean word length 4.06; w=16 R mean 1.023 sd 0.368, 1%/5% quantile 0.341/0.483, frac<=0.2515 0.0008
+  ethics         89339 words, 11110 slices: mean word length 4.12; w=16 R mean 1.014 sd 0.371, 1%/5% quantile 0.350/0.483, frac<=0.2515 0.0020
+  bge            64208 words,  7968 slices: mean word length 4.50; w=16 R mean 0.963 sd 0.341, 1%/5% quantile 0.344/0.468, frac<=0.2515 0.0016
+  ALL English, w=8: 228347 slices; mean R 1.047, median 0.937, frac <= 0.2515: 0.0251
+  ALL English, w=16: 228347 slices; mean R 1.016, median 0.969, frac <= 0.2515: 0.0017
+  ALL English, w=29: 228347 slices; mean R 1.007, median 0.982, frac <= 0.2515: 0.0000
+  ALL English, w=58: 228347 slices; mean R 1.003, median 0.992, frac <= 0.2515: 0.0000
+  min over the 4 divisor widths (8,16,29,58) <= 0.2515: 0.0257
+  ACF emerson: lags1-6 -0.153 +0.006 +0.040 +0.008 +0.007 +0.022 | lag 16: +0.010
+  ACF kjv: lags1-6 -0.175 -0.026 +0.081 -0.017 -0.001 +0.025 | lag 16: +0.008
+  ACF origin: lags1-6 -0.103 -0.070 +0.058 +0.007 -0.005 +0.009 | lag 16: +0.004
+  Emerson slices: corr(R, within-row/total variance) = 0.005; mean ratio 1.010 (table: 1.000)
+  Emerson slices, row-composition p-value of each slice's own R: median 0.481, fraction < 0.05 = 0.060  (table: 0.0014)
+
+== 2d. The same statistic on the 928 rune-words of LP2 segments 12-14 (two panels) ==
+  panel 1 (words 1-464): R(w=16)=0.942  R(w=29)=1.532
+    w=16: permutation P(R<=obs) = 0.4809; English-slice fraction <= obs = 0.4703
+    w=29: permutation P(R<=obs) = 0.9690; English-slice fraction <= obs = 0.9619
+  panel 2 (words 465-928): R(w=16)=1.181  R(w=29)=1.252
+    w=16: permutation P(R<=obs) = 0.7257; English-slice fraction <= obs = 0.7066
+    w=29: permutation P(R<=obs) = 0.8369; English-slice fraction <= obs = 0.8243
+  English 464-slice w=16: 1% quantile 0.350, 5% 0.487, median 0.969
+  all 465 start offsets of a 464-window inside the 928: w=16: min R 0.645 at start 378, median 1.077; English fraction <= that min: 0.1577
+  all 465 start offsets of a 464-window inside the 928: w=29: min R 0.730 at start 252, median 1.167; English fraction <= that min: 0.1461
