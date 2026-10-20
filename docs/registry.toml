@@ -440,8 +440,8 @@ result = "Gate only: no LP2 window has been decoded"
 cost = "About 0.033 ms per rune per book-offset: the frozen screen (729-rune windows at the 8 section starts, both spellings) is about 310 core-hours for the KJV, about 480 for the six cited books"
 needs = "The user's go-ahead. All six books are local (Liber AL, Agrippa, the Mabinogion, Blake in the git-ignored work/ref/corpora/cited/, URLs and SHA-256 in the log); the Agrippa copy is a raw 1651 OCR, so a negative there is weak"
 gap = "Not covered even after a run: non-English plaintexts, editions with letters our copy has and theirs lacks (no backward step), literal-F / coin / q other than 0.81, keys computed from the book"
-log = ["work/log/phase23_book_key_decoder.md"]
-files = ["work/book_key_decoder.py", "results/analysis/book_key_decoder.txt", "work/tmp/bkd_diag.py", "work/tmp/bkd_diag2.py", "work/tmp/bkd_diag3.py", "work/tmp/bkd_diag4.py", "work/tmp/bkd_diag5.py"]
+log = ["work/log/phase23_book_key_decoder.md", "work/log/phase23_review.md"]
+files = ["work/book_key_decoder.py", "work/mech25/review_checks.py", "results/analysis/book_key_decoder.txt", "work/tmp/bkd_diag.py", "work/tmp/bkd_diag2.py", "work/tmp/bkd_diag3.py", "work/tmp/bkd_diag4.py", "work/tmp/bkd_diag5.py"]
 
 [[experiment]]
 id = "state-machines"
@@ -694,13 +694,13 @@ files = ["results/analysis/grid_key.txt"]
 id = "square-06"
 group = "claims"
 title = "Origin of the 0.6 square's seeds {809, 434, 312, 966, 1311, 204} and t = 1246"
-status = "open"
-priority = 14
+status = "excluded"
 what = "The 0.2 grid and the 0.6 square share one template (5x5, magic, centrally symmetric, 13 distinct values); pi(1033) = 6 x 29 and pi(3301) = 16 x 29"
 result = "Analysis, not a key family; Gematria sums of the 0.5 plaintext (DeepSeek's koan_sums gate) found 0 hits against a null that also finds 0"
-needs = "A recipe learned from the 0.2 grid (known inputs) and applied to 0.6"
-log = ["work/log/phase10_squares.md", "work/log/phase10_proposals_review.md"]
-files = ["results/analysis/squares_check.txt"]
+control = "Phase 28: a preregistered 5.3-million-rule family (text sums, primes, arithmetic, totient-style operations over Cicada numbers) calibrated on random 7-sets of the same size range (300): P(max hits >= 3) = 0.14, never >= 4"
+gap = "Phase 28: no rule generates the 0.6 seeds and t (best 3 of 7, chance), nor the 0.2 grid's own seeds (best 2 of 7), so the 0.2 seeds look like free author choices and the learn-from-0.2 route is closed for this family. Not excluded: inputs outside the family (other books, the images, a hidden parameter), rules of more than two composed operations, or seeds that are simply chosen"
+log = ["work/log/phase10_squares.md", "work/log/phase10_proposals_review.md", "work/log/phase28_square_seeds.md"]
+files = ["results/analysis/squares_check.txt", "work/phase28_square_seeds.py", "work/log/phase28_square_seeds_output.txt"]
 
 [[experiment]]
 id = "book-codes"
