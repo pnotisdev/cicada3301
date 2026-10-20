@@ -1,0 +1,26 @@
+Phase 32 gate: tableau-invariant drift-tracking statistic for H2 (1 core). Nothing in LP2 is solved; LP2 is NOT touched.
+Plaintext Emerson (digraph runes); skip rule q = 0.81; beam 64 x 8 histories per pointer, alpha 1.22, free start spread 8.
+  n=729 random permutations tableau, stream uniform R=29: 24 plants, 107 ms per decode, path accuracy median 0.05 (>=0.9 in 1/24)
+      new beam score: plants median -0.0211 (z +0.3); tail 300 uniform-key x random offsets -0.0238 +- 0.0082, max +0.0114; POWER at mu+4.5sd 1/24, above tail max 1/24; nulls above mu+4.5sd: wrong offset 0/24, uniform key 0/24
+      old coincidence z (no drift, true offset vs 40 random offsets): median +0.3, plants with z > 4.5: 0/24
+  n=729 random permutations tableau, stream primes mod 29: 24 plants, 67 ms per decode, path accuracy median 0.03 (>=0.9 in 0/24)
+      new beam score: plants median -0.0196 (z +0.3); tail 300 uniform-key x random offsets -0.0216 +- 0.0069, max +0.0060; POWER at mu+4.5sd 2/24, above tail max 2/24; nulls above mu+4.5sd: wrong offset 0/24, uniform key 0/24
+      old coincidence z (no drift, true offset vs 40 random offsets): median -0.2, plants with z > 4.5: 0/24
+  n=729 additive tableau, stream uniform R=29: 24 plants, 117 ms per decode, path accuracy median 0.02 (>=0.9 in 0/24)
+      new beam score: plants median -0.0236 (z +0.1); tail 300 uniform-key x random offsets -0.0245 +- 0.0064, max -0.0082; POWER at mu+4.5sd 4/24, above tail max 5/24; nulls above mu+4.5sd: wrong offset 0/24, uniform key 0/24
+      old coincidence z (no drift, true offset vs 40 random offsets): median +0.4, plants with z > 4.5: 0/24
+  n=729 additive tableau, stream primes mod 29: 24 plants, 82 ms per decode, path accuracy median 0.02 (>=0.9 in 1/24)
+      new beam score: plants median -0.0220 (z +0.3); tail 300 uniform-key x random offsets -0.0239 +- 0.0066, max -0.0030; POWER at mu+4.5sd 6/24, above tail max 6/24; nulls above mu+4.5sd: wrong offset 0/24, uniform key 0/24
+      old coincidence z (no drift, true offset vs 40 random offsets): median -0.0, plants with z > 4.5: 0/24
+  n=1524 random permutations tableau, stream uniform R=29: 24 plants, 134 ms per decode, path accuracy median 0.02 (>=0.9 in 0/24)
+      new beam score: plants median -0.0397 (z +0.4); tail 300 uniform-key x random offsets -0.0416 +- 0.0051, max -0.0271; POWER at mu+4.5sd 2/24, above tail max 3/24; nulls above mu+4.5sd: wrong offset 0/24, uniform key 0/24
+      old coincidence z (no drift, true offset vs 40 random offsets): median +0.0, plants with z > 4.5: 0/24
+  n=1524 random permutations tableau, stream primes mod 29: 24 plants, 148 ms per decode, path accuracy median 0.00 (>=0.9 in 1/24)
+      new beam score: plants median -0.0350 (z +0.5); tail 300 uniform-key x random offsets -0.0376 +- 0.0059, max -0.0204; POWER at mu+4.5sd 4/24, above tail max 4/24; nulls above mu+4.5sd: wrong offset 0/24, uniform key 0/24
+      old coincidence z (no drift, true offset vs 40 random offsets): median -0.3, plants with z > 4.5: 0/24
+  n=1524 additive tableau, stream uniform R=29: 24 plants, 131 ms per decode, path accuracy median 0.01 (>=0.9 in 0/24)
+      new beam score: plants median -0.0390 (z +0.3); tail 300 uniform-key x random offsets -0.0404 +- 0.0057, max -0.0238; POWER at mu+4.5sd 3/24, above tail max 3/24; nulls above mu+4.5sd: wrong offset 0/24, uniform key 0/24
+      old coincidence z (no drift, true offset vs 40 random offsets): median -0.1, plants with z > 4.5: 0/24
+  n=1524 additive tableau, stream primes mod 29: 24 plants, 130 ms per decode, path accuracy median 0.00 (>=0.9 in 0/24)
+      new beam score: plants median -0.0376 (z +0.3); tail 300 uniform-key x random offsets -0.0394 +- 0.0058, max -0.0235; POWER at mu+4.5sd 4/24, above tail max 5/24; nulls above mu+4.5sd: wrong offset 0/24, uniform key 0/24
+      old coincidence z (no drift, true offset vs 40 random offsets): median +0.1, plants with z > 4.5: 0/24

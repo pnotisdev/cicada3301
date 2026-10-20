@@ -23,7 +23,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.dirname(HERE))
 import lp  # noqa: E402
 
-BIN = os.path.join(HERE, "target", "release", "kscreen" + (".exe" if os.name == "nt" else ""))
+BIN = os.environ.get("KSCREEN_BIN") or os.path.join(HERE, "target", "release", "kscreen" + (".exe" if os.name == "nt" else ""))
 REAL = 1.40
 MARGIN = 0.15
 
@@ -71,7 +71,8 @@ def main():
                             f"controls={args.controls}", *(["dir=back"] if meta.get("dir") == "back" else []),
                             *([f"clock={meta['clock']}"] if meta.get("clock") else []),
                             *([f"nulledge={meta['nulledge']}"] if meta.get("nulledge") else []),
-                            *([f"advsep={meta['advsep']}"] if meta.get("advsep") else [])],
+                            *([f"advsep={meta['advsep']}"] if meta.get("advsep") else []),
+                            *([f"pdir={meta['pdir']}", f"pad={meta['pad']}", f"dirneg={meta['dirneg']}"] if meta.get("pdir") else [])],
                            cwd=HERE, capture_output=True, text=True)
         m = re.search(r"window (\S+) n (\d+) ioc ([\d.]+) pointer_jumps (\d+)", r.stdout)
         if not m:

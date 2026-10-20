@@ -79,8 +79,14 @@ def section_tables():
     """(name, runes, spans, words) for the 8 windows of data/segments.txt; page and clause indices from the transcription tokens"""
     lines = open(os.path.join(HERE, "data", "segments.txt"), encoding="utf-8").read().splitlines()
     wins = []
-    for k in range(0, len(lines), 3):
-        wins.append((lines[k], [int(x) for x in lines[k + 1][2:].split()], lines[k + 2]))
+    for line in lines:                                                  # W / R / L lines per window; later export.py versions add a B line (ignored here)
+        if line.startswith("W "):
+            wins.append([line, None, None])
+        elif line.startswith("R "):
+            wins[-1][1] = [int(x) for x in line[2:].split()]
+        elif line.startswith("L "):
+            wins[-1][2] = line
+    wins = [tuple(w) for w in wins]
     out = []
     for head, runes, lens in wins:
         seg = int(head.split()[1].split(".")[1])

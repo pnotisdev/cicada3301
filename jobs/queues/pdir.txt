@@ -1,0 +1,11 @@
+# DRAFT, NOT STARTED (phase 30, work/log/phase30_pointer_direction.md). Pointer-direction campaign, stage 1: windows seg0.7 + seg0.8, all 581 flat-IoC streams,
+# 132 direction vectors (66 rules x 2 orientations), about 3.4 h per convention at 14 threads. Do not run on both PCs. Wait for a free CPU.
+# Matched null of equal size (--null 581 is too big: use --null 150 first, then one full-size replicate for 000), hits >= 1.40 -> verify.py -> full window.
+gates | {PY} work/kscreen/pdir_selftest.py --threads 14
+pdir-000 | {PY} work/kscreen/pdir_pilot.py --conv 000 --windows seg0.7,seg0.8 --streams all --null 150 --threads 14 --tag stage1
+pdir-100 | {PY} work/kscreen/pdir_pilot.py --conv 100 --windows seg0.7,seg0.8 --streams all --null 150 --threads 14 --tag stage1
+pdir-020 | {PY} work/kscreen/pdir_pilot.py --conv 020 --windows seg0.7,seg0.8 --streams all --null 150 --threads 14 --tag stage1
+pdir-120 | {PY} work/kscreen/pdir_pilot.py --conv 120 --windows seg0.7,seg0.8 --streams all --null 150 --threads 14 --tag stage1
+pdir-010 | {PY} work/kscreen/pdir_pilot.py --conv 010 --windows seg0.7,seg0.8 --streams all --null 150 --threads 14 --tag stage1
+pdir-110 | {PY} work/kscreen/pdir_pilot.py --conv 110 --windows seg0.7,seg0.8 --streams all --null 150 --threads 14 --tag stage1
+# conventions with c = 1 or 2 (12 more, 3.4 h each) only after the c = 0 six are read

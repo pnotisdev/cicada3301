@@ -47,6 +47,17 @@
 //! B line gets the word-boundary advances only. advsep=0 runs the untouched original code path, byte-identical
 //! to before.
 //!
+//! pdir=<hmc> [pad=300] [dirneg=1] (docs: work/log/phase30_pointer_direction.md; 'their numbers are the direction', the pointer-direction
+//! mechanism of phase10_deepseek_round4.md part C): each word w has a direction d_w = +1 / -1 from the window's `D <+1|-1 per rune>` line and
+//! the key pointer walks through the key stream in that direction for the word's runes (first try, skip and coin read j, j+d, j+2d ...).
+//! Three digits h m c select one of the 18 conventions: h = first read of a backward word (0 read then step, 1 step back then read);
+//! m = pointer movement between words (0 none, 1 one step in the OLD word's direction, 2 one step in the NEW word's direction);
+//! c = collision comparator of a backward rune (0 previous emitted rune, 1 previous rune of the same word, 2 previous rune of a backward
+//! word). The decode reads key values BEFORE the start offset: the key buffer starts `pad` values earlier and offsets run from `pad`
+//! (reported offsets are the start offsets; a pointer below 0 is dead). dirneg=1 reverses every direction (the other orientation).
+//! Needs an L line, a D line and no P / G / S lines; not with dir=back, clock, nulledge, advsep or gpu.py. Without pdir the decode is
+//! the untouched original code (a separate beam, `ioc_beam_dir`, serves pdir).
+//!
 //! Families:
 //!   file:<path.ksb>      keystreams written by export.py (binary "KSB1"); offsets 0..len-need
 //!   rand:<count>:<seed>  i.i.d. uniform keystreams of length 20000 (null controls)
@@ -86,7 +97,30 @@ static NULLEDGE: AtomicUsize = AtomicUsize::new(0);
 /// B line). See `adv_positions` and ADVSEP.md for the semantics.
 static ADVSEP: AtomicUsize = AtomicUsize::new(0);
 
-fn set_clock(o: &std::collections::HashMap<String, String>) {
+/// pdir=<hmc>: 0 off, else 1 + 9h + 3m + c (see the header). PAD: key values read before the start offset.
+static PDIR: AtomicUsize = AtomicUsize::new(0);
+static PAD: AtomicUsize = AtomicUsize::new(0);
+static DIRNEG: AtomicBool = AtomicBool::new(false);
+
+/// parse pdir= / pad= / dirneg= (pdir is incompatible with the other pointer mechanisms); call after BACK / set_clock / NULLEDGE / ADVSEP are set
+fn set_pdir(o: &std::collections::HashMap<String, String>) {
+    let Some(s) = o.get("pdir") else {
+        PDIR.store(0, Ordering::Relaxed);
+        PAD.store(0, Ordering::Relaxed);
+        return;
+    };
+    let d: Vec<usize> = s.chars().map(|c| c.to_digit(10).unwrap_or_else(|| panic!("pdir={s}: three digits h m c")) as usize).collect();
+    assert!(d.len() == 3 && d[0] <= 1 && d[1] <= 2 && d[2] <= 2, "pdir=<h><m><c>: h 0|1, m 0|1|2, c 0|1|2");
+    assert!(
+        !BACK.load(Ordering::Relaxed) && CLOCK.load(Ordering::Relaxed) == 0 && NULLEDGE.load(Ordering::Relaxed) == 0 && ADVSEP.load(Ordering::Relaxed) == 0,
+        "pdir excludes dir=back, clock, nulledge, advsep"
+    );
+    PDIR.store(1 + 9 * d[0] + 3 * d[1] + d[2], Ordering::Relaxed);
+    PAD.store(get(o, "pad", 300usize), Ordering::Relaxed);
+    DIRNEG.store(get(o, "dirneg", 0usize) == 1, Ordering::Relaxed);
+}
+
+fn set_clock(o:&std::collections::HashMap<String, String>) {
     let k = o.get("clock").map_or(0, |c| CLOCKS.iter().position(|x| x == c).unwrap_or_else(|| panic!("clock={c}: use {CLOCKS:?}")));
     assert!(k == 0 || !BACK.load(Ordering::Relaxed), "clock= is not supported with dir=back");
     CLOCK.store(k, Ordering::Relaxed);
@@ -135,6 +169,8 @@ struct Win {
     /// `S <+1|-1 per rune>` (word-level sign rules, signrules.py): rune i is deciphered with the key sign s_i, c_i = p_i + s_i * k, so every key value an attempt for rune i reads (first try, skip, coin)
     /// is negated when s_i = -1. Empty (no S line): all +1, decodes byte-identical. Not supported with dir=back or by gpu.py.
     sg: Vec<i8>,
+    /// `D <+1|-1 per rune>` (pointer-direction rules, pdir=): the direction of the rune's word. Empty: no D line.
+    dir: Vec<i8>,
 }
 
 /// a key value read for a rune whose sign is negative
@@ -156,7 +192,7 @@ fn load_windows(path: &str) -> Vec<Win> {
             let mut it = rest.split_whitespace();
             let name = it.next().expect("window name").to_string();
             let prev = it.next().map(|x| x.parse().expect("prev rune")).unwrap_or(-1);
-            out.push(Win { name, prev, runes: Vec::new(), pv: Vec::new(), has_p: false, lens: String::new(), breaks: Vec::new(), g: -1, sg: Vec::new() });
+            out.push(Win { name, prev, runes: Vec::new(), pv: Vec::new(), has_p: false, lens: String::new(), breaks: Vec::new(), g: -1, sg: Vec::new(), dir: Vec::new() });
         } else if let Some(rest) = line.strip_prefix("R ") {
             let w = out.last_mut().expect("R line before W line");
             w.runes = rest.split_whitespace().map(|x| x.parse::<u8>().expect("rune")).collect();
@@ -170,6 +206,8 @@ fn load_windows(path: &str) -> Vec<Win> {
             w.has_p = true;
         } else if let Some(rest) = line.strip_prefix("S ") {
             out.last_mut().expect("S line before W line").sg = rest.split_whitespace().map(|x| x.parse::<i8>().expect("sign")).collect();
+        } else if let Some(rest) = line.strip_prefix("D ") {
+            out.last_mut().expect("D line before W line").dir = rest.split_whitespace().map(|x| x.parse::<i8>().expect("direction")).collect();
         } else if let Some(rest) = line.strip_prefix("G ") {
             out.last_mut().expect("G line before W line").g = rest.trim().parse().expect("G index");
         }
@@ -182,6 +220,7 @@ fn load_windows(path: &str) -> Vec<Win> {
         assert!(w.sg.is_empty() || (w.sg.len() == w.runes.len() && w.sg.iter().all(|&x| x == 1 || x == -1)), "{}: S line must hold one +1/-1 per rune", w.name);
     }
     for w in &out {
+        assert!(w.dir.is_empty() || (w.dir.len() == w.runes.len() && w.dir.iter().all(|&x| x == 1 || x == -1)), "{}: D line must hold one +1/-1 per rune", w.name);
         assert!(w.runes.iter().all(|&r| (r as usize) < Q), "{}: rune out of range", w.name);
     }
     out
@@ -811,6 +850,245 @@ fn full_decode(c: &[u8], pvs: &[i32], mk: &[u8], model: u8, n: usize, beam: usiz
     (ioc_of(best.s, used), best.plain, best.ptr)
 }
 
+// ------------------------------------------------------------------ pointer direction (pdir)
+
+/// Per-rune plan of a pdir decode for a window: (direction, pointer movement before the rune, collision-check value).
+/// Directions: the window's D line (reversed under dirneg=1); words: the L line. Movements and comparators follow the convention
+/// digits of `PDIR` (header). Panics on a window that cannot be planned: pdir is explicit, never a silent fallback.
+fn dir_plan(w: &Win) -> (Vec<i8>, Vec<i32>, Vec<i32>) {
+    let conv = PDIR.load(Ordering::Relaxed) - 1;
+    let (h, m, cmp) = (conv / 9, conv / 3 % 3, conv % 3);
+    assert!(!w.dir.is_empty() && !w.has_p && w.g < 0 && w.sg.is_empty(), "{}: pdir needs a D line and no P / G / S line", w.name);
+    let lens: Vec<usize> = w.lens.split_whitespace().map(|x| x.parse().expect("L line")).collect();
+    assert!(lens.iter().all(|&l| l > 0) && lens.iter().sum::<usize>() == w.runes.len(), "{}: pdir needs an L line that sums to the rune count", w.name);
+    let flip: i8 = if DIRNEG.load(Ordering::Relaxed) { -1 } else { 1 };
+    let n = w.runes.len();
+    let dirs: Vec<i8> = w.dir.iter().map(|&d| d * flip).collect();
+    let (mut mv, mut pv) = (vec![0i32; n], vec![0i32; n]);
+    let (mut b, mut old, mut last_back) = (0usize, 1i8, w.prev);
+    for &l in &lens {
+        let dn = dirs[b];
+        assert!(dirs[b..b + l].iter().all(|&d| d == dn), "{}: a D line must be constant within a word", w.name);
+        mv[b] = (if b > 0 { [0, old as i32, dn as i32][m] } else { 0 }) + if dn < 0 && h == 1 { -1 } else { 0 };
+        for i in b..b + l {
+            let prev_any = if i == 0 { w.prev } else { w.runes[i - 1] as i32 };
+            pv[i] = if dn > 0 {
+                prev_any
+            } else {
+                match cmp {
+                    0 => prev_any,
+                    1 => if i == b { -1 } else { prev_any },
+                    _ => last_back, // the last rune enciphered by a backward word (the window's prev before any)
+                }
+            };
+            if dn < 0 {
+                last_back = w.runes[i] as i32;
+            }
+        }
+        old = dn;
+        b += l;
+    }
+    (dirs, mv, pv)
+}
+
+/// Extra key values a pdir decode of the first n runes may need ahead of the pointer: the forward movements between words.
+fn dir_need(mv: &[i32], n: usize) -> usize {
+    mv[..n.min(mv.len())].iter().filter(|&&x| x > 0).map(|&x| x as usize).sum()
+}
+
+/// A decoder step into pointer `nj` (negative: a dead state, returns false).
+#[inline]
+fn take_dir(st: &mut St, t: u8, nj: i64) -> bool {
+    if nj < 0 {
+        return false;
+    }
+    take(st, t, nj as usize);
+    true
+}
+
+/// `ioc_beam` for pdir: the pointer moves by `mv[i]` first, then rune i reads key values j, j+d, j+2d (first try, skip, coin retry;
+/// d = dirs[i]) and the pointer continues at j+d (j+2d after a kept coin doublet, j+2d / j+3d after a skip). Pointers outside
+/// [0, mk.len()) are dead. `start` is the pointer before rune 0. Same merging, beam and abort gate as `ioc_beam`.
+#[allow(clippy::too_many_arguments)]
+fn ioc_beam_dir(
+    c: &[u8],
+    pvs: &[i32],
+    mk: &[u8],
+    model: u8,
+    n: usize,
+    beam: usize,
+    abort_at: usize,
+    abort_s: u32,
+    tb: &Tb,
+    cur: &mut Vec<St>,
+    extra: &mut Vec<St>,
+    start: usize,
+    dirs: &[i8],
+    mv: &[i32],
+) -> (u32, usize, bool) {
+    cur.clear();
+    cur.push(St { j: start as u32, s: 0, cnt: [0; Q] });
+    let klen = mk.len() as i64;
+    for i in 0..n {
+        let ci = c[i] as usize;
+        let prev: i32 = pvs[i];
+        let d = dirs[i] as i64;
+        if mv[i] != 0 {
+            cur.retain_mut(|s| {
+                let nj = s.j as i64 + mv[i] as i64;
+                s.j = nj.max(0) as u32;
+                nj >= 0
+            });
+        }
+        extra.clear();
+        let mut idx = 0;
+        while idx < cur.len() {
+            let j = cur[idx].j as i64;
+            let j2 = j + 2 * d;
+            if j.min(j2) < 0 || j.max(j2) >= klen {
+                cur.swap_remove(idx);
+                continue;
+            }
+            let k0 = mk[j as usize];
+            let t0 = tb.sub[ci][k0 as usize];
+            if prev >= 0 {
+                let pv = prev as u8;
+                let k1 = mk[(j + d) as usize];
+                let k2 = mk[j2 as usize];
+                if model == 0 {
+                    let t1 = tb.sub[ci][k1 as usize];
+                    if tb.add[t1 as usize][k0 as usize] == pv {
+                        let mut s2 = cur[idx];
+                        if take_dir(&mut s2, t1, j + 2 * d) {
+                            extra.push(s2);
+                        }
+                    }
+                    let t2 = tb.sub[ci][k2 as usize];
+                    if tb.add[t2 as usize][k0 as usize] == pv && tb.add[t2 as usize][k1 as usize] == pv {
+                        let mut s3 = cur[idx];
+                        if take_dir(&mut s3, t2, j + 3 * d) {
+                            extra.push(s3);
+                        }
+                    }
+                } else {
+                    let t2 = tb.sub[ci][k2 as usize];
+                    if tb.add[t2 as usize][k0 as usize] == pv {
+                        let mut s3 = cur[idx];
+                        if take_dir(&mut s3, t2, j + 3 * d) {
+                            extra.push(s3);
+                        }
+                    }
+                }
+            }
+            let nj = if model == 1 && prev == ci as i32 { j + 2 * d } else { j + d };
+            if take_dir(&mut cur[idx], t0, nj) {
+                idx += 1;
+            } else {
+                cur.swap_remove(idx);
+            }
+        }
+        cur.extend_from_slice(extra);
+        if cur.is_empty() {
+            return (0, i.max(2), false);
+        }
+        if cur.len() > 1 {
+            let mut a = 0;
+            while a < cur.len() {
+                let mut b = a + 1;
+                while b < cur.len() {
+                    if cur[b].j == cur[a].j {
+                        if cur[b].s > cur[a].s {
+                            cur[a] = cur[b];
+                        }
+                        cur.swap_remove(b);
+                    } else {
+                        b += 1;
+                    }
+                }
+                a += 1;
+            }
+            if cur.len() > beam {
+                cur.sort_by(|x, y| y.s.cmp(&x.s));
+                cur.truncate(beam);
+            }
+        }
+        if i + 1 == abort_at {
+            let best = cur.iter().map(|s| s.s).max().unwrap_or(0);
+            if best < abort_s {
+                return (best, abort_at, false);
+            }
+        }
+    }
+    (cur.iter().map(|s| s.s).max().unwrap_or(0), n, true)
+}
+
+/// `full_decode` for pdir (verification: plaintext and the key index of every rune); same semantics as `ioc_beam_dir`.
+#[allow(clippy::too_many_arguments)]
+fn full_decode_dir(c: &[u8], pvs: &[i32], mk: &[u8], model: u8, n: usize, beam: usize, start: usize, dirs: &[i8], mv: &[i32]) -> (f64, Vec<u8>, Vec<u32>) {
+    #[derive(Clone)]
+    struct S2 {
+        j: i64,
+        s: u32,
+        cnt: [u16; Q],
+        plain: Vec<u8>,
+        ptr: Vec<u32>,
+    }
+    let tb = tables();
+    let mut cur = vec![S2 { j: start as i64, s: 0, cnt: [0; Q], plain: Vec::new(), ptr: Vec::new() }];
+    let step = |st: &S2, t: u8, at: i64, nj: i64| -> S2 {
+        let mut x = st.clone();
+        x.s += 2 * x.cnt[t as usize] as u32;
+        x.cnt[t as usize] += 1;
+        x.plain.push(t);
+        x.ptr.push(at as u32);
+        x.j = nj;
+        x
+    };
+    let klen = mk.len() as i64;
+    for i in 0..n {
+        let (ci, prev, d) = (c[i] as usize, pvs[i], dirs[i] as i64);
+        let mut next: Vec<S2> = Vec::new();
+        for st in &cur {
+            let j = st.j + mv[i] as i64;
+            let j2 = j + 2 * d;
+            if j.min(j2) < 0 || j.max(j2) >= klen {
+                continue;
+            }
+            let (k0, k1, k2) = (mk[j as usize], mk[(j + d) as usize], mk[j2 as usize]);
+            let nj = if model == 1 && prev == ci as i32 { j + 2 * d } else { j + d };
+            if nj >= 0 {
+                next.push(step(st, tb.sub[ci][k0 as usize], j, nj));
+            }
+            if prev >= 0 {
+                let pv = prev as u8;
+                let t1 = tb.sub[ci][k1 as usize];
+                let t2 = tb.sub[ci][k2 as usize];
+                if model == 0 {
+                    if tb.add[t1 as usize][k0 as usize] == pv && j + 2 * d >= 0 {
+                        next.push(step(st, t1, j + d, j + 2 * d));
+                    }
+                    if tb.add[t2 as usize][k0 as usize] == pv && tb.add[t2 as usize][k1 as usize] == pv && j + 3 * d >= 0 {
+                        next.push(step(st, t2, j2, j + 3 * d));
+                    }
+                } else if tb.add[t2 as usize][k0 as usize] == pv && j + 3 * d >= 0 {
+                    next.push(step(st, t2, j2, j + 3 * d));
+                }
+            }
+        }
+        next.sort_by(|a, b| a.j.cmp(&b.j).then(b.s.cmp(&a.s)));
+        next.dedup_by(|b, a| a.j == b.j);
+        next.sort_by(|a, b| b.s.cmp(&a.s));
+        next.truncate(beam);
+        if next.is_empty() {
+            break;
+        }
+        cur = next;
+    }
+    let best = cur.into_iter().max_by_key(|s| s.s).unwrap();
+    let used = best.plain.len();
+    (ioc_of(best.s, used), best.plain, best.ptr)
+}
+
 // ------------------------------------------------------------------ options
 
 fn opts(args: &[String]) -> std::collections::HashMap<String, String> {
@@ -865,6 +1143,7 @@ fn mode_screen(args: &[String]) {
     let advsep: usize = get(&o, "advsep", 0);
     assert!(advsep <= 2, "advsep=0|1|2 (0 = off; extra key advances at word boundaries / layout breaks, see ADVSEP.md)");
     ADVSEP.store(advsep, Ordering::Relaxed);
+    set_pdir(&o);
     let n_req: usize = get(&o, "n", 300);
     let beam: usize = get(&o, "beam", 16);
     let mults = list_u8(&get(&o, "mults", "1,28".to_string()));
@@ -888,7 +1167,14 @@ fn mode_screen(args: &[String]) {
     let advs: Vec<Vec<usize>> = wins.iter().map(|w| adv_positions(w)).collect();
     let wn: Vec<usize> = wins.iter().map(|w| w.runes.len().min(n_req)).collect();
     let nmax = *wn.iter().max().expect("no windows");
-    let need = key_need(nmax) + advs.iter().zip(wn.iter()).map(|(a, &n)| adv_need(a, n)).max().unwrap_or(0);
+    let pdir = PDIR.load(Ordering::Relaxed) > 0;
+    let lead = PAD.load(Ordering::Relaxed); // key values read before the start offset (pdir)
+    assert!(!pdir || matches!(fam, Fam::Ks(_)), "pdir needs a keystream file or rand: family");
+    let plans: Vec<(Vec<i8>, Vec<i32>, Vec<i32>)> = if pdir { wins.iter().map(|w| dir_plan(w)).collect() } else { Vec::new() };
+    let need = key_need(nmax)
+        + advs.iter().zip(wn.iter()).map(|(a, &n)| adv_need(a, n)).max().unwrap_or(0)
+        + plans.iter().zip(wn.iter()).map(|(p, &n)| dir_need(&p.1, n)).max().unwrap_or(0)
+        + lead;
     let items: Vec<usize> = if let Some(name) = o.get("only") {
         vec![fam.find_item(name)]
     } else if let Some(r) = o.get("items") {
@@ -924,7 +1210,7 @@ fn mode_screen(args: &[String]) {
     ));
     std::thread::scope(|sc| {
         for tid in 0..threads {
-            let (fam, items, wins, wn, mults, models, nulls, advs) = (&fam, &items, &wins, &wn, &mults, &models, &nulls, &advs);
+            let (fam, items, wins, wn, mults, models, nulls, advs, plans) = (&fam, &items, &wins, &wn, &mults, &models, &nulls, &advs, &plans);
             let (next, done_runs, merged) = (&next, &done_runs, &merged);
             sc.spawn(move || {
                 let tb = tables();
@@ -958,16 +1244,21 @@ fn mode_screen(args: &[String]) {
                                 for (wi, w) in wins.iter().enumerate() {
                                     let n = wn[wi];
                                     let ab = if abort_at > 0 && abort_at < n { abort_at } else { 0 };
-                                    let (s, used, full) = ioc_beam(
-                                        &w.runes, &nulls[wi].1, &mk, model, n, beam, ab, abort_s, abort_ioc, &tb, &mut cur, &mut extra, guard_of(w, off), &w.sg, &nulls[wi].0, &advs[wi],
-                                    );
+                                    let (s, used, full) = if pdir {
+                                        let p = &plans[wi];
+                                        ioc_beam_dir(&w.runes, &p.2, &mk, model, n, beam, ab, abort_s, &tb, &mut cur, &mut extra, lead, &p.0, &p.1)
+                                    } else {
+                                        ioc_beam(
+                                            &w.runes, &nulls[wi].1, &mk, model, n, beam, ab, abort_s, abort_ioc, &tb, &mut cur, &mut extra, guard_of(w, off), &w.sg, &nulls[wi].0, &advs[wi],
+                                        )
+                                    };
                                     let ioc = ioc_of(s, used) as f32;
                                     runs += 1;
                                     if !full {
                                         aborted += 1;
                                     }
                                     hist[((ioc * 100.0) as usize).min(HBINS - 1)] += 1;
-                                    let h = Hit { ioc, item: item as u32, off: off as u32, mult: m, model, win: wi as u16, n: used as u16 };
+                                    let h = Hit { ioc, item: item as u32, off: (off + lead) as u32, mult: m, model, win: wi as u16, n: used as u16 };
                                     if full && ioc > wbest[wi].ioc {
                                         wbest[wi] = h;
                                     }
@@ -1020,7 +1311,7 @@ fn mode_screen(args: &[String]) {
     let mut f = BufWriter::new(f);
     writeln!(
         f,
-        "# kscreen screen family={} windows={} n={} beam={} mults={} models={} abort={} runs={} aborted={} secs={:.0} dir={}{}{}{}",
+        "# kscreen screen family={} windows={} n={} beam={} mults={} models={} abort={} runs={} aborted={} secs={:.0} dir={}{}{}{}{}",
         args[1],
         args[0],
         nmax,
@@ -1037,7 +1328,9 @@ fn mode_screen(args: &[String]) {
         // likewise only a nulledge run names it, so nulledge=0 headers stay byte-identical
         match NULLEDGE.load(Ordering::Relaxed) { 0 => String::new(), k => format!(" nulledge={k}") },
         // and only an advsep run names it, so advsep=0 headers stay byte-identical
-        match ADVSEP.load(Ordering::Relaxed) { 0 => String::new(), k => format!(" advsep={k}") }
+        match ADVSEP.load(Ordering::Relaxed) { 0 => String::new(), k => format!(" advsep={k}") },
+        // and only a pdir run names its convention, so the other headers stay byte-identical
+        match PDIR.load(Ordering::Relaxed) { 0 => String::new(), k => format!(" pdir={}{}{} pad={} dirneg={}", (k - 1) / 9, (k - 1) / 3 % 3, (k - 1) % 3, PAD.load(Ordering::Relaxed), DIRNEG.load(Ordering::Relaxed) as u8) }
     )
     .unwrap();
     let best = hits.first().map(|h| h.ioc).unwrap_or(0.0);
@@ -1095,6 +1388,7 @@ fn mode_trace(args: &[String]) {
     let advsep: usize = get(&o, "advsep", 0);
     assert!(advsep <= 2, "advsep=0|1|2 (0 = off; extra key advances at word boundaries / layout breaks, see ADVSEP.md)");
     ADVSEP.store(advsep, Ordering::Relaxed);
+    set_pdir(&o);
     let n_req: usize = get(&o, "n", 300);
     let beam: usize = get(&o, "beam", 16);
     let mults = list_u8(&get(&o, "mults", "1,28".to_string()));
@@ -1118,7 +1412,11 @@ fn mode_trace(args: &[String]) {
     let nulls: Vec<(Vec<bool>, Vec<i32>)> = wins.iter().map(|w| null_adjust(w)).collect();
     let advs: Vec<Vec<usize>> = wins.iter().map(|w| adv_positions(w)).collect();
     let nmax = wins.iter().map(|w| w.runes.len().min(n_req)).max().expect("no windows");
-    let need = key_need(nmax) + advs.iter().map(|a| adv_need(a, nmax)).max().unwrap_or(0);
+    let pdir = PDIR.load(Ordering::Relaxed) > 0;
+    let lead = PAD.load(Ordering::Relaxed);
+    assert!(!pdir || matches!(fam, Fam::Ks(_)), "pdir needs a keystream file or rand: family");
+    let plans: Vec<(Vec<i8>, Vec<i32>, Vec<i32>)> = if pdir { wins.iter().map(|w| dir_plan(w)).collect() } else { Vec::new() };
+    let need = key_need(nmax) + advs.iter().map(|a| adv_need(a, nmax)).max().unwrap_or(0) + plans.iter().map(|p| dir_need(&p.1, nmax)).max().unwrap_or(0) + lead;
     let tb = tables();
     let (mut cur, mut extra) = (Vec::new(), Vec::new());
     let (mut key, mut mk) = (vec![0u8; need], vec![0u8; need]);
@@ -1137,9 +1435,13 @@ fn mode_trace(args: &[String]) {
                     for (wi, w) in wins.iter().enumerate() {
                         let n = w.runes.len().min(n_req);
                         let ab = if abort_at > 0 && abort_at < n { abort_at } else { 0 };
-                        let (s, used, _full) =
-                            ioc_beam(&w.runes, &nulls[wi].1, &mk, model, n, beam, ab, abort_s, abort_ioc, &tb, &mut cur, &mut extra, guard_of(w, off), &w.sg, &nulls[wi].0, &advs[wi]);
-                        writeln!(out, "{item} {off} {m} {model} {wi} {s} {used}").unwrap();
+                        let (s, used, _full) = if pdir {
+                            let p = &plans[wi];
+                            ioc_beam_dir(&w.runes, &p.2, &mk, model, n, beam, ab, abort_s, &tb, &mut cur, &mut extra, lead, &p.0, &p.1)
+                        } else {
+                            ioc_beam(&w.runes, &nulls[wi].1, &mk, model, n, beam, ab, abort_s, abort_ioc, &tb, &mut cur, &mut extra, guard_of(w, off), &w.sg, &nulls[wi].0, &advs[wi])
+                        };
+                        writeln!(out, "{item} {} {m} {model} {wi} {s} {used}", off + lead).unwrap();
                     }
                 }
             }
@@ -1236,39 +1538,50 @@ fn mode_verify(args: &[String]) {
     let advsep: usize = get(&o, "advsep", 0);
     assert!(advsep <= 2, "advsep=0|1|2 (0 = off; extra key advances at word boundaries / layout breaks, see ADVSEP.md)");
     ADVSEP.store(advsep, Ordering::Relaxed);
+    set_pdir(&o);
+    let pdir = PDIR.load(Ordering::Relaxed) > 0;
+    let lead = PAD.load(Ordering::Relaxed);
+    assert!(!pdir || (matches!(fam, Fam::Ks(_)) && off >= lead), "pdir verify: a keystream file family and an offset >= pad");
     let n_req: usize = get(&o, "n", 0);
     let beam: usize = get(&o, "beam", 64);
     let coeffs = fam.coeffs(item);
     for w in wins.iter().filter(|w| args[6] == "all" || w.name == args[6]) {
         let nulls = null_adjust(w);
         let adv = adv_positions(w);
+        let plan = if pdir { Some(dir_plan(w)) } else { None };
         let mut n = if n_req == 0 { w.runes.len() } else { n_req.min(w.runes.len()) };
-        let mut len = key_need(n) + 8 + adv_need(&adv, n);
+        let eoff = off - lead; // buffer start (pdir reads `lead` key values before the start offset)
+        let dneed = |n: usize| plan.as_ref().map_or(0, |p| dir_need(&p.1, n));
+        let mut len = key_need(n) + 8 + adv_need(&adv, n) + dneed(n) + lead;
         // a keystream shorter than the window (e.g. a decimated one): verify over as much of the window as it covers
-        while n > 300 && off >= fam.offsets(item, len) {
+        while n > 300 && eoff >= fam.offsets(item, len) {
             n -= 50;
-            len = key_need(n) + 8 + adv_need(&adv, n);
+            len = key_need(n) + 8 + adv_need(&adv, n) + dneed(n) + lead;
         }
         let mut noff = fam.offsets(item, len);
-        if off >= noff {
+        if eoff >= noff {
             // a clocked pointer can need more key than the stream holds: decode as far as the key reaches
             if let Fam::Ks(_) = &fam {
-                let avail = fam.offsets(item, 1).saturating_sub(off);
+                let avail = fam.offsets(item, 1).saturating_sub(eoff);
                 if avail >= 64 {
                     len = avail;
                     noff = fam.offsets(item, len);
                 }
             }
         }
-        if off >= noff {
+        if eoff >= noff {
             println!("window {} skipped: keystream too short for offset {off}", w.name);
             continue;
         }
         let mut key = vec![0u8; len];
-        fam.fill(item, &coeffs, off, &mut key);
+        fam.fill(item, &coeffs, eoff, &mut key);
         let mk: Vec<u8> = key.iter().map(|&k| (k as usize * m % Q) as u8).collect();
-        let (ioc, plain, ptr) = full_decode(&w.runes, &nulls.1, &mk, model, n, beam, guard_of(w, off), &w.sg, &nulls.0, &adv);
-        let skips = ptr.windows(2).filter(|p| p[1] != p[0] + 1).count();
+        let decode = |mk: &[u8], co: usize| match &plan {
+            Some(p) => full_decode_dir(&w.runes, &p.2, mk, model, n, beam, lead, &p.0, &p.1),
+            None => full_decode(&w.runes, &nulls.1, mk, model, n, beam, guard_of(w, co), &w.sg, &nulls.0, &adv),
+        };
+        let (ioc, plain, ptr) = decode(&mk, off);
+        let skips = if pdir { 0 } else { ptr.windows(2).filter(|p| p[1] != p[0] + 1).count() };
         println!("window {} n {} ioc {:.4} pointer_jumps {}", w.name, plain.len(), ioc, skips);
         println!("plain {}", join(&plain));
         println!("ptr {}", join(&ptr));
@@ -1277,12 +1590,13 @@ fn mode_verify(args: &[String]) {
         let nctl: usize = get(&o, "controls", 0);
         if nctl > 0 {
             let mut rng = Rng(0xC0FFEE ^ off as u64);
+            // (a pdir control draws buffer offsets, so its start offset is co + lead)
             let mut vals = Vec::with_capacity(nctl);
             for _ in 0..nctl {
                 let co = rng.below(noff as u64) as usize;
                 fam.fill(item, &coeffs, co, &mut key);
                 let cmk: Vec<u8> = key.iter().map(|&k| (k as usize * m % Q) as u8).collect();
-                vals.push(full_decode(&w.runes, &nulls.1, &cmk, model, n, beam, guard_of(w, co), &w.sg, &nulls.0, &adv).0);
+                vals.push(decode(&cmk, co + lead).0);
             }
             let mx = vals.iter().cloned().fold(0.0f64, f64::max);
             let mean = vals.iter().sum::<f64>() / vals.len() as f64;
