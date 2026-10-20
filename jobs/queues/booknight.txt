@@ -1,0 +1,17 @@
+# booknight (2026-10-20): phase 23 stage-1 LP2 screen of the cited books (work/log/phase23_book_key_decoder.md, frozen rule).
+# Run: python jobs/jobqueue.py booknight jobs/queues/booknight.txt (an interpreter with numba + scipy). Every job is resumable
+# (finished chunks are skipped). Smallest books first; the KJV alone is about two thirds of the work (about 20 h).
+# Stage-1 hits are UNVERIFIED: whole-section verification (spec, decision rule step 2) is done by a session afterwards.
+selftest | {PY} work/book_key_screen.py selftest
+liber_al | {PY} work/book_key_screen.py run liber_al 15
+blake_songs | {PY} work/book_key_screen.py run blake_songs 15
+blake_mhh | {PY} work/book_key_screen.py run blake_mhh 15
+summary1 | {PY} work/book_key_screen.py summary
+emerson | {PY} work/book_key_screen.py run emerson 15
+summary2 | {PY} work/book_key_screen.py summary
+mabinogion | {PY} work/book_key_screen.py run mabinogion 15
+summary3 | {PY} work/book_key_screen.py summary
+agrippa | {PY} work/book_key_screen.py run agrippa 15
+summary4 | {PY} work/book_key_screen.py summary
+kjv | {PY} work/book_key_screen.py run kjv 15
+summary5 | {PY} work/book_key_screen.py summary
