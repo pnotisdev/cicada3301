@@ -1,0 +1,30 @@
+# Phase 21: signed page-scan material as key streams, art checks, hypotheses review (2026-10-20)
+
+**Nothing in LP2 is solved.** Prompted by: "strongest hypotheses / where to look" with the ideas (a) a flat stream from numbers inside the book, only PGP-signed 3301 material counts, (b) mayfly 23-26 (red prime digits -> 4x4, black digits -> 40x40), (c) spirals 3-7, (d) a chain "rune = previous + non-zero step".
+
+## 1. Checks of the user's specific ideas (data, no search)
+
+- **Art numbering.** "23-26 Mayfly" and "3-7 Spirals" are Pitchfork's "onion" ranges (onion n = our image n + 17): images 40-43 (start of 0.12, 1,021 runes) and 20-24 (0.8, 1,145 runes).
+- **Red / digits scan of all 75 scans** (red = R > 140, G, B < 90; components >= 40 px): red digits exist only on image 32 (the 4x4 grid; ONE red cell, 3299, the first spiral cell) and images 53-55 (list numerals 1-5). Images 41 and 42 have no red at all, 40 has a heading and drop cap, 43 only the stippled paragraph block; the spiral pages 20-24 carry headings, drop caps and stipple blocks, no digits. Viewed images 22, 32, 41, 51, 53, 66.
+- **No 40x40 (1,600) object:** no contiguous run of pages in the book sums to 1,600 runes (1,596 LP2 page runs checked; 4 within +-10 of 1,600, 0 exact); sections: 0.12 = 1,021, 0.14 = 1,589, 0.9 = 1,729. The 4x4 grid is explained (`phase4_grid30.md`).
+- **Chain / step domain** is the repo's `step28` (phase9_step28.md): variants A/B/C, 1,447 streams, periods to about 800: negative; only the seed sweeps (`prng-step`, 0 of 20 steps done, about 1 h GPU per generator) are unrun. A strict non-zero-step chain predicts 0 doublets; LP2 has 86 (0.66%), so the model needs the 19% survivors ("ditto" / coin).
+- **The 2016 hint and the April 2017 message** are quoted consistently (Wikipedia: clue on Twitter 5 Jan 2016, last verified signed message April 2017; Boxentriq; research_2026-10-17.md). A signed original of the 2016 text was not retrieved here and some sources call it disputed.
+- **DJU BEI** occurs at words 7-8 of 394 of 0.13 and as the last two words of 0.15; the preceding words do not align under any constant shift (no key-reuse lead).
+
+## 2. Signed 3301 material as key streams (new, controlled)
+
+Sources: the 2014 OutGuess payloads recovered by `work/ogscan` (`results/outguess/payload_NN.txt`): pages 0-3 and 10-13 carry a clearsigned message with an RSA signature packet each (v4, type 1, RSA, SHA-1, 4091-4096-bit values), **issuer 181F01E57A35090F in all eight** (the key whose short id is 7A35090F), created 2014-01-07 (pages 0-2), 2014-01-10 (page 3), 2014-01-19 (pages 10-13), armor CRC-24 ok on all. **The signatures are not verified** (needs a trusted public key). Pages 0-2 are three 991-byte random-looking hex blobs. `work/kscreen/signed.py` builds 272 streams: blobs, signature values and their concatenations as bytes (reject >= 232, mod 29), base-29 digits (both orders), forwards and reversed; hash counter / chain streams (export.hash_streams conventions, 4,000 values) seeded with every blob, signature value and message text. Hex digits and ASCII were not built (fail the flat-IoC rule).
+
+- **Controls** (`work/kscreen/signed_selftest.py`, independent Python planter, 300 runes of held-out English, skip / coin, multiplier 1 / 28, plain / substituted alphabet, shortest and longest stream of every family): **18 of 18 recovered** (best IoC 1.736-1.787 at the planted offset or within 2 of it, the skip alias; re-decode at truth 1.736-1.775), wrong streams of another class 1.19-1.29. First run: 6 FAIL that were test-design errors (the "wrong" stream `sigval-all` contains the planted signature; two exact-offset demands against the +-2 alias the other selftests already accept); the test was corrected, the engine, thresholds and streams were not changed (`results/kscreen/signed_selftest.txt`).
+- **Screen** (`kscreen screen data/segments.txt file:data/signed.ksb`, 8 section windows of 300 runes, models skip + coin, multipliers 1 and 28, every offset; 22,877,184 decodes, 714,912 stream-offset pairs): **best IoC 1.2971** (0.15, hash stream of message 2); per-window bests 1.245-1.297. Matched nulls (`rand:37:1`, `rand:37:2`, same pairs): 1.3016 and 1.3359. Rule: 1.40. `verify.py`: **0 of 15** hits keep IoC >= 1.4 over their window. Negative (`results/kscreen/signed_segments.tsv`, `_verify.txt`, `signed_null_1/2.tsv`).
+- **Does NOT exclude:** multipliers other than +-1 (run `mults=all`, about 15 min on 16 threads); windows other than the section starts; the blobs or signatures used as something other than an additive key (a cipher key for other data, a hash preimage); signed 3301 material that is not in the scans (2012-2017 messages); the page-3 hex JPEG; a key that is a function of these numbers beyond the conversions built.
+- Not done for lack of time: registry row, `build_overview.py`, SESSION_LOG row.
+
+## 3. Ranking written for the user (subjective credences)
+
+1. Key material is not recoverable from the book (needs the hashed page / unpublished data / not meant to be solved): about 50%, the repo's own estimate (phase18). No computation helps except new information.
+2. A word-aware stateful mechanism behind the anti-repeat rule and the within-word lag-5/6 echoes (`collision-kernel-followup`): the only positive signals, all retrospective; needs a model that predicts them, not another key list.
+3. Pre-encryption word permutation / length-changing layer (explains no serial structure in word lengths; invisible to IoC screens, weakens language-model decoders): 5-20% (frontier review D3).
+4. Stream + keyword or stream + stream layers (`open-h1`: recall of the existing sweep is 84% at L = 2 and 7% at L = 20): 5-20%; the 6 h sweep exists.
+5. Seeded generators in the step domain (`prng-step`): the user's chain idea, 3% or less, about 10 h GPU on the desktop.
+Also: run E4-letters before trusting the chanscreen negatives (power under letter spelling, about 1 h), and use the prime-sum check as the language-free verifier of any candidate.

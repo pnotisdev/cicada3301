@@ -1,0 +1,212 @@
+# kscreen screen family=file:data/signed.ksb windows=data/segments.txt n=300 beam=16 mults=1,28 models=0,1 abort=150:1.2 runs=22877184 aborted=22344708 secs=40 dir=fwd
+# best 1.2971
+# window seg0.7 best 1.2757 item=D blob0 offset=32 mult=28 model=1
+# window seg0.8 best 1.2796 item=H sha512-ctr mod :message1 offset=1198 mult=1 model=0
+# window seg0.9 best 1.2719 item=H sha256-ctr reject :blob2 offset=2329 mult=28 model=0
+# window seg0.11 best 1.2479 item=H sha256-ctr mod :message12 offset=437 mult=1 model=1
+# window seg0.12 best 1.2641 item=H sha256-ctr mod :message12 offset=1994 mult=28 model=0
+# window seg0.13 best 1.2447 item=H sha256-ctr reject :sigval11 offset=490 mult=1 model=1
+# window seg0.14 best 1.2829 item=H md5-ctr reject :message3 offset=1174 mult=1 model=0
+# window seg0.15 best 1.2971 item=H sha512-ctr reject :message2 offset=797 mult=1 model=1
+# hist 0.85:5 0.86:12 0.87:91 0.88:228 0.89:776 0.90:2019 0.91:4696 0.92:9902 0.93:19611 0.94:36631 0.95:46216 0.96:99435 0.97:166233 0.98:265178 0.99:404626 1.00:590558 1.01:813747 1.02:775383 1.03:1259160 1.04:1500728 1.05:1704302 1.06:1838050 1.07:1901496 1.08:1880224 1.09:1374137 1.10:1668669 1.11:1475660 1.12:1252621 1.13:1030706 1.14:819682 1.15:500099 1.16:524776 1.17:396392 1.18:296167 1.19:217207 1.20:973 1.21:440 1.22:200 1.23:78 1.24:38 1.25:14 1.26:11 1.27:3 1.28:3 1.29:1
+ioc	item	offset	mult	model	window	n
+1.2971	H sha512-ctr reject :message2	797	1	1	seg0.15	300
+1.2841	H sha256-chain mod :sigval12	845	28	0	seg0.15	300
+1.2829	H md5-ctr reject :message3	1174	1	0	seg0.14	300
+1.2803	H sha256-chain mod :sigval11	2798	1	0	seg0.14	300
+1.2796	H sha512-ctr mod :message1	1198	1	0	seg0.8	300
+1.2757	D blob0	32	28	1	seg0.7	300
+1.2719	H sha256-ctr reject :blob2	2329	28	0	seg0.9	300
+1.2699	H md5-ctr mod :message2	1535	28	0	seg0.15	300
+1.2699	D blob0	34	28	1	seg0.7	300
+1.2680	H sha256-chain reject :sigval12	1306	28	1	seg0.15	300
+1.2680	H sha512-ctr reject :sigval1	1872	1	0	seg0.8	300
+1.2660	H sha256-chain mod :sigval12	846	28	0	seg0.15	300
+1.2654	H sha256-chain reject :message12	1331	1	0	seg0.7	300
+1.2654	C blob012	2979	1	0	seg0.14	300
+1.2641	H sha256-ctr reject :message13	2427	28	1	seg0.8	300
+1.2641	H sha256-ctr mod :message12	1994	28	0	seg0.12	300
+1.2615	H md5-ctr mod :sigval-all	415	1	0	seg0.9	300
+1.2609	H sha256-chain mod :message13	3009	1	0	seg0.15	300
+1.2596	H sha512-ctr reject :sigval1	1873	1	0	seg0.8	300
+1.2583	H sha256-ctr mod :message3	3226	1	0	seg0.7	300
+1.2576	H md5-ctr mod :message2	1534	28	0	seg0.15	300
+1.2570	H sha256-ctr reject :sigval13	579	28	1	seg0.12	300
+1.2563	H sha256-chain mod :sigval11	2065	28	1	seg0.7	300
+1.2551	H sha256-ctr mod :message12	1993	28	0	seg0.12	300
+1.2538	H sha256-chain mod :sigval12	3437	1	0	seg0.7	300
+1.2538	C blob012	2978	1	0	seg0.14	300
+1.2531	H sha256-ctr mod :message3	3227	1	0	seg0.7	300
+1.2525	H md5-ctr mod :sigval12	1482	1	1	seg0.14	300
+1.2525	H sha256-ctr mod :sigval10	2893	1	0	seg0.15	300
+1.2512	H sha256-ctr reject :sigval13	1437	28	0	seg0.15	300
+1.2505	H sha256-chain mod :blob0	2170	28	0	seg0.12	300
+1.2505	H sha512-ctr mod :sigval-all	382	1	1	seg0.9	300
+1.2499	H sha256-ctr mod :blob2	549	28	0	seg0.12	300
+1.2499	H sha512-ctr mod :sigval10	1139	28	1	seg0.9	300
+1.2492	H md5-ctr mod :message0	1691	1	0	seg0.15	300
+1.2479	H sha256-ctr mod :message12	437	1	1	seg0.11	300
+1.2479	H sha256-ctr mod :sigval11	373	28	1	seg0.9	300
+1.2473	H sha256-chain reject :sigval0	2129	28	1	seg0.12	300
+1.2466	H sha512-ctr mod :blob2	2447	1	0	seg0.11	300
+1.2466	H sha256-chain reject :message11	1741	28	0	seg0.15	300
+1.2466	H sha256-chain reject :message10	1741	28	0	seg0.15	300
+1.2460	A blob012	991	1	0	seg0.8	300
+1.2460	A blob1	93	1	0	seg0.8	300
+1.2460	C sigval-all	543	1	0	seg0.15	300
+1.2454	H sha256-chain reject :sigval12	2114	1	1	seg0.14	300
+1.2454	H sha256-ctr mod :blob0	531	28	0	seg0.15	300
+1.2447	H sha256-ctr reject :sigval11	492	1	1	seg0.13	300
+1.2447	H sha256-ctr reject :sigval11	490	1	1	seg0.13	300
+1.2447	H sha512-ctr mod :sigval3	1705	28	1	seg0.7	300
+1.2441	H sha512-ctr mod :sigval10	1137	28	1	seg0.9	300
+1.2441	H sha512-ctr mod :blob012	620	1	1	seg0.8	300
+1.2441	H sha256-chain reject :sigval12	1304	28	1	seg0.15	300
+1.2441	H sha512-ctr mod :message3	1345	28	0	seg0.7	300
+1.2441	H sha256-chain mod :sigval1	715	1	1	seg0.7	300
+1.2434	H sha256-chain reject :blob1	1152	28	0	seg0.9	300
+1.2428	H sha256-chain mod :blob0	3266	1	0	seg0.9	300
+1.2428	H md5-ctr reject :sigval2	2357	28	1	seg0.7	300
+1.2421	H sha256-chain mod :sigval12	3436	1	0	seg0.7	300
+1.2421	H sha512-ctr reject :sigval-all	1311	1	0	seg0.11	300
+1.2421	H sha256-chain mod :blob0	2171	28	0	seg0.12	300
+1.2421	D blob012	2825	28	0	seg0.7	300
+1.2421	H sha512-ctr reject :message13	261	28	1	seg0.14	300
+1.2421	H sha512-ctr mod :sigval0	3088	1	1	seg0.13	300
+1.2415	H sha256-ctr mod :message3	3225	1	0	seg0.7	300
+1.2408	Ar sigval-all	991	28	0	seg0.11	300
+1.2408	H sha256-chain mod :blob1	370	1	1	seg0.15	300
+1.2408	Cr sigval3	315	1	0	seg0.14	300
+1.2408	H sha512-ctr reject :message0	243	28	1	seg0.12	300
+1.2402	H md5-ctr mod :sigval12	1480	1	1	seg0.14	300
+1.2402	H sha256-chain mod :blob0	3165	28	0	seg0.15	300
+1.2395	H md5-ctr mod :sigval1	3346	1	1	seg0.7	300
+1.2395	H sha256-chain mod :message1	2783	1	0	seg0.14	300
+1.2395	H sha512-ctr mod :blob2	3149	1	0	seg0.13	300
+1.2389	H md5-ctr reject :message2	529	1	1	seg0.9	300
+1.2389	Br blob1	319	28	0	seg0.13	300
+1.2389	H sha512-ctr mod :blob2	2445	1	0	seg0.11	300
+1.2389	Br blob012	1310	28	0	seg0.13	300
+1.2389	H sha256-ctr reject :message2	2951	1	0	seg0.11	300
+1.2389	H sha256-ctr mod :sigval3	95	1	1	seg0.14	300
+1.2382	H sha512-ctr mod :message0	3354	28	1	seg0.15	300
+1.2382	H sha256-chain mod :message13	490	28	0	seg0.13	300
+1.2382	H sha512-ctr mod :message0	3356	28	1	seg0.15	300
+1.2376	H sha256-chain mod :sigval1	717	1	1	seg0.7	300
+1.2376	H md5-ctr mod :sigval12	2323	1	1	seg0.7	300
+1.2376	D blob012	4190	1	1	seg0.11	300
+1.2376	H sha256-ctr mod :message13	1213	1	1	seg0.13	300
+1.2376	H sha256-ctr mod :message13	1215	1	1	seg0.13	300
+1.2376	H sha512-ctr mod :message0	2918	28	1	seg0.11	300
+1.2369	H sha256-chain mod :sigval12	2920	1	1	seg0.7	300
+1.2369	H sha512-ctr reject :sigval11	2110	1	0	seg0.15	300
+1.2369	H sha512-ctr reject :sigval0	2829	28	1	seg0.11	300
+1.2369	H sha256-ctr mod :message2	2527	1	1	seg0.12	300
+1.2363	H sha512-ctr reject :sigval11	2173	1	0	seg0.11	300
+1.2357	H sha256-chain mod :message1	3194	1	0	seg0.13	300
+1.2357	H sha256-chain reject :sigval12	2156	28	1	seg0.8	300
+1.2357	H sha256-chain mod :message13	3010	1	0	seg0.15	300
+1.2350	H sha512-ctr reject :sigval1	647	28	1	seg0.12	300
+1.2350	H sha256-chain mod :sigval1	3318	28	0	seg0.13	300
+1.2350	H sha512-ctr mod :blob012	3337	1	0	seg0.13	300
+1.2344	A blob1	91	1	0	seg0.8	300
+1.2344	H sha256-chain mod :message13	3012	1	0	seg0.15	300
+1.2344	H md5-ctr mod :sigval12	1478	1	1	seg0.14	300
+1.2344	A blob012	989	1	0	seg0.8	300
+1.2344	H sha256-chain reject :blob1	2638	1	0	seg0.7	300
+1.2337	Cr blob2	366	1	0	seg0.11	300
+1.2337	A blob1	92	1	0	seg0.8	300
+1.2337	A blob012	990	1	0	seg0.8	300
+1.2337	H md5-ctr reject :sigval1	3373	1	0	seg0.14	300
+1.2331	H md5-ctr mod :message3	3601	28	1	seg0.11	300
+1.2331	H sha256-ctr mod :sigval0	779	28	1	seg0.9	300
+1.2331	H sha512-ctr mod :sigval11	2595	28	0	seg0.15	300
+1.2331	H sha512-ctr reject :message2	1949	1	1	seg0.12	300
+1.2331	H sha256-chain mod :blob2	344	28	1	seg0.9	300
+1.2331	H md5-ctr reject :blob0	893	1	0	seg0.9	300
+1.2324	H md5-ctr reject :message1	968	28	0	seg0.7	300
+1.2324	H sha256-ctr mod :sigval0	781	28	1	seg0.9	300
+1.2324	H sha256-ctr mod :sigval0	783	28	1	seg0.9	300
+1.2324	H sha256-ctr mod :message11	2774	1	1	seg0.13	300
+1.2324	H md5-ctr reject :sigval10	58	28	1	seg0.8	300
+1.2324	H sha256-ctr mod :message1	2776	28	0	seg0.8	300
+1.2324	H md5-ctr mod :sigval13	3001	1	0	seg0.15	300
+1.2324	H sha512-ctr mod :sigval2	1466	1	1	seg0.8	300
+1.2324	C sigval1	4	1	1	seg0.8	300
+1.2324	H sha256-ctr mod :message10	2774	1	1	seg0.13	300
+1.2318	Br sigval-all	2172	1	0	seg0.12	300
+1.2318	Br sigval3	124	1	0	seg0.12	300
+1.2318	H sha512-ctr mod :blob2	1606	1	1	seg0.13	300
+1.2318	H sha512-ctr mod :blob012	2772	1	0	seg0.14	300
+1.2311	Br sigval3	125	1	0	seg0.12	300
+1.2311	Br sigval-all	2173	1	0	seg0.12	300
+1.2311	H sha256-chain mod :blob0	3384	28	0	seg0.14	300
+1.2311	H sha256-chain reject :blob1	2639	1	0	seg0.7	300
+1.2311	H md5-ctr mod :sigval12	537	28	0	seg0.15	300
+1.2311	H sha256-ctr reject :sigval3	2545	28	0	seg0.9	300
+1.2311	H sha512-ctr mod :sigval0	3090	1	1	seg0.13	300
+1.2311	H sha512-ctr mod :sigval2	1462	1	1	seg0.8	300
+1.2311	H sha256-ctr mod :sigval13	222	1	0	seg0.13	300
+1.2311	H sha256-ctr mod :sigval13	223	1	0	seg0.13	300
+1.2305	H sha256-chain mod :message1	2801	1	1	seg0.12	300
+1.2305	C sigval-all	830	28	1	seg0.15	300
+1.2305	D sigval0	412	28	1	seg0.11	300
+1.2305	H sha256-chain reject :sigval1	2480	28	1	seg0.12	300
+1.2305	H md5-ctr reject :sigval1	2775	1	1	seg0.11	300
+1.2305	H sha256-chain mod :blob0	1877	1	1	seg0.9	300
+1.2305	B blob012	1101	28	1	seg0.13	300
+1.2305	H sha256-ctr reject :blob1	347	28	1	seg0.13	300
+1.2305	B blob1	110	28	1	seg0.13	300
+1.2305	H md5-ctr reject :blob1	736	28	0	seg0.9	300
+1.2298	H sha512-ctr mod :sigval2	599	28	1	seg0.9	300
+1.2298	H sha512-ctr mod :sigval2	773	28	0	seg0.14	300
+1.2298	H sha256-ctr mod :message3	2268	28	0	seg0.14	300
+1.2298	H md5-ctr mod :sigval12	2325	1	1	seg0.7	300
+1.2298	H sha256-chain reject :blob2	2788	28	0	seg0.14	300
+1.2298	H sha256-chain reject :blob1	1777	28	0	seg0.15	300
+1.2298	H md5-ctr reject :message13	1615	28	0	seg0.7	300
+1.2298	H sha512-ctr mod :sigval11	60	28	1	seg0.11	300
+1.2298	H sha256-ctr mod :sigval13	224	1	0	seg0.13	300
+1.2298	H sha256-chain reject :message13	1033	28	0	seg0.8	300
+1.2292	Cr blob012	3583	28	0	seg0.7	300
+1.2292	B blob012	1103	28	1	seg0.13	300
+1.2292	C sigval-all	2892	1	0	seg0.7	300
+1.2292	H sha256-ctr mod :blob012	1119	28	1	seg0.14	300
+1.2292	H sha256-chain reject :message10	1448	1	0	seg0.9	300
+1.2292	H sha512-ctr reject :message0	3497	1	1	seg0.13	300
+1.2292	H md5-ctr mod :message2	1513	28	1	seg0.15	300
+1.2292	H md5-ctr mod :sigval0	2904	28	0	seg0.7	300
+1.2292	H sha256-chain reject :message11	1448	1	0	seg0.9	300
+1.2292	H md5-ctr mod :blob012	977	28	0	seg0.14	300
+1.2292	H md5-ctr reject :sigval11	2802	1	0	seg0.14	300
+1.2292	B blob1	112	28	1	seg0.13	300
+1.2292	H sha256-ctr mod :sigval-all	1358	28	1	seg0.12	300
+1.2285	H sha512-ctr reject :sigval12	2448	1	0	seg0.12	300
+1.2285	H sha512-ctr mod :sigval11	3109	1	0	seg0.11	300
+1.2285	H sha512-ctr reject :message1	139	28	1	seg0.8	300
+1.2285	H sha256-chain mod :message1	770	28	0	seg0.12	300
+1.2279	H sha512-ctr reject :message3	353	1	0	seg0.12	300
+1.2279	H md5-ctr mod :blob0	2883	1	1	seg0.11	300
+1.2279	Cr blob012	2102	28	0	seg0.11	300
+1.2279	Ar sigval-all	738	1	1	seg0.7	300
+1.2279	H sha256-ctr mod :blob0	657	28	1	seg0.14	300
+1.2279	H md5-ctr mod :blob012	978	28	0	seg0.14	300
+1.2279	H sha512-ctr mod :sigval13	651	1	1	seg0.7	300
+1.2279	H sha256-ctr reject :message2	2609	28	1	seg0.12	300
+1.2279	H sha256-ctr reject :sigval0	1076	1	0	seg0.8	300
+1.2279	H sha256-ctr mod :sigval-all	1356	28	1	seg0.12	300
+1.2279	H sha256-chain mod :blob0	3164	28	0	seg0.15	300
+1.2279	H md5-ctr mod :blob2	375	1	1	seg0.15	300
+1.2272	H sha256-ctr reject :sigval10	2003	28	0	seg0.7	300
+1.2272	H md5-ctr mod :message0	1583	28	1	seg0.14	300
+1.2272	H md5-ctr mod :sigval10	3319	28	1	seg0.7	300
+1.2272	H sha512-ctr mod :message11	2500	28	0	seg0.14	300
+1.2272	H sha256-chain mod :sigval10	248	28	1	seg0.11	300
+1.2272	H sha256-chain reject :blob1	1154	28	0	seg0.9	300
+1.2272	H sha256-ctr reject :message11	1854	1	0	seg0.9	300
+1.2272	H sha512-ctr mod :message10	2500	28	0	seg0.14	300
+1.2272	H sha512-ctr mod :message2	256	1	1	seg0.15	300
+1.2272	H sha256-chain reject :message13	3042	28	0	seg0.13	300
+1.2272	H sha256-ctr reject :message10	1854	1	0	seg0.9	300
+1.2272	D blob0	30	28	1	seg0.7	300
+1.2272	H sha512-ctr reject :blob0	3108	1	1	seg0.14	300

@@ -1,0 +1,19 @@
+PASS  A plant 'A sigval10' (len 452) model=0 mult=1 subst=0: best 1.749 at offset 35 (truth 35); re-decode at truth 1.749; wrong stream 'A blob012' best 1.212
+PASS  A plant 'A sigval-all' (len 3672) model=1 mult=28 subst=1: best 1.749 at offset 2193 (truth 2193); re-decode at truth 1.749; wrong stream 'A blob012' best 1.264
+PASS  Ar plant 'Ar sigval10' (len 452) model=0 mult=1 subst=0: best 1.738 at offset 35 (truth 35); re-decode at truth 1.749; wrong stream 'Ar blob012' best 1.220
+PASS  Ar plant 'Ar sigval-all' (len 3672) model=1 mult=28 subst=1: best 1.749 at offset 2193 (truth 2193); re-decode at truth 1.749; wrong stream 'Ar blob012' best 1.245
+PASS  B plant 'B sigval0' (len 512) model=0 mult=1 subst=0: best 1.743 at offset 65 (truth 65); re-decode at truth 1.757; wrong stream 'B blob012' best 1.236
+PASS  B plant 'B sigval-all' (len 4096) model=1 mult=28 subst=1: best 1.761 at offset 2474 (truth 2476); re-decode at truth 1.759; wrong stream 'B blob012' best 1.291
+PASS  Br plant 'Br sigval0' (len 512) model=0 mult=1 subst=0: best 1.762 at offset 65 (truth 65); re-decode at truth 1.762; wrong stream 'Br blob012' best 1.260
+PASS  Br plant 'Br sigval-all' (len 4096) model=1 mult=28 subst=1: best 1.775 at offset 2476 (truth 2476); re-decode at truth 1.775; wrong stream 'Br blob012' best 1.285
+PASS  C plant 'C sigval0' (len 841) model=0 mult=1 subst=0: best 1.742 at offset 229 (truth 229); re-decode at truth 1.742; wrong stream 'C blob012' best 1.233
+PASS  C plant 'C sigval-all' (len 6744) model=1 mult=28 subst=1: best 1.749 at offset 4241 (truth 4241); re-decode at truth 1.749; wrong stream 'C blob012' best 1.234
+PASS  Cr plant 'Cr sigval13' (len 841) model=0 mult=1 subst=0: best 1.749 at offset 229 (truth 229); re-decode at truth 1.749; wrong stream 'Cr blob012' best 1.232
+PASS  Cr plant 'Cr sigval-all' (len 6743) model=1 mult=28 subst=1: best 1.749 at offset 4240 (truth 4240); re-decode at truth 1.749; wrong stream 'Cr blob012' best 1.235
+PASS  D plant 'D sigval0' (len 841) model=0 mult=1 subst=0: best 1.736 at offset 229 (truth 229); re-decode at truth 1.736; wrong stream 'D blob012' best 1.227
+PASS  D plant 'D sigval-all' (len 6744) model=1 mult=28 subst=1: best 1.787 at offset 4239 (truth 4241); re-decode at truth 1.760; wrong stream 'D blob012' best 1.246
+PASS  Dr plant 'Dr sigval13' (len 841) model=0 mult=1 subst=0: best 1.749 at offset 229 (truth 229); re-decode at truth 1.749; wrong stream 'Dr blob012' best 1.222
+PASS  Dr plant 'Dr sigval-all' (len 6743) model=1 mult=28 subst=1: best 1.760 at offset 4240 (truth 4240); re-decode at truth 1.760; wrong stream 'Dr blob012' best 1.240
+PASS  H plant 'H md5-ctr mod :blob0' (len 4000) model=0 mult=1 subst=0: best 1.763 at offset 1809 (truth 1809); re-decode at truth 1.763; wrong stream 'H md5-ctr mod :message0' best 1.240
+PASS  H plant 'H sha512-ctr reject :sigval3' (len 4000) model=1 mult=28 subst=1: best 1.759 at offset 2412 (truth 2412); re-decode at truth 1.739; wrong stream 'H md5-ctr mod :blob0' best 1.247
+SIGNED SELFTEST PASSED
