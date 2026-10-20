@@ -1,0 +1,24 @@
+== books (local) ==
+  mabinogion: 304889 letters, 75501 words, 416 paragraphs, 3471 sentences
+  blake_mhh: 19888 letters, 4651 words, 196 paragraphs, 326 sentences
+  selfreliance: 43521 letters, 10150 words, 53 paragraphs, 617 sentences
+  liber_al: 23515 letters, 6002 words, 220 paragraphs, 647 sentences
+== pointer sets: 0.2 grid (12 printed numbers) (12); 0.6 square (25) (25); page-30 grid (16) (16); 256-byte payload (as 0..255) (254); seg0.7 word Gematria sums (158); seg0.8 word Gematria sums (255); seg0.9 word Gematria sums (300); seg0.11 word Gematria sums (300); seg0.12 word Gematria sums (224); seg0.13 word Gematria sums (300); seg0.14 word Gematria sums (300); seg0.15 word Gematria sums (300)
+== candidates counted in advance: 1520 (sets x orders x formats x books; ordering 'colmajor' only for the 2D grids) ==
+  scored candidates: 456 of 1520 (others had < 90% valid pointers)
+    z +2.59: seg0.9 word Gematria sums | word k last | selfreliance | distinct | n=216
+    z +2.18: seg0.15 word Gematria sums | word k last | blake_mhh | distinct | n=216
+    z +2.18: seg0.11 word Gematria sums | word k first | liber_al | reversed | n=298
+    z +2.11: seg0.15 word Gematria sums | word k last | liber_al | reversed | n=298
+    z +2.02: seg0.11 word Gematria sums | word k first | liber_al | printed | n=298
+    z +1.92: seg0.13 word Gematria sums | word k last | mabinogion | distinct | n=204
+    z +1.81: seg0.14 word Gematria sums | letter k | mabinogion | printed | n=298
+    z +1.79: 256-byte payload (as 0..255) | letter k | blake_mhh | distinct | n=158
+
+== null screens: random pointer sets, same lengths and ranges ==
+  max z over the whole screen, 12 null screens: mean 2.93, sd 0.37, max 3.80
+
+== positive control: planted plaintext, random valid pointers ==
+  planted 12 letters: detected (z > null 95% max 3.5) 0/7
+  planted 25 letters: detected (z > null 95% max 3.5) 4/6
+  planted 64 letters: detected (z > null 95% max 3.5) 2/3

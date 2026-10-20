@@ -706,10 +706,13 @@ files = ["results/analysis/squares_check.txt", "work/phase28_square_seeds.py", "
 id = "book-codes"
 group = "claims"
 title = "Book codes / pointers into public texts"
-status = "open"
-priority = 15
-result = "The AI-campaign repo's best z 5.2 is below its noise replicates; not run here"
-log = ["work/log/research_2026-10-17.md"]
+status = "partial"
+what = "Phase 31: Cicada's six known book codes (2012-2014) catalogued from the archive; 1,520 preregistered pointer readings (12 pointer sets: the 0.2 grid, the 0.6 square, the page-30 grid, the payload, LP2 word Gematria sums per section; 10 formats; 4 local books: Mabinogion, Blake MHH, Liber AL, Self-Reliance; 4 orderings), letter-trigram score as z against random pointer sets"
+control = "Planted plaintext read through random valid pointers: 12 letters 0/7, 25 letters 4/6, 64 letters 2/3 (a language score has no power below about 20 letters)"
+result = "456 of 1,520 scorable; best z +2.59 (section 0.9 word sums, last letter of word k, Self-Reliance) against whole-screen null maxima 2.93 +- 0.37 (largest 3.80 in 12): negative. Every Cicada book code came with an outside hint naming the book, printed its pointers in the clear and produced a short URL / onion / phone string"
+gap = "No power for the 12-16-pointer grids; multi-coordinate formats (paragraph:sentence:word:letter) need a grouping rule nothing in the book states; Goedel Escher Bach (used in 2014) is not local; an anchored test (output must read HTTP / .onion / a phone number) is cheap once a book and format are fixed"
+log = ["work/log/research_2026-10-17.md", "work/log/phase31_book_codes.md"]
+files = ["work/phase31_book_codes.py", "work/log/phase31_book_codes_output.txt"]
 
 [[experiment]]
 id = "lp1-prime-sums"

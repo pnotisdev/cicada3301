@@ -67,6 +67,7 @@ Find a script by what it is for. Each one writes its output into `results/analys
 | `grid30_caption.py` | Phase 27: the page-30 caption against a preregistered family of the solved pages' rules and the grid's numbers (`count`, `run`; `results/grid30_caption/`) |
 | `phase26_464_table.py`, `phase26_464_followup.py`, `phase26_clause_tail.py`, `phase26_words.py` | Phase 26: audit of the community "464-word table" (R calibration, selection nulls, removal checks, 928-word carrier pairing test) |
 | `phase28_square_seeds.py` | Phase 28: preregistered recipe family for the 0.2 / 0.6 magic-square seeds, calibrated on random target sets |
+| `phase31_book_codes.py` | Phase 31: preregistered book-code readings of the book's numbers in four local books, trigram score against random pointer sets |
 | `word_structure.py` | Does the word segmentation depend on the neighbouring runes, and is there a schedule by position in the word or by (length, position)? Three keyless tests, each with planted controls and shuffle nulls (`--quick` for a minute; `results/analysis/word_structure.txt`) |
 | `typo_restarts.py`, `typo_shared_key.py`, `typo_shared_key_power.py` | Restarts at typographic marks |
 | `chain_lag.py` | Ciphertext feedback: coincidences at lag P |

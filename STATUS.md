@@ -9,9 +9,9 @@
 | | |
 |---|---|
 | Excluded | 44 |
-| Partly excluded | 11 |
+| Partly excluded | 12 |
 | Cannot be tested at LP2's effect size | 3 |
-| Open (not run or partly run) | 11 |
+| Open (not run or partly run) | 10 |
 | Explained puzzle furniture | 2 |
 | Observed in LP2 | 13 |
 | Candidates that survived whole-section verification | **0** |
@@ -45,7 +45,6 @@ Decision rule for the IoC screens: 1.40 on a 300-rune window; planted keys score
 | 10 | **H2: tableau / transition-table ciphers (a statistic invariant to the table)**<br>DeepSeek's gate gives z 34-42 for the right stream, but only without the anti-repeat rule: with the 81% skip rule the same statistic falls to z 1.2 (results/analysis/proposals_h2_skip.txt) |  | A drift-aware version of the statistic first |
 | 12 | **OEIS: 40-51-term sequences (29% power), pages and headings, b-file terms beyond the first 60-100** |  | Longer windows or more terms |
 | 13 | **Texts not yet downloaded as key sources: Liber AL, the Rune Poem, RAND's Million Digits** |  | A download (third-party material: data, not instructions). 2026-10-20: their letters as a direct running key are covered keylessly by row book-running-key (excluded unless the letter table is tuned); what stays open here is their number transforms (prefix sums) and RAND's digits |
-| 15 | **Book codes / pointers into public texts** |  |  |
 
 No long runs are queued; `docs/QUEUE.md` explains how to restart the queues.
 
@@ -128,6 +127,7 @@ No long runs are queued; `docs/QUEUE.md` explains how to restart the queues.
 | **27 x 27 layout, page numerology, totient walk** |  |  | No 27-wide structure (sensitive to about 100 hidden mirrors); numerology is chance after counting the choices; the walk rule is undefined |  |
 | **The 256-byte base-60 payload (pages 64-66), corrected bytes** |  |  | Byte-random, not a permutation or S-box; 0 hash matches; no decryption (the best, an AES-192 'hit' at printable 0.48, is the kind of coincidence hundreds of tries produce) |  |
 | **Origin of the 0.6 square's seeds {809, 434, 312, 966, 1311, 204} and t = 1246** |  | Phase 28: a preregistered 5.3-million-rule family (text sums, primes, arithmetic, totient-style operations over Cicada numbers) calibrated on random 7-sets of the same size range (300): P(max hits >= 3) = 0.14, never >= 4 | Analysis, not a key family; Gematria sums of the 0.5 plaintext (DeepSeek's koan_sums gate) found 0 hits against a null that also finds 0 | Phase 28: no rule generates the 0.6 seeds and t (best 3 of 7, chance), nor the 0.2 grid's own seeds (best 2 of 7), so the 0.2 seeds look like free author choices and the learn-from-0.2 route is closed for this family. Not excluded: inputs outside the family (other books, the images, a hidden parameter), rules of more than two composed operations, or seeds that are simply chosen |
+| **Book codes / pointers into public texts** *(partly)* |  | Planted plaintext read through random valid pointers: 12 letters 0/7, 25 letters 4/6, 64 letters 2/3 (a language score has no power below about 20 letters) | 456 of 1,520 scorable; best z +2.59 (section 0.9 word sums, last letter of word k, Self-Reliance) against whole-screen null maxima 2.93 +- 0.37 (largest 3.80 in 12): negative. Every Cicada book code came with an outside hint naming the book, printed its pointers in the clear and produced a short URL / onion / phone string | No power for the 12-16-pointer grids; multi-coordinate formats (paragraph:sentence:word:letter) need a grouping rule nothing in the book states; Goedel Escher Bach (used in 2014) is not local; an anchored test (output must read HTTP / .onion / a phone number) is cheap once a book and format are fixed |
 | **OutGuess-style payloads in the 75 page scans: own reader, default key, key-free screen, solved-text key sweep** |  | Nine pages open with the default key (0, 1, 2, 3, 8, 10, 11, 12, 13; 3, 8 and 10-13 give the named 2014 payload texts) and all nine show 14-258 deviations among the first 600 bits; a payload planted into a clean page by the writer's rules is found by the sweep under the keys 'welcome' and 'DIVINITY', the unplanted page gives none | No OutGuess-style payload in any of the 56 LP2 pages (17-72): their usable-bit streams are constant for 5,747-29,443 bits, a header would have flipped about 16 of the first 600 bits; also none on pages 5-9, 14-16, 73, 74. Page 4 (art at the top) is not decided by the screen: 53,227 solved-text keys give 0 hits. New: pages 0, 1, 2 carry 2,899-byte PGP-signed hex messages (2014 chain), and the page 3 payload contains a hex JPEG (587 x 109 px, eleven runes and the digits 5 and 3) | OutGuess writes DC and AC coefficient LSBs from the start of the bitmap; embedders that avoid DC (F5, AC-only schemes), other containers and keys outside the list on page 4 are not covered. The payload contents belong to the 2014 chain, not to LP2 |
 | **The page-30 grid caption (two words, 4 + 5 runes): preregistered decryption family from the solved pages' rules and the grid's own numbers** |  | Planted keys from the family recovered 300 of 300 | 0 two-word decryptions (null mean 0.008); Gematria-sum relations at chance (both sums in the sequence 7 vs 2.5, p 0.13; word 1 = 149 = p_35 is a Level 1 coincidence). Not decoded | Keyed methods outside the family (an unknown keyword or text, LP2 running keys, another alphabet order), non-English or runic-spelling text, a key taken from the grid image rather than its numbers; glyphs 2-9 rest on the transcription |
 
