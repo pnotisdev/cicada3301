@@ -125,10 +125,15 @@ Hours below are rough figures for a 16-thread desktop CPU. The 15 W laptop these
 
 - **layer2** (mode=bigram: 10 ln-odds per rune of the decoded letters under the English rune-bigram table, first 300 runes of each section; a true key about +7, random decodes about -15, the best of ~10^8 random decodes about -5): `work/layer2/verify.py` re-decodes the best hits over the whole window with a beam of 64 and decodes the same setting at 20 random offsets of the same stream. A candidate must reach +2.0 per rune over the whole window and beat that matched null by 5. Periodic-mode hits (column z-score) are first turned into a keyword (best English shift per column, both alphabets) and then judged by the same rule.
 
+- **Prime-sum check** (supplementary, language independent; added 2026-10-19, `work/prime_check.py`, `work/log/phase18_cicada_intent.md`): the Gematria sum of a sentence of the solved plaintext is prime far more often than chance
+  (36 of 76 body clauses, 60% of the clauses of at most 40 runes, against 12-14% for ordinary English; right keys on the solved pages 56% of short clauses, random shifts 16%). Run it on the decoded plaintext of a candidate window: the clauses
+  completely inside the window should show the excess if LP2's plaintext follows the same habit. It is evidence, not a gate: fewer than 6 short clauses say nothing, and the habit is measured on LP1 only.
+
 **If something passes:**
 1. Rerun its verification by hand.
 2. Check that the same key works on a second section.
-3. Write it up in `work/log/` before telling anyone.
+3. Run `work/prime_check.py window` on the decoded clauses.
+4. Write it up in `work/log/` before telling anyone.
 
 Every candidate so far, from any method, has been selection noise.
 

@@ -1,0 +1,59 @@
+# 2026-10-20 02:15:23 start: {PY} work/chanscreen/v2/step3/summary.py clause
+# campaign set clause: 82 windows (lengths 61-559), 14 chunks, T = 29.7992 nats
+# tasks present 1143 of 1148
+
+1. Best S_guard per channel (window, stream, sign, offset, S)
+   hold       7.478  ('0.9c@563+66', 'sha512-ctr reject :2014', -1, 14069, 7.477654377610833)
+   spend    335.106  ('0.8c@122+174', 'sha512-ctr reject :welcome', 1, 10589, 335.105617424919)
+   skip5      5.539  ('0.9c@1620+64', 'sha512-ctr mod :<256 bytes cbe7a7ba>', -1, 12013, 5.539247073033863)
+   coin      -1.952  ('0.9c@1620+64', 'sha512-ctr reject :DIVINITY', 1, 6132, -1.9226034146390134)
+
+2. Windows searched 82; per-window maximum S_guard: min -231.15, median -13.14, max 335.11
+
+3. Cells (stream, sign, channel, offset) with S_guard >= t, against the Markov bound N e^-t
+   t =   0.000: observed        117   bound 8.743e+09
+   t =   5.000: observed         10   bound 5.891e+07
+   t =  10.000: observed          1   bound 3.969e+05
+   t =  15.000: observed          1   bound 2675
+   t =  20.000: observed          1   bound 18.02
+   t =  29.799: observed          1   bound 0.001
+   cells searched: 8,743,347,744
+
+4. TIER 1 (S_guard >= T): 1 cells, 0 of them reproduced by an independent recomputation
+   NOT REPRODUCED (a stored value that does not come back is a fault, not a candidate; quarantine its task file and re-run it): window 0.8c@122+174 stream 'sha512-ctr reject :welcome' sign 1 spend: 1 of 1 stored cells (best 335.11) do not reproduce, recomputed best -98.12
+   (5, '0.8c@122+174', 'sha512-ctr reject :welcome', 1, 'spend', 10589, 335.105617424919, 335.105617424919, 294)
+
+5. Top tier-2 cell per channel and window with the highest scores (UNVERIFIED ranks)
+   hold   0.9c@563+66        sha512-ctr reject :2014              sign -1 offset  14069  S_guard    7.478  S    7.478
+   hold   0.13c@1172+61      sha256-ctr mod :0x7A35090F           sign -1 offset  14449  S_guard    7.195  S    7.195
+   hold   0.9c@629+68        sha512-ctr mod :within               sign  1 offset   5041  S_guard    5.877  S    5.877
+   hold   0.15c@165+64       sha256-ctr mod :command your own sel sign -1 offset   5736  S_guard    5.862  S    5.862
+   hold   0.9c@1620+64       sha256-ctr reject :INTUS             sign -1 offset  18289  S_guard    5.651  S    5.651
+   hold   0.9c@1620+64       sha256-chain mod :31                 sign -1 offset  19219  S_guard    5.320  S    5.320
+   hold   0.9c@629+68        md5-ctr reject :INSTAR EMERGENCE     sign -1 offset  10201  S_guard    4.741  S    4.741
+   hold   0.9c@629+68        sha256-ctr reject :INSTAR            sign  1 offset   7691  S_guard    4.512  S    4.512
+   spend  0.8c@122+174       sha512-ctr reject :welcome           sign  1 offset  10589  S_guard  335.106  S  335.106
+   spend  0.15c@165+64       sha256-ctr mod :command your own sel sign -1 offset   5734  S_guard    6.786  S    6.786
+   spend  0.11c@1730+68      sha512-ctr mod :totient              sign -1 offset  19541  S_guard    3.538  S    3.538
+   spend  0.13c@1172+61      sha256-ctr reject :66wc«sx<zòDlYFkL sign -1 offset  17049  S_guard    3.344  S    3.344
+   spend  0.15c@244+71       sqrt2 digits (base 10)               sign  1 offset   2819  S_guard    1.309  S    1.309
+   spend  0.11c@1102+69      md5-ctr mod :self-reliance           sign -1 offset   1971  S_guard    0.922  S    0.922
+   spend  0.9c@1620+64       sha256-ctr mod :divinity             sign  1 offset   9492  S_guard    0.318  S    0.318
+   spend  0.13c@1172+61      sha512-ctr reject :shadows aethereal sign -1 offset   4143  S_guard    0.257  S    0.257
+   skip5  0.9c@1620+64       sha512-ctr mod :<256 bytes cbe7a7ba> sign -1 offset  12013  S_guard    5.539  S    5.539
+   skip5  0.9c@1620+64       md5-ctr reject :shadows aethereal bu sign  1 offset  10140  S_guard   -1.078  S   -1.078
+   skip5  0.9c@563+66        p_n^2 - 1                            sign -1 offset  10648  S_guard   -2.138  S   -1.621
+   skip5  0.13c@1172+61      sha256-chain mod :THE PRIMES ARE SAC sign -1 offset  12885  S_guard   -3.459  S   -3.304
+   skip5  0.15c@96+69        md5-ctr mod :PILGRIM                 sign -1 offset  16555  S_guard   -4.074  S   -2.729
+   skip5  0.12c@950+71       sha512-ctr mod :an instruction       sign  1 offset  11973  S_guard   -4.236  S   -4.236
+   skip5  0.9c@563+66        sha256-ctr reject :emergence         sign  1 offset   1045  S_guard   -4.282  S   -4.282
+   skip5  0.9c@1620+64       md5-ctr reject :emergence            sign  1 offset   1994  S_guard   -4.704  S   -4.140
+   coin   0.9c@1620+64       sha512-ctr reject :DIVINITY          sign  1 offset   6132  S_guard   -1.952  S   -1.923
+   coin   0.11c@1102+69      md5-ctr reject :cicada3301           sign  1 offset    596  S_guard   -3.042  S   -3.042
+   coin   0.15c@165+64       sha256-ctr mod :command your own sel sign -1 offset   5734  S_guard   -4.891  S   -4.431
+   coin   0.15c@165+64       sha512-ctr mod :66wc«sx<zòDlYFkLÖS# sign -1 offset  19546  S_guard   -5.291  S   -4.633
+   coin   0.9c@1620+64       sha256-ctr reject :ALL THINGS SHOULD sign -1 offset  14859  S_guard   -5.779  S   -4.945
+   coin   0.13c@1172+61      sha256-ctr reject :66wc«sx<zòDlYFkL sign -1 offset   2470  S_guard   -6.074  S   -6.074
+   coin   0.13c@1172+61      md5-ctr reject :2014                 sign -1 offset   5936  S_guard   -6.491  S   -6.491
+   coin   0.13c@1172+61      sha512-ctr reject :2014              sign  1 offset  10027  S_guard   -7.060  S   -7.060
+# 2026-10-20 02:15:37 exit 0

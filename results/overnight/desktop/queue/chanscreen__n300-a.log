@@ -1,0 +1,57 @@
+# 2026-10-19 13:18:45 start: {PY} work/chanscreen/v2/step3/campaign.py run n300 --workers 12 --windows 0:21
+n300: 82 windows (lengths 300-300), 14 chunks, T = 29.7992 nats; 294 tasks, 294 to do
+[13:22:57] 1/294 w000c11  250.2s cand=0 elapsed   4.2 min eta 1228.4 min
+[13:22:59] 2/294 w000c06  252.3s cand=0 elapsed   4.2 min eta  617.1 min
+[13:22:59] 3/294 w000c02  252.5s cand=0 elapsed   4.2 min eta  410.0 min
+[13:23:00] 4/294 w000c03  253.0s cand=0 elapsed   4.2 min eta  307.2 min
+[13:23:00] 5/294 w000c07  253.5s cand=0 elapsed   4.2 min eta  245.5 min
+[13:23:00] 6/294 w000c05  253.8s cand=0 elapsed   4.3 min eta  204.1 min
+[13:23:06] 7/294 w000c04  259.8s cand=0 elapsed   4.4 min eta  178.4 min
+[13:23:07] 8/294 w000c10  260.7s cand=0 elapsed   4.4 min eta  156.1 min
+[13:23:08] 9/294 w000c09  261.1s cand=0 elapsed   4.4 min eta  138.5 min
+[13:23:08] 10/294 w000c00  261.5s cand=0 elapsed   4.4 min eta  124.3 min
+[13:23:08] 11/294 w000c08  261.4s cand=0 elapsed   4.4 min eta  112.7 min
+[13:23:09] 12/294 w000c01  262.1s cand=0 elapsed   4.4 min eta  103.1 min
+[13:24:15] 13/294 w000c13   75.9s cand=0 elapsed   5.5 min eta  118.7 min
+[13:27:01] 14/294 w000c12  244.2s cand=0 elapsed   8.3 min eta  165.3 min
+[13:27:15] 15/294 w001c00  256.4s cand=0 elapsed   8.5 min eta  158.1 min
+[13:27:16] 16/294 w001c03  255.6s cand=0 elapsed   8.5 min eta  147.9 min
+[13:27:16] 17/294 w001c02  256.2s cand=0 elapsed   8.5 min eta  138.8 min
+[13:27:17] 18/294 w001c01  257.6s cand=0 elapsed   8.5 min eta  130.8 min
+[13:27:31] 19/294 w001c05  263.9s cand=0 elapsed   8.8 min eta  126.9 min
+[13:27:31] 20/294 w001c04  265.1s cand=0 elapsed   8.8 min eta  120.1 min
+[13:27:34] 21/294 w001c06  265.9s cand=0 elapsed   8.8 min eta  114.5 min
+[13:27:34] 22/294 w001c07  266.4s cand=0 elapsed   8.8 min eta  109.0 min
+[13:27:35] 23/294 w001c09  266.2s cand=0 elapsed   8.8 min eta  104.0 min
+[13:27:35] 24/294 w001c08  266.8s cand=0 elapsed   8.8 min eta   99.3 min
+[13:28:32] 25/294 w001c10  257.6s cand=0 elapsed   9.8 min eta  105.3 min
+[13:28:34] 26/294 w001c13   77.8s cand=0 elapsed   9.8 min eta  101.1 min
+concurrent.futures.process._RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "<python>\Lib\concurrent\futures\process.py", line 258, in _process_worker
+    r = call_item.fn(*call_item.args, **call_item.kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<repo>\work\chanscreen\v2\step3\campaign.py", line 59, in task
+    sg, s = C.guard_scores(c, key, sign, ch, C.Q_DECODER, pi, L, logW)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<repo>\work\chanscreen\v2\step3\common.py", line 120, in guard_scores
+    raise ValueError('invalid log likelihood')
+ValueError: invalid log likelihood
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<repo>\work\chanscreen\v2\step3\campaign.py", line 116, in <module>
+    main()
+  File "<repo>\work\chanscreen\v2\step3\campaign.py", line 108, in main
+    wi, ci, dt, nc = f.result()
+                     ^^^^^^^^^^
+  File "<python>\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "<python>\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+ValueError: invalid log likelihood
+# 2026-10-19 15:07:15 exit 1

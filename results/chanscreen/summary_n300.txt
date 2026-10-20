@@ -1,0 +1,55 @@
+# campaign set n300: 82 windows (lengths 300-300), 14 chunks, T = 29.7992 nats
+# tasks present 1148 of 1148
+
+1. Best S_guard per channel (window, stream, sign, offset, S)
+   hold     -75.677  ('0.11@0', 'sha256-ctr mod :<128 bytes 33363336>', 1, 1120, -75.67735074102859)
+   spend   -161.192  ('0.14@750', 'sha256-chain reject :an instruction', -1, 5783, -161.19234452104467)
+   skip5   -179.528  ('0.7@0', 'sigma(n)', -1, 15863, -178.29803285194032)
+   coin    -201.373  ('0.9@1050', 'sha512-ctr mod :7', -1, 10885, -200.5386985581863)
+
+2. Windows searched 82; per-window maximum S_guard: min -107.49, median -100.54, max -75.68
+
+3. Cells (stream, sign, channel, offset) with S_guard >= t, against the Markov bound N e^-t
+   t =   0.000: observed          0   bound 8.743e+09
+   t =   5.000: observed          0   bound 5.891e+07
+   t =  10.000: observed          0   bound 3.969e+05
+   t =  15.000: observed          0   bound 2675
+   t =  20.000: observed          0   bound 18.02
+   t =  29.799: observed          0   bound 0.001
+   cells searched: 8,743,347,744
+
+4. TIER 1 (S_guard >= T): 0 cells, 0 of them reproduced by an independent recomputation
+
+5. Top tier-2 cell per channel and window with the highest scores (UNVERIFIED ranks)
+   hold   0.11@0             sha256-ctr mod :<128 bytes 33363336> sign  1 offset   1120  S_guard  -75.677  S  -75.677
+   hold   0.14@1050          sha256-chain mod :INTUS              sign -1 offset   4762  S_guard  -87.351  S  -87.351
+   hold   0.12@721           composites                           sign -1 offset   7156  S_guard  -87.975  S  -87.975
+   hold   0.11@1350          sha256-chain mod :primes             sign -1 offset  12274  S_guard  -88.490  S  -88.490
+   hold   0.15@1650          sha256-ctr mod :1033                 sign  1 offset  15587  S_guard  -90.066  S  -90.066
+   hold   0.9@900            sha512-ctr mod :AN END               sign  1 offset   7516  S_guard  -91.431  S  -91.431
+   hold   0.11@750           md5-ctr reject :Cicada 3301          sign -1 offset     77  S_guard  -93.640  S  -93.640
+   hold   0.9@1050           sha256-chain mod :0x7A35090F         sign -1 offset   3940  S_guard  -93.711  S  -93.711
+   spend  0.14@750           sha256-chain reject :an instruction  sign -1 offset   5783  S_guard -161.192  S -161.192
+   spend  0.9@900            primes^3                             sign  1 offset  11564  S_guard -161.198  S -161.198
+   spend  0.14@600           md5-ctr mod :INSTAR EMERGENCE        sign -1 offset  15930  S_guard -161.370  S -161.370
+   spend  0.15@150           sha256-ctr mod :emerge               sign  1 offset   8139  S_guard -161.379  S -161.379
+   spend  0.12@721           sha512-ctr mod :some wisdom          sign  1 offset  15743  S_guard -164.027  S -164.027
+   spend  0.11@1050          sha256-ctr mod :<128 bytes 33363336> sign -1 offset   2469  S_guard -164.260  S -164.260
+   spend  0.13@1050          sha512-ctr reject :<256 bytes 50bd24 sign  1 offset   5583  S_guard -165.217  S -165.217
+   spend  0.14@1289          sha256-ctr reject :all things should sign -1 offset  18645  S_guard -165.327  S -165.327
+   skip5  0.7@0              sigma(n)                             sign -1 offset  15863  S_guard -179.528  S -178.298
+   skip5  0.13@1200          md5-ctr mod :liberprimus             sign  1 offset  18349  S_guard -194.937  S -191.828
+   skip5  0.15@2700          md5-ctr reject :instar               sign  1 offset   3809  S_guard -196.425  S -196.425
+   skip5  0.15@900           sha256-ctr mod :the totient function sign -1 offset    477  S_guard -197.603  S -197.603
+   skip5  0.13@1224          md5-ctr reject :emergence            sign  1 offset  15100  S_guard -201.650  S -201.563
+   skip5  0.13@1224          md5-ctr mod :liberprimus             sign  1 offset  18373  S_guard -203.479  S -201.472
+   skip5  0.14@750           sha256-ctr mod :program your mind    sign -1 offset  15805  S_guard -203.945  S -203.945
+   skip5  0.13@1050          md5-ctr mod :all things should be en sign  1 offset   6082  S_guard -204.487  S -204.487
+   coin   0.9@1050           sha512-ctr mod :7                    sign -1 offset  10885  S_guard -201.373  S -200.539
+   coin   0.8@300            sha256-chain mod :434                sign  1 offset    785  S_guard -202.775  S -202.775
+   coin   0.8@150            sha512-ctr reject :3301              sign  1 offset   9791  S_guard -203.812  S -203.588
+   coin   0.13@450           md5-ctr mod :1033                    sign -1 offset  12946  S_guard -207.157  S -207.157
+   coin   0.11@150           sha512-ctr mod :LIBER PRIMUS         sign -1 offset   1810  S_guard -207.798  S -207.798
+   coin   0.11@900           sha512-ctr reject :FULMAEAYOEA       sign -1 offset   2653  S_guard -208.347  S -208.347
+   coin   0.15@1800          sha512-ctr mod :20140104             sign -1 offset   9907  S_guard -208.412  S -208.412
+   coin   0.9@750            sha512-ctr mod :INSTAR EMERGENCE     sign  1 offset  10419  S_guard -208.872  S -208.355

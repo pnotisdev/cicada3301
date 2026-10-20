@@ -56,3 +56,42 @@ A line `0 of N` in a `_verify.txt` is a negative; anything at or above the rule 
 Start from the repository root: `Start-Process .venv\Scripts\python.exe -ArgumentList 'jobs\jobqueue.py','night2','jobs\queues\night2.txt' -WindowStyle Hidden`. Status: `results\overnight\desktop\queue\night2.tsv` and the
 per-job logs next to it. A finished job is skipped on a restart (an interrupted H5 block restarts from zero). A candidate is UNVERIFIED until the whole-window re-decode (`work/h5slice`) and the whole-section verification
 of `docs/CAMPAIGNS.md`. **A negative result excludes little** (recall at the campaign floor averages 28%); the grid can also miss a true cell at the init abort.
+
+**night2 finished at 09:11 on 2026-10-19** (H5 sweeps: 0 candidates, best real IoC 1.517 flat / 1.32 non-flat; layer2: 0 of 15 / 15 / 100 re-decoded hits pass).
+
+## 2026-10-19 (day): gpu4h, gpu_rest, chanscreen (started by hand, not scheduled tasks)
+
+* `jobs/queues/gpu4h.txt`: `prng-bg` over sections 0.8-0.15 for py3 and java (time-boxed to 4 h). `jobs/queues/gpu_rest.txt` waits for it and runs the other eight generators (php, glibc, mt32, msvc, drand48, ruby, mt31, net), about 1.1-1.7 h each, 2 CPU threads each.
+  Results in `results/prng/bg_<gen>_all.*`; `0 candidates` is a negative; a candidate needs the verification of `docs/CAMPAIGNS.md`.
+* `jobs/queues/chanscreen.txt`: the chanscreen v2 campaign (`work/chanscreen/v2/step3/PROTOCOL.md`). It waits for the E3b null scan, checks its gate, then runs the 82 LP2 windows of 300 runes (about 49 CPU-hours, 12 workers) and the clause-aligned scan
+  (82 clauses of at least 60 runes, about 21 CPU-hours); `summary_n300.txt` and `summary_clause.txt` appear in `results/chanscreen/`. Tier-1 cells are candidates, not leads. Stop: end the python.exe processes whose command line contains `campaign.py` or `jobqueue.py chanscreen`;
+  a restart skips finished tasks (one npz per window and stream chunk).
+
+## When the 2026-10-19 queues finish (written for the days without a Claude allowance)
+
+Expected (2026-10-19): the n300 campaign about 20:30, the clause scan about 23:40, `gpu_rest` (the other eight generators, `--hours 14` from 13:10) between 23:30 and 03:10. Nothing else has to be started: the queues run their own summaries. Every runner campaign in `python jobs/overnight.py list` is already done.
+
+1. **Finished?** `type results\overnight\desktop\queue\chanscreen.tsv` and `type results\overnight\desktop\queue\gpu_rest.tsv`: every job `ok`, the last row `QUEUE_DONE`. If a step says `failed` (n300-a did at 15:07), run its campaign command again: it computes only the missing tasks (`.venv\Scripts\python.exe work\chanscreen\v2\step3\campaign.py run n300 --workers 12 --windows 0:21` for that step). If a lane stopped early (reboot, sleep, the 14 h budget), run the same command again; finished steps are skipped:
+   `.venv\Scripts\python.exe jobs\jobqueue.py chanscreen jobs\queues\chanscreen.txt` and `.venv\Scripts\python.exe jobs\jobqueue.py gpu_rest jobs\queues\gpu_rest.txt`.
+2. **Verdict**, two commands: `findstr /C:"TIER 1" results\chanscreen\summary_n300.txt results\chanscreen\summary_clause.txt` and `findstr /C:"candidates >=" results\prng\bg_*_all.log`.
+   `TIER 1 (S_guard >= T): 0 cells` and `candidates >= 300: 0` are negatives. With cells the header reads `N cells, M of them reproduced by an independent recomputation`: only reproduced cells are candidates, and a `NOT REPRODUCED` line is a computation fault (three isolated faults so far, `work/chanscreen/v2/step3/PROTOCOL.md` amendment 3), not a result. The `null` summary lists 137 reproduced cells because its records were planted with library keys; that is expected there.
+3. **A tier-1 cell or a candidate:** start nothing new. Copy the lines. `python work\chanscreen\v2\step3\verify_cell.py <set> <window> "<stream>" <sign> <channel> <offset>` (the values are in the tier-1 tuple, in that order after the window name) prints a dense re-score and the most likely plaintext:
+   readable English is the signal to bring it to Claude at once; letter soup is an alias. The whole-section verification of `docs/CAMPAIGNS.md` is not something to do by hand.
+4. **Before committing in GitHub Desktop:** `python scripts\privacy_scan.py` must print `no hits` (computer name, Windows user name, home folder, repository path, conda and app-data folders in any modified or new file). Fix or ask before pushing.
+5. **Commit and push everything** (the result files are the record). The registry, PLAN.md and STATUS.md do not mention the outcomes until a Claude session records them; in that session say "read the finished queues and record them" (the memory note `chanscreen-takeover-2026-10-19` and `work/log/phase20_segmentation_plan.md` section 5 have the steps).
+
+## Using the PC while the queues run (2026-10-19)
+
+`python scripts/queue_priority.py` (the system Python, which has psutil; the `.venv` one does not) acts on every running `jobs/jobqueue.py` and everything it started. Applied on 2026-10-19 at about 15:00 to `chanscreen` and `gpu_rest`: 22 python processes now run at below-normal priority.
+
+* **Priority (done, free).** Your own programs win every contest for a core; while the PC is otherwise idle the runs go at full speed, so the finish times do not move, and Task Manager still shows the CPU busy. Steps a queue starts later inherit the level; a queue you restart begins at normal priority, so run the command again. Undo: `python scripts/queue_priority.py normal`.
+* **Fewer cores (slower in proportion).** `python scripts/queue_priority.py --cores 8` pins every queue process to logical processors 0-7 of the 16; the n300 campaign has 12 workers, so 8 cores make it about 1.5 times slower (about 885 of 1,148 tasks were left at 15:00, 2.6 tasks per minute). Undo: `--cores 0`. The CPU lane keeps about 14 of the 16 threads busy, so about 2 are free even without this.
+* **GPU (needs an administrator PowerShell).** Process priority does not touch the GPU. The lever is the power cap: the 2080 Ti has a range of 100-280 W, default 250 W, and draws about 183 W at 100% load and 84 C on these sweeps. `nvidia-smi -pl 150` caps it; `nvidia-smi -pl 250` restores it (also undone by a reboot). I did not measure the slowdown (about 930k seeds/s before; read the seeds/s in
+  `results/overnight/desktop/queue/gpu_rest__prng-bg-rest.log` after the change); a lower cap means longer sweeps and a cooler, quieter card.
+* **Pause (when you need everything).** `python scripts/queue_priority.py pause --queue gpu_rest` and `resume --queue gpu_rest` (the same with `chanscreen`). Nothing is lost; a paused GPU queue keeps its GPU memory and the card idles once the running kernel ends. Wall-clock time keeps counting against the `--hours 14` budget of `gpu_rest`, so after a long pause the last generator may be left
+  unrun: start the queue again with its usual command.
+
+## Outcome of the 2026-10-19 queues (2026-10-20 04:20)
+
+All three queues ended (`chanscreen` at 02:15, `gpu_rest` at 23:55). n300: 0 tier-1 cells. Clause scan: its step failed on five tasks and stored one false cell; repaired at 04:17 (1,148 of 1,148 tasks, 0 tier-1 cells). Seed sweeps: 0 candidates in all ten generators. Details: `work/log/phase19_try_all_four.md` section 5 and `PROTOCOL.md` amendment 3.
+The queue runner process keeps the scrubber it started with, so a log written after the 2026-10-19 fix can still hold an interpreter folder path: `python scripts/privacy_scan.py --fix` scrubs it before a commit.

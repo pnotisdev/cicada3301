@@ -1,0 +1,107 @@
+# <repo>\.venv\Scripts\python.exe <repo>\work\layer2\verify.py <repo>\results\layer2\periodic_core.tsv --top 100 --out <repo>\results\layer2\periodic_core_verify.txt
+# cwd <repo>\work\layer2
+# device cpu
+# verify periodic_core.tsv (mode=periodic): top 100 hits re-decoded over the whole window, 20 matched-null offsets each; pass = score >= 2.0 and >= null max + 5.0
+noise      seg0.11 'p_n - n' offset=18720 mult=28 model=0 m=4 litf=0: screen 10.624; whole window -10.114/rune (IoC 1.019), matched null max -10.210; keyword [27, 7, 6, 16] atb=1
+noise      seg0.14 'p_(n+1) * p_n' offset=10764 mult=28 model=0 m=2 litf=0: screen 10.422; whole window -10.340/rune (IoC 1.012), matched null max -9.898; keyword [15, 24] atb=1
+noise      seg0.8 'ln2 digits (base 29)' offset=3747 mult=28 model=1 m=2 litf=0: screen 10.019; whole window -9.537/rune (IoC 1.044), matched null max -9.997; keyword [5, 7] atb=1
+noise      seg0.12 'cumulative prime sum' offset=17700 mult=1 model=0 m=10 litf=0: screen 9.971; whole window -9.319/rune (IoC 1.061), matched null max -9.729; keyword [21, 6, 1, 17, 13, 17, 11, 21, 3, 16] atb=0
+noise      seg0.9 'p_(n+1) * p_n' offset=14776 mult=28 model=0 m=3 litf=0: screen 9.801; whole window -9.308/rune (IoC 1.029), matched null max -9.996; keyword [3, 2, 24] atb=1
+noise      seg0.7 'phi digits (base 29)' offset=1522 mult=28 model=0 m=2 litf=0: screen 9.799; whole window -9.866/rune (IoC 1.063), matched null max -9.566; keyword [13, 4] atb=0
+noise      seg0.13 'cumulative prime sum' offset=17319 mult=1 model=1 m=4 litf=0: screen 9.636; whole window -9.692/rune (IoC 1.018), matched null max -9.878; keyword [18, 13, 10, 20] atb=0
+noise      seg0.15 'emirps' offset=488 mult=28 model=0 m=2 litf=0: screen 9.506; whole window -9.929/rune (IoC 1.024), matched null max -9.876; keyword [25, 16] atb=1
+noise      seg0.14 'p_(n+1) * p_n' offset=10764 mult=28 model=0 m=4 litf=0: screen 10.364; whole window -10.374/rune (IoC 1.018), matched null max -10.011; keyword [27, 14, 15, 3] atb=1
+noise      seg0.14 'p_(n+1) * p_n' offset=10763 mult=28 model=0 m=2 litf=0: screen 10.056; whole window -10.099/rune (IoC 1.017), matched null max -9.870; keyword [21, 27] atb=0
+noise      seg0.14 'p_(n+1) * p_n' offset=10763 mult=28 model=0 m=4 litf=0: screen 9.948; whole window -10.178/rune (IoC 1.025), matched null max -9.712; keyword [27, 22, 18, 3] atb=1
+noise      seg0.12 'sqrt2 digits (base 29)' offset=14612 mult=1 model=1 m=2 litf=0: screen 9.909; whole window -9.928/rune (IoC 1.006), matched null max -9.952; keyword [0, 4] atb=1
+noise      seg0.12 'sqrt5 digits (base 29)' offset=8715 mult=1 model=0 m=2 litf=0: screen 9.873; whole window -10.117/rune (IoC 1.034), matched null max -9.899; keyword [24, 26] atb=1
+noise      seg0.8 'composites' offset=17850 mult=28 model=0 m=2 litf=0: screen 9.799; whole window -9.704/rune (IoC 1.024), matched null max -10.034; keyword [27, 19] atb=1
+noise      seg0.9 'sqrt2 digits (base 29)' offset=16334 mult=1 model=0 m=3 litf=0: screen 9.756; whole window -10.243/rune (IoC 1.019), matched null max -9.920; keyword [2, 27, 26] atb=1
+noise      seg0.8 'p_n + n' offset=18381 mult=1 model=0 m=5 litf=0: screen 9.719; whole window -9.050/rune (IoC 1.049), matched null max -9.899; keyword [5, 11, 23, 7, 22] atb=0
+noise      seg0.8 'p_n + n' offset=18382 mult=1 model=0 m=5 litf=0: screen 9.719; whole window -9.325/rune (IoC 1.042), matched null max -9.825; keyword [19, 11, 23, 5, 25] atb=0
+noise      seg0.14 'primes^3' offset=14730 mult=1 model=1 m=5 litf=0: screen 9.661; whole window -9.612/rune (IoC 1.028), matched null max -9.916; keyword [22, 9, 25, 1, 19] atb=1
+noise      seg0.7 'phi digits (base 29)' offset=1523 mult=28 model=0 m=2 litf=0: screen 9.653; whole window -10.038/rune (IoC 1.060), matched null max -9.837; keyword [27, 4] atb=0
+noise      seg0.8 'p_n + n' offset=18383 mult=1 model=0 m=5 litf=0: screen 9.544; whole window -9.353/rune (IoC 1.054), matched null max -9.816; keyword [4, 11, 0, 5, 25] atb=0
+noise      seg0.12 'p_n - n' offset=9822 mult=28 model=1 m=2 litf=0: screen 9.543; whole window -10.369/rune (IoC 1.025), matched null max -9.887; keyword [28, 27] atb=1
+noise      seg0.7 '3301 * p_n' offset=10013 mult=28 model=1 m=2 litf=0: screen 9.543; whole window -9.822/rune (IoC 1.050), matched null max -10.033; keyword [13, 19] atb=1
+noise      seg0.8 'p_n - n' offset=9085 mult=1 model=1 m=11 litf=0: screen 9.521; whole window -8.654/rune (IoC 1.054), matched null max -9.989; keyword [23, 11, 14, 17, 22, 19, 11, 12, 13, 8, 25] atb=1
+noise      seg0.11 'pi^2 digits (base 29)' offset=2399 mult=1 model=1 m=2 litf=0: screen 9.469; whole window -9.760/rune (IoC 1.034), matched null max -9.981; keyword [21, 27] atb=1
+noise      seg0.8 'cumulative prime sum' offset=8834 mult=28 model=1 m=2 litf=0: screen 9.469; whole window -10.309/rune (IoC 1.021), matched null max -9.937; keyword [9, 16] atb=1
+noise      seg0.13 'sigma(n)' offset=17066 mult=1 model=1 m=2 litf=0: screen 9.433; whole window -9.653/rune (IoC 1.040), matched null max -9.973; keyword [3, 11] atb=0
+noise      seg0.15 'prime index of primes' offset=1372 mult=28 model=1 m=3 litf=0: screen 9.396; whole window -10.036/rune (IoC 1.034), matched null max -10.124; keyword [28, 11, 23] atb=0
+noise      seg0.8 'cbrt2 digits (base 29)' offset=8865 mult=28 model=0 m=2 litf=0: screen 9.396; whole window -10.017/rune (IoC 1.024), matched null max -9.996; keyword [10, 13] atb=0
+noise      seg0.14 'prime index of primes' offset=15672 mult=28 model=0 m=2 litf=0: screen 9.396; whole window -9.821/rune (IoC 1.025), matched null max -9.901; keyword [3, 2] atb=1
+noise      seg0.12 'sqrt2 digits (base 29)' offset=14614 mult=1 model=1 m=2 litf=0: screen 9.359; whole window -9.682/rune (IoC 1.007), matched null max -10.057; keyword [0, 4] atb=1
+noise      seg0.8 'prime index of primes' offset=8226 mult=1 model=0 m=2 litf=0: screen 9.359; whole window -10.031/rune (IoC 1.022), matched null max -9.683; keyword [1, 5] atb=0
+noise      seg0.12 'ln3 digits (base 29)' offset=893 mult=1 model=1 m=3 litf=0: screen 9.351; whole window -9.478/rune (IoC 1.036), matched null max -9.542; keyword [11, 3, 6] atb=0
+noise      seg0.12 'n * p_n' offset=7628 mult=28 model=1 m=3 litf=0: screen 9.351; whole window -9.454/rune (IoC 1.051), matched null max -9.535; keyword [20, 10, 27] atb=0
+noise      seg0.15 'cumulative phi(n)' offset=1196 mult=28 model=1 m=9 litf=0: screen 9.342; whole window -9.905/rune (IoC 1.025), matched null max -9.976; keyword [19, 8, 18, 4, 21, 11, 21, 25, 27] atb=1
+noise      seg0.13 'sqrt2 digits (base 10)' offset=643 mult=1 model=1 m=2 litf=0: screen 9.323; whole window -9.745/rune (IoC 1.026), matched null max -10.050; keyword [11, 0] atb=0
+noise      seg0.13 'sqrt3301 digits (base 29)' offset=9119 mult=1 model=1 m=2 litf=0: screen 9.323; whole window -9.868/rune (IoC 1.026), matched null max -9.923; keyword [17, 20] atb=0
+noise      seg0.7 'phi digits (base 29)' offset=1524 mult=28 model=0 m=2 litf=0: screen 9.323; whole window -9.811/rune (IoC 1.063), matched null max -9.716; keyword [13, 4] atb=0
+noise      seg0.11 'prime gaps' offset=7094 mult=28 model=1 m=3 litf=0: screen 9.306; whole window -9.954/rune (IoC 1.031), matched null max -9.820; keyword [26, 19, 26] atb=0
+noise      seg0.7 'pi digits (base 29)' offset=7168 mult=1 model=0 m=4 litf=0: screen 9.272; whole window -8.959/rune (IoC 1.060), matched null max -9.726; keyword [25, 26, 21, 16] atb=0
+noise      seg0.13 'p_n^2 - 1' offset=17075 mult=28 model=0 m=4 litf=0: screen 9.272; whole window -9.590/rune (IoC 1.027), matched null max -9.668; keyword [21, 0, 15, 11] atb=0
+noise      seg0.13 'primes^2' offset=17075 mult=28 model=0 m=4 litf=0: screen 9.272; whole window -9.590/rune (IoC 1.027), matched null max -9.668; keyword [22, 1, 16, 12] atb=0
+noise      seg0.12 'sqrt3 digits (base 29)' offset=11599 mult=28 model=1 m=8 litf=0: screen 9.270; whole window -8.611/rune (IoC 1.038), matched null max -9.880; keyword [12, 13, 20, 10, 21, 7, 4, 24] atb=0
+noise      seg0.7 'phi digits (base 29)' offset=4144 mult=1 model=0 m=3 litf=0: screen 9.261; whole window -9.436/rune (IoC 1.024), matched null max -9.572; keyword [16, 26, 23] atb=0
+noise      seg0.7 'ln10 digits (base 29)' offset=11367 mult=1 model=0 m=3 litf=0: screen 9.261; whole window -10.030/rune (IoC 1.049), matched null max -9.844; keyword [15, 16, 27] atb=0
+noise      seg0.12 'cumulative prime sum' offset=13002 mult=1 model=0 m=2 litf=0: screen 9.249; whole window -9.239/rune (IoC 1.041), matched null max -9.638; keyword [16, 11] atb=1
+noise      seg0.11 'p_n - n' offset=18722 mult=28 model=0 m=4 litf=0: screen 9.220; whole window -9.491/rune (IoC 1.034), matched null max -9.842; keyword [27, 7, 6, 13] atb=1
+noise      seg0.13 'ln2 digits (base 29)' offset=11935 mult=28 model=1 m=3 litf=0: screen 9.216; whole window -9.642/rune (IoC 1.027), matched null max -9.959; keyword [18, 14, 11] atb=0
+noise      seg0.8 'cumulative prime sum' offset=10683 mult=1 model=1 m=2 litf=0: screen 9.213; whole window -9.856/rune (IoC 1.028), matched null max -9.921; keyword [22, 18] atb=1
+noise      seg0.9 'sigma(n)' offset=1527 mult=1 model=0 m=2 litf=0: screen 9.213; whole window -10.013/rune (IoC 1.009), matched null max -10.010; keyword [18, 25] atb=1
+noise      seg0.9 'e digits (base 10)' offset=7104 mult=1 model=1 m=2 litf=0: screen 9.213; whole window -9.844/rune (IoC 1.026), matched null max -10.202; keyword [5, 21] atb=0
+noise      seg0.9 'sqrt2 digits (base 29)' offset=16334 mult=1 model=0 m=6 litf=0: screen 9.177; whole window -10.052/rune (IoC 1.032), matched null max -9.968; keyword [17, 13, 26, 2, 28, 11] atb=1
+noise      seg0.7 'prime index of primes' offset=9225 mult=28 model=0 m=2 litf=0: screen 9.176; whole window -9.775/rune (IoC 1.024), matched null max -9.719; keyword [2, 16] atb=1
+noise      seg0.9 'e digits (base 29)' offset=1331 mult=28 model=0 m=2 litf=0: screen 9.176; whole window -10.010/rune (IoC 1.010), matched null max -9.935; keyword [6, 22] atb=0
+noise      seg0.12 'e^pi digits (base 29)' offset=13128 mult=1 model=1 m=3 litf=0: screen 9.171; whole window -9.893/rune (IoC 1.042), matched null max -9.825; keyword [16, 24, 26] atb=1
+noise      seg0.9 'sqrt3 digits (base 29)' offset=8825 mult=1 model=0 m=3 litf=0: screen 9.171; whole window -9.771/rune (IoC 1.020), matched null max -9.954; keyword [5, 2, 23] atb=0
+noise      seg0.7 'cumulative phi(n)' offset=8300 mult=1 model=1 m=7 litf=0: screen 9.163; whole window -8.158/rune (IoC 1.041), matched null max -10.004; keyword [7, 10, 12, 5, 15, 24, 18] atb=1
+noise      seg0.12 'cumulative prime sum' offset=17698 mult=1 model=0 m=10 litf=0: screen 9.140; whole window -9.482/rune (IoC 1.042), matched null max -9.848; keyword [27, 21, 7, 3, 13, 17, 18, 19, 3, 12] atb=0
+noise      seg0.12 'cumulative prime sum' offset=17699 mult=1 model=0 m=10 litf=0: screen 9.140; whole window -8.708/rune (IoC 1.059), matched null max -9.675; keyword [21, 6, 22, 17, 18, 17, 5, 19, 3, 12] atb=0
+noise      seg0.14 'rad(n)' offset=13019 mult=1 model=1 m=2 litf=0: screen 9.139; whole window -9.449/rune (IoC 1.020), matched null max -9.751; keyword [2, 22] atb=0
+noise      seg0.8 'carmichael lambda(n)' offset=13755 mult=1 model=1 m=2 litf=0: screen 9.139; whole window -9.822/rune (IoC 1.009), matched null max -10.171; keyword [25, 18] atb=1
+noise      seg0.14 'primes^3' offset=11142 mult=28 model=1 m=2 litf=0: screen 9.139; whole window -10.116/rune (IoC 1.035), matched null max -9.728; keyword [22, 8] atb=1
+noise      seg0.7 'sigma(n)' offset=4605 mult=1 model=1 m=14 litf=0: screen 9.133; whole window -7.800/rune (IoC 1.098), matched null max -9.845; keyword [17, 13, 7, 7, 17, 20, 12, 24, 18, 26, 23, 21, 20, 26] atb=1
+noise      seg0.7 'ln2 digits (base 29)' offset=3834 mult=1 model=1 m=3 litf=0: screen 9.127; whole window -9.107/rune (IoC 1.048), matched null max -10.038; keyword [4, 19, 2] atb=0
+noise      seg0.13 'n * p_n' offset=18191 mult=1 model=1 m=3 litf=0: screen 9.127; whole window -9.932/rune (IoC 1.007), matched null max -9.702; keyword [12, 13, 3] atb=1
+noise      seg0.15 'sqrt3 digits (base 10)' offset=1623 mult=28 model=0 m=8 litf=0: screen 9.122; whole window -9.647/rune (IoC 1.024), matched null max -9.908; keyword [6, 14, 1, 16, 5, 10, 21, 1] atb=0
+noise      seg0.11 'sqrt2 digits (base 29)' offset=9381 mult=1 model=0 m=4 litf=0: screen 9.116; whole window -10.148/rune (IoC 1.028), matched null max -9.949; keyword [13, 9, 28, 6] atb=0
+noise      seg0.7 'pi digits (base 29)' offset=7169 mult=1 model=0 m=4 litf=0: screen 9.116; whole window -9.154/rune (IoC 1.034), matched null max -9.316; keyword [25, 26, 1, 16] atb=0
+noise      seg0.11 'p_n - n' offset=18721 mult=28 model=0 m=4 litf=0: screen 9.116; whole window -9.326/rune (IoC 1.040), matched null max -10.082; keyword [27, 7, 6, 13] atb=1
+noise      seg0.8 'sqrt5 digits (base 29)' offset=15178 mult=1 model=1 m=9 litf=0: screen 9.106; whole window -9.597/rune (IoC 1.033), matched null max -9.741; keyword [8, 1, 3, 11, 25, 12, 22, 2, 10] atb=0
+noise      seg0.8 'cbrt2 digits (base 29)' offset=11195 mult=28 model=0 m=2 litf=0: screen 9.103; whole window -9.465/rune (IoC 1.038), matched null max -10.004; keyword [9, 2] atb=0
+noise      seg0.11 'ln10 digits (base 29)' offset=12354 mult=1 model=0 m=2 litf=0: screen 9.103; whole window -9.752/rune (IoC 1.032), matched null max -9.769; keyword [0, 23] atb=1
+noise      seg0.15 'sqrt3301 digits (base 29)' offset=7285 mult=28 model=1 m=5 litf=0: screen 9.078; whole window -9.866/rune (IoC 1.016), matched null max -9.963; keyword [22, 12, 7, 20, 10] atb=1
+noise      seg0.14 'Omega(n)' offset=18123 mult=1 model=1 m=5 litf=0: screen 9.078; whole window -10.034/rune (IoC 1.014), matched null max -10.173; keyword [15, 4, 25, 5, 11] atb=0
+noise      seg0.9 'ln3 digits (base 29)' offset=18840 mult=1 model=0 m=2 litf=0: screen 9.066; whole window -9.659/rune (IoC 1.030), matched null max -9.810; keyword [14, 18] atb=1
+noise      seg0.13 'cumulative phi(n)' offset=14886 mult=1 model=1 m=2 litf=0: screen 9.066; whole window -10.022/rune (IoC 1.009), matched null max -9.785; keyword [10, 8] atb=1
+noise      seg0.9 'sigma(n)' offset=13252 mult=1 model=0 m=2 litf=0: screen 9.066; whole window -10.353/rune (IoC 1.030), matched null max -10.016; keyword [2, 19] atb=0
+noise      seg0.8 'n * p_n' offset=16150 mult=28 model=0 m=4 litf=0: screen 9.064; whole window -9.054/rune (IoC 1.040), matched null max -9.950; keyword [23, 23, 18, 25] atb=1
+noise      seg0.9 'sigma(n)' offset=15768 mult=28 model=1 m=3 litf=0: screen 9.037; whole window -9.727/rune (IoC 1.028), matched null max -9.623; keyword [21, 7, 22] atb=0
+noise      seg0.12 'sqrt3 digits (base 29)' offset=18492 mult=28 model=1 m=3 litf=0: screen 9.037; whole window -9.492/rune (IoC 1.043), matched null max -9.507; keyword [0, 8, 21] atb=0
+noise      seg0.12 'zeta(3) digits (base 29)' offset=5525 mult=28 model=1 m=2 litf=0: screen 9.030; whole window -9.185/rune (IoC 1.026), matched null max -9.865; keyword [2, 8] atb=0
+noise      seg0.11 '(p-1)/2' offset=16197 mult=1 model=0 m=2 litf=0: screen 9.030; whole window -9.843/rune (IoC 1.026), matched null max -10.178; keyword [4, 11] atb=0
+noise      seg0.11 '(p+1)/2' offset=16197 mult=1 model=0 m=2 litf=0: screen 9.030; whole window -9.843/rune (IoC 1.026), matched null max -10.178; keyword [3, 10] atb=0
+noise      seg0.15 'prime index of primes' offset=9851 mult=1 model=1 m=2 litf=0: screen 9.030; whole window -10.160/rune (IoC 1.017), matched null max -9.988; keyword [2, 11] atb=1
+noise      seg0.7 'sqrt3301 digits (base 29)' offset=1678 mult=1 model=1 m=2 litf=0: screen 9.030; whole window -9.565/rune (IoC 1.017), matched null max -9.967; keyword [5, 4] atb=1
+noise      seg0.11 'sqrt2 digits (base 10)' offset=9394 mult=28 model=0 m=2 litf=0: screen 9.030; whole window -10.151/rune (IoC 1.022), matched null max -10.020; keyword [2, 28] atb=0
+noise      seg0.13 'euler gamma digits (base 29)' offset=9457 mult=1 model=1 m=2 litf=0: screen 9.030; whole window -9.525/rune (IoC 1.030), matched null max -9.469; keyword [5, 23] atb=0
+noise      seg0.11 'e digits (base 10)' offset=5150 mult=1 model=0 m=2 litf=0: screen 9.030; whole window -10.021/rune (IoC 1.021), matched null max -9.616; keyword [7, 16] atb=0
+noise      seg0.15 'p_n mod 3301' offset=1525 mult=28 model=1 m=2 litf=0: screen 9.030; whole window -9.994/rune (IoC 1.020), matched null max -10.089; keyword [14, 14] atb=0
+noise      seg0.7 'p_n + n' offset=16377 mult=28 model=1 m=5 litf=0: screen 9.020; whole window -8.709/rune (IoC 1.055), matched null max -9.420; keyword [23, 8, 1, 1, 20] atb=1
+noise      seg0.12 'euler gamma digits (base 29)' offset=14226 mult=28 model=0 m=5 litf=0: screen 9.020; whole window -9.535/rune (IoC 1.009), matched null max -9.952; keyword [19, 12, 8, 8, 18] atb=0
+noise      seg0.9 'primes^2' offset=12700 mult=1 model=1 m=2 litf=0: screen 8.993; whole window -9.800/rune (IoC 1.017), matched null max -9.902; keyword [25, 13] atb=1
+noise      seg0.8 'prime index of primes' offset=8228 mult=1 model=0 m=2 litf=0: screen 8.993; whole window -9.934/rune (IoC 1.020), matched null max -9.773; keyword [1, 5] atb=0
+noise      seg0.13 'sqrt2 digits (base 10)' offset=631 mult=1 model=1 m=2 litf=0: screen 8.993; whole window -10.080/rune (IoC 1.024), matched null max -10.070; keyword [11, 7] atb=0
+noise      seg0.15 'sqrt3301 digits (base 29)' offset=13434 mult=1 model=0 m=2 litf=0: screen 8.993; whole window -10.027/rune (IoC 1.025), matched null max -10.097; keyword [6, 17] atb=1
+noise      seg0.15 'rad(n)' offset=16558 mult=28 model=0 m=2 litf=0: screen 8.993; whole window -9.976/rune (IoC 1.024), matched null max -10.040; keyword [8, 22] atb=1
+noise      seg0.11 'cumulative prime sum' offset=18789 mult=1 model=1 m=2 litf=0: screen 8.993; whole window -9.821/rune (IoC 1.042), matched null max -9.822; keyword [24, 19] atb=0
+noise      seg0.8 'sqrt3301 digits (base 29)' offset=5680 mult=1 model=1 m=2 litf=0: screen 8.993; whole window -10.514/rune (IoC 1.012), matched null max -9.996; keyword [8, 16] atb=0
+noise      seg0.9 'p_n^2 - 1' offset=12700 mult=1 model=1 m=2 litf=0: screen 8.993; whole window -9.800/rune (IoC 1.017), matched null max -9.902; keyword [26, 14] atb=1
+noise      seg0.14 'e digits (base 29)' offset=12860 mult=28 model=0 m=2 litf=0: screen 8.993; whole window -10.165/rune (IoC 1.016), matched null max -9.984; keyword [27, 21] atb=0
+noise      seg0.12 'p_n mod 3301' offset=11561 mult=28 model=0 m=4 litf=0: screen 8.960; whole window -9.795/rune (IoC 1.027), matched null max -9.930; keyword [26, 8, 10, 19] atb=0
+0 of 100 re-decoded hits pass (none: noise)
+
+# exit code 0, 22 s

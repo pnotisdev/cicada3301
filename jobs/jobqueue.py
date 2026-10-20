@@ -30,6 +30,7 @@ def scrub_text(t):
     home = os.path.expanduser("~")
     for h in {home, home.replace("\\", "/")}:
         t = t.replace(h, "~")
+    t = re.sub(r"~[\\/][^\\/\s]+[\\/]Local[\\/]Programs[\\/]Python[\\/]Python\d+", "<python>", t)    # the interpreter folder in tracebacks
     host = platform.node()
     if len(host) >= 5:
         t = re.sub(re.escape(host), "<host>", t, flags=re.IGNORECASE)

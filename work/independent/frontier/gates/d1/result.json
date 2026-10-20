@@ -1,0 +1,2896 @@
+{
+  "gate": "D1 FIRST correctness gate only",
+  "status": "PASS_FIRST_CORRECTNESS_GATE",
+  "invocations": 1,
+  "wall_cap_seconds": 90,
+  "external_cap_seconds": 120,
+  "LP2_read_or_searched": false,
+  "random_seeds": [],
+  "later_power_calibration_authorized": false,
+  "inputs": {
+    "work/independent/frontier/gates/d1/PROTOCOL.md": {
+      "sha256": "c0ef017b0139e40bf5f37af171d96450cb562b8fc6e108886af7603cb124801b",
+      "bytes": 5216
+    },
+    "work/independent/frontier/gates/d1/gate.py": {
+      "sha256": "2ca2a9fd3cb532c49b327c7516744e9c9c6b08364acbeba2767f76b2608cba87",
+      "bytes": 17555
+    },
+    "work/independent/frontier/REPORT.md": {
+      "sha256": "038929c6f56ac1f8bbf8a146af8239b8815187c477a837edb804decac321fe7b",
+      "bytes": 65711
+    },
+    "work/independent/frontier/LIKELIHOOD_NOTE.md": {
+      "sha256": "9c3197d3b866e0110b387db65260788ae09d18e6d186862409f938b9fc72cc7d",
+      "bytes": 3848
+    }
+  },
+  "laws": [
+    {
+      "model": "HOLD",
+      "key": "empty",
+      "plaintext_law": "biased",
+      "horizon": 0,
+      "output_strings": 1,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "HOLD",
+      "key": "empty",
+      "plaintext_law": "biased",
+      "horizon": 1,
+      "output_strings": 3,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "HOLD",
+      "key": "empty",
+      "plaintext_law": "biased",
+      "horizon": 2,
+      "output_strings": 9,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "HOLD",
+      "key": "empty",
+      "plaintext_law": "biased",
+      "horizon": 3,
+      "output_strings": 27,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "HOLD",
+      "key": "empty",
+      "plaintext_law": "biased",
+      "horizon": 4,
+      "output_strings": 81,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "HOLD",
+      "key": "empty",
+      "plaintext_law": "uniform",
+      "horizon": 0,
+      "output_strings": 1,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "HOLD",
+      "key": "empty",
+      "plaintext_law": "uniform",
+      "horizon": 1,
+      "output_strings": 3,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "HOLD",
+      "key": "empty",
+      "plaintext_law": "uniform",
+      "horizon": 2,
+      "output_strings": 9,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "HOLD",
+      "key": "empty",
+      "plaintext_law": "uniform",
+      "horizon": 3,
+      "output_strings": 27,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "HOLD",
+      "key": "empty",
+      "plaintext_law": "uniform",
+      "horizon": 4,
+      "output_strings": 81,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "HOLD",
+      "key": "single",
+      "plaintext_law": "biased",
+      "horizon": 0,
+      "output_strings": 1,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "HOLD",
+      "key": "single",
+      "plaintext_law": "biased",
+      "horizon": 1,
+      "output_strings": 3,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "HOLD",
+      "key": "single",
+      "plaintext_law": "biased",
+      "horizon": 2,
+      "output_strings": 9,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "HOLD",
+      "key": "single",
+      "plaintext_law": "biased",
+      "horizon": 3,
+      "output_strings": 27,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "HOLD",
+      "key": "single",
+      "plaintext_law": "biased",
+      "horizon": 4,
+      "output_strings": 81,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "HOLD",
+      "key": "single",
+      "plaintext_law": "uniform",
+      "horizon": 0,
+      "output_strings": 1,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "HOLD",
+      "key": "single",
+      "plaintext_law": "uniform",
+      "horizon": 1,
+      "output_strings": 3,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "HOLD",
+      "key": "single",
+      "plaintext_law": "uniform",
+      "horizon": 2,
+      "output_strings": 9,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "HOLD",
+      "key": "single",
+      "plaintext_law": "uniform",
+      "horizon": 3,
+      "output_strings": 27,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "HOLD",
+      "key": "single",
+      "plaintext_law": "uniform",
+      "horizon": 4,
+      "output_strings": 81,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "HOLD",
+      "key": "constant_short",
+      "plaintext_law": "biased",
+      "horizon": 0,
+      "output_strings": 1,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "HOLD",
+      "key": "constant_short",
+      "plaintext_law": "biased",
+      "horizon": 1,
+      "output_strings": 3,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "HOLD",
+      "key": "constant_short",
+      "plaintext_law": "biased",
+      "horizon": 2,
+      "output_strings": 9,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "HOLD",
+      "key": "constant_short",
+      "plaintext_law": "biased",
+      "horizon": 3,
+      "output_strings": 27,
+      "success_mass": "54/125",
+      "failure_mass": "71/125",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "HOLD",
+      "key": "constant_short",
+      "plaintext_law": "biased",
+      "horizon": 4,
+      "output_strings": 81,
+      "success_mass": "80919/1000000",
+      "failure_mass": "919081/1000000",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "HOLD",
+      "key": "constant_short",
+      "plaintext_law": "uniform",
+      "horizon": 0,
+      "output_strings": 1,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "HOLD",
+      "key": "constant_short",
+      "plaintext_law": "uniform",
+      "horizon": 1,
+      "output_strings": 3,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "HOLD",
+      "key": "constant_short",
+      "plaintext_law": "uniform",
+      "horizon": 2,
+      "output_strings": 9,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "HOLD",
+      "key": "constant_short",
+      "plaintext_law": "uniform",
+      "horizon": 3,
+      "output_strings": 27,
+      "success_mass": "27/100",
+      "failure_mass": "73/100",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "HOLD",
+      "key": "constant_short",
+      "plaintext_law": "uniform",
+      "horizon": 4,
+      "output_strings": 81,
+      "success_mass": "729/10000",
+      "failure_mass": "9271/10000",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "HOLD",
+      "key": "ample",
+      "plaintext_law": "biased",
+      "horizon": 0,
+      "output_strings": 1,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "HOLD",
+      "key": "ample",
+      "plaintext_law": "biased",
+      "horizon": 1,
+      "output_strings": 3,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "HOLD",
+      "key": "ample",
+      "plaintext_law": "biased",
+      "horizon": 2,
+      "output_strings": 9,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "HOLD",
+      "key": "ample",
+      "plaintext_law": "biased",
+      "horizon": 3,
+      "output_strings": 27,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "HOLD",
+      "key": "ample",
+      "plaintext_law": "biased",
+      "horizon": 4,
+      "output_strings": 81,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "HOLD",
+      "key": "ample",
+      "plaintext_law": "uniform",
+      "horizon": 0,
+      "output_strings": 1,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "HOLD",
+      "key": "ample",
+      "plaintext_law": "uniform",
+      "horizon": 1,
+      "output_strings": 3,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "HOLD",
+      "key": "ample",
+      "plaintext_law": "uniform",
+      "horizon": 2,
+      "output_strings": 9,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "HOLD",
+      "key": "ample",
+      "plaintext_law": "uniform",
+      "horizon": 3,
+      "output_strings": 27,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "HOLD",
+      "key": "ample",
+      "plaintext_law": "uniform",
+      "horizon": 4,
+      "output_strings": 81,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SPEND",
+      "key": "empty",
+      "plaintext_law": "biased",
+      "horizon": 0,
+      "output_strings": 1,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SPEND",
+      "key": "empty",
+      "plaintext_law": "biased",
+      "horizon": 1,
+      "output_strings": 3,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SPEND",
+      "key": "empty",
+      "plaintext_law": "biased",
+      "horizon": 2,
+      "output_strings": 9,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SPEND",
+      "key": "empty",
+      "plaintext_law": "biased",
+      "horizon": 3,
+      "output_strings": 27,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SPEND",
+      "key": "empty",
+      "plaintext_law": "biased",
+      "horizon": 4,
+      "output_strings": 81,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SPEND",
+      "key": "empty",
+      "plaintext_law": "uniform",
+      "horizon": 0,
+      "output_strings": 1,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SPEND",
+      "key": "empty",
+      "plaintext_law": "uniform",
+      "horizon": 1,
+      "output_strings": 3,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SPEND",
+      "key": "empty",
+      "plaintext_law": "uniform",
+      "horizon": 2,
+      "output_strings": 9,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SPEND",
+      "key": "empty",
+      "plaintext_law": "uniform",
+      "horizon": 3,
+      "output_strings": 27,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SPEND",
+      "key": "empty",
+      "plaintext_law": "uniform",
+      "horizon": 4,
+      "output_strings": 81,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SPEND",
+      "key": "single",
+      "plaintext_law": "biased",
+      "horizon": 0,
+      "output_strings": 1,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SPEND",
+      "key": "single",
+      "plaintext_law": "biased",
+      "horizon": 1,
+      "output_strings": 3,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SPEND",
+      "key": "single",
+      "plaintext_law": "biased",
+      "horizon": 2,
+      "output_strings": 9,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SPEND",
+      "key": "single",
+      "plaintext_law": "biased",
+      "horizon": 3,
+      "output_strings": 27,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SPEND",
+      "key": "single",
+      "plaintext_law": "biased",
+      "horizon": 4,
+      "output_strings": 81,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SPEND",
+      "key": "single",
+      "plaintext_law": "uniform",
+      "horizon": 0,
+      "output_strings": 1,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SPEND",
+      "key": "single",
+      "plaintext_law": "uniform",
+      "horizon": 1,
+      "output_strings": 3,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SPEND",
+      "key": "single",
+      "plaintext_law": "uniform",
+      "horizon": 2,
+      "output_strings": 9,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SPEND",
+      "key": "single",
+      "plaintext_law": "uniform",
+      "horizon": 3,
+      "output_strings": 27,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SPEND",
+      "key": "single",
+      "plaintext_law": "uniform",
+      "horizon": 4,
+      "output_strings": 81,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SPEND",
+      "key": "constant_short",
+      "plaintext_law": "biased",
+      "horizon": 0,
+      "output_strings": 1,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SPEND",
+      "key": "constant_short",
+      "plaintext_law": "biased",
+      "horizon": 1,
+      "output_strings": 3,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SPEND",
+      "key": "constant_short",
+      "plaintext_law": "biased",
+      "horizon": 2,
+      "output_strings": 9,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SPEND",
+      "key": "constant_short",
+      "plaintext_law": "biased",
+      "horizon": 3,
+      "output_strings": 27,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SPEND",
+      "key": "constant_short",
+      "plaintext_law": "biased",
+      "horizon": 4,
+      "output_strings": 81,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SPEND",
+      "key": "constant_short",
+      "plaintext_law": "uniform",
+      "horizon": 0,
+      "output_strings": 1,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SPEND",
+      "key": "constant_short",
+      "plaintext_law": "uniform",
+      "horizon": 1,
+      "output_strings": 3,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SPEND",
+      "key": "constant_short",
+      "plaintext_law": "uniform",
+      "horizon": 2,
+      "output_strings": 9,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SPEND",
+      "key": "constant_short",
+      "plaintext_law": "uniform",
+      "horizon": 3,
+      "output_strings": 27,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SPEND",
+      "key": "constant_short",
+      "plaintext_law": "uniform",
+      "horizon": 4,
+      "output_strings": 81,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SPEND",
+      "key": "ample",
+      "plaintext_law": "biased",
+      "horizon": 0,
+      "output_strings": 1,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SPEND",
+      "key": "ample",
+      "plaintext_law": "biased",
+      "horizon": 1,
+      "output_strings": 3,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SPEND",
+      "key": "ample",
+      "plaintext_law": "biased",
+      "horizon": 2,
+      "output_strings": 9,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SPEND",
+      "key": "ample",
+      "plaintext_law": "biased",
+      "horizon": 3,
+      "output_strings": 27,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SPEND",
+      "key": "ample",
+      "plaintext_law": "biased",
+      "horizon": 4,
+      "output_strings": 81,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SPEND",
+      "key": "ample",
+      "plaintext_law": "uniform",
+      "horizon": 0,
+      "output_strings": 1,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SPEND",
+      "key": "ample",
+      "plaintext_law": "uniform",
+      "horizon": 1,
+      "output_strings": 3,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SPEND",
+      "key": "ample",
+      "plaintext_law": "uniform",
+      "horizon": 2,
+      "output_strings": 9,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SPEND",
+      "key": "ample",
+      "plaintext_law": "uniform",
+      "horizon": 3,
+      "output_strings": 27,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SPEND",
+      "key": "ample",
+      "plaintext_law": "uniform",
+      "horizon": 4,
+      "output_strings": 81,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SKIP",
+      "key": "empty",
+      "plaintext_law": "biased",
+      "horizon": 0,
+      "output_strings": 1,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SKIP",
+      "key": "empty",
+      "plaintext_law": "biased",
+      "horizon": 1,
+      "output_strings": 3,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SKIP",
+      "key": "empty",
+      "plaintext_law": "biased",
+      "horizon": 2,
+      "output_strings": 9,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SKIP",
+      "key": "empty",
+      "plaintext_law": "biased",
+      "horizon": 3,
+      "output_strings": 27,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SKIP",
+      "key": "empty",
+      "plaintext_law": "biased",
+      "horizon": 4,
+      "output_strings": 81,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SKIP",
+      "key": "empty",
+      "plaintext_law": "uniform",
+      "horizon": 0,
+      "output_strings": 1,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SKIP",
+      "key": "empty",
+      "plaintext_law": "uniform",
+      "horizon": 1,
+      "output_strings": 3,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SKIP",
+      "key": "empty",
+      "plaintext_law": "uniform",
+      "horizon": 2,
+      "output_strings": 9,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SKIP",
+      "key": "empty",
+      "plaintext_law": "uniform",
+      "horizon": 3,
+      "output_strings": 27,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SKIP",
+      "key": "empty",
+      "plaintext_law": "uniform",
+      "horizon": 4,
+      "output_strings": 81,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SKIP",
+      "key": "single",
+      "plaintext_law": "biased",
+      "horizon": 0,
+      "output_strings": 1,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SKIP",
+      "key": "single",
+      "plaintext_law": "biased",
+      "horizon": 1,
+      "output_strings": 3,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SKIP",
+      "key": "single",
+      "plaintext_law": "biased",
+      "horizon": 2,
+      "output_strings": 9,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SKIP",
+      "key": "single",
+      "plaintext_law": "biased",
+      "horizon": 3,
+      "output_strings": 27,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SKIP",
+      "key": "single",
+      "plaintext_law": "biased",
+      "horizon": 4,
+      "output_strings": 81,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SKIP",
+      "key": "single",
+      "plaintext_law": "uniform",
+      "horizon": 0,
+      "output_strings": 1,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SKIP",
+      "key": "single",
+      "plaintext_law": "uniform",
+      "horizon": 1,
+      "output_strings": 3,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SKIP",
+      "key": "single",
+      "plaintext_law": "uniform",
+      "horizon": 2,
+      "output_strings": 9,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SKIP",
+      "key": "single",
+      "plaintext_law": "uniform",
+      "horizon": 3,
+      "output_strings": 27,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SKIP",
+      "key": "single",
+      "plaintext_law": "uniform",
+      "horizon": 4,
+      "output_strings": 81,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SKIP",
+      "key": "constant_short",
+      "plaintext_law": "biased",
+      "horizon": 0,
+      "output_strings": 1,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SKIP",
+      "key": "constant_short",
+      "plaintext_law": "biased",
+      "horizon": 1,
+      "output_strings": 3,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SKIP",
+      "key": "constant_short",
+      "plaintext_law": "biased",
+      "horizon": 2,
+      "output_strings": 9,
+      "success_mass": "71/125",
+      "failure_mass": "54/125",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SKIP",
+      "key": "constant_short",
+      "plaintext_law": "biased",
+      "horizon": 3,
+      "output_strings": 27,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SKIP",
+      "key": "constant_short",
+      "plaintext_law": "biased",
+      "horizon": 4,
+      "output_strings": 81,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SKIP",
+      "key": "constant_short",
+      "plaintext_law": "uniform",
+      "horizon": 0,
+      "output_strings": 1,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SKIP",
+      "key": "constant_short",
+      "plaintext_law": "uniform",
+      "horizon": 1,
+      "output_strings": 3,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SKIP",
+      "key": "constant_short",
+      "plaintext_law": "uniform",
+      "horizon": 2,
+      "output_strings": 9,
+      "success_mass": "73/100",
+      "failure_mass": "27/100",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SKIP",
+      "key": "constant_short",
+      "plaintext_law": "uniform",
+      "horizon": 3,
+      "output_strings": 27,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SKIP",
+      "key": "constant_short",
+      "plaintext_law": "uniform",
+      "horizon": 4,
+      "output_strings": 81,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SKIP",
+      "key": "ample",
+      "plaintext_law": "biased",
+      "horizon": 0,
+      "output_strings": 1,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SKIP",
+      "key": "ample",
+      "plaintext_law": "biased",
+      "horizon": 1,
+      "output_strings": 3,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SKIP",
+      "key": "ample",
+      "plaintext_law": "biased",
+      "horizon": 2,
+      "output_strings": 9,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SKIP",
+      "key": "ample",
+      "plaintext_law": "biased",
+      "horizon": 3,
+      "output_strings": 27,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SKIP",
+      "key": "ample",
+      "plaintext_law": "biased",
+      "horizon": 4,
+      "output_strings": 81,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SKIP",
+      "key": "ample",
+      "plaintext_law": "uniform",
+      "horizon": 0,
+      "output_strings": 1,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SKIP",
+      "key": "ample",
+      "plaintext_law": "uniform",
+      "horizon": 1,
+      "output_strings": 3,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SKIP",
+      "key": "ample",
+      "plaintext_law": "uniform",
+      "horizon": 2,
+      "output_strings": 9,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SKIP",
+      "key": "ample",
+      "plaintext_law": "uniform",
+      "horizon": 3,
+      "output_strings": 27,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "SKIP",
+      "key": "ample",
+      "plaintext_law": "uniform",
+      "horizon": 4,
+      "output_strings": 81,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_UNIFORM",
+      "key": "empty",
+      "plaintext_law": "biased",
+      "horizon": 0,
+      "output_strings": 1,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_UNIFORM",
+      "key": "empty",
+      "plaintext_law": "biased",
+      "horizon": 1,
+      "output_strings": 3,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_UNIFORM",
+      "key": "empty",
+      "plaintext_law": "biased",
+      "horizon": 2,
+      "output_strings": 9,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_UNIFORM",
+      "key": "empty",
+      "plaintext_law": "biased",
+      "horizon": 3,
+      "output_strings": 27,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_UNIFORM",
+      "key": "empty",
+      "plaintext_law": "biased",
+      "horizon": 4,
+      "output_strings": 81,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_UNIFORM",
+      "key": "empty",
+      "plaintext_law": "uniform",
+      "horizon": 0,
+      "output_strings": 1,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_UNIFORM",
+      "key": "empty",
+      "plaintext_law": "uniform",
+      "horizon": 1,
+      "output_strings": 3,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_UNIFORM",
+      "key": "empty",
+      "plaintext_law": "uniform",
+      "horizon": 2,
+      "output_strings": 9,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_UNIFORM",
+      "key": "empty",
+      "plaintext_law": "uniform",
+      "horizon": 3,
+      "output_strings": 27,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_UNIFORM",
+      "key": "empty",
+      "plaintext_law": "uniform",
+      "horizon": 4,
+      "output_strings": 81,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_UNIFORM",
+      "key": "single",
+      "plaintext_law": "biased",
+      "horizon": 0,
+      "output_strings": 1,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_UNIFORM",
+      "key": "single",
+      "plaintext_law": "biased",
+      "horizon": 1,
+      "output_strings": 3,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_UNIFORM",
+      "key": "single",
+      "plaintext_law": "biased",
+      "horizon": 2,
+      "output_strings": 9,
+      "success_mass": "7/250",
+      "failure_mass": "243/250",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_UNIFORM",
+      "key": "single",
+      "plaintext_law": "biased",
+      "horizon": 3,
+      "output_strings": 27,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_UNIFORM",
+      "key": "single",
+      "plaintext_law": "biased",
+      "horizon": 4,
+      "output_strings": 81,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_UNIFORM",
+      "key": "single",
+      "plaintext_law": "uniform",
+      "horizon": 0,
+      "output_strings": 1,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_UNIFORM",
+      "key": "single",
+      "plaintext_law": "uniform",
+      "horizon": 1,
+      "output_strings": 3,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_UNIFORM",
+      "key": "single",
+      "plaintext_law": "uniform",
+      "horizon": 2,
+      "output_strings": 9,
+      "success_mass": "7/250",
+      "failure_mass": "243/250",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_UNIFORM",
+      "key": "single",
+      "plaintext_law": "uniform",
+      "horizon": 3,
+      "output_strings": 27,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_UNIFORM",
+      "key": "single",
+      "plaintext_law": "uniform",
+      "horizon": 4,
+      "output_strings": 81,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_UNIFORM",
+      "key": "constant_short",
+      "plaintext_law": "biased",
+      "horizon": 0,
+      "output_strings": 1,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_UNIFORM",
+      "key": "constant_short",
+      "plaintext_law": "biased",
+      "horizon": 1,
+      "output_strings": 3,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_UNIFORM",
+      "key": "constant_short",
+      "plaintext_law": "biased",
+      "horizon": 2,
+      "output_strings": 9,
+      "success_mass": "9064/15625",
+      "failure_mass": "6561/15625",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_UNIFORM",
+      "key": "constant_short",
+      "plaintext_law": "biased",
+      "horizon": 3,
+      "output_strings": 27,
+      "success_mass": "560917/15625000",
+      "failure_mass": "15064083/15625000",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_UNIFORM",
+      "key": "constant_short",
+      "plaintext_law": "biased",
+      "horizon": 4,
+      "output_strings": 81,
+      "success_mass": "3577/6250000",
+      "failure_mass": "6246423/6250000",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_UNIFORM",
+      "key": "constant_short",
+      "plaintext_law": "uniform",
+      "horizon": 0,
+      "output_strings": 1,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_UNIFORM",
+      "key": "constant_short",
+      "plaintext_law": "uniform",
+      "horizon": 1,
+      "output_strings": 3,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_UNIFORM",
+      "key": "constant_short",
+      "plaintext_law": "uniform",
+      "horizon": 2,
+      "output_strings": 9,
+      "success_mass": "18439/25000",
+      "failure_mass": "6561/25000",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_UNIFORM",
+      "key": "constant_short",
+      "plaintext_law": "uniform",
+      "horizon": 3,
+      "output_strings": 27,
+      "success_mass": "251923/6250000",
+      "failure_mass": "5998077/6250000",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_UNIFORM",
+      "key": "constant_short",
+      "plaintext_law": "uniform",
+      "horizon": 4,
+      "output_strings": 81,
+      "success_mass": "3577/6250000",
+      "failure_mass": "6246423/6250000",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_UNIFORM",
+      "key": "ample",
+      "plaintext_law": "biased",
+      "horizon": 0,
+      "output_strings": 1,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_UNIFORM",
+      "key": "ample",
+      "plaintext_law": "biased",
+      "horizon": 1,
+      "output_strings": 3,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_UNIFORM",
+      "key": "ample",
+      "plaintext_law": "biased",
+      "horizon": 2,
+      "output_strings": 9,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_UNIFORM",
+      "key": "ample",
+      "plaintext_law": "biased",
+      "horizon": 3,
+      "output_strings": 27,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_UNIFORM",
+      "key": "ample",
+      "plaintext_law": "biased",
+      "horizon": 4,
+      "output_strings": 81,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_UNIFORM",
+      "key": "ample",
+      "plaintext_law": "uniform",
+      "horizon": 0,
+      "output_strings": 1,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_UNIFORM",
+      "key": "ample",
+      "plaintext_law": "uniform",
+      "horizon": 1,
+      "output_strings": 3,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_UNIFORM",
+      "key": "ample",
+      "plaintext_law": "uniform",
+      "horizon": 2,
+      "output_strings": 9,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_UNIFORM",
+      "key": "ample",
+      "plaintext_law": "uniform",
+      "horizon": 3,
+      "output_strings": 27,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_UNIFORM",
+      "key": "ample",
+      "plaintext_law": "uniform",
+      "horizon": 4,
+      "output_strings": 81,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_VALUE",
+      "key": "empty",
+      "plaintext_law": "biased",
+      "horizon": 0,
+      "output_strings": 1,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_VALUE",
+      "key": "empty",
+      "plaintext_law": "biased",
+      "horizon": 1,
+      "output_strings": 3,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_VALUE",
+      "key": "empty",
+      "plaintext_law": "biased",
+      "horizon": 2,
+      "output_strings": 9,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_VALUE",
+      "key": "empty",
+      "plaintext_law": "biased",
+      "horizon": 3,
+      "output_strings": 27,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_VALUE",
+      "key": "empty",
+      "plaintext_law": "biased",
+      "horizon": 4,
+      "output_strings": 81,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_VALUE",
+      "key": "empty",
+      "plaintext_law": "uniform",
+      "horizon": 0,
+      "output_strings": 1,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_VALUE",
+      "key": "empty",
+      "plaintext_law": "uniform",
+      "horizon": 1,
+      "output_strings": 3,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_VALUE",
+      "key": "empty",
+      "plaintext_law": "uniform",
+      "horizon": 2,
+      "output_strings": 9,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_VALUE",
+      "key": "empty",
+      "plaintext_law": "uniform",
+      "horizon": 3,
+      "output_strings": 27,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_VALUE",
+      "key": "empty",
+      "plaintext_law": "uniform",
+      "horizon": 4,
+      "output_strings": 81,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_VALUE",
+      "key": "single",
+      "plaintext_law": "biased",
+      "horizon": 0,
+      "output_strings": 1,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_VALUE",
+      "key": "single",
+      "plaintext_law": "biased",
+      "horizon": 1,
+      "output_strings": 3,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_VALUE",
+      "key": "single",
+      "plaintext_law": "biased",
+      "horizon": 2,
+      "output_strings": 9,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_VALUE",
+      "key": "single",
+      "plaintext_law": "biased",
+      "horizon": 3,
+      "output_strings": 27,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_VALUE",
+      "key": "single",
+      "plaintext_law": "biased",
+      "horizon": 4,
+      "output_strings": 81,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_VALUE",
+      "key": "single",
+      "plaintext_law": "uniform",
+      "horizon": 0,
+      "output_strings": 1,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_VALUE",
+      "key": "single",
+      "plaintext_law": "uniform",
+      "horizon": 1,
+      "output_strings": 3,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_VALUE",
+      "key": "single",
+      "plaintext_law": "uniform",
+      "horizon": 2,
+      "output_strings": 9,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_VALUE",
+      "key": "single",
+      "plaintext_law": "uniform",
+      "horizon": 3,
+      "output_strings": 27,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_VALUE",
+      "key": "single",
+      "plaintext_law": "uniform",
+      "horizon": 4,
+      "output_strings": 81,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_VALUE",
+      "key": "constant_short",
+      "plaintext_law": "biased",
+      "horizon": 0,
+      "output_strings": 1,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_VALUE",
+      "key": "constant_short",
+      "plaintext_law": "biased",
+      "horizon": 1,
+      "output_strings": 3,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_VALUE",
+      "key": "constant_short",
+      "plaintext_law": "biased",
+      "horizon": 2,
+      "output_strings": 9,
+      "success_mass": "71/125",
+      "failure_mass": "54/125",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_VALUE",
+      "key": "constant_short",
+      "plaintext_law": "biased",
+      "horizon": 3,
+      "output_strings": 27,
+      "success_mass": "5047/500000",
+      "failure_mass": "494953/500000",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_VALUE",
+      "key": "constant_short",
+      "plaintext_law": "biased",
+      "horizon": 4,
+      "output_strings": 81,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_VALUE",
+      "key": "constant_short",
+      "plaintext_law": "uniform",
+      "horizon": 0,
+      "output_strings": 1,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_VALUE",
+      "key": "constant_short",
+      "plaintext_law": "uniform",
+      "horizon": 1,
+      "output_strings": 3,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_VALUE",
+      "key": "constant_short",
+      "plaintext_law": "uniform",
+      "horizon": 2,
+      "output_strings": 9,
+      "success_mass": "73/100",
+      "failure_mass": "27/100",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_VALUE",
+      "key": "constant_short",
+      "plaintext_law": "uniform",
+      "horizon": 3,
+      "output_strings": 27,
+      "success_mass": "511/37500",
+      "failure_mass": "36989/37500",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_VALUE",
+      "key": "constant_short",
+      "plaintext_law": "uniform",
+      "horizon": 4,
+      "output_strings": 81,
+      "success_mass": "0",
+      "failure_mass": "1",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_VALUE",
+      "key": "ample",
+      "plaintext_law": "biased",
+      "horizon": 0,
+      "output_strings": 1,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_VALUE",
+      "key": "ample",
+      "plaintext_law": "biased",
+      "horizon": 1,
+      "output_strings": 3,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_VALUE",
+      "key": "ample",
+      "plaintext_law": "biased",
+      "horizon": 2,
+      "output_strings": 9,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_VALUE",
+      "key": "ample",
+      "plaintext_law": "biased",
+      "horizon": 3,
+      "output_strings": 27,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_VALUE",
+      "key": "ample",
+      "plaintext_law": "biased",
+      "horizon": 4,
+      "output_strings": 81,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_VALUE",
+      "key": "ample",
+      "plaintext_law": "uniform",
+      "horizon": 0,
+      "output_strings": 1,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_VALUE",
+      "key": "ample",
+      "plaintext_law": "uniform",
+      "horizon": 1,
+      "output_strings": 3,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_VALUE",
+      "key": "ample",
+      "plaintext_law": "uniform",
+      "horizon": 2,
+      "output_strings": 9,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_VALUE",
+      "key": "ample",
+      "plaintext_law": "uniform",
+      "horizon": 3,
+      "output_strings": 27,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    },
+    {
+      "model": "INSERT_VALUE",
+      "key": "ample",
+      "plaintext_law": "uniform",
+      "horizon": 4,
+      "output_strings": 81,
+      "success_mass": "1",
+      "failure_mass": "0",
+      "complete_mass": "1",
+      "max_DP_vs_tree_error": "0",
+      "failure_DP_vs_tree_error": "0"
+    }
+  ],
+  "mutation_controls": [
+    {
+      "mutation": "missing_null_factor",
+      "model": "INSERT_UNIFORM",
+      "horizon": 2,
+      "mutant_success_mass": "132/125",
+      "max_error": "7/750",
+      "detected": true
+    },
+    {
+      "mutation": "post_null_penalty",
+      "model": "INSERT_UNIFORM",
+      "horizon": 3,
+      "mutant_success_mass": "62451/62500",
+      "max_error": "13769/150000000",
+      "detected": true
+    },
+    {
+      "mutation": "null_spends_key",
+      "model": "INSERT_UNIFORM",
+      "horizon": 3,
+      "mutant_success_mass": "1",
+      "max_error": "7/5625",
+      "detected": true
+    },
+    {
+      "mutation": "hold_advances_key",
+      "model": "HOLD",
+      "horizon": 3,
+      "mutant_success_mass": "1",
+      "max_error": "8613/640000",
+      "detected": true
+    },
+    {
+      "mutation": "hold_loses_plain_history",
+      "model": "HOLD",
+      "horizon": 3,
+      "mutant_success_mass": "1",
+      "max_error": "14013/1280000",
+      "detected": true
+    },
+    {
+      "mutation": "divide_value_null",
+      "model": "INSERT_VALUE",
+      "horizon": 3,
+      "mutant_success_mass": "2670929/2700000",
+      "max_error": "889/187500",
+      "detected": true
+    }
+  ],
+  "checks": {
+    "full_grid": {
+      "laws": 200,
+      "output_probabilities_compared": 4840,
+      "all_complete_masses_one": true,
+      "all_exact_DP_vs_tree": true,
+      "all_exact_failure_masses": true
+    },
+    "consumption_fixture": {
+      "ciphertext_prefix": [
+        0,
+        1
+      ],
+      "HOLD_state_nextkey_previousplain_nullflag": [
+        1,
+        2,
+        false
+      ],
+      "HOLD_path_mass": "81/1600",
+      "INSERT_state_nextkey_previousplain_nullflag": [
+        1,
+        0,
+        true
+      ],
+      "INSERT_path_mass": "7/1500",
+      "distinct_plaintext_consumption_preserved": true
+    },
+    "offset_mixture": {
+      "prior": [
+        "1/2",
+        "1/3",
+        "1/6"
+      ],
+      "output_strings": 27,
+      "mixture_mass": "1",
+      "sum_of_maximized_conditional_weights": "3/2",
+      "maximization_is_not_the_prescribed_mixture": true,
+      "rows": [
+        {
+          "output": [
+            0,
+            0,
+            0
+          ],
+          "mixture": "1300824911/1620000000000",
+          "posterior": [
+            "48927537/68464469",
+            "40730344/342322345",
+            "56954316/342322345"
+          ]
+        },
+        {
+          "output": [
+            0,
+            0,
+            1
+          ],
+          "mixture": "6641105483/540000000000",
+          "posterior": [
+            "4790425599/6641105483",
+            "4351737688/33205527415",
+            "4901661732/33205527415"
+          ]
+        },
+        {
+          "output": [
+            0,
+            0,
+            2
+          ],
+          "mixture": "56432179/10125000000",
+          "posterior": [
+            "89724375/112864358",
+            "5277388/56432179",
+            "12585207/112864358"
+          ]
+        },
+        {
+          "output": [
+            0,
+            1,
+            0
+          ],
+          "mixture": "1359342907/20250000000",
+          "posterior": [
+            "964797750/1359342907",
+            "214075624/1359342907",
+            "180469533/1359342907"
+          ]
+        },
+        {
+          "output": [
+            0,
+            1,
+            1
+          ],
+          "mixture": "6724405019/540000000000",
+          "posterior": [
+            "4827167199/6724405019",
+            "3967981288/33622025095",
+            "5518207812/33622025095"
+          ]
+        },
+        {
+          "output": [
+            0,
+            1,
+            2
+          ],
+          "mixture": "275295062383/1620000000000",
+          "posterior": [
+            "188660828403/275295062383",
+            "184414806536/1376475311915",
+            "248756363364/1376475311915"
+          ]
+        },
+        {
+          "output": [
+            0,
+            2,
+            0
+          ],
+          "mixture": "2683449437/40500000000",
+          "posterior": [
+            "1888035939/2683449437",
+            "513757070/2683449437",
+            "281656428/2683449437"
+          ]
+        },
+        {
+          "output": [
+            0,
+            2,
+            1
+          ],
+          "mixture": "1502269/67500000",
+          "posterior": [
+            "914184/1502269",
+            "324085/1502269",
+            "264000/1502269"
+          ]
+        },
+        {
+          "output": [
+            0,
+            2,
+            2
+          ],
+          "mixture": "178464163/40500000000",
+          "posterior": [
+            "118328661/178464163",
+            "41791930/178464163",
+            "18343572/178464163"
+          ]
+        },
+        {
+          "output": [
+            1,
+            0,
+            0
+          ],
+          "mixture": "30962491/8100000000",
+          "posterior": [
+            "55030716/154812455",
+            "78885774/154812455",
+            "4179193/30962491"
+          ]
+        },
+        {
+          "output": [
+            1,
+            0,
+            1
+          ],
+          "mixture": "472107689/8100000000",
+          "posterior": [
+            "844969284/2360538445",
+            "1258690626/2360538445",
+            "51375707/472107689"
+          ]
+        },
+        {
+          "output": [
+            1,
+            0,
+            2
+          ],
+          "mixture": "3126997/135000000",
+          "posterior": [
+            "1584000/3126997",
+            "1218912/3126997",
+            "324085/3126997"
+          ]
+        },
+        {
+          "output": [
+            1,
+            1,
+            0
+          ],
+          "mixture": "102849259/20250000000",
+          "posterior": [
+            "37755621/102849259",
+            "59816250/102849259",
+            "5277388/102849259"
+          ]
+        },
+        {
+          "output": [
+            1,
+            1,
+            1
+          ],
+          "mixture": "673207829/810000000000",
+          "posterior": [
+            "85431474/177159955",
+            "16309179/35431991",
+            "10182586/177159955"
+          ]
+        },
+        {
+          "output": [
+            1,
+            1,
+            2
+          ],
+          "mixture": "3284893937/270000000000",
+          "posterior": [
+            "7352492598/16424469685",
+            "1596808533/3284893937",
+            "1087934422/16424469685"
+          ]
+        },
+        {
+          "output": [
+            1,
+            2,
+            0
+          ],
+          "mixture": "146734592137/810000000000",
+          "posterior": [
+            "373134545046/733672960685",
+            "62886942801/146734592137",
+            "46103701634/733672960685"
+          ]
+        },
+        {
+          "output": [
+            1,
+            2,
+            1
+          ],
+          "mixture": "1291644911/20250000000",
+          "posterior": [
+            "541408599/1291644911",
+            "643198500/1291644911",
+            "107037812/1291644911"
+          ]
+        },
+        {
+          "output": [
+            1,
+            2,
+            2
+          ],
+          "mixture": "3462917141/270000000000",
+          "posterior": [
+            "8277311718/17314585705",
+            "1609055733/3462917141",
+            "991995322/17314585705"
+          ]
+        },
+        {
+          "output": [
+            2,
+            0,
+            0
+          ],
+          "mixture": "927172823/100000000000",
+          "posterior": [
+            "1983990644/8344555407",
+            "3678805208/8344555407",
+            "2681759555/8344555407"
+          ]
+        },
+        {
+          "output": [
+            2,
+            0,
+            1
+          ],
+          "mixture": "120952183393/900000000000",
+          "posterior": [
+            "92207403268/362856550179",
+            "165837575576/362856550179",
+            "34937190445/120952183393"
+          ]
+        },
+        {
+          "output": [
+            2,
+            0,
+            2
+          ],
+          "mixture": "41818823/843750000",
+          "posterior": [
+            "26759453/83637646",
+            "60156511/167275292",
+            "53599875/167275292"
+          ]
+        },
+        {
+          "output": [
+            2,
+            1,
+            0
+          ],
+          "mixture": "97693/5000000",
+          "posterior": [
+            "324085/879237",
+            "352000/879237",
+            "203152/879237"
+          ]
+        },
+        {
+          "output": [
+            2,
+            1,
+            1
+          ],
+          "mixture": "7712107/2250000000",
+          "posterior": [
+            "20895965/46272642",
+            "470348/1779717",
+            "4382543/15424214"
+          ]
+        },
+        {
+          "output": [
+            2,
+            1,
+            2
+          ],
+          "mixture": "327215629/6750000000",
+          "posterior": [
+            "256878535/654431258",
+            "93885476/327215629",
+            "209781771/654431258"
+          ]
+        },
+        {
+          "output": [
+            2,
+            2,
+            0
+          ],
+          "mixture": "900554543/100000000000",
+          "posterior": [
+            "2175868844/8104990887",
+            "3267774488/8104990887",
+            "2661347555/8104990887"
+          ]
+        },
+        {
+          "output": [
+            2,
+            2,
+            1
+          ],
+          "mixture": "7878967/2250000000",
+          "posterior": [
+            "5277388/23636901",
+            "8390138/23636901",
+            "3323125/7878967"
+          ]
+        },
+        {
+          "output": [
+            2,
+            2,
+            2
+          ],
+          "mixture": "1624816939/2700000000000",
+          "posterior": [
+            "20365172/85516681",
+            "37969544/85516681",
+            "27181965/85516681"
+          ]
+        }
+      ]
+    },
+    "normalizer_qualification": {
+      "ample_key_global_Z_by_plaintext_law": {
+        "biased": "13851/12500",
+        "uniform": "13851/12500"
+      },
+      "hard_core_mask_partition_Z": "13851/12500",
+      "all_27_ratios_unchanged": true,
+      "finite_key_success_only_Z_by_law": {
+        "biased": "3311847/31250000",
+        "uniform": "372519/3125000"
+      },
+      "finite_key_success_normalizers_differ": true,
+      "fresh_29_rune_weight_sum": "223/125",
+      "fresh_29_rune_weight_sum_decimal": "1.784",
+      "interpretation": "Wrong stated online prior does not by itself invalidate every possible ratio; cancellation has conditions"
+    }
+  },
+  "elapsed_seconds": 0.56956,
+  "summary": {
+    "exact_laws_passed": 200,
+    "output_probabilities_compared": 4840,
+    "broken_DP_mutations_detected": 6,
+    "planted_key_power_tested": false,
+    "LP2_inference_authorized": false
+  }
+}

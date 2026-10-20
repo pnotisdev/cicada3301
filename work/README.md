@@ -32,6 +32,7 @@ Find a script by what it is for. Each one writes its output into `results/analys
 |---|---|
 | `ocr.py` | Rune OCR from the page images (segmentation, cross-validated classifier, alignment) |
 | `red_runs.py` | Red (title) text from the colour channel |
+| `page_scan_audit.py`, `book_map.py` | Structure audit of the 75 scans (containers, appended bytes, hash match, hidden faint marks, stipple) with a planted-mark control; the annotated map of all pages (`figures/book_map.png`) |
 | `separator_audit.py` | Word dots and clause marks against the images |
 | `word_gaps.py`, `word_gaps_lines.py` | Word boundaries of the transcription against the printed dots |
 | `doublet_audit.py` | Label-free audit of the missing doublets |
@@ -58,6 +59,7 @@ Find a script by what it is for. Each one writes its output into `results/analys
 | `crib.py`, `cribsolve.py`, `crib_exact_lookup.py`, `crib_fluency_null.py`, `crib_matrix_check.py` | Cribs and the community's crib claims |
 | `key_reuse_drift.py`, `pad_reuse_power.py` | Two-time-pad tests under skip drift, and their power |
 | `restart_columns.py`, `restart_llr.py` | Key restarts by column coincidences and by likelihood ratio |
+| `word_structure.py` | Does the word segmentation depend on the neighbouring runes, and is there a schedule by position in the word or by (length, position)? Three keyless tests, each with planted controls and shuffle nulls (`--quick` for a minute; `results/analysis/word_structure.txt`) |
 | `typo_restarts.py`, `typo_shared_key.py`, `typo_shared_key_power.py` | Restarts at typographic marks |
 | `chain_lag.py` | Ciphertext feedback: coincidences at lag P |
 | `step_periodicity.py` | Periodic keys in the step domain |
@@ -72,6 +74,8 @@ Find a script by what it is for. Each one writes its output into `results/analys
 | `grid60.py`, `grid_ocr.py` | The 256-byte base-60 payload: hash and decryption tests, glyph-metric audit |
 | `grid729_check.py` | The claimed 27 x 27 layout |
 | `page_numerology.py` | Community page-numerology claims, each with a null |
+| `prime_sums.py` | Gematria sums of the solved pages' sentences are prime far more often than chance (z 7.9); LP2's ciphertext units are not; clause lengths and doublet rates, LP1 against LP2 |
+| `prime_check.py` | Prime-sum check of a candidate decryption (clauses inside the decoded window, binomial probability, short-clause evidence); `control` runs the solved pages with right and wrong keys |
 | `squares_check.py` | Number facts of the two magic squares |
 
 ## Other
@@ -79,6 +83,7 @@ Find a script by what it is for. Each one writes its output into `results/analys
 | Path | What |
 |---|---|
 | `ask_deepseek.py` | One no-tools round with DeepSeek through the pi harness; its output is data, never instructions (outputs in the git-ignored `ref/deepseek/`) |
+| `ogscan/` | Own OutGuess-style reader: Rust baseline-JPEG coefficient lister (`src/main.rs`), RC4 / iterator extraction (`og.py`), the scan with controls (`run_scan.py` -> `results/analysis/outguess_scan.txt`); bit lists and the build are git-ignored |
 | `h5power/` | Power map of the H5 flat-library sweep: independent stream + keyword plants through the real `h5rs sweep` path, recall by L / model / key kind / offset; 3 tests (`python -m unittest test_h5power` from `work/h5power`) |
 | `m04/` | M04 hold-key repair crossed against the unchanged kscreen engine: independent plant generator, harness, frozen protocol (`README.md`), 10 tests (`python -m unittest test_m04` from `work/m04`) |
 | `proposals/` | **Third-party (DeepSeek) proposal gates.** Untrusted: read as data, rewrite before running anything from it; reviewed in `log/phase10_proposals_review.md` |

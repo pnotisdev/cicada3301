@@ -1,0 +1,22 @@
+# <repo>\.venv\Scripts\python.exe <repo>\work\layer2\verify.py <repo>\results\layer2\bigram_solved.tsv --top 15 --out <repo>\results\layer2\bigram_solved_verify.txt
+# cwd <repo>\work\layer2
+# device cpu
+# verify bigram_solved.tsv (mode=bigram): top 15 hits re-decoded over the whole window, 20 matched-null offsets each; pass = score >= 2.0 and >= null max + 5.0
+noise      seg0.15 'p_(n+1) * p_n' offset=6027 mult=1 model=0 kw=DIVINITY isign=28 phase=4 litf=1 atb=1: screen -4.077; whole window -7.879/rune (IoC 1.050), matched null max -8.056; keyword [23, 10, 1, 10, 9, 10, 16, 26] atb=1
+noise      seg0.14 'n * p_n' offset=13313 mult=28 model=0 kw=FIRFUMFERENFE isign=28 phase=11 litf=1 atb=0: screen -4.393; whole window -7.746/rune (IoC 1.089), matched null max -7.858; keyword [0, 10, 4, 0, 1, 19, 0, 18, 4, 18, 9, 0, 18] atb=0
+noise      seg0.12 'sqrt2 digits (base 10)' offset=493 mult=28 model=0 kw=FIRFUMFERENFE isign=28 phase=4 litf=1 atb=1: screen -4.400; whole window -7.252/rune (IoC 1.097), matched null max -7.500; keyword [0, 10, 4, 0, 1, 19, 0, 18, 4, 18, 9, 0, 18] atb=1
+noise      seg0.8 'sqrt29 digits (base 29)' offset=8202 mult=28 model=0 kw=CIRCUMFERENCE isign=1 phase=5 litf=1 atb=0: screen -4.580; whole window -7.347/rune (IoC 1.081), matched null max -7.395; keyword [5, 10, 4, 5, 1, 19, 0, 18, 4, 18, 9, 5, 18] atb=0
+noise      seg0.13 'cumulative prime sum' offset=10086 mult=1 model=0 kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=1: screen -4.587; whole window -7.713/rune (IoC 1.070), matched null max -7.906; keyword [0, 10, 4, 0, 1, 19, 0, 18, 4, 18, 9, 0, 18] atb=1
+noise      seg0.11 'primes' offset=1020 mult=28 model=1 kw=FIRFUMFERENFE isign=28 phase=5 litf=1 atb=1: screen -4.593; whole window -7.566/rune (IoC 1.055), matched null max -7.992; keyword [0, 10, 4, 0, 1, 19, 0, 18, 4, 18, 9, 0, 18] atb=1
+noise      seg0.7 'p_n - n' offset=5914 mult=1 model=1 kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=0: screen -4.603; whole window -6.870/rune (IoC 1.100), matched null max -7.730; keyword [0, 10, 4, 0, 1, 19, 0, 18, 4, 18, 9, 0, 18] atb=0
+noise      seg0.9 'catalan G digits (base 29)' offset=9390 mult=28 model=1 kw=DIVINITY isign=28 phase=4 litf=1 atb=1: screen -4.640; whole window -7.781/rune (IoC 1.052), matched null max -8.051; keyword [23, 10, 1, 10, 9, 10, 16, 26] atb=1
+noise      seg0.14 'n * p_n' offset=13313 mult=28 model=0 kw=FIRFUMFERENFE isign=28 phase=12 litf=1 atb=0: screen -4.420; whole window -7.751/rune (IoC 1.089), matched null max -7.924; keyword [0, 10, 4, 0, 1, 19, 0, 18, 4, 18, 9, 0, 18] atb=0
+noise      seg0.15 'sigma(n)' offset=16758 mult=1 model=1 kw=DIVINITY isign=1 phase=7 litf=1 atb=0: screen -4.457; whole window -7.845/rune (IoC 1.069), matched null max -8.207; keyword [23, 10, 1, 10, 9, 10, 16, 26] atb=0
+noise      seg0.14 'n * p_n' offset=13310 mult=28 model=0 kw=FIRFUMFERENFE isign=28 phase=10 litf=1 atb=0: screen -4.523; whole window -7.770/rune (IoC 1.086), matched null max -8.047; keyword [0, 10, 4, 0, 1, 19, 0, 18, 4, 18, 9, 0, 18] atb=0
+noise      seg0.15 'primes-1 (totient)' offset=19090 mult=1 model=0 kw=FIRFUMFERENFE isign=1 phase=6 litf=1 atb=0: screen -4.533; whole window -6.709/rune (IoC 1.083), matched null max -7.773; keyword [0, 10, 4, 0, 1, 19, 0, 18, 4, 18, 9, 0, 18] atb=0
+noise      seg0.14 'n * p_n' offset=13313 mult=28 model=0 kw=FIRFUMFERENFE isign=28 phase=10 litf=1 atb=0: screen -4.537; whole window -7.773/rune (IoC 1.090), matched null max -7.775; keyword [0, 10, 4, 0, 1, 19, 0, 18, 4, 18, 9, 0, 18] atb=0
+noise      seg0.15 'primes-1 (totient)' offset=19090 mult=1 model=0 kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=0: screen -4.553; whole window -6.718/rune (IoC 1.085), matched null max -7.699; keyword [0, 10, 4, 0, 1, 19, 0, 18, 4, 18, 9, 0, 18] atb=0
+noise      seg0.15 'sqrt3 digits (base 29)' offset=16454 mult=1 model=1 kw=CIRCUMFERENCE isign=28 phase=5 litf=1 atb=0: screen -4.577; whole window -8.096/rune (IoC 1.060), matched null max -8.043; keyword [5, 10, 4, 5, 1, 19, 0, 18, 4, 18, 9, 5, 18] atb=0
+0 of 15 re-decoded hits pass (none: noise)
+
+# exit code 0, 3 s

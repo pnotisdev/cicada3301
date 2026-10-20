@@ -1,0 +1,6 @@
+# gpu4h (2026-10-19): about 3-4 h on the desktop GPU, 2 CPU threads. Run: python jobs/jobqueue.py gpu4h jobs/queues/gpu4h.txt
+# The boundary-free full-seed sweeps of sections 0.8-0.15 (tag "all", a fresh seed per section; window 0.7 was swept for all ten generators, see STATUS.md row 4).
+# The runner stops before a step whose estimate (2 h) would exceed the 4 h budget, so this covers about two generators (py3, java); the rest resume with the same command.
+# Controls run first (work/tests/test_bgmt.py: generators identical to the CUDA kernel, planted seeds recovered, random ciphertext gives no candidate).
+# A prior-odds note: this tests whether a standard generator's seed is the key. GPT's frontier review ranked it low; it is queued because the GPU is otherwise idle.
+prng-bg-all | {PY} jobs/overnight.py run prng-bg --lane gpu --device cuda --threads 2 --hours 4

@@ -1,0 +1,530 @@
+# 2026-10-19 10:51:31 start: {PY} jobs/overnight.py run prng-bg --lane gpu --device cuda --threads 2 --hours 4
+[10:51:33] [device] ok   CUDA probe: cuda ok: NVIDIA GeForce RTX 2080 Ti (cc 7.5, 68 SMs, 11.0 GiB) (2 s)
+[10:51:36] [device] ok   kscreen port, decode by decode: GPU selfcheck passed (the fallback kernel ran 2594 of these decodes) (3 s)
+[10:51:44] [device] ok   seed-sweep port, decode by decode: GPU selfcheck passed (8 s)
+[10:52:00] [device] ok   kscreen planted-key controls through CUDA: SELFTEST PASSED (16 s)
+[10:52:00] [device] cuda: validated, GPU backends will be used for the kscreen screens and the seed sweeps
+[10:52:00] [overnight] desktop lane gpu: 2 campaigns, 25 steps to run (~20.6 h by the rough estimates), 2 threads, device cuda, budget 4.0 h
+
+== setup: Build engines and data
+[10:52:00] [1/25 setup/build-phpmt cpu] start (est. 0.02 h)
+[10:52:02] [1/25 setup/build-phpmt cpu]     Finished `release` profile [optimized] target(s) in 0.14s
+[10:52:02] [1/25 setup/build-phpmt cpu] ok in 1s
+[10:52:02] [2/25 setup/build-walk cpu] start (est. 0.02 h)
+[10:52:02] [2/25 setup/build-walk cpu]     Finished `release` profile [optimized] target(s) in 0.34s
+[10:52:02] [2/25 setup/build-walk cpu] ok in 0s
+[10:52:02] [3/25 setup/build-kscreen cpu] start (est. 0.02 h)
+[10:52:03] [3/25 setup/build-kscreen cpu]     Finished `release` profile [optimized] target(s) in 0.23s
+[10:52:03] [3/25 setup/build-kscreen cpu] ok in 0s
+[10:52:03] [4/25 setup/fetch-data cpu] start (est. 0.02 h)
+[10:52:04] [4/25 setup/fetch-data cpu] lp_master.txt          cached
+[10:52:04] [4/25 setup/fetch-data cpu] lp_keys.txt            cached
+[10:52:04] [4/25 setup/fetch-data cpu] lp_translation.txt     cached
+[10:52:04] [4/25 setup/fetch-data cpu] english_20k.txt        cached
+[10:52:04] [4/25 setup/fetch-data cpu] emerson_essays1.txt    cached
+[10:52:04] [4/25 setup/fetch-data cpu] lp_verified.txt        built (6 errata lines applied)
+[10:52:04] [4/25 setup/fetch-data cpu] ok in 0s
+[10:52:04] [overnight] done  setup/data-phpmt
+[10:52:04] [overnight] done  setup/data-walk
+[10:52:04] [overnight] done  setup/data-kscreen
+
+== prng-bg: Seeded-PRNG pads with a boundary-free score (English rune-bigram log-likelihood), window 0.7 (and every section)
+[10:52:04] [5/25 prng-bg/controls cuda] start (est. 0.02 h)
+[10:52:06] [5/25 prng-bg/controls cuda] test_planted_seed_is_recovered_for_every_generator (work.tests.test_bgmt.BgSweep.test_planted_seed_is_recovered_for_every_generator) ... ok
+[10:52:06] [5/25 prng-bg/controls cuda] test_random_ciphertext_gives_no_candidate (work.tests.test_bgmt.BgSweep.test_random_ciphertext_gives_no_candidate) ... ok
+[10:52:07] [5/25 prng-bg/controls cuda] test_scores_equal_the_python_reference (work.tests.test_bgmt.BgSweep.test_scores_equal_the_python_reference) ... ok
+[10:52:07] [5/25 prng-bg/controls cuda] test_separators_do_not_matter (work.tests.test_bgmt.BgSweep.test_separators_do_not_matter)
+[10:52:07] [5/25 prng-bg/controls cuda] the dictionary score of phpmt cannot see a planted seed once LP2's word separators replace the English words' own; this one has none ... ok
+[10:52:07] [5/25 prng-bg/controls cuda] test_generator_section_is_phpmts (work.tests.test_bgmt.Sections.test_generator_section_is_phpmts) ... ok
+[10:52:07] [5/25 prng-bg/controls cuda] ----------------------------------------------------------------------
+[10:52:07] [5/25 prng-bg/controls cuda] Ran 5 tests in 2.075s
+[10:52:07] [5/25 prng-bg/controls cuda] OK
+[10:52:07] [5/25 prng-bg/controls cuda] GATE PASSED
+[10:52:08] [5/25 prng-bg/controls cuda] ok in 3s
+[10:52:08] [overnight] done  prng-bg/py3-07
+[10:52:08] [overnight] done  prng-bg/py3-07-verify
+[10:52:08] [overnight] done  prng-bg/java-07
+[10:52:08] [overnight] done  prng-bg/java-07-verify
+[10:52:08] [overnight] done  prng-bg/php-07
+[10:52:08] [overnight] done  prng-bg/php-07-verify
+[10:52:08] [overnight] done  prng-bg/glibc-07
+[10:52:08] [overnight] done  prng-bg/glibc-07-verify
+[10:52:08] [overnight] done  prng-bg/mt32-07
+[10:52:08] [overnight] done  prng-bg/mt32-07-verify
+[10:52:08] [overnight] done  prng-bg/msvc-07
+[10:52:08] [overnight] done  prng-bg/msvc-07-verify
+[10:52:08] [overnight] done  prng-bg/drand48-07
+[10:52:08] [overnight] done  prng-bg/drand48-07-verify
+[10:52:08] [overnight] done  prng-bg/ruby-07
+[10:52:08] [overnight] done  prng-bg/ruby-07-verify
+[10:52:08] [overnight] done  prng-bg/mt31-07
+[10:52:08] [overnight] done  prng-bg/mt31-07-verify
+[10:52:08] [overnight] done  prng-bg/net-07
+[10:52:08] [overnight] done  prng-bg/net-07-verify
+[10:52:08] [6/25 prng-bg/py3-all cuda] start (est. 2.00 h)
+[10:52:09] [6/25 prng-bg/py3-all cuda] bg: py3 sweep of 4294967296 seeds, 8 windows x 16 variants on CUDA NVIDIA GeForce RTX 2080 Ti
+[10:52:29] [6/25 prng-bg/py3-all cuda]   0.43%  18,341,621 seeds  912,103 seeds/s  eta 1h18m
+[10:52:49] [6/25 prng-bg/py3-all cuda]   0.84%  36,173,331 seeds  898,388 seeds/s  eta 1h19m
+[10:53:09] [6/25 prng-bg/py3-all cuda]   1.34%  57,584,737 seeds  954,714 seeds/s  eta 1h13m
+[10:53:30] [6/25 prng-bg/py3-all cuda]   1.87%  80,230,538 seeds  997,508 seeds/s  eta 1h10m
+[10:53:50] [6/25 prng-bg/py3-all cuda]   2.39%  102,562,707 seeds  1,018,364 seeds/s  eta 1h08m
+[10:54:10] [6/25 prng-bg/py3-all cuda]   2.83%  121,538,247 seeds  1,005,680 seeds/s  eta 1h09m
+[10:54:30] [6/25 prng-bg/py3-all cuda]   3.34%  143,549,623 seeds  1,017,218 seeds/s  eta 1h08m
+[10:54:51] [6/25 prng-bg/py3-all cuda]   3.84%  164,900,125 seeds  1,021,601 seeds/s  eta 1h07m
+[10:55:11] [6/25 prng-bg/py3-all cuda]   4.38%  188,036,632 seeds  1,035,598 seeds/s  eta 1h06m
+[10:55:31] [6/25 prng-bg/py3-all cuda]   4.89%  210,013,764 seeds  1,041,739 seeds/s  eta 1h05m
+[10:55:51] [6/25 prng-bg/py3-all cuda]   5.45%  233,906,932 seeds  1,054,761 seeds/s  eta 1h04m
+[10:56:11] [6/25 prng-bg/py3-all cuda]   6.00%  257,603,293 seeds  1,064,853 seeds/s  eta 1h03m
+[10:56:31] [6/25 prng-bg/py3-all cuda]   6.55%  281,349,644 seeds  1,073,692 seeds/s  eta 1h02m
+[10:56:51] [6/25 prng-bg/py3-all cuda]   7.11%  305,395,335 seeds  1,082,284 seeds/s  eta 1h01m
+[10:57:12] [6/25 prng-bg/py3-all cuda]   7.64%  328,180,209 seeds  1,085,009 seeds/s  eta 1h00m
+[10:57:32] [6/25 prng-bg/py3-all cuda]   8.19%  351,900,170 seeds  1,090,886 seeds/s  eta 1h00m
+[10:57:52] [6/25 prng-bg/py3-all cuda]   8.73%  374,969,559 seeds  1,093,960 seeds/s  eta 59m43s
+[10:58:12] [6/25 prng-bg/py3-all cuda]   9.22%  396,006,881 seeds  1,091,479 seeds/s  eta 59m32s
+[10:58:32] [6/25 prng-bg/py3-all cuda]   9.78%  419,849,374 seeds  1,096,382 seeds/s  eta 58m54s
+[10:58:52] [6/25 prng-bg/py3-all cuda]  10.33%  443,626,040 seeds  1,100,640 seeds/s  eta 58m19s
+[10:59:12] [6/25 prng-bg/py3-all cuda]  10.86%  466,307,827 seeds  1,101,840 seeds/s  eta 57m55s
+[10:59:32] [6/25 prng-bg/py3-all cuda]  11.40%  489,792,184 seeds  1,104,797 seeds/s  eta 57m24s
+[10:59:53] [6/25 prng-bg/py3-all cuda]  11.97%  513,951,912 seeds  1,108,955 seeds/s  eta 56m50s
+[11:00:13] [6/25 prng-bg/py3-all cuda]  12.53%  538,175,220 seeds  1,112,951 seeds/s  eta 56m16s
+[11:00:33] [6/25 prng-bg/py3-all cuda]  13.07%  561,247,336 seeds  1,114,282 seeds/s  eta 55m51s
+[11:00:53] [6/25 prng-bg/py3-all cuda]  13.63%  585,524,373 seeds  1,117,870 seeds/s  eta 55m18s
+[11:01:13] [6/25 prng-bg/py3-all cuda]  14.20%  609,839,827 seeds  1,121,236 seeds/s  eta 54m47s
+[11:01:33] [6/25 prng-bg/py3-all cuda]  14.72%  632,197,592 seeds  1,120,819 seeds/s  eta 54m28s
+[11:01:53] [6/25 prng-bg/py3-all cuda]  15.29%  656,598,287 seeds  1,123,998 seeds/s  eta 53m57s
+[11:02:13] [6/25 prng-bg/py3-all cuda]  15.86%  680,970,416 seeds  1,126,924 seeds/s  eta 53m27s
+[11:02:34] [6/25 prng-bg/py3-all cuda]  16.42%  705,284,946 seeds  1,129,552 seeds/s  eta 52m58s
+[11:02:54] [6/25 prng-bg/py3-all cuda]  16.98%  729,462,601 seeds  1,131,694 seeds/s  eta 52m31s
+[11:03:14] [6/25 prng-bg/py3-all cuda]  17.54%  753,423,699 seeds  1,133,555 seeds/s  eta 52m04s
+[11:03:34] [6/25 prng-bg/py3-all cuda]  18.11%  777,806,388 seeds  1,135,868 seeds/s  eta 51m36s
+[11:03:54] [6/25 prng-bg/py3-all cuda]  18.68%  802,101,811 seeds  1,137,917 seeds/s  eta 51m10s
+[11:04:14] [6/25 prng-bg/py3-all cuda]  19.24%  826,440,966 seeds  1,139,922 seeds/s  eta 50m43s
+[11:04:34] [6/25 prng-bg/py3-all cuda]  19.81%  850,843,530 seeds  1,141,903 seeds/s  eta 50m16s
+[11:04:54] [6/25 prng-bg/py3-all cuda]  20.38%  875,146,243 seeds  1,143,623 seeds/s  eta 49m50s
+[11:05:15] [6/25 prng-bg/py3-all cuda]  20.92%  898,634,438 seeds  1,144,166 seeds/s  eta 49m28s
+[11:05:35] [6/25 prng-bg/py3-all cuda]  21.49%  922,916,669 seeds  1,145,743 seeds/s  eta 49m03s
+[11:05:55] [6/25 prng-bg/py3-all cuda]  22.02%  945,710,691 seeds  1,145,422 seeds/s  eta 48m44s
+[11:06:15] [6/25 prng-bg/py3-all cuda]  22.58%  969,779,133 seeds  1,146,613 seeds/s  eta 48m20s
+[11:06:35] [6/25 prng-bg/py3-all cuda]  23.10%  992,020,198 seeds  1,145,599 seeds/s  eta 48m03s
+[11:06:55] [6/25 prng-bg/py3-all cuda]  23.63%  1,014,870,264 seeds  1,145,426 seeds/s  eta 47m44s
+[11:07:15] [6/25 prng-bg/py3-all cuda]  24.19%  1,039,039,385 seeds  1,146,684 seeds/s  eta 47m19s
+[11:07:36] [6/25 prng-bg/py3-all cuda]  24.72%  1,061,744,924 seeds  1,146,145 seeds/s  eta 47m01s
+[11:07:56] [6/25 prng-bg/py3-all cuda]  25.29%  1,086,208,238 seeds  1,147,658 seeds/s  eta 46m36s
+[11:08:16] [6/25 prng-bg/py3-all cuda]  25.85%  1,110,229,165 seeds  1,148,596 seeds/s  eta 46m13s
+[11:08:36] [6/25 prng-bg/py3-all cuda]  26.41%  1,134,235,732 seeds  1,149,505 seeds/s  eta 45m50s
+[11:08:56] [6/25 prng-bg/py3-all cuda]  26.96%  1,158,077,102 seeds  1,150,077 seeds/s  eta 45m28s
+[11:09:16] [6/25 prng-bg/py3-all cuda]  27.54%  1,182,640,833 seeds  1,151,461 seeds/s  eta 45m03s
+[11:09:36] [6/25 prng-bg/py3-all cuda]  28.05%  1,204,609,052 seeds  1,150,236 seeds/s  eta 44m47s
+[11:09:57] [6/25 prng-bg/py3-all cuda]  28.54%  1,225,662,023 seeds  1,148,284 seeds/s  eta 44m33s
+[11:10:17] [6/25 prng-bg/py3-all cuda]  29.06%  1,248,177,602 seeds  1,147,755 seeds/s  eta 44m15s
+[11:10:37] [6/25 prng-bg/py3-all cuda]  29.61%  1,271,926,892 seeds  1,148,126 seeds/s  eta 43m53s
+[11:10:57] [6/25 prng-bg/py3-all cuda]  30.13%  1,294,205,809 seeds  1,147,459 seeds/s  eta 43m35s
+[11:11:17] [6/25 prng-bg/py3-all cuda]  30.70%  1,318,465,010 seeds  1,148,480 seeds/s  eta 43m12s
+[11:11:37] [6/25 prng-bg/py3-all cuda]  31.26%  1,342,734,291 seeds  1,149,475 seeds/s  eta 42m48s
+[11:11:58] [6/25 prng-bg/py3-all cuda]  31.75%  1,363,727,481 seeds  1,147,594 seeds/s  eta 42m34s
+[11:12:18] [6/25 prng-bg/py3-all cuda]  32.24%  1,384,772,630 seeds  1,145,896 seeds/s  eta 42m20s
+[11:12:38] [6/25 prng-bg/py3-all cuda]  32.77%  1,407,271,243 seeds  1,145,464 seeds/s  eta 42m01s
+[11:12:58] [6/25 prng-bg/py3-all cuda]  33.34%  1,431,954,913 seeds  1,146,768 seeds/s  eta 41m37s
+[11:13:18] [6/25 prng-bg/py3-all cuda]  33.93%  1,457,315,688 seeds  1,148,572 seeds/s  eta 41m11s
+[11:13:38] [6/25 prng-bg/py3-all cuda]  34.47%  1,480,353,286 seeds  1,148,416 seeds/s  eta 40m51s
+[11:13:58] [6/25 prng-bg/py3-all cuda]  35.05%  1,505,391,923 seeds  1,149,841 seeds/s  eta 40m26s
+[11:14:19] [6/25 prng-bg/py3-all cuda]  35.63%  1,530,237,133 seeds  1,151,114 seeds/s  eta 40m02s
+[11:14:39] [6/25 prng-bg/py3-all cuda]  36.19%  1,554,327,489 seeds  1,151,801 seeds/s  eta 39m39s
+[11:14:59] [6/25 prng-bg/py3-all cuda]  36.75%  1,578,295,483 seeds  1,152,395 seeds/s  eta 39m17s
+[11:15:19] [6/25 prng-bg/py3-all cuda]  37.28%  1,601,326,752 seeds  1,152,238 seeds/s  eta 38m58s
+[11:15:39] [6/25 prng-bg/py3-all cuda]  37.82%  1,624,542,385 seeds  1,152,246 seeds/s  eta 38m38s
+[11:15:59] [6/25 prng-bg/py3-all cuda]  38.38%  1,648,465,005 seeds  1,152,739 seeds/s  eta 38m16s
+[11:16:19] [6/25 prng-bg/py3-all cuda]  38.94%  1,672,359,273 seeds  1,153,233 seeds/s  eta 37m54s
+[11:16:39] [6/25 prng-bg/py3-all cuda]  39.49%  1,696,255,581 seeds  1,153,708 seeds/s  eta 37m32s
+[11:17:00] [6/25 prng-bg/py3-all cuda]  40.05%  1,720,247,526 seeds  1,154,241 seeds/s  eta 37m11s
+[11:17:20] [6/25 prng-bg/py3-all cuda]  40.61%  1,744,308,614 seeds  1,154,786 seeds/s  eta 36m49s
+[11:17:40] [6/25 prng-bg/py3-all cuda]  41.17%  1,768,296,126 seeds  1,155,286 seeds/s  eta 36m27s
+[11:18:00] [6/25 prng-bg/py3-all cuda]  41.73%  1,792,349,201 seeds  1,155,809 seeds/s  eta 36m05s
+[11:18:20] [6/25 prng-bg/py3-all cuda]  42.29%  1,816,257,103 seeds  1,156,226 seeds/s  eta 35m44s
+[11:18:40] [6/25 prng-bg/py3-all cuda]  42.84%  1,840,051,379 seeds  1,156,570 seeds/s  eta 35m23s
+[11:19:00] [6/25 prng-bg/py3-all cuda]  43.40%  1,863,881,597 seeds  1,156,907 seeds/s  eta 35m01s
+[11:19:20] [6/25 prng-bg/py3-all cuda]  43.95%  1,887,763,427 seeds  1,157,280 seeds/s  eta 34m40s
+[11:19:41] [6/25 prng-bg/py3-all cuda]  44.50%  1,911,215,654 seeds  1,157,317 seeds/s  eta 34m20s
+[11:20:01] [6/25 prng-bg/py3-all cuda]  45.04%  1,934,532,063 seeds  1,157,248 seeds/s  eta 34m00s
+[11:20:21] [6/25 prng-bg/py3-all cuda]  45.51%  1,954,538,811 seeds  1,155,272 seeds/s  eta 33m46s
+[11:20:41] [6/25 prng-bg/py3-all cuda]  46.05%  1,977,983,251 seeds  1,155,425 seeds/s  eta 33m25s
+[11:21:01] [6/25 prng-bg/py3-all cuda]  46.60%  2,001,587,515 seeds  1,155,609 seeds/s  eta 33m05s
+[11:21:21] [6/25 prng-bg/py3-all cuda]  47.16%  2,025,496,067 seeds  1,155,998 seeds/s  eta 32m43s
+[11:21:41] [6/25 prng-bg/py3-all cuda]  47.72%  2,049,407,900 seeds  1,156,367 seeds/s  eta 32m22s
+[11:22:02] [6/25 prng-bg/py3-all cuda]  48.27%  2,073,389,063 seeds  1,156,768 seeds/s  eta 32m01s
+[11:22:22] [6/25 prng-bg/py3-all cuda]  48.83%  2,097,346,989 seeds  1,157,147 seeds/s  eta 31m39s
+[11:22:42] [6/25 prng-bg/py3-all cuda]  49.39%  2,121,235,825 seeds  1,157,484 seeds/s  eta 31m18s
+[11:23:02] [6/25 prng-bg/py3-all cuda]  49.93%  2,144,531,571 seeds  1,157,442 seeds/s  eta 30m58s
+[11:23:22] [6/25 prng-bg/py3-all cuda]  50.49%  2,168,567,515 seeds  1,157,834 seeds/s  eta 30m37s
+[11:23:42] [6/25 prng-bg/py3-all cuda]  51.05%  2,192,627,717 seeds  1,158,229 seeds/s  eta 30m15s
+[11:24:03] [6/25 prng-bg/py3-all cuda]  51.60%  2,216,126,287 seeds  1,158,246 seeds/s  eta 29m55s
+[11:24:23] [6/25 prng-bg/py3-all cuda]  52.10%  2,237,470,172 seeds  1,157,193 seeds/s  eta 29m38s
+[11:24:43] [6/25 prng-bg/py3-all cuda]  52.62%  2,260,181,518 seeds  1,156,950 seeds/s  eta 29m19s
+[11:25:03] [6/25 prng-bg/py3-all cuda]  53.19%  2,284,396,130 seeds  1,157,416 seeds/s  eta 28m57s
+[11:25:23] [6/25 prng-bg/py3-all cuda]  53.74%  2,308,234,392 seeds  1,157,698 seeds/s  eta 28m36s
+[11:25:43] [6/25 prng-bg/py3-all cuda]  54.30%  2,332,074,876 seeds  1,157,972 seeds/s  eta 28m15s
+[11:26:03] [6/25 prng-bg/py3-all cuda]  54.85%  2,355,840,151 seeds  1,158,212 seeds/s  eta 27m54s
+[11:26:23] [6/25 prng-bg/py3-all cuda]  55.40%  2,379,585,256 seeds  1,158,428 seeds/s  eta 27m33s
+[11:26:44] [6/25 prng-bg/py3-all cuda]  55.92%  2,401,801,846 seeds  1,157,859 seeds/s  eta 27m15s
+[11:27:04] [6/25 prng-bg/py3-all cuda]  56.39%  2,422,000,124 seeds  1,156,378 seeds/s  eta 27m00s
+[11:27:24] [6/25 prng-bg/py3-all cuda]  56.86%  2,442,239,367 seeds  1,154,953 seeds/s  eta 26m44s
+[11:27:44] [6/25 prng-bg/py3-all cuda]  57.35%  2,463,002,474 seeds  1,153,802 seeds/s  eta 26m28s
+[11:28:04] [6/25 prng-bg/py3-all cuda]  57.81%  2,482,971,537 seeds  1,152,284 seeds/s  eta 26m13s
+[11:28:24] [6/25 prng-bg/py3-all cuda]  58.29%  2,503,668,975 seeds  1,151,148 seeds/s  eta 25m56s
+[11:28:44] [6/25 prng-bg/py3-all cuda]  58.78%  2,524,413,318 seeds  1,150,050 seeds/s  eta 25m40s
+[11:29:04] [6/25 prng-bg/py3-all cuda]  59.25%  2,544,578,171 seeds  1,148,695 seeds/s  eta 25m24s
+[11:29:24] [6/25 prng-bg/py3-all cuda]  59.73%  2,565,484,251 seeds  1,147,728 seeds/s  eta 25m07s
+[11:29:45] [6/25 prng-bg/py3-all cuda]  60.31%  2,590,176,607 seeds  1,148,445 seeds/s  eta 24m44s
+[11:30:05] [6/25 prng-bg/py3-all cuda]  60.88%  2,614,681,881 seeds  1,149,059 seeds/s  eta 24m22s
+[11:30:25] [6/25 prng-bg/py3-all cuda]  61.45%  2,639,245,816 seeds  1,149,686 seeds/s  eta 24m00s
+[11:30:45] [6/25 prng-bg/py3-all cuda]  62.02%  2,663,748,168 seeds  1,150,277 seeds/s  eta 23m38s
+[11:31:05] [6/25 prng-bg/py3-all cuda]  62.59%  2,688,300,773 seeds  1,150,875 seeds/s  eta 23m16s
+[11:31:25] [6/25 prng-bg/py3-all cuda]  63.16%  2,712,735,967 seeds  1,151,431 seeds/s  eta 22m54s
+[11:31:45] [6/25 prng-bg/py3-all cuda]  63.73%  2,737,200,367 seeds  1,151,972 seeds/s  eta 22m32s
+[11:32:05] [6/25 prng-bg/py3-all cuda]  64.30%  2,761,720,922 seeds  1,152,535 seeds/s  eta 22m10s
+[11:32:26] [6/25 prng-bg/py3-all cuda]  64.87%  2,786,189,913 seeds  1,153,058 seeds/s  eta 21m49s
+[11:32:46] [6/25 prng-bg/py3-all cuda]  65.44%  2,810,681,225 seeds  1,153,584 seeds/s  eta 21m27s
+[11:33:06] [6/25 prng-bg/py3-all cuda]  66.01%  2,835,084,380 seeds  1,154,067 seeds/s  eta 21m05s
+[11:33:26] [6/25 prng-bg/py3-all cuda]  66.57%  2,859,187,521 seeds  1,154,424 seeds/s  eta 20m44s
+[11:33:46] [6/25 prng-bg/py3-all cuda]  67.14%  2,883,573,771 seeds  1,154,883 seeds/s  eta 20m22s
+[11:34:06] [6/25 prng-bg/py3-all cuda]  67.71%  2,907,937,398 seeds  1,155,337 seeds/s  eta 20m01s
+[11:34:26] [6/25 prng-bg/py3-all cuda]  68.27%  2,932,357,422 seeds  1,155,719 seeds/s  eta 19m39s
+[11:34:47] [6/25 prng-bg/py3-all cuda]  68.75%  2,952,973,302 seeds  1,154,684 seeds/s  eta 19m22s
+[11:35:07] [6/25 prng-bg/py3-all cuda]  69.21%  2,972,359,550 seeds  1,153,144 seeds/s  eta 19m07s
+[11:35:27] [6/25 prng-bg/py3-all cuda]  69.77%  2,996,613,060 seeds  1,153,517 seeds/s  eta 18m46s
+[11:35:47] [6/25 prng-bg/py3-all cuda]  70.29%  3,018,917,246 seeds  1,153,192 seeds/s  eta 18m27s
+[11:36:07] [6/25 prng-bg/py3-all cuda]  70.76%  3,039,320,489 seeds  1,152,065 seeds/s  eta 18m10s
+[11:36:27] [6/25 prng-bg/py3-all cuda]  71.25%  3,059,987,610 seeds  1,151,116 seeds/s  eta 17m53s
+[11:36:48] [6/25 prng-bg/py3-all cuda]  71.73%  3,080,583,064 seeds  1,150,169 seeds/s  eta 17m36s
+[11:37:08] [6/25 prng-bg/py3-all cuda]  72.20%  3,100,901,291 seeds  1,149,121 seeds/s  eta 17m19s
+[11:37:28] [6/25 prng-bg/py3-all cuda]  72.68%  3,121,551,917 seeds  1,148,220 seeds/s  eta 17m02s
+[11:37:48] [6/25 prng-bg/py3-all cuda]  73.18%  3,142,965,345 seeds  1,147,610 seeds/s  eta 16m44s
+[11:38:08] [6/25 prng-bg/py3-all cuda]  73.67%  3,164,032,879 seeds  1,146,826 seeds/s  eta 16m26s
+[11:38:28] [6/25 prng-bg/py3-all cuda]  74.16%  3,184,937,463 seeds  1,146,039 seeds/s  eta 16m09s
+[11:38:48] [6/25 prng-bg/py3-all cuda]  74.64%  3,205,645,420 seeds  1,145,210 seeds/s  eta 15m51s
+[11:39:08] [6/25 prng-bg/py3-all cuda]  75.12%  3,226,569,493 seeds  1,144,461 seeds/s  eta 15m34s
+[11:39:28] [6/25 prng-bg/py3-all cuda]  75.59%  3,246,691,710 seeds  1,143,475 seeds/s  eta 15m17s
+[11:39:49] [6/25 prng-bg/py3-all cuda]  76.03%  3,265,642,197 seeds  1,142,086 seeds/s  eta 15m01s
+[11:40:09] [6/25 prng-bg/py3-all cuda]  76.46%  3,284,034,326 seeds  1,140,531 seeds/s  eta 14m46s
+[11:40:29] [6/25 prng-bg/py3-all cuda]  76.90%  3,302,936,297 seeds  1,139,135 seeds/s  eta 14m31s
+[11:40:49] [6/25 prng-bg/py3-all cuda]  77.33%  3,321,194,624 seeds  1,137,488 seeds/s  eta 14m16s
+[11:41:09] [6/25 prng-bg/py3-all cuda]  77.76%  3,339,943,532 seeds  1,136,084 seeds/s  eta 14m01s
+[11:41:29] [6/25 prng-bg/py3-all cuda]  78.20%  3,358,837,055 seeds  1,134,747 seeds/s  eta 13m45s
+[11:41:49] [6/25 prng-bg/py3-all cuda]  78.64%  3,377,658,332 seeds  1,133,398 seeds/s  eta 13m29s
+[11:42:09] [6/25 prng-bg/py3-all cuda]  79.08%  3,396,500,877 seeds  1,132,072 seeds/s  eta 13m14s
+[11:42:30] [6/25 prng-bg/py3-all cuda]  79.52%  3,415,209,619 seeds  1,130,733 seeds/s  eta 12m58s
+[11:42:50] [6/25 prng-bg/py3-all cuda]  79.95%  3,434,022,092 seeds  1,129,438 seeds/s  eta 12m42s
+[11:43:10] [6/25 prng-bg/py3-all cuda]  80.39%  3,452,826,180 seeds  1,128,155 seeds/s  eta 12m26s
+[11:43:30] [6/25 prng-bg/py3-all cuda]  80.83%  3,471,548,783 seeds  1,126,869 seeds/s  eta 12m11s
+[11:43:50] [6/25 prng-bg/py3-all cuda]  81.27%  3,490,355,404 seeds  1,125,626 seeds/s  eta 11m55s
+[11:44:10] [6/25 prng-bg/py3-all cuda]  81.71%  3,509,505,375 seeds  1,124,506 seeds/s  eta 11m38s
+[11:44:30] [6/25 prng-bg/py3-all cuda]  82.16%  3,528,531,734 seeds  1,123,362 seeds/s  eta 11m22s
+[11:44:50] [6/25 prng-bg/py3-all cuda]  82.59%  3,547,192,884 seeds  1,122,114 seeds/s  eta 11m06s
+[11:45:10] [6/25 prng-bg/py3-all cuda]  83.03%  3,566,007,867 seeds  1,120,929 seeds/s  eta 10m50s
+[11:45:31] [6/25 prng-bg/py3-all cuda]  83.46%  3,584,720,042 seeds  1,119,735 seeds/s  eta 10m34s
+[11:45:51] [6/25 prng-bg/py3-all cuda]  83.90%  3,603,401,844 seeds  1,118,534 seeds/s  eta 10m18s
+[11:46:11] [6/25 prng-bg/py3-all cuda]  84.34%  3,622,279,157 seeds  1,117,424 seeds/s  eta 10m02s
+[11:46:31] [6/25 prng-bg/py3-all cuda]  84.78%  3,641,349,140 seeds  1,116,381 seeds/s  eta 9m45s
+[11:46:51] [6/25 prng-bg/py3-all cuda]  85.22%  3,660,101,235 seeds  1,115,250 seeds/s  eta 9m29s
+[11:47:11] [6/25 prng-bg/py3-all cuda]  85.65%  3,678,773,500 seeds  1,114,112 seeds/s  eta 9m13s
+[11:47:31] [6/25 prng-bg/py3-all cuda]  86.09%  3,697,502,344 seeds  1,113,004 seeds/s  eta 8m57s
+[11:47:51] [6/25 prng-bg/py3-all cuda]  86.52%  3,716,184,516 seeds  1,111,892 seeds/s  eta 8m41s
+[11:48:11] [6/25 prng-bg/py3-all cuda]  86.96%  3,734,750,909 seeds  1,110,764 seeds/s  eta 8m24s
+[11:48:32] [6/25 prng-bg/py3-all cuda]  87.39%  3,753,518,913 seeds  1,109,702 seeds/s  eta 8m08s
+[11:48:52] [6/25 prng-bg/py3-all cuda]  87.83%  3,772,200,167 seeds  1,108,635 seeds/s  eta 7m52s
+[11:49:12] [6/25 prng-bg/py3-all cuda]  88.26%  3,790,797,456 seeds  1,107,543 seeds/s  eta 7m35s
+[11:49:32] [6/25 prng-bg/py3-all cuda]  88.70%  3,809,465,722 seeds  1,106,460 seeds/s  eta 7m19s
+[11:49:52] [6/25 prng-bg/py3-all cuda]  89.16%  3,829,210,443 seeds  1,105,754 seeds/s  eta 7m01s
+[11:50:12] [6/25 prng-bg/py3-all cuda]  89.62%  3,849,205,240 seeds  1,105,110 seeds/s  eta 6m43s
+[11:50:32] [6/25 prng-bg/py3-all cuda]  90.08%  3,869,113,139 seeds  1,104,448 seeds/s  eta 6m26s
+[11:50:52] [6/25 prng-bg/py3-all cuda]  90.55%  3,889,210,422 seeds  1,103,847 seeds/s  eta 6m08s
+[11:51:13] [6/25 prng-bg/py3-all cuda]  91.02%  3,909,207,004 seeds  1,103,227 seeds/s  eta 5m50s
+[11:51:33] [6/25 prng-bg/py3-all cuda]  91.47%  3,928,763,174 seeds  1,102,483 seeds/s  eta 5m32s
+[11:51:53] [6/25 prng-bg/py3-all cuda]  91.94%  3,948,724,787 seeds  1,101,873 seeds/s  eta 5m14s
+[11:52:13] [6/25 prng-bg/py3-all cuda]  92.41%  3,968,786,872 seeds  1,101,289 seeds/s  eta 4m56s
+[11:52:33] [6/25 prng-bg/py3-all cuda]  92.87%  3,988,699,421 seeds  1,100,671 seeds/s  eta 4m38s
+[11:52:53] [6/25 prng-bg/py3-all cuda]  93.29%  4,006,868,442 seeds  1,099,563 seeds/s  eta 4m22s
+[11:53:13] [6/25 prng-bg/py3-all cuda]  93.73%  4,025,692,053 seeds  1,098,662 seeds/s  eta 4m05s
+[11:53:33] [6/25 prng-bg/py3-all cuda]  94.17%  4,044,500,650 seeds  1,097,768 seeds/s  eta 3m48s
+[11:53:54] [6/25 prng-bg/py3-all cuda]  94.61%  4,063,485,943 seeds  1,096,933 seeds/s  eta 3m31s
+[11:54:14] [6/25 prng-bg/py3-all cuda]  95.05%  4,082,263,848 seeds  1,096,047 seeds/s  eta 3m14s
+[11:54:34] [6/25 prng-bg/py3-all cuda]  95.49%  4,101,130,365 seeds  1,095,197 seeds/s  eta 2m57s
+[11:54:54] [6/25 prng-bg/py3-all cuda]  95.92%  4,119,892,832 seeds  1,094,327 seeds/s  eta 2m40s
+[11:55:14] [6/25 prng-bg/py3-all cuda]  96.36%  4,138,634,656 seeds  1,093,462 seeds/s  eta 2m23s
+[11:55:34] [6/25 prng-bg/py3-all cuda]  96.80%  4,157,354,914 seeds  1,092,601 seeds/s  eta 2m06s
+[11:55:54] [6/25 prng-bg/py3-all cuda]  97.23%  4,176,119,418 seeds  1,091,764 seeds/s  eta 1m49s
+[11:56:14] [6/25 prng-bg/py3-all cuda]  97.67%  4,194,875,630 seeds  1,090,928 seeds/s  eta 1m32s
+[11:56:35] [6/25 prng-bg/py3-all cuda]  98.11%  4,213,643,895 seeds  1,090,107 seeds/s  eta 1m15s
+[11:56:55] [6/25 prng-bg/py3-all cuda]  98.54%  4,232,223,867 seeds  1,089,238 seeds/s  eta 58s
+[11:57:15] [6/25 prng-bg/py3-all cuda]  98.97%  4,250,607,684 seeds  1,088,337 seeds/s  eta 41s
+[11:57:35] [6/25 prng-bg/py3-all cuda]  99.40%  4,269,361,983 seeds  1,087,540 seeds/s  eta 24s
+[11:57:55] [6/25 prng-bg/py3-all cuda]  99.84%  4,287,974,528 seeds  1,086,702 seeds/s  eta 6s
+[11:58:02] [6/25 prng-bg/py3-all cuda] swept 4294967296 seeds in 3953 s; best score None; candidates >= 300: 0
+[11:58:02] [6/25 prng-bg/py3-all cuda] hist (bins of 20 from -400) 0:430283186109 1:26516218117 2:22490109596 3:18463078606 4:14668740152 5:11276797551 6:8387825838 7:6035695928 8:4201045667 9:2827718874 10:1840241075 11:1157564110 12:703358515 13:412626007 14:233576031 15:127478115 16:67010945 17:33891825 18:16470532 19:7679933 20:3435634 21:1466285 22:598443
+[11:58:03] [6/25 prng-bg/py3-all cuda] ok in 1h05m
+[11:58:03] [7/25 prng-bg/py3-all-verify cpu] start (est. 0.05 h)
+[11:58:03] [7/25 prng-bg/py3-all-verify cpu] # boundary-free verification of the best 0 candidates of py3: bigram score per rune over the WHOLE section (a true key keeps about +10 per rune, a wrong one about -10.5 (measured on whole sections with random strings)), against the same decode with 8 random seeds
+[11:58:03] [7/25 prng-bg/py3-all-verify cpu] no candidate reached the sweep's floor
+[11:58:04] [7/25 prng-bg/py3-all-verify cpu] ok in 0s
+[11:58:04] [8/25 prng-bg/java-all cuda] start (est. 2.00 h)
+[11:58:06] [8/25 prng-bg/java-all cuda] bg: java sweep of 4294967296 seeds, 8 windows x 16 variants on CUDA NVIDIA GeForce RTX 2080 Ti
+[11:58:27] [8/25 prng-bg/java-all cuda]   0.46%  19,854,534 seeds  988,212 seeds/s  eta 1h12m
+[11:58:47] [8/25 prng-bg/java-all cuda]   0.92%  39,304,513 seeds  978,042 seeds/s  eta 1h12m
+[11:59:07] [8/25 prng-bg/java-all cuda]   1.37%  58,732,368 seeds  973,723 seeds/s  eta 1h12m
+[11:59:27] [8/25 prng-bg/java-all cuda]   1.82%  77,977,734 seeds  969,353 seeds/s  eta 1h12m
+[11:59:47] [8/25 prng-bg/java-all cuda]   2.26%  97,156,926 seeds  966,005 seeds/s  eta 1h12m
+[12:00:07] [8/25 prng-bg/java-all cuda]   2.71%  116,277,704 seeds  963,355 seeds/s  eta 1h12m
+[12:00:27] [8/25 prng-bg/java-all cuda]   3.16%  135,519,778 seeds  962,419 seeds/s  eta 1h12m
+[12:00:47] [8/25 prng-bg/java-all cuda]   3.61%  154,959,716 seeds  962,910 seeds/s  eta 1h11m
+[12:01:08] [8/25 prng-bg/java-all cuda]   4.05%  173,991,804 seeds  961,045 seeds/s  eta 1h11m
+[12:01:28] [8/25 prng-bg/java-all cuda]   4.50%  193,246,843 seeds  960,562 seeds/s  eta 1h11m
+[12:01:48] [8/25 prng-bg/java-all cuda]   4.95%  212,477,281 seeds  960,126 seeds/s  eta 1h10m
+[12:02:08] [8/25 prng-bg/java-all cuda]   5.40%  231,789,934 seeds  960,183 seeds/s  eta 1h10m
+[12:02:28] [8/25 prng-bg/java-all cuda]   5.84%  250,882,187 seeds  959,425 seeds/s  eta 1h10m
+[12:02:48] [8/25 prng-bg/java-all cuda]   6.29%  270,161,962 seeds  959,117 seeds/s  eta 1h09m
+[12:03:08] [8/25 prng-bg/java-all cuda]   6.73%  289,086,653 seeds  957,921 seeds/s  eta 1h09m
+[12:03:28] [8/25 prng-bg/java-all cuda]   7.17%  308,044,093 seeds  956,921 seeds/s  eta 1h09m
+[12:03:49] [8/25 prng-bg/java-all cuda]   7.61%  326,964,506 seeds  955,934 seeds/s  eta 1h09m
+[12:04:09] [8/25 prng-bg/java-all cuda]   8.05%  345,808,954 seeds  954,860 seeds/s  eta 1h08m
+[12:04:29] [8/25 prng-bg/java-all cuda]   8.51%  365,408,982 seeds  955,891 seeds/s  eta 1h08m
+[12:04:49] [8/25 prng-bg/java-all cuda]   8.96%  384,840,256 seeds  956,631 seeds/s  eta 1h08m
+[12:05:09] [8/25 prng-bg/java-all cuda]   9.46%  406,155,959 seeds  961,494 seeds/s  eta 1h07m
+[12:05:29] [8/25 prng-bg/java-all cuda]   9.99%  429,076,368 seeds  969,332 seeds/s  eta 1h06m
+[12:05:49] [8/25 prng-bg/java-all cuda]  10.51%  451,461,477 seeds  975,449 seeds/s  eta 1h05m
+[12:06:09] [8/25 prng-bg/java-all cuda]  11.07%  475,360,459 seeds  984,141 seeds/s  eta 1h04m
+[12:06:30] [8/25 prng-bg/java-all cuda]  11.63%  499,483,386 seeds  992,824 seeds/s  eta 1h03m
+[12:06:50] [8/25 prng-bg/java-all cuda]  12.17%  522,868,936 seeds  999,118 seeds/s  eta 1h02m
+[12:07:10] [8/25 prng-bg/java-all cuda]  12.71%  545,721,090 seeds  1,003,942 seeds/s  eta 1h02m
+[12:07:30] [8/25 prng-bg/java-all cuda]  13.23%  568,365,603 seeds  1,008,054 seeds/s  eta 1h01m
+[12:07:50] [8/25 prng-bg/java-all cuda]  13.68%  587,429,599 seeds  1,005,997 seeds/s  eta 1h01m
+[12:08:11] [8/25 prng-bg/java-all cuda]  14.10%  605,738,413 seeds  1,002,759 seeds/s  eta 1h01m
+[12:08:31] [8/25 prng-bg/java-all cuda]  14.55%  624,969,585 seeds  1,001,252 seeds/s  eta 1h01m
+[12:08:51] [8/25 prng-bg/java-all cuda]  15.00%  644,218,554 seeds  999,871 seeds/s  eta 1h00m
+[12:09:11] [8/25 prng-bg/java-all cuda]  15.45%  663,371,035 seeds  998,427 seeds/s  eta 1h00m
+[12:09:31] [8/25 prng-bg/java-all cuda]  15.89%  682,681,899 seeds  997,314 seeds/s  eta 1h00m
+[12:09:51] [8/25 prng-bg/java-all cuda]  16.34%  701,958,843 seeds  996,187 seeds/s  eta 1h00m
+[12:10:11] [8/25 prng-bg/java-all cuda]  16.79%  721,266,936 seeds  995,186 seeds/s  eta 59m51s
+[12:10:31] [8/25 prng-bg/java-all cuda]  17.24%  740,547,393 seeds  994,190 seeds/s  eta 59m35s
+[12:10:51] [8/25 prng-bg/java-all cuda]  17.69%  759,782,634 seeds  993,191 seeds/s  eta 59m19s
+[12:11:12] [8/25 prng-bg/java-all cuda]  18.14%  778,937,520 seeds  992,155 seeds/s  eta 59m04s
+[12:11:32] [8/25 prng-bg/java-all cuda]  18.58%  798,195,406 seeds  991,275 seeds/s  eta 58m48s
+[12:11:52] [8/25 prng-bg/java-all cuda]  19.03%  817,445,058 seeds  990,434 seeds/s  eta 58m31s
+[12:12:12] [8/25 prng-bg/java-all cuda]  19.48%  836,733,965 seeds  989,679 seeds/s  eta 58m14s
+[12:12:32] [8/25 prng-bg/java-all cuda]  19.93%  856,039,870 seeds  988,997 seeds/s  eta 57m57s
+[12:12:52] [8/25 prng-bg/java-all cuda]  20.38%  875,328,121 seeds  988,300 seeds/s  eta 57m40s
+[12:13:12] [8/25 prng-bg/java-all cuda]  20.83%  894,532,684 seeds  987,568 seeds/s  eta 57m23s
+[12:13:32] [8/25 prng-bg/java-all cuda]  21.28%  913,826,180 seeds  986,954 seeds/s  eta 57m06s
+[12:13:52] [8/25 prng-bg/java-all cuda]  21.72%  933,032,981 seeds  986,264 seeds/s  eta 56m49s
+[12:14:13] [8/25 prng-bg/java-all cuda]  22.16%  951,969,347 seeds  985,334 seeds/s  eta 56m33s
+[12:14:33] [8/25 prng-bg/java-all cuda]  22.62%  971,315,518 seeds  984,838 seeds/s  eta 56m15s
+[12:14:53] [8/25 prng-bg/java-all cuda]  23.06%  990,438,771 seeds  984,149 seeds/s  eta 55m58s
+[12:15:13] [8/25 prng-bg/java-all cuda]  23.51%  1,009,636,262 seeds  983,560 seeds/s  eta 55m40s
+[12:15:33] [8/25 prng-bg/java-all cuda]  23.95%  1,028,633,109 seeds  982,810 seeds/s  eta 55m23s
+[12:15:53] [8/25 prng-bg/java-all cuda]  24.39%  1,047,742,098 seeds  982,179 seeds/s  eta 55m06s
+[12:16:13] [8/25 prng-bg/java-all cuda]  24.84%  1,067,014,382 seeds  981,739 seeds/s  eta 54m48s
+[12:16:33] [8/25 prng-bg/java-all cuda]  25.29%  1,086,118,101 seeds  981,152 seeds/s  eta 54m30s
+[12:16:54] [8/25 prng-bg/java-all cuda]  25.73%  1,105,240,268 seeds  980,614 seeds/s  eta 54m13s
+[12:17:14] [8/25 prng-bg/java-all cuda]  26.18%  1,124,465,564 seeds  980,180 seeds/s  eta 53m55s
+[12:17:34] [8/25 prng-bg/java-all cuda]  26.63%  1,143,844,478 seeds  979,882 seeds/s  eta 53m36s
+[12:17:54] [8/25 prng-bg/java-all cuda]  27.09%  1,163,346,578 seeds  979,709 seeds/s  eta 53m16s
+[12:18:14] [8/25 prng-bg/java-all cuda]  27.54%  1,182,666,436 seeds  979,380 seeds/s  eta 52m58s
+[12:18:34] [8/25 prng-bg/java-all cuda]  27.99%  1,202,085,746 seeds  979,143 seeds/s  eta 52m39s
+[12:18:54] [8/25 prng-bg/java-all cuda]  28.44%  1,221,334,068 seeds  978,780 seeds/s  eta 52m20s
+[12:19:14] [8/25 prng-bg/java-all cuda]  28.88%  1,240,499,268 seeds  978,364 seeds/s  eta 52m02s
+[12:19:35] [8/25 prng-bg/java-all cuda]  29.33%  1,259,685,046 seeds  977,980 seeds/s  eta 51m44s
+[12:19:55] [8/25 prng-bg/java-all cuda]  29.78%  1,278,932,866 seeds  977,638 seeds/s  eta 51m25s
+[12:20:15] [8/25 prng-bg/java-all cuda]  30.22%  1,298,046,198 seeds  977,209 seeds/s  eta 51m07s
+[12:20:35] [8/25 prng-bg/java-all cuda]  30.66%  1,316,943,909 seeds  976,643 seeds/s  eta 50m49s
+[12:20:55] [8/25 prng-bg/java-all cuda]  31.10%  1,335,920,991 seeds  976,145 seeds/s  eta 50m31s
+[12:21:15] [8/25 prng-bg/java-all cuda]  31.55%  1,354,921,841 seeds  975,674 seeds/s  eta 50m13s
+[12:21:35] [8/25 prng-bg/java-all cuda]  31.99%  1,373,946,700 seeds  975,248 seeds/s  eta 49m55s
+[12:21:55] [8/25 prng-bg/java-all cuda]  32.43%  1,392,900,618 seeds  974,768 seeds/s  eta 49m37s
+[12:22:16] [8/25 prng-bg/java-all cuda]  32.87%  1,411,567,881 seeds  974,107 seeds/s  eta 49m20s
+[12:22:36] [8/25 prng-bg/java-all cuda]  33.30%  1,430,024,189 seeds  973,319 seeds/s  eta 49m03s
+[12:22:56] [8/25 prng-bg/java-all cuda]  33.73%  1,448,694,669 seeds  972,699 seeds/s  eta 48m46s
+[12:23:16] [8/25 prng-bg/java-all cuda]  34.16%  1,467,211,686 seeds  971,985 seeds/s  eta 48m29s
+[12:23:36] [8/25 prng-bg/java-all cuda]  34.60%  1,485,916,199 seeds  971,427 seeds/s  eta 48m12s
+[12:23:56] [8/25 prng-bg/java-all cuda]  35.03%  1,504,509,917 seeds  970,808 seeds/s  eta 47m54s
+[12:24:16] [8/25 prng-bg/java-all cuda]  35.46%  1,522,907,419 seeds  970,087 seeds/s  eta 47m38s
+[12:24:36] [8/25 prng-bg/java-all cuda]  35.88%  1,541,242,801 seeds  969,330 seeds/s  eta 47m21s
+[12:24:57] [8/25 prng-bg/java-all cuda]  36.31%  1,559,623,361 seeds  968,621 seeds/s  eta 47m04s
+[12:25:17] [8/25 prng-bg/java-all cuda]  36.74%  1,577,850,138 seeds  967,845 seeds/s  eta 46m47s
+[12:25:37] [8/25 prng-bg/java-all cuda]  37.16%  1,596,194,388 seeds  967,168 seeds/s  eta 46m30s
+[12:25:57] [8/25 prng-bg/java-all cuda]  37.59%  1,614,421,914 seeds  966,393 seeds/s  eta 46m14s
+[12:26:17] [8/25 prng-bg/java-all cuda]  38.02%  1,632,891,404 seeds  965,815 seeds/s  eta 45m56s
+[12:26:37] [8/25 prng-bg/java-all cuda]  38.45%  1,651,442,512 seeds  965,296 seeds/s  eta 45m39s
+[12:26:57] [8/25 prng-bg/java-all cuda]  38.88%  1,669,876,140 seeds  964,734 seeds/s  eta 45m21s
+[12:27:18] [8/25 prng-bg/java-all cuda]  39.31%  1,688,358,632 seeds  964,182 seeds/s  eta 45m03s
+[12:27:38] [8/25 prng-bg/java-all cuda]  39.74%  1,706,866,276 seeds  963,678 seeds/s  eta 44m46s
+[12:27:58] [8/25 prng-bg/java-all cuda]  40.17%  1,725,355,729 seeds  963,178 seeds/s  eta 44m28s
+[12:28:18] [8/25 prng-bg/java-all cuda]  40.60%  1,743,794,122 seeds  962,653 seeds/s  eta 44m10s
+[12:28:38] [8/25 prng-bg/java-all cuda]  41.03%  1,762,302,667 seeds  962,190 seeds/s  eta 43m52s
+[12:28:58] [8/25 prng-bg/java-all cuda]  41.47%  1,780,973,238 seeds  961,790 seeds/s  eta 43m34s
+[12:29:18] [8/25 prng-bg/java-all cuda]  41.89%  1,799,263,147 seeds  961,210 seeds/s  eta 43m16s
+[12:29:38] [8/25 prng-bg/java-all cuda]  42.32%  1,817,515,883 seeds  960,623 seeds/s  eta 42m59s
+[12:29:59] [8/25 prng-bg/java-all cuda]  42.74%  1,835,713,618 seeds  960,023 seeds/s  eta 42m42s
+[12:30:19] [8/25 prng-bg/java-all cuda]  43.17%  1,854,105,530 seeds  959,525 seeds/s  eta 42m24s
+[12:30:39] [8/25 prng-bg/java-all cuda]  43.60%  1,872,480,846 seeds  959,036 seeds/s  eta 42m06s
+[12:30:59] [8/25 prng-bg/java-all cuda]  44.03%  1,890,984,316 seeds  958,616 seeds/s  eta 41m48s
+[12:31:19] [8/25 prng-bg/java-all cuda]  44.46%  1,909,556,545 seeds  958,236 seeds/s  eta 41m29s
+[12:31:39] [8/25 prng-bg/java-all cuda]  44.90%  1,928,250,240 seeds  957,923 seeds/s  eta 41m11s
+[12:32:00] [8/25 prng-bg/java-all cuda]  45.33%  1,946,764,047 seeds  957,546 seeds/s  eta 40m52s
+[12:32:20] [8/25 prng-bg/java-all cuda]  45.77%  1,965,834,250 seeds  957,420 seeds/s  eta 40m33s
+[12:32:40] [8/25 prng-bg/java-all cuda]  46.21%  1,984,546,931 seeds  957,140 seeds/s  eta 40m14s
+[12:33:00] [8/25 prng-bg/java-all cuda]  46.64%  2,003,121,099 seeds  956,793 seeds/s  eta 39m55s
+[12:33:20] [8/25 prng-bg/java-all cuda]  47.08%  2,022,051,061 seeds  956,612 seeds/s  eta 39m36s
+[12:33:40] [8/25 prng-bg/java-all cuda]  47.55%  2,042,123,821 seeds  956,982 seeds/s  eta 39m14s
+[12:34:01] [8/25 prng-bg/java-all cuda]  48.00%  2,061,573,408 seeds  957,015 seeds/s  eta 38m54s
+[12:34:21] [8/25 prng-bg/java-all cuda]  48.45%  2,081,034,630 seeds  957,077 seeds/s  eta 38m33s
+[12:34:41] [8/25 prng-bg/java-all cuda]  48.90%  2,100,182,694 seeds  956,997 seeds/s  eta 38m13s
+[12:35:01] [8/25 prng-bg/java-all cuda]  49.34%  2,119,139,754 seeds  956,839 seeds/s  eta 37m54s
+[12:35:21] [8/25 prng-bg/java-all cuda]  49.78%  2,138,182,985 seeds  956,730 seeds/s  eta 37m34s
+[12:35:42] [8/25 prng-bg/java-all cuda]  50.24%  2,157,966,925 seeds  956,903 seeds/s  eta 37m13s
+[12:36:02] [8/25 prng-bg/java-all cuda]  50.72%  2,178,304,396 seeds  957,359 seeds/s  eta 36m51s
+[12:36:22] [8/25 prng-bg/java-all cuda]  51.18%  2,198,198,972 seeds  957,565 seeds/s  eta 36m30s
+[12:36:42] [8/25 prng-bg/java-all cuda]  51.64%  2,217,725,443 seeds  957,656 seeds/s  eta 36m09s
+[12:37:02] [8/25 prng-bg/java-all cuda]  52.10%  2,237,566,453 seeds  957,889 seeds/s  eta 35m48s
+[12:37:23] [8/25 prng-bg/java-all cuda]  52.56%  2,257,372,942 seeds  958,074 seeds/s  eta 35m27s
+[12:37:43] [8/25 prng-bg/java-all cuda]  53.03%  2,277,777,748 seeds  958,530 seeds/s  eta 35m04s
+[12:38:03] [8/25 prng-bg/java-all cuda]  53.51%  2,298,080,635 seeds  958,945 seeds/s  eta 34m42s
+[12:38:23] [8/25 prng-bg/java-all cuda]  53.98%  2,318,354,039 seeds  959,325 seeds/s  eta 34m20s
+[12:38:43] [8/25 prng-bg/java-all cuda]  54.45%  2,338,465,398 seeds  959,625 seeds/s  eta 33m59s
+[12:39:03] [8/25 prng-bg/java-all cuda]  54.92%  2,358,665,267 seeds  959,990 seeds/s  eta 33m37s
+[12:39:24] [8/25 prng-bg/java-all cuda]  55.38%  2,378,471,172 seeds  960,164 seeds/s  eta 33m16s
+[12:39:44] [8/25 prng-bg/java-all cuda]  55.83%  2,397,946,650 seeds  960,222 seeds/s  eta 32m56s
+[12:40:04] [8/25 prng-bg/java-all cuda]  56.29%  2,417,612,472 seeds  960,335 seeds/s  eta 32m35s
+[12:40:24] [8/25 prng-bg/java-all cuda]  56.75%  2,437,264,358 seeds  960,438 seeds/s  eta 32m14s
+[12:40:44] [8/25 prng-bg/java-all cuda]  57.21%  2,456,991,572 seeds  960,567 seeds/s  eta 31m53s
+[12:41:04] [8/25 prng-bg/java-all cuda]  57.66%  2,476,622,599 seeds  960,668 seeds/s  eta 31m33s
+[12:41:25] [8/25 prng-bg/java-all cuda]  58.13%  2,496,584,242 seeds  960,877 seeds/s  eta 31m12s
+[12:41:45] [8/25 prng-bg/java-all cuda]  58.59%  2,516,377,091 seeds  961,048 seeds/s  eta 30m51s
+[12:42:05] [8/25 prng-bg/java-all cuda]  59.05%  2,536,134,520 seeds  961,184 seeds/s  eta 30m30s
+[12:42:25] [8/25 prng-bg/java-all cuda]  59.51%  2,555,931,878 seeds  961,336 seeds/s  eta 30m09s
+[12:42:45] [8/25 prng-bg/java-all cuda]  59.97%  2,575,677,879 seeds  961,458 seeds/s  eta 29m48s
+[12:43:06] [8/25 prng-bg/java-all cuda]  60.43%  2,595,305,609 seeds  961,557 seeds/s  eta 29m28s
+[12:43:26] [8/25 prng-bg/java-all cuda]  60.89%  2,615,072,205 seeds  961,686 seeds/s  eta 29m07s
+[12:43:46] [8/25 prng-bg/java-all cuda]  61.35%  2,634,760,927 seeds  961,794 seeds/s  eta 28m46s
+[12:44:06] [8/25 prng-bg/java-all cuda]  61.80%  2,654,089,698 seeds  961,760 seeds/s  eta 28m26s
+[12:44:26] [8/25 prng-bg/java-all cuda]  62.25%  2,673,469,768 seeds  961,705 seeds/s  eta 28m06s
+[12:44:47] [8/25 prng-bg/java-all cuda]  62.70%  2,692,768,713 seeds  961,666 seeds/s  eta 27m46s
+[12:45:07] [8/25 prng-bg/java-all cuda]  63.15%  2,712,206,866 seeds  961,690 seeds/s  eta 27m26s
+[12:45:27] [8/25 prng-bg/java-all cuda]  63.61%  2,731,845,199 seeds  961,756 seeds/s  eta 27m05s
+[12:45:47] [8/25 prng-bg/java-all cuda]  64.05%  2,750,872,110 seeds  961,620 seeds/s  eta 26m46s
+[12:46:07] [8/25 prng-bg/java-all cuda]  64.51%  2,770,483,533 seeds  961,701 seeds/s  eta 26m25s
+[12:46:28] [8/25 prng-bg/java-all cuda]  64.96%  2,790,184,178 seeds  961,789 seeds/s  eta 26m05s
+[12:46:48] [8/25 prng-bg/java-all cuda]  65.43%  2,810,109,724 seeds  961,965 seeds/s  eta 25m44s
+[12:47:08] [8/25 prng-bg/java-all cuda]  65.88%  2,829,498,157 seeds  961,939 seeds/s  eta 25m23s
+[12:47:28] [8/25 prng-bg/java-all cuda]  66.33%  2,848,755,561 seeds  961,889 seeds/s  eta 25m04s
+[12:47:48] [8/25 prng-bg/java-all cuda]  66.76%  2,867,277,230 seeds  961,588 seeds/s  eta 24m45s
+[12:48:08] [8/25 prng-bg/java-all cuda]  67.19%  2,885,595,385 seeds  961,227 seeds/s  eta 24m26s
+[12:48:29] [8/25 prng-bg/java-all cuda]  67.62%  2,904,195,684 seeds  960,971 seeds/s  eta 24m07s
+[12:48:49] [8/25 prng-bg/java-all cuda]  68.05%  2,922,774,940 seeds  960,713 seeds/s  eta 23m48s
+[12:49:09] [8/25 prng-bg/java-all cuda]  68.49%  2,941,819,947 seeds  960,592 seeds/s  eta 23m29s
+[12:49:29] [8/25 prng-bg/java-all cuda]  68.94%  2,960,836,157 seeds  960,483 seeds/s  eta 23m09s
+[12:49:49] [8/25 prng-bg/java-all cuda]  69.37%  2,979,517,652 seeds  960,259 seeds/s  eta 22m50s
+[12:50:09] [8/25 prng-bg/java-all cuda]  69.83%  2,999,386,747 seeds  960,413 seeds/s  eta 22m29s
+[12:50:30] [8/25 prng-bg/java-all cuda]  70.29%  3,018,780,005 seeds  960,400 seeds/s  eta 22m09s
+[12:50:50] [8/25 prng-bg/java-all cuda]  70.72%  3,037,269,365 seeds  960,133 seeds/s  eta 21m50s
+[12:51:10] [8/25 prng-bg/java-all cuda]  71.17%  3,056,713,858 seeds  960,150 seeds/s  eta 21m30s
+[12:51:30] [8/25 prng-bg/java-all cuda]  71.62%  3,076,101,480 seeds  960,141 seeds/s  eta 21m09s
+[12:51:50] [8/25 prng-bg/java-all cuda]  72.07%  3,095,305,548 seeds  960,087 seeds/s  eta 20m50s
+[12:52:11] [8/25 prng-bg/java-all cuda]  72.53%  3,115,325,963 seeds  960,273 seeds/s  eta 20m28s
+[12:52:31] [8/25 prng-bg/java-all cuda]  72.98%  3,134,546,476 seeds  960,208 seeds/s  eta 20m09s
+[12:52:51] [8/25 prng-bg/java-all cuda]  73.42%  3,153,469,698 seeds  960,074 seeds/s  eta 19m49s
+[12:53:11] [8/25 prng-bg/java-all cuda]  73.87%  3,172,534,030 seeds  959,969 seeds/s  eta 19m29s
+[12:53:31] [8/25 prng-bg/java-all cuda]  74.30%  3,190,974,755 seeds  959,705 seeds/s  eta 19m10s
+[12:53:52] [8/25 prng-bg/java-all cuda]  74.74%  3,209,988,435 seeds  959,606 seeds/s  eta 18m51s
+[12:54:12] [8/25 prng-bg/java-all cuda]  75.20%  3,229,921,427 seeds  959,764 seeds/s  eta 18m30s
+[12:54:32] [8/25 prng-bg/java-all cuda]  75.66%  3,249,536,529 seeds  959,817 seeds/s  eta 18m09s
+[12:54:52] [8/25 prng-bg/java-all cuda]  76.10%  3,268,683,947 seeds  959,754 seeds/s  eta 17m49s
+[12:55:12] [8/25 prng-bg/java-all cuda]  76.55%  3,287,961,748 seeds  959,730 seeds/s  eta 17m29s
+[12:55:33] [8/25 prng-bg/java-all cuda]  77.01%  3,307,595,387 seeds  959,812 seeds/s  eta 17m09s
+[12:55:53] [8/25 prng-bg/java-all cuda]  77.47%  3,327,245,526 seeds  959,880 seeds/s  eta 16m48s
+[12:56:13] [8/25 prng-bg/java-all cuda]  77.92%  3,346,840,360 seeds  959,945 seeds/s  eta 16m28s
+[12:56:33] [8/25 prng-bg/java-all cuda]  78.38%  3,366,590,814 seeds  960,029 seeds/s  eta 16m07s
+[12:56:53] [8/25 prng-bg/java-all cuda]  78.85%  3,386,418,521 seeds  960,148 seeds/s  eta 15m46s
+[12:57:14] [8/25 prng-bg/java-all cuda]  79.31%  3,406,360,729 seeds  960,304 seeds/s  eta 15m25s
+[12:57:34] [8/25 prng-bg/java-all cuda]  79.75%  3,425,349,985 seeds  960,190 seeds/s  eta 15m06s
+[12:57:54] [8/25 prng-bg/java-all cuda]  80.20%  3,444,600,826 seeds  960,135 seeds/s  eta 14m46s
+[12:58:14] [8/25 prng-bg/java-all cuda]  80.65%  3,463,688,647 seeds  960,030 seeds/s  eta 14m26s
+[12:58:35] [8/25 prng-bg/java-all cuda]  81.09%  3,482,664,190 seeds  959,912 seeds/s  eta 14m06s
+[12:58:55] [8/25 prng-bg/java-all cuda]  81.54%  3,501,933,861 seeds  959,887 seeds/s  eta 13m46s
+[12:59:15] [8/25 prng-bg/java-all cuda]  81.99%  3,521,534,574 seeds  959,937 seeds/s  eta 13m26s
+[12:59:35] [8/25 prng-bg/java-all cuda]  82.46%  3,541,712,687 seeds  960,155 seeds/s  eta 13m05s
+[12:59:55] [8/25 prng-bg/java-all cuda]  82.99%  3,564,261,366 seeds  961,028 seeds/s  eta 12m40s
+[13:00:15] [8/25 prng-bg/java-all cuda]  83.52%  3,587,143,051 seeds  961,981 seeds/s  eta 12m16s
+[13:00:36] [8/25 prng-bg/java-all cuda]  84.05%  3,609,730,520 seeds  962,834 seeds/s  eta 11m52s
+[13:00:56] [8/25 prng-bg/java-all cuda]  84.57%  3,632,229,481 seeds  963,658 seeds/s  eta 11m28s
+[13:01:16] [8/25 prng-bg/java-all cuda]  85.09%  3,654,703,100 seeds  964,468 seeds/s  eta 11m04s
+[13:01:36] [8/25 prng-bg/java-all cuda]  85.60%  3,676,419,909 seeds  965,061 seeds/s  eta 10m41s
+[13:01:56] [8/25 prng-bg/java-all cuda]  86.10%  3,697,989,393 seeds  965,594 seeds/s  eta 10m18s
+[13:02:16] [8/25 prng-bg/java-all cuda]  86.64%  3,721,230,880 seeds  966,583 seeds/s  eta 9m54s
+[13:02:36] [8/25 prng-bg/java-all cuda]  87.19%  3,744,722,116 seeds  967,628 seeds/s  eta 9m29s
+[13:02:57] [8/25 prng-bg/java-all cuda]  87.74%  3,768,232,554 seeds  968,671 seeds/s  eta 9m04s
+[13:03:17] [8/25 prng-bg/java-all cuda]  88.28%  3,791,628,480 seeds  969,668 seeds/s  eta 8m39s
+[13:03:37] [8/25 prng-bg/java-all cuda]  88.82%  3,814,982,262 seeds  970,646 seeds/s  eta 8m15s
+[13:03:57] [8/25 prng-bg/java-all cuda]  89.37%  3,838,396,705 seeds  971,631 seeds/s  eta 7m50s
+[13:04:17] [8/25 prng-bg/java-all cuda]  89.91%  3,861,778,025 seeds  972,599 seeds/s  eta 7m25s
+[13:04:37] [8/25 prng-bg/java-all cuda]  90.46%  3,885,116,822 seeds  973,542 seeds/s  eta 7m01s
+[13:04:57] [8/25 prng-bg/java-all cuda]  91.00%  3,908,420,905 seeds  974,472 seeds/s  eta 6m37s
+[13:05:17] [8/25 prng-bg/java-all cuda]  91.55%  3,931,871,292 seeds  975,424 seeds/s  eta 6m12s
+[13:05:38] [8/25 prng-bg/java-all cuda]  92.09%  3,955,157,282 seeds  976,332 seeds/s  eta 5m48s
+[13:05:58] [8/25 prng-bg/java-all cuda]  92.63%  3,978,509,630 seeds  977,241 seeds/s  eta 5m24s
+[13:06:18] [8/25 prng-bg/java-all cuda]  93.17%  4,001,821,914 seeds  978,135 seeds/s  eta 5m00s
+[13:06:38] [8/25 prng-bg/java-all cuda]  93.72%  4,025,188,804 seeds  979,032 seeds/s  eta 4m36s
+[13:06:58] [8/25 prng-bg/java-all cuda]  94.26%  4,048,532,176 seeds  979,913 seeds/s  eta 4m11s
+[13:07:18] [8/25 prng-bg/java-all cuda]  94.81%  4,072,001,747 seeds  980,820 seeds/s  eta 3m47s
+[13:07:38] [8/25 prng-bg/java-all cuda]  95.35%  4,095,269,755 seeds  981,665 seeds/s  eta 3m23s
+[13:07:58] [8/25 prng-bg/java-all cuda]  95.89%  4,118,619,345 seeds  982,526 seeds/s  eta 2m59s
+[13:08:18] [8/25 prng-bg/java-all cuda]  96.44%  4,142,054,434 seeds  983,395 seeds/s  eta 2m35s
+[13:08:39] [8/25 prng-bg/java-all cuda]  96.98%  4,165,312,735 seeds  984,215 seeds/s  eta 2m12s
+[13:08:59] [8/25 prng-bg/java-all cuda]  97.53%  4,188,706,589 seeds  985,059 seeds/s  eta 1m48s
+[13:09:19] [8/25 prng-bg/java-all cuda]  98.07%  4,212,095,025 seeds  985,897 seeds/s  eta 1m24s
+[13:09:39] [8/25 prng-bg/java-all cuda]  98.61%  4,235,356,153 seeds  986,692 seeds/s  eta 1m00s
+[13:09:59] [8/25 prng-bg/java-all cuda]  99.15%  4,258,603,468 seeds  987,479 seeds/s  eta 37s
+[13:10:19] [8/25 prng-bg/java-all cuda]  99.70%  4,281,900,142 seeds  988,269 seeds/s  eta 13s
+[13:10:31] [8/25 prng-bg/java-all cuda] swept 4294967296 seeds in 4344 s; best score None; candidates >= 300: 0
+[13:10:31] [8/25 prng-bg/java-all cuda] hist (bins of 20 from -400) 0:430282976695 1:26516308368 2:22490006036 3:18463018158 4:14668588627 5:11276941439 6:8387982898 7:6035558545 8:4201059016 9:2827733614 10:1840346823 11:1157581577 12:703379831 13:412668441 14:233608709 15:127468407 16:67032982 17:33882568 18:16480534 19:7689857 20:3431756 21:1468913 22:600094
+[13:10:31] [8/25 prng-bg/java-all cuda] ok in 1h12m
+[13:10:31] [9/25 prng-bg/java-all-verify cpu] start (est. 0.05 h)
+[13:10:33] [9/25 prng-bg/java-all-verify cpu] # boundary-free verification of the best 0 candidates of java: bigram score per rune over the WHOLE section (a true key keeps about +10 per rune, a wrong one about -10.5 (measured on whole sections with random strings)), against the same decode with 8 random seeds
+[13:10:33] [9/25 prng-bg/java-all-verify cpu] no candidate reached the sweep's floor
+[13:10:33] [9/25 prng-bg/java-all-verify cpu] ok in 2s
+
+[13:10:40] ===== summary: desktop, 2h18m =====
+budget reached before prng-bg/php-all (est. 2.0 h); stopping. Rerun to continue.
+  ok     setup/build-phpmt                              cpu         1s
+  ok     setup/build-walk                               cpu         0s
+  ok     setup/build-kscreen                            cpu         0s
+  ok     setup/fetch-data                               cpu         0s
+  ok     prng-bg/controls                               cuda        3s
+  ok     prng-bg/py3-all                                cuda     1h05m
+  ok     prng-bg/py3-all-verify                         cpu         0s
+  ok     prng-bg/java-all                               cuda     1h12m
+  ok     prng-bg/java-all-verify                        cpu         2s
+
+prng-bg: Seeded-PRNG pads with a boundary-free score (English rune-bigram log-likelihood), window 0.7 (and every section)
+  - controls (a skipped test counts as failed): GATE PASSED
+  - py3 (07): swept 4294967296 seeds in 1234 s; best score None; candidates >= 300: 0; best-ranked candidate: no candidate reached the sweep's floor
+  - java (07): swept 4294967296 seeds in 736 s; best score None; candidates >= 300: 0; best-ranked candidate: no candidate reached the sweep's floor
+  - php (07): swept 4294967296 seeds in 799 s; best score None; candidates >= 300: 0; best-ranked candidate: no candidate reached the sweep's floor
+  - glibc (07): swept 4294967296 seeds in 778 s; best score None; candidates >= 300: 0; best-ranked candidate: no candidate reached the sweep's floor
+  - mt32 (07): swept 4294967296 seeds in 1017 s; best score None; candidates >= 300: 0; best-ranked candidate: no candidate reached the sweep's floor
+  - msvc (07): swept 4294967296 seeds in 665 s; best score None; candidates >= 300: 0; best-ranked candidate: no candidate reached the sweep's floor
+  - drand48 (07): swept 4294967296 seeds in 720 s; best score None; candidates >= 300: 0; best-ranked candidate: no candidate reached the sweep's floor
+  - ruby (07): swept 4294967296 seeds in 1209 s; best score None; candidates >= 300: 0; best-ranked candidate: no candidate reached the sweep's floor
+  - mt31 (07): swept 4294967296 seeds in 970 s; best score None; candidates >= 300: 0; best-ranked candidate: no candidate reached the sweep's floor
+  - net (07): swept 2147483648 seeds in 335 s; best score None; candidates >= 300: 0; best-ranked candidate: no candidate reached the sweep's floor
+  - py3 (all): swept 4294967296 seeds in 3953 s; best score None; candidates >= 300: 0; best-ranked candidate: no candidate reached the sweep's floor
+  - java (all): swept 4294967296 seeds in 4344 s; best score None; candidates >= 300: 0; best-ranked candidate: no candidate reached the sweep's floor
+  - php (all): not run
+  - glibc (all): not run
+  - mt32 (all): not run
+  - msvc (all): not run
+  - drand48 (all): not run
+  - ruby (all): not run
+  - mt31 (all): not run
+  - net (all): not run
+
+report: results/overnight/desktop/REPORT.md
+# 2026-10-19 13:10:40 exit 0

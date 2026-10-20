@@ -1,0 +1,608 @@
+{
+  "gate": "D2 first feasibility gate",
+  "status": "FAILED_RECOVERY_GATE",
+  "invocations": 1,
+  "reviewed_head": "b38bc2e",
+  "wall_cap_seconds": 90.0,
+  "external_cap_seconds": 120,
+  "LP2_searched": false,
+  "later_calibration_authorized": false,
+  "inputs": {
+    "work/independent/frontier/gates/d2/PROTOCOL.md": {
+      "sha256": "fb5eb53a36b174bc1f244694286ab26773924b5adadda67d6c804f4b33f284a5",
+      "bytes": 5568
+    },
+    "work/independent/frontier/gates/d2/gate.py": {
+      "sha256": "19246381f12b86f4bda4e8f22dfb6a7b4cd5a79338facd37414dd31988ba0dfe",
+      "bytes": 19966
+    },
+    "work/h5rs/target/release/h5rs.exe": {
+      "sha256": "884199a82496da3e0386ca6cb1fac92c43dc21e2d4d8de75d7c5d1726b405b67",
+      "bytes": 380416
+    },
+    "work/h5rs/src/main.rs": {
+      "sha256": "3192f8fbfe182f857a5b1c7ee8b8b08588bbc3ca6da6d6d8bb4e7624a649d84e",
+      "bytes": 84363
+    },
+    "work/h5rs/src/logf.rs": {
+      "sha256": "c1be99ae20b21c6b2d9d3f7c90c05722044225874fecf15e059730b0070eb50e",
+      "bytes": 1138
+    },
+    "work/h5slice/h5slice.py": {
+      "sha256": "a644eb87f5edf466b9c8e2ece51ce0dc927867b6bb9e2795f7d35bd9c3023f1f",
+      "bytes": 32646
+    },
+    "work/keystreams.py": {
+      "sha256": "8984ba70f7c95dc8f7a70869e4a7c2469a2a38177c45b0e695b7fa6b464cee74",
+      "bytes": 8018
+    },
+    "work/sim.py": {
+      "sha256": "c483ca1926efae01f76aea0df4f4415c759f1693601101f0a51b1ad6bd1ec2e7",
+      "bytes": 7582
+    },
+    "work/lp.py": {
+      "sha256": "23920022fefeb6e3bdee9ae1755a3dec8cf403e1d7ff5be56f69dd3e525e8472",
+      "bytes": 13302
+    },
+    "work/kscreen/export.py": {
+      "sha256": "9dabc9df9b002aeba49809a49bab37cc8a4f95542eeddd02c2e35ee04d604a46",
+      "bytes": 11929
+    },
+    "work/ref/emerson_essays1.txt": {
+      "sha256": "5d9d28c12da8bd9aaf3043e9a2d08fbd46116efd5a3736490a393599aef6d278",
+      "bytes": 439572
+    },
+    "work/kscreen/data/library.ksb": {
+      "sha256": "89b13041034174796437ff8f22dfea19a65d938f9a634d1db2ae409100f1720e",
+      "bytes": 13361854
+    },
+    "work/kscreen/data/library.tsv": {
+      "sha256": "19ba2a0a67aa78d2dbcabb85f381a907faad13e0a4e31544307cc51510bffb23",
+      "bytes": 51734
+    },
+    "work/h5rs/data/plant_c1500_seg0.14.txt": {
+      "sha256": "996d890f30099eb3bf06c1830a0dd6672e6c8e12100cd2f628ef1040c42f7299",
+      "bytes": 805
+    }
+  },
+  "checks": {
+    "exact_algebra": {
+      "tests": {
+        "length2_mean_identity": true,
+        "balanced_keyword_flattens": true,
+        "length1_shift_preserves_ioc": true
+      },
+      "keywords_enumerated": 9,
+      "standalone_J": "7/6",
+      "mean_after_L2": "13/12",
+      "formula": "13/12"
+    },
+    "stream_identity": {
+      "KSB1_stream_count": 1439,
+      "compared_values": 20000,
+      "all_equal": true,
+      "recorded_prefilter_J": 1.0306,
+      "recorded_rejected": true
+    },
+    "prefilter": {
+      "recomputed_J_plus_minus": [
+        1.0305606506404656,
+        1.0305606506404656
+      ],
+      "rejected": true,
+      "corpus_runes": 272251,
+      "cutoff": 1.003
+    }
+  },
+  "cases": [
+    {
+      "case_id": "L13_m0_attempt",
+      "index": 0,
+      "period": 13,
+      "model": 0,
+      "clock": "attempt",
+      "keyword_seed": 78101,
+      "coin_seed": 78201,
+      "keyword": [
+        27,
+        19,
+        18,
+        4,
+        0,
+        2,
+        26,
+        28,
+        11,
+        20,
+        15,
+        10,
+        23
+      ],
+      "corpus_start": 6500,
+      "long_n": 12956,
+      "key_values_consumed": 13336,
+      "composite_independent_P_prediction_J": 1.0011999982767057,
+      "uniform_keyword_independent_phase_expectation_J": 1.0023508192800359,
+      "long_forward_sample_J": 1.0013974442369382,
+      "oracle_roundtrip_exact": true,
+      "known_keyword_unknown_alignment_accuracy": 1.0,
+      "known_keyword_recovery_pass": true,
+      "native_true_cell": {
+        "aborted": false,
+        "line": 3,
+        "ioc": 1.807456311804138,
+        "keyword": [
+          27,
+          19,
+          18,
+          18,
+          0,
+          2,
+          26,
+          28,
+          11,
+          20,
+          1,
+          10,
+          23
+        ],
+        "skips": 8
+      },
+      "bank_cells_each": 6,
+      "native_bank_maxima": {
+        "real": 1.807456311804138,
+        "iid": null,
+        "structured": null
+      },
+      "native_true_cell_log": "native_cells.txt:3",
+      "required_IoC_floor": 1.6,
+      "native_keyword_equivalent_by_constant_shift": false,
+      "native_keyword_then_independent_alignment_accuracy": 0.7833333333333333,
+      "global_shift_selected_by_likelihood": 0,
+      "native_recovery_pass": false,
+      "composition_witness": false
+    },
+    {
+      "case_id": "L13_m0_emission",
+      "index": 1,
+      "period": 13,
+      "model": 0,
+      "clock": "emission",
+      "keyword_seed": 78102,
+      "coin_seed": 78202,
+      "keyword": [
+        4,
+        21,
+        12,
+        17,
+        0,
+        20,
+        3,
+        0,
+        2,
+        25,
+        14,
+        0,
+        7
+      ],
+      "corpus_start": 6900,
+      "long_n": 12956,
+      "key_values_consumed": 13350,
+      "composite_independent_P_prediction_J": null,
+      "uniform_keyword_independent_phase_expectation_J": 1.0023508192800359,
+      "long_forward_sample_J": 1.0019821266027735,
+      "oracle_roundtrip_exact": true,
+      "known_keyword_unknown_alignment_accuracy": 0.9933333333333333,
+      "known_keyword_recovery_pass": true,
+      "native_true_cell": {
+        "aborted": true,
+        "line": 21
+      },
+      "bank_cells_each": 6,
+      "native_bank_maxima": {
+        "real": null,
+        "iid": null,
+        "structured": null
+      },
+      "native_true_cell_log": "native_cells.txt:21",
+      "required_IoC_floor": 1.6,
+      "native_keyword_equivalent_by_constant_shift": false,
+      "native_keyword_then_independent_alignment_accuracy": null,
+      "global_shift_selected_by_likelihood": null,
+      "native_recovery_pass": false,
+      "composition_witness": false
+    },
+    {
+      "case_id": "L13_m1_attempt",
+      "index": 2,
+      "period": 13,
+      "model": 1,
+      "clock": "attempt",
+      "keyword_seed": 78103,
+      "coin_seed": 78203,
+      "keyword": [
+        2,
+        24,
+        5,
+        4,
+        12,
+        16,
+        3,
+        18,
+        19,
+        18,
+        23,
+        16,
+        4
+      ],
+      "corpus_start": 7300,
+      "long_n": 12956,
+      "key_values_consumed": 13744,
+      "composite_independent_P_prediction_J": 1.0040409112739308,
+      "uniform_keyword_independent_phase_expectation_J": 1.0023508192800359,
+      "long_forward_sample_J": 1.0021956808002241,
+      "oracle_roundtrip_exact": true,
+      "known_keyword_unknown_alignment_accuracy": 0.9933333333333333,
+      "known_keyword_recovery_pass": true,
+      "native_true_cell": {
+        "aborted": false,
+        "line": 40,
+        "ioc": 1.803068670459975,
+        "keyword": [
+          2,
+          24,
+          5,
+          4,
+          12,
+          16,
+          3,
+          18,
+          19,
+          18,
+          23,
+          16,
+          4
+        ],
+        "skips": 10
+      },
+      "bank_cells_each": 6,
+      "native_bank_maxima": {
+        "real": 1.803068670459975,
+        "iid": null,
+        "structured": null
+      },
+      "native_true_cell_log": "native_cells.txt:40",
+      "required_IoC_floor": 1.6,
+      "native_keyword_equivalent_by_constant_shift": true,
+      "native_keyword_then_independent_alignment_accuracy": 0.9933333333333333,
+      "global_shift_selected_by_likelihood": 0,
+      "native_recovery_pass": true,
+      "composition_witness": false
+    },
+    {
+      "case_id": "L13_m1_emission",
+      "index": 3,
+      "period": 13,
+      "model": 1,
+      "clock": "emission",
+      "keyword_seed": 78104,
+      "coin_seed": 78204,
+      "keyword": [
+        26,
+        18,
+        5,
+        18,
+        0,
+        28,
+        28,
+        5,
+        16,
+        17,
+        28,
+        19,
+        1
+      ],
+      "corpus_start": 7700,
+      "long_n": 12956,
+      "key_values_consumed": 13751,
+      "composite_independent_P_prediction_J": null,
+      "uniform_keyword_independent_phase_expectation_J": 1.0023508192800359,
+      "long_forward_sample_J": 1.0023256102148541,
+      "oracle_roundtrip_exact": true,
+      "known_keyword_unknown_alignment_accuracy": 0.9966666666666667,
+      "known_keyword_recovery_pass": true,
+      "native_true_cell": {
+        "aborted": true,
+        "line": 58
+      },
+      "bank_cells_each": 6,
+      "native_bank_maxima": {
+        "real": null,
+        "iid": null,
+        "structured": null
+      },
+      "native_true_cell_log": "native_cells.txt:58",
+      "required_IoC_floor": 1.6,
+      "native_keyword_equivalent_by_constant_shift": false,
+      "native_keyword_then_independent_alignment_accuracy": null,
+      "global_shift_selected_by_likelihood": null,
+      "native_recovery_pass": false,
+      "composition_witness": false
+    },
+    {
+      "case_id": "L20_m0_attempt",
+      "index": 4,
+      "period": 20,
+      "model": 0,
+      "clock": "attempt",
+      "keyword_seed": 78105,
+      "coin_seed": 78205,
+      "keyword": [
+        1,
+        12,
+        18,
+        4,
+        14,
+        5,
+        19,
+        1,
+        18,
+        9,
+        22,
+        21,
+        14,
+        6,
+        10,
+        17,
+        13,
+        21,
+        23,
+        6
+      ],
+      "corpus_start": 8100,
+      "long_n": 12956,
+      "key_values_consumed": 13347,
+      "composite_independent_P_prediction_J": 1.0012566315642788,
+      "uniform_keyword_independent_phase_expectation_J": 1.0015280325320233,
+      "long_forward_sample_J": 1.0010477405996892,
+      "oracle_roundtrip_exact": true,
+      "known_keyword_unknown_alignment_accuracy": 1.0,
+      "known_keyword_recovery_pass": true,
+      "native_true_cell": {
+        "aborted": true,
+        "line": 75
+      },
+      "bank_cells_each": 6,
+      "native_bank_maxima": {
+        "real": null,
+        "iid": null,
+        "structured": null
+      },
+      "native_true_cell_log": "native_cells.txt:75",
+      "required_IoC_floor": 1.6,
+      "native_keyword_equivalent_by_constant_shift": false,
+      "native_keyword_then_independent_alignment_accuracy": null,
+      "global_shift_selected_by_likelihood": null,
+      "native_recovery_pass": false,
+      "composition_witness": false
+    },
+    {
+      "case_id": "L20_m0_emission",
+      "index": 5,
+      "period": 20,
+      "model": 0,
+      "clock": "emission",
+      "keyword_seed": 78106,
+      "coin_seed": 78206,
+      "keyword": [
+        23,
+        5,
+        24,
+        20,
+        1,
+        14,
+        8,
+        11,
+        17,
+        7,
+        17,
+        1,
+        0,
+        3,
+        19,
+        5,
+        20,
+        3,
+        21,
+        8
+      ],
+      "corpus_start": 8500,
+      "long_n": 12956,
+      "key_values_consumed": 13310,
+      "composite_independent_P_prediction_J": null,
+      "uniform_keyword_independent_phase_expectation_J": 1.0015280325320233,
+      "long_forward_sample_J": 1.0008113796432876,
+      "oracle_roundtrip_exact": true,
+      "known_keyword_unknown_alignment_accuracy": 1.0,
+      "known_keyword_recovery_pass": true,
+      "native_true_cell": {
+        "aborted": true,
+        "line": 93
+      },
+      "bank_cells_each": 6,
+      "native_bank_maxima": {
+        "real": null,
+        "iid": null,
+        "structured": null
+      },
+      "native_true_cell_log": "native_cells.txt:93",
+      "required_IoC_floor": 1.6,
+      "native_keyword_equivalent_by_constant_shift": false,
+      "native_keyword_then_independent_alignment_accuracy": null,
+      "global_shift_selected_by_likelihood": null,
+      "native_recovery_pass": false,
+      "composition_witness": false
+    },
+    {
+      "case_id": "L20_m1_attempt",
+      "index": 6,
+      "period": 20,
+      "model": 1,
+      "clock": "attempt",
+      "keyword_seed": 78107,
+      "coin_seed": 78207,
+      "keyword": [
+        14,
+        26,
+        7,
+        11,
+        0,
+        25,
+        28,
+        9,
+        28,
+        28,
+        21,
+        9,
+        10,
+        26,
+        2,
+        22,
+        22,
+        28,
+        3,
+        23
+      ],
+      "corpus_start": 8900,
+      "long_n": 12956,
+      "key_values_consumed": 13807,
+      "composite_independent_P_prediction_J": 1.002678432941551,
+      "uniform_keyword_independent_phase_expectation_J": 1.0015280325320233,
+      "long_forward_sample_J": 1.0015819716502692,
+      "oracle_roundtrip_exact": true,
+      "known_keyword_unknown_alignment_accuracy": 1.0,
+      "known_keyword_recovery_pass": true,
+      "native_true_cell": {
+        "aborted": true,
+        "line": 112
+      },
+      "bank_cells_each": 6,
+      "native_bank_maxima": {
+        "real": null,
+        "iid": null,
+        "structured": null
+      },
+      "native_true_cell_log": "native_cells.txt:112",
+      "required_IoC_floor": 1.6,
+      "native_keyword_equivalent_by_constant_shift": false,
+      "native_keyword_then_independent_alignment_accuracy": null,
+      "global_shift_selected_by_likelihood": null,
+      "native_recovery_pass": false,
+      "composition_witness": false
+    },
+    {
+      "case_id": "L20_m1_emission",
+      "index": 7,
+      "period": 20,
+      "model": 1,
+      "clock": "emission",
+      "keyword_seed": 78108,
+      "coin_seed": 78208,
+      "keyword": [
+        23,
+        15,
+        15,
+        6,
+        17,
+        4,
+        14,
+        0,
+        19,
+        3,
+        24,
+        13,
+        13,
+        28,
+        12,
+        4,
+        26,
+        25,
+        18,
+        2
+      ],
+      "corpus_start": 9300,
+      "long_n": 12956,
+      "key_values_consumed": 13735,
+      "composite_independent_P_prediction_J": null,
+      "uniform_keyword_independent_phase_expectation_J": 1.0015280325320233,
+      "long_forward_sample_J": 1.0005404629915056,
+      "oracle_roundtrip_exact": true,
+      "known_keyword_unknown_alignment_accuracy": 1.0,
+      "known_keyword_recovery_pass": true,
+      "native_true_cell": {
+        "aborted": true,
+        "line": 130
+      },
+      "bank_cells_each": 6,
+      "native_bank_maxima": {
+        "real": null,
+        "iid": null,
+        "structured": null
+      },
+      "native_true_cell_log": "native_cells.txt:130",
+      "required_IoC_floor": 1.6,
+      "native_keyword_equivalent_by_constant_shift": false,
+      "native_keyword_then_independent_alignment_accuracy": null,
+      "global_shift_selected_by_likelihood": null,
+      "native_recovery_pass": false,
+      "composition_witness": false
+    }
+  ],
+  "native_commands": [
+    {
+      "argv": [
+        "work/h5rs/target/release/h5rs.exe",
+        "parity",
+        "work/independent/frontier/gates/d2/cells.txt",
+        "work/independent/frontier/gates/d2/native_cells.txt",
+        "--engine",
+        "fast"
+      ],
+      "stdout": "native_stdout.txt",
+      "stderr": "native_stderr.txt"
+    },
+    {
+      "argv": [
+        "work/h5rs/target/release/h5rs.exe",
+        "decode",
+        "work/independent/frontier/gates/d2/retained_c1500.txt",
+        "1500",
+        "8",
+        "0",
+        "--engine",
+        "fast",
+        "--abort",
+        "120",
+        "0.9"
+      ],
+      "stdout": "c1500_stdout.txt",
+      "stderr": "c1500_stderr.txt"
+    }
+  ],
+  "elapsed_seconds": 2.680275,
+  "retained_regression": {
+    "output": "ABORT",
+    "matches_historical_abort": true,
+    "planted_key_recovery_pass": false,
+    "note": "ABORT remains a positive-control recovery failure, not a successful recovery control"
+  },
+  "summary": {
+    "new_synthetic_native_cells": 144,
+    "canonical_cases": 4,
+    "canonical_native_recovery_passes": 1,
+    "known_keyword_passes_all_clocks": 8,
+    "composition_witnesses": [],
+    "null_banks_per_case": 2,
+    "global_error_rate": "unknown; one tiny bank per null type; no p-value claimed"
+  }
+}

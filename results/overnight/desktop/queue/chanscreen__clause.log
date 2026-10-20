@@ -1,0 +1,31 @@
+# 2026-10-19 22:15:19 start: {PY} work/chanscreen/v2/step3/campaign.py run clause --workers 12
+clause: 82 windows (lengths 61-559), 14 chunks, T = 29.7992 nats; 1148 tasks, 1148 to do
+concurrent.futures.process._RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "<python>\Lib\concurrent\futures\process.py", line 258, in _process_worker
+    r = call_item.fn(*call_item.args, **call_item.kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<repo>\work\chanscreen\v2\step3\campaign.py", line 59, in task
+    sg, s = C.guard_scores(c, key, sign, ch, C.Q_DECODER, pi, L, logW)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<repo>\work\chanscreen\v2\step3\common.py", line 120, in guard_scores
+    raise ValueError('invalid log likelihood')
+ValueError: invalid log likelihood
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<repo>\work\chanscreen\v2\step3\campaign.py", line 116, in <module>
+    main()
+  File "<repo>\work\chanscreen\v2\step3\campaign.py", line 108, in main
+    wi, ci, dt, nc = f.result()
+                     ^^^^^^^^^^
+  File "<python>\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "<python>\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+ValueError: invalid log likelihood
+# 2026-10-20 02:15:23 exit 1

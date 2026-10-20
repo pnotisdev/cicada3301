@@ -1,6 +1,12 @@
 # step3: full-library sanity null (E3' sanity) — PASS, descriptive only
 
-**Nothing in LP2 is solved. No LP2 ciphertext was scored.**
+**Nothing in LP2 is solved. No LP2 ciphertext was scored by the laptop.**
+
+**Folder note (after the merge with main, 2026-10-20).** `work/chanscreen/v2/step3/` now holds two things. This report, `e3s.py`,
+`check_regen.py`/`.log`, `windows.json`, `summary.json` and `blocks_sha256.json` are the laptop's independent full-library null. `PROTOCOL.md`,
+`campaign.py`, `common.py`, `e4.py`, `e4_bands.py`, `gate.py`, `summary.py` and `verify_cell.py` are the desktop's step3 (E3/E3b nulls, 200 E4 plants,
+the 82-window LP2 campaign and the clause scan: 0 tier-1 cells; results in `results/chanscreen/`). The desktop's work supersedes the E4, positive-control
+and LP2-pilot steps this report had listed as next; they are not repeated on the laptop.
 
 ## Corrections to the first version of this report (2026-10-20)
 
@@ -48,12 +54,15 @@ exercised on null data.
 - The guard binds: S_guard is 73 to 85 nats below plain S on the null maxima. On the saved small-bank true plants it
   removed none (F4: 280/280 kept), but library-scale power under the guard is unmeasured (E4).
 - Single source (Cicada/iid) and single length (n300). English windows were not run.
-- e3s.py has only ever scored nulls. It has not yet recovered a plant, so it cannot support a negative on LP2 until it
-  does (end-to-end positive control, below).
+- e3s.py has only ever scored nulls, so it is not itself shown to recover a plant. The positive control for the shared engine and rule is the
+  desktop's: three library-keyed records each found their own stream among 1,439 (S_guard 182-228) and 200 of 200 E4 plants were detected.
+- Cross-machine check: record 0's maximum is -102.37 on both machines (here -102.3654); with the desktop's E3/E3b the iid-key nulls number 11
+  (records 0-4, 10, 30, 100, 110, 130, 145), all between -96.7 and -102.4.
 
-## Next (not run)
+## Smoke run and alias structure
 
-1. E4' conditional-stream power, n300 only (n600 needs its own sanity windows first): about 3 CPU-min.
-2. End-to-end positive control: planted windows through the full 1,439-stream bank with `e3s.py`, one per channel.
-3. Limited LP2 pilot on pre-registered windows, tier 1 only (S_guard >= T300), then a decision on the other windows.
+A 16-plant smoke run on non-protocol seeds is archived in `work/tmp/laptop_e4_smoke/` (not a result). It found what the desktop's amendment 2 reports:
+854 of the 1,439 streams are exactly periodic (period <= 64), and hold aliases above 10 nats lie almost entirely ahead of the truth, up to about
+(S_true - 10) / 4.2 offsets (S_guard falls 4.1 to 4.4 nats per offset on four plants; the desktop's amendment says about 6 per hold, not reconciled).
+The alias radius k = 15 used in the corrections above, like the desktop's k = 20, is too small for hold.
 

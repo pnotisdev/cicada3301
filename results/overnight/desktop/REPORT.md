@@ -1,10 +1,10 @@
 # Overnight campaigns: report from desktop
 
-Generated on desktop at 2026-10-18 20:40:15 by `python jobs/overnight.py`. Thresholds and method: docs/CAMPAIGNS.md.
+Generated on desktop at 2026-10-19 23:55:12 by `python jobs/overnight.py`. Thresholds and method: docs/CAMPAIGNS.md.
 
 **Controls:** unit tests and kscreen selftest passed on desktop; null results below are validated.
 
-## setup: Build engines and data (2/3 steps done)
+## setup: Build engines and data (3/3 steps done)
 
 Cargo builds of the three Rust engines and the generated inputs (fast when nothing changed).
 
@@ -16,7 +16,7 @@ The 71 unit tests (solved pages, transcription, statistics, engines) and the ksc
 - unit tests on desktop: passed
 - kscreen controls on desktop: SELFTEST PASSED
 - kscreen controls through the CUDA port on desktop: SELFTEST PASSED
-- GPU validation on desktop: GPU VALIDATION FAILED: CUDA probe
+- GPU validation on desktop: GPU VALIDATION PASSED
 
 ## analysis: Fingerprint analyses (2/2 steps done)
 
@@ -256,7 +256,7 @@ py3 (CPython random.seed), mt32 / mt31 (std::mt19937, PHP >= 7.1), java (java.ut
   - ruby: not run
   - py3: not run
 
-## prng-bg: Seeded-PRNG pads with a boundary-free score (English rune-bigram log-likelihood), window 0.7 (and every section) (0/0 steps done)
+## prng-bg: Seeded-PRNG pads with a boundary-free score (English rune-bigram log-likelihood), window 0.7 (and every section) (40/40 steps done)
 
 The dictionary score of the earlier seed sweeps counts words between the transcription's word separators. LP2's word lengths have no serial structure (results/analysis/wordlen_adjacency.txt: mean PMI -0.060 against +0.050 for English and +0.006 for the solved sections), and with LP2's separators imposed on English plaintext a planted seed scores 0 instead of 33 (work/log/phase9_boundaries.md): if the separators are independent of the plaintext words, those sweeps could not see a true key. work/phpmt/bg.py scores a decoded window (120 runes) by the log-likelihood ratio of its plaintext under an English rune-bigram table instead, with the same ten generators, 16 variants and skip/coin beam. Gates: generators identical to phpmt.cu, scores equal to a Python reference, planted seeds recovered for every generator, random ciphertext gives no candidate (work/tests/test_bgmt.py).
 
@@ -271,16 +271,16 @@ The dictionary score of the earlier seed sweeps counts words between the transcr
 - ruby (07): swept 4294967296 seeds in 1209 s; best score None; candidates >= 300: 0; best-ranked candidate: no candidate reached the sweep's floor
 - mt31 (07): swept 4294967296 seeds in 970 s; best score None; candidates >= 300: 0; best-ranked candidate: no candidate reached the sweep's floor
 - net (07): swept 2147483648 seeds in 335 s; best score None; candidates >= 300: 0; best-ranked candidate: no candidate reached the sweep's floor
-- py3 (all): not run
-- java (all): not run
-- php (all): not run
-- glibc (all): not run
-- mt32 (all): not run
-- msvc (all): not run
-- drand48 (all): not run
-- ruby (all): not run
-- mt31 (all): not run
-- net (all): not run
+- py3 (all): swept 4294967296 seeds in 3953 s; best score None; candidates >= 300: 0; best-ranked candidate: no candidate reached the sweep's floor
+- java (all): swept 4294967296 seeds in 4344 s; best score None; candidates >= 300: 0; best-ranked candidate: no candidate reached the sweep's floor
+- php (all): swept 4294967296 seeds in 5264 s; best score None; candidates >= 300: 0; best-ranked candidate: no candidate reached the sweep's floor
+- glibc (all): swept 4294967296 seeds in 13653 s; best score None; candidates >= 300: 0; best-ranked candidate: no candidate reached the sweep's floor
+- mt32 (all): swept 4294967296 seeds in 3212 s; best score None; candidates >= 300: 0; best-ranked candidate: no candidate reached the sweep's floor
+- msvc (all): swept 4294967296 seeds in 4065 s; best score None; candidates >= 300: 0; best-ranked candidate: no candidate reached the sweep's floor
+- drand48 (all): swept 4294967296 seeds in 4013 s; best score None; candidates >= 300: 0; best-ranked candidate: no candidate reached the sweep's floor
+- ruby (all): swept 4294967296 seeds in 3243 s; best score None; candidates >= 300: 0; best-ranked candidate: no candidate reached the sweep's floor
+- mt31 (all): swept 4294967296 seeds in 3061 s; best score None; candidates >= 300: 0; best-ranked candidate: no candidate reached the sweep's floor
+- net (all): swept 2147483648 seeds in 1679 s; best score None; candidates >= 300: 0; best-ranked candidate: no candidate reached the sweep's floor
 
 ## kscreen-hashwords: Hash-seed keystreams of every word and phrase of the solved text (4/4 steps done)
 
@@ -327,7 +327,7 @@ docs/HYPOTHESES.md H3: after each rune the key pointer advances by 1 + its index
 - matched null (random keystreams, same windows/settings): best 1.619
 - verification (clock_pp_library_verify.txt): 0 of 15 re-decoded hits keep IoC >= 1.4 over their whole window and beat their own keystream's random offsets by 0.15 (none: noise)
 
-## kscreen-step28: Relative-rank chain cipher: the plaintext enters the STEP c_i - c_{i-1}, keyed mod 28 (0/0 steps done)
+## kscreen-step28: Relative-rank chain cipher: the plaintext enters the STEP c_i - c_{i-1}, keyed mod 28 (12/12 steps done)
 
 The doublet fingerprint is also what a cipher gives whose ciphertext step is never zero (research note C1, work/log/research_2026-10-17.md): D_i = 1 + (q_i + m*K_j) mod 28 (variant A), 2^(q_i + m*log K_j) (variant B) or the (q_i + m*K_j) mod 28-th of the 28 runes other than c_{i-1} (variant C, rank), with the rare zero step as a 'ditto' that consumes a key value or not. In the c domain the plaintext is a random walk and every earlier screen was blind to it; in the step domain the decoder is a plain subtraction with no beam. work/kscreen/step28.py counts the class histogram at every (stream, offset) for the 1,447-stream library and every unit multiplier of Z28, with planted-key recovery (variants A, B, C and both modes), CPU/CUDA agreement and matched nulls; work/step_periodicity.py scans periodic keys (lags to 3,000).
 
@@ -339,7 +339,7 @@ The doublet fingerprint is also what a cipher gives whose ciphertext step is nev
 - verification (the best-ranked window continued to the end of its section): sec0.9@1200 B/drop m=17 stream #571 'sha256-ctr mod :2014' offset 5796: window 1.297, beyond (229 steps) 0.961
 - periodic keys (coincidences at lag 2..3000, planted controls and a structured null):   largest z of all scopes and settings: LP2 4.97; 40 random replicates of the same statistic: median 4.49, max 5.48, replicates >= LP2: 4; controls passed
 
-## prng-step: Seeded-PRNG pads for the step-domain cipher, window 0.7: all ten generators (0/0 steps done)
+## prng-step: Seeded-PRNG pads for the step-domain cipher, window 0.7: all ten generators (0/20 steps done)
 
 Research note C2: the seed sweeps of the ordinary cipher (c = p + k) cannot see a key that enters the STEP c_i - c_{i-1}. work/phpmt/step.py runs the ten generators of phpmt.cu over all 2^32 seeds and scores, per seed, 144 settings on the first 240 steps of section 0.7 (at key index 0 and 1) (variants A and C with keys mod 28 / variant B with log2 of the non-zero keys of Z29, both key maps, zero steps spending a key value or not, the 12 unit multipliers of Z28) by the index of coincidence of the decoded classes. Gates: keys equal the Rust engine for both alphabets, scores equal the numpy reference, planted seeds recovered for every generator, random ciphertext gives no candidate (work/tests/test_stepmt.py).
 
@@ -355,19 +355,22 @@ Research note C2: the seed sweeps of the ordinary cipher (c = p + k) cannot see 
 - ruby: not run
 - mt31: not run
 
-## layer2: Two layers from the solved pages: keyword Vigenere inside, number stream with the anti-repeat rule outside (3/11 steps done)
+## layer2: Two layers from the solved pages: keyword Vigenere inside, number stream with the anti-repeat rule outside (11/11 steps done)
 
 Hypothesis H-LAYER (work/log/hypotheses_2026-10-17.md): q = p + K[phi mod m] with the literal-F rule of Welcome / Koan 2 (or without), then c = q + S_j with the skip / coin anti-repeat models. The outer layer explains the doublet deficit and the flat statistics, and it hides the inner literal F (LP2 has no F excess); kscreen decodes the outer stream but scores a Vigenere text (IoC ~1.1-1.2), so it is blind. work/layer2 keeps a beam over the outer pointer and the inner phase and scores the decoded letters with an English rune-bigram table (identity and Atbash alphabets): a true key ~ +7 per rune, random ~ -15. Periodic mode covers any keyword of period 2-14 by column coincidences; its hits are checked by estimating the keyword and rescoring. Controls: work/layer2/selftest.py (plants with and without literal F, both alphabets, both models; kscreen blind to them; random streams below +2.0).
 
-- controls: not run
-- null: 20 random streams x the solved keys (bigram): not run yet
-- core streams x the solved keys DIVINITY / FIRFUMFERENFE / CIRCUMFERENCE (bigram): not run yet
-- 20 Cicada streams x 30 Cicada keywords (bigram): not run yet
-- core streams x any keyword of period 2-14 (column z): not run yet
+- controls: SELFTEST PASSED
+- null: 20 random streams x the solved keys (bigram): best -4.5200 per rune (3,415,101,440 decodes in 18 min)
+- core streams x the solved keys DIVINITY / FIRFUMFERENFE / CIRCUMFERENCE (bigram): best -4.0767 per rune (11,034,208,768 decodes in 55 min)
+  - verification: 0 of 15 re-decoded hits pass (none: noise)
+- 20 Cicada streams x 30 Cicada keywords (bigram): best -4.0400 per rune (8,597,288,448 decodes in 46 min)
+  - verification: 0 of 15 re-decoded hits pass (none: noise)
+- core streams x any keyword of period 2-14 (column z): best 10.6243 z (527,370,272 decodes in 18 min)
+  - verification: 0 of 100 re-decoded hits pass (none: noise)
 - variant A1: 20 streams with a solved key folded in, one pointer (bigram): best -5.6267 per rune (1,159,951,616 decodes in 3 min)
   - verification: 0 of 15 re-decoded hits pass (none: noise)
 
-## prng-time: Generators seeded with a millisecond timestamp of 2012-2014 (Java 48-bit, CPython two-word seeds) (0/51 steps done)
+## prng-time: Generators seeded with a millisecond timestamp of 2012-2014 (Java 48-bit, CPython two-word seeds) (87/100 steps done)
 
 The 32-bit sweeps cover every time(NULL) seed but not new Random(System.currentTimeMillis()) (Java's seed is 48-bit) or random.seed(int(time.time() * 1000)) (CPython seeds MT19937 with two 32-bit words above 2^32). Every UTC month of 2012-01 .. 2014-01, newest first, section 0.7, boundary-free bigram score, then a whole-section check of the best rows with independently built keys against random timestamps. With a validated GPU: work/phpmt/time_gpu.py (the desktop's 64-bit port bgmt64.cu, gate tests/test_bgmt64; java, py3, java-abs, and 'ruby' = Ruby's documented seeding and rand(n) rule on CPython's MT19937, not checked against a Ruby; about 9 h for all). Without one: work/prngx/time_campaign.py on the CPU (gate tests/test_prngx_time: vectors from CPython and the Java specification, seeds planted with independent keys found at rank 1, random ciphertext without candidates; about 210 h, so run the newest months with --hours). Both gates run through run_gate.py and fail on a skipped test.
 

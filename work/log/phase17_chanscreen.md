@@ -197,4 +197,18 @@ order, stop at first failed gate. No campaign, commits or shared-file edits.
 - First version of the report had three errors, corrected in `v2/step3/REPORT.md`: cells per window (it said 26.6M),
   the E4 cost (179 CPU-h priced a full-bank search per plant; the frozen E4' searches only the planted stream, about
   1.5 s per plant), and the justification of k.
-- Not done: n600 and English windows, a plant through the full bank (`e3s.py` has only scored nulls), E4, any LP2 scoring.
+- Not done: n600 and English windows, a plant through the full bank with `e3s.py`, E4, any LP2 scoring (all later done on the desktop, see below).
+
+### 2026-10-20 (later) - merge with origin/main (Claude, laptop)
+
+- `origin/main` 134fdd5 (desktop, 04:21, two minutes after the laptop's bb2c8d6) already held the whole step3 pipeline: E3/E3b nulls, 200 E4 plants,
+  the 82-window n300 LP2 campaign (8.74e9 cells, 0 tier-1, best S_guard -75.7 hold) and a clause scan (0 tier-1), with `PROTOCOL.md` amendments 1-3 and
+  nine transient engine faults handled (summary.py recomputes every tier-1 group). The laptop's planned E4 / end-to-end / LP2 pilot were therefore not run.
+- Merged into `laptop`: PLAN.md conflict resolved by keeping both (our paragraph rewritten around the desktop's results); STATUS.md and
+  results/index.html taken from main and regenerated; registry: the stale to-do row `open-m04-decoder` removed (the executed test is `chanscreen-step3`),
+  whose `control` now records E3b PASS and the laptop's independent null and whose `log` lists this folder and the smoke archive.
+- The untracked laptop `e4.py` / draft protocol / 16 smoke records were archived in `work/tmp/laptop_e4_smoke/` (they collided with main's `e4.py`).
+  The smoke run (not a result) and `alias_tail.py`: tails run ahead of the truth, S_guard falls 4.1-4.4 nats per offset, 854 of 1,439 streams exactly
+  periodic. The desktop's amendment 2 says about 6 nats per hold; the two figures are not reconciled.
+- Open, not done here: a sampled re-run audit of the desktop's finished n300 tasks (its amendment 3 and phase19 log list it as missing; only 4 of 4
+  re-runs exist), and one matched-null look at the best tier-2 cell (window 0.11@0, hold, S_guard -75.7, the only window maximum far above the null range).
