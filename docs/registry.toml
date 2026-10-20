@@ -184,6 +184,21 @@ log = ["work/log/phase10_sacred.md", "work/log/phase10_squares.md"]
 files = ["results/kscreen/sacred3_segments.tsv", "results/kscreen/sacred3_segments_verify.txt", "results/kscreen/sacred3_selftest.txt"]
 
 [[experiment]]
+id = "signed-streams"
+group = "streams"
+title = "Signed page-scan material as key streams: the eight PGP-signed 2014 payloads and three 991-byte hex blobs (272 streams)"
+status = "excluded"
+what = "work/kscreen/signed.py: blobs, signature values and concatenations as bytes (reject >= 232, mod 29), base-29 digits (both orders), forwards and reversed; hash counter / chain streams seeded with every blob, signature and message; 8 section windows of 300 runes, skip + coin, multipliers 1 and 28, every offset (22,877,184 decodes)"
+best = 1.2971
+null = 1.3359
+chart = true
+control = "18 of 18 planted keys recovered (IoC 1.736-1.787 at the planted offset or its +-2 skip alias), wrong streams 1.19-1.29 (work/kscreen/signed_selftest.py, independent planter)"
+result = "Best 1.2971 (0.15, hash stream of message 2), per-window bests 1.245-1.297; matched nulls 1.3016 and 1.3359; 0 of 15 hits keep IoC >= 1.4 over their window"
+gap = "Multipliers other than +-1; windows other than the section starts; the material used as something other than an additive key; signed 3301 material not in the scans; the page-3 hex JPEG; the signatures themselves are not verified"
+log = ["work/log/phase21_signed_streams.md"]
+files = ["work/kscreen/signed.py", "results/kscreen/signed_segments.tsv", "results/kscreen/signed_segments_verify.txt", "results/kscreen/signed_null_1.tsv", "results/kscreen/signed_null_2.tsv", "results/kscreen/signed_selftest.txt"]
+
+[[experiment]]
 id = "signs"
 group = "streams"
 title = "Word-level key-sign rules ('their numbers are the direction'): 61 non-circular rules over 581 flat-IoC library streams"
@@ -841,13 +856,13 @@ files = ["work/word_structure.py", "results/analysis/word_structure.txt"]
 id = "open-letter-spelling-power"
 group = "streams"
 title = "Power of the chanscreen v2 contract when the plaintext is spelled letter by letter (TH as T + H, no digraph runes)"
-status = "open"
-priority = 2
-what = "The word-length histogram fits English counted in letters (G 60) far better than English in digraph runes (G 242), and the frozen decoder LM is trained on digraph text; the n300 and clause negatives quote E4 power for digraph-spelled plaintext only. E4-style plants (50 per channel) from the same held-out English slice converted letter by letter (TH, ING, EO, OE, AE, IA, EA expanded), searched over their own stream with the frozen thresholds"
-cost = "About 1 h on a few cores; can run beside the n300 campaign"
-needs = "A letter-spelled plaintext pool (the m04 pool builder with the digraph runes expanded); the frozen decoder, LM and thresholds stay unchanged"
-log = ["work/log/phase20_segmentation_plan.md"]
-files = ["work/chanscreen/v2/step3/PROTOCOL.md"]
+status = "observed"
+what = "The word-length histogram fits English counted in letters (G 60) far better than English in digraph runes (G 242), and the frozen decoder LM is trained on digraph text. E4's 200 plants (same seeds, streams, offsets, channels) with the held Cicada and Emerson pools expanded letter by letter (TH, ING, EO, OE, AE, IA, EA), searched over their own stream with the frozen decoder, LM, T300 and alias band (work/chanscreen/v2/step3/e4_letters.py)"
+control = "The digraph E4 of the same plants: 200 of 200 at 300 runes, 194 of 200 at 60 runes"
+result = "Letter-spelled: 200 of 200 detected at 300 runes (50 of 50 per channel, winner sign correct in 198); prefixes 180 of 200 at 60 runes (hold 44, spend 40, skip5 48, coin 48), 200 of 200 from 80 runes up. The n300 and clause-scan negatives hold for letter-spelled English; only clauses of about 60 runes lose some power (90% against 97%)"
+gap = "Viterbi accuracy not measured for the letter plants; plaintexts that are not English-like; the alias exceedances outside the +-20 band are as in the digraph E4 (amendment 2)"
+log = ["work/log/phase20_segmentation_plan.md", "work/log/phase22_book_keys.md"]
+files = ["work/chanscreen/v2/step3/e4_letters.py", "results/chanscreen/e4_letters_summary/e4_summary.txt"]
 
 [[experiment]]
 id = "open-direction"

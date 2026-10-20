@@ -15,7 +15,7 @@ Every claim can be re-run, and every negative result comes with a positive contr
 | As of 2026-10-20 | |
 |---|---|
 | **Solved** | **Nothing.** LP2 (sections 0.7-0.15, 12,956 runes) is still undecoded |
-| Tests on record | 69: 39 excluded, 12 partly excluded, 3 untestable at LP2's effect size, 14 still open |
+| Tests on record | 69: 40 excluded, 12 partly excluded, 3 untestable at LP2's effect size, 13 still open |
 | Highest full-window screen score | IoC 1.415 (chain; fails whole-window verification) against the rule 1.40; a planted key lands at 1.6-2.06 |
 | Candidates that survived whole-section verification | **0** |
 | Live pages | [STATUS.md](STATUS.md) (done / left) and [results/INDEX.md](results/INDEX.md) (every result, with its control) |

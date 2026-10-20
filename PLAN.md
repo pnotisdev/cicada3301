@@ -722,3 +722,5 @@ Next (not run): a table-invariant, drift-tracking decoder for candidate books (g
 Controls with a flattening table per plant, skip q = 0.81 and the grid offset 0-7 below the truth (612 nulls, 0 above the family threshold at p = 5e-10, from an exponential tail fit). Power: 300 runes 21/40 and 27/40 (digraph / letter key spelling), 729 runes 24/30 and 28/30, 1,524 runes 19/20 and 17/20, 3,316 runes 12/12 and 12/12. Cost about 0.033 ms per rune per book-offset.
 The decision rule is frozen: 729-rune windows at the 8 section starts, every offset in steps of 8, then whole-section verification. Cost about 310 core-hours for the KJV and about 480 for the six cited books (Liber AL, Agrippa, Mabinogion and Blake downloaded 2026-10-20 to the git-ignored `work/ref/corpora/cited/`; the Agrippa copy is a raw 1651 OCR). Waiting for a go-ahead.
 
+E4-letters (same evening, addendum in `phase22_book_keys.md`): the 200 E4 plants with letter-spelled plaintext are detected 200 of 200 at 300 runes (180 of 200 at 60, 200 of 200 from 80): the chanscreen v2 negatives hold if LP2's plaintext is spelled letter by letter.
+Registry row `signed-streams` added for phase 21 (it had none).

@@ -1,0 +1,8 @@
+# gpunight (2026-10-20): the GPU is idle while the CPU runs booknight (15 workers). 2 CPU threads.
+# Run: python jobs/jobqueue.py gpunight jobs/queues/gpunight.txt   (resumable; a finished step is skipped)
+# 1. the remaining millisecond-timestamp months (STATUS item 6): java-abs 2012-01/02, ruby 2012-01..11.
+# 2. prng-step (STATUS item 8): ten generators x 2^32 seeds, step-domain cipher, window 0.7; controls (test_stepmt) run first.
+#    Low prior (phase 21 ranking: 3% or less); queued because the GPU is otherwise idle.
+months-java-abs | {PY} work/phpmt/time_gpu.py run java-abs --hours 1.5
+months-ruby | {PY} work/phpmt/time_gpu.py run ruby --hours 3
+prng-step | {PY} jobs/overnight.py run prng-step --lane gpu --device cuda --threads 2 --hours 30

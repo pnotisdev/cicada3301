@@ -1,0 +1,31 @@
+# E4 (step3): 200 library-scale plants, T300 = 29.7992 nats, alias band +-20, decoder q = 0.81
+
+1. Detection at 300 runes (true cell within +-3 offsets, true sign and channel, S_guard >= T)
+   hold   cicada    25 / 25   winner = true cell (+-3)  13   winner sign ok  25
+   hold   english   25 / 25   winner = true cell (+-3)  13   winner sign ok  25
+   hold   all       50 / 50
+   spend  cicada    25 / 25   winner = true cell (+-3)  12   winner sign ok  25
+   spend  english   25 / 25   winner = true cell (+-3)  13   winner sign ok  24
+   spend  all       50 / 50
+   skip5  cicada    25 / 25   winner = true cell (+-3)  20   winner sign ok  25
+   skip5  english   25 / 25   winner = true cell (+-3)  21   winner sign ok  24
+   skip5  all       50 / 50
+   coin   cicada    25 / 25   winner = true cell (+-3)  10   winner sign ok  25
+   coin   english   25 / 25   winner = true cell (+-3)  12   winner sign ok  25
+   coin   all       50 / 50
+   pooled 200 / 200
+
+2. Detection of prefixes (windows shorter than 300 runes; the power of the clause scan)
+   n= 60: hold 44/50  spend 40/50  skip5 48/50  coin 48/50  pooled 180/200
+   n= 80: hold 50/50  spend 50/50  skip5 50/50  coin 50/50  pooled 200/200
+   n=100: hold 50/50  spend 50/50  skip5 50/50  coin 50/50  pooled 200/200
+   n=150: hold 50/50  spend 50/50  skip5 50/50  coin 50/50  pooled 200/200
+   n=200: hold 50/50  spend 50/50  skip5 50/50  coin 50/50  pooled 200/200
+
+3. Wrong-offset exceedances outside the alias band (null cells), against N_null e^-t (a diagnostic, not a stop)
+   t =  0: observed 238871 in 19590520 cells, expected at most 19590520.00
+   t =  5: observed 234245 in 19590520 cells, expected at most 131999.89
+   t = 10: observed 230935 in 19590520 cells, expected at most 889.41
+
+
+5. Window starts: first-rune repair (the decoder assumes none): 0 (not separately tracked)

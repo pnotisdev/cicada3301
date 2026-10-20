@@ -69,3 +69,19 @@ table. The skip rule shifts the alignment every ~36 runes, which is why the H2 t
     python work/book_key_flatness.py          # ~40 min on one core
     python work/tmp/book_key_random_tables.py # ~1 min
     python work/book_key_pairs.py             # ~10 min
+
+## Addendum (same evening): E4-letters, power of chanscreen v2 under letter spelling
+
+`work/chanscreen/v2/step3/e4_letters.py` reruns E4's 200 plants (same seeds, streams, offsets, channels, frozen decoder /
+LM / T300) with the held plaintext pools spelled letter by letter (TH, ING, EO, OE, AE, IA, EA expanded); 4 workers,
+about 6 min. Records `results/chanscreen/e4_letters/`, summary `results/chanscreen/e4_letters_summary/e4_summary.txt`
+(the digraph E4 summary is untouched).
+
+| | digraph E4 | letter-spelled |
+|---|---|---|
+| 300 runes | 200 / 200 | 200 / 200 (50 per channel; winner sign correct 198) |
+| 60-rune prefix | 194 / 200 | 180 / 200 (hold 44, spend 40, skip5 48, coin 48) |
+| 80-200-rune prefixes | 200 / 200 | 200 / 200 |
+
+The frozen contract keeps its power on letter-spelled English: the n300 and clause-scan negatives stand for it; the
+shortest clauses (about 60 runes) lose a little. Viterbi accuracy was not run for these plants.
