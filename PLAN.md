@@ -724,3 +724,4 @@ The decision rule is frozen: 729-rune windows at the 8 section starts, every off
 
 E4-letters (same evening, addendum in `phase22_book_keys.md`): the 200 E4 plants with letter-spelled plaintext are detected 200 of 200 at 300 runes (180 of 200 at 60, 200 of 200 from 80): the chanscreen v2 negatives hold if LP2's plaintext is spelled letter by letter.
 Registry row `signed-streams` added for phase 21 (it had none).
+Phase 25 (side session, `work/log/phase25_mechanisms.md`): eight simulated collision-repair mechanisms; none reproduces every anomaly (no Level 2 lead). One shared repair budget writing T(c_-6) or copying c_-5 inside words reproduces the doublet deficit and both echoes at about their size; the S carrier and the word lengths stay unexplained.

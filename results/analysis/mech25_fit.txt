@@ -1,0 +1,14 @@
+(a) repair budget. LP2: lag 6 excess/pair 0.0275 (1290 pairs), lag 5 excess/pair 0.0144 (2105 pairs); collision budget q/29 = 0.0279
+M2 split a (share of repairs writing T(c-6); the rest copy c-5), digraph plaintext, mean +- sd over replicates:
+  a=1.0: lag6 excess/pair 0.0257 +- 0.0078   lag5 excess/pair 0.0106 +- 0.0049
+  a=0.9: lag6 excess/pair 0.0233 +- 0.0072   lag5 excess/pair 0.0109 +- 0.0045
+  a=0.8: lag6 excess/pair 0.0203 +- 0.0077   lag5 excess/pair 0.0138 +- 0.0052
+  a=0.7: lag6 excess/pair 0.0188 +- 0.0070   lag5 excess/pair 0.0132 +- 0.0049
+  a=0.5: lag6 excess/pair 0.0134 +- 0.0061   lag5 excess/pair 0.0173 +- 0.0063
+
+(b) prediction: lag-6 hits are independent over eligible positions. Statistics: words with >= 2 hits, hits at consecutive positions (i, i+1), total hits
+  LP2: words>=2 hits 6, consecutive 3, hits 80
+  shuffled LP2 (300, no echo):   words>=2 1.54 +- 1.21, consecutive 0.80 +- 0.92, hits 44.4
+  M1 plants (150):           words>=2 4.19 +- 2.19, consecutive 2.40 +- 1.70, hits 66.8
+  M1 plants with hits within 12 of LP2's (72): words>=2 5.40 +- 2.20
+  P(M1 words>=2 >= LP2) = 0.260; P(M1 words>=2 <= LP2) = 0.833;  consecutive: P(>=) = 0.427

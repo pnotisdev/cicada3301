@@ -14,6 +14,7 @@ Find a script by what it is for. Each one writes its output into `results/analys
 | `phpmt/` | Rust: bit-exact seed sweeps for ten generators; `bg.py` boundary-free bigram score, `gpu.py` + `.cu` CUDA ports |
 | `walk/` | Rust: word-scoped solver and key-free D-search (`dsearch`) |
 | `prngx/` | More generators, the OEIS lane (199,088 sequences), KDF streams |
+| `mech25/` | Phase 25: simulated word-aware collision-repair mechanisms (M0-M7) against LP2's doublet deficit, lag-5/6 echoes and word lengths (`results/analysis/mech25.txt`) |
 | `hashscan/` | Passphrase to hash-stream keys |
 | `layer2/` | Two-layer screen (keyword inside a number stream) |
 | `families/` | Fingerprint simulations and the echo analyses |
@@ -60,6 +61,7 @@ Find a script by what it is for. Each one writes its output into `results/analys
 | `key_reuse_drift.py`, `pad_reuse_power.py` | Two-time-pad tests under skip drift, and their power |
 | `restart_columns.py`, `restart_llr.py` | Key restarts by column coincidences and by likelihood ratio |
 | `book_key_flatness.py` | A book as the running key (any language, any letter -> rune table): LP2's IoC against encryptions under the GP, random and flattest tables, with the skip rule (`results/analysis/book_key_flatness.txt`) |
+| `book_key_screen.py` | Phase 23 LP2 screen of the cited books with the table-free beam decoder (stage 1, frozen rule; run by the `booknight` queue) |
 | `book_key_pairs.py` | The same through lag-2..8 rune-pair counts, with a table tuned to flatten the pairs (`results/analysis/book_key_pairs.txt`) |
 | `book_key_decoder.py` | Table-invariant, drift-tracking decoder for a candidate book key (table-free beam + exact skip-rule Viterbi EM) and its gate: plants with a flattening table, nulls, power and cost (`results/analysis/book_key_decoder.txt`); no LP2 run |
 | `word_structure.py` | Does the word segmentation depend on the neighbouring runes, and is there a schedule by position in the word or by (length, position)? Three keyless tests, each with planted controls and shuffle nulls (`--quick` for a minute; `results/analysis/word_structure.txt`) |
