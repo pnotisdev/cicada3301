@@ -59,3 +59,41 @@ Shuffle null (300): 1.54 +- 1.21 and 0.80 +- 0.92; M1 plants (150): 4.19 +- 2.19
 ## 6. Verdict
 No mechanism reproduces all anomalies (S-carry and word lengths fail for the whole family), so **no Level 2 lead**. What survives is Level 1: a word-aware collision repair that writes a function of the rune 6 back (T(c_-6) = 24 - 2c_-6) reproduces the doublet deficit, the lag-6 relation at the observed size (within ~2 sd), zero excess across word gaps, flat unigram/bigram statistics, and with a shared copy-of-5-back branch (a ~ 0.8) the lag-5 echo size too, from one repair budget. It leaves the S carrier, the word-length histogram and any decryption untouched, the relation was selected post hoc (look-elsewhere P 0.005), and a repair that is a function of c_-6 is not distinguishable from the keyless echo family `echo-two-tap` on LP2 alone.
 Caveats: English plaintext only (Emerson/Gutenberg), random iid key (no structured key), 50-60 replicates per cell, q = 0.81 fixed, T6 map and lag 6 taken from the data (not independent).
+
+## 7. (A) The S carrier of the in-word lag-5 echo (scripts `lag5_s.py`, `lag5_s2.py`; outputs `results/analysis/lag5_s.txt`, `lag5_s2.txt`)
+
+**LP2:** in-word lag 5: 2105 pairs, 104 equal (0.0494 against chance 0.0350). Source S: 74 pairs, 11 S,S (0.149 against chance 0.032).
+**Look-elsewhere:** S is LP2's largest cell over 29 source runes x lags 2..8 (equality, in-word): z +5.14 (11 hits, 2.3 expected); the shuffle null of that maximum (500 shuffles inside sections): median 2.88, 95th 3.89, max 4.75, so P < 0.002 (0 of 500). Next cells: lag 7 B +2.68, lag 5 P +2.58, lag 5 ING +2.46. Over sources alone (1000 shuffles) P < 0.001. The earlier z 5.86 was against a different expected; the calibrated number is this one. S is not a pure chance maximum over the grid I scanned, but the grid does not include other relations (affine maps), other scopes or this decision to look at runes at all; treat as P of order 0.001-0.01 once those are counted.
+
+**Plaintext side (English before encryption, in-word lag 5, pairs counted per word occurrence):**
+| Text | spelling | all-rune equal rate | P(S at i given S at i-5) |
+|---|---|---|---|
+| Emerson | digraph / letters | 0.0633 / 0.0688 | 0.129 / 0.129 |
+| Walden | digraph / letters | 0.0604 / 0.0636 | 0.141 / 0.124 |
+| Origin | digraph / letters | 0.0636 / 0.0665 | 0.093 / 0.083 |
+| Republic | digraph / letters | 0.0589 / 0.0663 | 0.145 / 0.132 |
+English plaintext has NO general lag-5 excess (0.059-0.069 is the letter-chance level) but a 3-4x S,S enrichment: -SELVES, THEMSELVES (40 in Emerson), OURSELVES, SENSES, STATES, STANDS, SUCCESS, SELFISHNESS (476 S..S pairs in Emerson, all from words of shape S _ _ _ _ S). LP2's 0.149 (11/74) equals what English S gives (0.13 x 74 = 9.6), so the S carrier looks like S..S plaintext coincidences surviving encryption. But the 11 words as they stand in LP2 (`lag5_s2.txt`, (d)) are not English-shaped and the later S sits at word positions 5-8 (5,5,5,5,6,6,6,7,8,8,8; 4 earlier S at position 0, per section 3 above).
+
+**Cipher mechanisms that preserve it:**
+- Period-5 key inside words (k_i = k_(i-5)) in a fraction f of words: the plaintext coincidences survive as equal CIPHER pairs, but with a uniform value (c = p + k), not as S. Simulated (English, LP2 layout, 60 replicates): overall lag-5 excess/pair f=0.3: +0.0068 +- 0.0052, f=0.6: +0.0147 +- 0.0053 (LP2 +0.0144), f=1: +0.0258; **S,S hits 2.5 / 3.2 / 4.2 (LP2 11)**. So f ~ 0.6 reproduces the overall excess but puts the hits on arbitrary values, not S; it predicts the other 28 sources carry the excess in proportion to the plaintext lag-5 equality rate (flat). The key being periodic in 60% of the words also contradicts `skeleton5` (the excess at lags 3/4/7/8 was absent) only partly: a period-5 key gives no lag 3/4/7/8 relation, so it is not excluded by that row, but it makes lag 10 equality (rate ~0.6 x English lag-10) a prediction; not measured here.
+- A literal-S rule (S stays S in a fraction g of S): needs g ~ 0.9-1 to give 8.6 excess hits (g^2 x 9.6 = 8.6), but LP2's S count is 434 against 447 +- 21 flat, which allows g <= 0.04 (2 sd). Excluded by the unigram flatness.
+- A collision-style repair (section 3) has budget 0.028 per rune; the S carrier needs 0.116 per S-sourced pair. Excluded (unchanged).
+- A rule keyed on the rune value S (e.g. "after an S, the rune 5 later repeats S with probability 0.12") was not simulated as it is a fitted description: it has no mechanism and one free parameter per observed cell.
+
+**Level:** the S,S excess is an out-of-sample-unconfirmed observation (Level 0); the plaintext reading explains the RATE (0.149 vs 0.13) but no simulated cipher keeps it on cipher S. Open: whether S,S at lag 5 appears in the SOLVED pages' ciphertext (not tried, they are a different cipher layer).
+
+## 8. (B) Word lengths: plaintext-side explanations (scripts `wordlen25.py`, `wordlen25b.py`; outputs `results/analysis/wordlen25.txt`, `wordlen25b.txt`)
+G of LP2's histogram (2,896 words, bins 1..11, 12+, `work/wordlen.py` g_test, df 11) against the histogram of each corpus under each spelling. Noise floor: G between two random halves of LP2's words has mean 11.3, 95th pct 33.5 (half size), so G > ~25 against a full-size model is a real mismatch.
+| Corpus | all digraph | all letters | best of 128 digraph subsets |
+|---|---|---|---|
+| Emerson (en) | 241.5 | 63.3 | 58.2 (AE, IA) |
+| Walden (en) | 241.2 | 75.4 | 75.4 (OE) |
+| Republic (en) | 270.6 | 82.0 | 76.4 |
+| Beowulf translation (en, modern English) | 272.0 | 70.8 | 64.4 |
+| Paradise Lost (en) | 130.6 | 107.2 | 83.1 (TH only) |
+| Origin of Species (en) | 345.7 | 182.4 | 122.5 |
+| KJV (en, archaic) | 469.7 | 233.3 | 233.3 |
+| Latin (Aeneid / Caesar) | 1379 / 1070 | 1609 / 1227 | no better |
+| German (Faust), Italian (Dante), Spanish, French | 254, 788, 410, 507 | 260, 673, 446, 523 | 253, 660, 406, 507 |
+Findings: (1) letter-by-letter spelling is the best plaintext convention for English, but the best single text (Emerson, the corpus the repo used, G 63) is a genre effect: the same convention gives 71-233 on other English texts, so "G 60" is not a property of English-in-letters. (2) The best of 128 digraph subsets (a 128-way selection) gains only 5 on Emerson. (3) Other languages (Latin, German, Italian, Spanish, French; Welsh not run, no clean word list in the repo) are excluded outright (G 253-1609). (4) Archaic English: the KJV (G 233) is worse; no genuine Old/Middle English text is in the repo (Beowulf is a modern translation), so Old-English spellings are NOT tested. (5) Punctuation/numeral runes kept as runes: not tested (no text model; they would add 1-rune words, but LP2 lacks 1-rune words relative to English letters, 2.9% vs 3.0%, and its deficit is at length 2).
+Segmentation and insertion models on Emerson letters (one fitted parameter, df 10): glue short words (<= 2 letters) to the following word with probability 0.175: G 34.8 (p 1.3e-4); +1 rune in 19% of multi-rune words: G 28.9 (p 1.3e-3); for reference, +1 rune in 42% of digraph-spelled words: G 16.5 (p 0.085), the only fit that is not rejected. **No plaintext-side spelling or language fits (best p ~1e-8 for plain spelling, 1e-4 to 1e-3 with one fitted segmentation/insertion parameter on top of letter spelling).** Evidence level: Level 0/1 (measured, controlled by the corpus spread and the half-sample floor); no cipher mechanism proposed here explains it.

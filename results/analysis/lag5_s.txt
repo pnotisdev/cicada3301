@@ -1,0 +1,24 @@
+LP2 in-word lag 5: 2105 pairs, 104 equal (rate 0.0494, chance 0.0350); source S: 74 pairs, 11 S,S (rate 0.149)
+
+(1) English plaintext before encryption, in-word lag 5 (rate of equal runes; rate of S,S given source S):
+corpus            spelling    pairs   eq rate  | S-source pairs  S,S rate
+Emerson           digraph     49520  0.0633  |     3678        0.1294
+Emerson           letters     56391  0.0688  |     4001        0.1287
+Walden            digraph     61853  0.0604  |     5231        0.1409
+Walden            letters     72385  0.0636  |     5777        0.1236
+Origin            digraph    178346  0.0636  |    14465        0.0928
+Origin            letters    199781  0.0665  |    15443        0.0829
+Republic          digraph    121989  0.0589  |     8753        0.1448
+Republic          letters    141630  0.0663  |     9718        0.1324
+
+(2) look-elsewhere over the 29 source runes (z = (hits - expected)/sqrt(expected), expected from the section shuffle; LP2 vs 1000 shuffles inside sections)
+  LP2 per-source z top 3: S 11/2.4 z +5.07, P 7/2.4 z +2.66, ING 7/2.6 z +2.55
+  P(max_z over 29 sources >= LP2's S z +5.07) among shuffles = 0.000  (S is LP2's own max: True); shuffle max-z median 2.06, 95th 3.23
+  tail of the raw S count: P(shuffle S hits >= 11) = 0.0000
+
+(3) period-5 key in a fraction f of words (k_i = k_(i-5) for i at word position >= 5; plaintext coincidences survive), English plaintext, LP2 layout, 60 replicates
+  f=0.0: lag-5 excess per pair -0.0005 +- 0.0040 (LP2 +0.0144); S,S hits 2.2 +- 1.5 (LP2 11); doublets 0.66%
+  f=0.1: lag-5 excess per pair +0.0022 +- 0.0048 (LP2 +0.0144); S,S hits 2.3 +- 1.5 (LP2 11); doublets 0.65%
+  f=0.3: lag-5 excess per pair +0.0068 +- 0.0052 (LP2 +0.0144); S,S hits 2.5 +- 1.6 (LP2 11); doublets 0.66%
+  f=0.6: lag-5 excess per pair +0.0147 +- 0.0053 (LP2 +0.0144); S,S hits 3.2 +- 2.1 (LP2 11); doublets 0.65%
+  f=1.0: lag-5 excess per pair +0.0258 +- 0.0071 (LP2 +0.0144); S,S hits 4.2 +- 2.0 (LP2 11); doublets 0.66%

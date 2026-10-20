@@ -1,0 +1,18 @@
+LP2: 2896 words. Noise floor: G of one random half of LP2's words against the other half's histogram (df 11): mean 11.3, 95th pct 33.5 (these halves are half-size, so a full-size model G is compared with the 'infinite-sample' model: G > ~25 is a real mismatch)
+
+corpus                 words    all-digraph  all-letter  TH only   TH+NG    best of 128 subsets (switches on)
+Emerson (en)             77792     241.5       63.3    248.7    247.1      58.2  (AE,IA)
+Walden (en)             117240     241.2       75.4    210.5    231.8      75.4  (OE)
+Origin (en)             200000     345.7      182.4    424.2    386.5     122.5  (AE,EA,IA,NG,OE)
+Republic (en)           200000     270.6       82.0    274.7    272.2      76.4  (AE,IA)
+Paradise Lost (en)       81096     130.6      107.2     83.1    100.1      83.1  (TH)
+KJV (en)                200000     469.7      233.3    361.0    412.2     233.3  (none)
+Beowulf transl. (en)     40346     272.0       70.8    246.3    253.2      64.4  (EA,OE)
+Latin (Aeneid)           63791    1378.7     1609.4   1609.5   1593.4    1378.7  (AE,EA,EO,IA,NG,OE,TH)
+Latin (Caesar)           20547    1070.1     1227.2   1227.2   1219.3    1070.1  (AE,EA,EO,IA,NG,OE,TH)
+German (Faust)           31272     254.4      259.6    260.2    254.3     252.9  (EO,IA,NG)
+Italian (Dante)         102005     788.1      672.8    672.8    672.0     659.5  (EA,NG,OE)
+Spanish (Quijote)       200000     409.5      446.0    446.0    437.4     406.3  (AE,EO,IA,NG,OE)
+French (Misérables)     119512     507.1      523.3    522.7    517.1     507.1  (AE,EA,EO,IA,NG,OE,TH)
+
+Solved pages (LP1 solved sections, 1 reading): runes vs letters G 202.8 / 156.6 (work/wordlen.py)
