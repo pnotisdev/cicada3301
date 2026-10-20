@@ -182,3 +182,19 @@ order, stop at first failed gate. No campaign, commits or shared-file edits.
   artifacts) hash the desktop's CRLF working copies, so their verify commands and
   test_followup's originals test report those files as changed on a fresh checkout. The
   content is the same; only the desktop working copy matches the recorded bytes.
+
+### 2026-10-20 - guard adopted, E3 sanity null (Claude, laptop; `v2/step3/`)
+
+- Decisions from the user: tier-1 rule S_guard >= T300 (29.799206297530528); machine laptop; scope later limited to a
+  gated pilot. Alias radius k = 15 frozen before E4 and before any LP2 scoring. It is NOT data-derived: v1 scored only
+  offsets 0..15 (`m04.OFFSETS = 16`), so every stored exceedance was within 15 of the true offset by construction.
+- `check_regen.py` regenerated v1 cal windows 0..4 (Cicada/iid, M04 plants) from their seeds and reproduced each stored
+  v1 maximum to <= 3.6e-12 nats (`check_regen.log`). The windows are not in `gpu_parity.npz` (that file holds other cases).
+- `e3s.py`: each window against all 1,439 streams, 4 channels x 2 signs x every offset (106,626,192 cells per window,
+  533,130,960 in all), S_guard, q = .81, 4 workers, write-once blocks of 48 streams. Best S_guard -97.29 to -102.37, best
+  plain S -17.2 to -26.6, zero cells >= 0. Wall time 11.6-17.6 min per window (window 0 spans two runs: I stopped the
+  first after 9 blocks). All 150 block files parse and cover all 1,439 streams x 8 rows (`blocks_sha256.json`).
+- First version of the report had three errors, corrected in `v2/step3/REPORT.md`: cells per window (it said 26.6M),
+  the E4 cost (179 CPU-h priced a full-bank search per plant; the frozen E4' searches only the planted stream, about
+  1.5 s per plant), and the justification of k.
+- Not done: n600 and English windows, a plant through the full bank (`e3s.py` has only scored nulls), E4, any LP2 scoring.

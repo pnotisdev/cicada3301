@@ -892,9 +892,9 @@ title = "Hold-key matching decoder: fixed-prior summed-path likelihood with the 
 status = "open"
 priority = 2
 what = "Needed only if the hold-key repair is a live hypothesis: every key-family negative that used a skip / coin decoder says nothing about it (m04-baseline)"
-cost = "Built as chanscreen (work/chanscreen/): v1 G0-G2 PASS, G3 (GPU) FAIL; v2 sparse all-offsets CPU engine E0-E2 PASS (all 693,940 stored cells to 1.3e-11 nats). Full 82-window LP2 campaign projected at about 15 wall hours on 4 workers (not run)"
-needs = "A frozen acceptance rule, then real-bank sanity nulls (E3), 200 library-scale plants (E4) and the campaign package (E5). The planned common-null proof failed (E3', exact finite-key counterexamples); the guard rule min(S, S_W) >= T passed its exact checks (F4, 280/280 saved plants kept, 0/100 nulls) and awaits adoption. The literal wrong-offset count check fails on +-15 alias cells of true plants and needs an alias exclusion"
-log = ["work/log/phase15_m04_baseline.md", "work/independent/anti_repeat_matrix/MATRIX.md", "work/log/phase17_chanscreen.md", "work/chanscreen/v2/REPORT.md", "work/chanscreen/v2/step2/REPORT.md", "work/chanscreen/v2/step2/followup/REPORT.md"]
+cost = "Built as chanscreen (work/chanscreen/): v1 G0-G2 PASS, G3 (GPU) FAIL; v2 sparse all-offsets CPU engine E0-E2 PASS (all 693,940 stored cells to 1.3e-11 nats). Full 82-window LP2 campaign projected at about 15 wall hours on 4 workers (not run); measured 2026-10-20: one full-bank n300 window (106.6M cells) takes 11.6-17.6 min on 4 laptop workers"
+needs = "Guard rule S_guard >= T300 = 29.80 adopted 2026-10-20 (the common-null proof had failed, E3'; F4 passed its exact checks) and alias radius k = 15 pre-registered (not data-derived). E3 sanity null: 5 n300 windows x the full bank PASS (best S_guard -97.29, zero cells >= 0; no n600 or English window; five windows cannot certify a .001 rate). Still open: E4 library-scale plants, an end-to-end plant through the bank (the runner has only scored nulls), the LP2 pilot and E5"
+log = ["work/log/phase15_m04_baseline.md", "work/independent/anti_repeat_matrix/MATRIX.md", "work/log/phase17_chanscreen.md", "work/chanscreen/v2/REPORT.md", "work/chanscreen/v2/step2/REPORT.md", "work/chanscreen/v2/step2/followup/REPORT.md", "work/chanscreen/v2/step3/REPORT.md"]
 
 [[experiment]]
 id = "h5-power-map"
