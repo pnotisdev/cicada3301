@@ -1,0 +1,8 @@
+S = sum_d=2..8 chi^2(lag-d pairs, 840 df each), n = 12956
+NULL uniform key + skip (100): 5856.1 +- 171.0, max 6368.3;  LP2 5902.0 (z +0.27)
+pg10.txt     unigram-flattest table  : S 6194.7 +- 221.4, min 5939.7 (z of min +0.5); 7/30 above the null max; unigram IoC of one plant 1.0032
+pg10.txt     pair-flattest table     : S 6225.6 +- 199.6, min 5923.4 (z of min +0.4); 9/30 above the null max; unigram IoC of one plant 1.0012
+             pair-table predicted excess 0.0182 (summed over lags)
+pg26.txt     unigram-flattest table  : S 6101.4 +- 179.5, min 5776.2 (z of min -0.5); 1/30 above the null max; unigram IoC of one plant 1.0000
+pg26.txt     pair-flattest table     : S 6083.5 +- 177.8, min 5833.2 (z of min -0.1); 2/30 above the null max; unigram IoC of one plant 1.0020
+             pair-table predicted excess 0.0192 (summed over lags)

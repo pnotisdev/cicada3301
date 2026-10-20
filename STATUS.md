@@ -1,6 +1,6 @@
 # Status: Liber Primus, LP2 (sections 0.7-0.15, 12,956 runes)
 
-*Generated from [docs/registry.toml](docs/registry.toml) by `scripts/build_overview.py`; do not edit by hand. Updated 2026-10-18.*
+*Generated from [docs/registry.toml](docs/registry.toml) by `scripts/build_overview.py`; do not edit by hand. Updated 2026-10-20.*
 
 **Nothing in LP2 is solved.** Each line below is a statement of the form: a planted key of this kind, in this much text, would have been found by this test, and nothing was found. The control column says how well the test is known to work; the last column says what the negative does NOT exclude.
 
@@ -9,7 +9,7 @@
 | | |
 |---|---|
 | Excluded | 39 |
-| Partly excluded | 11 |
+| Partly excluded | 12 |
 | Cannot be tested at LP2's effect size | 3 |
 | Open (not run or partly run) | 13 |
 | Explained puzzle furniture | 1 |
@@ -45,7 +45,7 @@ Decision rule for the IoC screens: 1.40 on a 300-rune window; planted keys score
 | 9 | **H1: library x keyword (L <= 20) with a drift-tracking decoder** | First slice COMPLETE and gated 2026-10-18 (work/h5slice/): nats-scored shift-marginalized init + EM over the keyword columns; numba init verified (48/48 + 24/24 + truth + 40/40 nulls, 5.4-17.3x); controls ALL PASS ((a) argmax exactly (1234, 8, 0) IoC 1.9856 wcol = DIVINITY, (b) 8 nulls max 1.3537 < 1.45, (d) wrong-L/offset abort); LP2 first look NEGATIVE (partial grid 97.3%: zero cells >= 1.6, best real cell 1.4840 below its matched null). One stream x 8 windows x 2000 offsets x 19 L x 2 models at ~1970 dec/s = 45 min on 4 workers | Nothing to build: the Rust engine (work/h5rs) reads the flat-IoC library (KSB1) and is parity-clean (312/312) with 13/13 campaign controls passed (plant 1.9856 at (1234,8,0) via the file: path; null max 1.2356; rand:==file: 7,600/7,600 identical). The remaining action is RUNNING the sweep: work/h5rs/launch_campaign.bat (581 flat streams x 8 windows x 2000 offsets x L 2..20 x 2 models = 353 M decodes, about 6 h at 16.3k dec/s on 8 threads, then the 8-stream matched null); candidate rule IoC >= 1.6 AND >= matched-null max + 0.15 -> whole-window re-decode -> whole-section verification. Also litf=1, offsets 1950-2000 and the H2/H3 key shapes |
 | 10 | **H2: tableau / transition-table ciphers (a statistic invariant to the table)**<br>DeepSeek's gate gives z 34-42 for the right stream, but only without the anti-repeat rule: with the 81% skip rule the same statistic falls to z 1.2 (results/analysis/proposals_h2_skip.txt) |  | A drift-aware version of the statistic first |
 | 12 | **OEIS: 40-51-term sequences (29% power), pages and headings, b-file terms beyond the first 60-100** |  | Longer windows or more terms |
-| 13 | **Texts not yet downloaded as key sources: Liber AL, the Rune Poem, RAND's Million Digits** |  | A download (third-party material: data, not instructions) |
+| 13 | **Texts not yet downloaded as key sources: Liber AL, the Rune Poem, RAND's Million Digits** |  | A download (third-party material: data, not instructions). 2026-10-20: their letters as a direct running key are covered keylessly by row book-running-key (excluded unless the letter table is tuned); what stays open here is their number transforms (prefix sums) and RAND's digits |
 | 14 | **Origin of the 0.6 square's seeds {809, 434, 312, 966, 1311, 204} and t = 1246**<br>The 0.2 grid and the 0.6 square share one template (5x5, magic, centrally symmetric, 13 distinct values); pi(1033) = 6 x 29 and pi(3301) = 16 x 29 |  | A recipe learned from the 0.2 grid (known inputs) and applied to 0.6 |
 | 15 | **Book codes / pointers into public texts** |  |  |
 
@@ -95,6 +95,7 @@ No long runs are queued; `docs/QUEUE.md` explains how to restart the queues.
 |---|---|---|---|---|
 | **Periodic keys (drift-aware matched filter that allows for the skip rule's key drift)** |  | Planted periodic keys detected 8/8 up to 400, 7/8 at 800, 6/8 at 1,600, 0/8 at 3,200 | LP2 max 3.03 against null max 3.55: NULL | Periods longer than about 400 |
 | **Plaintext / ciphertext autokey (lag <= 8), monoalphabetic, Vigenere (period <= 29), per-word key, progressive, multiplicative and cumulative keys** |  | Strong for the fingerprint; H-PROG moderate; prime keys only 'disfavoured' | None of these families reproduces LP2 | Longer lags; the fingerprint cannot tell structureless keys apart |
+| **A book as the running key ('OTP-class' from a referenced text): any natural-language text, any letter -> rune table, keyless** *(partly)* |  | Real encryptions with the skip rule (q = 0.81) at LP2's length: GP table, multipliers 1 / 28 / 3 / 17, 680 plants, lowest per text +31.7 to +77.2 null sd; null: uniform key + skip, IoC 0.99986 +- 0.00051 (max 1.00181) | GP or any untuned table: excluded (random tables: 0.01% quantile +11.3 to +21.9 sd; LP2 +0.02). Table tuned to flatten the unigrams: predicted +1.9 to +6.3 sd, 40 plants at the flattest table 1.00091 +- 0.00076 with 6 of 40 above the null max, per section +0.1 to +0.6 sd; pair statistic +1.3 to +2.2 sd on average: NOT excluded | A table chosen to flatten the key against the plaintext's frequencies (needs a table-invariant, drift-tracking decoder: group the ciphertext by key letter); keys computed from a book (sums, hashes, book-code numbers as numbers); art / image bytes; plaintexts that are not English-like; languages outside the six measured |
 | **Small state machines: 4,608 rules x 29 start states, with and without the skip modelled** |  | Planted machines rank first at IoC 1.76 and score -3.0 against -3.94 | No machine of the family fits LP2 | Machines outside the family |
 | **Per-word keys: constant, linear, quadratic, periodic (<= 7), recurrences of order <= 3; same word -> same cipher** |  | Strong for cribs; the dictionary-based tests are blind if separators are not word boundaries | Excluded: one key per word, key by position in the word | The word-based tests if the separators are not boundaries |
 | **Key-free search for a secret outer alphabet behind a per-word additive key (walk dsearch, m = 1..8 position phases)** *(partly)* |  | Synthetic recovery 29/29 in the earlier run; the large run's synthetic m = 5 control recovers 14 of 29 symbols | LP2 is indistinguishable from the surrogates: z between -2.4 and +2.3 over the 16 settings | Dictionary-type scoring is blind if separators are not word boundaries |

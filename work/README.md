@@ -59,6 +59,8 @@ Find a script by what it is for. Each one writes its output into `results/analys
 | `crib.py`, `cribsolve.py`, `crib_exact_lookup.py`, `crib_fluency_null.py`, `crib_matrix_check.py` | Cribs and the community's crib claims |
 | `key_reuse_drift.py`, `pad_reuse_power.py` | Two-time-pad tests under skip drift, and their power |
 | `restart_columns.py`, `restart_llr.py` | Key restarts by column coincidences and by likelihood ratio |
+| `book_key_flatness.py` | A book as the running key (any language, any letter -> rune table): LP2's IoC against encryptions under the GP, random and flattest tables, with the skip rule (`results/analysis/book_key_flatness.txt`) |
+| `book_key_pairs.py` | The same through lag-2..8 rune-pair counts, with a table tuned to flatten the pairs (`results/analysis/book_key_pairs.txt`) |
 | `word_structure.py` | Does the word segmentation depend on the neighbouring runes, and is there a schedule by position in the word or by (length, position)? Three keyless tests, each with planted controls and shuffle nulls (`--quick` for a minute; `results/analysis/word_structure.txt`) |
 | `typo_restarts.py`, `typo_shared_key.py`, `typo_shared_key_power.py` | Restarts at typographic marks |
 | `chain_lag.py` | Ciphertext feedback: coincidences at lag P |

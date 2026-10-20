@@ -1,6 +1,6 @@
 # Results index
 
-*Generated from [docs/registry.toml](../docs/registry.toml) by `scripts/build_overview.py`; do not edit by hand. Updated 2026-10-18. An interactive version with a chart is [index.html](index.html) (open it in a browser).*
+*Generated from [docs/registry.toml](../docs/registry.toml) by `scripts/build_overview.py`; do not edit by hand. Updated 2026-10-20. An interactive version with a chart is [index.html](index.html) (open it in a browser).*
 
 **Nothing in LP2 is solved.** Every negative below has a positive control (a planted key the method recovers) and a null control. How to read a result file:
 
@@ -71,6 +71,7 @@
 |---|---|---|---|
 | Periodic keys (drift-aware matched filter that allows for the skip rule's key drift) | excluded |  | [drift_period.txt](analysis/drift_period.txt), [step_periodicity.txt](analysis/step_periodicity.txt) |
 | Plaintext / ciphertext autokey (lag <= 8), monoalphabetic, Vigenere (period <= 29), per-word key, progressive, multiplicative and cumulative keys | excluded |  | [families.txt](analysis/families.txt) |
+| A book as the running key ('OTP-class' from a referenced text): any natural-language text, any letter -> rune table, keyless | partial |  | [book_key_flatness.py](../work/book_key_flatness.py), [book_key_pairs.py](../work/book_key_pairs.py), [book_key_random_tables.py](../work/tmp/book_key_random_tables.py), [book_key_flatness.txt](analysis/book_key_flatness.txt), [book_key_random_tables.txt](analysis/book_key_random_tables.txt), [book_key_pairs.txt](analysis/book_key_pairs.txt) |
 | Small state machines: 4,608 rules x 29 start states, with and without the skip modelled | excluded |  | [state_machines.txt](analysis/state_machines.txt), [state_machines_skip.txt](analysis/state_machines_skip.txt) |
 | Per-word keys: constant, linear, quadratic, periodic (<= 7), recurrences of order <= 3; same word -> same cipher | excluded |  | [word_recurrence_d2.txt](analysis/word_recurrence_d2.txt), [word_recurrence_d3.txt](analysis/word_recurrence_d3.txt), [word_key_dictionary.txt](analysis/word_key_dictionary.txt) |
 | Key-free search for a secret outer alphabet behind a per-word additive key (walk dsearch, m = 1..8 position phases) | partial |  | [dsearch_control.txt](walk/dsearch_control.txt), [dsearch.txt](walk/dsearch.txt) |
