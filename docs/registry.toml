@@ -324,11 +324,11 @@ files = ["results/prng/bgsmall_drand48_pages_verify.txt", "results/prng/bgsmall_
 id = "prng-ms"
 group = "generators"
 title = "Millisecond timestamps 2012-01 .. 2014-01 as seeds (Java 48-bit, CPython two-word seeds, Java abs() map, Ruby), window 0.7"
-status = "partial"
+status = "excluded"
 what = "Every UTC month; boundary-free score, whole-section check of any candidate"
 control = "Generator vectors and a gate with planted seeds"
-result = "java and py3: 25/25 months (66 billion seeds each); java-abs: 23/25; ruby: 14/25; 0 candidates in every month"
-gap = "java-abs 2012-01 and 2012-02; ruby 2012-01 .. 2012-11"
+result = "All four key maps complete, 25/25 months each (java and py3 66 billion seeds each; java-abs 2012-01/02 and ruby 2012-01..11 finished 2026-10-20 on the gpunight queue): 0 candidates in every month"
+gap = "Window 0.7 only; other time bases, other generators"
 log = ["work/log/phase10_prng_time_gpu.md", "work/log/phase10_overnight_queue.md"]
 files = ["results/prng/time_gpu"]
 
@@ -905,11 +905,12 @@ files = ["results/kscreen/signs_periodic/P5_ppmmp.tsv", "results/kscreen/signs_p
 id = "open-months"
 group = "generators"
 title = "Remaining millisecond-timestamp months: java-abs 2012-01 / 02, ruby 2012-01 .. 2012-11"
-status = "open"
-priority = 6
-cost = "About 1.5 h GPU"
-needs = "GPU"
+status = "excluded"
+what = "Run 2026-10-20 on the gpunight queue (jobs/queues/gpunight.txt): work/phpmt/time_gpu.py java-abs and ruby"
+control = "As row prng-ms (generator vectors, planted-seed gate)"
+result = "0 candidates at the +300 floor in every month; folded into row prng-ms, now complete"
 log = ["work/log/phase10_overnight_queue.md"]
+files = ["results/prng/time_gpu"]
 
 [[experiment]]
 id = "open-layer2-slices"

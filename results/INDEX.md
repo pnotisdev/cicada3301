@@ -60,13 +60,14 @@
 | Ten seeded generators over all 2^32 seeds (net: 2^31), boundary-free bigram score, window 0.7 | excluded |  | [bg_py3_07_verify.txt](prng/bg_py3_07_verify.txt), [bg_php_07_verify.txt](prng/bg_php_07_verify.txt), [bg_net_07_verify.txt](prng/bg_net_07_verify.txt) |
 | Epoch-second seeds 2011-2015 (8 generators) and small seeds below 2^27, on every section | excluded |  | [bgsmall_glibc_all_verify.txt](prng/bgsmall_glibc_all_verify.txt) |
 | Per-page seeds: 8 generators x (epoch seconds 2011-2015, seeds below 2^27) on the 44 page windows | excluded |  | [bgsmall_drand48_pages_verify.txt](prng/bgsmall_drand48_pages_verify.txt), [bgsmall_glibc_pages_verify.txt](prng/bgsmall_glibc_pages_verify.txt) |
-| Millisecond timestamps 2012-01 .. 2014-01 as seeds (Java 48-bit, CPython two-word seeds, Java abs() map, Ruby), window 0.7 | partial |  | [time_gpu](prng/time_gpu) |
+| Millisecond timestamps 2012-01 .. 2014-01 as seeds (Java 48-bit, CPython two-word seeds, Java abs() map, Ruby), window 0.7 | excluded |  | [time_gpu](prng/time_gpu) |
 | Dictionary-scored seed sweeps: PHP, glibc, .NET on all 8 sections; seven more generators on window 0.7 | partial |  | [php_all.tsv](prng/php_all.tsv), [glibc_all.tsv](prng/glibc_all.tsv) |
 | Human-plausible seeds (334 M per generator) for MT init_by_array, MSVC, Java, drand48; 3-6 key maps each | partial |  | [java_b_negative.tsv](prngx/java_b_negative.tsv) |
 | 199,088 OEIS integer sequences as keys (mod 29), boundary-free score | partial |  | [true_key_score.txt](analysis/true_key_score.txt), [bg_oeis_verify.txt](prngx/bg_oeis_verify.txt), [bg_oeis_A60_verify.txt](prngx/bg_oeis_A60_verify.txt), [bg_oeis_B48_verify.txt](prngx/bg_oeis_B48_verify.txt) |
 | Passphrases to hash streams (19.2 M candidates, MD5 / SHA-1 / SHA-256 / SHA-512) and KDF streams (719,280) | partial |  | [bg_words_verify.txt](hashscan/bg_words_verify.txt), [bg_kdf_verify.txt](prngx/bg_kdf_verify.txt) |
 | Dictionary screens (screen 1, screen 2, reverse direction, heading restarts) with the corrected word segmentation | partial |  | [screens](screens) |
 | Boundary-free seed sweeps of sections 0.8-0.15 over the FULL seed space (a fresh seed per section), ten generators | excluded |  | [bg_py3_all.log](prng/bg_py3_all.log), [bg_glibc_all.log](prng/bg_glibc_all.log), [bg_net_all.log](prng/bg_net_all.log) |
+| Remaining millisecond-timestamp months: java-abs 2012-01 / 02, ruby 2012-01 .. 2012-11 | excluded |  | [time_gpu](prng/time_gpu) |
 
 ### Cipher structure beyond c = p + k
 

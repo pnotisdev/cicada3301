@@ -1,0 +1,49 @@
+# 2026-10-20 18:58:14 start: {PY} work/phpmt/time_gpu.py run java-abs --hours 1.5
+Traceback (most recent call last):
+  File "<repo>\work\phpmt\time_gpu.py", line 80, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "<repo>\work\phpmt\time_gpu.py", line 66, in main
+    rows, secs = bg64.sweep(a.gen, "07", lo, hi, str(tsv))
+                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<repo>\work\phpmt\bg64.py", line 78, in sweep
+    S = Sweep64(gen, wins)
+  File "<repo>\work\phpmt\bg64.py", line 34, in __init__
+    import cupy as cp
+ModuleNotFoundError: No module named 'cupy'
+# 2026-10-20 18:58:19 exit 1
+# 2026-10-20 19:00:55 start: {PY} work/phpmt/time_gpu.py run java-abs --hours 1.5
+bg64: java-abs sweep of 2505600000 seeds (1328054400000 .. 1330559999999), 1 windows x 16 variants on CUDA NVIDIA GeForce RTX 2080 Ti
+7.45% (186749506 seeds) 9308228 seeds/s, eta 249 s
+14.70% (368205154 seeds) 9145415 seeds/s, eta 234 s
+21.92% (549224179 seeds) 9083212 seeds/s, eta 215 s
+29.28% (733560768 seeds) 9095104 seeds/s, eta 195 s
+36.66% (918610291 seeds) 9110386 seeds/s, eta 174 s
+44.04% (1103474067 seeds) 9122538 seeds/s, eta 154 s
+51.52% (1290873385 seeds) 9146293 seeds/s, eta 133 s
+59.11% (1481015840 seeds) 9180918 seeds/s, eta 112 s
+67.00% (1678749991 seeds) 9252765 seeds/s, eta 89 s
+74.95% (1878066108 seeds) 9317207 seeds/s, eta 67 s
+82.93% (2077941900 seeds) 9373131 seeds/s, eta 46 s
+91.09% (2282226434 seeds) 9435969 seeds/s, eta 24 s
+98.36% (2464487547 seeds) 9402869 seeds/s, eta 4 s
+swept 2505600000 seeds in 267 s; best score None; candidates >= 300: 0
+hist (bins of 20 from -400) 0:31526573432 1:1907298046 2:1614766528 3:1323666910 4:1050325412 5:806647124 6:599478886 7:431065551 8:299836976 9:201699119 10:131215991 11:82511825 12:50122498 13:29397252 14:16630445 15:9078062 16:4765232 17:2412878 18:1170071 19:546003 20:244988 21:104388 22:42383
+java-abs 2012-02: 2,505,600,000 seeds in 267 s (9.39 M/s), best None, candidates 0
+bg64: java-abs sweep of 2678400000 seeds (1325376000000 .. 1328054399999), 1 windows x 16 variants on CUDA NVIDIA GeForce RTX 2080 Ti
+7.13% (190954945 seeds) 9513487 seeds/s, eta 261 s
+14.87% (398259560 seeds) 9899038 seeds/s, eta 230 s
+22.65% (606749855 seeds) 10036759 seeds/s, eta 206 s
+30.42% (814641658 seeds) 10106442 seeds/s, eta 184 s
+38.40% (1028616045 seeds) 10211038 seeds/s, eta 162 s
+46.34% (1241201571 seeds) 10269139 seeds/s, eta 140 s
+54.34% (1455415844 seeds) 10321857 seeds/s, eta 118 s
+62.26% (1667549560 seeds) 10348587 seeds/s, eta 98 s
+69.61% (1864500779 seeds) 10282342 seeds/s, eta 79 s
+77.20% (2067763158 seeds) 10264090 seeds/s, eta 59 s
+85.24% (2282965200 seeds) 10302920 seeds/s, eta 38 s
+93.44% (2502565476 seeds) 10350815 seeds/s, eta 17 s
+swept 2678400000 seeds in 259 s; best score None; candidates >= 300: 0
+hist (bins of 20 from -400) 0:33700725104 1:2038860657 2:1726283297 3:1414975845 4:1122727737 5:862226954 6:640799461 7:460770733 8:320493050 9:215659661 10:140260992 11:88211167 12:53578525 13:31414401 14:17782492 15:9704119 16:5095468 17:2578413 18:1251348 19:583283 20:260638 21:111293 22:45362
+java-abs 2012-01: 2,678,400,000 seeds in 259 s (10.33 M/s), best None, candidates 0
+# 2026-10-20 19:09:50 exit 0
