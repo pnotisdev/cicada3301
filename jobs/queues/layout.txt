@@ -1,0 +1,28 @@
+# layout stage 1 (phase 36, work/log/phase36_layout_rules.md, 'Queued'): the 13 line / position sign rules (NOT the 10 page / half-page rules) as signs over the 581 flat library streams x 8 section windows, 14 threads.
+# Starts only after BOTH the booknight queue (book_key_screen) and the pdir queue (pdir_pilot / pdir_verify) are done: WAIT holds at most QUEUE_MAX_WAIT_SECONDS (launch with 172800) each, repeated.
+# Per rule: screen (8-13 min on 14 threads) + verify.py on the top 15 hits (minutes); one matched null (581 random streams under the signs of Ln_par). Outputs: results/kscreen/layout/. Resumable (finished outputs are skipped).
+# Stop: end the python.exe processes whose command line contains jobqueue.py layout or layout_queue.py (and kscreen.exe if running).
+WAIT | book_key_screen
+WAIT | jobqueue.py booknight
+WAIT | book_key_screen
+WAIT | jobqueue.py booknight
+WAIT | pdir_pilot
+WAIT | jobqueue.py pdir
+WAIT | pdir_pilot
+WAIT | jobqueue.py pdir
+WAIT | pdir_verify
+WAIT | pdir_pilot
+Ln_par | {PY} work/kscreen/layout_queue.py Ln_par --threads 14
+null-Ln_par | {PY} work/kscreen/layout_queue.py Ln_par --null --threads 14
+Ls_par | {PY} work/kscreen/layout_queue.py Ls_par --threads 14
+PL_xor | {PY} work/kscreen/layout_queue.py PL_xor --threads 14
+Po_par | {PY} work/kscreen/layout_queue.py Po_par --threads 14
+Ln_m3_0 | {PY} work/kscreen/layout_queue.py Ln_m3_0 --threads 14
+Ln_m3_1 | {PY} work/kscreen/layout_queue.py Ln_m3_1 --threads 14
+Ln_m3_2 | {PY} work/kscreen/layout_queue.py Ln_m3_2 --threads 14
+Ls_m3_0 | {PY} work/kscreen/layout_queue.py Ls_m3_0 --threads 14
+Ls_m3_1 | {PY} work/kscreen/layout_queue.py Ls_m3_1 --threads 14
+Ls_m3_2 | {PY} work/kscreen/layout_queue.py Ls_m3_2 --threads 14
+Po_m3_0 | {PY} work/kscreen/layout_queue.py Po_m3_0 --threads 14
+Po_m3_1 | {PY} work/kscreen/layout_queue.py Po_m3_1 --threads 14
+Po_m3_2 | {PY} work/kscreen/layout_queue.py Po_m3_2 --threads 14
