@@ -1,0 +1,90 @@
+Phase 23 gate: table-invariant drift-tracking book-key decoder. Nothing in LP2 is solved; LP2 is NOT decoded here.
+Plaintext Emerson (digraph runes), plaintext model Walden; key books KJV, Paradise Lost, Meditations, Zarathustra, Republic; beam 64 x 8 per pointer, hard EM <= 4 rounds; family threshold max(mu + 6.1 sd, exponential-tail extrapolation to p = 5e-10, tail max)
+
+--- key spelling digraph, window 300 runes: 40 plants (flattened table, skip q=0.81, grid offset 0-7 below the truth), decode 78 ms = 9.8 ms per book-offset (stride 8)
+    plants: path accuracy mean 0.745, median 0.900, >=0.9 in 21/40, <0.5 in 8; table agreement 0.56; decrypted IoC mean 1.629 (plaintext ~1.77)
+    beam (table-free)  plants +0.1006 (min -0.1284); tail 3000: -0.1226 +- 0.0233, max -0.0408 (> mu+3sd: 0.0027, Gaussian 0.0013); threshold +0.1190 (Gauss +0.0193, exp tail +0.1190): POWER 21/40; plant z median +10.6
+        null offset   -0.1210 +- 0.0195, max -0.0767, above threshold 0/40
+        null book     -0.1206 +- 0.0218, max -0.0731, above threshold 0/40
+        null uniform  -0.1193 +- 0.0219, max -0.0767, above threshold 0/40
+    EM (best table)    plants +0.2346 (min -0.3560); tail 3000: -0.1233 +- 0.1034, max +0.1289 (> mu+3sd: 0.0000, Gaussian 0.0013); threshold +0.5149 (Gauss +0.5073, exp tail +0.5149): POWER 0/40; plant z median +4.2
+        null offset   -0.1291 +- 0.0947, max +0.0443, above threshold 0/40
+        null book     -0.1326 +- 0.1254, max +0.0665, above threshold 0/40
+        null uniform  -0.1110 +- 0.1035, max +0.0804, above threshold 0/40
+
+--- key spelling letters, window 300 runes: 40 plants (flattened table, skip q=0.81, grid offset 0-7 below the truth), decode 81 ms = 10.1 ms per book-offset (stride 8)
+    plants: path accuracy mean 0.823, median 0.950, >=0.9 in 24/40, <0.5 in 4; table agreement 0.66; decrypted IoC mean 1.679 (plaintext ~1.77)
+    beam (table-free)  plants +0.1208 (min -0.1485); tail 3000: -0.1355 +- 0.0241, max -0.0452 (> mu+3sd: 0.0037, Gaussian 0.0013); threshold +0.1141 (Gauss +0.0114, exp tail +0.1141): POWER 27/40; plant z median +12.1
+        null offset   -0.1413 +- 0.0235, max -0.1015, above threshold 0/40
+        null book     -0.1292 +- 0.0264, max -0.0470, above threshold 0/40
+        null uniform  -0.1294 +- 0.0201, max -0.0772, above threshold 0/40
+    EM (best table)    plants +0.2668 (min -0.4185); tail 3000: -0.1584 +- 0.1021, max +0.1237 (> mu+3sd: 0.0000, Gaussian 0.0013); threshold +0.4893 (Gauss +0.4644, exp tail +0.4893): POWER 1/40; plant z median +4.9
+        null offset   -0.1454 +- 0.0812, max +0.0012, above threshold 0/40
+        null book     -0.1398 +- 0.1049, max +0.0527, above threshold 0/40
+        null uniform  -0.1778 +- 0.1033, max -0.0078, above threshold 0/40
+
+--- key spelling digraph, window 729 runes: 30 plants (flattened table, skip q=0.81, grid offset 0-7 below the truth), decode 179 ms = 22.3 ms per book-offset (stride 8)
+    plants: path accuracy mean 0.788, median 0.994, >=0.9 in 22/30, <0.5 in 6; table agreement 0.73; decrypted IoC mean 1.670 (plaintext ~1.77)
+    beam (table-free)  plants +0.1401 (min -0.2705); tail 2000: -0.2312 +- 0.0213, max -0.1523 (> mu+3sd: 0.0015, Gaussian 0.0013); threshold -0.0112 (Gauss -0.1010, exp tail -0.0112): POWER 24/30; plant z median +20.7
+        null offset   -0.2318 +- 0.0235, max -0.1856, above threshold 0/30
+        null book     -0.2313 +- 0.0196, max -0.2019, above threshold 0/30
+        null uniform  -0.2289 +- 0.0183, max -0.1843, above threshold 0/30
+    EM (best table)    plants +0.2373 (min -0.4990); tail 2000: -0.3928 +- 0.0696, max -0.1750 (> mu+3sd: 0.0005, Gaussian 0.0013); threshold +0.1054 (Gauss +0.0319, exp tail +0.1054): POWER 24/30; plant z median +11.4
+        null offset   -0.4051 +- 0.0743, max -0.2536, above threshold 0/30
+        null book     -0.3872 +- 0.0588, max -0.2759, above threshold 0/30
+        null uniform  -0.3894 +- 0.0750, max -0.2624, above threshold 0/30
+
+--- key spelling letters, window 729 runes: 30 plants (flattened table, skip q=0.81, grid offset 0-7 below the truth), decode 183 ms = 22.9 ms per book-offset (stride 8)
+    plants: path accuracy mean 0.944, median 0.997, >=0.9 in 27/30, <0.5 in 1; table agreement 0.90; decrypted IoC mean 1.788 (plaintext ~1.77)
+    beam (table-free)  plants +0.2049 (min -0.2566); tail 2000: -0.2441 +- 0.0220, max -0.1753 (> mu+3sd: 0.0005, Gaussian 0.0013); threshold -0.0417 (Gauss -0.1096, exp tail -0.0417): POWER 28/30; plant z median +22.2
+        null offset   -0.2428 +- 0.0207, max -0.2043, above threshold 0/30
+        null book     -0.2516 +- 0.0233, max -0.1855, above threshold 0/30
+        null uniform  -0.2487 +- 0.0199, max -0.1985, above threshold 0/30
+    EM (best table)    plants +0.3679 (min -0.3586); tail 2000: -0.4141 +- 0.0680, max -0.2223 (> mu+3sd: 0.0000, Gaussian 0.0013); threshold +0.0597 (Gauss +0.0009, exp tail +0.0597): POWER 29/30; plant z median +12.2
+        null offset   -0.3781 +- 0.0762, max -0.2712, above threshold 0/30
+        null book     -0.4132 +- 0.0748, max -0.2820, above threshold 0/30
+        null uniform  -0.4281 +- 0.0748, max -0.2954, above threshold 0/30
+
+--- key spelling digraph, window 1524 runes: 20 plants (flattened table, skip q=0.81, grid offset 0-7 below the truth), decode 368 ms = 46.0 ms per book-offset (stride 8)
+    plants: path accuracy mean 0.948, median 0.995, >=0.9 in 19/20, <0.5 in 1; table agreement 0.88; decrypted IoC mean 1.781 (plaintext ~1.77)
+    beam (table-free)  plants +0.2537 (min -0.3105); tail 1000: -0.3013 +- 0.0181, max -0.2454 (> mu+3sd: 0.0010, Gaussian 0.0013); threshold -0.1449 (Gauss -0.1911, exp tail -0.1449): POWER 19/20; plant z median +32.6
+        null offset   -0.2977 +- 0.0133, max -0.2628, above threshold 0/20
+        null book     -0.2992 +- 0.0145, max -0.2721, above threshold 0/20
+        null uniform  -0.3053 +- 0.0217, max -0.2627, above threshold 0/20
+    EM (best table)    plants +0.3659 (min -0.4430); tail 1000: -0.5146 +- 0.0443, max -0.3933 (> mu+3sd: 0.0000, Gaussian 0.0013); threshold -0.1858 (Gauss -0.2443, exp tail -0.1858): POWER 19/20; plant z median +20.8
+        null offset   -0.5127 +- 0.0540, max -0.4371, above threshold 0/20
+        null book     -0.5007 +- 0.0501, max -0.4146, above threshold 0/20
+        null uniform  -0.5220 +- 0.0505, max -0.4287, above threshold 0/20
+
+--- key spelling letters, window 1524 runes: 20 plants (flattened table, skip q=0.81, grid offset 0-7 below the truth), decode 359 ms = 44.9 ms per book-offset (stride 8)
+    plants: path accuracy mean 0.894, median 0.998, >=0.9 in 17/20, <0.5 in 2; table agreement 0.85; decrypted IoC mean 1.726 (plaintext ~1.77)
+    beam (table-free)  plants +0.2072 (min -0.3019); tail 1000: -0.3079 +- 0.0187, max -0.2520 (> mu+3sd: 0.0000, Gaussian 0.0013); threshold -0.1373 (Gauss -0.1937, exp tail -0.1373): POWER 17/20; plant z median +31.9
+        null offset   -0.3012 +- 0.0209, max -0.2687, above threshold 0/20
+        null book     -0.3040 +- 0.0188, max -0.2745, above threshold 0/20
+        null uniform  -0.3137 +- 0.0200, max -0.2715, above threshold 0/20
+    EM (best table)    plants +0.2987 (min -0.4789); tail 1000: -0.5217 +- 0.0405, max -0.3932 (> mu+3sd: 0.0010, Gaussian 0.0013); threshold -0.1923 (Gauss -0.2745, exp tail -0.1923): POWER 18/20; plant z median +22.9
+        null offset   -0.5269 +- 0.0405, max -0.4497, above threshold 0/20
+        null book     -0.5314 +- 0.0385, max -0.4534, above threshold 0/20
+        null uniform  -0.5240 +- 0.0450, max -0.4484, above threshold 0/20
+
+--- key spelling digraph, window 3316 runes: 12 plants (flattened table, skip q=0.81, grid offset 0-7 below the truth), decode 792 ms = 99.0 ms per book-offset (stride 8)
+    plants: path accuracy mean 0.996, median 0.997, >=0.9 in 12/12, <0.5 in 0; table agreement 0.94; decrypted IoC mean 1.806 (plaintext ~1.77)
+    beam (table-free)  plants +0.3021 (min +0.1920); tail 400: -0.3405 +- 0.0140, max -0.2985 (> mu+3sd: 0.0000, Gaussian 0.0013); threshold -0.2041 (Gauss -0.2550, exp tail -0.2041): POWER 12/12; plant z median +46.6
+        null offset   -0.3393 +- 0.0167, max -0.3156, above threshold 0/12
+        null book     -0.3436 +- 0.0132, max -0.3252, above threshold 0/12
+        null uniform  -0.3457 +- 0.0159, max -0.3250, above threshold 0/12
+    EM (best table)    plants +0.4082 (min +0.3817); tail 400: -0.5776 +- 0.0234, max -0.5048 (> mu+3sd: 0.0025, Gaussian 0.0013); threshold -0.3238 (Gauss -0.4347, exp tail -0.3238): POWER 12/12; plant z median +42.0
+        null offset   -0.5687 +- 0.0162, max -0.5448, above threshold 0/12
+        null book     -0.5718 +- 0.0250, max -0.5306, above threshold 0/12
+        null uniform  -0.5774 +- 0.0382, max -0.4874, above threshold 0/12
+
+--- key spelling letters, window 3316 runes: 12 plants (flattened table, skip q=0.81, grid offset 0-7 below the truth), decode 791 ms = 98.8 ms per book-offset (stride 8)
+    plants: path accuracy mean 0.996, median 0.997, >=0.9 in 12/12, <0.5 in 0; table agreement 0.97; decrypted IoC mean 1.829 (plaintext ~1.77)
+    beam (table-free)  plants +0.3278 (min +0.2867); tail 400: -0.3454 +- 0.0140, max -0.3123 (> mu+3sd: 0.0000, Gaussian 0.0013); threshold -0.2468 (Gauss -0.2599, exp tail -0.2468): POWER 12/12; plant z median +48.4
+        null offset   -0.3453 +- 0.0137, max -0.3170, above threshold 0/12
+        null book     -0.3488 +- 0.0157, max -0.3242, above threshold 0/12
+        null uniform  -0.3508 +- 0.0109, max -0.3404, above threshold 0/12
+    EM (best table)    plants +0.4116 (min +0.3582); tail 400: -0.5848 +- 0.0222, max -0.5132 (> mu+3sd: 0.0025, Gaussian 0.0013); threshold -0.4028 (Gauss -0.4493, exp tail -0.4028): POWER 12/12; plant z median +44.9
+        null offset   -0.5890 +- 0.0275, max -0.5523, above threshold 0/12
+        null book     -0.5852 +- 0.0281, max -0.5497, above threshold 0/12
+        null uniform  -0.5839 +- 0.0253, max -0.5366, above threshold 0/12
