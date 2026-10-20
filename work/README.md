@@ -70,6 +70,7 @@ Find a script by what it is for. Each one writes its output into `results/analys
 | `phase31_book_codes.py` | Phase 31: preregistered book-code readings of the book's numbers in four local books, trigram score against random pointer sets |
 | `book_key_verify.py`, `book_key_summary_fixed.py` | Phase 23 stage 2: whole-section verification of a book-key screen hit (gate: 13/16 plants, 0/32 nulls); sentinel-safe re-reader of the screen summary |
 | `h2_drift_decoder.py` | Phase 32: drift-aware tableau (H2) statistic, a beam over the key pointer; gate only, power too low for a campaign |
+| `phase34_clause_ioc.py` | Phase 34: within-clause IoC of LP2 against a shuffle null (a key constant over each clause) |
 | `word_structure.py` | Does the word segmentation depend on the neighbouring runes, and is there a schedule by position in the word or by (length, position)? Three keyless tests, each with planted controls and shuffle nulls (`--quick` for a minute; `results/analysis/word_structure.txt`) |
 | `typo_restarts.py`, `typo_shared_key.py`, `typo_shared_key_power.py` | Restarts at typographic marks |
 | `chain_lag.py` | Ciphertext feedback: coincidences at lag P |

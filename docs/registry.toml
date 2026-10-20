@@ -876,9 +876,9 @@ priority = 3
 what = "Phase 30: engine option pdir in work/kscreen (the key pointer walks forward or backward per word by a rule on the word's numbers, 66 rules incl. GP prime-value rules x both orientations = 132 vectors, 18 conventions; reads key values before the start offset). Default decoding bit-identical (12 option sets), dense reference exact on 8,640 decodes"
 control = "Independent planter, 4 rule / convention / orientation cases x 3 windows, q = 0.81: 11 / 12 recovered at the exact offset with IoC >= 1.6 (one 1.594, re-decode 1.746); default engine 1.22-1.27, wrong rule or convention 1.03-1.10; random-key nulls below 1.40 (pdir_selftest PASSED)"
 result = "Pilot only (convention 000, window 0.7, 6 of 581 streams, 132 vectors, about 61 M decodes): best 1.2951 against matched null 1.3055: negative on the slice, a pipeline check, not a test"
-cost = "About 13.7 h at 14 threads per convention (45.8 G decodes), 247 h for all 18; planned stage 1 on windows 0.7 + 0.8 only, 3.4 h per convention; draft queue jobs/queues/pdir.txt (not started)"
+cost = "About 13.7 h at 14 threads per convention (45.8 G decodes), 247 h for all 18; stage 1 (windows 0.7 + 0.8, conventions 000 100 020 120 010 110, matched null for 000, about 24 h) is queued detached and starts when the booknight queue ends (jobs/queues/pdir.txt; review fixes applied)"
 needs = "A free CPU (the booknight queue uses it)"
-log = ["work/log/phase10_deepseek_round4.md", "work/log/phase10_signrules.md", "work/log/phase30_pointer_direction.md"]
+log = ["work/log/phase10_deepseek_round4.md", "work/log/phase10_signrules.md", "work/log/phase30_pointer_direction.md", "work/log/phase30_review.md", "work/log/phase34_2016_message_map.md"]
 files = ["work/kscreen/dirrules.py", "work/kscreen/dir_rules.txt", "work/kscreen/pdir_selftest.py", "work/kscreen/pdir_ref.py", "work/kscreen/pdir_identity.py", "work/kscreen/pdir_pilot.py", "results/kscreen/pdir", "jobs/queues/pdir.txt"]
 
 [[experiment]]

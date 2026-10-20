@@ -60,6 +60,7 @@ def main():
     ap.add_argument("--threads", type=int, default=2)
     ap.add_argument("--tag", default="pilot")
     ap.add_argument("--pad", type=int, default=300)
+    ap.add_argument("--parts", default="real,null", help="real, null or real,null")
     a = ap.parse_args()
     rules = [l.strip() for l in open(os.path.join(HERE, "dir_rules.txt"), encoding="utf-8") if l.strip()]
     if a.rules != "all":
@@ -76,6 +77,8 @@ def main():
     base = os.path.join(OUT, a.tag, a.conv)
     summary = []
     for kind, family in (("real", fam), ("null", f"rand:{a.null}:{3301 + int(a.conv, 3)}")):
+        if kind not in a.parts.split(","):
+            continue
         os.makedirs(os.path.join(base, kind), exist_ok=True)
         for rule in rules:
             for neg, tag in ((0, "fwd"), (1, "rev")):
@@ -86,17 +89,22 @@ def main():
                 r = subprocess.run(cmd, cwd=HERE, capture_output=True, text=True)
                 if r.returncode != 0:
                     sys.exit(r.stderr)
+                # an engine without the pdir option silently ignores pdir= (phase30_review.md, severity 2): refuse its output
+                if f"pdir={a.conv}" not in open(tsv, encoding="utf-8", errors="replace").readline():
+                    os.remove(tsv)
+                    sys.exit(f"{BIN} wrote no pdir={a.conv} header: wrong engine (set KSCREEN_BIN to target/pdir/kscreen.exe)")
                 print(kind, rule, tag, r.stderr.strip().splitlines()[-1], flush=True)
     res = {}
-    for kind in ("real", "null"):
+    kinds = [k for k in ("real", "null") if k in a.parts.split(",")]
+    for kind in kinds:
         res[kind] = sorted(((hits(os.path.join(base, kind, f"{r}_{t}.tsv")), r, t) for r in rules for t in ("fwd", "rev")), reverse=True)
-    for kind in ("real", "null"):
+    for kind in kinds:
         b = [x[0] for x in res[kind]]
         summary.append(f"{kind}: {len(b)} vectors, best IoC {b[0]:.4f} ({res[kind][0][1]} {res[kind][0][2]}); vectors with best >= 1.30: {sum(x >= 1.30 for x in b)}, >= 1.35: {sum(x >= 1.35 for x in b)}, >= 1.40: {sum(x >= 1.40 for x in b)}; median of per-vector best {sorted(b)[len(b) // 2]:.4f}")
         summary.append(f"  top 5: " + ", ".join(f"{s:.4f} {r} {t}" for s, r, t in res[kind][:5]))
     text = f"pdir {a.tag} conv {a.conv}: windows {a.windows}, streams {a.streams} of the flat library, null {a.null} random keystreams, pad {a.pad}\n" + "\n".join(summary) + "\n"
     print(text)
-    open(os.path.join(base, "summary.txt"), "w", newline="\n", encoding="utf-8").write(text)
+    open(os.path.join(base, "summary_" + a.parts.replace(",", "_") + ".txt"), "w", newline="\n", encoding="utf-8").write(text)
 
 
 if __name__ == "__main__":
