@@ -194,8 +194,8 @@ null = 1.3359
 chart = true
 control = "18 of 18 planted keys recovered (IoC 1.736-1.787 at the planted offset or its +-2 skip alias), wrong streams 1.19-1.29 (work/kscreen/signed_selftest.py, independent planter)"
 result = "Best 1.2971 (0.15, hash stream of message 2), per-window bests 1.245-1.297; matched nulls 1.3016 and 1.3359; 0 of 15 hits keep IoC >= 1.4 over their window"
-gap = "Multipliers other than +-1; windows other than the section starts; the material used as something other than an additive key; signed 3301 material not in the scans; the page-3 hex JPEG; the signatures themselves are not verified"
-log = ["work/log/phase21_signed_streams.md"]
+gap = "Phase 29 closed the multipliers: all 28 (320 M decodes, 2 threads) best 1.3404 (0.15, sha256-ctr of a signature value, mult 13) against nulls 1.3326 / 1.3359, 0 of 15 verified. Still open: windows other than the section starts; the material used as something other than an additive key; signed 3301 material not in the scans; the page-3 hex JPEG; the signatures themselves are not verified"
+log = ["work/log/phase21_signed_streams.md", "work/log/phase29_signed_mults.md"]
 files = ["work/kscreen/signed.py", "results/kscreen/signed_segments.tsv", "results/kscreen/signed_segments_verify.txt", "results/kscreen/signed_null_1.tsv", "results/kscreen/signed_null_2.tsv", "results/kscreen/signed_selftest.txt"]
 
 [[experiment]]
@@ -935,9 +935,12 @@ group = "generators"
 title = "Step-domain seed sweeps (prng-step): ten generators, IoC scoring"
 status = "open"
 priority = 8
-cost = "About 1 h per generator on the GPU"
-needs = "GPU; exact tail and planted seeds exist"
+what = "Running on the gpunight queue since 2026-10-20 (jobs/overnight.py run prng-step, window 0.7, all 2^32 seeds, 144 settings per seed); controls (work/tests/test_stepmt.py) run first"
+result = "So far py3, php, glibc swept (4,103-4,790 s each on the 2080 Ti): 0 candidates at the IoC floor of 1.45 in each; java running"
+cost = "About 1.2-1.3 h per generator on the GPU"
+needs = "The remaining generators of the queue"
 log = ["work/log/phase9_step28.md"]
+files = ["results/prng/step_py3_07.log", "results/prng/step_php_07.log", "results/prng/step_glibc_07.log", "results/overnight/desktop/prng_step_selftest.txt"]
 
 [[experiment]]
 id = "open-h1"
@@ -1029,6 +1032,20 @@ result = "0 two-word decryptions (null mean 0.008); Gematria-sum relations at ch
 gap = "Keyed methods outside the family (an unknown keyword or text, LP2 running keys, another alphabet order), non-English or runic-spelling text, a key taken from the grid image rather than its numbers; glyphs 2-9 rest on the transcription"
 log = ["work/log/phase27_grid30_caption.md", "work/log/phase4_grid30.md"]
 files = ["work/grid30_caption.py", "results/grid30_caption/run.log", "results/grid30_caption/results.json", "results/grid30_caption/observed_hits.txt"]
+
+[[experiment]]
+id = "layout-rules"
+group = "structure"
+title = "Key signs or pointer directions from the layout numbers (page, line, position parity and mod 3, half pages): 23 rules, built and gated"
+status = "open"
+priority = 4
+what = "Phase 36: work/kscreen/layoutrules.py builds S (sign) and D (direction) vectors from the master's page and line structure, checked against an independent parse (0 mismatches on 12,947 runes)"
+control = "Independent planter, 5 rules x 3 windows: 15 / 15 recovered at the exact offset (IoC 1.56-2.07); default engine and wrong rule blind for rules with >= 10 sign changes (1.06-1.25); page and half-page rules flip whole blocks and are PARTLY seen by the default engine (unsigned up to 1.44, criterion changed after this was seen and recorded); nulls 1.291 / 1.298"
+result = "No LP2 screen yet"
+cost = "As signs 8-13 min per rule on 14 threads (the 13 line / position rules: 1.8-2.9 h); as pdir vectors 3-8 min per vector: all 276 would be 3-8 days, run only the sign-screen survivors"
+needs = "A free CPU; page rules (0-1 sign changes in a 300-rune window) need later windows or the whole section to add anything over the default campaigns"
+log = ["work/log/phase36_layout_rules.md", "work/log/phase34_2016_message_map.md"]
+files = ["work/kscreen/layoutrules.py", "work/kscreen/layout_selftest.py", "results/kscreen/layout_selftest.txt"]
 
 [[experiment]]
 id = "collision-kernel-followup"
