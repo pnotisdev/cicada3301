@@ -1,0 +1,30 @@
+# OutGuess scan of the 75 page scans (work/ogscan/run_scan.py). Own reader validated on the known carriers; no third-party code run.
+
+1. Default key on every page (K = page named as a 2014 payload carrier in work/log/research_2026-10-17.md, plus pages 0-2)
+   page 00: payload of 2899 bytes (seed 163), starts b'-----BEGIN PGP SIGNED MESSAGE-----\nHash: SHA1\n'
+   page 01: payload of 2899 bytes (seed 115), starts b'-----BEGIN PGP SIGNED MESSAGE-----\nHash: SHA1\n'
+   page 02: payload of 2899 bytes (seed 94), starts b'-----BEGIN PGP SIGNED MESSAGE-----\nHash: SHA1\n'
+   page 03: payload of 31809 bytes (seed 127), starts b'-----BEGIN PGP SIGNED MESSAGE-----\nHash: SHA1\n'
+   page 08: payload of 140 bytes (seed 38), starts b'\nFor those who have fallen behind:\n\nTL BE IE O'
+   page 10: payload of 1234 bytes (seed 99), starts b'-----BEGIN PGP SIGNED MESSAGE-----\nHash: SHA1\n'
+   page 11: payload of 1234 bytes (seed 166), starts b'-----BEGIN PGP SIGNED MESSAGE-----\nHash: SHA1\n'
+   page 12: payload of 1234 bytes (seed 150), starts b'-----BEGIN PGP SIGNED MESSAGE-----\nHash: SHA1\n'
+   page 13: payload of 1234 bytes (seed 129), starts b'-----BEGIN PGP SIGNED MESSAGE-----\nHash: SHA1\n'
+   pages that open with the default key: [0, 1, 2, 3, 8, 10, 11, 12, 13]
+   payloads: pages 0, 1, 2 hold a PGP-signed hex message of 2,899 bytes each (not named in the research note); 3 a 31,809-byte message with a hex JPEG;
+   8 the two-letter code list; 10-13 the 'Create one Tor hidden service ... post the three magic squares' message (1,234 bytes each). Saved in results/outguess/.
+
+2. Key-free screen: constant prefix of the usable-bit stream and deviations among its first 600 bits
+   controls (payload pages, header written): constant prefix 0:70, 1:70, 2:29, 3:9, 8:50, 10:29, 11:50, 12:50, 13:50
+   controls: deviations in the first 600 bits 14-258 (a 32-bit header flips about half of ~32 positions at random)
+   other pages: constant prefix (bits) 4:8, 5:25349, 6:1409, 7:1409, 9:1409, 14:24753, 15:25349, 16:24751, 17:23083, 18:23083, 19:23083, 20:24694, 21:24694, 22:24694, 23:24694, 24:24694, 25:22863, 26:23308, 27:22863, 28:23308, 29:22863, 30:23308, 31:22863, 32:25434, 33:25275, 34:25275, 35:25277, 36:25276, 37:25275, 38:25275, 39:25350, 40:17644, 41:25275, 42:25275, 43:25350, 44:19406, 45:25275, 46:25275, 47:25275, 48:25275, 49:25349, 50:24751, 51:5747, 52:5747, 53:5747, 54:5747, 55:5747, 56:5747, 57:24751, 58:25275, 59:25275, 60:25275, 61:25275, 62:25275, 63:25275, 64:25275, 65:25275, 66:25350, 67:23485, 68:23490, 69:25275, 70:25353, 71:29443, 72:25350, 73:24751, 74:34351
+   other pages with a constant prefix of at least 1,000 bits and no deviation: 65 of 66
+   not decided by the screen (art at the top of the page): [4]
+   LP2 pages 17-72 clean: 56 of 56; their constant prefixes are 5747-29443 bits
+   Reading: an OutGuess-style header would flip about 16 of the first 600 bits on every one of the 56 LP2 pages (as on all nine controls); none does, so no key can open a payload there.
+
+3. Key sweep with 53,227 solved-text strings (lore variants + the 20k word list in three cases), header and 32 body bytes tested for text / magic
+   page 04 (undecided by the screen): 0 hits in 108 s
+   control: payload planted into a copy of page 05 with key b'welcome' (in the list), sweep over 5,000 random keys + that key: hits [(b'welcome', 78)]
+   control: payload planted into a copy of page 05 with key b'DIVINITY' (in the list), sweep over 5,000 random keys + that key: hits [(b'DIVINITY', 78)]
+   control: the unplanted copy of page 05: 0 hits in 3,000 random keys

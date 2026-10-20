@@ -3,31 +3,31 @@
   "ok": true,
   "minutes": 0.0,
   "device": "cpu",
-  "finished": "2026-10-18 20:39:22"
+  "finished": "2026-10-19 13:13:49"
  },
  "setup/build-walk": {
   "ok": true,
   "minutes": 0.0,
   "device": "cpu",
-  "finished": "2026-10-18 20:39:22"
+  "finished": "2026-10-19 13:13:50"
  },
  "setup/build-kscreen": {
   "ok": true,
   "minutes": 0.0,
   "device": "cpu",
-  "finished": "2026-10-18 20:39:23"
+  "finished": "2026-10-19 13:13:51"
  },
  "setup/fetch-data": {
   "ok": true,
   "minutes": 0.0,
   "device": "cpu",
-  "finished": "2026-10-18 20:39:23"
+  "finished": "2026-10-19 13:13:51"
  },
  "setup/data-kscreen": {
   "ok": true,
-  "minutes": 0.9,
+  "minutes": 0.8,
   "device": "cpu",
-  "finished": "2026-10-18 20:40:14"
+  "finished": "2026-10-19 06:52:42"
  },
  "selftest/unittests": {
   "ok": true,
@@ -1988,7 +1988,7 @@
   "ok": true,
   "minutes": 0.1,
   "device": "cuda",
-  "finished": "2026-10-17 07:33:02"
+  "finished": "2026-10-19 13:13:57"
  },
  "kscreen-reverse/a5-library": {
   "ok": true,
@@ -4071,5 +4071,179 @@
   "minutes": 0.2,
   "device": "cpu",
   "finished": "2026-10-18 19:43:57"
+ },
+ "layer2/build": {
+  "ok": true,
+  "minutes": 0.0,
+  "device": "cpu",
+  "finished": "2026-10-19 06:52:55"
+ },
+ "layer2/selftest": {
+  "ok": true,
+  "minutes": 0.7,
+  "device": "cpu",
+  "finished": "2026-10-19 06:53:36"
+ },
+ "layer2/null": {
+  "ok": true,
+  "minutes": 17.5,
+  "device": "cpu",
+  "finished": "2026-10-19 07:11:06"
+ },
+ "layer2/bigram-solved": {
+  "ok": true,
+  "minutes": 55.3,
+  "device": "cpu",
+  "finished": "2026-10-19 08:06:25"
+ },
+ "layer2/verify-solved": {
+  "ok": true,
+  "minutes": 0.1,
+  "device": "cpu",
+  "finished": "2026-10-19 08:06:28"
+ },
+ "layer2/bigram-words": {
+  "ok": true,
+  "minutes": 45.8,
+  "device": "cpu",
+  "finished": "2026-10-19 08:52:19"
+ },
+ "layer2/verify-words": {
+  "ok": true,
+  "minutes": 0.1,
+  "device": "cpu",
+  "finished": "2026-10-19 08:52:23"
+ },
+ "layer2/periodic": {
+  "ok": true,
+  "minutes": 18.1,
+  "device": "cpu",
+  "finished": "2026-10-19 09:10:29"
+ },
+ "layer2/verify-periodic": {
+  "ok": true,
+  "minutes": 0.4,
+  "device": "cpu",
+  "finished": "2026-10-19 09:10:51"
+ },
+ "prng-bg/py3-all": {
+  "ok": true,
+  "minutes": 65.9,
+  "device": "cuda",
+  "finished": "2026-10-19 11:58:03"
+ },
+ "prng-bg/py3-all-verify": {
+  "ok": true,
+  "minutes": 0.0,
+  "device": "cpu",
+  "finished": "2026-10-19 11:58:04"
+ },
+ "prng-bg/java-all": {
+  "ok": true,
+  "minutes": 72.5,
+  "device": "cuda",
+  "finished": "2026-10-19 13:10:31"
+ },
+ "prng-bg/java-all-verify": {
+  "ok": true,
+  "minutes": 0.0,
+  "device": "cpu",
+  "finished": "2026-10-19 13:10:33"
+ },
+ "prng-bg/php-all": {
+  "ok": true,
+  "minutes": 87.8,
+  "device": "cuda",
+  "finished": "2026-10-19 14:41:44"
+ },
+ "prng-bg/php-all-verify": {
+  "ok": true,
+  "minutes": 0.0,
+  "device": "cpu",
+  "finished": "2026-10-19 14:41:45"
+ },
+ "prng-bg/glibc-all": {
+  "ok": true,
+  "minutes": 227.7,
+  "device": "cuda",
+  "finished": "2026-10-19 18:29:26"
+ },
+ "prng-bg/glibc-all-verify": {
+  "ok": true,
+  "minutes": 0.2,
+  "device": "cpu",
+  "finished": "2026-10-19 18:29:36"
+ },
+ "prng-bg/mt32-all": {
+  "ok": true,
+  "minutes": 54.0,
+  "device": "cuda",
+  "finished": "2026-10-19 19:23:33"
+ },
+ "prng-bg/mt32-all-verify": {
+  "ok": true,
+  "minutes": 0.3,
+  "device": "cpu",
+  "finished": "2026-10-19 19:23:48"
+ },
+ "prng-bg/msvc-all": {
+  "ok": true,
+  "minutes": 68.2,
+  "device": "cuda",
+  "finished": "2026-10-19 20:32:00"
+ },
+ "prng-bg/msvc-all-verify": {
+  "ok": true,
+  "minutes": 0.2,
+  "device": "cpu",
+  "finished": "2026-10-19 20:32:09"
+ },
+ "prng-bg/drand48-all": {
+  "ok": true,
+  "minutes": 67.2,
+  "device": "cuda",
+  "finished": "2026-10-19 21:39:21"
+ },
+ "prng-bg/drand48-all-verify": {
+  "ok": true,
+  "minutes": 0.2,
+  "device": "cpu",
+  "finished": "2026-10-19 21:39:35"
+ },
+ "prng-bg/ruby-all": {
+  "ok": true,
+  "minutes": 54.4,
+  "device": "cuda",
+  "finished": "2026-10-19 22:33:58"
+ },
+ "prng-bg/ruby-all-verify": {
+  "ok": true,
+  "minutes": 0.1,
+  "device": "cpu",
+  "finished": "2026-10-19 22:34:06"
+ },
+ "prng-bg/mt31-all": {
+  "ok": true,
+  "minutes": 51.3,
+  "device": "cuda",
+  "finished": "2026-10-19 23:25:23"
+ },
+ "prng-bg/mt31-all-verify": {
+  "ok": true,
+  "minutes": 0.1,
+  "device": "cpu",
+  "finished": "2026-10-19 23:25:31"
+ },
+ "prng-bg/net-all": {
+  "ok": true,
+  "minutes": 28.4,
+  "device": "cuda",
+  "finished": "2026-10-19 23:53:56"
+ },
+ "prng-bg/net-all-verify": {
+  "ok": true,
+  "minutes": 0.2,
+  "device": "cpu",
+  "finished": "2026-10-19 23:54:06"
  }
 }

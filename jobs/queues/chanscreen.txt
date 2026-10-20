@@ -1,0 +1,14 @@
+# chanscreen (2026-10-19): the chanscreen v2 library campaign on LP2 (hold, spend, skip5, coin; both signs; every offset of the 1,439 library streams)
+# Protocol: work/chanscreen/v2/step3/PROTOCOL.md. Run from the repository root: python jobs/jobqueue.py chanscreen jobs/queues/chanscreen.txt
+# It waits for the E3b null scan (campaign.py run null2) to finish, checks the gate (all five iid-key null maxima below T300; campaign.py refuses without PASS), then runs.
+# Every task is resumable (results/chanscreen/<set>/w*_c*.npz, written once); a restart skips finished tasks. About 49 CPU-hours for n300 on this PC (12 workers: 5-6 h wall) and about 21 for the clause scan.
+# Tier-1 cells (S_guard >= T) are candidates, not leads: see PROTOCOL.md for the verification chain.
+WAIT | campaign.py run null2
+e3b-gate | {PY} work/chanscreen/v2/step3/gate.py
+n300-a | {PY} work/chanscreen/v2/step3/campaign.py run n300 --workers 12 --windows 0:21
+n300-b | {PY} work/chanscreen/v2/step3/campaign.py run n300 --workers 12 --windows 21:42
+n300-c | {PY} work/chanscreen/v2/step3/campaign.py run n300 --workers 12 --windows 42:63
+n300-d | {PY} work/chanscreen/v2/step3/campaign.py run n300 --workers 12 --windows 63:82
+n300-summary | {PY} work/chanscreen/v2/step3/summary.py n300
+clause | {PY} work/chanscreen/v2/step3/campaign.py run clause --workers 12
+clause-summary | {PY} work/chanscreen/v2/step3/summary.py clause

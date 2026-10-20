@@ -1,0 +1,2012 @@
+# layer2 screen mode=periodic family=file:data/core.ksb windows=../kscreen/data/segments.txt kw=- n=300 beam=16 mults=1,28 models=0,1 litf=0 abort=150:2.5 runs=527370272 aborted=442788006 secs=1087
+# best 10.6243
+# window seg0.7 best 9.7993 item=phi digits (base 29) offset=1522 mult=28 model=0 m=2 litf=0
+# window seg0.8 best 10.0193 item=ln2 digits (base 29) offset=3747 mult=28 model=1 m=2 litf=0
+# window seg0.9 best 9.8011 item=p_(n+1) * p_n offset=14776 mult=28 model=0 m=3 litf=0
+# window seg0.11 best 10.6243 item=p_n - n offset=18720 mult=28 model=0 m=4 litf=0
+# window seg0.12 best 9.9714 item=cumulative prime sum offset=17700 mult=1 model=0 m=10 litf=0
+# window seg0.13 best 9.6360 item=cumulative prime sum offset=17319 mult=1 model=1 m=4 litf=0
+# window seg0.14 best 10.4225 item=p_(n+1) * p_n offset=10764 mult=28 model=0 m=2 litf=0
+# window seg0.15 best 9.5060 item=emirps offset=488 mult=28 model=0 m=2 litf=0
+# hist 0.00:33243984 0.10:8087483 0.20:8291967 0.30:10585541 0.40:11104336 0.50:15854901 0.60:7742103 0.70:21912177 0.80:13027425 0.90:21562131 1.00:13527870 1.10:27933068 1.20:19008780 1.30:22744264 1.40:20711619 1.50:24753636 1.60:25828642 1.70:15397126 1.80:23695172 1.90:23974477 2.00:14732147 2.10:23742428 2.20:14489659 2.30:18071680 2.40:14827089 2.50:2706264 2.60:3383455 2.70:3771069 2.80:3340211 2.90:4315019 3.00:4233795 3.10:4278580 3.20:4311197 3.30:3734790 3.40:4859338 3.50:3604573 3.60:3629661 3.70:3223263 3.80:2948312 3.90:3053570 4.00:2558203 4.10:2351278 4.20:1585485 4.30:1911023 4.40:1477914 4.50:1256987 4.60:983318 4.70:873725 4.80:804043 4.90:611110 5.00:525203 5.10:436503 5.20:352769 5.30:249072 5.40:269885 5.50:189415 5.60:132540 5.70:118740 5.80:97473 5.90:76151 6.00:54864 6.10:44963 6.20:39562 6.30:29670 6.40:18446 6.50:17437 6.60:15377 6.70:9454 6.80:7809 6.90:6742 7.00:5416 7.10:3841 7.20:2668 7.30:3100 7.40:1546 7.50:1472 7.60:918 7.70:827 7.80:609 7.90:370 8.00:394 8.10:260 8.20:227 8.30:135 8.40:144 8.50:77 8.60:80 8.70:54 8.80:52 8.90:29 9.00:19 9.10:21 9.20:12 9.30:12 9.40:3 9.50:5 9.60:3 9.70:5 9.80:2 9.90:3 10.00:2 10.30:1 10.40:1 10.60:1
+score	item	offset	mult	model	window	n	inner
+10.6243	p_n - n	18720	28	0	seg0.11	300	m=4 litf=0
+10.4225	p_(n+1) * p_n	10764	28	0	seg0.14	300	m=2 litf=0
+10.3642	p_(n+1) * p_n	10764	28	0	seg0.14	300	m=4 litf=0
+10.0559	p_(n+1) * p_n	10763	28	0	seg0.14	300	m=2 litf=0
+10.0193	ln2 digits (base 29)	3747	28	1	seg0.8	300	m=2 litf=0
+9.9714	cumulative prime sum	17700	1	0	seg0.12	300	m=10 litf=0
+9.9481	p_(n+1) * p_n	10763	28	0	seg0.14	300	m=4 litf=0
+9.9093	sqrt2 digits (base 29)	14612	1	1	seg0.12	300	m=2 litf=0
+9.8726	sqrt5 digits (base 29)	8715	1	0	seg0.12	300	m=2 litf=0
+9.8011	p_(n+1) * p_n	14776	28	0	seg0.9	300	m=3 litf=0
+9.7993	composites	17850	28	0	seg0.8	300	m=2 litf=0
+9.7993	phi digits (base 29)	1522	28	0	seg0.7	300	m=2 litf=0
+9.7561	sqrt2 digits (base 29)	16334	1	0	seg0.9	300	m=3 litf=0
+9.7189	p_n + n	18381	1	0	seg0.8	300	m=5 litf=0
+9.7189	p_n + n	18382	1	0	seg0.8	300	m=5 litf=0
+9.6606	primes^3	14730	1	1	seg0.14	300	m=5 litf=0
+9.6527	phi digits (base 29)	1523	28	0	seg0.7	300	m=2 litf=0
+9.6360	cumulative prime sum	17319	1	1	seg0.13	300	m=4 litf=0
+9.5441	p_n + n	18383	1	0	seg0.8	300	m=5 litf=0
+9.5427	p_n - n	9822	28	1	seg0.12	300	m=2 litf=0
+9.5427	3301 * p_n	10013	28	1	seg0.7	300	m=2 litf=0
+9.5205	p_n - n	9085	1	1	seg0.8	300	m=11 litf=0
+9.5060	emirps	488	28	0	seg0.15	300	m=2 litf=0
+9.4694	pi^2 digits (base 29)	2399	1	1	seg0.11	300	m=2 litf=0
+9.4694	cumulative prime sum	8834	28	1	seg0.8	300	m=2 litf=0
+9.4327	sigma(n)	17066	1	1	seg0.13	300	m=2 litf=0
+9.3963	prime index of primes	1372	28	1	seg0.15	300	m=3 litf=0
+9.3961	cbrt2 digits (base 29)	8865	28	0	seg0.8	300	m=2 litf=0
+9.3961	prime index of primes	15672	28	0	seg0.14	300	m=2 litf=0
+9.3594	sqrt2 digits (base 29)	14614	1	1	seg0.12	300	m=2 litf=0
+9.3594	prime index of primes	8226	1	0	seg0.8	300	m=2 litf=0
+9.3514	ln3 digits (base 29)	893	1	1	seg0.12	300	m=3 litf=0
+9.3514	n * p_n	7628	28	1	seg0.12	300	m=3 litf=0
+9.3421	cumulative phi(n)	1196	28	1	seg0.15	300	m=9 litf=0
+9.3228	sqrt2 digits (base 10)	643	1	1	seg0.13	300	m=2 litf=0
+9.3228	sqrt3301 digits (base 29)	9119	1	1	seg0.13	300	m=2 litf=0
+9.3228	phi digits (base 29)	1524	28	0	seg0.7	300	m=2 litf=0
+9.3064	prime gaps	7094	28	1	seg0.11	300	m=3 litf=0
+9.2718	pi digits (base 29)	7168	1	0	seg0.7	300	m=4 litf=0
+9.2718	p_n^2 - 1	17075	28	0	seg0.13	300	m=4 litf=0
+9.2718	primes^2	17075	28	0	seg0.13	300	m=4 litf=0
+9.2703	sqrt3 digits (base 29)	11599	28	1	seg0.12	300	m=8 litf=0
+9.2614	phi digits (base 29)	4144	1	0	seg0.7	300	m=3 litf=0
+9.2614	ln10 digits (base 29)	11367	1	0	seg0.7	300	m=3 litf=0
+9.2494	cumulative prime sum	13002	1	0	seg0.12	300	m=2 litf=0
+9.2198	p_n - n	18722	28	0	seg0.11	300	m=4 litf=0
+9.2164	ln2 digits (base 29)	11935	28	1	seg0.13	300	m=3 litf=0
+9.2128	cumulative prime sum	10683	1	1	seg0.8	300	m=2 litf=0
+9.2128	sigma(n)	1527	1	0	seg0.9	300	m=2 litf=0
+9.2128	e digits (base 10)	7104	1	1	seg0.9	300	m=2 litf=0
+9.1766	sqrt2 digits (base 29)	16334	1	0	seg0.9	300	m=6 litf=0
+9.1761	prime index of primes	9225	28	0	seg0.7	300	m=2 litf=0
+9.1761	e digits (base 29)	1331	28	0	seg0.9	300	m=2 litf=0
+9.1715	e^pi digits (base 29)	13128	1	1	seg0.12	300	m=3 litf=0
+9.1715	sqrt3 digits (base 29)	8825	1	0	seg0.9	300	m=3 litf=0
+9.1629	cumulative phi(n)	8300	1	1	seg0.7	300	m=7 litf=0
+9.1404	cumulative prime sum	17698	1	0	seg0.12	300	m=10 litf=0
+9.1404	cumulative prime sum	17699	1	0	seg0.12	300	m=10 litf=0
+9.1395	rad(n)	13019	1	1	seg0.14	300	m=2 litf=0
+9.1395	carmichael lambda(n)	13755	1	1	seg0.8	300	m=2 litf=0
+9.1395	primes^3	11142	28	1	seg0.14	300	m=2 litf=0
+9.1332	sigma(n)	4605	1	1	seg0.7	300	m=14 litf=0
+9.1265	ln2 digits (base 29)	3834	1	1	seg0.7	300	m=3 litf=0
+9.1265	n * p_n	18191	1	1	seg0.13	300	m=3 litf=0
+9.1222	sqrt3 digits (base 10)	1623	28	0	seg0.15	300	m=8 litf=0
+9.1158	sqrt2 digits (base 29)	9381	1	0	seg0.11	300	m=4 litf=0
+9.1158	pi digits (base 29)	7169	1	0	seg0.7	300	m=4 litf=0
+9.1158	p_n - n	18721	28	0	seg0.11	300	m=4 litf=0
+9.1060	sqrt5 digits (base 29)	15178	1	1	seg0.8	300	m=9 litf=0
+9.1028	cbrt2 digits (base 29)	11195	28	0	seg0.8	300	m=2 litf=0
+9.1028	ln10 digits (base 29)	12354	1	0	seg0.11	300	m=2 litf=0
+9.0780	sqrt3301 digits (base 29)	7285	28	1	seg0.15	300	m=5 litf=0
+9.0780	Omega(n)	18123	1	1	seg0.14	300	m=5 litf=0
+9.0661	ln3 digits (base 29)	18840	1	0	seg0.9	300	m=2 litf=0
+9.0661	cumulative phi(n)	14886	1	1	seg0.13	300	m=2 litf=0
+9.0661	sigma(n)	13252	1	0	seg0.9	300	m=2 litf=0
+9.0638	n * p_n	16150	28	0	seg0.8	300	m=4 litf=0
+9.0366	sigma(n)	15768	28	1	seg0.9	300	m=3 litf=0
+9.0366	sqrt3 digits (base 29)	18492	28	1	seg0.12	300	m=3 litf=0
+9.0295	zeta(3) digits (base 29)	5525	28	1	seg0.12	300	m=2 litf=0
+9.0295	(p-1)/2	16197	1	0	seg0.11	300	m=2 litf=0
+9.0295	(p+1)/2	16197	1	0	seg0.11	300	m=2 litf=0
+9.0295	prime index of primes	9851	1	1	seg0.15	300	m=2 litf=0
+9.0295	sqrt3301 digits (base 29)	1678	1	1	seg0.7	300	m=2 litf=0
+9.0295	sqrt2 digits (base 10)	9394	28	0	seg0.11	300	m=2 litf=0
+9.0295	euler gamma digits (base 29)	9457	1	1	seg0.13	300	m=2 litf=0
+9.0295	e digits (base 10)	5150	1	0	seg0.11	300	m=2 litf=0
+9.0295	p_n mod 3301	1525	28	1	seg0.15	300	m=2 litf=0
+9.0198	p_n + n	16377	28	1	seg0.7	300	m=5 litf=0
+9.0198	euler gamma digits (base 29)	14226	28	0	seg0.12	300	m=5 litf=0
+8.9928	primes^2	12700	1	1	seg0.9	300	m=2 litf=0
+8.9928	prime index of primes	8228	1	0	seg0.8	300	m=2 litf=0
+8.9928	sqrt2 digits (base 10)	631	1	1	seg0.13	300	m=2 litf=0
+8.9928	sqrt3301 digits (base 29)	13434	1	0	seg0.15	300	m=2 litf=0
+8.9928	rad(n)	16558	28	0	seg0.15	300	m=2 litf=0
+8.9928	cumulative prime sum	18789	1	1	seg0.11	300	m=2 litf=0
+8.9928	sqrt3301 digits (base 29)	5680	1	1	seg0.8	300	m=2 litf=0
+8.9928	p_n^2 - 1	12700	1	1	seg0.9	300	m=2 litf=0
+8.9928	e digits (base 29)	12860	28	0	seg0.14	300	m=2 litf=0
+8.9597	p_n mod 3301	11561	28	0	seg0.12	300	m=4 litf=0
+8.9562	3301 - p_n	8928	28	1	seg0.9	300	m=2 litf=0
+8.9562	ln3 digits (base 29)	8658	28	0	seg0.8	300	m=2 litf=0
+8.9562	pi digits (base 29)	2615	28	0	seg0.15	300	m=2 litf=0
+8.9562	carmichael lambda(n)	17422	1	0	seg0.14	300	m=2 litf=0
+8.9562	primes+1	8928	1	1	seg0.9	300	m=2 litf=0
+8.9562	primes	8928	1	1	seg0.9	300	m=2 litf=0
+8.9562	primes-1 (totient)	8928	1	1	seg0.9	300	m=2 litf=0
+8.9562	primes from 3301	8465	1	1	seg0.9	300	m=2 litf=0
+8.9562	phi digits (base 10)	5909	28	0	seg0.13	300	m=2 litf=0
+8.9562	ln10 digits (base 29)	18112	28	0	seg0.11	300	m=2 litf=0
+8.9466	sqrt3 digits (base 29)	8826	1	0	seg0.9	300	m=3 litf=0
+8.9466	euler gamma digits (base 29)	6289	1	0	seg0.11	300	m=3 litf=0
+8.9195	composites	14420	28	0	seg0.8	300	m=2 litf=0
+8.9195	p_n + n	14530	1	0	seg0.9	300	m=2 litf=0
+8.9195	e digits (base 10)	5149	1	0	seg0.11	300	m=2 litf=0
+8.9077	pi digits (base 29)	3828	1	1	seg0.8	300	m=4 litf=0
+8.9077	p_n mod 3301	15456	1	0	seg0.13	300	m=4 litf=0
+8.9033	sqrt2 digits (base 29)	13900	28	1	seg0.12	300	m=5 litf=0
+8.9033	primes^3	14732	1	1	seg0.14	300	m=5 litf=0
+8.8828	emirps	11676	1	0	seg0.9	300	m=2 litf=0
+8.8828	primes base-29 digit sum	5789	28	1	seg0.14	300	m=2 litf=0
+8.8828	(p+1)/2	6994	28	0	seg0.7	300	m=2 litf=0
+8.8828	prime index of primes	15118	28	1	seg0.11	300	m=2 litf=0
+8.8828	cumulative prime sum	13003	1	0	seg0.12	300	m=2 litf=0
+8.8828	ln2 digits (base 29)	2134	28	1	seg0.8	300	m=2 litf=0
+8.8828	(p-1)/2	6994	28	0	seg0.7	300	m=2 litf=0
+8.8828	sqrt2 digits (base 10)	15683	28	0	seg0.14	300	m=2 litf=0
+8.8828	ln3 digits (base 29)	9314	28	1	seg0.15	300	m=2 litf=0
+8.8828	3301 * p_n	7190	1	1	seg0.9	300	m=2 litf=0
+8.8699	p_(n+1) * p_n	2359	28	1	seg0.15	300	m=9 litf=0
+8.8699	sqrt5 digits (base 29)	15180	1	1	seg0.8	300	m=9 litf=0
+8.8570	e digits (base 10)	6974	1	1	seg0.14	300	m=6 litf=0
+8.8570	sqrt3 digits (base 29)	12211	1	1	seg0.13	300	m=6 litf=0
+8.8567	e^pi digits (base 29)	11444	28	0	seg0.13	300	m=3 litf=0
+8.8567	ln2 digits (base 29)	3832	1	1	seg0.7	300	m=3 litf=0
+8.8567	cumulative prime sum	1339	28	1	seg0.11	300	m=3 litf=0
+8.8557	sqrt5 digits (base 29)	2555	1	1	seg0.7	300	m=4 litf=0
+8.8557	cumulative phi(n)	18744	28	0	seg0.13	300	m=4 litf=0
+8.8557	ln10 digits (base 29)	7106	1	1	seg0.11	300	m=4 litf=0
+8.8557	ln3 digits (base 29)	5105	28	0	seg0.9	300	m=4 litf=0
+8.8462	prime index of primes	13355	1	1	seg0.7	300	m=2 litf=0
+8.8462	e^pi digits (base 29)	5772	28	0	seg0.12	300	m=2 litf=0
+8.8462	p_n^2 - 1	14724	28	0	seg0.11	300	m=2 litf=0
+8.8462	p_n mod 3301	13476	28	1	seg0.12	300	m=2 litf=0
+8.8462	prime gaps	1228	28	1	seg0.15	300	m=2 litf=0
+8.8462	primes^2	14724	28	0	seg0.11	300	m=2 litf=0
+8.8462	sqrt3301 digits (base 29)	6399	28	0	seg0.14	300	m=2 litf=0
+8.8450	euler gamma digits (base 29)	2206	1	1	seg0.7	300	m=5 litf=0
+8.8450	phi digits (base 10)	14738	28	1	seg0.14	300	m=5 litf=0
+8.8450	mobius mu(n)	7330	28	0	seg0.14	300	m=5 litf=0
+8.8450	ln2 digits (base 29)	12032	1	0	seg0.7	300	m=5 litf=0
+8.8260	sqrt3 digits (base 10)	1624	28	0	seg0.15	300	m=8 litf=0
+8.8171	sqrt2 digits (base 29)	13430	1	0	seg0.8	300	m=7 litf=0
+8.8117	p_n - n	3264	28	1	seg0.7	300	m=3 litf=0
+8.8117	p_(n+1) * p_n	11901	1	0	seg0.7	300	m=3 litf=0
+8.8117	sqrt3301 digits (base 29)	4968	1	1	seg0.14	300	m=3 litf=0
+8.8117	sqrt3301 digits (base 29)	9962	28	1	seg0.7	300	m=3 litf=0
+8.8095	e digits (base 29)	4263	1	1	seg0.14	300	m=2 litf=0
+8.8095	sqrt29 digits (base 29)	11446	1	0	seg0.7	300	m=2 litf=0
+8.8095	3301 * p_n	2495	1	0	seg0.9	300	m=2 litf=0
+8.8095	cbrt2 digits (base 29)	7729	1	1	seg0.15	300	m=2 litf=0
+8.8095	carmichael lambda(n)	13757	1	1	seg0.8	300	m=2 litf=0
+8.8095	p_n + n	15373	28	1	seg0.7	300	m=2 litf=0
+8.8095	ln3 digits (base 29)	12192	1	1	seg0.14	300	m=2 litf=0
+8.8095	e digits (base 29)	5952	28	1	seg0.15	300	m=2 litf=0
+8.8095	prime index of primes	13379	1	0	seg0.7	300	m=2 litf=0
+8.8095	p_n - n	206	28	1	seg0.12	300	m=2 litf=0
+8.8081	ln3301 digits (base 29)	3513	1	0	seg0.12	300	m=10 litf=0
+8.8037	p_n + n	8779	1	0	seg0.7	300	m=4 litf=0
+8.8037	sqrt29 digits (base 29)	18250	28	1	seg0.12	300	m=4 litf=0
+8.8037	ln10 digits (base 29)	7104	1	1	seg0.11	300	m=4 litf=0
+8.7931	ln2 digits (base 29)	3787	28	0	seg0.12	300	m=6 litf=0
+8.7931	sigma(n)	8512	1	1	seg0.15	300	m=6 litf=0
+8.7729	ln10 digits (base 29)	5761	1	0	seg0.12	300	m=2 litf=0
+8.7729	sqrt2 digits (base 10)	637	1	1	seg0.13	300	m=2 litf=0
+8.7729	sqrt3301 digits (base 29)	1676	1	1	seg0.7	300	m=2 litf=0
+8.7729	sqrt2 digits (base 10)	17642	1	1	seg0.12	300	m=2 litf=0
+8.7729	primes^2	8343	1	0	seg0.11	300	m=2 litf=0
+8.7729	phi digits (base 10)	5910	28	0	seg0.13	300	m=2 litf=0
+8.7729	p_n^2 - 1	8343	1	0	seg0.11	300	m=2 litf=0
+8.7729	sqrt29 digits (base 29)	9669	28	0	seg0.12	300	m=2 litf=0
+8.7729	sqrt2 digits (base 29)	16577	1	0	seg0.8	300	m=2 litf=0
+8.7729	cbrt2 digits (base 29)	5286	28	1	seg0.13	300	m=2 litf=0
+8.7667	primes-1 (totient)	1531	28	1	seg0.15	300	m=3 litf=0
+8.7667	rad(n)	1376	28	1	seg0.11	300	m=3 litf=0
+8.7667	primes from 3301	1068	28	1	seg0.15	300	m=3 litf=0
+8.7667	d(n)	3556	1	0	seg0.12	300	m=3 litf=0
+8.7667	primes	1531	28	1	seg0.15	300	m=3 litf=0
+8.7667	primes+1	1531	28	1	seg0.15	300	m=3 litf=0
+8.7667	primes^3	19020	1	0	seg0.15	300	m=3 litf=0
+8.7667	p_n mod 3301	1525	28	1	seg0.15	300	m=3 litf=0
+8.7667	3301 - p_n	1531	1	1	seg0.15	300	m=3 litf=0
+8.7517	prime gaps	3188	1	0	seg0.12	300	m=4 litf=0
+8.7517	e^pi digits (base 29)	4070	1	0	seg0.11	300	m=4 litf=0
+8.7517	partitions p(n)	7732	28	1	seg0.8	300	m=4 litf=0
+8.7373	n * p_n	1539	28	1	seg0.13	300	m=14 litf=0
+8.7373	n * p_n	1541	28	1	seg0.13	300	m=14 litf=0
+8.7373	sqrt3 digits (base 10)	13871	28	0	seg0.8	300	m=14 litf=0
+8.7362	sqrt3301 digits (base 29)	7810	1	0	seg0.15	300	m=2 litf=0
+8.7362	p_n - n	11579	28	0	seg0.13	300	m=2 litf=0
+8.7362	cumulative phi(n)	7603	1	1	seg0.8	300	m=2 litf=0
+8.7362	p_(n+1) * p_n	8508	28	1	seg0.8	300	m=2 litf=0
+8.7362	sqrt3 digits (base 29)	3824	28	0	seg0.12	300	m=2 litf=0
+8.7362	pi digits (base 29)	2614	28	0	seg0.15	300	m=2 litf=0
+8.7362	euler gamma digits (base 29)	16694	1	1	seg0.8	300	m=2 litf=0
+8.7362	emirps	12796	1	0	seg0.11	300	m=2 litf=0
+8.7362	p_n - n	210	28	1	seg0.12	300	m=2 litf=0
+8.7292	p_n + n	8695	28	0	seg0.12	300	m=6 litf=0
+8.7292	primes popcount	3362	28	1	seg0.11	300	m=6 litf=0
+8.7292	cbrt2 digits (base 29)	8510	28	1	seg0.15	300	m=6 litf=0
+8.7292	e digits (base 10)	15608	28	1	seg0.14	300	m=6 litf=0
+8.7285	ln2 digits (base 29)	12033	1	0	seg0.7	300	m=5 litf=0
+8.7250	primes^2	13166	28	0	seg0.12	300	m=10 litf=0
+8.7250	p_n^2 - 1	13166	28	0	seg0.12	300	m=10 litf=0
+8.7250	ln2 digits (base 10)	13915	1	0	seg0.15	300	m=10 litf=0
+8.7217	primes	1525	28	1	seg0.15	300	m=3 litf=0
+8.7217	primes from 3301	1062	28	1	seg0.15	300	m=3 litf=0
+8.7217	3301 - p_n	1525	1	1	seg0.15	300	m=3 litf=0
+8.7217	primes+1	1525	28	1	seg0.15	300	m=3 litf=0
+8.7217	ln3301 digits (base 29)	1683	28	0	seg0.11	300	m=3 litf=0
+8.7217	p_(n+1) * p_n	12496	1	0	seg0.11	300	m=3 litf=0
+8.7217	cumulative phi(n)	3994	1	1	seg0.9	300	m=3 litf=0
+8.7217	ln10 digits (base 29)	12104	28	0	seg0.7	300	m=3 litf=0
+8.7217	primes-1 (totient)	1525	28	1	seg0.15	300	m=3 litf=0
+8.7126	p_n + n	11031	1	0	seg0.8	300	m=9 litf=0
+8.6996	p_n mod 3301	15455	1	0	seg0.13	300	m=4 litf=0
+8.6996	p_(n+1) * p_n	15786	1	0	seg0.13	300	m=4 litf=0
+8.6996	sqrt2 digits (base 29)	9380	1	0	seg0.11	300	m=4 litf=0
+8.6996	p_n + n	1221	28	1	seg0.9	300	m=2 litf=0
+8.6996	sqrt3301 digits (base 29)	4890	28	0	seg0.11	300	m=2 litf=0
+8.6996	sqrt3301 digits (base 29)	6569	28	1	seg0.13	300	m=2 litf=0
+8.6996	primes^3	14996	28	0	seg0.12	300	m=2 litf=0
+8.6996	d(n)	763	1	0	seg0.13	300	m=2 litf=0
+8.6996	primes^3	14997	28	0	seg0.12	300	m=2 litf=0
+8.6996	e^pi digits (base 29)	1612	1	1	seg0.7	300	m=2 litf=0
+8.6996	zeta(3) digits (base 29)	6489	1	0	seg0.11	300	m=2 litf=0
+8.6996	ln3301 digits (base 29)	7252	28	0	seg0.15	300	m=2 litf=0
+8.6996	euler gamma digits (base 29)	1953	28	0	seg0.13	300	m=2 litf=0
+8.6996	phi digits (base 29)	12865	28	0	seg0.11	300	m=2 litf=0
+8.6996	cumulative prime sum	12368	1	1	seg0.7	300	m=2 litf=0
+8.6996	pi^2 digits (base 29)	3364	28	1	seg0.13	300	m=2 litf=0
+8.6768	p_n - n	17256	28	1	seg0.7	300	m=3 litf=0
+8.6768	p_(n+1) * p_n	12177	1	0	seg0.12	300	m=3 litf=0
+8.6768	sqrt2 digits (base 29)	6263	1	0	seg0.7	300	m=3 litf=0
+8.6768	sqrt2 digits (base 29)	6264	1	0	seg0.7	300	m=3 litf=0
+8.6768	prime index of primes	2418	28	0	seg0.13	300	m=3 litf=0
+8.6768	prime index of primes	2419	28	0	seg0.13	300	m=3 litf=0
+8.6702	rad(n)	16370	28	1	seg0.11	300	m=5 litf=0
+8.6652	3301 * p_n	14241	28	0	seg0.7	300	m=6 litf=0
+8.6652	p_n - n	18505	28	0	seg0.13	300	m=6 litf=0
+8.6629	p_n + n	11021	28	0	seg0.9	300	m=2 litf=0
+8.6629	p_n + n	15371	28	1	seg0.7	300	m=2 litf=0
+8.6629	zeta(3) digits (base 29)	15220	1	1	seg0.13	300	m=2 litf=0
+8.6629	prime index of primes	17373	1	0	seg0.13	300	m=2 litf=0
+8.6629	p_(n+1) * p_n	5597	28	0	seg0.14	300	m=2 litf=0
+8.6629	ln2 digits (base 10)	15749	1	1	seg0.8	300	m=2 litf=0
+8.6629	ln10 digits (base 29)	13936	1	0	seg0.12	300	m=2 litf=0
+8.6476	ln10 digits (base 29)	14135	28	1	seg0.8	300	m=4 litf=0
+8.6476	primes	17838	1	0	seg0.14	300	m=4 litf=0
+8.6476	cumulative phi(n)	18743	28	0	seg0.13	300	m=4 litf=0
+8.6476	cumulative prime sum	14965	28	1	seg0.13	300	m=4 litf=0
+8.6476	primes from 3301	17376	1	0	seg0.14	300	m=4 litf=0
+8.6476	primes-1 (totient)	17839	1	0	seg0.14	300	m=4 litf=0
+8.6476	3301 - p_n	17838	28	0	seg0.14	300	m=4 litf=0
+8.6476	3301 - p_n	17839	28	0	seg0.14	300	m=4 litf=0
+8.6476	primes-1 (totient)	17838	1	0	seg0.14	300	m=4 litf=0
+8.6476	primes+1	17838	1	0	seg0.14	300	m=4 litf=0
+8.6476	pi digits (base 29)	15034	28	0	seg0.15	300	m=4 litf=0
+8.6476	pi digits (base 29)	15035	28	0	seg0.15	300	m=4 litf=0
+8.6476	primes+1	17839	1	0	seg0.14	300	m=4 litf=0
+8.6476	primes	17839	1	0	seg0.14	300	m=4 litf=0
+8.6476	primes from 3301	17375	1	0	seg0.14	300	m=4 litf=0
+8.6419	p_n^2 - 1	13165	28	0	seg0.12	300	m=10 litf=0
+8.6419	sqrt5 digits (base 29)	379	1	1	seg0.15	300	m=10 litf=0
+8.6419	primes^2	13165	28	0	seg0.12	300	m=10 litf=0
+8.6339	primes	13166	28	1	seg0.15	300	m=9 litf=0
+8.6339	3301 - p_n	13166	1	1	seg0.15	300	m=9 litf=0
+8.6339	primes+1	13166	28	1	seg0.15	300	m=9 litf=0
+8.6339	primes-1 (totient)	13166	28	1	seg0.15	300	m=9 litf=0
+8.6339	primes digit sum	7255	28	0	seg0.13	300	m=9 litf=0
+8.6339	primes from 3301	12703	28	1	seg0.15	300	m=9 litf=0
+8.6339	omega(n)	2800	28	0	seg0.14	300	m=9 litf=0
+8.6318	sqrt2 digits (base 29)	3544	28	1	seg0.12	300	m=3 litf=0
+8.6318	pi^2 digits (base 29)	14456	1	0	seg0.12	300	m=3 litf=0
+8.6318	sqrt29 digits (base 29)	9079	28	1	seg0.7	300	m=3 litf=0
+8.6262	ln2 digits (base 29)	18568	1	0	seg0.14	300	m=2 litf=0
+8.6262	phi(n)	8360	1	1	seg0.7	300	m=2 litf=0
+8.6262	composites	17849	28	0	seg0.8	300	m=2 litf=0
+8.6262	emirps	13895	1	1	seg0.15	300	m=2 litf=0
+8.6262	sqrt3 digits (base 29)	3823	28	0	seg0.12	300	m=2 litf=0
+8.6262	phi digits (base 29)	18093	1	0	seg0.13	300	m=2 litf=0
+8.6262	zeta(3) digits (base 29)	3904	1	1	seg0.12	300	m=2 litf=0
+8.6262	ln2 digits (base 29)	18569	1	0	seg0.14	300	m=2 litf=0
+8.6262	p_n - n	16251	28	1	seg0.8	300	m=2 litf=0
+8.6262	p_n mod 3301	14561	1	1	seg0.15	300	m=2 litf=0
+8.6262	ln3 digits (base 29)	8657	28	0	seg0.8	300	m=2 litf=0
+8.6262	ln3 digits (base 29)	18844	1	0	seg0.9	300	m=2 litf=0
+8.6262	primes base-29 digit sum	6282	1	0	seg0.9	300	m=2 litf=0
+8.6262	p_n + n	10978	1	0	seg0.9	300	m=2 litf=0
+8.6262	sqrt2 digits (base 29)	11136	1	0	seg0.15	300	m=2 litf=0
+8.6120	p_n - n	6117	28	1	seg0.9	300	m=5 litf=0
+8.6096	cumulative phi(n)	19002	28	0	seg0.12	300	m=7 litf=0
+8.6038	primes reversed digits	4335	1	1	seg0.8	300	m=8 litf=0
+8.6038	sqrt3 digits (base 29)	11601	28	1	seg0.12	300	m=8 litf=0
+8.6013	primes popcount	3364	28	1	seg0.11	300	m=6 litf=0
+8.5956	prime index of primes	6277	1	0	seg0.12	300	m=4 litf=0
+8.5956	sqrt2 digits (base 29)	14614	1	1	seg0.12	300	m=4 litf=0
+8.5956	partitions p(n)	7732	28	0	seg0.8	300	m=4 litf=0
+8.5896	sqrt2 digits (base 10)	17644	1	1	seg0.12	300	m=2 litf=0
+8.5896	primes^2	8341	1	0	seg0.11	300	m=2 litf=0
+8.5896	primes reversed digits	4203	1	1	seg0.11	300	m=2 litf=0
+8.5896	pi digits (base 10)	10766	1	0	seg0.13	300	m=2 litf=0
+8.5896	carmichael lambda(n)	1867	1	1	seg0.15	300	m=2 litf=0
+8.5896	zeta(3) digits (base 29)	1898	1	0	seg0.14	300	m=2 litf=0
+8.5896	pi^2 digits (base 29)	16743	1	1	seg0.15	300	m=2 litf=0
+8.5896	zeta(3) digits (base 29)	12519	1	0	seg0.11	300	m=2 litf=0
+8.5896	sigma(n)	12149	28	0	seg0.8	300	m=2 litf=0
+8.5896	p_n^2 - 1	8341	1	0	seg0.11	300	m=2 litf=0
+8.5896	p_n^2 - 1	8342	1	0	seg0.11	300	m=2 litf=0
+8.5896	sqrt29 digits (base 29)	16539	1	1	seg0.7	300	m=2 litf=0
+8.5896	e^pi digits (base 29)	12104	28	0	seg0.7	300	m=2 litf=0
+8.5896	(p-1)/2	7036	1	0	seg0.11	300	m=2 litf=0
+8.5896	pi^2 digits (base 29)	3372	1	0	seg0.15	300	m=2 litf=0
+8.5896	d(n)	7018	1	1	seg0.13	300	m=2 litf=0
+8.5896	d(n)	7016	1	1	seg0.13	300	m=2 litf=0
+8.5896	(p+1)/2	7036	1	0	seg0.11	300	m=2 litf=0
+8.5896	primes^2	8342	1	0	seg0.11	300	m=2 litf=0
+8.5896	phi digits (base 10)	15768	28	0	seg0.12	300	m=2 litf=0
+8.5896	ln3 digits (base 29)	18508	1	1	seg0.7	300	m=2 litf=0
+8.5896	ln3301 digits (base 29)	13155	1	0	seg0.14	300	m=2 litf=0
+8.5868	emirps	14760	28	1	seg0.7	300	m=3 litf=0
+8.5868	sigma(n)	18948	1	0	seg0.9	300	m=3 litf=0
+8.5868	catalan G digits (base 29)	12065	28	1	seg0.12	300	m=3 litf=0
+8.5868	emirps	14762	28	1	seg0.7	300	m=3 litf=0
+8.5868	carmichael lambda(n)	9386	1	0	seg0.8	300	m=3 litf=0
+8.5735	3301 - p_n	7102	1	0	seg0.15	300	m=12 litf=0
+8.5735	primes+1	7102	28	0	seg0.15	300	m=12 litf=0
+8.5735	primes from 3301	6639	28	0	seg0.15	300	m=12 litf=0
+8.5735	sqrt2 digits (base 29)	7628	1	0	seg0.14	300	m=12 litf=0
+8.5735	primes-1 (totient)	7102	28	0	seg0.15	300	m=12 litf=0
+8.5735	primes	7102	28	0	seg0.15	300	m=12 litf=0
+8.5588	sqrt3301 digits (base 29)	1416	28	0	seg0.14	300	m=10 litf=0
+8.5537	cbrt2 digits (base 29)	9567	1	1	seg0.7	300	m=5 litf=0
+8.5529	sqrt29 digits (base 29)	11182	1	0	seg0.12	300	m=2 litf=0
+8.5529	p_n - n	7363	1	1	seg0.9	300	m=2 litf=0
+8.5529	p_(n+1) * p_n	15959	1	1	seg0.7	300	m=2 litf=0
+8.5529	ln2 digits (base 29)	6689	28	1	seg0.15	300	m=2 litf=0
+8.5529	primes reversed digits	5448	28	1	seg0.11	300	m=2 litf=0
+8.5529	phi digits (base 29)	524	28	1	seg0.13	300	m=2 litf=0
+8.5529	primes digit sum	16091	1	0	seg0.14	300	m=2 litf=0
+8.5529	pi^2 digits (base 29)	7672	1	1	seg0.7	300	m=2 litf=0
+8.5529	sqrt29 digits (base 29)	7152	28	1	seg0.9	300	m=2 litf=0
+8.5529	phi digits (base 10)	14915	28	0	seg0.14	300	m=2 litf=0
+8.5510	sqrt3 digits (base 29)	13392	28	1	seg0.7	300	m=13 litf=0
+8.5510	ln10 digits (base 29)	9744	1	1	seg0.12	300	m=13 litf=0
+8.5436	p_n + n	7687	28	0	seg0.13	300	m=4 litf=0
+8.5436	primes^3	9345	28	1	seg0.15	300	m=4 litf=0
+8.5436	ln10 digits (base 29)	5992	28	1	seg0.12	300	m=4 litf=0
+8.5436	phi digits (base 29)	2657	28	0	seg0.14	300	m=4 litf=0
+8.5418	primes base-29 digit sum	7112	28	0	seg0.11	300	m=3 litf=0
+8.5418	catalan G digits (base 29)	1084	28	0	seg0.11	300	m=3 litf=0
+8.5418	pi digits (base 29)	16190	28	1	seg0.9	300	m=3 litf=0
+8.5418	sqrt3 digits (base 29)	14879	28	0	seg0.7	300	m=3 litf=0
+8.5418	sigma(n)	7802	28	1	seg0.12	300	m=3 litf=0
+8.5418	primes base-29 digit sum	7111	28	0	seg0.11	300	m=3 litf=0
+8.5418	p_(n+1) * p_n	12497	1	0	seg0.11	300	m=3 litf=0
+8.5374	e digits (base 10)	6976	1	1	seg0.14	300	m=6 litf=0
+8.5374	3301 * p_n	14242	28	0	seg0.7	300	m=6 litf=0
+8.5297	p_(n+1) * p_n	15785	1	0	seg0.13	300	m=8 litf=0
+8.5297	sqrt5 digits (base 29)	5648	28	1	seg0.8	300	m=8 litf=0
+8.5163	sqrt3 digits (base 29)	17742	28	0	seg0.7	300	m=2 litf=0
+8.5163	ln3301 digits (base 29)	935	28	0	seg0.13	300	m=2 litf=0
+8.5163	sqrt3301 digits (base 29)	7811	1	0	seg0.15	300	m=2 litf=0
+8.5163	sqrt3 digits (base 10)	722	28	0	seg0.13	300	m=2 litf=0
+8.5163	sqrt3 digits (base 29)	5681	28	1	seg0.8	300	m=2 litf=0
+8.5163	sqrt5 digits (base 29)	16491	28	0	seg0.8	300	m=2 litf=0
+8.5163	3301 * p_n	12646	1	0	seg0.9	300	m=2 litf=0
+8.5163	e digits (base 29)	1332	28	0	seg0.9	300	m=2 litf=0
+8.5163	p_(n+1) * p_n	17381	1	1	seg0.7	300	m=2 litf=0
+8.5163	ln2 digits (base 29)	2138	28	1	seg0.8	300	m=2 litf=0
+8.5163	sqrt3 digits (base 29)	17838	1	0	seg0.15	300	m=2 litf=0
+8.5163	p_n + n	1225	28	1	seg0.9	300	m=2 litf=0
+8.4969	primes^3	2447	1	0	seg0.12	300	m=3 litf=0
+8.4969	(p-1)/2	14398	1	1	seg0.12	300	m=3 litf=0
+8.4969	(p+1)/2	14400	1	1	seg0.12	300	m=3 litf=0
+8.4969	(p-1)/2	14400	1	1	seg0.12	300	m=3 litf=0
+8.4969	(p+1)/2	14398	1	1	seg0.12	300	m=3 litf=0
+8.4969	pi digits (base 29)	14000	1	1	seg0.9	300	m=3 litf=0
+8.4969	e^pi digits (base 29)	14379	1	1	seg0.9	300	m=3 litf=0
+8.4969	sqrt3 digits (base 29)	8235	1	0	seg0.13	300	m=3 litf=0
+8.4969	Omega(n)	7660	1	0	seg0.14	300	m=3 litf=0
+8.4969	p_(n+1) * p_n	18376	1	0	seg0.14	300	m=3 litf=0
+8.4969	pi^2 digits (base 29)	9951	28	1	seg0.13	300	m=3 litf=0
+8.4969	ln2 digits (base 29)	6969	1	0	seg0.9	300	m=3 litf=0
+8.4969	zeta(3) digits (base 29)	8756	28	0	seg0.13	300	m=3 litf=0
+8.4969	sqrt3 digits (base 29)	14880	28	0	seg0.7	300	m=3 litf=0
+8.4969	Omega(n)	7661	1	0	seg0.14	300	m=3 litf=0
+8.4955	cumulative phi(n)	2357	28	1	seg0.15	300	m=5 litf=0
+8.4955	sigma(n)	6063	28	0	seg0.12	300	m=5 litf=0
+8.4955	ln2 digits (base 29)	12034	1	0	seg0.7	300	m=5 litf=0
+8.4955	sqrt5 digits (base 29)	4156	1	1	seg0.14	300	m=5 litf=0
+8.4955	ln2 digits (base 29)	12031	1	0	seg0.7	300	m=5 litf=0
+8.4955	p_n mod 3301	1525	28	1	seg0.15	300	m=5 litf=0
+8.4955	primes^3	578	28	1	seg0.12	300	m=5 litf=0
+8.4916	sigma(n)	10111	28	0	seg0.12	300	m=4 litf=0
+8.4916	sqrt2 digits (base 29)	14612	1	1	seg0.12	300	m=4 litf=0
+8.4916	cumulative phi(n)	566	28	0	seg0.15	300	m=4 litf=0
+8.4916	cbrt2 digits (base 29)	2251	28	0	seg0.11	300	m=4 litf=0
+8.4916	catalan G digits (base 29)	16619	28	1	seg0.9	300	m=4 litf=0
+8.4822	cumulative phi(n)	4169	28	1	seg0.11	300	m=12 litf=0
+8.4796	primes digit sum	2705	28	0	seg0.14	300	m=2 litf=0
+8.4796	zeta(3) digits (base 29)	1510	1	0	seg0.8	300	m=2 litf=0
+8.4796	sqrt2 digits (base 10)	2161	28	0	seg0.14	300	m=2 litf=0
+8.4796	emirps	1312	28	0	seg0.9	300	m=2 litf=0
+8.4796	sigma(n)	12041	28	1	seg0.8	300	m=2 litf=0
+8.4796	(p-1)/2	3239	28	1	seg0.12	300	m=2 litf=0
+8.4796	ln2 digits (base 10)	3399	28	0	seg0.12	300	m=2 litf=0
+8.4796	(p+1)/2	3239	28	1	seg0.12	300	m=2 litf=0
+8.4796	phi digits (base 29)	16647	28	0	seg0.9	300	m=2 litf=0
+8.4796	catalan G digits (base 29)	16850	1	0	seg0.14	300	m=2 litf=0
+8.4796	(p-1)/2	1962	1	0	seg0.7	300	m=2 litf=0
+8.4796	primes^3	9636	1	0	seg0.14	300	m=2 litf=0
+8.4796	p_(n+1) * p_n	10765	28	0	seg0.14	300	m=2 litf=0
+8.4796	(p+1)/2	1962	1	0	seg0.7	300	m=2 litf=0
+8.4796	p_(n+1) * p_n	17379	1	1	seg0.7	300	m=2 litf=0
+8.4757	cbrt2 digits (base 29)	18177	1	1	seg0.11	300	m=10 litf=0
+8.4757	ln3301 digits (base 29)	3514	1	0	seg0.12	300	m=10 litf=0
+8.4735	pi^2 digits (base 29)	14342	1	0	seg0.8	300	m=6 litf=0
+8.4735	e digits (base 29)	11363	1	1	seg0.8	300	m=6 litf=0
+8.4735	p_n mod 3301	1558	1	1	seg0.12	300	m=6 litf=0
+8.4735	sqrt2 digits (base 10)	12887	28	1	seg0.11	300	m=6 litf=0
+8.4731	primes^2	4674	28	0	seg0.12	300	m=11 litf=0
+8.4731	p_n^2 - 1	4674	28	0	seg0.12	300	m=11 litf=0
+8.4713	n * p_n	10530	28	0	seg0.15	300	m=7 litf=0
+8.4713	primes base-29 digit sum	17732	1	0	seg0.11	300	m=7 litf=0
+8.4713	ln10 digits (base 29)	7761	28	0	seg0.12	300	m=7 litf=0
+8.4557	d(n)	11030	1	0	seg0.15	300	m=8 litf=0
+8.4557	pi digits (base 29)	7168	1	0	seg0.7	300	m=8 litf=0
+8.4557	carmichael lambda(n)	1547	1	1	seg0.12	300	m=8 litf=0
+8.4519	sqrt3 digits (base 29)	8234	1	0	seg0.13	300	m=3 litf=0
+8.4519	p_n^2 - 1	5364	28	0	seg0.14	300	m=3 litf=0
+8.4519	e^pi digits (base 29)	15413	1	1	seg0.12	300	m=3 litf=0
+8.4519	p_n mod 3301	12094	28	0	seg0.11	300	m=3 litf=0
+8.4519	primes^2	5364	28	0	seg0.14	300	m=3 litf=0
+8.4519	euler gamma digits (base 29)	11027	1	0	seg0.7	300	m=3 litf=0
+8.4429	p_n + n	14528	1	0	seg0.9	300	m=2 litf=0
+8.4429	sqrt2 digits (base 10)	641	1	1	seg0.13	300	m=2 litf=0
+8.4429	p_n + n	6737	28	1	seg0.15	300	m=2 litf=0
+8.4429	(p-1)/2	9480	1	1	seg0.7	300	m=2 litf=0
+8.4429	primes base-29 digit sum	5387	28	0	seg0.9	300	m=2 litf=0
+8.4429	phi digits (base 29)	18092	1	0	seg0.13	300	m=2 litf=0
+8.4429	(p+1)/2	9480	1	1	seg0.7	300	m=2 litf=0
+8.4429	prime index of primes	14315	1	0	seg0.7	300	m=2 litf=0
+8.4429	ln3 digits (base 29)	8006	1	1	seg0.7	300	m=2 litf=0
+8.4429	phi digits (base 29)	9182	1	1	seg0.14	300	m=2 litf=0
+8.4429	ln10 digits (base 29)	1751	1	0	seg0.8	300	m=2 litf=0
+8.4429	ln3301 digits (base 29)	13154	1	0	seg0.14	300	m=2 litf=0
+8.4429	3301 * p_n	19581	28	1	seg0.15	300	m=2 litf=0
+8.4429	sqrt3 digits (base 29)	17839	1	0	seg0.15	300	m=2 litf=0
+8.4429	3301 * p_n	6760	28	0	seg0.14	300	m=2 litf=0
+8.4429	sqrt3 digits (base 10)	5795	1	1	seg0.7	300	m=2 litf=0
+8.4429	3301 * p_n	7188	1	1	seg0.9	300	m=2 litf=0
+8.4429	phi(n)	4368	28	0	seg0.14	300	m=2 litf=0
+8.4429	ln2 digits (base 29)	18567	1	0	seg0.14	300	m=2 litf=0
+8.4403	carmichael lambda(n)	5716	1	0	seg0.12	300	m=14 litf=0
+8.4403	pi^2 digits (base 29)	19115	1	0	seg0.13	300	m=14 litf=0
+8.4395	sqrt3 digits (base 10)	8934	28	0	seg0.14	300	m=4 litf=0
+8.4395	n * p_n	6442	1	0	seg0.15	300	m=4 litf=0
+8.4395	primes	7966	28	0	seg0.15	300	m=4 litf=0
+8.4395	ln3 digits (base 29)	17422	28	0	seg0.9	300	m=4 litf=0
+8.4395	primes from 3301	7503	28	0	seg0.15	300	m=4 litf=0
+8.4395	3301 * p_n	4927	28	0	seg0.12	300	m=4 litf=0
+8.4395	primes-1 (totient)	7966	28	0	seg0.15	300	m=4 litf=0
+8.4395	cbrt2 digits (base 29)	16382	28	1	seg0.14	300	m=4 litf=0
+8.4395	emirps	12114	1	0	seg0.9	300	m=4 litf=0
+8.4395	sqrt29 digits (base 29)	16489	28	0	seg0.14	300	m=4 litf=0
+8.4395	3301 - p_n	7966	1	0	seg0.15	300	m=4 litf=0
+8.4395	cbrt2 digits (base 29)	16380	28	1	seg0.14	300	m=4 litf=0
+8.4395	primes+1	7966	28	0	seg0.15	300	m=4 litf=0
+8.4395	partitions p(n)	7730	28	1	seg0.8	300	m=4 litf=0
+8.4372	sigma(n)	6062	28	0	seg0.12	300	m=5 litf=0
+8.4095	primes+1	4525	28	1	seg0.7	300	m=6 litf=0
+8.4095	primes^2	11003	1	1	seg0.13	300	m=6 litf=0
+8.4095	primes from 3301	4062	28	1	seg0.7	300	m=6 litf=0
+8.4095	p_n^2 - 1	11003	1	1	seg0.13	300	m=6 litf=0
+8.4095	3301 - p_n	4525	1	1	seg0.7	300	m=6 litf=0
+8.4095	sigma(n)	15074	28	1	seg0.15	300	m=6 litf=0
+8.4095	primes-1 (totient)	4525	28	1	seg0.7	300	m=6 litf=0
+8.4095	carmichael lambda(n)	14187	28	1	seg0.15	300	m=6 litf=0
+8.4095	primes	4525	28	1	seg0.7	300	m=6 litf=0
+8.4095	cumulative phi(n)	336	28	0	seg0.13	300	m=6 litf=0
+8.4069	euler gamma digits (base 29)	4056	1	0	seg0.11	300	m=3 litf=0
+8.4069	e digits (base 29)	9134	1	0	seg0.8	300	m=3 litf=0
+8.4069	emirps	14207	28	0	seg0.9	300	m=3 litf=0
+8.4069	pi digits (base 29)	16188	28	1	seg0.9	300	m=3 litf=0
+8.4069	Omega(n)	7662	1	0	seg0.14	300	m=3 litf=0
+8.4069	sigma(n)	13162	28	0	seg0.7	300	m=3 litf=0
+8.4063	e digits (base 29)	3008	1	1	seg0.9	300	m=2 litf=0
+8.4063	e digits (base 29)	11668	28	1	seg0.15	300	m=2 litf=0
+8.4063	e digits (base 29)	3010	1	1	seg0.9	300	m=2 litf=0
+8.4063	p_(n+1) * p_n	2750	1	1	seg0.8	300	m=2 litf=0
+8.4063	primes base-29 digit sum	6281	1	0	seg0.9	300	m=2 litf=0
+8.4063	3301 * p_n	17542	1	0	seg0.14	300	m=2 litf=0
+8.4063	sqrt3 digits (base 29)	13760	28	0	seg0.14	300	m=2 litf=0
+8.4063	p_n^2 - 1	10824	1	1	seg0.13	300	m=2 litf=0
+8.4063	sqrt2 digits (base 29)	14610	1	1	seg0.12	300	m=2 litf=0
+8.4063	p_(n+1) * p_n	10762	28	0	seg0.14	300	m=2 litf=0
+8.4063	zeta(3) digits (base 29)	1897	1	0	seg0.14	300	m=2 litf=0
+8.4063	n * p_n	11492	1	0	seg0.12	300	m=2 litf=0
+8.4063	rad(n)	6239	1	0	seg0.12	300	m=2 litf=0
+8.4063	phi digits (base 10)	9121	28	0	seg0.12	300	m=2 litf=0
+8.4063	e^pi digits (base 29)	7281	1	0	seg0.12	300	m=2 litf=0
+8.4063	e^pi digits (base 29)	10559	28	0	seg0.15	300	m=2 litf=0
+8.4063	sqrt29 digits (base 29)	11277	1	0	seg0.7	300	m=2 litf=0
+8.4063	sqrt3 digits (base 29)	10103	28	1	seg0.9	300	m=2 litf=0
+8.4063	partitions p(n)	19517	1	0	seg0.14	300	m=2 litf=0
+8.4063	zeta(3) digits (base 29)	15222	1	1	seg0.13	300	m=2 litf=0
+8.4063	ln3 digits (base 29)	8002	1	1	seg0.7	300	m=2 litf=0
+8.4063	primes^2	10824	1	1	seg0.13	300	m=2 litf=0
+8.4063	sqrt3 digits (base 29)	19239	28	0	seg0.11	300	m=2 litf=0
+8.4063	primes^3	16070	28	1	seg0.14	300	m=2 litf=0
+8.4063	zeta(3) digits (base 29)	1509	1	0	seg0.8	300	m=2 litf=0
+8.4063	pi^2 digits (base 29)	3366	28	1	seg0.13	300	m=2 litf=0
+8.4063	p_n - n	1130	1	0	seg0.12	300	m=2 litf=0
+8.4021	(p-1)/2	14882	1	1	seg0.8	300	m=7 litf=0
+8.4021	(p+1)/2	14882	1	1	seg0.8	300	m=7 litf=0
+8.3978	3301 * p_n	15912	28	1	seg0.15	300	m=9 litf=0
+8.3978	primes digit sum	7256	28	0	seg0.13	300	m=9 litf=0
+8.3926	ln2 digits (base 10)	13914	1	0	seg0.15	300	m=10 litf=0
+8.3926	sqrt29 digits (base 29)	15181	1	0	seg0.15	300	m=10 litf=0
+8.3926	sqrt2 digits (base 29)	14219	1	1	seg0.7	300	m=10 litf=0
+8.3908	carmichael lambda(n)	4391	1	0	seg0.9	300	m=12 litf=0
+8.3908	carmichael lambda(n)	4392	1	0	seg0.9	300	m=12 litf=0
+8.3908	primes^3	14359	28	0	seg0.14	300	m=12 litf=0
+8.3908	prime gaps	3188	1	0	seg0.12	300	m=12 litf=0
+8.3875	phi(n)	5987	1	0	seg0.9	300	m=4 litf=0
+8.3875	pi^2 digits (base 29)	2313	1	0	seg0.14	300	m=4 litf=0
+8.3875	ln10 digits (base 29)	14137	28	1	seg0.8	300	m=4 litf=0
+8.3875	cbrt2 digits (base 29)	16384	28	1	seg0.14	300	m=4 litf=0
+8.3816	partitions p(n)	6980	1	0	seg0.8	300	m=8 litf=0
+8.3816	cbrt2 digits (base 29)	3275	1	0	seg0.15	300	m=8 litf=0
+8.3789	primes digit sum	7021	1	1	seg0.8	300	m=5 litf=0
+8.3696	e digits (base 29)	11560	1	1	seg0.7	300	m=2 litf=0
+8.3696	composites	1414	1	0	seg0.8	300	m=2 litf=0
+8.3696	composites	1416	1	0	seg0.8	300	m=2 litf=0
+8.3696	e^pi digits (base 29)	11368	1	1	seg0.11	300	m=2 litf=0
+8.3696	phi(n)	6653	1	0	seg0.13	300	m=2 litf=0
+8.3696	phi digits (base 10)	17338	1	1	seg0.14	300	m=2 litf=0
+8.3696	p_n - n	2646	28	0	seg0.14	300	m=2 litf=0
+8.3696	p_n mod 3301	8953	1	1	seg0.14	300	m=2 litf=0
+8.3696	pi digits (base 10)	10715	1	0	seg0.15	300	m=2 litf=0
+8.3696	zeta(3) digits (base 29)	16261	28	1	seg0.9	300	m=2 litf=0
+8.3696	sqrt2 digits (base 10)	10887	28	0	seg0.12	300	m=2 litf=0
+8.3696	e digits (base 29)	17532	1	0	seg0.8	300	m=2 litf=0
+8.3696	rad(n)	6997	1	1	seg0.14	300	m=2 litf=0
+8.3696	composites	1317	28	0	seg0.8	300	m=2 litf=0
+8.3696	primes reversed digits	4205	1	1	seg0.11	300	m=2 litf=0
+8.3696	cbrt2 digits (base 29)	6284	1	0	seg0.15	300	m=2 litf=0
+8.3696	sigma(n)	4529	1	1	seg0.9	300	m=2 litf=0
+8.3696	primes base-29 digit sum	2485	1	1	seg0.9	300	m=2 litf=0
+8.3696	sqrt3301 digits (base 29)	2037	28	1	seg0.14	300	m=2 litf=0
+8.3696	sigma(n)	245	28	0	seg0.8	300	m=2 litf=0
+8.3696	ln3 digits (base 29)	8659	28	0	seg0.8	300	m=2 litf=0
+8.3620	cbrt2 digits (base 29)	16989	28	0	seg0.9	300	m=3 litf=0
+8.3620	prime index of primes	11704	28	1	seg0.8	300	m=3 litf=0
+8.3620	partitions p(n)	16880	28	1	seg0.12	300	m=3 litf=0
+8.3620	phi digits (base 29)	7643	28	0	seg0.11	300	m=3 litf=0
+8.3620	p_n mod 3301	12095	28	0	seg0.11	300	m=3 litf=0
+8.3620	3301 - p_n	10139	28	1	seg0.8	300	m=3 litf=0
+8.3620	primes-1 (totient)	10139	1	1	seg0.8	300	m=3 litf=0
+8.3620	primes from 3301	9676	1	1	seg0.8	300	m=3 litf=0
+8.3620	primes+1	10139	1	1	seg0.8	300	m=3 litf=0
+8.3620	sqrt2 digits (base 29)	11731	28	1	seg0.14	300	m=3 litf=0
+8.3620	ln3 digits (base 29)	16556	28	1	seg0.11	300	m=3 litf=0
+8.3620	primes	10139	1	1	seg0.8	300	m=3 litf=0
+8.3620	ln2 digits (base 29)	18915	1	1	seg0.7	300	m=3 litf=0
+8.3605	3301 * p_n	18458	28	0	seg0.13	300	m=13 litf=0
+8.3456	p_n - n	18506	28	0	seg0.13	300	m=6 litf=0
+8.3413	sqrt3301 digits (base 29)	5680	1	1	seg0.8	300	m=14 litf=0
+8.3413	ln3 digits (base 29)	7291	28	1	seg0.14	300	m=14 litf=0
+8.3355	p_n - n	13045	1	0	seg0.12	300	m=4 litf=0
+8.3355	p_n^2 - 1	4152	1	0	seg0.12	300	m=4 litf=0
+8.3355	pi^2 digits (base 29)	15084	28	1	seg0.15	300	m=4 litf=0
+8.3355	p_n^2 - 1	1362	28	0	seg0.14	300	m=4 litf=0
+8.3355	sqrt29 digits (base 29)	15827	28	0	seg0.13	300	m=4 litf=0
+8.3355	sigma(n)	231	28	0	seg0.9	300	m=4 litf=0
+8.3355	sigma(n)	230	28	0	seg0.9	300	m=4 litf=0
+8.3355	primes base-29 digit sum	9243	28	0	seg0.14	300	m=4 litf=0
+8.3355	emirps	15970	1	0	seg0.8	300	m=4 litf=0
+8.3355	primes^3	5758	1	1	seg0.14	300	m=4 litf=0
+8.3355	emirps	12115	1	0	seg0.9	300	m=4 litf=0
+8.3355	p_n - n	5024	28	0	seg0.9	300	m=4 litf=0
+8.3355	primes^2	1362	28	0	seg0.14	300	m=4 litf=0
+8.3355	phi digits (base 29)	1523	28	0	seg0.7	300	m=4 litf=0
+8.3355	primes^2	4152	1	0	seg0.12	300	m=4 litf=0
+8.3355	e digits (base 29)	15371	28	1	seg0.7	300	m=4 litf=0
+8.3330	ln2 digits (base 29)	3743	28	1	seg0.8	300	m=2 litf=0
+8.3330	prime index of primes	17746	28	0	seg0.11	300	m=2 litf=0
+8.3330	emirps	3717	28	0	seg0.13	300	m=2 litf=0
+8.3330	partitions p(n)	2179	28	0	seg0.7	300	m=2 litf=0
+8.3330	cumulative prime sum	5690	28	1	seg0.7	300	m=2 litf=0
+8.3330	e^pi digits (base 29)	9045	28	1	seg0.11	300	m=2 litf=0
+8.3330	pi digits (base 29)	7219	1	0	seg0.14	300	m=2 litf=0
+8.3330	pi^2 digits (base 29)	15211	1	1	seg0.15	300	m=2 litf=0
+8.3330	p_n + n	19522	1	0	seg0.7	300	m=2 litf=0
+8.3330	sqrt3301 digits (base 29)	1680	1	1	seg0.7	300	m=2 litf=0
+8.3330	ln3301 digits (base 29)	18095	1	0	seg0.13	300	m=2 litf=0
+8.3330	prime index of primes	8229	1	0	seg0.8	300	m=2 litf=0
+8.3330	e^pi digits (base 29)	9047	28	1	seg0.11	300	m=2 litf=0
+8.3330	phi(n)	6828	28	1	seg0.14	300	m=2 litf=0
+8.3330	ln3301 digits (base 29)	14254	28	0	seg0.12	300	m=2 litf=0
+8.3330	sigma(n)	9692	28	1	seg0.14	300	m=2 litf=0
+8.3330	primes^3	9370	28	0	seg0.13	300	m=2 litf=0
+8.3330	emirps	6959	1	0	seg0.12	300	m=2 litf=0
+8.3330	emirps	4322	28	0	seg0.9	300	m=2 litf=0
+8.3330	sqrt3301 digits (base 29)	14803	28	1	seg0.8	300	m=2 litf=0
+8.3330	sqrt2 digits (base 10)	2162	28	0	seg0.14	300	m=2 litf=0
+8.3330	sqrt3301 digits (base 29)	18699	28	1	seg0.8	300	m=2 litf=0
+8.3330	p_n + n	14529	1	0	seg0.9	300	m=2 litf=0
+8.3330	phi digits (base 29)	4307	28	1	seg0.11	300	m=2 litf=0
+8.3330	sqrt3301 digits (base 29)	9999	28	1	seg0.8	300	m=2 litf=0
+8.3330	primes^3	16082	1	0	seg0.11	300	m=2 litf=0
+8.3330	p_n - n	208	28	1	seg0.12	300	m=2 litf=0
+8.3330	primes digit sum	5051	1	0	seg0.12	300	m=2 litf=0
+8.3330	sqrt3301 digits (base 29)	9997	28	1	seg0.8	300	m=2 litf=0
+8.3329	sqrt3301 digits (base 29)	16393	28	0	seg0.12	300	m=7 litf=0
+8.3329	primes^3	13987	28	0	seg0.11	300	m=7 litf=0
+8.3329	primes digit sum	9281	1	1	seg0.12	300	m=7 litf=0
+8.3329	p_n mod 3301	8936	1	0	seg0.8	300	m=7 litf=0
+8.3207	omega(n)	7604	28	0	seg0.8	300	m=5 litf=0
+8.3207	rad(n)	11610	28	0	seg0.15	300	m=5 litf=0
+8.3207	rad(n)	14903	28	0	seg0.8	300	m=5 litf=0
+8.3191	phi digits (base 29)	16270	28	0	seg0.11	300	m=9 litf=0
+8.3191	sqrt29 digits (base 29)	11058	1	0	seg0.13	300	m=9 litf=0
+8.3191	e digits (base 29)	6969	28	0	seg0.11	300	m=9 litf=0
+8.3170	primes+1	8845	1	1	seg0.7	300	m=3 litf=0
+8.3170	p_(n+1) * p_n	14589	1	0	seg0.13	300	m=3 litf=0
+8.3170	phi digits (base 10)	2631	1	1	seg0.15	300	m=3 litf=0
+8.3170	p_n + n	3266	28	1	seg0.14	300	m=3 litf=0
+8.3170	carmichael lambda(n)	553	1	0	seg0.15	300	m=3 litf=0
+8.3170	p_n - n	18115	1	0	seg0.13	300	m=3 litf=0
+8.3170	(p-1)/2	14766	28	1	seg0.9	300	m=3 litf=0
+8.3170	3301 * p_n	6451	28	0	seg0.9	300	m=3 litf=0
+8.3170	carmichael lambda(n)	17025	1	0	seg0.9	300	m=3 litf=0
+8.3170	primes	8845	1	1	seg0.7	300	m=3 litf=0
+8.3170	primes-1 (totient)	8845	1	1	seg0.7	300	m=3 litf=0
+8.3170	3301 - p_n	8845	28	1	seg0.7	300	m=3 litf=0
+8.3170	primes base-29 digit sum	7110	28	0	seg0.11	300	m=3 litf=0
+8.3170	pi digits (base 10)	3160	1	1	seg0.15	300	m=3 litf=0
+8.3170	(p+1)/2	14766	28	1	seg0.9	300	m=3 litf=0
+8.3170	primes from 3301	8382	1	1	seg0.7	300	m=3 litf=0
+8.3170	e^pi digits (base 29)	8258	1	1	seg0.14	300	m=3 litf=0
+8.3170	pi digits (base 29)	13274	28	1	seg0.7	300	m=3 litf=0
+8.3170	d(n)	16754	1	1	seg0.13	300	m=3 litf=0
+8.3170	p_n + n	8695	28	0	seg0.12	300	m=3 litf=0
+8.3076	pi^2 digits (base 29)	14906	1	0	seg0.11	300	m=8 litf=0
+8.3076	(p+1)/2	9077	1	1	seg0.7	300	m=8 litf=0
+8.3076	pi^2 digits (base 29)	18822	1	0	seg0.7	300	m=8 litf=0
+8.3076	p_(n+1) * p_n	7820	28	1	seg0.14	300	m=8 litf=0
+8.3076	(p-1)/2	9077	1	1	seg0.7	300	m=8 litf=0
+8.3076	n * p_n	6929	28	0	seg0.14	300	m=8 litf=0
+8.2995	euler gamma digits (base 29)	9457	1	1	seg0.13	300	m=12 litf=0
+8.2995	cumulative phi(n)	4171	28	1	seg0.11	300	m=12 litf=0
+8.2995	carmichael lambda(n)	4390	1	0	seg0.9	300	m=12 litf=0
+8.2985	p_n mod 3301	1282	28	0	seg0.13	300	m=11 litf=0
+8.2963	sqrt29 digits (base 29)	9668	28	0	seg0.12	300	m=2 litf=0
+8.2963	sqrt3301 digits (base 29)	3147	28	0	seg0.15	300	m=2 litf=0
+8.2963	ln3 digits (base 29)	14436	28	0	seg0.14	300	m=2 litf=0
+8.2963	pi digits (base 10)	16099	28	0	seg0.15	300	m=2 litf=0
+8.2963	ln2 digits (base 10)	2370	28	0	seg0.13	300	m=2 litf=0
+8.2963	euler gamma digits (base 29)	17192	1	1	seg0.15	300	m=2 litf=0
+8.2963	sqrt2 digits (base 29)	14608	1	1	seg0.12	300	m=2 litf=0
+8.2963	emirps	15605	28	1	seg0.13	300	m=2 litf=0
+8.2963	n * p_n	15854	1	1	seg0.12	300	m=2 litf=0
+8.2963	sqrt29 digits (base 29)	15827	28	0	seg0.13	300	m=2 litf=0
+8.2963	primes-1 (totient)	17776	1	1	seg0.12	300	m=2 litf=0
+8.2963	partitions p(n)	10534	1	0	seg0.15	300	m=2 litf=0
+8.2963	prime gaps	3285	1	1	seg0.9	300	m=2 litf=0
+8.2963	carmichael lambda(n)	18954	1	1	seg0.12	300	m=2 litf=0
+8.2963	euler gamma digits (base 29)	18104	28	0	seg0.7	300	m=2 litf=0
+8.2963	e^pi digits (base 29)	8427	1	1	seg0.11	300	m=2 litf=0
+8.2963	primes+1	17776	1	1	seg0.12	300	m=2 litf=0
+8.2963	(p-1)/2	17968	1	1	seg0.11	300	m=2 litf=0
+8.2963	sqrt3301 digits (base 29)	13436	1	0	seg0.15	300	m=2 litf=0
+8.2963	3301 * p_n	17664	1	0	seg0.12	300	m=2 litf=0
+8.2963	p_n mod 3301	12838	28	0	seg0.15	300	m=2 litf=0
+8.2963	3301 - p_n	17776	28	1	seg0.12	300	m=2 litf=0
+8.2963	cbrt2 digits (base 29)	6390	1	1	seg0.7	300	m=2 litf=0
+8.2963	carmichael lambda(n)	9104	1	1	seg0.7	300	m=2 litf=0
+8.2963	pi^2 digits (base 29)	16967	28	1	seg0.14	300	m=2 litf=0
+8.2963	(p+1)/2	17968	1	1	seg0.11	300	m=2 litf=0
+8.2963	n * p_n	10674	1	1	seg0.13	300	m=2 litf=0
+8.2963	n * p_n	10676	1	1	seg0.13	300	m=2 litf=0
+8.2963	primes	17776	1	1	seg0.12	300	m=2 litf=0
+8.2963	prime gaps	11601	28	0	seg0.7	300	m=2 litf=0
+8.2963	pi digits (base 29)	7029	1	1	seg0.13	300	m=2 litf=0
+8.2963	composites	8692	28	1	seg0.14	300	m=2 litf=0
+8.2963	e digits (base 29)	13622	28	0	seg0.11	300	m=2 litf=0
+8.2963	p_(n+1) * p_n	9849	28	0	seg0.14	300	m=2 litf=0
+8.2963	primes from 3301	17313	1	1	seg0.12	300	m=2 litf=0
+8.2835	phi(n)	12888	1	0	seg0.9	300	m=4 litf=0
+8.2835	(p+1)/2	1176	28	1	seg0.11	300	m=4 litf=0
+8.2835	primes+1	17109	28	1	seg0.9	300	m=4 litf=0
+8.2835	primes^3	15729	28	0	seg0.7	300	m=4 litf=0
+8.2835	primes from 3301	16646	28	1	seg0.9	300	m=4 litf=0
+8.2835	partitions p(n)	8918	1	0	seg0.12	300	m=4 litf=0
+8.2835	sqrt3 digits (base 29)	16199	1	0	seg0.14	300	m=4 litf=0
+8.2835	(p-1)/2	1176	28	1	seg0.11	300	m=4 litf=0
+8.2835	3301 - p_n	17109	1	1	seg0.9	300	m=4 litf=0
+8.2835	primes digit sum	4633	28	0	seg0.7	300	m=4 litf=0
+8.2835	primes+1	17837	1	0	seg0.14	300	m=4 litf=0
+8.2835	primes	17109	28	1	seg0.9	300	m=4 litf=0
+8.2835	prime gaps	16274	28	0	seg0.9	300	m=4 litf=0
+8.2835	3301 - p_n	17837	28	0	seg0.14	300	m=4 litf=0
+8.2835	primes-1 (totient)	17837	1	0	seg0.14	300	m=4 litf=0
+8.2835	primes-1 (totient)	17109	28	1	seg0.9	300	m=4 litf=0
+8.2835	primes from 3301	17374	1	0	seg0.14	300	m=4 litf=0
+8.2835	emirps	14646	1	1	seg0.13	300	m=4 litf=0
+8.2835	primes	17837	1	0	seg0.14	300	m=4 litf=0
+8.2835	phi(n)	18073	1	1	seg0.7	300	m=4 litf=0
+8.2817	ln3301 digits (base 29)	17231	1	0	seg0.14	300	m=6 litf=0
+8.2817	ln2 digits (base 29)	1307	1	0	seg0.9	300	m=6 litf=0
+8.2817	sqrt5 digits (base 29)	7181	28	0	seg0.14	300	m=6 litf=0
+8.2817	p_n mod 3301	3536	28	0	seg0.11	300	m=6 litf=0
+8.2720	ln10 digits (base 29)	15616	1	0	seg0.13	300	m=3 litf=0
+8.2720	pi^2 digits (base 29)	5697	28	0	seg0.7	300	m=3 litf=0
+8.2720	p_n + n	3268	28	1	seg0.14	300	m=3 litf=0
+8.2720	rad(n)	12089	1	1	seg0.8	300	m=3 litf=0
+8.2720	rad(n)	12091	1	1	seg0.8	300	m=3 litf=0
+8.2720	primes^3	2448	1	0	seg0.12	300	m=3 litf=0
+8.2720	e^pi digits (base 29)	15391	28	0	seg0.14	300	m=3 litf=0
+8.2720	sqrt3301 digits (base 29)	16345	1	0	seg0.14	300	m=3 litf=0
+8.2720	phi digits (base 29)	16890	1	1	seg0.14	300	m=3 litf=0
+8.2720	cumulative phi(n)	336	28	0	seg0.13	300	m=3 litf=0
+8.2720	cbrt2 digits (base 29)	11287	28	1	seg0.12	300	m=3 litf=0
+8.2720	phi digits (base 29)	9165	28	0	seg0.7	300	m=3 litf=0
+8.2720	e digits (base 10)	4517	28	1	seg0.15	300	m=3 litf=0
+8.2720	cumulative prime sum	1335	28	1	seg0.11	300	m=3 litf=0
+8.2720	p_n mod 3301	15597	28	0	seg0.15	300	m=3 litf=0
+8.2720	ln2 digits (base 29)	16673	1	0	seg0.13	300	m=3 litf=0
+8.2720	p_n + n	14866	28	1	seg0.13	300	m=3 litf=0
+8.2720	ln2 digits (base 29)	16674	1	0	seg0.13	300	m=3 litf=0
+8.2720	cumulative phi(n)	1946	28	0	seg0.12	300	m=3 litf=0
+8.2720	ln2 digits (base 29)	6970	1	0	seg0.9	300	m=3 litf=0
+8.2653	sqrt3301 digits (base 29)	2069	28	0	seg0.9	300	m=13 litf=0
+8.2653	sqrt29 digits (base 29)	5303	28	1	seg0.14	300	m=13 litf=0
+8.2653	sqrt5 digits (base 29)	7709	1	1	seg0.12	300	m=13 litf=0
+8.2653	phi(n)	16560	1	1	seg0.14	300	m=13 litf=0
+8.2624	cumulative prime sum	11004	1	1	seg0.14	300	m=5 litf=0
+8.2624	ln3 digits (base 29)	3506	1	1	seg0.7	300	m=5 litf=0
+8.2624	cumulative prime sum	4950	28	1	seg0.7	300	m=5 litf=0
+8.2624	ln10 digits (base 29)	7000	28	1	seg0.13	300	m=5 litf=0
+8.2624	emirps	13207	28	0	seg0.12	300	m=5 litf=0
+8.2624	zeta(3) digits (base 29)	2156	28	1	seg0.11	300	m=5 litf=0
+8.2624	zeta(3) digits (base 29)	2158	28	1	seg0.11	300	m=5 litf=0
+8.2624	sqrt3 digits (base 10)	19383	28	0	seg0.11	300	m=5 litf=0
+8.2624	euler gamma digits (base 29)	4790	28	0	seg0.12	300	m=5 litf=0
+8.2596	p_n mod 3301	8928	1	1	seg0.9	300	m=2 litf=0
+8.2596	e digits (base 10)	375	1	0	seg0.14	300	m=2 litf=0
+8.2596	ln3 digits (base 29)	8004	1	1	seg0.7	300	m=2 litf=0
+8.2596	phi(n)	11654	28	0	seg0.7	300	m=2 litf=0
+8.2596	ln3301 digits (base 29)	18094	1	0	seg0.13	300	m=2 litf=0
+8.2596	n * p_n	15858	1	1	seg0.12	300	m=2 litf=0
+8.2596	primes-1 (totient)	11463	1	0	seg0.14	300	m=2 litf=0
+8.2596	partitions p(n)	3250	28	0	seg0.12	300	m=2 litf=0
+8.2596	sqrt3 digits (base 29)	3600	28	0	seg0.13	300	m=2 litf=0
+8.2596	sigma(n)	18993	28	0	seg0.15	300	m=2 litf=0
+8.2596	zeta(3) digits (base 29)	2156	28	1	seg0.11	300	m=2 litf=0
+8.2596	zeta(3) digits (base 29)	2158	28	1	seg0.11	300	m=2 litf=0
+8.2596	sqrt3 digits (base 10)	13051	28	1	seg0.13	300	m=2 litf=0
+8.2596	3301 - p_n	11463	28	0	seg0.14	300	m=2 litf=0
+8.2596	p_n - n	13668	1	1	seg0.11	300	m=2 litf=0
+8.2596	p_n - n	18958	1	0	seg0.15	300	m=2 litf=0
+8.2596	primes base-29 digit sum	1385	1	1	seg0.9	300	m=2 litf=0
+8.2596	emirps	11958	1	1	seg0.7	300	m=2 litf=0
+8.2596	primes	11463	1	0	seg0.14	300	m=2 litf=0
+8.2596	carmichael lambda(n)	5250	28	0	seg0.15	300	m=2 litf=0
+8.2596	pi^2 digits (base 29)	15955	1	1	seg0.12	300	m=2 litf=0
+8.2596	p_n + n	10979	1	0	seg0.9	300	m=2 litf=0
+8.2596	sqrt3301 digits (base 29)	13735	28	1	seg0.9	300	m=2 litf=0
+8.2596	pi^2 digits (base 29)	2313	1	0	seg0.14	300	m=2 litf=0
+8.2596	composites	17661	28	0	seg0.8	300	m=2 litf=0
+8.2596	primes+1	11463	1	0	seg0.14	300	m=2 litf=0
+8.2596	primes from 3301	11000	1	0	seg0.14	300	m=2 litf=0
+8.2424	3301 - p_n	4346	1	1	seg0.7	300	m=14 litf=0
+8.2424	primes+1	4346	28	1	seg0.7	300	m=14 litf=0
+8.2424	primes from 3301	3883	28	1	seg0.7	300	m=14 litf=0
+8.2424	primes	4346	28	1	seg0.7	300	m=14 litf=0
+8.2424	primes-1 (totient)	4346	28	1	seg0.7	300	m=14 litf=0
+8.2424	d(n)	17678	1	0	seg0.13	300	m=14 litf=0
+8.2404	ln10 digits (base 29)	1644	28	0	seg0.12	300	m=9 litf=0
+8.2404	primes^3	12032	28	1	seg0.13	300	m=9 litf=0
+8.2404	n * p_n	8272	1	1	seg0.13	300	m=9 litf=0
+8.2335	pi^2 digits (base 29)	9234	28	1	seg0.9	300	m=8 litf=0
+8.2335	sigma(n)	233	1	0	seg0.12	300	m=8 litf=0
+8.2335	p_n^2 - 1	7817	1	0	seg0.11	300	m=8 litf=0
+8.2335	e^pi digits (base 29)	15244	1	0	seg0.8	300	m=8 litf=0
+8.2335	primes^3	9341	1	0	seg0.7	300	m=8 litf=0
+8.2335	primes digit sum	5446	1	0	seg0.15	300	m=8 litf=0
+8.2335	primes^2	7817	1	0	seg0.11	300	m=8 litf=0
+8.2335	ln2 digits (base 10)	411	1	1	seg0.15	300	m=8 litf=0
+8.2335	sqrt3 digits (base 29)	17639	1	1	seg0.14	300	m=8 litf=0
+8.2335	partitions p(n)	6979	1	0	seg0.8	300	m=8 litf=0
+8.2335	phi digits (base 10)	17084	1	0	seg0.15	300	m=8 litf=0
+8.2315	rad(n)	10322	28	1	seg0.15	300	m=4 litf=0
+8.2315	sqrt3301 digits (base 29)	6038	28	1	seg0.11	300	m=4 litf=0
+8.2315	sqrt2 digits (base 10)	5232	1	1	seg0.13	300	m=4 litf=0
+8.2315	emirps	11676	1	0	seg0.9	300	m=4 litf=0
+8.2270	sqrt2 digits (base 10)	12317	28	1	seg0.8	300	m=3 litf=0
+8.2270	sqrt3301 digits (base 29)	4970	1	1	seg0.14	300	m=3 litf=0
+8.2270	p_(n+1) * p_n	8887	28	1	seg0.13	300	m=3 litf=0
+8.2270	sqrt3 digits (base 10)	5920	28	0	seg0.14	300	m=3 litf=0
+8.2270	composites	19227	28	0	seg0.8	300	m=3 litf=0
+8.2270	p_(n+1) * p_n	8889	28	1	seg0.13	300	m=3 litf=0
+8.2270	primes	1527	28	1	seg0.15	300	m=3 litf=0
+8.2270	catalan G digits (base 29)	19082	1	0	seg0.13	300	m=3 litf=0
+8.2270	sqrt5 digits (base 29)	13348	28	0	seg0.12	300	m=3 litf=0
+8.2270	primes from 3301	1064	28	1	seg0.15	300	m=3 litf=0
+8.2270	primes-1 (totient)	1527	28	1	seg0.15	300	m=3 litf=0
+8.2270	cumulative prime sum	1333	28	1	seg0.11	300	m=3 litf=0
+8.2270	e digits (base 10)	16200	1	0	seg0.13	300	m=3 litf=0
+8.2270	ln3 digits (base 29)	10538	28	1	seg0.11	300	m=3 litf=0
+8.2270	p_n + n	11276	1	0	seg0.7	300	m=3 litf=0
+8.2270	ln10 digits (base 29)	12103	28	0	seg0.7	300	m=3 litf=0
+8.2270	3301 - p_n	1527	1	1	seg0.15	300	m=3 litf=0
+8.2270	primes+1	1527	28	1	seg0.15	300	m=3 litf=0
+8.2270	pi digits (base 29)	3214	1	1	seg0.8	300	m=3 litf=0
+8.2264	ln2 digits (base 29)	6646	1	0	seg0.7	300	m=10 litf=0
+8.2230	ln2 digits (base 29)	1509	1	1	seg0.11	300	m=2 litf=0
+8.2230	pi digits (base 29)	19307	1	1	seg0.7	300	m=2 litf=0
+8.2230	primes base-29 digit sum	5389	28	0	seg0.9	300	m=2 litf=0
+8.2230	ln2 digits (base 10)	6162	1	0	seg0.11	300	m=2 litf=0
+8.2230	ln2 digits (base 10)	13008	1	0	seg0.12	300	m=2 litf=0
+8.2230	(p-1)/2	12360	28	1	seg0.13	300	m=2 litf=0
+8.2230	sigma(n)	17313	28	1	seg0.12	300	m=2 litf=0
+8.2230	catalan G digits (base 29)	1635	28	1	seg0.9	300	m=2 litf=0
+8.2230	3301 - p_n	10070	28	1	seg0.8	300	m=2 litf=0
+8.2230	partitions p(n)	2180	28	0	seg0.7	300	m=2 litf=0
+8.2230	sigma(n)	3065	1	1	seg0.7	300	m=2 litf=0
+8.2230	prime index of primes	15957	28	1	seg0.7	300	m=2 litf=0
+8.2230	Omega(n)	139	1	0	seg0.13	300	m=2 litf=0
+8.2230	Omega(n)	140	1	0	seg0.13	300	m=2 litf=0
+8.2230	cumulative prime sum	5124	28	0	seg0.7	300	m=2 litf=0
+8.2230	sqrt3 digits (base 29)	2136	1	1	seg0.8	300	m=2 litf=0
+8.2230	primes+1	10070	1	1	seg0.8	300	m=2 litf=0
+8.2230	cumulative prime sum	14646	28	1	seg0.11	300	m=2 litf=0
+8.2230	ln10 digits (base 29)	12140	1	0	seg0.15	300	m=2 litf=0
+8.2230	primes+1	13465	28	1	seg0.14	300	m=2 litf=0
+8.2230	euler gamma digits (base 29)	508	1	1	seg0.13	300	m=2 litf=0
+8.2230	catalan G digits (base 29)	16868	28	1	seg0.13	300	m=2 litf=0
+8.2230	sigma(n)	9567	1	0	seg0.7	300	m=2 litf=0
+8.2230	e^pi digits (base 29)	10558	28	0	seg0.15	300	m=2 litf=0
+8.2230	primes	10070	1	1	seg0.8	300	m=2 litf=0
+8.2230	euler gamma digits (base 29)	18366	28	0	seg0.8	300	m=2 litf=0
+8.2230	sqrt2 digits (base 29)	7803	28	1	seg0.12	300	m=2 litf=0
+8.2230	primes from 3301	9607	1	1	seg0.8	300	m=2 litf=0
+8.2230	sqrt2 digits (base 10)	9796	1	0	seg0.12	300	m=2 litf=0
+8.2230	phi(n)	12203	28	0	seg0.7	300	m=2 litf=0
+8.2230	primes-1 (totient)	13465	28	1	seg0.14	300	m=2 litf=0
+8.2230	primes-1 (totient)	10070	1	1	seg0.8	300	m=2 litf=0
+8.2230	cbrt2 digits (base 29)	6342	28	1	seg0.11	300	m=2 litf=0
+8.2230	sqrt2 digits (base 29)	7805	28	1	seg0.12	300	m=2 litf=0
+8.2230	primes from 3301	13002	28	1	seg0.14	300	m=2 litf=0
+8.2230	p_n + n	6437	1	0	seg0.9	300	m=2 litf=0
+8.2230	rad(n)	3967	1	0	seg0.14	300	m=2 litf=0
+8.2230	ln3301 digits (base 29)	14183	1	0	seg0.11	300	m=2 litf=0
+8.2230	zeta(3) digits (base 29)	16091	28	1	seg0.12	300	m=2 litf=0
+8.2230	primes base-29 digit sum	5388	28	0	seg0.9	300	m=2 litf=0
+8.2230	primes	13465	28	1	seg0.14	300	m=2 litf=0
+8.2230	sqrt2 digits (base 29)	2004	1	0	seg0.13	300	m=2 litf=0
+8.2230	cbrt2 digits (base 29)	6386	1	1	seg0.7	300	m=2 litf=0
+8.2230	3301 - p_n	13465	1	1	seg0.14	300	m=2 litf=0
+8.2230	sqrt29 digits (base 29)	11181	1	0	seg0.12	300	m=2 litf=0
+8.2230	(p+1)/2	12360	28	1	seg0.13	300	m=2 litf=0
+8.2178	phi(n)	5695	1	1	seg0.15	300	m=6 litf=0
+8.2178	e digits (base 29)	19359	1	1	seg0.13	300	m=6 litf=0
+8.2112	p_n + n	9520	1	1	seg0.7	300	m=11 litf=0
+8.2112	cumulative phi(n)	11756	28	1	seg0.11	300	m=11 litf=0
+8.2112	rad(n)	6790	28	1	seg0.8	300	m=11 litf=0
+8.2112	carmichael lambda(n)	12693	28	0	seg0.14	300	m=11 litf=0
+8.2112	pi^2 digits (base 29)	3334	28	0	seg0.13	300	m=11 litf=0
+8.2081	p_n - n	3823	1	0	seg0.9	300	m=12 litf=0
+8.2081	euler gamma digits (base 29)	11328	1	0	seg0.14	300	m=12 litf=0
+8.2042	p_n + n	4106	28	0	seg0.15	300	m=5 litf=0
+8.2042	carmichael lambda(n)	16775	1	0	seg0.15	300	m=5 litf=0
+8.2042	p_n mod 3301	4794	1	1	seg0.12	300	m=5 litf=0
+8.2042	sqrt3 digits (base 29)	598	28	1	seg0.7	300	m=5 litf=0
+8.2042	cumulative phi(n)	3558	1	1	seg0.9	300	m=5 litf=0
+8.1946	sqrt3 digits (base 29)	15390	28	0	seg0.13	300	m=7 litf=0
+8.1946	e^pi digits (base 29)	14199	28	1	seg0.7	300	m=7 litf=0
+8.1946	p_n^2 - 1	12187	1	0	seg0.13	300	m=7 litf=0
+8.1946	cumulative phi(n)	19007	28	0	seg0.12	300	m=7 litf=0
+8.1946	ln10 digits (base 29)	7762	28	0	seg0.12	300	m=7 litf=0
+8.1946	primes^2	12187	1	0	seg0.13	300	m=7 litf=0
+8.1946	euler gamma digits (base 29)	17658	28	1	seg0.14	300	m=7 litf=0
+8.1863	sqrt29 digits (base 29)	11278	1	0	seg0.7	300	m=2 litf=0
+8.1863	phi digits (base 29)	6297	28	1	seg0.8	300	m=2 litf=0
+8.1863	composites	5232	1	0	seg0.14	300	m=2 litf=0
+8.1863	composites	5233	1	0	seg0.14	300	m=2 litf=0
+8.1863	sqrt3 digits (base 10)	723	28	0	seg0.13	300	m=2 litf=0
+8.1863	rad(n)	2462	28	0	seg0.15	300	m=2 litf=0
+8.1863	ln3301 digits (base 29)	16	28	1	seg0.15	300	m=2 litf=0
+8.1863	ln3301 digits (base 29)	13153	1	0	seg0.14	300	m=2 litf=0
+8.1863	sqrt2 digits (base 29)	16224	1	0	seg0.8	300	m=2 litf=0
+8.1863	rad(n)	18350	1	0	seg0.8	300	m=2 litf=0
+8.1863	e^pi digits (base 29)	1608	1	1	seg0.7	300	m=2 litf=0
+8.1863	p_n mod 3301	173	28	0	seg0.9	300	m=2 litf=0
+8.1863	phi(n)	8358	1	1	seg0.7	300	m=2 litf=0
+8.1863	p_n^2 - 1	3465	28	0	seg0.15	300	m=2 litf=0
+8.1863	n * p_n	1538	28	0	seg0.11	300	m=2 litf=0
+8.1863	primes^2	3465	28	0	seg0.15	300	m=2 litf=0
+8.1863	pi digits (base 10)	89	28	0	seg0.14	300	m=2 litf=0
+8.1863	euler gamma digits (base 29)	17194	1	1	seg0.15	300	m=2 litf=0
+8.1863	zeta(3) digits (base 29)	13531	28	0	seg0.14	300	m=2 litf=0
+8.1863	partitions p(n)	19024	28	0	seg0.13	300	m=2 litf=0
+8.1863	ln3301 digits (base 29)	18096	1	0	seg0.13	300	m=2 litf=0
+8.1863	d(n)	7828	28	1	seg0.9	300	m=2 litf=0
+8.1863	primes base-29 digit sum	14079	1	1	seg0.12	300	m=2 litf=0
+8.1863	prime gaps	8699	28	0	seg0.9	300	m=2 litf=0
+8.1863	sqrt5 digits (base 29)	18280	28	0	seg0.8	300	m=2 litf=0
+8.1863	n * p_n	17392	1	1	seg0.9	300	m=2 litf=0
+8.1863	p_n + n	780	28	1	seg0.11	300	m=2 litf=0
+8.1863	sigma(n)	9565	1	0	seg0.7	300	m=2 litf=0
+8.1863	cumulative prime sum	8832	28	1	seg0.8	300	m=2 litf=0
+8.1863	Omega(n)	13813	28	0	seg0.11	300	m=2 litf=0
+8.1863	ln2 digits (base 29)	3745	28	1	seg0.8	300	m=2 litf=0
+8.1863	n * p_n	11221	28	1	seg0.12	300	m=2 litf=0
+8.1863	primes^3	17922	1	1	seg0.11	300	m=2 litf=0
+8.1863	emirps	16498	1	0	seg0.15	300	m=2 litf=0
+8.1863	p_n + n	18579	28	0	seg0.8	300	m=2 litf=0
+8.1863	n * p_n	4962	28	1	seg0.12	300	m=2 litf=0
+8.1863	phi digits (base 29)	4469	28	0	seg0.8	300	m=2 litf=0
+8.1863	ln3301 digits (base 29)	11717	28	0	seg0.11	300	m=2 litf=0
+8.1863	zeta(3) digits (base 29)	7963	1	0	seg0.11	300	m=2 litf=0
+8.1863	sqrt29 digits (base 29)	15183	1	0	seg0.15	300	m=2 litf=0
+8.1821	primes^3	279	28	1	seg0.8	300	m=3 litf=0
+8.1821	p_(n+1) * p_n	15090	1	0	seg0.7	300	m=3 litf=0
+8.1821	3301 - p_n	15102	1	0	seg0.9	300	m=3 litf=0
+8.1821	primes^3	10141	28	1	seg0.7	300	m=3 litf=0
+8.1821	primes^3	10139	28	1	seg0.7	300	m=3 litf=0
+8.1821	ln10 digits (base 29)	8226	1	0	seg0.12	300	m=3 litf=0
+8.1821	emirps	1701	1	1	seg0.14	300	m=3 litf=0
+8.1821	(p-1)/2	5759	1	0	seg0.9	300	m=3 litf=0
+8.1821	emirps	1699	1	1	seg0.14	300	m=3 litf=0
+8.1821	primes from 3301	14639	28	0	seg0.9	300	m=3 litf=0
+8.1821	ln10 digits (base 29)	12480	28	0	seg0.7	300	m=3 litf=0
+8.1821	ln3 digits (base 29)	11686	1	0	seg0.8	300	m=3 litf=0
+8.1821	primes+1	15102	28	0	seg0.9	300	m=3 litf=0
+8.1821	(p+1)/2	5759	1	0	seg0.9	300	m=3 litf=0
+8.1821	3301 * p_n	15102	1	1	seg0.15	300	m=3 litf=0
+8.1821	catalan G digits (base 29)	19083	1	0	seg0.13	300	m=3 litf=0
+8.1821	p_(n+1) * p_n	12026	28	0	seg0.8	300	m=3 litf=0
+8.1821	sqrt2 digits (base 29)	15291	28	1	seg0.12	300	m=3 litf=0
+8.1821	n * p_n	17499	1	1	seg0.8	300	m=3 litf=0
+8.1821	primes	15102	28	0	seg0.9	300	m=3 litf=0
+8.1821	primes-1 (totient)	15102	28	0	seg0.9	300	m=3 litf=0
+8.1821	e^pi digits (base 29)	14464	28	0	seg0.9	300	m=3 litf=0
+8.1795	pi^2 digits (base 29)	17904	1	0	seg0.12	300	m=4 litf=0
+8.1795	pi^2 digits (base 29)	12134	28	0	seg0.8	300	m=4 litf=0
+8.1795	sqrt29 digits (base 29)	9242	1	0	seg0.15	300	m=4 litf=0
+8.1795	p_n + n	14528	1	0	seg0.9	300	m=4 litf=0
+8.1795	e digits (base 29)	15369	28	1	seg0.7	300	m=4 litf=0
+8.1795	carmichael lambda(n)	2929	1	0	seg0.13	300	m=4 litf=0
+8.1795	n * p_n	5069	1	1	seg0.11	300	m=4 litf=0
+8.1795	carmichael lambda(n)	2928	1	0	seg0.13	300	m=4 litf=0
+8.1795	e^pi digits (base 29)	504	1	1	seg0.14	300	m=4 litf=0
+8.1795	emirps	16498	1	0	seg0.15	300	m=4 litf=0
+8.1795	pi^2 digits (base 29)	13167	28	0	seg0.9	300	m=4 litf=0
+8.1795	carmichael lambda(n)	15884	1	1	seg0.12	300	m=4 litf=0
+8.1795	cbrt2 digits (base 29)	2252	28	0	seg0.11	300	m=4 litf=0
+8.1795	zeta(3) digits (base 29)	6488	1	0	seg0.11	300	m=4 litf=0
+8.1795	p_(n+1) * p_n	15785	1	0	seg0.13	300	m=4 litf=0
+8.1795	prime index of primes	17958	28	0	seg0.12	300	m=4 litf=0
+8.1795	primes reversed digits	4931	28	1	seg0.13	300	m=4 litf=0
+8.1701	phi digits (base 29)	16911	1	1	seg0.14	300	m=13 litf=0
+8.1701	phi digits (base 29)	10192	28	1	seg0.11	300	m=13 litf=0
+8.1701	sqrt29 digits (base 29)	5301	28	1	seg0.14	300	m=13 litf=0
+8.1701	primes base-29 digit sum	15779	1	0	seg0.9	300	m=13 litf=0
+8.1701	n * p_n	18153	28	0	seg0.9	300	m=13 litf=0
+8.1701	e^pi digits (base 29)	2455	1	0	seg0.9	300	m=13 litf=0
+8.1701	pi digits (base 29)	16777	1	0	seg0.7	300	m=13 litf=0
+8.1617	carmichael lambda(n)	16359	28	1	seg0.14	300	m=9 litf=0
+8.1617	phi digits (base 10)	12768	1	1	seg0.14	300	m=9 litf=0
+8.1617	omega(n)	2801	28	0	seg0.14	300	m=9 litf=0
+8.1594	composites	10489	28	1	seg0.11	300	m=8 litf=0
+8.1594	sqrt29 digits (base 29)	15827	28	0	seg0.13	300	m=8 litf=0
+8.1594	sqrt2 digits (base 29)	11896	1	0	seg0.15	300	m=8 litf=0
+8.1594	cumulative prime sum	1649	1	0	seg0.14	300	m=8 litf=0
+8.1594	euler gamma digits (base 29)	11983	28	0	seg0.11	300	m=8 litf=0
+8.1594	ln3301 digits (base 29)	4403	28	1	seg0.11	300	m=8 litf=0
+8.1538	ln2 digits (base 29)	1305	1	0	seg0.9	300	m=6 litf=0
+8.1538	cumulative phi(n)	335	28	0	seg0.13	300	m=6 litf=0
+8.1538	p_n mod 3301	3537	28	0	seg0.11	300	m=6 litf=0
+8.1538	zeta(3) digits (base 29)	14793	1	1	seg0.13	300	m=6 litf=0
+8.1538	zeta(3) digits (base 29)	14795	1	1	seg0.13	300	m=6 litf=0
+8.1538	e^pi digits (base 29)	11444	28	0	seg0.13	300	m=6 litf=0
+8.1538	sigma(n)	10063	1	0	seg0.9	300	m=6 litf=0
+8.1538	pi digits (base 10)	15795	28	0	seg0.14	300	m=6 litf=0
+8.1497	rad(n)	1182	28	0	seg0.14	300	m=2 litf=0
+8.1497	primes+1	11558	1	0	seg0.14	300	m=2 litf=0
+8.1497	primes	11558	1	0	seg0.14	300	m=2 litf=0
+8.1497	primes^3	13404	1	1	seg0.13	300	m=2 litf=0
+8.1497	carmichael lambda(n)	15324	28	0	seg0.11	300	m=2 litf=0
+8.1497	n * p_n	1569	1	1	seg0.15	300	m=2 litf=0
+8.1497	ln2 digits (base 29)	5411	28	1	seg0.14	300	m=2 litf=0
+8.1497	p_n - n	7365	1	1	seg0.9	300	m=2 litf=0
+8.1497	sqrt3 digits (base 29)	10101	28	1	seg0.9	300	m=2 litf=0
+8.1497	primes-1 (totient)	11558	1	0	seg0.14	300	m=2 litf=0
+8.1497	primes from 3301	11095	1	0	seg0.14	300	m=2 litf=0
+8.1497	pi digits (base 29)	4926	1	1	seg0.9	300	m=2 litf=0
+8.1497	ln10 digits (base 29)	1836	1	0	seg0.12	300	m=2 litf=0
+8.1497	carmichael lambda(n)	13428	28	1	seg0.9	300	m=2 litf=0
+8.1497	pi digits (base 29)	15881	1	1	seg0.15	300	m=2 litf=0
+8.1497	p_n + n	10980	1	0	seg0.9	300	m=2 litf=0
+8.1497	pi^2 digits (base 29)	16741	1	1	seg0.15	300	m=2 litf=0
+8.1497	sqrt2 digits (base 10)	14495	28	1	seg0.12	300	m=2 litf=0
+8.1497	cumulative phi(n)	15293	28	0	seg0.11	300	m=2 litf=0
+8.1497	composites	1415	1	0	seg0.8	300	m=2 litf=0
+8.1497	3301 - p_n	11558	28	0	seg0.14	300	m=2 litf=0
+8.1497	sqrt29 digits (base 29)	15182	1	0	seg0.15	300	m=2 litf=0
+8.1497	phi(n)	14800	28	1	seg0.12	300	m=2 litf=0
+8.1497	emirps	664	28	0	seg0.15	300	m=2 litf=0
+8.1497	prime index of primes	15673	28	0	seg0.14	300	m=2 litf=0
+8.1497	sqrt5 digits (base 29)	15701	28	0	seg0.11	300	m=2 litf=0
+8.1497	sqrt3301 digits (base 29)	14157	1	0	seg0.11	300	m=2 litf=0
+8.1497	cumulative phi(n)	1453	28	1	seg0.11	300	m=2 litf=0
+8.1497	emirps	2554	28	0	seg0.15	300	m=2 litf=0
+8.1497	emirps	13692	28	0	seg0.15	300	m=2 litf=0
+8.1497	ln2 digits (base 10)	5844	1	1	seg0.13	300	m=2 litf=0
+8.1497	3301 * p_n	17251	28	0	seg0.11	300	m=2 litf=0
+8.1497	pi digits (base 10)	1532	28	1	seg0.12	300	m=2 litf=0
+8.1497	phi digits (base 10)	494	28	0	seg0.13	300	m=2 litf=0
+8.1497	rad(n)	12425	28	0	seg0.15	300	m=2 litf=0
+8.1497	primes^3	9170	28	1	seg0.14	300	m=2 litf=0
+8.1497	primes reversed digits	11592	1	1	seg0.7	300	m=2 litf=0
+8.1497	ln3 digits (base 29)	15547	1	1	seg0.14	300	m=2 litf=0
+8.1459	primes^3	14734	1	1	seg0.14	300	m=5 litf=0
+8.1459	euler gamma digits (base 29)	14225	28	0	seg0.12	300	m=5 litf=0
+8.1459	p_n - n	335	28	1	seg0.15	300	m=5 litf=0
+8.1459	pi^2 digits (base 29)	10954	28	0	seg0.13	300	m=5 litf=0
+8.1459	Omega(n)	7372	1	1	seg0.14	300	m=5 litf=0
+8.1459	primes^2	3600	1	1	seg0.11	300	m=5 litf=0
+8.1459	3301 * p_n	15420	1	0	seg0.11	300	m=5 litf=0
+8.1459	p_n^2 - 1	3600	1	1	seg0.11	300	m=5 litf=0
+8.1459	euler gamma digits (base 29)	2208	1	1	seg0.7	300	m=5 litf=0
+8.1459	sqrt5 digits (base 29)	9220	1	0	seg0.15	300	m=5 litf=0
+8.1434	p_n + n	13672	1	1	seg0.7	300	m=14 litf=0
+8.1434	e digits (base 29)	15783	1	0	seg0.9	300	m=14 litf=0
+8.1434	pi^2 digits (base 29)	19116	1	0	seg0.13	300	m=14 litf=0
+8.1434	primes base-29 digit sum	17732	1	0	seg0.11	300	m=14 litf=0
+8.1433	p_(n+1) * p_n	10536	1	0	seg0.8	300	m=10 litf=0
+8.1433	ln3301 digits (base 29)	191	28	0	seg0.12	300	m=10 litf=0
+8.1433	Omega(n)	18410	28	0	seg0.11	300	m=10 litf=0
+8.1433	ln3301 digits (base 29)	190	28	0	seg0.12	300	m=10 litf=0
+8.1433	ln2 digits (base 29)	6647	1	0	seg0.7	300	m=10 litf=0
+8.1371	e digits (base 29)	3973	1	0	seg0.14	300	m=3 litf=0
+8.1371	ln2 digits (base 29)	1656	1	1	seg0.15	300	m=3 litf=0
+8.1371	ln3301 digits (base 29)	6656	1	0	seg0.15	300	m=3 litf=0
+8.1371	sqrt3301 digits (base 29)	337	1	1	seg0.12	300	m=3 litf=0
+8.1371	sqrt3301 digits (base 29)	3251	28	0	seg0.7	300	m=3 litf=0
+8.1371	sqrt29 digits (base 29)	10211	1	0	seg0.13	300	m=3 litf=0
+8.1371	(p+1)/2	6502	1	0	seg0.15	300	m=3 litf=0
+8.1371	primes reversed digits	16154	28	0	seg0.7	300	m=3 litf=0
+8.1371	(p+1)/2	19417	28	1	seg0.14	300	m=3 litf=0
+8.1371	n * p_n	15728	28	0	seg0.13	300	m=3 litf=0
+8.1371	p_n - n	11579	28	0	seg0.13	300	m=3 litf=0
+8.1371	ln2 digits (base 29)	4239	1	0	seg0.15	300	m=3 litf=0
+8.1371	e digits (base 10)	9504	1	0	seg0.9	300	m=3 litf=0
+8.1371	(p-1)/2	6502	1	0	seg0.15	300	m=3 litf=0
+8.1371	(p-1)/2	19417	28	1	seg0.14	300	m=3 litf=0
+8.1274	ln3301 digits (base 29)	4403	28	1	seg0.11	300	m=4 litf=0
+8.1274	catalan G digits (base 29)	19205	28	0	seg0.14	300	m=4 litf=0
+8.1274	primes^3	12946	1	1	seg0.7	300	m=4 litf=0
+8.1274	p_n mod 3301	6740	1	1	seg0.9	300	m=4 litf=0
+8.1274	primes^3	9343	1	0	seg0.7	300	m=4 litf=0
+8.1274	phi digits (base 29)	1522	28	0	seg0.7	300	m=4 litf=0
+8.1274	sqrt3 digits (base 29)	9031	28	0	seg0.14	300	m=4 litf=0
+8.1274	sqrt3301 digits (base 29)	6569	28	1	seg0.13	300	m=4 litf=0
+8.1274	p_n + n	7688	28	0	seg0.13	300	m=4 litf=0
+8.1274	zeta(3) digits (base 29)	6489	1	0	seg0.11	300	m=4 litf=0
+8.1274	ln10 digits (base 29)	4229	28	1	seg0.7	300	m=4 litf=0
+8.1274	pi^2 digits (base 29)	15823	1	0	seg0.13	300	m=4 litf=0
+8.1255	ln3301 digits (base 29)	4365	1	0	seg0.8	300	m=7 litf=0
+8.1255	ln3301 digits (base 29)	4366	1	0	seg0.8	300	m=7 litf=0
+8.1255	primes^2	12186	1	0	seg0.13	300	m=7 litf=0
+8.1255	p_n^2 - 1	12186	1	0	seg0.13	300	m=7 litf=0
+8.1255	e digits (base 10)	16793	1	1	seg0.14	300	m=7 litf=0
+8.1255	cumulative phi(n)	19003	28	0	seg0.12	300	m=7 litf=0
+8.1255	p_n mod 3301	12607	28	0	seg0.9	300	m=7 litf=0
+8.1255	cbrt2 digits (base 29)	17191	1	1	seg0.15	300	m=7 litf=0
+8.1255	composites	12961	1	0	seg0.14	300	m=7 litf=0
+8.1255	composites	12962	1	0	seg0.14	300	m=7 litf=0
+8.1239	n * p_n	8963	1	1	seg0.8	300	m=11 litf=0
+8.1239	p_n + n	18660	1	0	seg0.7	300	m=11 litf=0
+8.1239	ln3 digits (base 29)	4310	1	0	seg0.13	300	m=11 litf=0
+8.1239	n * p_n	2766	1	0	seg0.8	300	m=11 litf=0
+8.1239	cumulative phi(n)	17570	28	0	seg0.11	300	m=11 litf=0
+8.1168	sigma(n)	19357	1	0	seg0.15	300	m=12 litf=0
+8.1168	partitions p(n)	18351	28	0	seg0.12	300	m=12 litf=0
+8.1168	sqrt3 digits (base 29)	3783	1	1	seg0.11	300	m=12 litf=0
+8.1130	sqrt5 digits (base 29)	2795	1	1	seg0.13	300	m=2 litf=0
+8.1130	primes^3	11081	1	0	seg0.14	300	m=2 litf=0
+8.1130	primes	15663	28	1	seg0.11	300	m=2 litf=0
+8.1130	carmichael lambda(n)	13759	1	1	seg0.8	300	m=2 litf=0
+8.1130	primes+1	15663	28	1	seg0.11	300	m=2 litf=0
+8.1130	pi digits (base 10)	19527	28	1	seg0.13	300	m=2 litf=0
+8.1130	primes^2	14797	28	0	seg0.13	300	m=2 litf=0
+8.1130	prime index of primes	17428	28	0	seg0.8	300	m=2 litf=0
+8.1130	primes digit sum	9470	28	1	seg0.12	300	m=2 litf=0
+8.1130	p_n^2 - 1	14085	1	1	seg0.11	300	m=2 litf=0
+8.1130	3301 - p_n	15663	1	1	seg0.11	300	m=2 litf=0
+8.1130	p_n mod 3301	18218	28	1	seg0.15	300	m=2 litf=0
+8.1130	prime index of primes	19459	1	0	seg0.11	300	m=2 litf=0
+8.1130	sigma(n)	7043	28	0	seg0.7	300	m=2 litf=0
+8.1130	phi digits (base 29)	16648	28	0	seg0.9	300	m=2 litf=0
+8.1130	sqrt3 digits (base 29)	15391	1	0	seg0.11	300	m=2 litf=0
+8.1130	catalan G digits (base 29)	5377	1	0	seg0.15	300	m=2 litf=0
+8.1130	ln2 digits (base 29)	9330	1	0	seg0.8	300	m=2 litf=0
+8.1130	p_(n+1) * p_n	2367	1	0	seg0.13	300	m=2 litf=0
+8.1130	partitions p(n)	18163	1	0	seg0.13	300	m=2 litf=0
+8.1130	phi digits (base 29)	1583	1	0	seg0.13	300	m=2 litf=0
+8.1130	ln10 digits (base 29)	1750	1	0	seg0.8	300	m=2 litf=0
+8.1130	partitions p(n)	15343	1	0	seg0.14	300	m=2 litf=0
+8.1130	sqrt3 digits (base 10)	7852	1	0	seg0.14	300	m=2 litf=0
+8.1130	p_n mod 3301	14514	28	0	seg0.14	300	m=2 litf=0
+8.1130	ln2 digits (base 29)	5921	1	0	seg0.8	300	m=2 litf=0
+8.1130	sqrt3 digits (base 10)	7853	1	0	seg0.14	300	m=2 litf=0
+8.1130	cumulative prime sum	7310	1	0	seg0.11	300	m=2 litf=0
+8.1130	sigma(n)	1065	28	0	seg0.12	300	m=2 litf=0
+8.1130	rad(n)	11442	1	0	seg0.8	300	m=2 litf=0
+8.1130	phi digits (base 10)	17189	28	0	seg0.12	300	m=2 litf=0
+8.1130	primes-1 (totient)	15663	28	1	seg0.11	300	m=2 litf=0
+8.1130	phi digits (base 29)	3133	28	1	seg0.11	300	m=2 litf=0
+8.1130	sqrt2 digits (base 29)	18474	1	0	seg0.11	300	m=2 litf=0
+8.1130	e^pi digits (base 29)	9575	28	0	seg0.9	300	m=2 litf=0
+8.1130	p_n^2 - 1	14797	28	0	seg0.13	300	m=2 litf=0
+8.1130	p_(n+1) * p_n	2368	1	0	seg0.13	300	m=2 litf=0
+8.1130	ln3301 digits (base 29)	13834	1	0	seg0.13	300	m=2 litf=0
+8.1130	primes^3	241	1	1	seg0.11	300	m=2 litf=0
+8.1130	primes^2	14085	1	1	seg0.11	300	m=2 litf=0
+8.1130	e digits (base 29)	17111	1	1	seg0.14	300	m=2 litf=0
+8.1130	pi digits (base 29)	8351	1	0	seg0.8	300	m=2 litf=0
+8.1130	rad(n)	8922	1	0	seg0.8	300	m=2 litf=0
+8.1130	primes reversed digits	7756	28	1	seg0.8	300	m=2 litf=0
+8.1130	primes^3	11080	1	0	seg0.14	300	m=2 litf=0
+8.1130	ln3 digits (base 29)	11403	1	0	seg0.11	300	m=2 litf=0
+8.1130	sqrt3 digits (base 29)	1546	1	0	seg0.12	300	m=2 litf=0
+8.1130	primes from 3301	15200	28	1	seg0.11	300	m=2 litf=0
+8.0921	p_n mod 3301	8845	1	1	seg0.7	300	m=3 litf=0
+8.0921	p_n - n	9937	1	0	seg0.7	300	m=3 litf=0
+8.0921	d(n)	3715	28	1	seg0.13	300	m=3 litf=0
+8.0921	d(n)	3717	28	1	seg0.13	300	m=3 litf=0
+8.0921	(p-1)/2	14768	28	1	seg0.9	300	m=3 litf=0
+8.0921	e digits (base 29)	13353	28	0	seg0.13	300	m=3 litf=0
+8.0921	sqrt3 digits (base 10)	3382	1	1	seg0.7	300	m=3 litf=0
+8.0921	cumulative prime sum	16305	1	0	seg0.12	300	m=3 litf=0
+8.0921	zeta(3) digits (base 29)	10486	28	0	seg0.15	300	m=3 litf=0
+8.0921	e digits (base 29)	11414	28	1	seg0.11	300	m=3 litf=0
+8.0921	e digits (base 10)	15608	28	1	seg0.14	300	m=3 litf=0
+8.0921	sigma(n)	7347	28	1	seg0.14	300	m=3 litf=0
+8.0921	(p+1)/2	14768	28	1	seg0.9	300	m=3 litf=0
+8.0921	primes digit sum	967	1	1	seg0.7	300	m=3 litf=0
+8.0921	ln3 digits (base 29)	9298	1	0	seg0.8	300	m=3 litf=0
+8.0921	primes base-29 digit sum	15101	28	0	seg0.12	300	m=3 litf=0
+8.0921	phi digits (base 29)	10506	1	0	seg0.7	300	m=3 litf=0
+8.0921	e^pi digits (base 29)	14956	28	0	seg0.9	300	m=3 litf=0
+8.0921	sqrt2 digits (base 29)	11315	28	1	seg0.12	300	m=3 litf=0
+8.0921	sqrt2 digits (base 10)	12889	28	1	seg0.11	300	m=3 litf=0
+8.0921	sqrt3301 digits (base 29)	16344	1	0	seg0.14	300	m=3 litf=0
+8.0921	p_(n+1) * p_n	16301	28	0	seg0.15	300	m=3 litf=0
+8.0921	primes^3	19021	1	0	seg0.15	300	m=3 litf=0
+8.0921	e digits (base 29)	13955	1	1	seg0.7	300	m=3 litf=0
+8.0921	ln10 digits (base 29)	12562	28	0	seg0.9	300	m=3 litf=0
+8.0921	pi digits (base 29)	6415	1	0	seg0.14	300	m=3 litf=0
+8.0921	p_n - n	1966	1	1	seg0.11	300	m=3 litf=0
+8.0899	cumulative prime sum	12065	28	1	seg0.11	300	m=6 litf=0
+8.0899	sqrt5 digits (base 29)	16342	28	0	seg0.9	300	m=6 litf=0
+8.0899	ln3301 digits (base 29)	16663	1	0	seg0.14	300	m=6 litf=0
+8.0899	p_n - n	7093	1	0	seg0.7	300	m=6 litf=0
+8.0899	phi digits (base 10)	12595	28	1	seg0.11	300	m=6 litf=0
+8.0899	catalan G digits (base 29)	16987	1	0	seg0.14	300	m=6 litf=0
+8.0899	sigma(n)	10062	1	0	seg0.9	300	m=6 litf=0
+8.0899	sqrt3301 digits (base 29)	13233	28	1	seg0.7	300	m=6 litf=0
+8.0877	primes from 3301	1062	28	1	seg0.15	300	m=5 litf=0
+8.0877	pi digits (base 29)	14245	28	0	seg0.11	300	m=5 litf=0
+8.0877	ln3301 digits (base 29)	2508	1	1	seg0.7	300	m=5 litf=0
+8.0877	omega(n)	7603	28	0	seg0.8	300	m=5 litf=0
+8.0877	p_n - n	10314	1	1	seg0.8	300	m=5 litf=0
+8.0877	ln3301 digits (base 29)	9041	28	1	seg0.7	300	m=5 litf=0
+8.0877	primes	1525	28	1	seg0.15	300	m=5 litf=0
+8.0877	ln2 digits (base 10)	9987	1	1	seg0.15	300	m=5 litf=0
+8.0877	3301 - p_n	1525	1	1	seg0.15	300	m=5 litf=0
+8.0877	p_n + n	16373	28	1	seg0.7	300	m=5 litf=0
+8.0877	primes-1 (totient)	1525	28	1	seg0.15	300	m=5 litf=0
+8.0877	primes^3	14728	1	1	seg0.14	300	m=5 litf=0
+8.0877	primes+1	1525	28	1	seg0.15	300	m=5 litf=0
+8.0877	pi digits (base 29)	6807	28	0	seg0.11	300	m=5 litf=0
+8.0877	prime index of primes	1787	28	0	seg0.14	300	m=5 litf=0
+8.0877	p_n mod 3301	5346	28	0	seg0.7	300	m=5 litf=0
+8.0877	euler gamma digits (base 29)	5255	1	0	seg0.14	300	m=5 litf=0
+8.0877	sigma(n)	1638	28	1	seg0.15	300	m=5 litf=0
+8.0877	emirps	10095	28	1	seg0.7	300	m=5 litf=0
+8.0854	cumulative prime sum	3005	1	1	seg0.12	300	m=8 litf=0
+8.0854	pi digits (base 29)	7170	1	0	seg0.7	300	m=8 litf=0
+8.0854	ln2 digits (base 10)	401	1	1	seg0.15	300	m=8 litf=0
+8.0854	p_n - n	11065	28	0	seg0.14	300	m=8 litf=0
+8.0854	phi(n)	14706	1	0	seg0.7	300	m=8 litf=0
+8.0831	phi digits (base 29)	16271	28	0	seg0.11	300	m=9 litf=0
+8.0831	ln10 digits (base 29)	6651	28	1	seg0.12	300	m=9 litf=0
+8.0831	primes^2	17875	28	0	seg0.15	300	m=9 litf=0
+8.0831	p_n^2 - 1	17875	28	0	seg0.15	300	m=9 litf=0
+8.0831	primes^3	11790	28	1	seg0.7	300	m=9 litf=0
+8.0831	pi^2 digits (base 29)	19283	28	1	seg0.8	300	m=9 litf=0
+8.0764	primes popcount	17150	1	0	seg0.13	300	m=2 litf=0
+8.0764	e^pi digits (base 29)	18516	1	0	seg0.15	300	m=2 litf=0
+8.0764	phi(n)	11653	28	0	seg0.7	300	m=2 litf=0
+8.0764	p_n - n	16249	28	1	seg0.8	300	m=2 litf=0
+8.0764	cumulative phi(n)	16747	1	1	seg0.9	300	m=2 litf=0
+8.0764	(p+1)/2	18170	28	1	seg0.13	300	m=2 litf=0
+8.0764	ln2 digits (base 29)	3741	28	1	seg0.8	300	m=2 litf=0
+8.0764	pi digits (base 10)	15075	28	0	seg0.9	300	m=2 litf=0
+8.0764	sqrt3 digits (base 10)	14780	1	0	seg0.9	300	m=2 litf=0
+8.0764	cumulative prime sum	19488	28	0	seg0.7	300	m=2 litf=0
+8.0764	emirps	2553	28	0	seg0.15	300	m=2 litf=0
+8.0764	phi(n)	11340	28	1	seg0.7	300	m=2 litf=0
+8.0764	p_n + n	1223	28	1	seg0.9	300	m=2 litf=0
+8.0764	ln2 digits (base 29)	11424	1	1	seg0.13	300	m=2 litf=0
+8.0764	sigma(n)	7690	28	1	seg0.12	300	m=2 litf=0
+8.0764	sigma(n)	7692	28	1	seg0.12	300	m=2 litf=0
+8.0764	primes base-29 digit sum	6284	1	0	seg0.9	300	m=2 litf=0
+8.0764	phi digits (base 10)	9990	28	0	seg0.14	300	m=2 litf=0
+8.0764	p_n + n	419	28	0	seg0.8	300	m=2 litf=0
+8.0764	n * p_n	7597	28	1	seg0.12	300	m=2 litf=0
+8.0764	(p-1)/2	16007	28	0	seg0.15	300	m=2 litf=0
+8.0764	cumulative prime sum	2765	28	0	seg0.9	300	m=2 litf=0
+8.0764	phi digits (base 10)	9989	28	0	seg0.14	300	m=2 litf=0
+8.0764	primes^3	7508	28	1	seg0.8	300	m=2 litf=0
+8.0764	p_n mod 3301	5743	28	0	seg0.15	300	m=2 litf=0
+8.0764	primes reversed digits	10403	28	0	seg0.9	300	m=2 litf=0
+8.0764	cbrt2 digits (base 29)	13371	1	0	seg0.12	300	m=2 litf=0
+8.0764	cbrt2 digits (base 29)	19431	28	0	seg0.15	300	m=2 litf=0
+8.0764	ln3 digits (base 29)	14438	28	0	seg0.14	300	m=2 litf=0
+8.0764	phi digits (base 10)	1257	28	1	seg0.13	300	m=2 litf=0
+8.0764	(p-1)/2	18170	28	1	seg0.13	300	m=2 litf=0
+8.0764	pi digits (base 10)	16098	28	0	seg0.15	300	m=2 litf=0
+8.0764	sqrt29 digits (base 29)	16115	1	0	seg0.14	300	m=2 litf=0
+8.0764	p_n - n	2541	1	1	seg0.7	300	m=2 litf=0
+8.0764	ln3 digits (base 29)	17295	1	1	seg0.11	300	m=2 litf=0
+8.0764	p_n mod 3301	9202	28	1	seg0.12	300	m=2 litf=0
+8.0764	(p+1)/2	16007	28	0	seg0.15	300	m=2 litf=0
+8.0764	ln10 digits (base 29)	13491	1	0	seg0.12	300	m=2 litf=0
+8.0764	sqrt3301 digits (base 29)	4690	1	1	seg0.12	300	m=2 litf=0
+8.0764	sqrt3301 digits (base 29)	4692	1	1	seg0.12	300	m=2 litf=0
+8.0764	ln2 digits (base 10)	11323	28	1	seg0.13	300	m=2 litf=0
+8.0764	sqrt3 digits (base 10)	1905	28	0	seg0.8	300	m=2 litf=0
+8.0754	p_n - n	10049	1	1	seg0.14	300	m=4 litf=0
+8.0754	sqrt29 digits (base 29)	12116	28	1	seg0.14	300	m=4 litf=0
+8.0754	p_n^2 - 1	17074	28	0	seg0.13	300	m=4 litf=0
+8.0754	sqrt2 digits (base 29)	14610	1	1	seg0.12	300	m=4 litf=0
+8.0754	prime gaps	15808	28	0	seg0.13	300	m=4 litf=0
+8.0754	primes from 3301	13106	1	0	seg0.8	300	m=4 litf=0
+8.0754	p_n mod 3301	9836	1	1	seg0.11	300	m=4 litf=0
+8.0754	sqrt3301 digits (base 29)	14391	28	1	seg0.7	300	m=4 litf=0
+8.0754	primes+1	13569	1	0	seg0.8	300	m=4 litf=0
+8.0754	p_n - n	10123	1	1	seg0.9	300	m=4 litf=0
+8.0754	sqrt29 digits (base 29)	16490	28	0	seg0.14	300	m=4 litf=0
+8.0754	pi^2 digits (base 29)	12135	28	0	seg0.8	300	m=4 litf=0
+8.0754	p_n - n	5512	1	1	seg0.8	300	m=4 litf=0
+8.0754	phi(n)	7616	1	1	seg0.8	300	m=4 litf=0
+8.0754	partitions p(n)	5057	28	1	seg0.8	300	m=4 litf=0
+8.0754	primes	13569	1	0	seg0.8	300	m=4 litf=0
+8.0754	primes^2	17074	28	0	seg0.13	300	m=4 litf=0
+8.0754	3301 - p_n	13569	28	0	seg0.8	300	m=4 litf=0
+8.0754	euler gamma digits (base 29)	6230	1	0	seg0.15	300	m=4 litf=0
+8.0754	primes-1 (totient)	13569	1	0	seg0.8	300	m=4 litf=0
+8.0748	(p-1)/2	3560	28	1	seg0.7	300	m=13 litf=0
+8.0748	(p+1)/2	3560	28	1	seg0.7	300	m=13 litf=0
+8.0748	phi digits (base 29)	10190	28	1	seg0.11	300	m=13 litf=0
+8.0602	cumulative phi(n)	3788	28	0	seg0.7	300	m=10 litf=0
+8.0602	cumulative phi(n)	12959	28	0	seg0.7	300	m=10 litf=0
+8.0602	cumulative phi(n)	218	1	0	seg0.8	300	m=10 litf=0
+8.0602	pi digits (base 29)	18768	1	0	seg0.12	300	m=10 litf=0
+8.0602	p_n + n	16377	28	1	seg0.7	300	m=10 litf=0
+8.0602	e digits (base 29)	10768	1	1	seg0.11	300	m=10 litf=0
+8.0563	e^pi digits (base 29)	7120	28	1	seg0.7	300	m=7 litf=0
+8.0563	(p-1)/2	16326	1	1	seg0.13	300	m=7 litf=0
+8.0563	rad(n)	7734	28	0	seg0.15	300	m=7 litf=0
+8.0563	primes reversed digits	9429	1	0	seg0.13	300	m=7 litf=0
+8.0563	carmichael lambda(n)	8051	1	0	seg0.15	300	m=7 litf=0
+8.0563	cumulative prime sum	3253	28	1	seg0.13	300	m=7 litf=0
+8.0563	primes digit sum	17889	1	1	seg0.15	300	m=7 litf=0
+8.0563	carmichael lambda(n)	1867	1	1	seg0.8	300	m=7 litf=0
+8.0563	(p+1)/2	16326	1	1	seg0.13	300	m=7 litf=0
+8.0563	zeta(3) digits (base 29)	6693	1	1	seg0.14	300	m=7 litf=0
+8.0563	zeta(3) digits (base 29)	6695	1	1	seg0.14	300	m=7 litf=0
+8.0471	ln3 digits (base 29)	9154	1	1	seg0.13	300	m=3 litf=0
+8.0471	p_n mod 3301	8245	28	0	seg0.15	300	m=3 litf=0
+8.0471	ln2 digits (base 29)	6783	28	1	seg0.15	300	m=3 litf=0
+8.0471	3301 * p_n	18611	28	0	seg0.8	300	m=3 litf=0
+8.0471	sqrt3 digits (base 29)	12211	1	1	seg0.13	300	m=3 litf=0
+8.0471	p_(n+1) * p_n	12017	28	0	seg0.15	300	m=3 litf=0
+8.0471	n * p_n	12376	1	1	seg0.11	300	m=3 litf=0
+8.0471	zeta(3) digits (base 29)	13042	28	1	seg0.9	300	m=3 litf=0
+8.0471	pi digits (base 29)	5935	1	0	seg0.12	300	m=3 litf=0
+8.0471	p_(n+1) * p_n	1460	28	1	seg0.11	300	m=3 litf=0
+8.0471	partitions p(n)	3396	1	0	seg0.7	300	m=3 litf=0
+8.0471	e digits (base 29)	13953	1	1	seg0.7	300	m=3 litf=0
+8.0471	e digits (base 29)	9533	1	0	seg0.13	300	m=3 litf=0
+8.0471	cumulative prime sum	752	28	1	seg0.11	300	m=3 litf=0
+8.0471	composites	6790	28	0	seg0.8	300	m=3 litf=0
+8.0471	e^pi digits (base 29)	1911	1	1	seg0.11	300	m=3 litf=0
+8.0471	ln2 digits (base 29)	19574	28	1	seg0.8	300	m=3 litf=0
+8.0471	cumulative prime sum	4636	1	0	seg0.14	300	m=3 litf=0
+8.0471	euler gamma digits (base 29)	4057	1	0	seg0.11	300	m=3 litf=0
+8.0471	cumulative phi(n)	11601	1	1	seg0.12	300	m=3 litf=0
+8.0471	ln3 digits (base 29)	9157	1	0	seg0.13	300	m=3 litf=0
+8.0471	cumulative prime sum	2083	1	1	seg0.9	300	m=3 litf=0
+8.0471	cumulative phi(n)	5800	28	0	seg0.14	300	m=3 litf=0
+8.0471	sqrt2 digits (base 29)	1377	1	1	seg0.8	300	m=3 litf=0
+8.0471	p_n mod 3301	8244	28	0	seg0.15	300	m=3 litf=0
+8.0444	ln2 digits (base 29)	963	28	1	seg0.11	300	m=14 litf=0
+8.0444	ln2 digits (base 29)	17077	1	1	seg0.8	300	m=14 litf=0
+8.0444	partitions p(n)	14355	1	1	seg0.9	300	m=14 litf=0
+8.0444	primes reversed digits	17163	28	1	seg0.14	300	m=14 litf=0
+8.0444	sqrt3 digits (base 10)	13870	28	0	seg0.8	300	m=14 litf=0
+8.0397	sqrt5 digits (base 29)	2439	1	1	seg0.14	300	m=2 litf=0
+8.0397	e^pi digits (base 29)	11372	1	1	seg0.11	300	m=2 litf=0
+8.0397	e digits (base 29)	11562	1	1	seg0.7	300	m=2 litf=0
+8.0397	(p+1)/2	6184	28	0	seg0.14	300	m=2 litf=0
+8.0397	n * p_n	3478	1	1	seg0.13	300	m=2 litf=0
+8.0397	primes digit sum	18391	28	0	seg0.12	300	m=2 litf=0
+8.0397	sqrt5 digits (base 29)	11090	28	0	seg0.13	300	m=2 litf=0
+8.0397	ln3 digits (base 29)	13573	1	1	seg0.12	300	m=2 litf=0
+8.0397	ln3 digits (base 29)	13575	1	1	seg0.12	300	m=2 litf=0
+8.0397	ln3301 digits (base 29)	13985	1	0	seg0.8	300	m=2 litf=0
+8.0397	prime index of primes	5684	28	0	seg0.14	300	m=2 litf=0
+8.0397	rad(n)	14848	28	0	seg0.14	300	m=2 litf=0
+8.0397	cumulative prime sum	10657	1	0	seg0.15	300	m=2 litf=0
+8.0397	cumulative prime sum	10669	28	0	seg0.8	300	m=2 litf=0
+8.0397	(p-1)/2	6184	28	0	seg0.14	300	m=2 litf=0
+8.0397	3301 * p_n	10458	1	0	seg0.13	300	m=2 litf=0
+8.0397	sqrt2 digits (base 29)	10974	1	0	seg0.14	300	m=2 litf=0
+8.0397	(p-1)/2	13658	28	0	seg0.9	300	m=2 litf=0
+8.0397	prime index of primes	19520	28	0	seg0.12	300	m=2 litf=0
+8.0397	ln3301 digits (base 29)	15968	1	0	seg0.12	300	m=2 litf=0
+8.0397	sigma(n)	4861	1	0	seg0.15	300	m=2 litf=0
+8.0397	emirps	13693	28	0	seg0.15	300	m=2 litf=0
+8.0397	ln2 digits (base 29)	16821	1	0	seg0.9	300	m=2 litf=0
+8.0397	prime index of primes	13547	28	0	seg0.11	300	m=2 litf=0
+8.0397	phi digits (base 10)	5257	1	0	seg0.15	300	m=2 litf=0
+8.0397	(p+1)/2	13658	28	0	seg0.9	300	m=2 litf=0
+8.0397	primes reversed digits	5095	1	0	seg0.8	300	m=2 litf=0
+8.0397	cumulative prime sum	14644	28	1	seg0.11	300	m=2 litf=0
+8.0397	p_n mod 3301	277	1	0	seg0.9	300	m=2 litf=0
+8.0397	pi digits (base 29)	4301	28	0	seg0.13	300	m=2 litf=0
+8.0397	p_n^2 - 1	17075	28	0	seg0.13	300	m=2 litf=0
+8.0397	ln3 digits (base 29)	1560	1	0	seg0.13	300	m=2 litf=0
+8.0397	sqrt2 digits (base 10)	13956	28	0	seg0.13	300	m=2 litf=0
+8.0397	phi digits (base 29)	17915	1	1	seg0.15	300	m=2 litf=0
+8.0397	pi digits (base 10)	18367	28	0	seg0.12	300	m=2 litf=0
+8.0397	ln3 digits (base 29)	15541	1	1	seg0.14	300	m=2 litf=0
+8.0397	phi digits (base 10)	3272	28	1	seg0.12	300	m=2 litf=0
+8.0397	carmichael lambda(n)	3372	28	0	seg0.7	300	m=2 litf=0
+8.0397	primes^3	10937	1	1	seg0.8	300	m=2 litf=0
+8.0397	sigma(n)	17710	28	0	seg0.9	300	m=2 litf=0
+8.0397	sigma(n)	17711	28	0	seg0.9	300	m=2 litf=0
+8.0397	euler gamma digits (base 29)	1721	28	1	seg0.13	300	m=2 litf=0
+8.0397	zeta(3) digits (base 29)	1398	1	0	seg0.15	300	m=2 litf=0
+8.0397	phi digits (base 29)	1525	28	0	seg0.7	300	m=2 litf=0
+8.0397	rad(n)	7971	28	0	seg0.15	300	m=2 litf=0
+8.0397	carmichael lambda(n)	2135	28	0	seg0.8	300	m=2 litf=0
+8.0397	primes popcount	19266	1	1	seg0.14	300	m=2 litf=0
+8.0397	primes^2	17075	28	0	seg0.13	300	m=2 litf=0
+8.0366	carmichael lambda(n)	4900	28	1	seg0.7	300	m=11 litf=0
+8.0366	p_(n+1) * p_n	4158	28	0	seg0.15	300	m=11 litf=0
+8.0366	rad(n)	16096	28	0	seg0.11	300	m=11 litf=0
+8.0366	cumulative prime sum	17313	28	1	seg0.15	300	m=11 litf=0
+8.0294	e digits (base 29)	9617	1	1	seg0.15	300	m=5 litf=0
+8.0294	sqrt3301 digits (base 29)	15860	28	1	seg0.12	300	m=5 litf=0
+8.0294	sqrt3301 digits (base 29)	15862	28	1	seg0.12	300	m=5 litf=0
+8.0294	prime gaps	945	1	0	seg0.8	300	m=5 litf=0
+8.0294	primes reversed digits	3744	28	0	seg0.13	300	m=5 litf=0
+8.0294	primes reversed digits	6554	1	1	seg0.8	300	m=5 litf=0
+8.0294	carmichael lambda(n)	5320	1	1	seg0.12	300	m=5 litf=0
+8.0294	p_n + n	16375	28	1	seg0.7	300	m=5 litf=0
+8.0294	mobius mu(n)	3309	28	0	seg0.11	300	m=5 litf=0
+8.0294	e digits (base 10)	18320	1	1	seg0.15	300	m=5 litf=0
+8.0294	phi digits (base 29)	9727	1	1	seg0.8	300	m=5 litf=0
+8.0260	n * p_n	15147	28	0	seg0.9	300	m=6 litf=0
+8.0260	partitions p(n)	866	28	0	seg0.13	300	m=6 litf=0
+8.0260	emirps	1766	1	0	seg0.14	300	m=6 litf=0
+8.0260	primes^3	11008	28	1	seg0.12	300	m=6 litf=0
+8.0260	primes^2	10999	1	1	seg0.13	300	m=6 litf=0
+8.0260	cbrt2 digits (base 29)	8512	28	1	seg0.15	300	m=6 litf=0
+8.0260	ln3301 digits (base 29)	17229	1	0	seg0.14	300	m=6 litf=0
+8.0260	p_n - n	18162	28	1	seg0.12	300	m=6 litf=0
+8.0260	p_n^2 - 1	10999	1	1	seg0.13	300	m=6 litf=0
+8.0260	(p-1)/2	10869	1	1	seg0.9	300	m=6 litf=0
+8.0260	sqrt29 digits (base 29)	7353	28	1	seg0.15	300	m=6 litf=0
+8.0260	sqrt29 digits (base 29)	7355	28	1	seg0.15	300	m=6 litf=0
+8.0260	(p+1)/2	10869	1	1	seg0.9	300	m=6 litf=0
+8.0260	phi(n)	14596	28	0	seg0.7	300	m=6 litf=0
+8.0260	ln10 digits (base 29)	6310	28	0	seg0.7	300	m=6 litf=0
+8.0234	sqrt29 digits (base 29)	13029	28	0	seg0.12	300	m=4 litf=0
+8.0234	pi^2 digits (base 29)	4756	28	1	seg0.8	300	m=4 litf=0
+8.0234	pi digits (base 29)	12754	28	1	seg0.11	300	m=4 litf=0
+8.0234	sqrt2 digits (base 29)	9382	1	0	seg0.11	300	m=4 litf=0
+8.0234	p_n - n	10051	1	1	seg0.14	300	m=4 litf=0
+8.0234	primes base-29 digit sum	10204	28	0	seg0.11	300	m=4 litf=0
+8.0234	phi digits (base 29)	4064	28	0	seg0.9	300	m=4 litf=0
+8.0234	p_n + n	19398	1	1	seg0.8	300	m=4 litf=0
+8.0234	emirps	8135	28	0	seg0.12	300	m=4 litf=0
+8.0234	euler gamma digits (base 29)	10989	1	0	seg0.12	300	m=4 litf=0
+8.0234	sqrt29 digits (base 29)	7152	28	1	seg0.9	300	m=4 litf=0
+8.0234	primes base-29 digit sum	1983	28	0	seg0.9	300	m=4 litf=0
+8.0234	phi digits (base 29)	1524	28	0	seg0.7	300	m=4 litf=0
+8.0234	ln3301 digits (base 29)	16634	1	0	seg0.15	300	m=4 litf=0
+8.0234	ln3 digits (base 29)	18200	1	0	seg0.7	300	m=4 litf=0
+8.0113	p_n^2 - 1	17715	28	1	seg0.8	300	m=8 litf=0
+8.0113	partitions p(n)	18907	28	1	seg0.13	300	m=8 litf=0
+8.0113	phi digits (base 10)	332	1	0	seg0.15	300	m=8 litf=0
+8.0113	primes^3	9343	1	0	seg0.7	300	m=8 litf=0
+8.0113	primes base-29 digit sum	10203	28	0	seg0.11	300	m=8 litf=0
+8.0113	primes base-29 digit sum	10204	28	0	seg0.11	300	m=8 litf=0
+8.0113	zeta(3) digits (base 29)	17728	28	0	seg0.14	300	m=8 litf=0
+8.0113	p_(n+1) * p_n	17985	1	1	seg0.12	300	m=8 litf=0
+8.0113	primes^2	17715	28	1	seg0.8	300	m=8 litf=0
+8.0113	zeta(3) digits (base 29)	6489	1	0	seg0.11	300	m=8 litf=0
+8.0044	partitions p(n)	15984	28	1	seg0.12	300	m=9 litf=0
+8.0044	composites	5956	28	0	seg0.8	300	m=9 litf=0
+8.0044	carmichael lambda(n)	12359	28	0	seg0.15	300	m=9 litf=0
+8.0044	sqrt2 digits (base 29)	11784	28	1	seg0.14	300	m=9 litf=0
+8.0044	primes digit sum	18581	1	0	seg0.11	300	m=9 litf=0
+8.0044	e digits (base 29)	17001	1	0	seg0.14	300	m=9 litf=0
+8.0044	n * p_n	12258	28	0	seg0.12	300	m=9 litf=0
+8.0044	p_(n+1) * p_n	14993	1	0	seg0.7	300	m=9 litf=0
+8.0044	catalan G digits (base 29)	16626	1	1	seg0.11	300	m=9 litf=0
+8.0030	e digits (base 29)	4367	1	1	seg0.9	300	m=2 litf=0
+8.0030	phi digits (base 29)	1582	1	0	seg0.13	300	m=2 litf=0
+8.0030	p_(n+1) * p_n	15634	28	0	seg0.9	300	m=2 litf=0
+8.0030	primes^2	6550	1	0	seg0.15	300	m=2 litf=0
+8.0030	phi digits (base 29)	18094	1	0	seg0.13	300	m=2 litf=0
+8.0030	carmichael lambda(n)	13426	28	1	seg0.9	300	m=2 litf=0
+8.0030	pi^2 digits (base 29)	6916	28	0	seg0.14	300	m=2 litf=0
+8.0030	pi^2 digits (base 29)	7674	1	1	seg0.7	300	m=2 litf=0
+8.0030	sqrt3301 digits (base 29)	12243	28	0	seg0.8	300	m=2 litf=0
+8.0030	primes reversed digits	13487	1	0	seg0.13	300	m=2 litf=0
+8.0030	3301 * p_n	3543	1	1	seg0.14	300	m=2 litf=0
+8.0030	ln2 digits (base 29)	5721	1	0	seg0.12	300	m=2 litf=0
+8.0030	phi(n)	1814	28	0	seg0.15	300	m=2 litf=0
+8.0030	phi(n)	1899	28	1	seg0.9	300	m=2 litf=0
+8.0030	catalan G digits (base 29)	6960	28	0	seg0.8	300	m=2 litf=0
+8.0030	p_n - n	1437	28	0	seg0.8	300	m=2 litf=0
+8.0030	primes reversed digits	12473	28	1	seg0.11	300	m=2 litf=0
+8.0030	zeta(3) digits (base 29)	14372	1	0	seg0.12	300	m=2 litf=0
+8.0030	ln10 digits (base 29)	9792	1	0	seg0.14	300	m=2 litf=0
+8.0030	zeta(3) digits (base 29)	3247	28	0	seg0.8	300	m=2 litf=0
+8.0030	ln2 digits (base 29)	7135	28	1	seg0.9	300	m=2 litf=0
+8.0030	sqrt29 digits (base 29)	14908	1	1	seg0.9	300	m=2 litf=0
+8.0030	euler gamma digits (base 29)	18314	1	0	seg0.12	300	m=2 litf=0
+8.0030	(p+1)/2	6598	28	0	seg0.11	300	m=2 litf=0
+8.0030	prime index of primes	17424	28	0	seg0.8	300	m=2 litf=0
+8.0030	p_n - n	8825	1	0	seg0.9	300	m=2 litf=0
+8.0030	primes digit sum	7203	28	1	seg0.11	300	m=2 litf=0
+8.0030	(p-1)/2	6598	28	0	seg0.11	300	m=2 litf=0
+8.0030	sqrt29 digits (base 29)	9667	28	0	seg0.12	300	m=2 litf=0
+8.0030	sqrt2 digits (base 29)	8112	1	0	seg0.7	300	m=2 litf=0
+8.0030	composites	3139	28	0	seg0.13	300	m=2 litf=0
+8.0030	e^pi digits (base 29)	265	1	1	seg0.7	300	m=2 litf=0
+8.0030	cumulative phi(n)	18226	28	0	seg0.12	300	m=2 litf=0
+8.0030	pi^2 digits (base 29)	15549	1	0	seg0.14	300	m=2 litf=0
+8.0030	Omega(n)	12720	1	0	seg0.11	300	m=2 litf=0
+8.0030	sqrt3 digits (base 29)	13099	1	0	seg0.15	300	m=2 litf=0
+8.0030	e digits (base 10)	18319	28	1	seg0.7	300	m=2 litf=0
+8.0030	composites	16538	1	0	seg0.14	300	m=2 litf=0
+8.0030	sqrt29 digits (base 29)	14544	28	0	seg0.7	300	m=2 litf=0
+8.0030	cumulative prime sum	384	1	1	seg0.11	300	m=2 litf=0
+8.0030	carmichael lambda(n)	2930	1	0	seg0.13	300	m=2 litf=0
+8.0030	phi(n)	664	1	0	seg0.8	300	m=2 litf=0
+8.0030	p_n^2 - 1	6550	1	0	seg0.15	300	m=2 litf=0
+8.0030	e digits (base 29)	14855	28	0	seg0.15	300	m=2 litf=0
+8.0030	carmichael lambda(n)	6209	1	1	seg0.12	300	m=2 litf=0
+8.0030	carmichael lambda(n)	11056	28	1	seg0.8	300	m=2 litf=0
+8.0030	primes^3	18588	1	0	seg0.15	300	m=2 litf=0
+8.0030	phi digits (base 29)	16649	28	0	seg0.9	300	m=2 litf=0
+8.0030	primes^3	18587	1	0	seg0.15	300	m=2 litf=0
+8.0030	primes reversed digits	4207	1	1	seg0.11	300	m=2 litf=0
+8.0030	sqrt29 digits (base 29)	4200	1	0	seg0.7	300	m=2 litf=0
+8.0030	e digits (base 29)	3768	1	0	seg0.13	300	m=2 litf=0
+8.0030	euler gamma digits (base 29)	17190	1	1	seg0.15	300	m=2 litf=0
+8.0030	zeta(3) digits (base 29)	13532	28	0	seg0.14	300	m=2 litf=0
+8.0030	rad(n)	18300	28	1	seg0.14	300	m=2 litf=0
+8.0030	e digits (base 10)	15270	1	0	seg0.14	300	m=2 litf=0
+8.0030	sqrt2 digits (base 29)	15494	28	1	seg0.15	300	m=2 litf=0
+8.0030	ln2 digits (base 29)	11422	1	1	seg0.13	300	m=2 litf=0
+8.0030	primes reversed digits	16589	28	0	seg0.9	300	m=2 litf=0
+8.0030	primes reversed digits	16590	28	0	seg0.9	300	m=2 litf=0
+8.0030	sqrt3 digits (base 29)	3917	28	0	seg0.7	300	m=2 litf=0
+8.0030	e digits (base 29)	7008	28	0	seg0.8	300	m=2 litf=0
+8.0030	composites	8690	28	1	seg0.14	300	m=2 litf=0
+8.0030	ln2 digits (base 10)	11325	28	1	seg0.13	300	m=2 litf=0
+8.0030	phi digits (base 29)	1718	1	1	seg0.15	300	m=2 litf=0
+8.0022	ln10 digits (base 29)	13780	28	1	seg0.11	300	m=3 litf=0
+8.0022	ln10 digits (base 29)	13868	28	1	seg0.8	300	m=3 litf=0
+8.0022	p_(n+1) * p_n	6581	1	0	seg0.7	300	m=3 litf=0
+8.0022	p_n^2 - 1	1121	1	1	seg0.11	300	m=3 litf=0
+8.0022	primes from 3301	1060	28	1	seg0.15	300	m=3 litf=0
+8.0022	sqrt29 digits (base 29)	1330	28	1	seg0.11	300	m=3 litf=0
+8.0022	primes+1	1523	28	1	seg0.15	300	m=3 litf=0
+8.0022	d(n)	16751	1	1	seg0.13	300	m=3 litf=0
+8.0022	p_(n+1) * p_n	8885	28	1	seg0.13	300	m=3 litf=0
+8.0022	ln2 digits (base 10)	16598	1	0	seg0.11	300	m=3 litf=0
+8.0022	primes-1 (totient)	1523	28	1	seg0.15	300	m=3 litf=0
+8.0022	primes^3	14970	28	1	seg0.7	300	m=3 litf=0
+8.0022	sqrt3 digits (base 10)	3435	1	0	seg0.15	300	m=3 litf=0
+8.0022	3301 * p_n	16839	1	1	seg0.14	300	m=3 litf=0
+8.0022	sqrt3 digits (base 29)	7890	28	0	seg0.9	300	m=3 litf=0
+8.0022	emirps	19081	1	0	seg0.9	300	m=3 litf=0
+8.0022	(p-1)/2	4551	28	0	seg0.7	300	m=3 litf=0
+8.0022	primes^2	1121	1	1	seg0.11	300	m=3 litf=0
+8.0022	primes^2	1449	28	1	seg0.11	300	m=3 litf=0
+8.0022	ln2 digits (base 10)	16597	1	0	seg0.11	300	m=3 litf=0
+8.0022	pi digits (base 29)	3820	1	1	seg0.14	300	m=3 litf=0
+8.0022	primes	1523	28	1	seg0.15	300	m=3 litf=0
+8.0022	3301 - p_n	1523	1	1	seg0.15	300	m=3 litf=0
+8.0022	ln10 digits (base 29)	13782	28	1	seg0.11	300	m=3 litf=0
+8.0022	(p+1)/2	4551	28	0	seg0.7	300	m=3 litf=0
+8.0022	p_n^2 - 1	1449	28	1	seg0.11	300	m=3 litf=0
+8.0022	phi digits (base 10)	6016	1	0	seg0.15	300	m=3 litf=0
+8.0022	cumulative prime sum	754	28	1	seg0.11	300	m=3 litf=0
+8.0022	carmichael lambda(n)	1585	1	0	seg0.12	300	m=3 litf=0
+8.0022	sqrt5 digits (base 29)	16196	28	0	seg0.9	300	m=3 litf=0
+8.0022	sqrt29 digits (base 29)	2858	1	0	seg0.8	300	m=3 litf=0
+8.0022	sqrt3301 digits (base 29)	9171	28	0	seg0.11	300	m=3 litf=0
+8.0022	sqrt3301 digits (base 29)	8235	1	0	seg0.11	300	m=3 litf=0
+8.0022	pi digits (base 29)	16826	28	1	seg0.9	300	m=3 litf=0
+8.0022	primes^3	275	28	1	seg0.8	300	m=3 litf=0
+8.0022	emirps	4067	28	0	seg0.11	300	m=3 litf=0
+8.0022	p_(n+1) * p_n	9740	1	1	seg0.13	300	m=3 litf=0
+8.0022	emirps	4068	28	0	seg0.11	300	m=3 litf=0
+8.0022	e digits (base 10)	7582	1	0	seg0.8	300	m=3 litf=0
+8.0022	partitions p(n)	1667	28	0	seg0.15	300	m=3 litf=0
+7.9871	(p-1)/2	14880	1	1	seg0.8	300	m=7 litf=0
+7.9871	(p+1)/2	14880	1	1	seg0.8	300	m=7 litf=0
+7.9871	n * p_n	6755	28	1	seg0.9	300	m=7 litf=0
+7.9871	cumulative phi(n)	8302	1	1	seg0.7	300	m=7 litf=0
+7.9871	pi digits (base 29)	18226	1	0	seg0.11	300	m=7 litf=0
+7.9871	cbrt2 digits (base 29)	1056	1	0	seg0.7	300	m=7 litf=0
+7.9871	pi digits (base 29)	7262	28	1	seg0.12	300	m=7 litf=0
+7.9871	zeta(3) digits (base 29)	2859	28	0	seg0.15	300	m=7 litf=0
+7.9871	3301 * p_n	2110	28	0	seg0.8	300	m=7 litf=0
+7.9796	prime index of primes	9578	28	1	seg0.13	300	m=13 litf=0
+7.9796	primes reversed digits	12086	28	0	seg0.13	300	m=13 litf=0
+7.9796	primes digit sum	12437	28	0	seg0.13	300	m=13 litf=0
+7.9796	primes digit sum	12438	28	0	seg0.13	300	m=13 litf=0
+7.9771	sqrt3301 digits (base 29)	1417	28	0	seg0.14	300	m=10 litf=0
+7.9771	pi^2 digits (base 29)	18227	28	0	seg0.11	300	m=10 litf=0
+7.9771	ln2 digits (base 29)	12285	1	1	seg0.9	300	m=10 litf=0
+7.9771	rad(n)	11667	28	0	seg0.15	300	m=10 litf=0
+7.9714	p_n + n	7686	28	0	seg0.13	300	m=4 litf=0
+7.9714	primes^2	3208	28	1	seg0.13	300	m=4 litf=0
+7.9714	primes^3	16793	28	0	seg0.13	300	m=4 litf=0
+7.9714	carmichael lambda(n)	18021	28	1	seg0.14	300	m=4 litf=0
+7.9714	sqrt2 digits (base 10)	9394	28	0	seg0.11	300	m=4 litf=0
+7.9714	p_n^2 - 1	3208	28	1	seg0.13	300	m=4 litf=0
+7.9714	pi^2 digits (base 29)	12140	28	0	seg0.8	300	m=4 litf=0
+7.9714	ln3301 digits (base 29)	16635	1	0	seg0.15	300	m=4 litf=0
+7.9714	p_(n+1) * p_n	10762	28	0	seg0.14	300	m=4 litf=0
+7.9714	e digits (base 10)	8612	28	1	seg0.12	300	m=4 litf=0
+7.9714	p_n - n	14149	28	0	seg0.13	300	m=4 litf=0
+7.9714	p_n + n	15406	1	0	seg0.9	300	m=4 litf=0
+7.9714	cumulative prime sum	14142	1	1	seg0.8	300	m=4 litf=0
+7.9714	catalan G digits (base 29)	16623	28	1	seg0.9	300	m=4 litf=0
+7.9714	phi(n)	14685	1	0	seg0.14	300	m=4 litf=0
+7.9714	zeta(3) digits (base 29)	18528	1	0	seg0.11	300	m=4 litf=0
+7.9714	catalan G digits (base 29)	16621	28	1	seg0.9	300	m=4 litf=0
+7.9712	cumulative prime sum	18053	28	1	seg0.13	300	m=5 litf=0
+7.9712	primes popcount	843	28	0	seg0.8	300	m=5 litf=0
+7.9712	3301 * p_n	15157	28	1	seg0.14	300	m=5 litf=0
+7.9712	p_n - n	10312	1	1	seg0.8	300	m=5 litf=0
+7.9712	n * p_n	9006	28	1	seg0.7	300	m=5 litf=0
+7.9712	euler gamma digits (base 29)	5256	1	0	seg0.14	300	m=5 litf=0
+7.9712	e^pi digits (base 29)	591	28	0	seg0.12	300	m=5 litf=0
+7.9712	catalan G digits (base 29)	7834	28	0	seg0.8	300	m=5 litf=0
+7.9712	euler gamma digits (base 29)	2204	1	1	seg0.7	300	m=5 litf=0
+7.9664	cumulative phi(n)	17135	28	1	seg0.9	300	m=2 litf=0
+7.9664	primes-1 (totient)	8740	1	1	seg0.9	300	m=2 litf=0
+7.9664	prime index of primes	14532	1	0	seg0.7	300	m=2 litf=0
+7.9664	rad(n)	12345	1	0	seg0.14	300	m=2 litf=0
+7.9664	rad(n)	12346	1	0	seg0.14	300	m=2 litf=0
+7.9664	pi digits (base 29)	3982	28	0	seg0.15	300	m=2 litf=0
+7.9664	ln3301 digits (base 29)	5246	1	0	seg0.9	300	m=2 litf=0
+7.9664	sqrt2 digits (base 10)	3058	28	0	seg0.11	300	m=2 litf=0
+7.9664	primes reversed digits	16353	28	0	seg0.14	300	m=2 litf=0
+7.9664	p_n + n	10982	1	0	seg0.9	300	m=2 litf=0
+7.9664	carmichael lambda(n)	11863	1	0	seg0.12	300	m=2 litf=0
+7.9664	3301 - p_n	8740	28	1	seg0.9	300	m=2 litf=0
+7.9664	carmichael lambda(n)	8608	1	0	seg0.7	300	m=2 litf=0
+7.9664	primes	8740	1	1	seg0.9	300	m=2 litf=0
+7.9664	pi digits (base 29)	14604	1	0	seg0.15	300	m=2 litf=0
+7.9664	p_(n+1) * p_n	7221	1	1	seg0.8	300	m=2 litf=0
+7.9664	sqrt2 digits (base 29)	17323	1	1	seg0.8	300	m=2 litf=0
+7.9664	primes from 3301	8277	1	1	seg0.9	300	m=2 litf=0
+7.9664	sqrt2 digits (base 10)	10888	28	0	seg0.12	300	m=2 litf=0
+7.9664	n * p_n	6442	1	0	seg0.15	300	m=2 litf=0
+7.9664	emirps	4148	28	0	seg0.15	300	m=2 litf=0
+7.9664	sqrt3 digits (base 29)	323	28	0	seg0.9	300	m=2 litf=0
+7.9664	cumulative phi(n)	1467	28	1	seg0.11	300	m=2 litf=0
+7.9664	emirps	931	28	0	seg0.9	300	m=2 litf=0
+7.9664	catalan G digits (base 29)	5356	28	1	seg0.11	300	m=2 litf=0
+7.9664	emirps	4601	1	0	seg0.9	300	m=2 litf=0
+7.9664	prime index of primes	290	28	0	seg0.9	300	m=2 litf=0
+7.9664	cumulative prime sum	5875	28	1	seg0.15	300	m=2 litf=0
+7.9664	p_(n+1) * p_n	10503	28	0	seg0.11	300	m=2 litf=0
+7.9664	phi digits (base 29)	13643	28	0	seg0.15	300	m=2 litf=0
+7.9664	phi digits (base 29)	13644	28	0	seg0.15	300	m=2 litf=0
+7.9664	sqrt3301 digits (base 29)	5678	1	1	seg0.8	300	m=2 litf=0
+7.9664	cbrt2 digits (base 29)	7480	28	0	seg0.7	300	m=2 litf=0
+7.9664	pi digits (base 29)	14071	28	0	seg0.14	300	m=2 litf=0
+7.9664	euler gamma digits (base 29)	5893	1	1	seg0.11	300	m=2 litf=0
+7.9664	primes digit sum	9500	28	0	seg0.9	300	m=2 litf=0
+7.9664	primes reversed digits	14994	28	1	seg0.11	300	m=2 litf=0
+7.9664	primes base-29 digit sum	14075	1	1	seg0.12	300	m=2 litf=0
+7.9664	e^pi digits (base 29)	10072	1	0	seg0.7	300	m=2 litf=0
+7.9664	catalan G digits (base 29)	6921	1	0	seg0.13	300	m=2 litf=0
+7.9664	cumulative prime sum	7944	1	1	seg0.11	300	m=2 litf=0
+7.9664	d(n)	762	1	0	seg0.13	300	m=2 litf=0
+7.9664	primes base-29 digit sum	5785	28	1	seg0.14	300	m=2 litf=0
+7.9664	primes+1	8740	1	1	seg0.9	300	m=2 litf=0
+7.9664	pi^2 digits (base 29)	2950	28	0	seg0.14	300	m=2 litf=0
+7.9664	ln3301 digits (base 29)	9698	1	1	seg0.8	300	m=2 litf=0
+7.9664	sqrt3 digits (base 29)	14932	28	0	seg0.7	300	m=2 litf=0
+7.9664	sqrt3 digits (base 29)	14933	28	0	seg0.7	300	m=2 litf=0
+7.9664	prime index of primes	15674	28	0	seg0.14	300	m=2 litf=0
+7.9664	ln2 digits (base 29)	2439	28	0	seg0.13	300	m=2 litf=0
+7.9664	ln2 digits (base 29)	2440	28	0	seg0.13	300	m=2 litf=0
+7.9664	ln10 digits (base 29)	9394	1	1	seg0.13	300	m=2 litf=0
+7.9664	p_n mod 3301	12927	1	1	seg0.7	300	m=2 litf=0
+7.9664	phi(n)	12040	1	0	seg0.7	300	m=2 litf=0
+7.9664	phi(n)	12041	1	0	seg0.7	300	m=2 litf=0
+7.9664	phi(n)	8197	28	1	seg0.9	300	m=2 litf=0
+7.9664	sqrt29 digits (base 29)	9526	28	1	seg0.9	300	m=2 litf=0
+7.9664	p_n^2 - 1	15467	1	1	seg0.11	300	m=2 litf=0
+7.9664	cumulative prime sum	10668	28	0	seg0.8	300	m=2 litf=0
+7.9664	pi digits (base 29)	1963	28	0	seg0.11	300	m=2 litf=0
+7.9664	ln2 digits (base 29)	17266	28	1	seg0.7	300	m=2 litf=0
+7.9664	cbrt2 digits (base 29)	17915	1	0	seg0.13	300	m=2 litf=0
+7.9664	cumulative prime sum	7308	1	0	seg0.11	300	m=2 litf=0
+7.9664	primes^2	15467	1	1	seg0.11	300	m=2 litf=0
+7.9664	e digits (base 10)	6788	1	0	seg0.13	300	m=2 litf=0
+7.9664	ln3301 digits (base 29)	17229	1	0	seg0.14	300	m=2 litf=0
+7.9664	carmichael lambda(n)	5078	1	1	seg0.7	300	m=2 litf=0
+7.9664	sqrt2 digits (base 29)	11410	28	0	seg0.13	300	m=2 litf=0
+7.9664	primes^3	7632	28	0	seg0.11	300	m=2 litf=0
+7.9664	zeta(3) digits (base 29)	18528	1	0	seg0.11	300	m=2 litf=0
+7.9664	catalan G digits (base 29)	2487	1	0	seg0.13	300	m=2 litf=0
+7.9664	primes^3	10698	28	0	seg0.13	300	m=2 litf=0
+7.9664	phi(n)	14616	1	0	seg0.12	300	m=2 litf=0
+7.9664	pi^2 digits (base 29)	4100	1	0	seg0.9	300	m=2 litf=0
+7.9621	ln10 digits (base 29)	6311	28	0	seg0.7	300	m=6 litf=0
+7.9621	sqrt29 digits (base 29)	11871	1	1	seg0.12	300	m=6 litf=0
+7.9621	ln3 digits (base 29)	15531	28	0	seg0.13	300	m=6 litf=0
+7.9621	rad(n)	4725	1	1	seg0.8	300	m=6 litf=0
+7.9621	rad(n)	10578	28	0	seg0.11	300	m=6 litf=0
+7.9621	rad(n)	10579	28	0	seg0.11	300	m=6 litf=0
+7.9621	rad(n)	12051	28	0	seg0.15	300	m=6 litf=0
+7.9621	emirps	7411	28	1	seg0.12	300	m=6 litf=0
+7.9621	pi digits (base 29)	10957	1	1	seg0.7	300	m=6 litf=0
+7.9621	pi^2 digits (base 29)	3209	1	1	seg0.9	300	m=6 litf=0
+7.9621	pi digits (base 29)	12230	28	1	seg0.15	300	m=6 litf=0
+7.9621	cumulative prime sum	4636	1	0	seg0.14	300	m=6 litf=0
+7.9572	sqrt5 digits (base 29)	14918	28	1	seg0.9	300	m=3 litf=0
+7.9572	prime index of primes	18139	28	1	seg0.7	300	m=3 litf=0
+7.9572	cumulative phi(n)	17264	1	1	seg0.14	300	m=3 litf=0
+7.9572	pi^2 digits (base 29)	7880	1	1	seg0.7	300	m=3 litf=0
+7.9572	p_n mod 3301	19355	28	0	seg0.11	300	m=3 litf=0
+7.9572	partitions p(n)	1681	28	0	seg0.12	300	m=3 litf=0
+7.9572	d(n)	8717	28	0	seg0.12	300	m=3 litf=0
+7.9572	cumulative phi(n)	12885	28	1	seg0.12	300	m=3 litf=0
+7.9572	emirps	14764	28	1	seg0.7	300	m=3 litf=0
+7.9572	zeta(3) digits (base 29)	6915	28	1	seg0.12	300	m=3 litf=0
+7.9572	e digits (base 29)	3157	1	1	seg0.9	300	m=3 litf=0
+7.9572	partitions p(n)	10141	28	1	seg0.14	300	m=3 litf=0
+7.9572	primes reversed digits	14936	28	0	seg0.9	300	m=3 litf=0
+7.9572	partitions p(n)	18323	28	1	seg0.7	300	m=3 litf=0
+7.9572	p_n - n	9755	1	1	seg0.12	300	m=3 litf=0
+7.9572	primes^3	11844	1	0	seg0.7	300	m=3 litf=0
+7.9572	rad(n)	8393	28	1	seg0.15	300	m=3 litf=0
+7.9572	cumulative phi(n)	14255	1	0	seg0.15	300	m=3 litf=0
+7.9572	catalan G digits (base 29)	12673	28	1	seg0.14	300	m=3 litf=0
+7.9572	primes base-29 digit sum	15619	28	0	seg0.7	300	m=3 litf=0
+7.9572	cumulative phi(n)	1947	28	0	seg0.12	300	m=3 litf=0
+7.9493	pi^2 digits (base 29)	19018	1	0	seg0.14	300	m=11 litf=0
+7.9493	(p-1)/2	12782	28	0	seg0.13	300	m=11 litf=0
+7.9493	(p+1)/2	12782	28	0	seg0.13	300	m=11 litf=0
+7.9493	e digits (base 10)	17195	1	1	seg0.12	300	m=11 litf=0
+7.9493	ln3 digits (base 29)	4311	1	0	seg0.13	300	m=11 litf=0
+7.9454	pi digits (base 10)	5144	28	0	seg0.9	300	m=14 litf=0
+7.9454	p_n + n	13676	1	1	seg0.7	300	m=14 litf=0
+7.9454	cbrt2 digits (base 29)	1843	1	0	seg0.8	300	m=14 litf=0
+7.9454	sqrt2 digits (base 29)	14413	1	1	seg0.14	300	m=14 litf=0
+7.9454	sqrt2 digits (base 29)	14415	1	1	seg0.14	300	m=14 litf=0
+7.9454	3301 * p_n	18221	28	1	seg0.8	300	m=14 litf=0
+7.9454	n * p_n	13277	28	1	seg0.12	300	m=14 litf=0
+7.9454	n * p_n	13279	28	1	seg0.12	300	m=14 litf=0
+7.9373	phi(n)	7325	28	1	seg0.11	300	m=8 litf=0
+7.9373	prime index of primes	1354	28	1	seg0.11	300	m=8 litf=0
+7.9373	emirps	15080	1	1	seg0.12	300	m=8 litf=0
+7.9373	composites	17679	1	0	seg0.9	300	m=8 litf=0
+7.9373	sqrt3301 digits (base 29)	15960	1	0	seg0.12	300	m=8 litf=0
+7.9373	3301 * p_n	15632	1	1	seg0.15	300	m=8 litf=0
+7.9373	partitions p(n)	8402	28	1	seg0.14	300	m=8 litf=0
+7.9341	sqrt3 digits (base 10)	16864	28	0	seg0.8	300	m=12 litf=0
+7.9341	sqrt3301 digits (base 29)	19192	28	0	seg0.15	300	m=12 litf=0
+7.9341	sqrt5 digits (base 29)	18547	28	1	seg0.11	300	m=12 litf=0
+7.9341	primes digit sum	4659	28	0	seg0.8	300	m=12 litf=0
+7.9341	sqrt3 digits (base 29)	3785	1	1	seg0.11	300	m=12 litf=0
+7.9341	phi digits (base 29)	9653	28	0	seg0.11	300	m=12 litf=0
+7.9297	sqrt5 digits (base 29)	16490	28	0	seg0.8	300	m=2 litf=0
+7.9297	primes+1	13064	1	1	seg0.8	300	m=2 litf=0
+7.9297	prime gaps	13461	1	1	seg0.13	300	m=2 litf=0
+7.9297	primes^3	12613	28	0	seg0.9	300	m=2 litf=0
+7.9297	phi digits (base 10)	4987	1	1	seg0.12	300	m=2 litf=0
+7.9297	p_n + n	14489	28	0	seg0.13	300	m=2 litf=0
+7.9297	carmichael lambda(n)	13424	28	1	seg0.9	300	m=2 litf=0
+7.9297	euler gamma digits (base 29)	1746	28	1	seg0.7	300	m=2 litf=0
+7.9297	euler gamma digits (base 29)	15757	1	1	seg0.13	300	m=2 litf=0
+7.9297	euler gamma digits (base 29)	15759	1	1	seg0.13	300	m=2 litf=0
+7.9297	ln2 digits (base 29)	10597	28	0	seg0.8	300	m=2 litf=0
+7.9297	ln3 digits (base 29)	8263	1	0	seg0.13	300	m=2 litf=0
+7.9297	primes from 3301	13772	28	0	seg0.15	300	m=2 litf=0
+7.9297	ln3301 digits (base 29)	6946	1	0	seg0.11	300	m=2 litf=0
+7.9297	rad(n)	10322	28	1	seg0.15	300	m=2 litf=0
+7.9297	3301 * p_n	11886	28	1	seg0.9	300	m=2 litf=0
+7.9297	carmichael lambda(n)	14333	1	1	seg0.15	300	m=2 litf=0
+7.9297	sqrt3 digits (base 10)	5465	28	0	seg0.9	300	m=2 litf=0
+7.9297	phi digits (base 10)	18033	1	1	seg0.13	300	m=2 litf=0
+7.9297	primes^2	1857	1	0	seg0.14	300	m=2 litf=0
+7.9297	primes	13064	1	1	seg0.8	300	m=2 litf=0
+7.9297	phi(n)	11593	28	0	seg0.12	300	m=2 litf=0
+7.9297	(p+1)/2	12362	28	1	seg0.13	300	m=2 litf=0
+7.9297	p_n - n	11580	28	0	seg0.13	300	m=2 litf=0
+7.9297	mobius mu(n)	11197	1	0	seg0.11	300	m=2 litf=0
+7.9297	rad(n)	8594	1	0	seg0.15	300	m=2 litf=0
+7.9297	(p-1)/2	13657	28	0	seg0.9	300	m=2 litf=0
+7.9297	primes^3	398	1	1	seg0.12	300	m=2 litf=0
+7.9297	cbrt2 digits (base 29)	167	28	0	seg0.13	300	m=2 litf=0
+7.9297	sqrt29 digits (base 29)	11445	1	0	seg0.7	300	m=2 litf=0
+7.9297	rad(n)	17090	1	0	seg0.8	300	m=2 litf=0
+7.9297	zeta(3) digits (base 29)	17970	1	1	seg0.9	300	m=2 litf=0
+7.9297	zeta(3) digits (base 29)	17972	1	1	seg0.9	300	m=2 litf=0
+7.9297	primes from 3301	12601	1	1	seg0.8	300	m=2 litf=0
+7.9297	(p+1)/2	13657	28	0	seg0.9	300	m=2 litf=0
+7.9297	pi digits (base 10)	2501	28	0	seg0.8	300	m=2 litf=0
+7.9297	phi digits (base 29)	4095	28	0	seg0.11	300	m=2 litf=0
+7.9297	prime index of primes	7143	28	1	seg0.9	300	m=2 litf=0
+7.9297	cumulative prime sum	16846	1	0	seg0.14	300	m=2 litf=0
+7.9297	e digits (base 10)	10532	28	0	seg0.12	300	m=2 litf=0
+7.9297	p_n + n	15925	1	0	seg0.8	300	m=2 litf=0
+7.9297	p_n - n	7748	1	0	seg0.14	300	m=2 litf=0
+7.9297	p_n mod 3301	4110	1	0	seg0.12	300	m=2 litf=0
+7.9297	Omega(n)	16388	28	0	seg0.11	300	m=2 litf=0
+7.9297	rad(n)	19138	28	1	seg0.15	300	m=2 litf=0
+7.9297	sqrt29 digits (base 29)	17601	1	0	seg0.9	300	m=2 litf=0
+7.9297	euler gamma digits (base 29)	18315	1	0	seg0.12	300	m=2 litf=0
+7.9297	ln3 digits (base 29)	3219	28	1	seg0.14	300	m=2 litf=0
+7.9297	ln3 digits (base 29)	18842	1	0	seg0.9	300	m=2 litf=0
+7.9297	p_n + n	18580	28	0	seg0.8	300	m=2 litf=0
+7.9297	p_n + n	7815	1	0	seg0.7	300	m=2 litf=0
+7.9297	(p+1)/2	17057	1	0	seg0.15	300	m=2 litf=0
+7.9297	sqrt3301 digits (base 29)	5953	1	1	seg0.12	300	m=2 litf=0
+7.9297	sigma(n)	15853	28	0	seg0.11	300	m=2 litf=0
+7.9297	ln2 digits (base 29)	6224	28	1	seg0.12	300	m=2 litf=0
+7.9297	p_(n+1) * p_n	16043	28	0	seg0.15	300	m=2 litf=0
+7.9297	(p-1)/2	17970	1	1	seg0.11	300	m=2 litf=0
+7.9297	e^pi digits (base 29)	9213	28	0	seg0.15	300	m=2 litf=0
+7.9297	ln2 digits (base 29)	2136	28	1	seg0.8	300	m=2 litf=0
+7.9297	ln2 digits (base 10)	1401	28	1	seg0.9	300	m=2 litf=0
+7.9297	rad(n)	17666	1	0	seg0.8	300	m=2 litf=0
+7.9297	sigma(n)	15854	28	0	seg0.11	300	m=2 litf=0
+7.9297	primes+1	14235	28	0	seg0.15	300	m=2 litf=0
+7.9297	e digits (base 29)	16330	28	0	seg0.9	300	m=2 litf=0
+7.9297	sqrt2 digits (base 29)	16554	28	1	seg0.9	300	m=2 litf=0
+7.9297	phi(n)	10322	1	0	seg0.11	300	m=2 litf=0
+7.9297	(p-1)/2	12362	28	1	seg0.13	300	m=2 litf=0
+7.9297	(p+1)/2	17970	1	1	seg0.11	300	m=2 litf=0
+7.9297	3301 - p_n	14235	1	0	seg0.15	300	m=2 litf=0
+7.9297	primes base-29 digit sum	5098	1	0	seg0.14	300	m=2 litf=0
+7.9297	3301 - p_n	13064	28	1	seg0.8	300	m=2 litf=0
+7.9297	p_n - n	18963	1	0	seg0.7	300	m=2 litf=0
+7.9297	euler gamma digits (base 29)	15514	1	1	seg0.13	300	m=2 litf=0
+7.9297	p_n^2 - 1	1857	1	0	seg0.14	300	m=2 litf=0
+7.9297	sqrt5 digits (base 29)	6584	28	0	seg0.14	300	m=2 litf=0
+7.9297	emirps	1313	28	0	seg0.9	300	m=2 litf=0
+7.9297	primes-1 (totient)	14235	28	0	seg0.15	300	m=2 litf=0
+7.9297	carmichael lambda(n)	4920	28	0	seg0.13	300	m=2 litf=0
+7.9297	zeta(3) digits (base 29)	10844	28	1	seg0.8	300	m=2 litf=0
+7.9297	cbrt2 digits (base 29)	6285	1	0	seg0.15	300	m=2 litf=0
+7.9297	primes^3	17924	1	1	seg0.11	300	m=2 litf=0
+7.9297	cumulative phi(n)	3909	28	1	seg0.11	300	m=2 litf=0
+7.9297	p_n + n	511	1	1	seg0.11	300	m=2 litf=0
+7.9297	primes	14235	28	0	seg0.15	300	m=2 litf=0
+7.9297	zeta(3) digits (base 29)	17735	28	0	seg0.14	300	m=2 litf=0
+7.9297	catalan G digits (base 29)	9020	28	0	seg0.8	300	m=2 litf=0
+7.9297	partitions p(n)	15157	28	1	seg0.8	300	m=2 litf=0
+7.9297	e^pi digits (base 29)	9051	28	1	seg0.11	300	m=2 litf=0
+7.9297	(p-1)/2	17057	1	0	seg0.15	300	m=2 litf=0
+7.9297	pi digits (base 10)	12825	28	1	seg0.14	300	m=2 litf=0
+7.9297	ln10 digits (base 29)	4632	1	1	seg0.12	300	m=2 litf=0
+7.9297	primes-1 (totient)	13064	1	1	seg0.8	300	m=2 litf=0
+7.9257	ln10 digits (base 29)	1645	28	0	seg0.12	300	m=9 litf=0
+7.9257	p_(n+1) * p_n	1670	1	1	seg0.8	300	m=9 litf=0
+7.9257	ln10 digits (base 29)	18088	28	1	seg0.7	300	m=9 litf=0
+7.9257	primes reversed digits	19188	28	1	seg0.13	300	m=9 litf=0
+7.9257	sqrt3 digits (base 29)	11095	1	0	seg0.11	300	m=9 litf=0
+7.9257	ln3301 digits (base 29)	116	28	0	seg0.13	300	m=9 litf=0
+7.9257	ln10 digits (base 29)	1646	28	0	seg0.12	300	m=9 litf=0
+7.9194	(p+1)/2	1174	28	1	seg0.11	300	m=4 litf=0
+7.9194	(p-1)/2	1174	28	1	seg0.11	300	m=4 litf=0
+7.9194	catalan G digits (base 29)	13610	1	1	seg0.13	300	m=4 litf=0
+7.9194	sqrt29 digits (base 29)	17601	1	0	seg0.9	300	m=4 litf=0
+7.9194	zeta(3) digits (base 29)	11249	28	0	seg0.15	300	m=4 litf=0
+7.9194	e digits (base 29)	19052	1	0	seg0.8	300	m=4 litf=0
+7.9194	e^pi digits (base 29)	508	1	1	seg0.14	300	m=4 litf=0
+7.9194	e^pi digits (base 29)	4071	1	0	seg0.11	300	m=4 litf=0
+7.9194	primes base-29 digit sum	19232	28	1	seg0.14	300	m=4 litf=0
+7.9194	p_n mod 3301	12304	1	0	seg0.7	300	m=4 litf=0
+7.9194	ln3301 digits (base 29)	1232	1	1	seg0.9	300	m=4 litf=0
+7.9194	cumulative prime sum	14303	1	0	seg0.9	300	m=4 litf=0
+7.9194	pi^2 digits (base 29)	18203	28	0	seg0.11	300	m=4 litf=0
+7.9194	sqrt5 digits (base 29)	4346	1	0	seg0.14	300	m=4 litf=0
+7.9194	p_n + n	7684	28	0	seg0.13	300	m=4 litf=0
+7.9194	p_(n+1) * p_n	4474	1	1	seg0.14	300	m=4 litf=0
+7.9194	ln2 digits (base 29)	12316	1	1	seg0.9	300	m=4 litf=0
+7.9194	phi digits (base 29)	464	1	1	seg0.8	300	m=4 litf=0
+7.9194	sqrt29 digits (base 29)	13030	28	0	seg0.12	300	m=4 litf=0
+7.9194	Omega(n)	13283	28	0	seg0.13	300	m=4 litf=0
+7.9180	p_(n+1) * p_n	2721	28	0	seg0.15	300	m=7 litf=0
+7.9180	phi(n)	11130	1	0	seg0.7	300	m=7 litf=0
+7.9180	e digits (base 29)	103	28	0	seg0.11	300	m=7 litf=0
+7.9180	ln10 digits (base 29)	7763	28	0	seg0.12	300	m=7 litf=0
+7.9180	primes base-29 digit sum	17734	1	0	seg0.11	300	m=7 litf=0
+7.9180	ln3301 digits (base 29)	13944	28	1	seg0.11	300	m=7 litf=0
+7.9180	carmichael lambda(n)	1865	1	1	seg0.8	300	m=7 litf=0
+7.9180	cbrt2 digits (base 29)	11061	1	1	seg0.8	300	m=7 litf=0
+7.9180	ln3301 digits (base 29)	13942	28	1	seg0.11	300	m=7 litf=0
+7.9180	sqrt29 digits (base 29)	12828	1	1	seg0.11	300	m=7 litf=0
+7.9180	pi digits (base 29)	18227	1	0	seg0.11	300	m=7 litf=0
+7.9180	cumulative phi(n)	8296	1	1	seg0.7	300	m=7 litf=0
+7.9180	primes base-29 digit sum	17733	1	0	seg0.11	300	m=7 litf=0
+7.9180	euler gamma digits (base 29)	2679	28	0	seg0.7	300	m=7 litf=0
+7.9180	phi digits (base 10)	10290	1	1	seg0.14	300	m=7 litf=0
+7.9180	e^pi digits (base 29)	7118	28	1	seg0.7	300	m=7 litf=0
+7.9180	catalan G digits (base 29)	18449	1	0	seg0.15	300	m=7 litf=0
+7.9180	ln10 digits (base 29)	18757	1	0	seg0.7	300	m=7 litf=0
+7.9180	ln10 digits (base 29)	18758	1	0	seg0.7	300	m=7 litf=0
+7.9180	catalan G digits (base 29)	17520	1	1	seg0.8	300	m=7 litf=0
+7.9180	e digits (base 10)	521	1	0	seg0.14	300	m=7 litf=0
+7.9180	rad(n)	8134	28	1	seg0.15	300	m=7 litf=0
+7.9180	cbrt2 digits (base 29)	12674	28	1	seg0.9	300	m=7 litf=0
+7.9180	pi digits (base 29)	10581	28	0	seg0.13	300	m=7 litf=0
+7.9129	ln2 digits (base 10)	1700	28	0	seg0.12	300	m=5 litf=0
+7.9129	sqrt3 digits (base 10)	209	1	0	seg0.13	300	m=5 litf=0
+7.9129	ln3 digits (base 29)	4662	28	1	seg0.14	300	m=5 litf=0
+7.9129	euler gamma digits (base 29)	14228	28	0	seg0.12	300	m=5 litf=0
+7.9129	pi^2 digits (base 29)	14087	1	0	seg0.13	300	m=5 litf=0
+7.9129	pi digits (base 10)	14038	1	0	seg0.12	300	m=5 litf=0
+7.9129	phi(n)	6510	28	0	seg0.12	300	m=5 litf=0
+7.9129	sqrt3 digits (base 10)	8885	1	0	seg0.9	300	m=5 litf=0
+7.9129	ln10 digits (base 29)	1792	28	1	seg0.9	300	m=5 litf=0
+7.9129	sigma(n)	9692	1	0	seg0.13	300	m=5 litf=0
+7.9129	cbrt2 digits (base 29)	8991	28	0	seg0.15	300	m=5 litf=0
+7.9129	ln10 digits (base 29)	7002	28	1	seg0.13	300	m=5 litf=0
+7.9129	mobius mu(n)	5516	1	0	seg0.8	300	m=5 litf=0
+7.9129	p_(n+1) * p_n	18794	1	1	seg0.14	300	m=5 litf=0
+7.9129	p_n^2 - 1	13387	28	0	seg0.7	300	m=5 litf=0
+7.9129	phi(n)	5702	28	1	seg0.13	300	m=5 litf=0
+7.9129	primes^2	13387	28	0	seg0.7	300	m=5 litf=0
+7.9129	ln3 digits (base 29)	6071	1	1	seg0.14	300	m=5 litf=0
+7.9129	euler gamma digits (base 29)	4117	28	1	seg0.8	300	m=5 litf=0
+7.9129	phi digits (base 29)	11312	28	0	seg0.8	300	m=5 litf=0
+7.9122	primes^2	1447	28	1	seg0.11	300	m=3 litf=0
+7.9122	sqrt5 digits (base 29)	14916	28	1	seg0.9	300	m=3 litf=0
+7.9122	partitions p(n)	1175	1	0	seg0.12	300	m=3 litf=0
+7.9122	pi digits (base 29)	5934	1	0	seg0.12	300	m=3 litf=0
+7.9122	prime index of primes	1374	28	1	seg0.15	300	m=3 litf=0
+7.9122	rad(n)	15296	28	0	seg0.11	300	m=3 litf=0
+7.9122	ln3 digits (base 29)	606	1	0	seg0.12	300	m=3 litf=0
+7.9122	p_(n+1) * p_n	12788	1	0	seg0.13	300	m=3 litf=0
+7.9122	e^pi digits (base 29)	7611	1	1	seg0.13	300	m=3 litf=0
+7.9122	ln2 digits (base 29)	9244	28	0	seg0.15	300	m=3 litf=0
+7.9122	catalan G digits (base 29)	12671	28	1	seg0.14	300	m=3 litf=0
+7.9122	ln3 digits (base 29)	15464	1	0	seg0.9	300	m=3 litf=0
+7.9122	p_n + n	13603	1	0	seg0.9	300	m=3 litf=0
+7.9122	n * p_n	15680	28	0	seg0.8	300	m=3 litf=0
+7.9122	phi digits (base 10)	6015	1	0	seg0.15	300	m=3 litf=0
+7.9122	p_n^2 - 1	1447	28	1	seg0.11	300	m=3 litf=0
+7.9122	primes digit sum	13774	1	1	seg0.12	300	m=3 litf=0
+7.9122	pi^2 digits (base 29)	6911	28	1	seg0.15	300	m=3 litf=0
+7.9122	primes reversed digits	19273	28	1	seg0.15	300	m=3 litf=0
+7.9122	d(n)	7386	28	0	seg0.15	300	m=3 litf=0
+7.9122	sqrt2 digits (base 10)	7032	28	0	seg0.12	300	m=3 litf=0
+7.9122	sqrt3 digits (base 10)	5919	28	0	seg0.14	300	m=3 litf=0
+7.9122	sqrt2 digits (base 10)	17603	1	0	seg0.12	300	m=3 litf=0
+7.9122	sqrt3301 digits (base 29)	339	1	1	seg0.12	300	m=3 litf=0
+7.9122	partitions p(n)	10143	28	1	seg0.14	300	m=3 litf=0
+7.9122	pi^2 digits (base 29)	13243	1	0	seg0.14	300	m=3 litf=0
+7.9122	sqrt2 digits (base 29)	6265	1	0	seg0.7	300	m=3 litf=0
+7.9122	phi digits (base 10)	6994	28	0	seg0.15	300	m=3 litf=0
+7.9122	e digits (base 10)	6868	28	0	seg0.13	300	m=3 litf=0
+7.9122	p_n mod 3301	12283	28	0	seg0.7	300	m=3 litf=0
+7.9122	e digits (base 10)	7581	1	0	seg0.8	300	m=3 litf=0
+7.8981	cumulative phi(n)	16281	1	1	seg0.15	300	m=6 litf=0
+7.8981	p_n - n	7094	1	0	seg0.7	300	m=6 litf=0
+7.8981	primes digit sum	17722	1	0	seg0.11	300	m=6 litf=0
+7.8981	primes-1 (totient)	8011	28	1	seg0.8	300	m=6 litf=0
+7.8981	ln3301 digits (base 29)	15122	1	0	seg0.15	300	m=6 litf=0
+7.8981	pi^2 digits (base 29)	5697	28	0	seg0.7	300	m=6 litf=0
+7.8981	cumulative phi(n)	4171	28	1	seg0.11	300	m=6 litf=0
+7.8981	e^pi digits (base 29)	8258	1	1	seg0.14	300	m=6 litf=0
+7.8981	(p-1)/2	5933	28	1	seg0.11	300	m=6 litf=0
+7.8981	primes digit sum	18391	28	0	seg0.12	300	m=6 litf=0
+7.8981	e digits (base 29)	9134	1	0	seg0.8	300	m=6 litf=0
+7.8981	primes	8011	28	1	seg0.8	300	m=6 litf=0
+7.8981	cumulative phi(n)	15532	28	1	seg0.13	300	m=6 litf=0
+7.8981	3301 - p_n	8011	1	1	seg0.8	300	m=6 litf=0
+7.8981	(p+1)/2	5933	28	1	seg0.11	300	m=6 litf=0
+7.8981	primes from 3301	7548	28	1	seg0.8	300	m=6 litf=0
+7.8981	ln3 digits (base 29)	9156	1	1	seg0.13	300	m=6 litf=0
+7.8981	sqrt29 digits (base 29)	15038	1	0	seg0.9	300	m=6 litf=0
+7.8981	primes reversed digits	2573	1	0	seg0.12	300	m=6 litf=0
+7.8981	phi digits (base 29)	4307	28	1	seg0.11	300	m=6 litf=0
+7.8981	phi digits (base 10)	12593	28	1	seg0.11	300	m=6 litf=0
+7.8981	composites	45	28	0	seg0.8	300	m=6 litf=0
+7.8981	ln10 digits (base 29)	1190	28	1	seg0.12	300	m=6 litf=0
+7.8981	primes+1	8011	28	1	seg0.8	300	m=6 litf=0
+7.8981	ln10 digits (base 29)	13476	1	1	seg0.13	300	m=6 litf=0
+7.8940	phi(n)	6212	1	1	seg0.8	300	m=10 litf=0
+7.8940	3301 * p_n	8980	28	1	seg0.12	300	m=10 litf=0
+7.8940	primes reversed digits	19493	28	1	seg0.11	300	m=10 litf=0
+7.8940	p_n^2 - 1	1118	1	0	seg0.14	300	m=10 litf=0
+7.8940	primes^2	1118	1	0	seg0.14	300	m=10 litf=0
+7.8940	sqrt3 digits (base 29)	14455	28	1	seg0.8	300	m=10 litf=0
+7.8940	rad(n)	11532	28	0	seg0.13	300	m=10 litf=0
+7.8940	primes reversed digits	9602	1	1	seg0.15	300	m=10 litf=0
+7.8940	pi digits (base 29)	18132	1	0	seg0.14	300	m=10 litf=0
+7.8940	cumulative prime sum	697	28	0	seg0.9	300	m=10 litf=0
+7.8940	emirps	2211	28	0	seg0.7	300	m=10 litf=0
+7.8931	sqrt3301 digits (base 29)	8247	1	0	seg0.11	300	m=2 litf=0
+7.8931	carmichael lambda(n)	553	1	0	seg0.15	300	m=2 litf=0
+7.8931	primes reversed digits	2232	1	0	seg0.8	300	m=2 litf=0
+7.8931	carmichael lambda(n)	5251	1	1	seg0.8	300	m=2 litf=0
+7.8931	pi digits (base 29)	19177	28	0	seg0.12	300	m=2 litf=0
+7.8931	sigma(n)	3549	1	0	seg0.15	300	m=2 litf=0
+7.8931	p_n^2 - 1	13230	28	1	seg0.8	300	m=2 litf=0
+7.8931	rad(n)	2300	28	1	seg0.14	300	m=2 litf=0
+7.8931	primes	10469	1	0	seg0.12	300	m=2 litf=0
+7.8931	rad(n)	24	28	0	seg0.15	300	m=2 litf=0
+7.8931	pi^2 digits (base 29)	11109	1	1	seg0.13	300	m=2 litf=0
+7.8931	phi digits (base 29)	11984	28	1	seg0.8	300	m=2 litf=0
+7.8931	primes base-29 digit sum	2607	1	0	seg0.9	300	m=2 litf=0
+7.8931	phi(n)	1367	1	1	seg0.15	300	m=2 litf=0
+7.8931	(p-1)/2	19091	1	1	seg0.8	300	m=2 litf=0
+7.8931	n * p_n	4960	28	1	seg0.12	300	m=2 litf=0
+7.8931	primes base-29 digit sum	4808	28	0	seg0.7	300	m=2 litf=0
+7.8931	p_(n+1) * p_n	17289	28	0	seg0.9	300	m=2 litf=0
+7.8931	primes from 3301	10006	1	0	seg0.12	300	m=2 litf=0
+7.8931	e digits (base 10)	10530	28	0	seg0.12	300	m=2 litf=0
+7.8931	pi^2 digits (base 29)	4707	1	1	seg0.13	300	m=2 litf=0
+7.8931	(p-1)/2	18168	28	1	seg0.13	300	m=2 litf=0
+7.8931	phi digits (base 10)	15755	28	0	seg0.12	300	m=2 litf=0
+7.8931	primes-1 (totient)	10469	1	0	seg0.12	300	m=2 litf=0
+7.8931	rad(n)	7694	1	0	seg0.14	300	m=2 litf=0
+7.8931	p_n^2 - 1	19009	28	1	seg0.9	300	m=2 litf=0
+7.8931	rad(n)	2488	28	1	seg0.14	300	m=2 litf=0
+7.8931	phi digits (base 29)	13495	28	1	seg0.15	300	m=2 litf=0
+7.8931	sqrt2 digits (base 29)	11557	28	1	seg0.9	300	m=2 litf=0
+7.8931	primes digit sum	16153	28	0	seg0.11	300	m=2 litf=0
+7.8931	ln2 digits (base 10)	13060	1	0	seg0.13	300	m=2 litf=0
+7.8931	ln3301 digits (base 29)	16392	1	0	seg0.12	300	m=2 litf=0
+7.8931	cumulative phi(n)	17133	28	1	seg0.9	300	m=2 litf=0
+7.8931	sigma(n)	15392	1	0	seg0.15	300	m=2 litf=0
+7.8931	primes^2	13230	28	1	seg0.8	300	m=2 litf=0
+7.8931	cumulative phi(n)	13981	28	1	seg0.15	300	m=2 litf=0
+7.8931	primes+1	10469	1	0	seg0.12	300	m=2 litf=0
+7.8931	phi(n)	8199	28	1	seg0.9	300	m=2 litf=0
+7.8931	cumulative prime sum	16010	28	1	seg0.12	300	m=2 litf=0
+7.8931	(p+1)/2	18168	28	1	seg0.13	300	m=2 litf=0
+7.8931	euler gamma digits (base 29)	9633	1	0	seg0.14	300	m=2 litf=0
+7.8931	zeta(3) digits (base 29)	14215	28	0	seg0.15	300	m=2 litf=0
+7.8931	cumulative phi(n)	13118	28	1	seg0.8	300	m=2 litf=0
+7.8931	cumulative phi(n)	18225	28	0	seg0.12	300	m=2 litf=0
+7.8931	mobius mu(n)	9099	1	0	seg0.13	300	m=2 litf=0
+7.8931	ln3 digits (base 29)	10962	28	0	seg0.7	300	m=2 litf=0
+7.8931	sqrt29 digits (base 29)	5358	1	1	seg0.13	300	m=2 litf=0
+7.8931	ln10 digits (base 29)	8821	1	1	seg0.13	300	m=2 litf=0
+7.8931	sqrt3301 digits (base 29)	13816	28	0	seg0.8	300	m=2 litf=0
+7.8931	ln3301 digits (base 29)	4844	1	1	seg0.8	300	m=2 litf=0
+7.8931	euler gamma digits (base 29)	16603	28	0	seg0.9	300	m=2 litf=0
+7.8931	primes^2	19009	28	1	seg0.9	300	m=2 litf=0

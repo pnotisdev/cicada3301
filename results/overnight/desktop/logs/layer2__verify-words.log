@@ -1,0 +1,22 @@
+# <repo>\.venv\Scripts\python.exe <repo>\work\layer2\verify.py <repo>\results\layer2\bigram_words.tsv --top 15 --out <repo>\results\layer2\bigram_words_verify.txt
+# cwd <repo>\work\layer2
+# device cpu
+# verify bigram_words.tsv (mode=bigram): top 15 hits re-decoded over the whole window, 20 matched-null offsets each; pass = score >= 2.0 and >= null max + 5.0
+noise      seg0.12 'phi(n)' offset=16526 mult=28 model=0 kw=CONSUMPTION isign=28 phase=4 litf=1 atb=0: screen -4.040; whole window -7.208/rune (IoC 1.065), matched null max -7.913; keyword [5, 3, 9, 15, 1, 19, 13, 16, 10, 3, 9] atb=0
+noise      seg0.14 'pi digits (base 29)' offset=7667 mult=1 model=0 kw=LIBERPRIMUS isign=28 phase=8 litf=1 atb=0: screen -4.337; whole window -7.276/rune (IoC 1.074), matched null max -8.144; keyword [20, 10, 17, 18, 4, 13, 4, 10, 19, 1, 15] atb=0
+noise      seg0.8 'pi digits (base 29)' offset=12797 mult=28 model=0 kw=LIBERPRIMUS isign=1 phase=2 litf=1 atb=0: screen -4.367; whole window -6.787/rune (IoC 1.082), matched null max -7.744; keyword [20, 10, 17, 18, 4, 13, 4, 10, 19, 1, 15] atb=0
+noise      seg0.15 'primes' offset=11061 mult=28 model=1 kw=WELCOME isign=1 phase=2 litf=1 atb=0: screen -4.430; whole window -7.829/rune (IoC 1.063), matched null max -8.022; keyword [7, 18, 20, 5, 3, 19, 18] atb=0
+noise      seg0.9 'primes+1' offset=6475 mult=1 model=1 kw=INTUS isign=1 phase=3 litf=1 atb=0: screen -4.500; whole window -7.623/rune (IoC 1.074), matched null max -7.994; keyword [10, 9, 16, 1, 15] atb=0
+noise      seg0.11 'pi digits (base 29)' offset=9694 mult=1 model=1 kw=PRIMES isign=1 phase=4 litf=1 atb=0: screen -4.503; whole window -7.677/rune (IoC 1.077), matched null max -8.009; keyword [13, 4, 10, 19, 18, 15] atb=0
+noise      seg0.13 'primes+1' offset=13723 mult=1 model=1 kw=INSTRUCTION isign=1 phase=3 litf=1 atb=0: screen -4.537; whole window -7.532/rune (IoC 1.077), matched null max -7.875; keyword [10, 9, 15, 16, 4, 1, 5, 16, 10, 3, 9] atb=0
+noise      seg0.7 'sigma(n)' offset=12094 mult=1 model=1 kw=ADHERENCE isign=1 phase=0 litf=1 atb=0: screen -4.683; whole window -6.874/rune (IoC 1.101), matched null max -7.926; keyword [24, 23, 8, 18, 4, 18, 9, 5, 18] atb=0
+noise      seg0.14 'e digits (base 29)' offset=12751 mult=1 model=0 kw=PRESERVATION isign=1 phase=9 litf=1 atb=0: screen -4.377; whole window -7.359/rune (IoC 1.102), matched null max -7.727; keyword [13, 4, 18, 15, 18, 4, 1, 24, 16, 10, 3, 9] atb=0
+noise      seg0.12 'phi(n)' offset=17473 mult=1 model=1 kw=ENLIGHTENED isign=1 phase=9 litf=1 atb=0: screen -4.410; whole window -7.191/rune (IoC 1.090), matched null max -7.514; keyword [18, 9, 20, 10, 6, 8, 16, 18, 9, 18, 23] atb=0
+noise      seg0.15 'primes from 3301' offset=10598 mult=28 model=1 kw=WELCOME isign=1 phase=2 litf=1 atb=0: screen -4.430; whole window -7.829/rune (IoC 1.063), matched null max -7.926; keyword [7, 18, 20, 5, 3, 19, 18] atb=0
+noise      seg0.15 'primes' offset=11061 mult=28 model=1 kw=WELCOME isign=1 phase=3 litf=1 atb=0: screen -4.443; whole window -7.830/rune (IoC 1.064), matched null max -8.051; keyword [7, 18, 20, 5, 3, 19, 18] atb=0
+noise      seg0.15 'primes from 3301' offset=10598 mult=28 model=1 kw=WELCOME isign=1 phase=3 litf=1 atb=0: screen -4.443; whole window -7.830/rune (IoC 1.064), matched null max -7.928; keyword [7, 18, 20, 5, 3, 19, 18] atb=0
+noise      seg0.8 'e digits (base 29)' offset=820 mult=1 model=0 kw=KOAN isign=1 phase=3 litf=1 atb=0: screen -4.453; whole window -7.579/rune (IoC 1.079), matched null max -8.269; keyword [5, 3, 24, 9] atb=0
+noise      seg0.15 'sigma(n)' offset=16758 mult=1 model=1 kw=DIVINITY isign=1 phase=7 litf=1 atb=0: screen -4.457; whole window -7.845/rune (IoC 1.069), matched null max -8.207; keyword [23, 10, 1, 10, 9, 10, 16, 26] atb=0
+0 of 15 re-decoded hits pass (none: noise)
+
+# exit code 0, 4 s

@@ -1,0 +1,2012 @@
+# layer2 screen mode=bigram family=file:data/core20.ksb windows=../kscreen/data/segments.txt kw=data/keywords.txt n=300 beam=16 mults=1,28 models=0,1 litf=0,1 abort=30:-4 runs=8597288448 aborted=8482488875 secs=2750
+# best -4.0400
+# window seg0.7 best -4.6833 item=sigma(n) offset=12094 mult=1 model=1 kw=ADHERENCE isign=1 phase=0 litf=1 atb=0
+# window seg0.8 best -4.3667 item=pi digits (base 29) offset=12797 mult=28 model=0 kw=LIBERPRIMUS isign=1 phase=2 litf=1 atb=0
+# window seg0.9 best -4.5000 item=primes+1 offset=6475 mult=1 model=1 kw=INTUS isign=1 phase=3 litf=1 atb=0
+# window seg0.11 best -4.5033 item=pi digits (base 29) offset=9694 mult=1 model=1 kw=PRIMES isign=1 phase=4 litf=1 atb=0
+# window seg0.12 best -4.0400 item=phi(n) offset=16526 mult=28 model=0 kw=CONSUMPTION isign=28 phase=4 litf=1 atb=0
+# window seg0.13 best -4.5367 item=primes+1 offset=13723 mult=1 model=1 kw=INSTRUCTION isign=1 phase=3 litf=1 atb=0
+# window seg0.14 best -4.3367 item=pi digits (base 29) offset=7667 mult=1 model=0 kw=LIBERPRIMUS isign=28 phase=8 litf=1 atb=0
+# window seg0.15 best -4.4300 item=primes offset=11061 mult=28 model=1 kw=WELCOME isign=1 phase=2 litf=1 atb=0
+# hist -32.00:2 -31.80:2 -31.60:4 -31.40:3 -31.20:6 -31.00:6 -30.80:8 -30.60:20 -30.40:21 -30.20:43 -30.00:68 -29.80:105 -29.60:93 -29.40:233 -29.20:224 -29.00:417 -28.80:679 -28.60:708 -28.40:1418 -28.20:1392 -28.00:2310 -27.80:3732 -27.60:3841 -27.40:6456 -27.20:6316 -27.00:10343 -26.80:13301 -26.60:18081 -26.40:28037 -26.20:25363 -26.00:39328 -25.80:51239 -25.60:65415 -25.40:97456 -25.20:89849 -25.00:133339 -24.80:166842 -24.60:209870 -24.40:305731 -24.20:273493 -24.00:394196 -23.80:483546 -23.60:594055 -23.40:852939 -23.20:736710 -23.00:1051301 -22.80:1260575 -22.60:1505591 -22.40:2120277 -22.20:1791316 -22.00:2503323 -21.80:2952550 -21.60:3454674 -21.40:4773667 -21.20:3969122 -21.00:5472936 -20.80:6305549 -20.60:7261049 -20.40:9844325 -20.20:8024082 -20.00:10853363 -19.80:12344889 -19.60:13981702 -19.40:18650908 -19.20:14967986 -19.00:19969814 -18.80:22372658 -18.60:24940789 -18.40:32703263 -18.20:25866153 -18.00:34044842 -17.80:37567095 -17.60:41315379 -17.40:53293770 -17.20:41644801 -17.00:54111044 -16.80:58825992 -16.60:63858083 -16.40:81093019 -16.20:62467201 -16.00:80214129 -15.80:86047758 -15.60:92069595 -15.40:115291901 -15.20:87647167 -15.00:111043425 -14.80:117588430 -14.60:124079388 -14.40:130584252 -14.20:137086117 -14.00:143552086 -13.80:149727281 -13.60:155950302 -13.40:161734600 -13.20:167306084 -13.00:172605327 -12.80:177453515 -12.60:181998528 -12.40:186071688 -12.20:189663817 -12.00:192651651 -11.80:195248977 -11.60:197233380 -11.40:198769655 -11.20:199782272 -11.00:200179322 -10.80:199939263 -10.60:199122953 -10.40:197429822 -10.20:195131245 -10.00:191793403 -9.80:187915196 -9.60:183451211 -9.40:178737215 -9.20:173908550 -9.00:168920150 -8.80:163929917 -8.60:158298987 -8.40:152042157 -8.20:144709324 -8.00:136424429 -7.80:127604972 -7.60:136685333 -7.40:91246275 -7.20:100818466 -7.00:92640464 -6.80:84960439 -6.60:90075900 -6.40:58786399 -6.20:64694586 -6.00:58685213 -5.80:53045042 -5.60:55268218 -5.40:35356476 -5.20:38190729 -5.00:34002774 -4.80:30076583 -4.60:30578765 -4.40:19158267 -4.20:20298750
+score	item	offset	mult	model	window	n	inner
+-4.0400	phi(n)	16526	28	0	seg0.12	300	kw=CONSUMPTION isign=28 phase=4 litf=1 atb=0
+-4.3367	pi digits (base 29)	7667	1	0	seg0.14	300	kw=LIBERPRIMUS isign=28 phase=8 litf=1 atb=0
+-4.3667	pi digits (base 29)	12797	28	0	seg0.8	300	kw=LIBERPRIMUS isign=1 phase=2 litf=1 atb=0
+-4.3767	e digits (base 29)	12751	1	0	seg0.14	300	kw=PRESERVATION isign=1 phase=9 litf=1 atb=0
+-4.4100	phi(n)	17473	1	1	seg0.12	300	kw=ENLIGHTENED isign=1 phase=9 litf=1 atb=0
+-4.4300	primes	11061	28	1	seg0.15	300	kw=WELCOME isign=1 phase=2 litf=1 atb=0
+-4.4300	primes from 3301	10598	28	1	seg0.15	300	kw=WELCOME isign=1 phase=2 litf=1 atb=0
+-4.4433	primes	11061	28	1	seg0.15	300	kw=WELCOME isign=1 phase=3 litf=1 atb=0
+-4.4433	primes from 3301	10598	28	1	seg0.15	300	kw=WELCOME isign=1 phase=3 litf=1 atb=0
+-4.4533	e digits (base 29)	820	1	0	seg0.8	300	kw=KOAN isign=1 phase=3 litf=1 atb=0
+-4.4567	sigma(n)	16758	1	1	seg0.15	300	kw=DIVINITY isign=1 phase=7 litf=1 atb=0
+-4.4867	e digits (base 29)	12750	1	0	seg0.14	300	kw=PRESERVATION isign=1 phase=9 litf=1 atb=0
+-4.5000	primes+1	6475	1	1	seg0.9	300	kw=INTUS isign=1 phase=3 litf=1 atb=0
+-4.5033	pi digits (base 29)	9694	1	1	seg0.11	300	kw=PRIMES isign=1 phase=4 litf=1 atb=0
+-4.5067	e digits (base 10)	7723	1	0	seg0.11	300	kw=THEPRIMESARESACRED isign=1 phase=13 litf=1 atb=0
+-4.5067	phi(n)	16525	28	0	seg0.12	300	kw=CONSUMPTION isign=28 phase=3 litf=1 atb=0
+-4.5200	pi digits (base 29)	4669	1	1	seg0.12	300	kw=SACRED isign=1 phase=2 litf=1 atb=0
+-4.5333	primes-1 (totient)	19090	1	0	seg0.15	300	kw=FIRFUMFERENFE isign=1 phase=6 litf=1 atb=0
+-4.5367	primes+1	13723	1	1	seg0.13	300	kw=INSTRUCTION isign=1 phase=3 litf=1 atb=0
+-4.5533	primes-1 (totient)	19090	1	0	seg0.15	300	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=0
+-4.5600	phi(n)	16526	28	0	seg0.12	300	kw=CONSUMPTION isign=28 phase=3 litf=1 atb=0
+-4.5733	pi digits (base 10)	15528	1	1	seg0.12	300	kw=EMERGENCE isign=1 phase=1 litf=1 atb=0
+-4.5867	e digits (base 29)	12748	1	0	seg0.14	300	kw=PRESERVATION isign=1 phase=9 litf=1 atb=0
+-4.6000	pi digits (base 29)	9692	1	1	seg0.11	300	kw=PRIMES isign=1 phase=4 litf=1 atb=0
+-4.6267	phi digits (base 29)	1464	1	1	seg0.13	300	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=0
+-4.6400	phi digits (base 29)	9475	1	1	seg0.8	300	kw=LIBERPRIMUS isign=28 phase=4 litf=1 atb=0
+-4.6467	pi digits (base 10)	15526	1	1	seg0.12	300	kw=EMERGENCE isign=1 phase=1 litf=1 atb=0
+-4.6767	e digits (base 10)	84	28	0	seg0.12	300	kw=EMERGENCE isign=1 phase=5 litf=1 atb=0
+-4.6833	sigma(n)	12094	1	1	seg0.7	300	kw=ADHERENCE isign=1 phase=0 litf=1 atb=0
+-4.6833	pi digits (base 29)	3841	1	0	seg0.13	300	kw=CIRCUMFERENCES isign=28 phase=11 litf=1 atb=0
+-4.6900	phi digits (base 29)	16462	1	1	seg0.13	300	kw=INSTAR isign=1 phase=4 litf=1 atb=0
+-4.6900	phi digits (base 29)	16460	1	1	seg0.13	300	kw=INSTAR isign=1 phase=4 litf=1 atb=0
+-4.7000	pi digits (base 29)	12936	1	0	seg0.8	300	kw=PARABLE isign=1 phase=5 litf=1 atb=0
+-4.7000	pi digits (base 29)	12935	1	0	seg0.8	300	kw=PARABLE isign=1 phase=5 litf=1 atb=0
+-4.7033	phi(n)	12775	28	0	seg0.7	300	kw=INSTRUCTION isign=1 phase=1 litf=1 atb=0
+-4.7067	primes+1	15960	1	1	seg0.12	300	kw=THEPRIMESARESACRED isign=1 phase=12 litf=1 atb=0
+-4.7100	primes+1	4086	28	1	seg0.7	300	kw=THEPRIMESARESACRED isign=1 phase=5 litf=1 atb=0
+-4.7100	phi(n)	13241	28	0	seg0.9	300	kw=INSTRUCTION isign=1 phase=2 litf=1 atb=0
+-4.7167	phi(n)	7960	28	0	seg0.12	300	kw=TRUTH isign=28 phase=3 litf=1 atb=0
+-4.7200	e digits (base 29)	7300	28	0	seg0.8	300	kw=EMERGE isign=28 phase=2 litf=1 atb=0
+-4.7200	primes	8704	1	1	seg0.9	300	kw=EMERGE isign=1 phase=1 litf=1 atb=0
+-4.7200	primes from 3301	8241	1	1	seg0.9	300	kw=EMERGE isign=1 phase=1 litf=1 atb=0
+-4.7267	phi digits (base 29)	16464	1	1	seg0.13	300	kw=INSTAR isign=1 phase=4 litf=1 atb=0
+-4.7333	primes	13386	1	1	seg0.14	300	kw=PRIMES isign=1 phase=2 litf=1 atb=0
+-4.7333	primes from 3301	12923	1	1	seg0.14	300	kw=PRIMES isign=1 phase=2 litf=1 atb=0
+-4.7367	pi digits (base 10)	15530	1	1	seg0.12	300	kw=EMERGENCE isign=1 phase=1 litf=1 atb=0
+-4.7400	primes+1	11533	28	1	seg0.15	300	kw=THEPRIMESARESACRED isign=28 phase=1 litf=1 atb=0
+-4.7400	primes-1 (totient)	6633	1	0	seg0.14	300	kw=SACRED isign=28 phase=1 litf=1 atb=0
+-4.7433	pi digits (base 10)	4048	28	1	seg0.9	300	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-4.7467	phi digits (base 29)	328	1	1	seg0.15	300	kw=EMERGE isign=1 phase=5 litf=1 atb=0
+-4.7467	phi(n)	6857	1	0	seg0.7	300	kw=DECEPTION isign=1 phase=7 litf=1 atb=0
+-4.7500	sqrt2 digits (base 29)	15441	28	0	seg0.15	300	kw=TRUTH isign=1 phase=2 litf=1 atb=0
+-4.7500	primes	18980	28	1	seg0.15	300	kw=INTUS isign=1 phase=0 litf=1 atb=0
+-4.7500	primes from 3301	18517	28	1	seg0.15	300	kw=INTUS isign=1 phase=0 litf=1 atb=0
+-4.7633	sigma(n)	16762	1	1	seg0.15	300	kw=DIVINITY isign=1 phase=7 litf=1 atb=0
+-4.7767	sqrt2 digits (base 29)	13928	28	0	seg0.12	300	kw=THEPRIMESARESACRED isign=1 phase=6 litf=1 atb=0
+-4.7800	pi digits (base 29)	12102	1	0	seg0.12	300	kw=CONSUMPTION isign=28 phase=6 litf=1 atb=0
+-4.7800	phi(n)	13241	28	0	seg0.9	300	kw=INSTRUCTION isign=1 phase=1 litf=1 atb=0
+-4.7800	pi digits (base 29)	15511	1	1	seg0.13	300	kw=INSTRUCTION isign=1 phase=3 litf=1 atb=0
+-4.7800	phi digits (base 29)	13165	28	1	seg0.12	300	kw=WELCOME isign=1 phase=3 litf=1 atb=0
+-4.7867	phi(n)	7961	28	0	seg0.12	300	kw=TRUTH isign=28 phase=3 litf=1 atb=0
+-4.7933	pi digits (base 29)	4680	28	0	seg0.14	300	kw=FIRFUMFERENFE isign=1 phase=6 litf=1 atb=0
+-4.7933	phi(n)	18574	28	1	seg0.7	300	kw=ADHERENCE isign=1 phase=8 litf=1 atb=0
+-4.7967	phi digits (base 29)	1070	28	0	seg0.15	300	kw=FIRFUMFERENFE isign=28 phase=6 litf=1 atb=0
+-4.8067	primes+1	11533	28	1	seg0.15	300	kw=THEPRIMESARESACRED isign=28 phase=2 litf=1 atb=0
+-4.8067	cumulative prime sum	12763	28	1	seg0.14	300	kw=PRIMALITY isign=1 phase=7 litf=1 atb=0
+-4.8067	primes-1 (totient)	3548	1	0	seg0.11	300	kw=TRUTH isign=1 phase=0 litf=1 atb=0
+-4.8067	phi(n)	8442	1	0	seg0.13	300	kw=WELCOME isign=28 phase=3 litf=1 atb=0
+-4.8100	phi digits (base 29)	326	1	1	seg0.15	300	kw=EMERGE isign=1 phase=5 litf=1 atb=0
+-4.8233	primes from 3301	4392	28	0	seg0.9	300	kw=WARNING isign=1 phase=3 litf=1 atb=0
+-4.8233	sqrt2 digits (base 29)	13407	1	0	seg0.7	300	kw=SACRED isign=1 phase=1 litf=1 atb=0
+-4.8233	primes	4855	28	0	seg0.9	300	kw=WARNING isign=1 phase=3 litf=1 atb=0
+-4.8300	e digits (base 29)	7300	28	0	seg0.8	300	kw=EMERGE isign=28 phase=3 litf=1 atb=0
+-4.8333	pi digits (base 29)	10680	1	0	seg0.13	300	kw=SURFACE isign=1 phase=2 litf=1 atb=0
+-4.8333	e digits (base 29)	9311	28	1	seg0.12	300	kw=WARNING isign=1 phase=2 litf=1 atb=0
+-4.8367	phi(n)	8442	1	0	seg0.13	300	kw=WELCOME isign=28 phase=2 litf=1 atb=0
+-4.8400	e digits (base 10)	12395	1	1	seg0.13	300	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=0
+-4.8400	primes+1	1815	1	0	seg0.12	300	kw=EMERGE isign=1 phase=3 litf=1 atb=0
+-4.8433	phi(n)	3061	28	1	seg0.12	300	kw=ENLIGHTENED isign=28 phase=10 litf=1 atb=0
+-4.8467	primes+1	2016	1	1	seg0.13	300	kw=ENLIGHTENED isign=28 phase=0 litf=1 atb=0
+-4.8467	e digits (base 29)	4352	28	0	seg0.14	300	kw=INSTRUCTION isign=1 phase=5 litf=1 atb=0
+-4.8500	primes	9359	28	1	seg0.14	300	kw=LIBERPRIMUS isign=28 phase=4 litf=1 atb=0
+-4.8500	primes from 3301	8896	28	1	seg0.14	300	kw=LIBERPRIMUS isign=28 phase=4 litf=1 atb=0
+-4.8533	e digits (base 10)	774	28	0	seg0.13	300	kw=CIRCUMFERENCES isign=1 phase=12 litf=1 atb=0
+-4.8567	primes from 3301	18517	28	1	seg0.15	300	kw=INTUS isign=1 phase=1 litf=1 atb=0
+-4.8567	e digits (base 10)	774	28	0	seg0.13	300	kw=CIRCUMFERENCES isign=1 phase=13 litf=1 atb=0
+-4.8567	primes	18980	28	1	seg0.15	300	kw=INTUS isign=1 phase=1 litf=1 atb=0
+-4.8600	phi(n)	18576	28	1	seg0.7	300	kw=ADHERENCE isign=1 phase=8 litf=1 atb=0
+-4.8600	e digits (base 29)	4351	28	0	seg0.14	300	kw=INSTRUCTION isign=1 phase=4 litf=1 atb=0
+-4.8633	e digits (base 29)	9570	28	1	seg0.8	300	kw=CICADA isign=28 phase=1 litf=1 atb=0
+-4.8667	primes+1	1813	1	0	seg0.12	300	kw=EMERGE isign=1 phase=2 litf=1 atb=0
+-4.8700	pi digits (base 10)	14661	1	0	seg0.8	300	kw=CIRCUMFERENCES isign=1 phase=11 litf=1 atb=0
+-4.8733	e digits (base 29)	14550	1	1	seg0.15	300	kw=TRUTH isign=1 phase=2 litf=1 atb=0
+-4.8733	primes	14032	1	1	seg0.9	300	kw=THEPRIMESARESACRED isign=1 phase=4 litf=1 atb=0
+-4.8733	phi digits (base 29)	8865	1	0	seg0.14	300	kw=LIBERPRIMUS isign=1 phase=10 litf=1 atb=0
+-4.8733	primes from 3301	13569	1	1	seg0.9	300	kw=THEPRIMESARESACRED isign=1 phase=4 litf=1 atb=0
+-4.8733	phi digits (base 29)	4216	1	1	seg0.9	300	kw=AWARNING isign=1 phase=4 litf=1 atb=0
+-4.8767	phi(n)	16193	28	0	seg0.15	300	kw=SURFACE isign=28 phase=4 litf=1 atb=0
+-4.8800	cumulative prime sum	16477	1	0	seg0.13	300	kw=THEPRIMESARESACRED isign=1 phase=8 litf=1 atb=0
+-4.8833	sigma(n)	8922	1	0	seg0.11	300	kw=INTUS isign=28 phase=0 litf=1 atb=0
+-4.8867	primes from 3301	12112	1	1	seg0.9	300	kw=EMERGE isign=1 phase=4 litf=1 atb=0
+-4.8867	primes	12575	1	1	seg0.9	300	kw=EMERGE isign=1 phase=4 litf=1 atb=0
+-4.8867	phi(n)	15744	28	0	seg0.8	300	kw=SURFACE isign=1 phase=2 litf=1 atb=0
+-4.8900	sigma(n)	4088	1	0	seg0.11	300	kw=THEPRIMESARESACRED isign=1 phase=13 litf=1 atb=0
+-4.8900	sigma(n)	4089	1	0	seg0.11	300	kw=THEPRIMESARESACRED isign=1 phase=13 litf=1 atb=0
+-4.8900	phi(n)	3061	28	1	seg0.12	300	kw=ENLIGHTENED isign=28 phase=9 litf=1 atb=0
+-4.8933	primes+1	11535	28	1	seg0.15	300	kw=THEPRIMESARESACRED isign=28 phase=2 litf=1 atb=0
+-4.8933	phi digits (base 29)	17845	1	0	seg0.13	300	kw=PILGRIM isign=28 phase=1 litf=1 atb=0
+-4.8967	primes+1	17399	28	0	seg0.12	300	kw=PRESERVATION isign=28 phase=2 litf=1 atb=0
+-4.8967	pi digits (base 29)	7626	28	0	seg0.15	300	kw=EMERGE isign=1 phase=2 litf=1 atb=0
+-4.8967	sqrt2 digits (base 29)	13406	1	0	seg0.7	300	kw=SACRED isign=1 phase=1 litf=1 atb=0
+-4.8967	phi(n)	10188	1	0	seg0.12	300	kw=WARNING isign=28 phase=3 litf=1 atb=0
+-4.9000	primes from 3301	12925	1	1	seg0.14	300	kw=PRIMES isign=1 phase=2 litf=1 atb=0
+-4.9000	primes	13388	1	1	seg0.14	300	kw=PRIMES isign=1 phase=2 litf=1 atb=0
+-4.9033	primes+1	9594	1	1	seg0.14	300	kw=PRESERVATION isign=1 phase=2 litf=1 atb=0
+-4.9033	sqrt2 digits (base 29)	7790	1	0	seg0.11	300	kw=PRIMALITY isign=1 phase=2 litf=1 atb=0
+-4.9033	primes from 3301	8896	28	1	seg0.14	300	kw=LIBERPRIMUS isign=28 phase=5 litf=1 atb=0
+-4.9033	pi digits (base 10)	7141	1	0	seg0.11	300	kw=THEPRIMESARESACRED isign=1 phase=8 litf=1 atb=0
+-4.9033	primes	9359	28	1	seg0.14	300	kw=LIBERPRIMUS isign=28 phase=5 litf=1 atb=0
+-4.9033	phi(n)	3459	28	0	seg0.7	300	kw=PRESERVATION isign=1 phase=7 litf=1 atb=0
+-4.9067	phi(n)	8659	1	1	seg0.12	300	kw=DIVINITY isign=1 phase=6 litf=1 atb=0
+-4.9067	primes-1 (totient)	7134	1	0	seg0.7	300	kw=KOAN isign=1 phase=3 litf=1 atb=0
+-4.9067	primes-1 (totient)	5923	28	1	seg0.12	300	kw=THEPRIMESARESACRED isign=1 phase=6 litf=1 atb=0
+-4.9100	pi digits (base 29)	4669	1	1	seg0.12	300	kw=SACRED isign=1 phase=4 litf=1 atb=0
+-4.9100	sqrt2 digits (base 29)	3130	28	1	seg0.9	300	kw=CIRCUMFERENCE isign=28 phase=2 litf=1 atb=0
+-4.9133	primes-1 (totient)	16334	1	0	seg0.7	300	kw=CIRCUMFERENCE isign=1 phase=3 litf=1 atb=0
+-4.9133	pi digits (base 10)	1933	28	0	seg0.14	300	kw=SURFACE isign=1 phase=0 litf=1 atb=0
+-4.9167	primes+1	19039	28	0	seg0.15	300	kw=ADHERENCE isign=28 phase=0 litf=1 atb=0
+-4.9200	e digits (base 10)	7743	28	1	seg0.12	300	kw=FIRFUMFERENFE isign=1 phase=4 litf=1 atb=0
+-4.9200	pi digits (base 29)	4535	1	0	seg0.14	300	kw=PRIMALITY isign=1 phase=7 litf=1 atb=0
+-4.9200	phi(n)	18115	1	0	seg0.9	300	kw=INSTAR isign=28 phase=1 litf=1 atb=0
+-4.9200	phi digits (base 29)	2420	1	1	seg0.11	300	kw=DIVINITY isign=1 phase=7 litf=1 atb=0
+-4.9200	primes+1	17400	28	0	seg0.12	300	kw=PRESERVATION isign=28 phase=2 litf=1 atb=0
+-4.9233	primes-1 (totient)	16727	1	0	seg0.12	300	kw=AWARNING isign=28 phase=0 litf=1 atb=0
+-4.9233	phi digits (base 29)	5674	1	1	seg0.7	300	kw=CIRCUMFERENCE isign=1 phase=12 litf=1 atb=0
+-4.9233	sigma(n)	2124	28	0	seg0.11	300	kw=PRESERVATION isign=28 phase=6 litf=1 atb=0
+-4.9233	primes+1	7741	28	0	seg0.9	300	kw=CIRCUMFERENCE isign=28 phase=9 litf=1 atb=0
+-4.9267	pi digits (base 29)	1360	1	1	seg0.9	300	kw=TRUTH isign=1 phase=1 litf=1 atb=0
+-4.9300	primes	11638	28	1	seg0.7	300	kw=PRESERVATION isign=1 phase=10 litf=1 atb=0
+-4.9300	sqrt2 digits (base 29)	3130	28	1	seg0.9	300	kw=CIRCUMFERENCE isign=28 phase=3 litf=1 atb=0
+-4.9300	primes-1 (totient)	15174	1	0	seg0.9	300	kw=THEPRIMESARESACRED isign=1 phase=12 litf=1 atb=0
+-4.9300	primes from 3301	11175	28	1	seg0.7	300	kw=PRESERVATION isign=1 phase=10 litf=1 atb=0
+-4.9300	phi digits (base 29)	14741	28	1	seg0.15	300	kw=EMERGE isign=28 phase=3 litf=1 atb=0
+-4.9300	pi digits (base 10)	12518	28	0	seg0.13	300	kw=DECEPTION isign=28 phase=6 litf=1 atb=0
+-4.9300	primes+1	1814	1	0	seg0.12	300	kw=EMERGE isign=1 phase=2 litf=1 atb=0
+-4.9333	sigma(n)	256	28	0	seg0.14	300	kw=EMERGENCE isign=1 phase=2 litf=1 atb=0
+-4.9367	sigma(n)	10066	28	1	seg0.13	300	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=0
+-4.9367	phi digits (base 29)	8864	1	0	seg0.14	300	kw=LIBERPRIMUS isign=1 phase=10 litf=1 atb=0
+-4.9400	primes+1	13189	1	0	seg0.14	300	kw=CONSUMPTION isign=28 phase=9 litf=1 atb=0
+-4.9400	sqrt2 digits (base 29)	16204	28	0	seg0.7	300	kw=WARNING isign=28 phase=3 litf=1 atb=0
+-4.9400	cumulative prime sum	2074	1	0	seg0.9	300	kw=EMERGE isign=1 phase=2 litf=1 atb=0
+-4.9400	sqrt2 digits (base 29)	8942	1	1	seg0.8	300	kw=INSTRUCTION isign=28 phase=5 litf=1 atb=0
+-4.9400	e digits (base 29)	5580	1	0	seg0.8	300	kw=ADHERENCE isign=1 phase=6 litf=1 atb=0
+-4.9433	primes-1 (totient)	8562	1	0	seg0.8	300	kw=CONSUMPTION isign=1 phase=2 litf=1 atb=0
+-4.9433	primes-1 (totient)	14700	1	1	seg0.14	300	kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=0
+-4.9433	primes-1 (totient)	16233	1	0	seg0.15	300	kw=WARNING isign=1 phase=2 litf=1 atb=0
+-4.9433	phi digits (base 29)	4218	1	1	seg0.9	300	kw=AWARNING isign=1 phase=4 litf=1 atb=0
+-4.9467	cumulative prime sum	10315	28	0	seg0.14	300	kw=FIRFUMFERENFE isign=1 phase=9 litf=1 atb=0
+-4.9467	primes+1	19039	28	0	seg0.15	300	kw=ADHERENCE isign=28 phase=8 litf=1 atb=0
+-4.9467	pi digits (base 10)	11032	28	1	seg0.7	300	kw=PRESERVATION isign=1 phase=2 litf=1 atb=0
+-4.9467	pi digits (base 10)	3250	1	0	seg0.12	300	kw=WELCOME isign=1 phase=1 litf=1 atb=0
+-4.9500	phi digits (base 29)	7878	28	0	seg0.15	300	kw=WARNING isign=1 phase=4 litf=1 atb=0
+-4.9500	cumulative prime sum	3799	1	0	seg0.11	300	kw=CIRCUMFERENCES isign=1 phase=5 litf=1 atb=0
+-4.9500	pi digits (base 29)	11909	28	0	seg0.14	300	kw=INSTRUCTION isign=1 phase=10 litf=1 atb=0
+-4.9500	sigma(n)	13820	1	1	seg0.13	300	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-4.9533	sigma(n)	7883	28	1	seg0.8	300	kw=DIVINITY isign=1 phase=2 litf=1 atb=0
+-4.9567	primes	16588	28	0	seg0.11	300	kw=CIRCUMFERENCES isign=1 phase=8 litf=1 atb=0
+-4.9567	primes from 3301	16125	28	0	seg0.11	300	kw=CIRCUMFERENCES isign=1 phase=8 litf=1 atb=0
+-4.9567	pi digits (base 10)	10526	1	0	seg0.12	300	kw=THEPRIMESARESACRED isign=1 phase=10 litf=1 atb=0
+-4.9567	primes-1 (totient)	4408	28	1	seg0.13	300	kw=THEPRIMESARESACRED isign=1 phase=6 litf=1 atb=0
+-4.9567	e digits (base 29)	4352	28	0	seg0.14	300	kw=INSTRUCTION isign=1 phase=4 litf=1 atb=0
+-4.9567	sigma(n)	2125	28	0	seg0.11	300	kw=PRESERVATION isign=28 phase=6 litf=1 atb=0
+-4.9600	pi digits (base 29)	4428	1	1	seg0.7	300	kw=PRESERVATION isign=1 phase=11 litf=1 atb=0
+-4.9600	primes-1 (totient)	15173	1	0	seg0.9	300	kw=THEPRIMESARESACRED isign=1 phase=12 litf=1 atb=0
+-4.9633	cumulative prime sum	3023	1	1	seg0.13	300	kw=TOTIENT isign=28 phase=3 litf=1 atb=0
+-4.9667	primes-1 (totient)	299	28	0	seg0.7	300	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=0
+-4.9667	e digits (base 29)	17994	28	0	seg0.11	300	kw=PRIMES isign=1 phase=2 litf=1 atb=0
+-4.9667	sqrt2 digits (base 29)	5056	28	1	seg0.11	300	kw=INSTRUCTION isign=28 phase=6 litf=1 atb=0
+-4.9700	cumulative prime sum	7206	1	0	seg0.7	300	kw=EMERGENCE isign=28 phase=4 litf=1 atb=0
+-4.9700	pi digits (base 10)	14661	1	0	seg0.8	300	kw=CIRCUMFERENCES isign=1 phase=12 litf=1 atb=0
+-4.9733	phi digits (base 29)	15027	28	1	seg0.13	300	kw=THEPRIMESARESACRED isign=1 phase=4 litf=1 atb=0
+-4.9733	sigma(n)	7834	28	1	seg0.12	300	kw=EMERGENCE isign=28 phase=4 litf=1 atb=0
+-4.9733	phi(n)	7764	1	1	seg0.14	300	kw=CIRCUMFERENCE isign=28 phase=5 litf=1 atb=0
+-4.9767	primes-1 (totient)	17248	1	0	seg0.14	300	kw=WELCOME isign=1 phase=3 litf=1 atb=0
+-4.9800	primes from 3301	3770	28	1	seg0.12	300	kw=TOTIENT isign=1 phase=4 litf=1 atb=0
+-4.9800	primes	4233	28	1	seg0.12	300	kw=TOTIENT isign=1 phase=4 litf=1 atb=0
+-4.9800	sigma(n)	13433	1	0	seg0.14	300	kw=CONSUMPTION isign=1 phase=0 litf=1 atb=0
+-4.9800	primes+1	13189	1	0	seg0.14	300	kw=CONSUMPTION isign=28 phase=10 litf=1 atb=0
+-4.9833	phi(n)	13241	28	0	seg0.9	300	kw=INSTRUCTION isign=1 phase=3 litf=1 atb=0
+-4.9833	phi(n)	4765	28	1	seg0.9	300	kw=CICADA isign=1 phase=2 litf=1 atb=0
+-4.9833	e digits (base 10)	7176	1	0	seg0.11	300	kw=INSTAR isign=1 phase=5 litf=1 atb=0
+-4.9833	phi digits (base 29)	8863	1	0	seg0.14	300	kw=LIBERPRIMUS isign=1 phase=1 litf=1 atb=0
+-4.9867	primes+1	2592	1	1	seg0.9	300	kw=CIRCUMFERENCES isign=1 phase=1 litf=1 atb=0
+-4.9867	pi digits (base 29)	10393	28	0	seg0.14	300	kw=PARABLE isign=1 phase=5 litf=1 atb=0
+-4.9867	e digits (base 29)	6938	1	1	seg0.9	300	kw=ADHERENCE isign=1 phase=7 litf=1 atb=0
+-4.9867	cumulative prime sum	3023	1	1	seg0.13	300	kw=TOTIENT isign=28 phase=4 litf=1 atb=0
+-4.9867	pi digits (base 29)	4972	1	0	seg0.12	300	kw=INTUS isign=1 phase=2 litf=1 atb=0
+-4.9867	e digits (base 10)	7743	28	1	seg0.12	300	kw=FIRFUMFERENFE isign=1 phase=3 litf=1 atb=0
+-4.9900	primes+1	2352	28	1	seg0.12	300	kw=PRIMALITY isign=1 phase=8 litf=1 atb=0
+-4.9900	primes from 3301	1186	1	0	seg0.11	300	kw=SURFACE isign=28 phase=4 litf=1 atb=0
+-4.9900	primes from 3301	10675	1	1	seg0.15	300	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-4.9900	primes-1 (totient)	18820	1	0	seg0.14	300	kw=FIRFUMFERENFE isign=28 phase=5 litf=1 atb=0
+-4.9900	primes	11138	1	1	seg0.15	300	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-4.9900	pi digits (base 29)	13735	1	1	seg0.14	300	kw=TRUTH isign=1 phase=0 litf=1 atb=0
+-4.9900	e digits (base 10)	17393	1	1	seg0.14	300	kw=CIRCUMFERENCE isign=1 phase=5 litf=1 atb=0
+-4.9900	primes	1649	1	0	seg0.11	300	kw=SURFACE isign=28 phase=4 litf=1 atb=0
+-4.9933	pi digits (base 10)	13030	28	0	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-4.9933	cumulative prime sum	11483	28	1	seg0.9	300	kw=ADHERENCE isign=1 phase=4 litf=1 atb=0
+-4.9933	primes+1	10017	28	0	seg0.11	300	kw=TRUTH isign=1 phase=0 litf=1 atb=0
+-4.9933	pi digits (base 29)	19228	28	1	seg0.7	300	kw=INSTRUCTION isign=1 phase=8 litf=1 atb=0
+-4.9967	primes	7829	1	0	seg0.13	300	kw=CIRCUMFERENCES isign=1 phase=2 litf=1 atb=0
+-4.9967	e digits (base 29)	5579	1	0	seg0.8	300	kw=ADHERENCE isign=1 phase=7 litf=1 atb=0
+-4.9967	primes from 3301	7366	1	0	seg0.13	300	kw=CIRCUMFERENCES isign=1 phase=2 litf=1 atb=0
+-4.9967	cumulative prime sum	6724	1	0	seg0.15	300	kw=LIBERPRIMUS isign=1 phase=6 litf=1 atb=0
+-4.9967	sigma(n)	3306	28	0	seg0.9	300	kw=PARABLE isign=1 phase=0 litf=1 atb=0
+-4.9967	sqrt2 digits (base 29)	3484	1	1	seg0.14	300	kw=INTUS isign=28 phase=3 litf=1 atb=0
+-5.0000	cumulative prime sum	6353	1	1	seg0.15	300	kw=INTUS isign=28 phase=1 litf=1 atb=0
+-5.0000	primes from 3301	1683	1	0	seg0.15	300	kw=THEPRIMESARESACRED isign=28 phase=16 litf=1 atb=0
+-5.0000	primes	2146	1	0	seg0.15	300	kw=THEPRIMESARESACRED isign=28 phase=16 litf=1 atb=0
+-5.0000	pi digits (base 10)	7063	1	0	seg0.13	300	kw=CIRCUMFERENCES isign=28 phase=4 litf=1 atb=0
+-5.0000	primes+1	4632	28	0	seg0.7	300	kw=PRIMALITY isign=1 phase=7 litf=1 atb=0
+-5.0033	cumulative prime sum	3025	1	1	seg0.13	300	kw=TOTIENT isign=28 phase=3 litf=1 atb=0
+-5.0033	phi(n)	8163	1	0	seg0.12	300	kw=INSTAR isign=28 phase=0 litf=1 atb=0
+-5.0033	cumulative prime sum	2073	1	0	seg0.9	300	kw=EMERGE isign=1 phase=2 litf=1 atb=0
+-5.0033	pi digits (base 29)	18315	1	0	seg0.9	300	kw=PARABLE isign=28 phase=5 litf=1 atb=0
+-5.0033	pi digits (base 29)	18316	1	0	seg0.9	300	kw=PARABLE isign=28 phase=5 litf=1 atb=0
+-5.0033	phi digits (base 29)	6835	28	1	seg0.9	300	kw=WARNING isign=1 phase=0 litf=1 atb=0
+-5.0067	phi(n)	6879	28	0	seg0.15	300	kw=ENLIGHTENED isign=1 phase=8 litf=1 atb=0
+-5.0067	sqrt2 digits (base 29)	16713	28	1	seg0.8	300	kw=EMERGE isign=1 phase=2 litf=1 atb=0
+-5.0067	sqrt2 digits (base 29)	7109	28	0	seg0.12	300	kw=AWARNING isign=1 phase=2 litf=1 atb=0
+-5.0067	cumulative prime sum	10313	28	0	seg0.14	300	kw=FIRFUMFERENFE isign=1 phase=9 litf=1 atb=0
+-5.0100	phi(n)	3460	28	0	seg0.7	300	kw=PRESERVATION isign=1 phase=8 litf=1 atb=0
+-5.0100	phi(n)	9003	28	0	seg0.12	300	kw=KOAN isign=28 phase=3 litf=1 atb=0
+-5.0100	phi digits (base 29)	8864	1	0	seg0.14	300	kw=LIBERPRIMUS isign=1 phase=0 litf=1 atb=0
+-5.0100	pi digits (base 10)	4622	1	0	seg0.13	300	kw=CICADA isign=1 phase=5 litf=1 atb=0
+-5.0100	phi(n)	13378	1	1	seg0.13	300	kw=WELCOME isign=1 phase=5 litf=1 atb=0
+-5.0133	primes	11136	1	1	seg0.15	300	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.0133	cumulative prime sum	8167	1	0	seg0.13	300	kw=TOTIENT isign=28 phase=3 litf=1 atb=0
+-5.0133	primes from 3301	10673	1	1	seg0.15	300	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.0133	sqrt2 digits (base 29)	7109	28	0	seg0.12	300	kw=AWARNING isign=1 phase=3 litf=1 atb=0
+-5.0133	primes+1	1814	1	0	seg0.12	300	kw=EMERGE isign=1 phase=1 litf=1 atb=0
+-5.0133	e digits (base 10)	11309	28	1	seg0.15	300	kw=WISDOM isign=28 phase=3 litf=1 atb=0
+-5.0167	sigma(n)	12792	1	1	seg0.12	300	kw=LIBERPRIMUS isign=1 phase=5 litf=1 atb=0
+-5.0167	primes from 3301	4393	28	0	seg0.9	300	kw=WARNING isign=1 phase=4 litf=1 atb=0
+-5.0167	sigma(n)	12790	1	1	seg0.12	300	kw=LIBERPRIMUS isign=1 phase=5 litf=1 atb=0
+-5.0167	primes+1	11535	28	1	seg0.15	300	kw=THEPRIMESARESACRED isign=28 phase=3 litf=1 atb=0
+-5.0167	primes	4856	28	0	seg0.9	300	kw=WARNING isign=1 phase=4 litf=1 atb=0
+-5.0167	sigma(n)	16872	28	1	seg0.15	300	kw=ENLIGHTENED isign=1 phase=5 litf=1 atb=0
+-5.0167	phi(n)	15267	28	0	seg0.14	300	kw=LIBERPRIMUS isign=1 phase=1 litf=1 atb=0
+-5.0167	pi digits (base 10)	7064	1	0	seg0.13	300	kw=CIRCUMFERENCES isign=28 phase=6 litf=1 atb=0
+-5.0167	sqrt2 digits (base 29)	15913	28	1	seg0.12	300	kw=PILGRIM isign=1 phase=0 litf=1 atb=0
+-5.0200	phi digits (base 29)	15484	28	1	seg0.9	300	kw=THEPRIMESARESACRED isign=1 phase=13 litf=1 atb=0
+-5.0200	primes+1	9594	1	1	seg0.14	300	kw=PRESERVATION isign=1 phase=3 litf=1 atb=0
+-5.0200	e digits (base 29)	6936	1	1	seg0.9	300	kw=ADHERENCE isign=1 phase=7 litf=1 atb=0
+-5.0200	pi digits (base 10)	12517	28	0	seg0.13	300	kw=DECEPTION isign=28 phase=5 litf=1 atb=0
+-5.0233	primes	19239	28	1	seg0.13	300	kw=PRESERVATION isign=1 phase=8 litf=1 atb=0
+-5.0233	primes	8704	1	1	seg0.9	300	kw=EMERGE isign=1 phase=0 litf=1 atb=0
+-5.0233	primes from 3301	8241	1	1	seg0.9	300	kw=EMERGE isign=1 phase=0 litf=1 atb=0
+-5.0233	primes from 3301	18776	28	1	seg0.13	300	kw=PRESERVATION isign=1 phase=8 litf=1 atb=0
+-5.0233	phi digits (base 29)	5356	1	0	seg0.15	300	kw=WARNING isign=1 phase=2 litf=1 atb=0
+-5.0233	phi(n)	13378	1	1	seg0.13	300	kw=WELCOME isign=1 phase=4 litf=1 atb=0
+-5.0267	e digits (base 29)	8350	28	1	seg0.14	300	kw=SACRED isign=28 phase=2 litf=1 atb=0
+-5.0267	primes-1 (totient)	15222	1	0	seg0.14	300	kw=WISDOM isign=1 phase=0 litf=1 atb=0
+-5.0300	primes+1	19452	28	1	seg0.7	300	kw=PRESERVATION isign=28 phase=0 litf=1 atb=0
+-5.0300	e digits (base 29)	10254	28	0	seg0.7	300	kw=LIBERPRIMUS isign=28 phase=6 litf=1 atb=0
+-5.0300	e digits (base 29)	14739	1	0	seg0.11	300	kw=THEPRIMESARESACRED isign=1 phase=15 litf=1 atb=0
+-5.0300	sqrt2 digits (base 29)	16203	28	0	seg0.7	300	kw=WARNING isign=28 phase=3 litf=1 atb=0
+-5.0300	cumulative prime sum	17998	28	0	seg0.14	300	kw=CONSUMPTION isign=1 phase=10 litf=1 atb=0
+-5.0333	sqrt2 digits (base 29)	16203	28	0	seg0.7	300	kw=WARNING isign=28 phase=4 litf=1 atb=0
+-5.0333	cumulative prime sum	14492	1	0	seg0.13	300	kw=PRESERVATION isign=28 phase=8 litf=1 atb=0
+-5.0367	primes from 3301	14469	28	1	seg0.9	300	kw=FIRFUMFERENFE isign=1 phase=3 litf=1 atb=0
+-5.0367	sigma(n)	11106	1	1	seg0.15	300	kw=CIRCUMFERENCE isign=1 phase=7 litf=1 atb=0
+-5.0367	primes	9621	28	0	seg0.14	300	kw=SACRED isign=1 phase=4 litf=1 atb=0
+-5.0367	primes	14932	28	1	seg0.9	300	kw=FIRFUMFERENFE isign=1 phase=3 litf=1 atb=0
+-5.0367	e digits (base 10)	3884	1	0	seg0.8	300	kw=CIRCUMFERENCES isign=28 phase=13 litf=1 atb=0
+-5.0367	primes	2146	1	0	seg0.15	300	kw=THEPRIMESARESACRED isign=28 phase=0 litf=1 atb=0
+-5.0367	cumulative prime sum	3023	1	1	seg0.13	300	kw=TOTIENT isign=28 phase=2 litf=1 atb=0
+-5.0367	e digits (base 10)	12666	28	0	seg0.15	300	kw=CIRCUMFERENCES isign=1 phase=8 litf=1 atb=0
+-5.0367	primes from 3301	1683	1	0	seg0.15	300	kw=THEPRIMESARESACRED isign=28 phase=0 litf=1 atb=0
+-5.0367	primes+1	10651	1	1	seg0.11	300	kw=CIRCUMFERENCES isign=1 phase=8 litf=1 atb=0
+-5.0367	primes from 3301	9158	28	0	seg0.14	300	kw=SACRED isign=1 phase=4 litf=1 atb=0
+-5.0400	phi(n)	10131	28	0	seg0.14	300	kw=TRUTH isign=28 phase=3 litf=1 atb=0
+-5.0400	primes from 3301	16146	1	1	seg0.12	300	kw=TOTIENT isign=28 phase=1 litf=1 atb=0
+-5.0400	primes	5489	28	0	seg0.7	300	kw=AWARNING isign=28 phase=4 litf=1 atb=0
+-5.0400	primes from 3301	5026	28	0	seg0.7	300	kw=AWARNING isign=28 phase=4 litf=1 atb=0
+-5.0400	e digits (base 10)	7176	1	0	seg0.11	300	kw=INSTAR isign=1 phase=0 litf=1 atb=0
+-5.0400	primes-1 (totient)	16482	1	0	seg0.9	300	kw=DIVINITY isign=1 phase=2 litf=1 atb=0
+-5.0400	e digits (base 29)	270	28	1	seg0.12	300	kw=WISDOM isign=1 phase=5 litf=1 atb=0
+-5.0400	primes	16609	1	1	seg0.12	300	kw=TOTIENT isign=28 phase=1 litf=1 atb=0
+-5.0400	phi(n)	528	28	0	seg0.14	300	kw=AWARNING isign=28 phase=3 litf=1 atb=0
+-5.0433	phi digits (base 29)	6411	28	0	seg0.15	300	kw=CIRCUMFERENCE isign=1 phase=8 litf=1 atb=0
+-5.0433	primes+1	4517	28	1	seg0.8	300	kw=PRESERVATION isign=1 phase=0 litf=1 atb=0
+-5.0433	primes from 3301	9291	28	1	seg0.15	300	kw=WISDOM isign=28 phase=3 litf=1 atb=0
+-5.0433	sqrt2 digits (base 29)	13628	1	0	seg0.14	300	kw=ENLIGHTENED isign=28 phase=1 litf=1 atb=0
+-5.0433	sqrt2 digits (base 29)	2164	1	0	seg0.12	300	kw=PRIMES isign=1 phase=1 litf=1 atb=0
+-5.0433	primes	9754	28	1	seg0.15	300	kw=WISDOM isign=28 phase=3 litf=1 atb=0
+-5.0467	cumulative prime sum	18118	28	0	seg0.8	300	kw=SACRED isign=28 phase=4 litf=1 atb=0
+-5.0467	primes	2146	1	0	seg0.15	300	kw=THEPRIMESARESACRED isign=28 phase=1 litf=1 atb=0
+-5.0467	pi digits (base 10)	12518	28	0	seg0.13	300	kw=DECEPTION isign=28 phase=5 litf=1 atb=0
+-5.0467	primes from 3301	1683	1	0	seg0.15	300	kw=THEPRIMESARESACRED isign=28 phase=1 litf=1 atb=0
+-5.0467	pi digits (base 29)	6843	1	0	seg0.12	300	kw=PRESERVATION isign=28 phase=7 litf=1 atb=0
+-5.0500	phi(n)	3460	28	0	seg0.7	300	kw=PRESERVATION isign=1 phase=7 litf=1 atb=0
+-5.0500	sqrt2 digits (base 29)	14356	1	0	seg0.9	300	kw=DECEPTION isign=28 phase=0 litf=1 atb=0
+-5.0500	primes+1	11535	28	1	seg0.15	300	kw=THEPRIMESARESACRED isign=28 phase=1 litf=1 atb=0
+-5.0500	primes-1 (totient)	15254	28	1	seg0.13	300	kw=FIRFUMFERENFE isign=1 phase=8 litf=1 atb=0
+-5.0500	primes	8704	1	1	seg0.9	300	kw=EMERGE isign=1 phase=5 litf=1 atb=0
+-5.0500	e digits (base 29)	12540	1	0	seg0.13	300	kw=CIRCUMFERENCES isign=1 phase=8 litf=1 atb=0
+-5.0500	sqrt2 digits (base 29)	5172	1	0	seg0.7	300	kw=DECEPTION isign=1 phase=5 litf=1 atb=0
+-5.0500	primes from 3301	8241	1	1	seg0.9	300	kw=EMERGE isign=1 phase=5 litf=1 atb=0
+-5.0500	phi(n)	2795	1	0	seg0.14	300	kw=ENLIGHTENED isign=1 phase=5 litf=1 atb=0
+-5.0500	phi digits (base 29)	7633	28	1	seg0.11	300	kw=PRIMES isign=1 phase=0 litf=1 atb=0
+-5.0533	phi(n)	9833	1	0	seg0.7	300	kw=CIRCUMFERENCES isign=1 phase=12 litf=1 atb=0
+-5.0533	sqrt2 digits (base 29)	3484	1	1	seg0.14	300	kw=INTUS isign=28 phase=4 litf=1 atb=0
+-5.0533	sqrt2 digits (base 29)	16824	28	0	seg0.14	300	kw=SURFACE isign=1 phase=0 litf=1 atb=0
+-5.0533	cumulative prime sum	2074	1	0	seg0.9	300	kw=EMERGE isign=1 phase=3 litf=1 atb=0
+-5.0533	sqrt2 digits (base 29)	13235	1	1	seg0.14	300	kw=ADHERENCE isign=28 phase=1 litf=1 atb=0
+-5.0567	e digits (base 29)	1738	28	0	seg0.7	300	kw=DIVINITY isign=1 phase=6 litf=1 atb=0
+-5.0567	phi digits (base 29)	17071	28	0	seg0.15	300	kw=INSTAR isign=1 phase=4 litf=1 atb=0
+-5.0567	phi digits (base 29)	11704	1	1	seg0.15	300	kw=LIBERPRIMUS isign=1 phase=0 litf=1 atb=0
+-5.0567	phi digits (base 29)	3919	1	0	seg0.15	300	kw=PRIMALITY isign=1 phase=7 litf=1 atb=0
+-5.0600	cumulative prime sum	17998	28	0	seg0.14	300	kw=CONSUMPTION isign=1 phase=9 litf=1 atb=0
+-5.0600	primes	7271	28	1	seg0.9	300	kw=SACRED isign=1 phase=5 litf=1 atb=0
+-5.0600	primes	912	28	1	seg0.12	300	kw=EMERGE isign=1 phase=5 litf=1 atb=0
+-5.0600	primes from 3301	449	28	1	seg0.12	300	kw=EMERGE isign=1 phase=5 litf=1 atb=0
+-5.0600	primes from 3301	6808	28	1	seg0.9	300	kw=SACRED isign=1 phase=5 litf=1 atb=0
+-5.0600	e digits (base 10)	7745	28	1	seg0.12	300	kw=FIRFUMFERENFE isign=1 phase=3 litf=1 atb=0
+-5.0600	sqrt2 digits (base 29)	17955	1	0	seg0.13	300	kw=ADHERENCE isign=28 phase=3 litf=1 atb=0
+-5.0633	e digits (base 10)	1642	28	1	seg0.8	300	kw=CONSUMPTION isign=1 phase=4 litf=1 atb=0
+-5.0633	sqrt2 digits (base 29)	7109	28	0	seg0.12	300	kw=AWARNING isign=1 phase=1 litf=1 atb=0
+-5.0633	pi digits (base 29)	8646	28	0	seg0.15	300	kw=WISDOM isign=28 phase=3 litf=1 atb=0
+-5.0633	e digits (base 29)	4349	28	0	seg0.14	300	kw=INSTRUCTION isign=1 phase=4 litf=1 atb=0
+-5.0633	e digits (base 29)	4350	28	0	seg0.14	300	kw=INSTRUCTION isign=1 phase=4 litf=1 atb=0
+-5.0667	pi digits (base 29)	4089	1	0	seg0.15	300	kw=CICADA isign=1 phase=3 litf=1 atb=0
+-5.0667	cumulative prime sum	7583	28	1	seg0.8	300	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=0
+-5.0667	sqrt2 digits (base 29)	9023	28	0	seg0.14	300	kw=CIRCUMFERENCE isign=1 phase=4 litf=1 atb=0
+-5.0667	e digits (base 29)	1739	28	0	seg0.7	300	kw=DIVINITY isign=1 phase=6 litf=1 atb=0
+-5.0667	cumulative prime sum	11982	28	0	seg0.11	300	kw=FIRFUMFERENFE isign=28 phase=7 litf=1 atb=0
+-5.0667	phi(n)	5797	1	0	seg0.12	300	kw=INSTRUCTION isign=28 phase=6 litf=1 atb=0
+-5.0667	sqrt2 digits (base 29)	15369	28	1	seg0.11	300	kw=ADHERENCE isign=1 phase=8 litf=1 atb=0
+-5.0667	e digits (base 10)	775	28	0	seg0.13	300	kw=CIRCUMFERENCES isign=1 phase=0 litf=1 atb=0
+-5.0667	primes+1	8438	28	1	seg0.7	300	kw=CICADA isign=1 phase=2 litf=1 atb=0
+-5.0700	sigma(n)	3637	28	1	seg0.8	300	kw=SACRED isign=1 phase=4 litf=1 atb=0
+-5.0700	pi digits (base 29)	17449	1	1	seg0.7	300	kw=PARABLE isign=1 phase=3 litf=1 atb=0
+-5.0700	pi digits (base 29)	2759	28	0	seg0.12	300	kw=THEPRIMESARESACRED isign=28 phase=8 litf=1 atb=0
+-5.0700	pi digits (base 29)	14565	28	0	seg0.9	300	kw=WARNING isign=28 phase=3 litf=1 atb=0
+-5.0700	e digits (base 29)	7091	1	1	seg0.11	300	kw=EMERGENCE isign=1 phase=2 litf=1 atb=0
+-5.0700	cumulative prime sum	3799	1	0	seg0.11	300	kw=CIRCUMFERENCES isign=1 phase=3 litf=1 atb=0
+-5.0700	pi digits (base 29)	16303	1	1	seg0.9	300	kw=INSTRUCTION isign=1 phase=3 litf=1 atb=0
+-5.0733	primes from 3301	18643	28	1	seg0.13	300	kw=LIBERPRIMUS isign=1 phase=3 litf=1 atb=0
+-5.0733	pi digits (base 29)	8878	1	1	seg0.7	300	kw=CIRCUMFERENCE isign=1 phase=5 litf=1 atb=0
+-5.0733	sigma(n)	16280	1	0	seg0.11	300	kw=EMERGE isign=1 phase=0 litf=1 atb=0
+-5.0733	sigma(n)	7834	28	1	seg0.12	300	kw=EMERGENCE isign=28 phase=3 litf=1 atb=0
+-5.0733	cumulative prime sum	3801	1	0	seg0.11	300	kw=CIRCUMFERENCES isign=1 phase=1 litf=1 atb=0
+-5.0733	phi digits (base 29)	4220	1	1	seg0.9	300	kw=AWARNING isign=1 phase=4 litf=1 atb=0
+-5.0733	e digits (base 10)	16649	1	1	seg0.12	300	kw=CICADA isign=1 phase=0 litf=1 atb=0
+-5.0733	primes	19106	28	1	seg0.13	300	kw=LIBERPRIMUS isign=1 phase=3 litf=1 atb=0
+-5.0733	primes-1 (totient)	1301	1	1	seg0.7	300	kw=ENLIGHTENED isign=1 phase=4 litf=1 atb=0
+-5.0767	phi(n)	7764	1	1	seg0.14	300	kw=CIRCUMFERENCE isign=28 phase=7 litf=1 atb=0
+-5.0767	primes+1	2149	28	0	seg0.14	300	kw=EMERGENCE isign=28 phase=7 litf=1 atb=0
+-5.0767	primes from 3301	9289	28	1	seg0.15	300	kw=WISDOM isign=28 phase=3 litf=1 atb=0
+-5.0767	primes	9752	28	1	seg0.15	300	kw=WISDOM isign=28 phase=3 litf=1 atb=0
+-5.0767	phi(n)	3460	28	0	seg0.7	300	kw=PRESERVATION isign=1 phase=9 litf=1 atb=0
+-5.0767	primes+1	3385	28	1	seg0.15	300	kw=TRUTH isign=1 phase=2 litf=1 atb=0
+-5.0767	primes+1	10649	1	1	seg0.11	300	kw=CIRCUMFERENCES isign=1 phase=8 litf=1 atb=0
+-5.0767	pi digits (base 29)	17821	1	1	seg0.15	300	kw=INSTRUCTION isign=1 phase=5 litf=1 atb=0
+-5.0767	phi(n)	4233	1	1	seg0.9	300	kw=SACRED isign=1 phase=2 litf=1 atb=0
+-5.0800	sqrt2 digits (base 29)	5173	1	0	seg0.7	300	kw=DECEPTION isign=1 phase=5 litf=1 atb=0
+-5.0800	e digits (base 10)	19029	1	0	seg0.11	300	kw=CIRCUMFERENCES isign=1 phase=4 litf=1 atb=0
+-5.0800	phi digits (base 29)	5417	28	1	seg0.11	300	kw=THEPRIMESARESACRED isign=28 phase=5 litf=1 atb=0
+-5.0800	e digits (base 29)	3311	28	0	seg0.12	300	kw=KOAN isign=1 phase=1 litf=1 atb=0
+-5.0800	phi(n)	4233	1	1	seg0.9	300	kw=SACRED isign=1 phase=1 litf=1 atb=0
+-5.0800	primes+1	5316	28	0	seg0.9	300	kw=KOAN isign=28 phase=1 litf=1 atb=0
+-5.0800	e digits (base 29)	2717	1	1	seg0.8	300	kw=DECEPTION isign=1 phase=4 litf=1 atb=0
+-5.0800	primes-1 (totient)	17247	1	0	seg0.14	300	kw=WELCOME isign=1 phase=3 litf=1 atb=0
+-5.0800	sigma(n)	4493	28	0	seg0.11	300	kw=LIBERPRIMUS isign=1 phase=8 litf=1 atb=0
+-5.0833	pi digits (base 10)	3891	1	0	seg0.12	300	kw=ADHERENCE isign=1 phase=6 litf=1 atb=0
+-5.0833	primes-1 (totient)	19460	1	0	seg0.11	300	kw=INTUS isign=1 phase=1 litf=1 atb=0
+-5.0833	primes from 3301	19579	1	0	seg0.15	300	kw=INSTRUCTION isign=28 phase=1 litf=1 atb=0
+-5.0833	pi digits (base 29)	10809	1	0	seg0.7	300	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-5.0833	cumulative prime sum	16842	1	0	seg0.12	300	kw=LIBERPRIMUS isign=28 phase=1 litf=1 atb=0
+-5.0833	e digits (base 29)	8837	1	0	seg0.11	300	kw=EMERGE isign=1 phase=5 litf=1 atb=0
+-5.0833	sqrt2 digits (base 29)	5174	1	0	seg0.7	300	kw=DECEPTION isign=1 phase=5 litf=1 atb=0
+-5.0833	sqrt2 digits (base 29)	11407	28	0	seg0.8	300	kw=DECEPTION isign=1 phase=3 litf=1 atb=0
+-5.0833	pi digits (base 10)	10526	1	0	seg0.12	300	kw=THEPRIMESARESACRED isign=1 phase=9 litf=1 atb=0
+-5.0833	e digits (base 29)	6130	28	0	seg0.13	300	kw=EMERGE isign=28 phase=3 litf=1 atb=0
+-5.0867	phi(n)	11169	28	1	seg0.7	300	kw=DECEPTION isign=1 phase=5 litf=1 atb=0
+-5.0867	phi digits (base 29)	7049	28	1	seg0.13	300	kw=CIRCUMFERENCES isign=28 phase=7 litf=1 atb=0
+-5.0867	pi digits (base 10)	18617	28	0	seg0.14	300	kw=TOTIENT isign=1 phase=6 litf=1 atb=0
+-5.0867	pi digits (base 10)	18618	28	0	seg0.14	300	kw=TOTIENT isign=1 phase=6 litf=1 atb=0
+-5.0867	sqrt2 digits (base 29)	2401	28	0	seg0.13	300	kw=CIRCUMFERENCE isign=28 phase=2 litf=1 atb=0
+-5.0867	phi digits (base 29)	11704	1	1	seg0.15	300	kw=LIBERPRIMUS isign=1 phase=1 litf=1 atb=0
+-5.0867	primes+1	8901	1	1	seg0.14	300	kw=PILGRIM isign=28 phase=2 litf=1 atb=0
+-5.0867	cumulative prime sum	7560	28	0	seg0.13	300	kw=ENLIGHTENED isign=1 phase=5 litf=1 atb=0
+-5.0867	sigma(n)	17174	1	0	seg0.11	300	kw=WARNING isign=1 phase=1 litf=1 atb=0
+-5.0867	sigma(n)	17175	1	0	seg0.11	300	kw=WARNING isign=1 phase=1 litf=1 atb=0
+-5.0867	primes-1 (totient)	3835	28	0	seg0.7	300	kw=CIRCUMFERENCES isign=1 phase=10 litf=1 atb=0
+-5.0867	e digits (base 29)	4316	1	0	seg0.14	300	kw=SURFACE isign=28 phase=1 litf=1 atb=0
+-5.0867	e digits (base 29)	13427	28	1	seg0.11	300	kw=DECEPTION isign=1 phase=6 litf=1 atb=0
+-5.0900	sqrt2 digits (base 29)	14373	1	1	seg0.12	300	kw=CIRCUMFERENCE isign=1 phase=4 litf=1 atb=0
+-5.0900	primes+1	362	1	1	seg0.12	300	kw=THEPRIMESARESACRED isign=1 phase=2 litf=1 atb=0
+-5.0900	sigma(n)	16687	28	1	seg0.15	300	kw=SURFACE isign=1 phase=6 litf=1 atb=0
+-5.0900	phi(n)	9001	28	0	seg0.12	300	kw=KOAN isign=28 phase=0 litf=1 atb=0
+-5.0900	phi digits (base 29)	15484	28	1	seg0.9	300	kw=THEPRIMESARESACRED isign=1 phase=14 litf=1 atb=0
+-5.0900	e digits (base 10)	9378	1	0	seg0.14	300	kw=SURFACE isign=1 phase=0 litf=1 atb=0
+-5.0900	sqrt2 digits (base 29)	11155	1	0	seg0.8	300	kw=EMERGENCE isign=1 phase=8 litf=1 atb=0
+-5.0933	primes-1 (totient)	3836	28	0	seg0.7	300	kw=CIRCUMFERENCES isign=1 phase=11 litf=1 atb=0
+-5.0933	cumulative prime sum	12964	1	0	seg0.14	300	kw=AWARNING isign=28 phase=5 litf=1 atb=0
+-5.0967	sqrt2 digits (base 29)	3004	1	1	seg0.7	300	kw=PRESERVATION isign=28 phase=0 litf=1 atb=0
+-5.0967	sigma(n)	16876	28	1	seg0.15	300	kw=ENLIGHTENED isign=1 phase=5 litf=1 atb=0
+-5.0967	e digits (base 29)	3312	28	0	seg0.12	300	kw=KOAN isign=1 phase=0 litf=1 atb=0
+-5.0967	pi digits (base 10)	16180	1	0	seg0.12	300	kw=INSTRUCTION isign=28 phase=0 litf=1 atb=0
+-5.0967	phi digits (base 29)	14741	28	1	seg0.15	300	kw=EMERGE isign=28 phase=4 litf=1 atb=0
+-5.0967	primes-1 (totient)	7216	1	0	seg0.14	300	kw=PILGRIM isign=1 phase=4 litf=1 atb=0
+-5.0967	phi(n)	5673	28	0	seg0.14	300	kw=WELCOME isign=28 phase=4 litf=1 atb=0
+-5.1000	sqrt2 digits (base 29)	5405	28	1	seg0.7	300	kw=PRIMES isign=1 phase=1 litf=1 atb=0
+-5.1000	primes	3531	1	0	seg0.14	300	kw=DECEPTION isign=28 phase=6 litf=1 atb=0
+-5.1000	primes from 3301	3068	1	0	seg0.14	300	kw=DECEPTION isign=28 phase=6 litf=1 atb=0
+-5.1000	primes-1 (totient)	9059	28	1	seg0.7	300	kw=SURFACE isign=1 phase=2 litf=1 atb=0
+-5.1000	primes-1 (totient)	13010	1	0	seg0.9	300	kw=DECEPTION isign=1 phase=0 litf=1 atb=0
+-5.1000	pi digits (base 29)	13912	1	1	seg0.7	300	kw=EMERGENCE isign=1 phase=7 litf=1 atb=0
+-5.1000	cumulative prime sum	12332	1	1	seg0.12	300	kw=THEPRIMESARESACRED isign=1 phase=6 litf=1 atb=0
+-5.1000	e digits (base 29)	4317	1	0	seg0.14	300	kw=SURFACE isign=28 phase=3 litf=1 atb=0
+-5.1000	phi digits (base 29)	6230	28	0	seg0.7	300	kw=THEPRIMESARESACRED isign=1 phase=13 litf=1 atb=0
+-5.1033	primes	15460	28	1	seg0.12	300	kw=ADHERENCE isign=28 phase=3 litf=1 atb=0
+-5.1033	phi(n)	13182	28	0	seg0.15	300	kw=SACRED isign=1 phase=0 litf=1 atb=0
+-5.1033	sigma(n)	756	28	0	seg0.15	300	kw=CIRCUMFERENCES isign=1 phase=6 litf=1 atb=0
+-5.1033	e digits (base 10)	5439	1	0	seg0.9	300	kw=CICADA isign=28 phase=4 litf=1 atb=0
+-5.1033	sigma(n)	8922	1	0	seg0.11	300	kw=INTUS isign=28 phase=1 litf=1 atb=0
+-5.1033	primes from 3301	14997	28	1	seg0.12	300	kw=ADHERENCE isign=28 phase=3 litf=1 atb=0
+-5.1033	phi(n)	1258	1	1	seg0.12	300	kw=INSTAR isign=28 phase=0 litf=1 atb=0
+-5.1033	phi(n)	1256	1	1	seg0.12	300	kw=INSTAR isign=28 phase=0 litf=1 atb=0
+-5.1067	pi digits (base 10)	9118	28	0	seg0.8	300	kw=ENLIGHTENED isign=1 phase=0 litf=1 atb=0
+-5.1067	primes	18797	28	0	seg0.15	300	kw=CIRCUMFERENCE isign=1 phase=6 litf=1 atb=0
+-5.1067	pi digits (base 29)	14457	1	0	seg0.14	300	kw=LIBERPRIMUS isign=1 phase=9 litf=1 atb=0
+-5.1067	primes+1	2882	28	0	seg0.14	300	kw=PRIMES isign=1 phase=0 litf=1 atb=0
+-5.1067	pi digits (base 29)	6843	1	0	seg0.12	300	kw=PRESERVATION isign=28 phase=8 litf=1 atb=0
+-5.1067	primes-1 (totient)	9379	28	0	seg0.15	300	kw=THEPRIMESARESACRED isign=28 phase=10 litf=1 atb=0
+-5.1067	sigma(n)	16874	28	1	seg0.15	300	kw=ENLIGHTENED isign=1 phase=5 litf=1 atb=0
+-5.1067	pi digits (base 29)	11047	1	0	seg0.12	300	kw=PRESERVATION isign=1 phase=0 litf=1 atb=0
+-5.1067	pi digits (base 29)	3612	1	0	seg0.13	300	kw=ADHERENCE isign=28 phase=2 litf=1 atb=0
+-5.1067	cumulative prime sum	6670	1	0	seg0.7	300	kw=PILGRIM isign=1 phase=6 litf=1 atb=0
+-5.1067	primes from 3301	18334	28	0	seg0.15	300	kw=CIRCUMFERENCE isign=1 phase=6 litf=1 atb=0
+-5.1100	sigma(n)	16146	28	0	seg0.14	300	kw=DIVINITY isign=28 phase=1 litf=1 atb=0
+-5.1100	phi digits (base 29)	5908	28	1	seg0.9	300	kw=CIRCUMFERENCES isign=1 phase=3 litf=1 atb=0
+-5.1100	primes+1	16054	1	0	seg0.14	300	kw=TRUTH isign=1 phase=1 litf=1 atb=0
+-5.1100	e digits (base 29)	157	28	1	seg0.13	300	kw=DIVINITY isign=28 phase=7 litf=1 atb=0
+-5.1100	sqrt2 digits (base 29)	2164	28	0	seg0.12	300	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=0
+-5.1100	primes-1 (totient)	5695	1	1	seg0.8	300	kw=DIVINITY isign=1 phase=1 litf=1 atb=0
+-5.1100	sqrt2 digits (base 29)	12370	28	1	seg0.7	300	kw=SACRED isign=1 phase=2 litf=1 atb=0
+-5.1100	pi digits (base 29)	2758	28	0	seg0.12	300	kw=THEPRIMESARESACRED isign=28 phase=8 litf=1 atb=0
+-5.1100	e digits (base 29)	11611	1	0	seg0.13	300	kw=CIRCUMFERENCES isign=28 phase=2 litf=1 atb=0
+-5.1100	pi digits (base 10)	9119	28	0	seg0.8	300	kw=ENLIGHTENED isign=1 phase=10 litf=1 atb=0
+-5.1133	e digits (base 29)	8070	1	0	seg0.15	300	kw=THEPRIMESARESACRED isign=1 phase=6 litf=1 atb=0
+-5.1133	e digits (base 29)	14213	28	1	seg0.14	300	kw=CONSUMPTION isign=28 phase=10 litf=1 atb=0
+-5.1133	primes	16729	1	0	seg0.11	300	kw=WISDOM isign=1 phase=5 litf=1 atb=0
+-5.1133	primes+1	14012	1	1	seg0.14	300	kw=PRESERVATION isign=1 phase=7 litf=1 atb=0
+-5.1133	sigma(n)	3639	28	1	seg0.8	300	kw=SACRED isign=1 phase=3 litf=1 atb=0
+-5.1133	primes from 3301	16266	1	0	seg0.11	300	kw=WISDOM isign=1 phase=5 litf=1 atb=0
+-5.1167	phi(n)	8159	1	0	seg0.12	300	kw=INSTAR isign=28 phase=5 litf=1 atb=0
+-5.1167	phi digits (base 29)	5357	1	0	seg0.15	300	kw=WARNING isign=1 phase=2 litf=1 atb=0
+-5.1167	cumulative prime sum	11498	28	0	seg0.13	300	kw=LIBERPRIMUS isign=1 phase=10 litf=1 atb=0
+-5.1167	e digits (base 29)	6099	28	0	seg0.12	300	kw=CIRCUMFERENCE isign=28 phase=10 litf=1 atb=0
+-5.1167	sigma(n)	4580	1	0	seg0.13	300	kw=EMERGE isign=1 phase=2 litf=1 atb=0
+-5.1167	cumulative prime sum	9788	1	0	seg0.13	300	kw=CIRCUMFERENCE isign=1 phase=2 litf=1 atb=0
+-5.1167	phi(n)	2242	1	1	seg0.11	300	kw=EMERGENCE isign=1 phase=0 litf=1 atb=0
+-5.1167	phi(n)	13378	1	1	seg0.13	300	kw=WELCOME isign=1 phase=3 litf=1 atb=0
+-5.1200	primes+1	14016	1	1	seg0.14	300	kw=PRESERVATION isign=1 phase=6 litf=1 atb=0
+-5.1200	e digits (base 29)	8352	28	1	seg0.14	300	kw=SACRED isign=28 phase=1 litf=1 atb=0
+-5.1200	primes	17455	28	1	seg0.8	300	kw=WISDOM isign=1 phase=3 litf=1 atb=0
+-5.1200	cumulative prime sum	5625	28	1	seg0.15	300	kw=EMERGENCE isign=1 phase=1 litf=1 atb=0
+-5.1200	pi digits (base 29)	2758	28	0	seg0.12	300	kw=THEPRIMESARESACRED isign=28 phase=7 litf=1 atb=0
+-5.1200	pi digits (base 10)	3890	1	0	seg0.12	300	kw=ADHERENCE isign=1 phase=6 litf=1 atb=0
+-5.1200	pi digits (base 29)	12027	28	1	seg0.12	300	kw=AWARNING isign=1 phase=0 litf=1 atb=0
+-5.1200	primes from 3301	16992	28	1	seg0.8	300	kw=WISDOM isign=1 phase=3 litf=1 atb=0
+-5.1200	pi digits (base 10)	8942	1	0	seg0.12	300	kw=FIRFUMFERENFE isign=1 phase=10 litf=1 atb=0
+-5.1200	phi(n)	7336	1	1	seg0.11	300	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-5.1200	phi digits (base 29)	7879	28	0	seg0.15	300	kw=WARNING isign=1 phase=1 litf=1 atb=0
+-5.1200	sqrt2 digits (base 29)	7109	28	0	seg0.12	300	kw=AWARNING isign=1 phase=5 litf=1 atb=0
+-5.1200	pi digits (base 10)	1545	28	0	seg0.14	300	kw=CICADA isign=1 phase=5 litf=1 atb=0
+-5.1200	e digits (base 29)	14060	28	1	seg0.14	300	kw=EMERGENCE isign=1 phase=2 litf=1 atb=0
+-5.1233	fibonacci	225	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	1415	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	1429	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	1443	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	1457	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	1471	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	sqrt2 digits (base 29)	11407	28	0	seg0.8	300	kw=DECEPTION isign=1 phase=2 litf=1 atb=0
+-5.1233	fibonacci	1485	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	1499	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	1583	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	463	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	477	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	1597	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	729	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	phi(n)	8822	1	1	seg0.9	300	kw=PRIMALITY isign=1 phase=1 litf=1 atb=0
+-5.1233	fibonacci	645	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	659	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	855	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	sigma(n)	6255	28	1	seg0.13	300	kw=INSTRUCTION isign=28 phase=4 litf=1 atb=0
+-5.1233	fibonacci	771	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	785	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	799	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	813	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	1331	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	1401	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	1345	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	1317	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	1359	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	1373	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	1303	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	1387	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	1289	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	673	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	687	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	701	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	715	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	743	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	757	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	827	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	841	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	869	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	883	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	phi digits (base 29)	7598	28	1	seg0.15	300	kw=DIVINITY isign=1 phase=5 litf=1 atb=0
+-5.1233	fibonacci	1037	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	1051	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	1065	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	1079	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	1093	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	1107	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	1121	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	1135	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	1149	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	435	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	491	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	505	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	449	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	393	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	407	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	421	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	169	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	183	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	197	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	211	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	239	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	141	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	253	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	phi(n)	1455	1	1	seg0.11	300	kw=THEPRIMESARESACRED isign=28 phase=7 litf=1 atb=0
+-5.1233	fibonacci	1569	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	155	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	127	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	99	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	1527	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	1	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	15	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	29	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	43	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	57	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	71	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	85	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	897	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	365	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	379	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	281	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	295	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	309	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	323	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	337	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	351	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	267	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	911	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	925	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	939	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	953	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	967	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	1233	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	1247	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	1261	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	1275	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	1163	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	sqrt2 digits (base 29)	14860	1	1	seg0.14	300	kw=INSTAR isign=1 phase=2 litf=1 atb=0
+-5.1233	fibonacci	1219	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	1177	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	1191	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	1205	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	1611	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	1625	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	1541	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	1555	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	phi digits (base 29)	1548	28	1	seg0.14	300	kw=PRIMALITY isign=1 phase=0 litf=1 atb=0
+-5.1233	fibonacci	981	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	995	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	1009	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	1023	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	primes-1 (totient)	15099	1	1	seg0.13	300	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=0
+-5.1233	fibonacci	1513	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	519	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	533	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	phi digits (base 29)	13163	28	1	seg0.12	300	kw=WELCOME isign=1 phase=4 litf=1 atb=0
+-5.1233	fibonacci	547	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	561	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	575	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	589	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	603	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	617	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	631	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1233	fibonacci	113	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1267	phi(n)	5328	1	0	seg0.7	300	kw=FIRFUMFERENFE isign=1 phase=8 litf=1 atb=0
+-5.1267	primes-1 (totient)	13009	1	0	seg0.9	300	kw=DECEPTION isign=1 phase=1 litf=1 atb=0
+-5.1267	phi digits (base 29)	5678	1	0	seg0.9	300	kw=TOTIENT isign=28 phase=1 litf=1 atb=0
+-5.1267	primes+1	5315	28	0	seg0.9	300	kw=KOAN isign=28 phase=1 litf=1 atb=0
+-5.1267	primes from 3301	1682	1	0	seg0.15	300	kw=THEPRIMESARESACRED isign=28 phase=0 litf=1 atb=0
+-5.1267	primes	2145	1	0	seg0.15	300	kw=THEPRIMESARESACRED isign=28 phase=0 litf=1 atb=0
+-5.1267	e digits (base 29)	8838	1	0	seg0.11	300	kw=EMERGE isign=1 phase=4 litf=1 atb=0
+-5.1267	pi digits (base 10)	7139	1	0	seg0.11	300	kw=EMERGENCE isign=1 phase=5 litf=1 atb=0
+-5.1267	e digits (base 10)	17759	28	1	seg0.14	300	kw=DECEPTION isign=1 phase=5 litf=1 atb=0
+-5.1267	sqrt2 digits (base 29)	18490	1	1	seg0.7	300	kw=INSTRUCTION isign=1 phase=4 litf=1 atb=0
+-5.1267	e digits (base 10)	16601	1	0	seg0.8	300	kw=PRIMES isign=1 phase=1 litf=1 atb=0
+-5.1300	sigma(n)	15212	28	0	seg0.12	300	kw=DECEPTION isign=1 phase=2 litf=1 atb=0
+-5.1300	primes	18385	1	1	seg0.9	300	kw=EMERGENCE isign=1 phase=3 litf=1 atb=0
+-5.1300	primes+1	14016	1	1	seg0.14	300	kw=PRESERVATION isign=1 phase=5 litf=1 atb=0
+-5.1300	phi digits (base 29)	1034	28	0	seg0.8	300	kw=FIRFUMFERENFE isign=1 phase=6 litf=1 atb=0
+-5.1300	primes-1 (totient)	4872	1	1	seg0.11	300	kw=EMERGE isign=1 phase=3 litf=1 atb=0
+-5.1300	sqrt2 digits (base 29)	13629	1	0	seg0.14	300	kw=ENLIGHTENED isign=28 phase=1 litf=1 atb=0
+-5.1300	primes	5755	1	1	seg0.12	300	kw=WELCOME isign=28 phase=3 litf=1 atb=0
+-5.1300	phi digits (base 29)	11768	1	1	seg0.12	300	kw=CONSUMPTION isign=1 phase=9 litf=1 atb=0
+-5.1300	sqrt2 digits (base 29)	7109	28	0	seg0.12	300	kw=AWARNING isign=1 phase=4 litf=1 atb=0
+-5.1300	e digits (base 10)	5439	1	0	seg0.9	300	kw=CICADA isign=28 phase=5 litf=1 atb=0
+-5.1300	cumulative prime sum	16340	1	1	seg0.9	300	kw=WISDOM isign=28 phase=4 litf=1 atb=0
+-5.1300	e digits (base 29)	6098	28	0	seg0.12	300	kw=CIRCUMFERENCE isign=28 phase=10 litf=1 atb=0
+-5.1300	primes from 3301	5292	1	1	seg0.12	300	kw=WELCOME isign=28 phase=3 litf=1 atb=0
+-5.1300	primes from 3301	17922	1	1	seg0.9	300	kw=EMERGENCE isign=1 phase=3 litf=1 atb=0
+-5.1300	phi(n)	9832	1	0	seg0.7	300	kw=CIRCUMFERENCES isign=1 phase=12 litf=1 atb=0
+-5.1333	primes-1 (totient)	1303	1	1	seg0.7	300	kw=ENLIGHTENED isign=1 phase=3 litf=1 atb=0
+-5.1333	sqrt2 digits (base 29)	15449	28	1	seg0.13	300	kw=FIRFUMFERENFE isign=1 phase=9 litf=1 atb=0
+-5.1333	sqrt2 digits (base 29)	15451	28	1	seg0.13	300	kw=FIRFUMFERENFE isign=1 phase=9 litf=1 atb=0
+-5.1333	phi digits (base 29)	247	28	1	seg0.15	300	kw=CICADA isign=1 phase=1 litf=1 atb=0
+-5.1333	primes+1	8589	28	1	seg0.15	300	kw=INSTAR isign=28 phase=5 litf=1 atb=0
+-5.1333	sigma(n)	16280	1	0	seg0.11	300	kw=EMERGE isign=1 phase=5 litf=1 atb=0
+-5.1333	phi(n)	11983	1	0	seg0.7	300	kw=ADHERENCE isign=1 phase=2 litf=1 atb=0
+-5.1333	phi(n)	5328	1	0	seg0.7	300	kw=FIRFUMFERENFE isign=1 phase=9 litf=1 atb=0
+-5.1333	sqrt2 digits (base 29)	559	28	0	seg0.8	300	kw=DIVINITY isign=28 phase=7 litf=1 atb=0
+-5.1333	phi digits (base 29)	12047	1	1	seg0.15	300	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-5.1367	primes-1 (totient)	7135	1	0	seg0.7	300	kw=KOAN isign=1 phase=3 litf=1 atb=0
+-5.1367	phi digits (base 29)	11770	1	1	seg0.12	300	kw=CONSUMPTION isign=1 phase=8 litf=1 atb=0
+-5.1367	sigma(n)	9632	28	1	seg0.13	300	kw=CIRCUMFERENCES isign=28 phase=7 litf=1 atb=0
+-5.1367	cumulative prime sum	14368	1	0	seg0.7	300	kw=EMERGENCE isign=1 phase=5 litf=1 atb=0
+-5.1367	sqrt2 digits (base 29)	3486	1	1	seg0.14	300	kw=INTUS isign=28 phase=3 litf=1 atb=0
+-5.1367	pi digits (base 29)	7715	28	0	seg0.9	300	kw=PRIMES isign=1 phase=1 litf=1 atb=0
+-5.1367	cumulative prime sum	18116	28	0	seg0.8	300	kw=SACRED isign=28 phase=3 litf=1 atb=0
+-5.1367	phi digits (base 29)	13638	28	1	seg0.11	300	kw=WELCOME isign=1 phase=5 litf=1 atb=0
+-5.1367	pi digits (base 10)	7110	28	1	seg0.8	300	kw=EMERGE isign=1 phase=4 litf=1 atb=0
+-5.1367	primes+1	3791	28	1	seg0.15	300	kw=CIRCUMFERENCES isign=28 phase=7 litf=1 atb=0
+-5.1367	e digits (base 10)	3370	28	0	seg0.13	300	kw=CONSUMPTION isign=1 phase=7 litf=1 atb=0
+-5.1367	phi digits (base 29)	7983	28	1	seg0.12	300	kw=PILGRIM isign=28 phase=6 litf=1 atb=0
+-5.1400	e digits (base 10)	6053	28	1	seg0.9	300	kw=DECEPTION isign=28 phase=6 litf=1 atb=0
+-5.1400	phi digits (base 29)	3393	1	1	seg0.11	300	kw=LIBERPRIMUS isign=1 phase=4 litf=1 atb=0
+-5.1400	phi digits (base 29)	3391	1	1	seg0.11	300	kw=LIBERPRIMUS isign=1 phase=4 litf=1 atb=0
+-5.1400	cumulative prime sum	18220	28	0	seg0.12	300	kw=EMERGENCE isign=1 phase=1 litf=1 atb=0
+-5.1400	cumulative prime sum	10305	1	0	seg0.13	300	kw=WELCOME isign=1 phase=5 litf=1 atb=0
+-5.1400	e digits (base 29)	8069	1	0	seg0.15	300	kw=THEPRIMESARESACRED isign=1 phase=7 litf=1 atb=0
+-5.1400	primes-1 (totient)	15252	28	1	seg0.13	300	kw=FIRFUMFERENFE isign=1 phase=11 litf=1 atb=0
+-5.1400	primes	1986	28	0	seg0.9	300	kw=FIRFUMFERENFE isign=28 phase=10 litf=1 atb=0
+-5.1400	primes	1985	28	0	seg0.9	300	kw=FIRFUMFERENFE isign=28 phase=10 litf=1 atb=0
+-5.1400	e digits (base 29)	14300	1	0	seg0.11	300	kw=WELCOME isign=28 phase=1 litf=1 atb=0
+-5.1400	pi digits (base 29)	13735	1	1	seg0.14	300	kw=TRUTH isign=1 phase=3 litf=1 atb=0
+-5.1400	sigma(n)	16480	28	1	seg0.8	300	kw=LIBERPRIMUS isign=28 phase=3 litf=1 atb=0
+-5.1400	cumulative prime sum	3405	28	1	seg0.13	300	kw=CICADA isign=28 phase=2 litf=1 atb=0
+-5.1400	primes from 3301	1522	28	0	seg0.9	300	kw=FIRFUMFERENFE isign=28 phase=10 litf=1 atb=0
+-5.1400	primes from 3301	1523	28	0	seg0.9	300	kw=FIRFUMFERENFE isign=28 phase=10 litf=1 atb=0
+-5.1433	primes-1 (totient)	4333	1	0	seg0.11	300	kw=DECEPTION isign=1 phase=6 litf=1 atb=0
+-5.1433	pi digits (base 29)	1719	1	0	seg0.14	300	kw=SURFACE isign=1 phase=6 litf=1 atb=0
+-5.1433	e digits (base 29)	1770	1	1	seg0.9	300	kw=TRUTH isign=28 phase=1 litf=1 atb=0
+-5.1433	phi(n)	17113	1	0	seg0.14	300	kw=CIRCUMFERENCE isign=1 phase=7 litf=1 atb=0
+-5.1433	pi digits (base 29)	4246	28	0	seg0.14	300	kw=PRIMALITY isign=28 phase=8 litf=1 atb=0
+-5.1433	cumulative prime sum	13880	28	1	seg0.13	300	kw=PARABLE isign=28 phase=6 litf=1 atb=0
+-5.1467	primes-1 (totient)	9779	1	1	seg0.14	300	kw=THEPRIMESARESACRED isign=28 phase=7 litf=1 atb=0
+-5.1467	sqrt2 digits (base 29)	7789	1	0	seg0.11	300	kw=PRIMALITY isign=1 phase=2 litf=1 atb=0
+-5.1467	primes+1	1390	28	0	seg0.12	300	kw=LIBERPRIMUS isign=1 phase=8 litf=1 atb=0
+-5.1467	cumulative prime sum	8453	1	0	seg0.9	300	kw=SACRED isign=1 phase=1 litf=1 atb=0
+-5.1467	sqrt2 digits (base 29)	5545	28	0	seg0.13	300	kw=EMERGENCE isign=1 phase=2 litf=1 atb=0
+-5.1467	sigma(n)	10045	1	0	seg0.9	300	kw=EMERGENCE isign=1 phase=2 litf=1 atb=0
+-5.1467	primes+1	2354	28	1	seg0.12	300	kw=PRIMALITY isign=1 phase=0 litf=1 atb=0
+-5.1467	primes-1 (totient)	13688	1	1	seg0.7	300	kw=PILGRIM isign=1 phase=5 litf=1 atb=0
+-5.1467	cumulative prime sum	15944	28	0	seg0.13	300	kw=ENLIGHTENED isign=1 phase=4 litf=1 atb=0
+-5.1500	primes+1	14012	1	1	seg0.14	300	kw=PRESERVATION isign=1 phase=6 litf=1 atb=0
+-5.1500	e digits (base 29)	17574	28	0	seg0.7	300	kw=PRESERVATION isign=28 phase=8 litf=1 atb=0
+-5.1500	cumulative prime sum	8029	1	0	seg0.8	300	kw=TOTIENT isign=1 phase=5 litf=1 atb=0
+-5.1500	cumulative prime sum	8030	1	0	seg0.8	300	kw=TOTIENT isign=1 phase=5 litf=1 atb=0
+-5.1500	primes+1	8620	28	0	seg0.14	300	kw=PRESERVATION isign=1 phase=0 litf=1 atb=0
+-5.1500	e digits (base 10)	2898	28	0	seg0.7	300	kw=THEPRIMESARESACRED isign=1 phase=15 litf=1 atb=0
+-5.1500	cumulative prime sum	2073	1	0	seg0.9	300	kw=EMERGE isign=1 phase=3 litf=1 atb=0
+-5.1500	e digits (base 10)	18958	1	0	seg0.14	300	kw=INTUS isign=1 phase=1 litf=1 atb=0
+-5.1500	primes-1 (totient)	13011	1	0	seg0.9	300	kw=DECEPTION isign=1 phase=0 litf=1 atb=0
+-5.1500	cumulative prime sum	10315	28	0	seg0.14	300	kw=FIRFUMFERENFE isign=1 phase=10 litf=1 atb=0
+-5.1500	pi digits (base 29)	5662	28	0	seg0.15	300	kw=PRESERVATION isign=1 phase=2 litf=1 atb=0
+-5.1500	phi(n)	4631	1	0	seg0.9	300	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=0
+-5.1500	cumulative prime sum	12354	28	1	seg0.7	300	kw=SACRED isign=1 phase=2 litf=1 atb=0
+-5.1533	primes-1 (totient)	4334	1	0	seg0.11	300	kw=DECEPTION isign=1 phase=6 litf=1 atb=0
+-5.1533	pi digits (base 10)	7110	28	1	seg0.8	300	kw=EMERGE isign=1 phase=5 litf=1 atb=0
+-5.1533	pi digits (base 29)	9711	1	1	seg0.8	300	kw=DECEPTION isign=28 phase=7 litf=1 atb=0
+-5.1533	e digits (base 29)	3236	28	0	seg0.15	300	kw=FIRFUMFERENFE isign=1 phase=6 litf=1 atb=0
+-5.1533	cumulative prime sum	9517	1	0	seg0.11	300	kw=INSTRUCTION isign=28 phase=8 litf=1 atb=0
+-5.1533	sigma(n)	3637	28	1	seg0.8	300	kw=SACRED isign=1 phase=3 litf=1 atb=0
+-5.1533	cumulative prime sum	18116	28	0	seg0.8	300	kw=SACRED isign=28 phase=4 litf=1 atb=0
+-5.1533	sigma(n)	9969	28	1	seg0.11	300	kw=PRIMES isign=1 phase=4 litf=1 atb=0
+-5.1567	sqrt2 digits (base 29)	12370	28	1	seg0.7	300	kw=SACRED isign=1 phase=3 litf=1 atb=0
+-5.1567	cumulative prime sum	9039	28	1	seg0.14	300	kw=WELCOME isign=1 phase=0 litf=1 atb=0
+-5.1567	cumulative prime sum	15260	1	1	seg0.14	300	kw=LIBERPRIMUS isign=1 phase=6 litf=1 atb=0
+-5.1567	e digits (base 10)	12597	28	1	seg0.11	300	kw=FIRFUMFERENFE isign=28 phase=8 litf=1 atb=0
+-5.1567	phi(n)	10130	28	0	seg0.14	300	kw=TRUTH isign=28 phase=0 litf=1 atb=0
+-5.1567	pi digits (base 29)	1584	1	1	seg0.8	300	kw=LIBERPRIMUS isign=1 phase=8 litf=1 atb=0
+-5.1567	phi digits (base 29)	4799	28	1	seg0.15	300	kw=DECEPTION isign=28 phase=4 litf=1 atb=0
+-5.1567	primes+1	4345	1	0	seg0.8	300	kw=ENLIGHTENED isign=1 phase=1 litf=1 atb=0
+-5.1567	primes+1	19037	28	0	seg0.15	300	kw=ADHERENCE isign=28 phase=0 litf=1 atb=0
+-5.1567	phi digits (base 29)	15902	1	0	seg0.8	300	kw=INSTRUCTION isign=1 phase=10 litf=1 atb=0
+-5.1567	e digits (base 29)	12773	28	1	seg0.15	300	kw=CIRCUMFERENCE isign=1 phase=8 litf=1 atb=0
+-5.1567	primes from 3301	7035	1	0	seg0.15	300	kw=WELCOME isign=28 phase=1 litf=1 atb=0
+-5.1567	pi digits (base 29)	10512	28	0	seg0.11	300	kw=ENLIGHTENED isign=28 phase=6 litf=1 atb=0
+-5.1567	primes	7498	1	0	seg0.15	300	kw=WELCOME isign=28 phase=1 litf=1 atb=0
+-5.1567	cumulative prime sum	6351	1	1	seg0.15	300	kw=INTUS isign=28 phase=1 litf=1 atb=0
+-5.1567	cumulative prime sum	16843	1	0	seg0.12	300	kw=LIBERPRIMUS isign=28 phase=1 litf=1 atb=0
+-5.1567	e digits (base 10)	13951	1	0	seg0.8	300	kw=PARABLE isign=1 phase=3 litf=1 atb=0
+-5.1600	e digits (base 29)	14212	1	1	seg0.7	300	kw=THEPRIMESARESACRED isign=1 phase=3 litf=1 atb=0
+-5.1600	e digits (base 10)	12666	28	0	seg0.15	300	kw=CIRCUMFERENCES isign=1 phase=7 litf=1 atb=0
+-5.1600	sqrt2 digits (base 29)	69	1	0	seg0.12	300	kw=PILGRIM isign=28 phase=3 litf=1 atb=0
+-5.1600	sqrt2 digits (base 29)	13864	1	0	seg0.15	300	kw=CIRCUMFERENCES isign=1 phase=0 litf=1 atb=0
+-5.1600	primes-1 (totient)	13871	1	0	seg0.11	300	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-5.1600	e digits (base 29)	12807	28	0	seg0.15	300	kw=AWARNING isign=28 phase=1 litf=1 atb=0
+-5.1600	pi digits (base 10)	16021	1	0	seg0.12	300	kw=EMERGENCE isign=1 phase=3 litf=1 atb=0
+-5.1600	pi digits (base 10)	17064	1	1	seg0.11	300	kw=AWARNING isign=28 phase=0 litf=1 atb=0
+-5.1600	sqrt2 digits (base 29)	13235	1	1	seg0.14	300	kw=ADHERENCE isign=28 phase=0 litf=1 atb=0
+-5.1600	sigma(n)	1379	1	0	seg0.12	300	kw=ENLIGHTENED isign=28 phase=8 litf=1 atb=0
+-5.1600	e digits (base 29)	8624	1	1	seg0.15	300	kw=THEPRIMESARESACRED isign=1 phase=0 litf=1 atb=0
+-5.1600	primes+1	1389	28	0	seg0.12	300	kw=LIBERPRIMUS isign=1 phase=8 litf=1 atb=0
+-5.1633	e digits (base 29)	2181	1	1	seg0.14	300	kw=SACRED isign=28 phase=5 litf=1 atb=0
+-5.1633	pi digits (base 29)	9490	28	1	seg0.8	300	kw=CICADA isign=28 phase=5 litf=1 atb=0
+-5.1633	pi digits (base 29)	9492	28	1	seg0.8	300	kw=CICADA isign=28 phase=5 litf=1 atb=0
+-5.1633	primes+1	5424	28	1	seg0.15	300	kw=TOTIENT isign=1 phase=4 litf=1 atb=0
+-5.1633	sqrt2 digits (base 29)	14289	28	0	seg0.14	300	kw=PRIMALITY isign=1 phase=7 litf=1 atb=0
+-5.1633	sqrt2 digits (base 29)	14290	28	0	seg0.14	300	kw=PRIMALITY isign=1 phase=7 litf=1 atb=0
+-5.1633	sigma(n)	8573	1	1	seg0.9	300	kw=PRIMES isign=1 phase=0 litf=1 atb=0
+-5.1633	primes-1 (totient)	15099	1	1	seg0.13	300	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-5.1633	pi digits (base 29)	5871	28	0	seg0.13	300	kw=THEPRIMESARESACRED isign=1 phase=2 litf=1 atb=0
+-5.1633	sigma(n)	17914	1	0	seg0.9	300	kw=TRUTH isign=1 phase=3 litf=1 atb=0
+-5.1633	phi(n)	6879	28	0	seg0.15	300	kw=ENLIGHTENED isign=1 phase=6 litf=1 atb=0
+-5.1633	sigma(n)	10044	1	0	seg0.9	300	kw=EMERGENCE isign=1 phase=2 litf=1 atb=0
+-5.1633	pi digits (base 29)	12560	28	1	seg0.13	300	kw=AWARNING isign=28 phase=1 litf=1 atb=0
+-5.1633	pi digits (base 10)	132	28	0	seg0.12	300	kw=THEPRIMESARESACRED isign=1 phase=6 litf=1 atb=0
+-5.1667	e digits (base 10)	16649	1	1	seg0.12	300	kw=CICADA isign=1 phase=5 litf=1 atb=0
+-5.1667	primes	7447	28	0	seg0.8	300	kw=DECEPTION isign=1 phase=4 litf=1 atb=0
+-5.1667	cumulative prime sum	13014	1	1	seg0.14	300	kw=PRESERVATION isign=28 phase=10 litf=1 atb=0
+-5.1667	primes-1 (totient)	19073	28	1	seg0.7	300	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=0
+-5.1667	primes+1	16277	28	0	seg0.14	300	kw=PRIMES isign=28 phase=2 litf=1 atb=0
+-5.1667	phi(n)	8822	1	1	seg0.9	300	kw=PRIMALITY isign=1 phase=2 litf=1 atb=0
+-5.1667	pi digits (base 10)	7252	1	1	seg0.12	300	kw=ENLIGHTENED isign=28 phase=3 litf=1 atb=0
+-5.1667	pi digits (base 29)	7578	28	1	seg0.9	300	kw=EMERGENCE isign=1 phase=1 litf=1 atb=0
+-5.1667	primes from 3301	6984	28	0	seg0.8	300	kw=DECEPTION isign=1 phase=4 litf=1 atb=0
+-5.1667	e digits (base 10)	7736	28	0	seg0.11	300	kw=INSTRUCTION isign=1 phase=6 litf=1 atb=0
+-5.1667	phi(n)	9368	1	0	seg0.13	300	kw=INSTRUCTION isign=1 phase=9 litf=1 atb=0
+-5.1667	e digits (base 10)	11309	28	1	seg0.15	300	kw=WISDOM isign=28 phase=2 litf=1 atb=0
+-5.1700	sigma(n)	1512	1	1	seg0.8	300	kw=PRESERVATION isign=28 phase=0 litf=1 atb=0
+-5.1700	primes-1 (totient)	10848	28	1	seg0.8	300	kw=WELCOME isign=1 phase=3 litf=1 atb=0
+-5.1700	cumulative prime sum	16336	1	1	seg0.9	300	kw=WISDOM isign=28 phase=3 litf=1 atb=0
+-5.1700	primes	170	1	0	seg0.14	300	kw=CIRCUMFERENCES isign=1 phase=10 litf=1 atb=0
+-5.1700	phi(n)	10449	28	1	seg0.8	300	kw=EMERGE isign=1 phase=0 litf=1 atb=0
+-5.1700	sqrt2 digits (base 29)	10679	1	1	seg0.12	300	kw=PRIMALITY isign=28 phase=1 litf=1 atb=0
+-5.1700	sigma(n)	13648	1	0	seg0.12	300	kw=PARABLE isign=1 phase=3 litf=1 atb=0
+-5.1700	primes-1 (totient)	16338	1	0	seg0.7	300	kw=CIRCUMFERENCE isign=1 phase=2 litf=1 atb=0
+-5.1700	phi(n)	9376	28	0	seg0.15	300	kw=FIRFUMFERENFE isign=28 phase=4 litf=1 atb=0
+-5.1700	phi(n)	12817	1	1	seg0.13	300	kw=PARABLE isign=1 phase=1 litf=1 atb=0
+-5.1700	primes-1 (totient)	13471	1	0	seg0.11	300	kw=CIRCUMFERENCE isign=28 phase=3 litf=1 atb=0
+-5.1700	cumulative prime sum	9781	1	0	seg0.9	300	kw=TOTIENT isign=1 phase=3 litf=1 atb=0
+-5.1700	sigma(n)	16280	1	0	seg0.11	300	kw=EMERGE isign=1 phase=1 litf=1 atb=0
+-5.1700	e digits (base 29)	3311	28	0	seg0.12	300	kw=KOAN isign=1 phase=0 litf=1 atb=0
+-5.1700	sqrt2 digits (base 29)	2165	28	0	seg0.12	300	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=0
+-5.1700	sqrt2 digits (base 29)	14526	1	0	seg0.7	300	kw=CONSUMPTION isign=28 phase=10 litf=1 atb=0
+-5.1700	pi digits (base 10)	8863	28	0	seg0.13	300	kw=KOAN isign=1 phase=0 litf=1 atb=0
+-5.1733	sqrt2 digits (base 29)	11858	1	1	seg0.8	300	kw=ENLIGHTENED isign=28 phase=9 litf=1 atb=0
+-5.1733	e digits (base 10)	9256	28	0	seg0.9	300	kw=THEPRIMESARESACRED isign=1 phase=15 litf=1 atb=0
+-5.1733	e digits (base 10)	9257	28	0	seg0.9	300	kw=THEPRIMESARESACRED isign=1 phase=15 litf=1 atb=0
+-5.1733	primes	1699	28	1	seg0.13	300	kw=CIRCUMFERENCES isign=1 phase=7 litf=1 atb=0
+-5.1733	primes from 3301	1236	28	1	seg0.13	300	kw=CIRCUMFERENCES isign=1 phase=7 litf=1 atb=0
+-5.1733	phi(n)	3110	1	0	seg0.15	300	kw=CIRCUMFERENCES isign=1 phase=11 litf=1 atb=0
+-5.1733	e digits (base 29)	12773	28	1	seg0.15	300	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=0
+-5.1733	pi digits (base 10)	5373	1	1	seg0.11	300	kw=PRIMALITY isign=28 phase=3 litf=1 atb=0
+-5.1733	phi(n)	309	1	0	seg0.9	300	kw=LIBERPRIMUS isign=28 phase=3 litf=1 atb=0
+-5.1733	pi digits (base 29)	504	1	0	seg0.11	300	kw=KOAN isign=1 phase=0 litf=1 atb=0
+-5.1733	phi digits (base 29)	5678	1	1	seg0.7	300	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=0
+-5.1767	pi digits (base 29)	6312	28	1	seg0.14	300	kw=ENLIGHTENED isign=1 phase=7 litf=1 atb=0
+-5.1767	primes-1 (totient)	3406	28	1	seg0.7	300	kw=FIRFUMFERENFE isign=1 phase=10 litf=1 atb=0
+-5.1767	pi digits (base 29)	8341	1	1	seg0.8	300	kw=PARABLE isign=28 phase=2 litf=1 atb=0
+-5.1767	phi(n)	3824	1	0	seg0.13	300	kw=CIRCUMFERENCES isign=28 phase=11 litf=1 atb=0
+-5.1767	e digits (base 29)	5489	1	0	seg0.9	300	kw=CIRCUMFERENCES isign=1 phase=3 litf=1 atb=0
+-5.1767	cumulative prime sum	10304	1	0	seg0.13	300	kw=WELCOME isign=1 phase=3 litf=1 atb=0
+-5.1767	cumulative prime sum	4888	1	0	seg0.14	300	kw=DECEPTION isign=1 phase=2 litf=1 atb=0
+-5.1767	sqrt2 digits (base 29)	9023	28	0	seg0.14	300	kw=CIRCUMFERENCE isign=1 phase=3 litf=1 atb=0
+-5.1767	e digits (base 29)	12039	28	1	seg0.14	300	kw=SACRED isign=1 phase=4 litf=1 atb=0
+-5.1767	sqrt2 digits (base 29)	16825	28	0	seg0.14	300	kw=SURFACE isign=1 phase=6 litf=1 atb=0
+-5.1767	primes-1 (totient)	1482	28	1	seg0.14	300	kw=ADHERENCE isign=1 phase=3 litf=1 atb=0
+-5.1800	primes from 3301	14670	28	0	seg0.12	300	kw=LIBERPRIMUS isign=1 phase=3 litf=1 atb=0
+-5.1800	sigma(n)	12313	1	0	seg0.8	300	kw=PRESERVATION isign=1 phase=10 litf=1 atb=0
+-5.1800	phi(n)	2993	28	1	seg0.13	300	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=0
+-5.1800	primes	14813	1	1	seg0.15	300	kw=INSTRUCTION isign=1 phase=0 litf=1 atb=0
+-5.1800	primes	15133	28	0	seg0.12	300	kw=LIBERPRIMUS isign=1 phase=3 litf=1 atb=0
+-5.1800	primes from 3301	14350	1	1	seg0.15	300	kw=INSTRUCTION isign=1 phase=0 litf=1 atb=0
+-5.1800	sigma(n)	17761	28	1	seg0.9	300	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=0
+-5.1800	pi digits (base 10)	18494	1	0	seg0.11	300	kw=CIRCUMFERENCES isign=1 phase=3 litf=1 atb=0
+-5.1800	phi(n)	9369	1	0	seg0.13	300	kw=INSTRUCTION isign=1 phase=9 litf=1 atb=0
+-5.1800	primes+1	5806	1	1	seg0.13	300	kw=THEPRIMESARESACRED isign=28 phase=16 litf=1 atb=0
+-5.1800	sigma(n)	10719	28	1	seg0.7	300	kw=LIBERPRIMUS isign=28 phase=5 litf=1 atb=0
+-5.1800	phi(n)	3459	28	0	seg0.7	300	kw=PRESERVATION isign=1 phase=8 litf=1 atb=0
+-5.1800	primes-1 (totient)	19091	1	1	seg0.7	300	kw=EMERGENCE isign=1 phase=2 litf=1 atb=0
+-5.1800	sigma(n)	8065	1	0	seg0.15	300	kw=PRESERVATION isign=1 phase=11 litf=1 atb=0
+-5.1800	e digits (base 10)	16995	1	0	seg0.11	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1800	e digits (base 10)	5768	28	0	seg0.12	300	kw=SACRED isign=1 phase=1 litf=1 atb=0
+-5.1833	primes	10917	28	1	seg0.15	300	kw=WARNING isign=28 phase=0 litf=1 atb=0
+-5.1833	cumulative prime sum	7305	1	0	seg0.15	300	kw=THEPRIMESARESACRED isign=1 phase=11 litf=1 atb=0
+-5.1833	phi digits (base 29)	16107	28	0	seg0.7	300	kw=ENLIGHTENED isign=1 phase=1 litf=1 atb=0
+-5.1833	pi digits (base 10)	18468	1	0	seg0.14	300	kw=SURFACE isign=28 phase=0 litf=1 atb=0
+-5.1833	primes from 3301	10454	28	1	seg0.15	300	kw=WARNING isign=28 phase=0 litf=1 atb=0
+-5.1833	primes from 3301	12114	1	1	seg0.9	300	kw=EMERGE isign=1 phase=4 litf=1 atb=0
+-5.1833	cumulative prime sum	13412	28	0	seg0.9	300	kw=ENLIGHTENED isign=1 phase=6 litf=1 atb=0
+-5.1833	cumulative prime sum	13413	28	0	seg0.9	300	kw=ENLIGHTENED isign=1 phase=6 litf=1 atb=0
+-5.1833	primes	12577	1	1	seg0.9	300	kw=EMERGE isign=1 phase=4 litf=1 atb=0
+-5.1833	sigma(n)	7836	28	1	seg0.12	300	kw=EMERGENCE isign=28 phase=3 litf=1 atb=0
+-5.1833	e digits (base 29)	7859	1	0	seg0.9	300	kw=CICADA isign=1 phase=2 litf=1 atb=0
+-5.1833	e digits (base 29)	16746	28	0	seg0.8	300	kw=SACRED isign=1 phase=5 litf=1 atb=0
+-5.1833	primes-1 (totient)	12086	1	1	seg0.9	300	kw=AWARNING isign=1 phase=2 litf=1 atb=0
+-5.1833	primes	16730	1	0	seg0.11	300	kw=WISDOM isign=1 phase=4 litf=1 atb=0
+-5.1833	e digits (base 29)	7674	1	1	seg0.13	300	kw=ENLIGHTENED isign=1 phase=6 litf=1 atb=0
+-5.1833	cumulative prime sum	15836	1	0	seg0.14	300	kw=WARNING isign=1 phase=3 litf=1 atb=0
+-5.1833	sigma(n)	11116	1	1	seg0.15	300	kw=CIRCUMFERENCE isign=1 phase=6 litf=1 atb=0
+-5.1833	e digits (base 10)	3883	1	0	seg0.8	300	kw=CIRCUMFERENCES isign=28 phase=12 litf=1 atb=0
+-5.1833	e digits (base 10)	14300	28	1	seg0.12	300	kw=CIRCUMFERENCE isign=28 phase=5 litf=1 atb=0
+-5.1833	phi(n)	2571	28	1	seg0.9	300	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=0
+-5.1833	primes from 3301	16267	1	0	seg0.11	300	kw=WISDOM isign=1 phase=4 litf=1 atb=0
+-5.1867	fibonacci	825	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	391	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	405	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	419	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	433	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	447	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	461	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	475	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	489	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	503	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	e digits (base 10)	10080	1	0	seg0.11	300	kw=INSTRUCTION isign=1 phase=10 litf=1 atb=0
+-5.1867	fibonacci	1483	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	1427	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	1441	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	1455	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	1413	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	1469	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	1497	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	1511	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	1525	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	sqrt2 digits (base 29)	3006	1	1	seg0.7	300	kw=PRESERVATION isign=28 phase=0 litf=1 atb=0
+-5.1867	fibonacci	671	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	755	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	pi digits (base 29)	3814	28	1	seg0.14	300	kw=SACRED isign=1 phase=3 litf=1 atb=0
+-5.1867	fibonacci	713	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	657	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	685	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	699	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	643	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	727	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	741	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	853	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	783	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	1343	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	1287	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	1357	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	1371	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	1301	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	1385	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	1399	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	1315	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	1329	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	867	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	237	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	139	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	153	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	167	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	181	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	195	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	209	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	cumulative prime sum	11248	1	1	seg0.14	300	kw=CIRCUMFERENCES isign=28 phase=7 litf=1 atb=0
+-5.1867	fibonacci	223	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	251	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	881	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	797	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	811	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	1133	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	1091	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	1105	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	1119	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	1035	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	1063	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	1049	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	1077	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	pi digits (base 10)	11046	1	0	seg0.12	300	kw=TRUTH isign=1 phase=1 litf=1 atb=0
+-5.1867	fibonacci	265	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	279	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	293	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	307	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	321	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	335	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	349	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	363	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	377	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	769	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	41	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	primes	210	28	1	seg0.15	300	kw=DIVINITY isign=1 phase=5 litf=1 atb=0
+-5.1867	fibonacci	13	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	phi digits (base 29)	11770	1	1	seg0.12	300	kw=CONSUMPTION isign=1 phase=9 litf=1 atb=0
+-5.1867	fibonacci	27	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	55	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	69	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	83	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	97	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	111	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	125	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	895	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	937	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	993	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	951	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	965	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	979	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	923	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	1021	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	e digits (base 10)	10688	1	0	seg0.8	300	kw=DECEPTION isign=1 phase=3 litf=1 atb=0
+-5.1867	fibonacci	1007	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	909	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	1539	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	1553	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	1567	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	1581	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	839	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	1231	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	1175	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	1189	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	1203	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	1217	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	1161	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	1245	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	1259	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	1273	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	1595	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	1609	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	1623	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	559	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	545	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	573	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	587	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	601	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	615	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	629	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	517	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	fibonacci	531	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1867	sqrt2 digits (base 29)	11156	1	0	seg0.8	300	kw=EMERGENCE isign=1 phase=0 litf=1 atb=0
+-5.1867	fibonacci	1147	1	1	seg0.8	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.1900	e digits (base 29)	19375	1	1	seg0.15	300	kw=EMERGENCE isign=1 phase=8 litf=1 atb=0
+-5.1900	cumulative prime sum	4280	28	0	seg0.7	300	kw=DECEPTION isign=28 phase=2 litf=1 atb=0
+-5.1900	phi(n)	8674	1	0	seg0.12	300	kw=SURFACE isign=1 phase=6 litf=1 atb=0
+-5.1900	primes-1 (totient)	10679	28	0	seg0.8	300	kw=DECEPTION isign=28 phase=0 litf=1 atb=0
+-5.1900	sigma(n)	13563	28	0	seg0.11	300	kw=WELCOME isign=28 phase=2 litf=1 atb=0
+-5.1900	primes-1 (totient)	4275	28	0	seg0.9	300	kw=WISDOM isign=1 phase=4 litf=1 atb=0
+-5.1900	phi(n)	2515	28	1	seg0.11	300	kw=THEPRIMESARESACRED isign=28 phase=5 litf=1 atb=0
+-5.1900	sigma(n)	392	28	1	seg0.14	300	kw=CONSUMPTION isign=1 phase=9 litf=1 atb=0
+-5.1900	phi(n)	8017	1	1	seg0.8	300	kw=WARNING isign=28 phase=1 litf=1 atb=0
+-5.1900	sqrt2 digits (base 29)	15911	28	0	seg0.9	300	kw=WELCOME isign=1 phase=5 litf=1 atb=0
+-5.1900	cumulative prime sum	12960	1	0	seg0.9	300	kw=EMERGE isign=1 phase=2 litf=1 atb=0
+-5.1900	phi(n)	12116	28	0	seg0.12	300	kw=CONSUMPTION isign=1 phase=8 litf=1 atb=0
+-5.1933	e digits (base 29)	11957	1	1	seg0.11	300	kw=SACRED isign=1 phase=5 litf=1 atb=0
+-5.1933	phi digits (base 29)	9471	1	1	seg0.8	300	kw=LIBERPRIMUS isign=28 phase=4 litf=1 atb=0
+-5.1933	pi digits (base 29)	17701	1	0	seg0.7	300	kw=DECEPTION isign=1 phase=6 litf=1 atb=0
+-5.1933	e digits (base 10)	14361	1	0	seg0.12	300	kw=SURFACE isign=28 phase=2 litf=1 atb=0
+-5.1933	phi digits (base 29)	9473	1	1	seg0.8	300	kw=LIBERPRIMUS isign=28 phase=4 litf=1 atb=0
+-5.1933	primes-1 (totient)	1321	28	1	seg0.7	300	kw=WELCOME isign=1 phase=5 litf=1 atb=0
+-5.1933	phi(n)	15268	28	0	seg0.14	300	kw=LIBERPRIMUS isign=1 phase=1 litf=1 atb=0
+-5.1933	pi digits (base 29)	6392	28	0	seg0.14	300	kw=KOAN isign=1 phase=3 litf=1 atb=0
+-5.1933	phi(n)	2794	1	0	seg0.14	300	kw=ENLIGHTENED isign=1 phase=6 litf=1 atb=0
+-5.1933	pi digits (base 10)	4423	28	0	seg0.12	300	kw=CIRCUMFERENCES isign=1 phase=2 litf=1 atb=0
+-5.1933	phi digits (base 29)	7980	28	1	seg0.14	300	kw=DIVINITY isign=1 phase=4 litf=1 atb=0
+-5.1967	pi digits (base 10)	7992	1	0	seg0.13	300	kw=DECEPTION isign=28 phase=1 litf=1 atb=0
+-5.1967	primes	279	28	1	seg0.11	300	kw=THEPRIMESARESACRED isign=1 phase=2 litf=1 atb=0
+-5.1967	e digits (base 10)	8782	28	0	seg0.12	300	kw=SURFACE isign=1 phase=3 litf=1 atb=0
+-5.1967	primes-1 (totient)	18877	1	1	seg0.9	300	kw=CONSUMPTION isign=1 phase=1 litf=1 atb=0
+-5.1967	sigma(n)	442	1	0	seg0.11	300	kw=DECEPTION isign=1 phase=7 litf=1 atb=0
+-5.1967	pi digits (base 10)	9119	28	0	seg0.8	300	kw=ENLIGHTENED isign=1 phase=0 litf=1 atb=0
+-5.1967	cumulative prime sum	2784	28	1	seg0.7	300	kw=WELCOME isign=1 phase=2 litf=1 atb=0
+-5.1967	sqrt2 digits (base 29)	13423	1	1	seg0.14	300	kw=CIRCUMFERENCE isign=1 phase=8 litf=1 atb=0
+-5.1967	pi digits (base 10)	18636	28	1	seg0.8	300	kw=INSTRUCTION isign=1 phase=10 litf=1 atb=0
+-5.1967	pi digits (base 29)	4044	1	0	seg0.15	300	kw=LIBERPRIMUS isign=28 phase=5 litf=1 atb=0
+-5.2000	sqrt2 digits (base 29)	17952	1	0	seg0.13	300	kw=ADHERENCE isign=28 phase=6 litf=1 atb=0
+-5.2000	cumulative prime sum	13253	28	0	seg0.7	300	kw=CIRCUMFERENCES isign=1 phase=5 litf=1 atb=0
+-5.2000	primes+1	15208	28	1	seg0.15	300	kw=WELCOME isign=1 phase=5 litf=1 atb=0
+-5.2000	primes+1	15206	28	1	seg0.15	300	kw=WELCOME isign=1 phase=5 litf=1 atb=0
+-5.2000	primes-1 (totient)	15254	28	1	seg0.13	300	kw=FIRFUMFERENFE isign=1 phase=11 litf=1 atb=0
+-5.2000	cumulative prime sum	5969	1	1	seg0.13	300	kw=PARABLE isign=28 phase=2 litf=1 atb=0
+-5.2000	e digits (base 10)	3369	28	0	seg0.13	300	kw=CONSUMPTION isign=1 phase=7 litf=1 atb=0
+-5.2033	primes from 3301	2450	28	1	seg0.15	300	kw=TOTIENT isign=1 phase=1 litf=1 atb=0
+-5.2033	sqrt2 digits (base 29)	2166	28	0	seg0.12	300	kw=CIRCUMFERENCE isign=1 phase=1 litf=1 atb=0
+-5.2033	cumulative prime sum	16235	28	1	seg0.7	300	kw=CIRCUMFERENCES isign=28 phase=6 litf=1 atb=0
+-5.2033	primes+1	13922	28	0	seg0.9	300	kw=INSTRUCTION isign=1 phase=7 litf=1 atb=0
+-5.2033	primes from 3301	16013	1	0	seg0.13	300	kw=ENLIGHTENED isign=28 phase=7 litf=1 atb=0
+-5.2033	primes-1 (totient)	11224	28	1	seg0.14	300	kw=TRUTH isign=1 phase=3 litf=1 atb=0
+-5.2033	primes	16476	1	0	seg0.13	300	kw=ENLIGHTENED isign=28 phase=7 litf=1 atb=0
+-5.2033	phi digits (base 29)	3033	28	1	seg0.12	300	kw=CIRCUMFERENCE isign=28 phase=8 litf=1 atb=0
+-5.2033	primes-1 (totient)	17826	28	0	seg0.12	300	kw=THEPRIMESARESACRED isign=1 phase=8 litf=1 atb=0
+-5.2033	e digits (base 10)	15294	1	0	seg0.14	300	kw=PRIMES isign=28 phase=4 litf=1 atb=0
+-5.2033	e digits (base 29)	14480	1	0	seg0.15	300	kw=PARABLE isign=28 phase=2 litf=1 atb=0
+-5.2033	sigma(n)	19219	28	0	seg0.15	300	kw=DECEPTION isign=1 phase=8 litf=1 atb=0
+-5.2033	sigma(n)	19218	28	0	seg0.15	300	kw=DECEPTION isign=1 phase=8 litf=1 atb=0
+-5.2033	e digits (base 29)	14301	1	0	seg0.11	300	kw=WELCOME isign=28 phase=1 litf=1 atb=0
+-5.2033	cumulative prime sum	3800	1	0	seg0.11	300	kw=CIRCUMFERENCES isign=1 phase=5 litf=1 atb=0
+-5.2033	e digits (base 10)	16649	1	1	seg0.12	300	kw=CICADA isign=1 phase=1 litf=1 atb=0
+-5.2033	e digits (base 10)	16649	1	1	seg0.12	300	kw=CICADA isign=1 phase=4 litf=1 atb=0
+-5.2033	primes	2913	28	1	seg0.15	300	kw=TOTIENT isign=1 phase=1 litf=1 atb=0
+-5.2033	sqrt2 digits (base 29)	5093	1	1	seg0.8	300	kw=SURFACE isign=1 phase=4 litf=1 atb=0
+-5.2033	cumulative prime sum	7560	28	0	seg0.13	300	kw=ENLIGHTENED isign=1 phase=9 litf=1 atb=0
+-5.2033	e digits (base 10)	12258	28	1	seg0.8	300	kw=PRIMALITY isign=1 phase=3 litf=1 atb=0
+-5.2033	sqrt2 digits (base 29)	4034	28	0	seg0.8	300	kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=0
+-5.2067	primes from 3301	193	28	1	seg0.15	300	kw=THEPRIMESARESACRED isign=1 phase=12 litf=1 atb=0
+-5.2067	primes+1	5356	1	1	seg0.8	300	kw=THEPRIMESARESACRED isign=1 phase=8 litf=1 atb=0
+-5.2067	primes from 3301	8114	28	1	seg0.9	300	kw=PRIMALITY isign=1 phase=1 litf=1 atb=0
+-5.2067	sqrt2 digits (base 29)	4670	1	1	seg0.11	300	kw=TRUTH isign=28 phase=3 litf=1 atb=0
+-5.2067	primes	15380	1	0	seg0.14	300	kw=CONSUMPTION isign=28 phase=5 litf=1 atb=0
+-5.2067	cumulative prime sum	212	1	0	seg0.12	300	kw=PILGRIM isign=28 phase=1 litf=1 atb=0
+-5.2067	primes	656	28	1	seg0.15	300	kw=THEPRIMESARESACRED isign=1 phase=12 litf=1 atb=0
+-5.2067	phi(n)	3694	1	0	seg0.9	300	kw=CIRCUMFERENCE isign=1 phase=6 litf=1 atb=0
+-5.2067	sqrt2 digits (base 29)	2883	1	1	seg0.7	300	kw=SURFACE isign=28 phase=6 litf=1 atb=0
+-5.2067	sqrt2 digits (base 29)	15567	1	1	seg0.15	300	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=0
+-5.2067	primes+1	14014	1	1	seg0.14	300	kw=PRESERVATION isign=1 phase=6 litf=1 atb=0
+-5.2067	primes	8577	28	1	seg0.9	300	kw=PRIMALITY isign=1 phase=1 litf=1 atb=0
+-5.2067	primes	14930	28	1	seg0.9	300	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=0
+-5.2067	primes-1 (totient)	4458	1	1	seg0.12	300	kw=CIRCUMFERENCES isign=1 phase=12 litf=1 atb=0
+-5.2067	e digits (base 29)	3310	28	0	seg0.12	300	kw=KOAN isign=1 phase=1 litf=1 atb=0
+-5.2067	primes from 3301	14467	28	1	seg0.9	300	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=0
+-5.2067	phi digits (base 29)	12045	1	1	seg0.15	300	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-5.2067	primes from 3301	14917	1	0	seg0.14	300	kw=CONSUMPTION isign=28 phase=5 litf=1 atb=0
+-5.2067	primes-1 (totient)	4460	1	1	seg0.12	300	kw=CIRCUMFERENCES isign=1 phase=12 litf=1 atb=0
+-5.2100	primes-1 (totient)	13009	1	0	seg0.9	300	kw=DECEPTION isign=1 phase=0 litf=1 atb=0
+-5.2100	e digits (base 29)	12807	28	0	seg0.15	300	kw=AWARNING isign=28 phase=2 litf=1 atb=0
+-5.2100	pi digits (base 10)	8459	1	0	seg0.11	300	kw=SACRED isign=1 phase=5 litf=1 atb=0
+-5.2100	e digits (base 10)	13565	28	0	seg0.14	300	kw=TRUTH isign=28 phase=1 litf=1 atb=0
+-5.2100	e digits (base 10)	15295	1	0	seg0.14	300	kw=PRIMES isign=28 phase=4 litf=1 atb=0
+-5.2100	e digits (base 29)	12806	28	0	seg0.15	300	kw=AWARNING isign=28 phase=2 litf=1 atb=0
+-5.2100	phi(n)	10451	28	1	seg0.8	300	kw=EMERGE isign=1 phase=0 litf=1 atb=0
+-5.2100	pi digits (base 10)	18617	28	0	seg0.14	300	kw=TOTIENT isign=1 phase=0 litf=1 atb=0
+-5.2100	pi digits (base 10)	18618	28	0	seg0.14	300	kw=TOTIENT isign=1 phase=0 litf=1 atb=0
+-5.2100	primes-1 (totient)	19493	1	1	seg0.9	300	kw=SURFACE isign=1 phase=3 litf=1 atb=0
+-5.2100	e digits (base 10)	17653	1	1	seg0.14	300	kw=CONSUMPTION isign=28 phase=6 litf=1 atb=0
+-5.2100	primes+1	8337	1	1	seg0.9	300	kw=WELCOME isign=1 phase=5 litf=1 atb=0
+-5.2100	primes+1	8339	1	1	seg0.9	300	kw=WELCOME isign=1 phase=5 litf=1 atb=0
+-5.2100	phi(n)	6144	1	0	seg0.12	300	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.2100	phi(n)	6266	1	1	seg0.14	300	kw=INTUS isign=28 phase=1 litf=1 atb=0
+-5.2100	sqrt2 digits (base 29)	679	1	0	seg0.14	300	kw=EMERGENCE isign=1 phase=4 litf=1 atb=0
+-5.2133	sigma(n)	7218	1	1	seg0.13	300	kw=ENLIGHTENED isign=1 phase=3 litf=1 atb=0
+-5.2133	primes+1	988	1	0	seg0.14	300	kw=ENLIGHTENED isign=1 phase=10 litf=1 atb=0
+-5.2133	sqrt2 digits (base 29)	10679	1	1	seg0.12	300	kw=PRIMALITY isign=28 phase=2 litf=1 atb=0
+-5.2133	primes from 3301	12448	1	1	seg0.14	300	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.2133	pi digits (base 10)	3252	1	0	seg0.12	300	kw=WELCOME isign=1 phase=0 litf=1 atb=0
+-5.2133	pi digits (base 10)	5156	28	0	seg0.13	300	kw=SACRED isign=1 phase=5 litf=1 atb=0
+-5.2133	cumulative prime sum	11205	1	0	seg0.15	300	kw=CIRCUMFERENCE isign=28 phase=11 litf=1 atb=0
+-5.2133	sqrt2 digits (base 29)	927	1	1	seg0.7	300	kw=DECEPTION isign=1 phase=7 litf=1 atb=0
+-5.2133	sqrt2 digits (base 29)	4670	1	1	seg0.11	300	kw=TRUTH isign=28 phase=1 litf=1 atb=0
+-5.2133	sigma(n)	18214	1	0	seg0.14	300	kw=WARNING isign=1 phase=0 litf=1 atb=0
+-5.2133	primes	12911	1	1	seg0.14	300	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.2133	e digits (base 29)	8350	28	1	seg0.14	300	kw=SACRED isign=28 phase=1 litf=1 atb=0
+-5.2133	primes+1	5650	1	1	seg0.15	300	kw=SURFACE isign=1 phase=2 litf=1 atb=0
+-5.2133	pi digits (base 10)	4834	1	1	seg0.11	300	kw=CIRCUMFERENCES isign=1 phase=4 litf=1 atb=0
+-5.2133	pi digits (base 10)	6375	28	1	seg0.13	300	kw=EMERGE isign=1 phase=1 litf=1 atb=0
+-5.2167	primes+1	11742	28	1	seg0.14	300	kw=TRUTH isign=1 phase=2 litf=1 atb=0
+-5.2167	sigma(n)	917	1	1	seg0.11	300	kw=CIRCUMFERENCES isign=1 phase=6 litf=1 atb=0
+-5.2167	primes+1	6798	28	0	seg0.7	300	kw=THEPRIMESARESACRED isign=28 phase=0 litf=1 atb=0
+-5.2167	primes+1	4345	1	0	seg0.8	300	kw=ENLIGHTENED isign=1 phase=0 litf=1 atb=0
+-5.2167	primes-1 (totient)	16338	1	0	seg0.7	300	kw=CIRCUMFERENCE isign=1 phase=5 litf=1 atb=0
+-5.2167	primes+1	10447	1	0	seg0.13	300	kw=KOAN isign=1 phase=0 litf=1 atb=0
+-5.2167	sqrt2 digits (base 29)	14169	1	0	seg0.15	300	kw=PRESERVATION isign=1 phase=8 litf=1 atb=0
+-5.2167	pi digits (base 29)	7303	28	0	seg0.13	300	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=0
+-5.2167	cumulative prime sum	4281	28	0	seg0.7	300	kw=DECEPTION isign=28 phase=2 litf=1 atb=0
+-5.2167	pi digits (base 29)	7302	28	0	seg0.13	300	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=0
+-5.2167	pi digits (base 10)	11803	1	0	seg0.13	300	kw=PRIMES isign=1 phase=3 litf=1 atb=0
+-5.2167	primes-1 (totient)	14370	28	0	seg0.15	300	kw=ENLIGHTENED isign=28 phase=9 litf=1 atb=0
+-5.2167	pi digits (base 29)	14702	28	1	seg0.13	300	kw=EMERGENCE isign=28 phase=4 litf=1 atb=0
+-5.2200	primes-1 (totient)	11736	1	0	seg0.11	300	kw=EMERGE isign=1 phase=4 litf=1 atb=0
+-5.2200	primes+1	1554	28	1	seg0.8	300	kw=INSTRUCTION isign=1 phase=0 litf=1 atb=0
+-5.2200	primes from 3301	12924	1	1	seg0.8	300	kw=CIRCUMFERENCES isign=1 phase=6 litf=1 atb=0
+-5.2200	cumulative prime sum	11248	1	1	seg0.14	300	kw=CIRCUMFERENCES isign=28 phase=6 litf=1 atb=0
+-5.2200	e digits (base 29)	9317	28	1	seg0.12	300	kw=WARNING isign=1 phase=4 litf=1 atb=0
+-5.2200	pi digits (base 10)	18623	28	0	seg0.14	300	kw=TOTIENT isign=1 phase=4 litf=1 atb=0
+-5.2200	cumulative prime sum	18357	28	0	seg0.13	300	kw=PILGRIM isign=1 phase=4 litf=1 atb=0
+-5.2200	sigma(n)	17694	28	1	seg0.12	300	kw=FIRFUMFERENFE isign=1 phase=8 litf=1 atb=0
+-5.2200	sigma(n)	13078	28	1	seg0.13	300	kw=ADHERENCE isign=28 phase=6 litf=1 atb=0
+-5.2200	primes-1 (totient)	5630	1	0	seg0.9	300	kw=SURFACE isign=1 phase=1 litf=1 atb=0
+-5.2200	primes	13387	1	1	seg0.8	300	kw=CIRCUMFERENCES isign=1 phase=6 litf=1 atb=0
+-5.2200	pi digits (base 29)	7016	1	0	seg0.14	300	kw=DECEPTION isign=1 phase=6 litf=1 atb=0
+-5.2200	e digits (base 10)	14969	1	1	seg0.8	300	kw=INSTAR isign=1 phase=4 litf=1 atb=0
+-5.2200	primes-1 (totient)	7234	1	1	seg0.11	300	kw=PRESERVATION isign=1 phase=11 litf=1 atb=0
+-5.2200	sigma(n)	19598	28	0	seg0.13	300	kw=WISDOM isign=1 phase=2 litf=1 atb=0
+-5.2200	sqrt2 digits (base 29)	7550	1	1	seg0.11	300	kw=CIRCUMFERENCE isign=1 phase=7 litf=1 atb=0
+-5.2200	cumulative prime sum	16842	1	0	seg0.12	300	kw=LIBERPRIMUS isign=28 phase=2 litf=1 atb=0
+-5.2200	primes-1 (totient)	13688	1	1	seg0.7	300	kw=PILGRIM isign=1 phase=4 litf=1 atb=0
+-5.2233	primes+1	14971	28	1	seg0.13	300	kw=SACRED isign=1 phase=3 litf=1 atb=0
+-5.2233	primes+1	6110	28	1	seg0.8	300	kw=CONSUMPTION isign=1 phase=9 litf=1 atb=0
+-5.2233	sigma(n)	10242	1	1	seg0.9	300	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-5.2233	e digits (base 10)	10874	28	1	seg0.13	300	kw=PRIMES isign=28 phase=2 litf=1 atb=0
+-5.2233	primes+1	9192	28	1	seg0.8	300	kw=SACRED isign=1 phase=4 litf=1 atb=0
+-5.2233	e digits (base 10)	10876	28	1	seg0.13	300	kw=PRIMES isign=28 phase=2 litf=1 atb=0
+-5.2233	e digits (base 10)	7166	1	0	seg0.9	300	kw=INSTRUCTION isign=1 phase=9 litf=1 atb=0
+-5.2233	cumulative prime sum	1086	28	0	seg0.13	300	kw=INSTRUCTION isign=28 phase=2 litf=1 atb=0
+-5.2233	pi digits (base 29)	8842	28	1	seg0.14	300	kw=WELCOME isign=28 phase=3 litf=1 atb=0
+-5.2233	e digits (base 29)	16347	28	1	seg0.7	300	kw=INSTRUCTION isign=28 phase=0 litf=1 atb=0
+-5.2233	primes+1	9470	28	0	seg0.15	300	kw=WISDOM isign=1 phase=1 litf=1 atb=0
+-5.2233	primes+1	14978	1	1	seg0.8	300	kw=INSTAR isign=28 phase=1 litf=1 atb=0
+-5.2233	e digits (base 29)	18271	1	0	seg0.7	300	kw=EMERGENCE isign=1 phase=1 litf=1 atb=0
+-5.2233	e digits (base 29)	3257	1	0	seg0.14	300	kw=PRESERVATION isign=1 phase=4 litf=1 atb=0
+-5.2233	sqrt2 digits (base 29)	11156	1	0	seg0.8	300	kw=EMERGENCE isign=1 phase=8 litf=1 atb=0
+-5.2267	e digits (base 29)	5488	1	0	seg0.9	300	kw=CIRCUMFERENCES isign=1 phase=3 litf=1 atb=0
+-5.2267	phi(n)	6557	28	1	seg0.15	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.2267	primes	821	28	1	seg0.13	300	kw=WISDOM isign=1 phase=2 litf=1 atb=0
+-5.2267	cumulative prime sum	8154	28	0	seg0.13	300	kw=PARABLE isign=1 phase=2 litf=1 atb=0
+-5.2267	primes from 3301	358	28	1	seg0.13	300	kw=WISDOM isign=1 phase=2 litf=1 atb=0
+-5.2267	phi digits (base 29)	12780	1	1	seg0.14	300	kw=WARNING isign=1 phase=1 litf=1 atb=0
+-5.2267	primes from 3301	19580	1	0	seg0.15	300	kw=INSTRUCTION isign=28 phase=1 litf=1 atb=0
+-5.2267	sigma(n)	3639	28	1	seg0.8	300	kw=SACRED isign=1 phase=4 litf=1 atb=0
+-5.2300	e digits (base 10)	11749	28	0	seg0.7	300	kw=EMERGENCE isign=28 phase=2 litf=1 atb=0
+-5.2300	phi(n)	19614	28	1	seg0.9	300	kw=PRESERVATION isign=1 phase=1 litf=1 atb=0
+-5.2300	primes	16609	1	1	seg0.12	300	kw=TOTIENT isign=28 phase=2 litf=1 atb=0
+-5.2300	sqrt2 digits (base 29)	4406	1	0	seg0.8	300	kw=WELCOME isign=28 phase=1 litf=1 atb=0
+-5.2300	phi digits (base 29)	18850	28	0	seg0.8	300	kw=FIRFUMFERENFE isign=1 phase=10 litf=1 atb=0
+-5.2300	primes	171	1	0	seg0.14	300	kw=CIRCUMFERENCES isign=1 phase=11 litf=1 atb=0
+-5.2300	cumulative prime sum	1169	28	1	seg0.8	300	kw=PILGRIM isign=1 phase=5 litf=1 atb=0
+-5.2300	primes+1	18470	1	1	seg0.13	300	kw=ADHERENCE isign=1 phase=1 litf=1 atb=0
+-5.2300	phi(n)	9368	1	0	seg0.13	300	kw=INSTRUCTION isign=1 phase=0 litf=1 atb=0
+-5.2300	primes from 3301	16807	1	0	seg0.14	300	kw=LIBERPRIMUS isign=28 phase=0 litf=1 atb=0
+-5.2300	cumulative prime sum	2353	28	0	seg0.15	300	kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=0
+-5.2300	pi digits (base 10)	18594	28	0	seg0.7	300	kw=WARNING isign=1 phase=2 litf=1 atb=0
+-5.2300	pi digits (base 10)	18622	28	0	seg0.14	300	kw=TOTIENT isign=1 phase=5 litf=1 atb=0
+-5.2300	phi digits (base 29)	13581	28	1	seg0.7	300	kw=FIRFUMFERENFE isign=1 phase=9 litf=1 atb=0
+-5.2300	e digits (base 10)	3369	28	0	seg0.13	300	kw=CONSUMPTION isign=1 phase=8 litf=1 atb=0
+-5.2300	sqrt2 digits (base 29)	11033	28	0	seg0.11	300	kw=TOTIENT isign=28 phase=5 litf=1 atb=0
+-5.2300	phi digits (base 29)	1785	1	1	seg0.8	300	kw=PRESERVATION isign=1 phase=9 litf=1 atb=0
+-5.2300	primes	17270	1	0	seg0.14	300	kw=LIBERPRIMUS isign=28 phase=0 litf=1 atb=0
+-5.2300	primes	16611	1	1	seg0.12	300	kw=TOTIENT isign=28 phase=2 litf=1 atb=0
+-5.2300	sigma(n)	11108	1	1	seg0.15	300	kw=CIRCUMFERENCE isign=1 phase=7 litf=1 atb=0
+-5.2300	primes from 3301	16146	1	1	seg0.12	300	kw=TOTIENT isign=28 phase=2 litf=1 atb=0
+-5.2300	primes from 3301	16148	1	1	seg0.12	300	kw=TOTIENT isign=28 phase=2 litf=1 atb=0
+-5.2300	primes+1	1220	1	1	seg0.14	300	kw=THEPRIMESARESACRED isign=28 phase=14 litf=1 atb=0
+-5.2300	pi digits (base 10)	6373	28	1	seg0.13	300	kw=EMERGE isign=1 phase=1 litf=1 atb=0
+-5.2300	cumulative prime sum	5428	1	0	seg0.14	300	kw=PARABLE isign=1 phase=4 litf=1 atb=0
+-5.2333	e digits (base 29)	1092	1	1	seg0.15	300	kw=CIRCUMFERENCES isign=28 phase=13 litf=1 atb=0
+-5.2333	e digits (base 10)	7823	28	1	seg0.15	300	kw=PRESERVATION isign=28 phase=0 litf=1 atb=0
+-5.2333	primes-1 (totient)	8654	28	1	seg0.12	300	kw=SACRED isign=1 phase=2 litf=1 atb=0
+-5.2333	e digits (base 29)	2489	28	1	seg0.7	300	kw=PILGRIM isign=1 phase=6 litf=1 atb=0
+-5.2333	primes+1	7963	1	0	seg0.14	300	kw=THEPRIMESARESACRED isign=1 phase=8 litf=1 atb=0
+-5.2333	sigma(n)	1576	28	1	seg0.8	300	kw=TOTIENT isign=1 phase=3 litf=1 atb=0
+-5.2333	primes-1 (totient)	11736	1	0	seg0.11	300	kw=EMERGE isign=1 phase=3 litf=1 atb=0
+-5.2333	e digits (base 10)	16192	1	1	seg0.14	300	kw=DIVINITY isign=28 phase=0 litf=1 atb=0
+-5.2333	e digits (base 10)	3775	28	0	seg0.11	300	kw=PRESERVATION isign=1 phase=8 litf=1 atb=0
+-5.2333	primes-1 (totient)	11032	1	1	seg0.14	300	kw=THEPRIMESARESACRED isign=1 phase=14 litf=1 atb=0
+-5.2333	primes+1	14973	28	1	seg0.13	300	kw=SACRED isign=1 phase=4 litf=1 atb=0
+-5.2333	e digits (base 29)	3257	1	0	seg0.14	300	kw=PRESERVATION isign=1 phase=3 litf=1 atb=0
+-5.2333	primes-1 (totient)	13104	1	0	seg0.14	300	kw=ENLIGHTENED isign=1 phase=8 litf=1 atb=0
+-5.2333	pi digits (base 10)	11048	1	0	seg0.12	300	kw=TRUTH isign=1 phase=2 litf=1 atb=0
+-5.2333	e digits (base 10)	12260	28	1	seg0.8	300	kw=PRIMALITY isign=1 phase=3 litf=1 atb=0
+-5.2333	e digits (base 10)	13952	1	0	seg0.8	300	kw=PARABLE isign=1 phase=2 litf=1 atb=0
+-5.2333	sqrt2 digits (base 29)	13564	1	1	seg0.11	300	kw=LIBERPRIMUS isign=1 phase=0 litf=1 atb=0
+-5.2333	pi digits (base 10)	8277	1	0	seg0.12	300	kw=PRESERVATION isign=1 phase=6 litf=1 atb=0
+-5.2333	pi digits (base 29)	965	1	1	seg0.14	300	kw=WELCOME isign=1 phase=1 litf=1 atb=0
+-5.2333	primes-1 (totient)	14370	28	0	seg0.15	300	kw=ENLIGHTENED isign=28 phase=8 litf=1 atb=0
+-5.2333	e digits (base 10)	17757	28	1	seg0.14	300	kw=DECEPTION isign=1 phase=6 litf=1 atb=0
+-5.2333	sigma(n)	16480	28	1	seg0.8	300	kw=LIBERPRIMUS isign=28 phase=4 litf=1 atb=0
+-5.2333	primes+1	6143	1	0	seg0.12	300	kw=EMERGE isign=1 phase=0 litf=1 atb=0
+-5.2333	primes+1	13777	1	0	seg0.9	300	kw=EMERGENCE isign=28 phase=8 litf=1 atb=0
+-5.2333	pi digits (base 10)	17112	28	1	seg0.13	300	kw=ENLIGHTENED isign=1 phase=0 litf=1 atb=0
+-5.2367	phi(n)	4233	1	1	seg0.9	300	kw=SACRED isign=1 phase=3 litf=1 atb=0
+-5.2367	primes+1	9830	28	0	seg0.11	300	kw=TRUTH isign=1 phase=1 litf=1 atb=0
+-5.2367	cumulative prime sum	13253	28	0	seg0.7	300	kw=CIRCUMFERENCES isign=1 phase=8 litf=1 atb=0
+-5.2367	pi digits (base 10)	16021	1	0	seg0.12	300	kw=EMERGENCE isign=1 phase=2 litf=1 atb=0
+-5.2367	phi(n)	7766	1	1	seg0.14	300	kw=CIRCUMFERENCE isign=28 phase=5 litf=1 atb=0
+-5.2367	sqrt2 digits (base 29)	7789	1	0	seg0.11	300	kw=PRIMALITY isign=1 phase=7 litf=1 atb=0
+-5.2367	primes+1	16423	1	0	seg0.14	300	kw=THEPRIMESARESACRED isign=1 phase=8 litf=1 atb=0
+-5.2367	pi digits (base 10)	5066	1	0	seg0.11	300	kw=LIBERPRIMUS isign=1 phase=2 litf=1 atb=0
+-5.2367	pi digits (base 29)	6845	1	0	seg0.12	300	kw=PRESERVATION isign=28 phase=8 litf=1 atb=0
+-5.2367	sqrt2 digits (base 29)	1265	1	0	seg0.11	300	kw=LIBERPRIMUS isign=28 phase=6 litf=1 atb=0
+-5.2367	pi digits (base 10)	19041	1	0	seg0.12	300	kw=KOAN isign=1 phase=1 litf=1 atb=0
+-5.2367	primes+1	9831	28	0	seg0.11	300	kw=TRUTH isign=1 phase=1 litf=1 atb=0
+-5.2367	primes	171	1	0	seg0.14	300	kw=CIRCUMFERENCES isign=1 phase=10 litf=1 atb=0
+-5.2367	primes+1	15108	28	0	seg0.13	300	kw=DIVINITY isign=1 phase=6 litf=1 atb=0
+-5.2367	e digits (base 29)	15342	1	0	seg0.12	300	kw=CONSUMPTION isign=1 phase=6 litf=1 atb=0
+-5.2400	e digits (base 29)	2719	1	1	seg0.8	300	kw=DECEPTION isign=1 phase=2 litf=1 atb=0
+-5.2400	primes from 3301	14350	1	1	seg0.15	300	kw=INSTRUCTION isign=1 phase=10 litf=1 atb=0
+-5.2400	primes	14813	1	1	seg0.15	300	kw=INSTRUCTION isign=1 phase=10 litf=1 atb=0
+-5.2400	phi digits (base 29)	8852	28	0	seg0.11	300	kw=CIRCUMFERENCES isign=1 phase=10 litf=1 atb=0
+-5.2400	primes-1 (totient)	2647	28	1	seg0.8	300	kw=CIRCUMFERENCE isign=1 phase=1 litf=1 atb=0
+-5.2400	sigma(n)	4966	1	1	seg0.9	300	kw=THEPRIMESARESACRED isign=1 phase=5 litf=1 atb=0
+-5.2400	sqrt2 digits (base 29)	13429	1	1	seg0.14	300	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=0
+-5.2400	primes-1 (totient)	10679	28	0	seg0.7	300	kw=ENLIGHTENED isign=1 phase=6 litf=1 atb=0
+-5.2400	e digits (base 10)	4291	1	1	seg0.14	300	kw=PRIMALITY isign=1 phase=0 litf=1 atb=0
+-5.2400	pi digits (base 29)	49	28	0	seg0.15	300	kw=SACRED isign=1 phase=3 litf=1 atb=0
+-5.2400	phi digits (base 29)	6787	28	1	seg0.9	300	kw=INSTRUCTION isign=1 phase=4 litf=1 atb=0
+-5.2400	primes-1 (totient)	11217	28	0	seg0.15	300	kw=FIRFUMFERENFE isign=28 phase=12 litf=1 atb=0
+-5.2400	primes-1 (totient)	16753	1	1	seg0.8	300	kw=INSTAR isign=28 phase=0 litf=1 atb=0
+-5.2400	sqrt2 digits (base 29)	560	28	0	seg0.8	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.2400	primes+1	2258	28	1	seg0.15	300	kw=DIVINITY isign=1 phase=0 litf=1 atb=0
+-5.2400	pi digits (base 29)	14909	1	0	seg0.11	300	kw=PRIMALITY isign=28 phase=7 litf=1 atb=0
+-5.2400	e digits (base 29)	5800	28	1	seg0.13	300	kw=INSTRUCTION isign=1 phase=10 litf=1 atb=0
+-5.2400	e digits (base 29)	16618	28	1	seg0.15	300	kw=DECEPTION isign=1 phase=8 litf=1 atb=0
+-5.2400	cumulative prime sum	8152	28	1	seg0.8	300	kw=WARNING isign=28 phase=4 litf=1 atb=0
+-5.2400	cumulative prime sum	14368	1	0	seg0.7	300	kw=EMERGENCE isign=1 phase=4 litf=1 atb=0
+-5.2433	cumulative prime sum	13014	1	1	seg0.14	300	kw=PRESERVATION isign=28 phase=9 litf=1 atb=0
+-5.2433	phi(n)	19616	28	1	seg0.9	300	kw=PRESERVATION isign=1 phase=1 litf=1 atb=0
+-5.2433	pi digits (base 29)	3335	1	0	seg0.11	300	kw=WISDOM isign=1 phase=4 litf=1 atb=0
+-5.2433	primes from 3301	16577	28	1	seg0.9	300	kw=ADHERENCE isign=1 phase=8 litf=1 atb=0
+-5.2433	sqrt2 digits (base 29)	8838	1	1	seg0.11	300	kw=ENLIGHTENED isign=28 phase=5 litf=1 atb=0
+-5.2433	pi digits (base 10)	6636	1	0	seg0.11	300	kw=DECEPTION isign=28 phase=7 litf=1 atb=0
+-5.2433	pi digits (base 29)	7301	28	0	seg0.13	300	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=0
+-5.2433	primes	9756	28	1	seg0.15	300	kw=WISDOM isign=28 phase=5 litf=1 atb=0
+-5.2433	primes from 3301	16013	1	0	seg0.13	300	kw=ENLIGHTENED isign=28 phase=6 litf=1 atb=0
+-5.2433	primes+1	6858	28	1	seg0.15	300	kw=ENLIGHTENED isign=1 phase=10 litf=1 atb=0
+-5.2433	sigma(n)	16848	1	1	seg0.14	300	kw=CONSUMPTION isign=28 phase=0 litf=1 atb=0
+-5.2433	primes-1 (totient)	13010	1	0	seg0.9	300	kw=DECEPTION isign=1 phase=1 litf=1 atb=0
+-5.2433	primes from 3301	9293	28	1	seg0.15	300	kw=WISDOM isign=28 phase=5 litf=1 atb=0
+-5.2433	primes from 3301	7379	28	1	seg0.12	300	kw=PRIMALITY isign=1 phase=8 litf=1 atb=0
+-5.2433	e digits (base 29)	8837	1	0	seg0.11	300	kw=EMERGE isign=1 phase=4 litf=1 atb=0
+-5.2433	primes	16476	1	0	seg0.13	300	kw=ENLIGHTENED isign=28 phase=6 litf=1 atb=0
+-5.2433	sigma(n)	1578	28	1	seg0.8	300	kw=TOTIENT isign=1 phase=3 litf=1 atb=0
+-5.2433	pi digits (base 10)	11802	1	0	seg0.8	300	kw=PRIMALITY isign=1 phase=4 litf=1 atb=0
+-5.2433	primes	7842	28	1	seg0.12	300	kw=PRIMALITY isign=1 phase=8 litf=1 atb=0
+-5.2433	primes	17040	28	1	seg0.9	300	kw=ADHERENCE isign=1 phase=8 litf=1 atb=0
+-5.2433	cumulative prime sum	19286	1	1	seg0.13	300	kw=CIRCUMFERENCE isign=1 phase=5 litf=1 atb=0
+-5.2433	e digits (base 29)	14212	1	1	seg0.7	300	kw=THEPRIMESARESACRED isign=1 phase=2 litf=1 atb=0
+-5.2467	sigma(n)	13320	28	0	seg0.12	300	kw=PRESERVATION isign=28 phase=1 litf=1 atb=0
+-5.2467	e digits (base 10)	3370	28	0	seg0.13	300	kw=CONSUMPTION isign=1 phase=8 litf=1 atb=0
+-5.2467	primes-1 (totient)	19493	1	1	seg0.9	300	kw=SURFACE isign=1 phase=2 litf=1 atb=0
+-5.2467	phi digits (base 29)	7382	28	1	seg0.8	300	kw=CONSUMPTION isign=1 phase=5 litf=1 atb=0
+-5.2467	primes	3452	28	1	seg0.13	300	kw=WARNING isign=1 phase=4 litf=1 atb=0
+-5.2467	primes from 3301	2989	28	1	seg0.13	300	kw=WARNING isign=1 phase=4 litf=1 atb=0
+-5.2467	sqrt2 digits (base 29)	12545	28	0	seg0.7	300	kw=PILGRIM isign=1 phase=2 litf=1 atb=0
+-5.2467	e digits (base 10)	17829	28	0	seg0.8	300	kw=CICADA isign=28 phase=5 litf=1 atb=0
+-5.2467	sqrt2 digits (base 29)	13474	28	1	seg0.11	300	kw=TOTIENT isign=1 phase=4 litf=1 atb=0
+-5.2467	sqrt2 digits (base 29)	13476	28	1	seg0.11	300	kw=TOTIENT isign=1 phase=4 litf=1 atb=0
+-5.2467	primes from 3301	7744	28	0	seg0.9	300	kw=THEPRIMESARESACRED isign=1 phase=2 litf=1 atb=0
+-5.2467	pi digits (base 10)	6508	1	1	seg0.11	300	kw=PARABLE isign=1 phase=1 litf=1 atb=0
+-5.2467	cumulative prime sum	5163	1	1	seg0.11	300	kw=PRIMALITY isign=1 phase=1 litf=1 atb=0
+-5.2467	primes-1 (totient)	15005	1	0	seg0.14	300	kw=THEPRIMESARESACRED isign=1 phase=12 litf=1 atb=0
+-5.2467	primes	8207	28	0	seg0.9	300	kw=THEPRIMESARESACRED isign=1 phase=2 litf=1 atb=0
+-5.2467	cumulative prime sum	19617	1	0	seg0.7	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.2500	primes+1	2300	28	0	seg0.11	300	kw=ADHERENCE isign=1 phase=8 litf=1 atb=0
+-5.2500	primes-1 (totient)	8690	1	0	seg0.8	300	kw=CIRCUMFERENCES isign=1 phase=0 litf=1 atb=0
+-5.2500	phi(n)	5451	28	0	seg0.9	300	kw=THEPRIMESARESACRED isign=1 phase=6 litf=1 atb=0
+-5.2500	pi digits (base 29)	13912	1	1	seg0.7	300	kw=EMERGENCE isign=1 phase=5 litf=1 atb=0
+-5.2500	e digits (base 10)	13953	1	0	seg0.8	300	kw=PARABLE isign=1 phase=2 litf=1 atb=0
+-5.2500	e digits (base 29)	3237	28	0	seg0.15	300	kw=FIRFUMFERENFE isign=1 phase=6 litf=1 atb=0
+-5.2500	e digits (base 29)	10491	1	1	seg0.7	300	kw=EMERGENCE isign=1 phase=3 litf=1 atb=0
+-5.2500	primes from 3301	14908	28	0	seg0.7	300	kw=PRESERVATION isign=1 phase=1 litf=1 atb=0
+-5.2500	sqrt2 digits (base 29)	7484	28	0	seg0.9	300	kw=TOTIENT isign=1 phase=1 litf=1 atb=0
+-5.2500	primes	15371	28	0	seg0.7	300	kw=PRESERVATION isign=1 phase=1 litf=1 atb=0
+-5.2500	phi digits (base 29)	4220	1	1	seg0.9	300	kw=AWARNING isign=1 phase=5 litf=1 atb=0
+-5.2500	pi digits (base 29)	3614	1	0	seg0.13	300	kw=ADHERENCE isign=28 phase=2 litf=1 atb=0
+-5.2500	sigma(n)	16871	28	1	seg0.12	300	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=0
+-5.2500	e digits (base 10)	12784	1	0	seg0.12	300	kw=EMERGE isign=28 phase=5 litf=1 atb=0
+-5.2500	phi digits (base 29)	11762	1	1	seg0.7	300	kw=CIRCUMFERENCES isign=28 phase=2 litf=1 atb=0
+-5.2500	phi(n)	2993	28	1	seg0.13	300	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=0
+-5.2500	cumulative prime sum	13412	28	0	seg0.9	300	kw=ENLIGHTENED isign=1 phase=5 litf=1 atb=0
+-5.2500	cumulative prime sum	13413	28	0	seg0.9	300	kw=ENLIGHTENED isign=1 phase=5 litf=1 atb=0
+-5.2500	phi(n)	9377	28	0	seg0.15	300	kw=FIRFUMFERENFE isign=28 phase=4 litf=1 atb=0
+-5.2500	phi(n)	7822	1	1	seg0.14	300	kw=TRUTH isign=1 phase=0 litf=1 atb=0
+-5.2500	phi(n)	6307	1	0	seg0.13	300	kw=DIVINITY isign=1 phase=5 litf=1 atb=0
+-5.2500	cumulative prime sum	7604	1	0	seg0.9	300	kw=PRIMALITY isign=28 phase=1 litf=1 atb=0
+-5.2500	primes+1	10217	28	1	seg0.11	300	kw=ADHERENCE isign=28 phase=2 litf=1 atb=0
+-5.2500	phi digits (base 29)	18307	1	0	seg0.12	300	kw=LIBERPRIMUS isign=28 phase=2 litf=1 atb=0
+-5.2533	primes	14354	28	0	seg0.8	300	kw=WELCOME isign=1 phase=4 litf=1 atb=0
+-5.2533	e digits (base 29)	3081	28	1	seg0.13	300	kw=PRESERVATION isign=28 phase=0 litf=1 atb=0
+-5.2533	primes from 3301	13891	28	0	seg0.8	300	kw=WELCOME isign=1 phase=4 litf=1 atb=0
+-5.2533	phi digits (base 29)	15396	28	0	seg0.12	300	kw=SACRED isign=1 phase=1 litf=1 atb=0
+-5.2533	sigma(n)	5556	28	0	seg0.11	300	kw=EMERGENCE isign=1 phase=4 litf=1 atb=0
+-5.2533	sqrt2 digits (base 29)	13924	28	0	seg0.12	300	kw=THEPRIMESARESACRED isign=1 phase=4 litf=1 atb=0
+-5.2533	primes+1	16476	1	0	seg0.13	300	kw=SURFACE isign=1 phase=0 litf=1 atb=0
+-5.2533	cumulative prime sum	11726	28	1	seg0.8	300	kw=TOTIENT isign=28 phase=3 litf=1 atb=0
+-5.2533	phi digits (base 29)	18307	1	0	seg0.12	300	kw=LIBERPRIMUS isign=28 phase=1 litf=1 atb=0
+-5.2533	cumulative prime sum	6424	1	0	seg0.14	300	kw=PILGRIM isign=1 phase=6 litf=1 atb=0
+-5.2533	phi(n)	1570	1	1	seg0.14	300	kw=ENLIGHTENED isign=28 phase=9 litf=1 atb=0
+-5.2533	cumulative prime sum	8831	1	0	seg0.15	300	kw=ADHERENCE isign=28 phase=5 litf=1 atb=0
+-5.2533	e digits (base 29)	2160	1	0	seg0.15	300	kw=CONSUMPTION isign=1 phase=2 litf=1 atb=0
+-5.2533	sigma(n)	16871	28	1	seg0.12	300	kw=CIRCUMFERENCE isign=1 phase=12 litf=1 atb=0
+-5.2533	phi digits (base 29)	13147	1	1	seg0.15	300	kw=INSTRUCTION isign=1 phase=9 litf=1 atb=0
+-5.2567	primes from 3301	5698	1	1	seg0.11	300	kw=LIBERPRIMUS isign=28 phase=4 litf=1 atb=0
+-5.2567	e digits (base 29)	7443	28	1	seg0.11	300	kw=CIRCUMFERENCES isign=28 phase=2 litf=1 atb=0
+-5.2567	primes from 3301	5696	1	1	seg0.11	300	kw=LIBERPRIMUS isign=28 phase=4 litf=1 atb=0
+-5.2567	primes-1 (totient)	4098	1	0	seg0.7	300	kw=KOAN isign=28 phase=1 litf=1 atb=0
+-5.2567	primes+1	2150	28	0	seg0.14	300	kw=EMERGENCE isign=28 phase=7 litf=1 atb=0
+-5.2567	pi digits (base 29)	17767	28	1	seg0.14	300	kw=EMERGENCE isign=1 phase=4 litf=1 atb=0
+-5.2567	pi digits (base 29)	19288	28	0	seg0.12	300	kw=WELCOME isign=1 phase=5 litf=1 atb=0
+-5.2567	sigma(n)	5557	28	0	seg0.11	300	kw=EMERGENCE isign=1 phase=4 litf=1 atb=0
+-5.2567	e digits (base 29)	8075	1	0	seg0.15	300	kw=THEPRIMESARESACRED isign=1 phase=3 litf=1 atb=0
+-5.2567	pi digits (base 10)	14662	1	0	seg0.8	300	kw=CIRCUMFERENCES isign=1 phase=8 litf=1 atb=0
+-5.2567	phi(n)	2106	1	0	seg0.7	300	kw=PILGRIM isign=28 phase=6 litf=1 atb=0
+-5.2567	primes+1	18023	28	0	seg0.11	300	kw=LIBERPRIMUS isign=28 phase=0 litf=1 atb=0
+-5.2567	phi(n)	18738	28	1	seg0.15	300	kw=ADHERENCE isign=1 phase=8 litf=1 atb=0
+-5.2567	pi digits (base 10)	7108	28	1	seg0.8	300	kw=EMERGE isign=1 phase=3 litf=1 atb=0
+-5.2567	primes+1	16425	1	0	seg0.14	300	kw=THEPRIMESARESACRED isign=1 phase=9 litf=1 atb=0
+-5.2567	pi digits (base 10)	6699	28	0	seg0.8	300	kw=ENLIGHTENED isign=28 phase=3 litf=1 atb=0
+-5.2567	e digits (base 10)	13565	28	0	seg0.14	300	kw=TRUTH isign=28 phase=2 litf=1 atb=0
+-5.2567	sigma(n)	3595	1	1	seg0.15	300	kw=DECEPTION isign=1 phase=4 litf=1 atb=0
+-5.2567	pi digits (base 29)	6444	1	1	seg0.15	300	kw=FIRFUMFERENFE isign=28 phase=12 litf=1 atb=0
+-5.2567	primes-1 (totient)	4456	1	1	seg0.12	300	kw=CIRCUMFERENCES isign=1 phase=12 litf=1 atb=0
+-5.2567	sigma(n)	19218	28	0	seg0.15	300	kw=DECEPTION isign=1 phase=0 litf=1 atb=0
+-5.2567	sigma(n)	19219	28	0	seg0.15	300	kw=DECEPTION isign=1 phase=0 litf=1 atb=0
+-5.2567	primes	6161	1	1	seg0.11	300	kw=LIBERPRIMUS isign=28 phase=4 litf=1 atb=0
+-5.2567	cumulative prime sum	13963	28	0	seg0.8	300	kw=INSTRUCTION isign=1 phase=1 litf=1 atb=0
+-5.2567	primes	6159	1	1	seg0.11	300	kw=LIBERPRIMUS isign=28 phase=4 litf=1 atb=0
+-5.2567	cumulative prime sum	83	1	0	seg0.8	300	kw=CIRCUMFERENCES isign=1 phase=13 litf=1 atb=0
+-5.2600	primes from 3301	6499	1	0	seg0.11	300	kw=INSTRUCTION isign=1 phase=0 litf=1 atb=0
+-5.2600	e digits (base 10)	13073	1	0	seg0.12	300	kw=DIVINITY isign=1 phase=2 litf=1 atb=0
+-5.2600	phi digits (base 29)	8852	28	0	seg0.11	300	kw=CIRCUMFERENCES isign=1 phase=11 litf=1 atb=0
+-5.2600	phi(n)	7934	28	1	seg0.14	300	kw=PARABLE isign=1 phase=3 litf=1 atb=0
+-5.2600	pi digits (base 10)	4830	1	1	seg0.14	300	kw=DECEPTION isign=1 phase=7 litf=1 atb=0
+-5.2600	pi digits (base 10)	2976	28	0	seg0.8	300	kw=ENLIGHTENED isign=28 phase=5 litf=1 atb=0
+-5.2600	e digits (base 29)	16615	1	1	seg0.9	300	kw=DIVINITY isign=28 phase=0 litf=1 atb=0
+-5.2600	primes+1	9106	28	1	seg0.9	300	kw=INSTRUCTION isign=28 phase=3 litf=1 atb=0
+-5.2600	primes	6962	1	0	seg0.11	300	kw=INSTRUCTION isign=1 phase=0 litf=1 atb=0
+-5.2600	primes-1 (totient)	10848	28	1	seg0.8	300	kw=WELCOME isign=1 phase=2 litf=1 atb=0
+-5.2600	pi digits (base 10)	16920	1	0	seg0.12	300	kw=AWARNING isign=28 phase=5 litf=1 atb=0
+-5.2600	pi digits (base 10)	771	28	0	seg0.15	300	kw=THEPRIMESARESACRED isign=28 phase=0 litf=1 atb=0
+-5.2600	cumulative prime sum	18427	1	0	seg0.12	300	kw=FIRFUMFERENFE isign=28 phase=3 litf=1 atb=0
+-5.2600	primes+1	15283	28	0	seg0.15	300	kw=AWARNING isign=1 phase=2 litf=1 atb=0
+-5.2600	phi(n)	16134	28	1	seg0.11	300	kw=DECEPTION isign=1 phase=0 litf=1 atb=0
+-5.2600	primes+1	15282	28	0	seg0.15	300	kw=AWARNING isign=1 phase=2 litf=1 atb=0
+-5.2600	e digits (base 10)	15296	1	0	seg0.14	300	kw=PRIMES isign=28 phase=4 litf=1 atb=0
+-5.2600	e digits (base 10)	13565	28	0	seg0.14	300	kw=TRUTH isign=28 phase=0 litf=1 atb=0
+-5.2600	pi digits (base 10)	18557	1	0	seg0.8	300	kw=LIBERPRIMUS isign=28 phase=10 litf=1 atb=0
+-5.2600	e digits (base 10)	2736	1	0	seg0.14	300	kw=ENLIGHTENED isign=1 phase=3 litf=1 atb=0
+-5.2633	phi digits (base 29)	14443	28	0	seg0.12	300	kw=CIRCUMFERENCES isign=1 phase=8 litf=1 atb=0
+-5.2633	cumulative prime sum	15565	1	1	seg0.11	300	kw=CONSUMPTION isign=1 phase=2 litf=1 atb=0
+-5.2633	primes-1 (totient)	10794	1	1	seg0.8	300	kw=THEPRIMESARESACRED isign=1 phase=8 litf=1 atb=0
+-5.2633	primes-1 (totient)	11771	28	0	seg0.9	300	kw=PRIMES isign=28 phase=5 litf=1 atb=0
+-5.2633	primes+1	19066	1	1	seg0.14	300	kw=CIRCUMFERENCES isign=28 phase=11 litf=1 atb=0
+-5.2633	primes from 3301	11157	1	0	seg0.15	300	kw=ENLIGHTENED isign=28 phase=10 litf=1 atb=0
+-5.2633	sigma(n)	1170	1	0	seg0.8	300	kw=THEPRIMESARESACRED isign=28 phase=11 litf=1 atb=0
+-5.2633	primes	11620	1	0	seg0.15	300	kw=ENLIGHTENED isign=28 phase=10 litf=1 atb=0
+-5.2633	cumulative prime sum	14911	28	1	seg0.12	300	kw=SACRED isign=1 phase=2 litf=1 atb=0
+-5.2633	primes+1	8871	28	1	seg0.15	300	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=0
+-5.2633	primes-1 (totient)	19307	28	0	seg0.11	300	kw=WISDOM isign=1 phase=3 litf=1 atb=0
+-5.2633	pi digits (base 29)	11401	1	1	seg0.14	300	kw=THEPRIMESARESACRED isign=1 phase=2 litf=1 atb=0
+-5.2633	sqrt2 digits (base 29)	2885	1	1	seg0.7	300	kw=SURFACE isign=28 phase=6 litf=1 atb=0
+-5.2633	primes+1	7224	28	1	seg0.11	300	kw=THEPRIMESARESACRED isign=1 phase=15 litf=1 atb=0
+-5.2633	primes-1 (totient)	4462	1	1	seg0.12	300	kw=CIRCUMFERENCES isign=1 phase=12 litf=1 atb=0
+-5.2633	sigma(n)	9632	28	1	seg0.13	300	kw=CIRCUMFERENCES isign=28 phase=8 litf=1 atb=0
+-5.2633	sigma(n)	1169	1	0	seg0.8	300	kw=THEPRIMESARESACRED isign=28 phase=11 litf=1 atb=0
+-5.2633	primes-1 (totient)	296	1	1	seg0.8	300	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.2633	primes from 3301	19199	28	1	seg0.12	300	kw=CIRCUMFERENCES isign=1 phase=13 litf=1 atb=0
+-5.2633	pi digits (base 29)	4090	1	0	seg0.15	300	kw=CICADA isign=1 phase=0 litf=1 atb=0
+-5.2633	cumulative prime sum	5433	1	0	seg0.9	300	kw=CONSUMPTION isign=1 phase=4 litf=1 atb=0
+-5.2667	sigma(n)	7394	28	1	seg0.11	300	kw=PILGRIM isign=28 phase=5 litf=1 atb=0
+-5.2667	phi(n)	1461	1	1	seg0.11	300	kw=THEPRIMESARESACRED isign=28 phase=5 litf=1 atb=0
+-5.2667	e digits (base 10)	2039	1	0	seg0.8	300	kw=THEPRIMESARESACRED isign=1 phase=10 litf=1 atb=0
+-5.2667	sigma(n)	7136	28	1	seg0.9	300	kw=LIBERPRIMUS isign=28 phase=4 litf=1 atb=0
+-5.2667	primes+1	8619	28	0	seg0.14	300	kw=PRESERVATION isign=1 phase=1 litf=1 atb=0
+-5.2667	primes+1	10445	1	0	seg0.13	300	kw=KOAN isign=1 phase=0 litf=1 atb=0
+-5.2667	e digits (base 10)	2912	1	0	seg0.7	300	kw=ENLIGHTENED isign=1 phase=8 litf=1 atb=0
+-5.2667	e digits (base 29)	1471	28	0	seg0.9	300	kw=PRIMES isign=1 phase=2 litf=1 atb=0
+-5.2667	e digits (base 10)	10688	1	0	seg0.8	300	kw=DECEPTION isign=1 phase=4 litf=1 atb=0
+-5.2667	sigma(n)	18224	1	1	seg0.9	300	kw=FIRFUMFERENFE isign=1 phase=11 litf=1 atb=0
+-5.2667	e digits (base 10)	13951	1	0	seg0.8	300	kw=PARABLE isign=1 phase=1 litf=1 atb=0
+-5.2667	cumulative prime sum	10303	1	0	seg0.13	300	kw=WELCOME isign=1 phase=3 litf=1 atb=0
+-5.2667	primes-1 (totient)	7135	1	0	seg0.7	300	kw=KOAN isign=1 phase=0 litf=1 atb=0
+-5.2667	sqrt2 digits (base 29)	11858	1	1	seg0.8	300	kw=ENLIGHTENED isign=28 phase=10 litf=1 atb=0
+-5.2667	phi digits (base 29)	4383	28	0	seg0.14	300	kw=THEPRIMESARESACRED isign=1 phase=10 litf=1 atb=0
+-5.2667	e digits (base 29)	19243	28	1	seg0.11	300	kw=DECEPTION isign=28 phase=6 litf=1 atb=0
+-5.2667	cumulative prime sum	14396	1	0	seg0.15	300	kw=TRUTH isign=28 phase=0 litf=1 atb=0
+-5.2667	primes-1 (totient)	1839	1	1	seg0.9	300	kw=SACRED isign=1 phase=0 litf=1 atb=0
+-5.2667	sqrt2 digits (base 29)	1188	28	1	seg0.12	300	kw=THEPRIMESARESACRED isign=1 phase=3 litf=1 atb=0
+-5.2667	phi(n)	5703	1	1	seg0.15	300	kw=ADHERENCE isign=1 phase=2 litf=1 atb=0
+-5.2667	primes	12849	1	1	seg0.9	300	kw=TRUTH isign=1 phase=1 litf=1 atb=0
+-5.2667	primes from 3301	12386	1	1	seg0.9	300	kw=TRUTH isign=1 phase=1 litf=1 atb=0
+-5.2667	sqrt2 digits (base 29)	4015	28	1	seg0.12	300	kw=WARNING isign=28 phase=1 litf=1 atb=0
+-5.2667	e digits (base 29)	9718	28	0	seg0.9	300	kw=FIRFUMFERENFE isign=28 phase=10 litf=1 atb=0
+-5.2700	sigma(n)	5339	28	0	seg0.12	300	kw=WARNING isign=1 phase=4 litf=1 atb=0
+-5.2700	primes from 3301	6661	28	0	seg0.8	300	kw=CONSUMPTION isign=1 phase=7 litf=1 atb=0
+-5.2700	primes from 3301	15910	28	1	seg0.9	300	kw=TRUTH isign=1 phase=0 litf=1 atb=0
+-5.2700	pi digits (base 29)	9083	28	0	seg0.7	300	kw=CIRCUMFERENCE isign=28 phase=11 litf=1 atb=0
+-5.2700	primes-1 (totient)	17008	28	1	seg0.7	300	kw=PRESERVATION isign=1 phase=4 litf=1 atb=0
+-5.2700	sqrt2 digits (base 29)	16824	28	0	seg0.14	300	kw=SURFACE isign=1 phase=6 litf=1 atb=0
+-5.2700	phi(n)	19614	28	1	seg0.9	300	kw=PRESERVATION isign=1 phase=0 litf=1 atb=0
+-5.2700	sigma(n)	5136	28	1	seg0.13	300	kw=SACRED isign=1 phase=4 litf=1 atb=0
+-5.2700	phi digits (base 29)	5902	1	0	seg0.14	300	kw=LIBERPRIMUS isign=1 phase=5 litf=1 atb=0
+-5.2700	primes	16373	28	1	seg0.9	300	kw=TRUTH isign=1 phase=0 litf=1 atb=0
+-5.2700	primes	7124	28	0	seg0.8	300	kw=CONSUMPTION isign=1 phase=7 litf=1 atb=0
+-5.2700	phi(n)	8015	1	1	seg0.8	300	kw=WARNING isign=28 phase=0 litf=1 atb=0
+-5.2700	phi(n)	8013	1	1	seg0.8	300	kw=WARNING isign=28 phase=0 litf=1 atb=0
+-5.2700	pi digits (base 29)	963	1	1	seg0.14	300	kw=WELCOME isign=1 phase=1 litf=1 atb=0
+-5.2733	pi digits (base 10)	12977	28	1	seg0.15	300	kw=THEPRIMESARESACRED isign=1 phase=12 litf=1 atb=0
+-5.2733	cumulative prime sum	19228	28	1	seg0.11	300	kw=CIRCUMFERENCE isign=28 phase=3 litf=1 atb=0
+-5.2733	primes	5753	1	1	seg0.12	300	kw=WELCOME isign=28 phase=5 litf=1 atb=0
+-5.2733	e digits (base 10)	3371	28	0	seg0.13	300	kw=CONSUMPTION isign=1 phase=8 litf=1 atb=0
+-5.2733	sqrt2 digits (base 29)	2164	1	0	seg0.12	300	kw=PRIMES isign=1 phase=0 litf=1 atb=0
+-5.2733	sqrt2 digits (base 29)	12546	28	0	seg0.7	300	kw=PILGRIM isign=1 phase=2 litf=1 atb=0
+-5.2733	sigma(n)	5340	28	0	seg0.12	300	kw=WARNING isign=1 phase=4 litf=1 atb=0
+-5.2733	primes	2637	28	1	seg0.7	300	kw=PRIMES isign=1 phase=3 litf=1 atb=0
+-5.2733	primes from 3301	18238	1	1	seg0.15	300	kw=WELCOME isign=1 phase=3 litf=1 atb=0
+-5.2733	cumulative prime sum	16542	28	1	seg0.12	300	kw=AWARNING isign=1 phase=5 litf=1 atb=0
+-5.2733	pi digits (base 10)	11047	1	0	seg0.12	300	kw=TRUTH isign=1 phase=2 litf=1 atb=0
+-5.2733	e digits (base 29)	5427	28	0	seg0.8	300	kw=CIRCUMFERENCES isign=1 phase=3 litf=1 atb=0
+-5.2733	primes	2556	1	0	seg0.7	300	kw=ENLIGHTENED isign=1 phase=5 litf=1 atb=0
+-5.2733	primes	14307	1	0	seg0.9	300	kw=PRIMALITY isign=28 phase=1 litf=1 atb=0
+-5.2733	sqrt2 digits (base 29)	12545	28	0	seg0.7	300	kw=PILGRIM isign=1 phase=3 litf=1 atb=0
+-5.2733	primes	18701	1	1	seg0.15	300	kw=WELCOME isign=1 phase=3 litf=1 atb=0
+-5.2733	primes	5751	1	1	seg0.12	300	kw=WELCOME isign=28 phase=5 litf=1 atb=0
+-5.2733	sqrt2 digits (base 29)	16517	28	1	seg0.13	300	kw=THEPRIMESARESACRED isign=28 phase=10 litf=1 atb=0
+-5.2733	primes from 3301	13844	1	0	seg0.9	300	kw=PRIMALITY isign=28 phase=1 litf=1 atb=0
+-5.2733	e digits (base 29)	3257	1	0	seg0.14	300	kw=PRESERVATION isign=1 phase=5 litf=1 atb=0
+-5.2733	pi digits (base 29)	3172	28	0	seg0.13	300	kw=ENLIGHTENED isign=28 phase=9 litf=1 atb=0
+-5.2733	primes+1	13516	1	1	seg0.15	300	kw=PRIMALITY isign=28 phase=2 litf=1 atb=0
+-5.2733	primes from 3301	2174	28	1	seg0.7	300	kw=PRIMES isign=1 phase=3 litf=1 atb=0
+-5.2733	primes from 3301	2093	1	0	seg0.7	300	kw=ENLIGHTENED isign=1 phase=5 litf=1 atb=0
+-5.2733	primes+1	13514	1	1	seg0.15	300	kw=PRIMALITY isign=28 phase=2 litf=1 atb=0
+-5.2733	primes from 3301	5288	1	1	seg0.12	300	kw=WELCOME isign=28 phase=5 litf=1 atb=0
+-5.2733	primes from 3301	5290	1	1	seg0.12	300	kw=WELCOME isign=28 phase=5 litf=1 atb=0
+-5.2767	sigma(n)	17334	1	0	seg0.7	300	kw=LIBERPRIMUS isign=1 phase=0 litf=1 atb=0
+-5.2767	phi digits (base 29)	7049	28	1	seg0.13	300	kw=CIRCUMFERENCES isign=28 phase=6 litf=1 atb=0
+-5.2767	primes-1 (totient)	18676	28	0	seg0.9	300	kw=CONSUMPTION isign=28 phase=4 litf=1 atb=0
+-5.2767	primes	279	28	1	seg0.11	300	kw=THEPRIMESARESACRED isign=1 phase=1 litf=1 atb=0
+-5.2767	primes-1 (totient)	2414	28	0	seg0.13	300	kw=SACRED isign=1 phase=2 litf=1 atb=0
+-5.2767	phi(n)	7766	1	1	seg0.14	300	kw=CIRCUMFERENCE isign=28 phase=7 litf=1 atb=0
+-5.2767	primes+1	702	28	0	seg0.7	300	kw=SACRED isign=28 phase=2 litf=1 atb=0
+-5.2767	sqrt2 digits (base 29)	3130	28	1	seg0.9	300	kw=CIRCUMFERENCE isign=28 phase=1 litf=1 atb=0
+-5.2767	cumulative prime sum	16332	28	0	seg0.12	300	kw=DECEPTION isign=1 phase=3 litf=1 atb=0
+-5.2767	primes+1	9108	28	1	seg0.9	300	kw=INSTRUCTION isign=28 phase=2 litf=1 atb=0
+-5.2767	e digits (base 29)	2742	1	1	seg0.14	300	kw=CIRCUMFERENCE isign=28 phase=10 litf=1 atb=0
+-5.2767	primes-1 (totient)	14391	28	1	seg0.7	300	kw=ENLIGHTENED isign=28 phase=3 litf=1 atb=0
+-5.2767	sqrt2 digits (base 29)	4407	1	0	seg0.8	300	kw=WELCOME isign=28 phase=1 litf=1 atb=0
+-5.2767	sqrt2 digits (base 29)	17441	28	1	seg0.9	300	kw=EMERGE isign=1 phase=2 litf=1 atb=0
+-5.2767	pi digits (base 29)	10874	1	1	seg0.13	300	kw=SACRED isign=1 phase=2 litf=1 atb=0
+-5.2767	phi digits (base 29)	10746	1	1	seg0.11	300	kw=DIVINITY isign=28 phase=2 litf=1 atb=0
+-5.2767	primes-1 (totient)	1301	1	1	seg0.7	300	kw=ENLIGHTENED isign=1 phase=2 litf=1 atb=0
+-5.2767	phi digits (base 29)	10748	1	1	seg0.11	300	kw=DIVINITY isign=28 phase=2 litf=1 atb=0
+-5.2767	cumulative prime sum	13016	1	1	seg0.14	300	kw=PRESERVATION isign=28 phase=10 litf=1 atb=0
+-5.2767	sqrt2 digits (base 29)	7170	28	1	seg0.11	300	kw=ENLIGHTENED isign=1 phase=5 litf=1 atb=0
+-5.2767	primes+1	9618	1	0	seg0.9	300	kw=INTUS isign=28 phase=3 litf=1 atb=0
+-5.2767	pi digits (base 29)	9159	1	1	seg0.14	300	kw=DIVINITY isign=1 phase=7 litf=1 atb=0
+-5.2767	pi digits (base 10)	15461	1	0	seg0.12	300	kw=EMERGE isign=1 phase=4 litf=1 atb=0
+-5.2767	primes+1	17388	1	1	seg0.13	300	kw=INSTRUCTION isign=28 phase=9 litf=1 atb=0
+-5.2800	cumulative prime sum	13253	28	0	seg0.7	300	kw=CIRCUMFERENCES isign=1 phase=7 litf=1 atb=0
+-5.2800	sqrt2 digits (base 29)	10678	1	1	seg0.13	300	kw=CICADA isign=1 phase=4 litf=1 atb=0
+-5.2800	phi digits (base 29)	5672	1	1	seg0.7	300	kw=SURFACE isign=1 phase=1 litf=1 atb=0
+-5.2800	sigma(n)	10733	1	0	seg0.11	300	kw=SURFACE isign=1 phase=5 litf=1 atb=0
+-5.2800	pi digits (base 29)	1319	28	1	seg0.15	300	kw=DECEPTION isign=1 phase=0 litf=1 atb=0
+-5.2800	phi digits (base 29)	163	1	1	seg0.7	300	kw=WELCOME isign=1 phase=2 litf=1 atb=0
+-5.2800	phi digits (base 29)	15051	28	1	seg0.15	300	kw=CONSUMPTION isign=1 phase=9 litf=1 atb=0
+-5.2800	e digits (base 29)	8143	1	1	seg0.12	300	kw=CIRCUMFERENCES isign=28 phase=1 litf=1 atb=0
+-5.2800	pi digits (base 29)	11572	28	0	seg0.7	300	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=0
+-5.2800	phi(n)	1546	28	1	seg0.13	300	kw=WARNING isign=1 phase=1 litf=1 atb=0
+-5.2800	sqrt2 digits (base 29)	8944	1	1	seg0.8	300	kw=INSTRUCTION isign=28 phase=5 litf=1 atb=0
+-5.2800	pi digits (base 29)	18820	28	0	seg0.15	300	kw=CIRCUMFERENCE isign=28 phase=4 litf=1 atb=0
+-5.2800	e digits (base 10)	10080	1	0	seg0.11	300	kw=INSTRUCTION isign=1 phase=0 litf=1 atb=0
+-5.2800	pi digits (base 10)	16471	1	0	seg0.11	300	kw=SACRED isign=1 phase=1 litf=1 atb=0
+-5.2800	e digits (base 29)	14213	28	1	seg0.14	300	kw=CONSUMPTION isign=28 phase=9 litf=1 atb=0
+-5.2833	cumulative prime sum	5485	28	1	seg0.13	300	kw=EMERGENCE isign=1 phase=2 litf=1 atb=0
+-5.2833	primes	9621	1	1	seg0.15	300	kw=WELCOME isign=1 phase=6 litf=1 atb=0
+-5.2833	primes	8583	28	1	seg0.9	300	kw=PRIMALITY isign=1 phase=3 litf=1 atb=0
+-5.2833	primes-1 (totient)	3421	28	1	seg0.11	300	kw=PRIMES isign=1 phase=0 litf=1 atb=0
+-5.2833	phi digits (base 29)	10701	1	0	seg0.14	300	kw=CONSUMPTION isign=1 phase=7 litf=1 atb=0
+-5.2833	sqrt2 digits (base 29)	6907	28	1	seg0.14	300	kw=ENLIGHTENED isign=1 phase=1 litf=1 atb=0
+-5.2833	e digits (base 10)	5667	28	0	seg0.12	300	kw=PILGRIM isign=1 phase=1 litf=1 atb=0
+-5.2833	pi digits (base 10)	3016	28	0	seg0.12	300	kw=WISDOM isign=1 phase=2 litf=1 atb=0
+-5.2833	e digits (base 29)	14215	28	1	seg0.14	300	kw=CONSUMPTION isign=28 phase=10 litf=1 atb=0
+-5.2833	phi(n)	16478	28	0	seg0.11	300	kw=CIRCUMFERENCE isign=1 phase=3 litf=1 atb=0
+-5.2833	primes+1	9192	28	1	seg0.8	300	kw=SACRED isign=1 phase=2 litf=1 atb=0
+-5.2833	pi digits (base 10)	1307	28	0	seg0.13	300	kw=EMERGE isign=1 phase=3 litf=1 atb=0
+-5.2833	primes+1	15021	1	1	seg0.13	300	kw=PRESERVATION isign=28 phase=3 litf=1 atb=0
+-5.2833	cumulative prime sum	780	1	0	seg0.9	300	kw=SURFACE isign=1 phase=0 litf=1 atb=0
+-5.2833	phi(n)	10987	1	1	seg0.15	300	kw=CONSUMPTION isign=28 phase=5 litf=1 atb=0
+-5.2833	e digits (base 29)	5002	1	0	seg0.12	300	kw=EMERGE isign=1 phase=3 litf=1 atb=0
+-5.2833	pi digits (base 10)	7108	28	1	seg0.8	300	kw=EMERGE isign=1 phase=4 litf=1 atb=0
+-5.2833	pi digits (base 10)	18494	1	0	seg0.11	300	kw=CIRCUMFERENCES isign=1 phase=2 litf=1 atb=0
+-5.2833	pi digits (base 29)	13058	28	0	seg0.14	300	kw=CICADA isign=28 phase=0 litf=1 atb=0
+-5.2833	pi digits (base 29)	6802	28	1	seg0.11	300	kw=WISDOM isign=1 phase=3 litf=1 atb=0
+-5.2833	sqrt2 digits (base 29)	1959	28	1	seg0.13	300	kw=ADHERENCE isign=28 phase=1 litf=1 atb=0
+-5.2833	primes+1	9295	28	0	seg0.9	300	kw=DECEPTION isign=1 phase=4 litf=1 atb=0
+-5.2833	e digits (base 29)	17281	1	0	seg0.11	300	kw=PRESERVATION isign=1 phase=6 litf=1 atb=0
+-5.2833	primes+1	10246	1	0	seg0.14	300	kw=WARNING isign=1 phase=1 litf=1 atb=0
+-5.2833	pi digits (base 10)	17602	1	1	seg0.14	300	kw=ENLIGHTENED isign=28 phase=2 litf=1 atb=0
+-5.2833	e digits (base 29)	10254	28	0	seg0.7	300	kw=LIBERPRIMUS isign=28 phase=7 litf=1 atb=0
+-5.2833	sqrt2 digits (base 29)	1961	28	1	seg0.13	300	kw=ADHERENCE isign=28 phase=1 litf=1 atb=0
+-5.2833	phi digits (base 29)	11885	28	0	seg0.7	300	kw=PILGRIM isign=28 phase=5 litf=1 atb=0
+-5.2833	primes from 3301	8120	28	1	seg0.9	300	kw=PRIMALITY isign=1 phase=3 litf=1 atb=0
+-5.2833	primes from 3301	9156	1	1	seg0.15	300	kw=WELCOME isign=1 phase=6 litf=1 atb=0
+-5.2833	primes from 3301	9158	1	1	seg0.15	300	kw=WELCOME isign=1 phase=6 litf=1 atb=0
+-5.2833	pi digits (base 10)	3038	28	0	seg0.7	300	kw=WARNING isign=28 phase=1 litf=1 atb=0
+-5.2833	sqrt2 digits (base 29)	3290	1	1	seg0.12	300	kw=CIRCUMFERENCES isign=1 phase=3 litf=1 atb=0
+-5.2833	primes	9619	1	1	seg0.15	300	kw=WELCOME isign=1 phase=6 litf=1 atb=0
+-5.2867	fibonacci	636	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	650	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	706	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	720	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	664	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	sigma(n)	15131	28	1	seg0.11	300	kw=EMERGE isign=28 phase=2 litf=1 atb=0
+-5.2867	fibonacci	734	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	678	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	primes+1	7472	28	1	seg0.8	300	kw=PRIMALITY isign=28 phase=0 litf=1 atb=0
+-5.2867	fibonacci	748	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	888	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	pi digits (base 10)	18494	1	0	seg0.11	300	kw=CIRCUMFERENCES isign=1 phase=1 litf=1 atb=0
+-5.2867	fibonacci	776	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	1126	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	958	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	454	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	902	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	972	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	986	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	930	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	1000	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	phi(n)	18634	1	0	seg0.7	300	kw=DECEPTION isign=1 phase=0 litf=1 atb=0
+-5.2867	fibonacci	1280	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	1322	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	1364	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	sigma(n)	11390	28	1	seg0.12	300	kw=CIRCUMFERENCES isign=1 phase=10 litf=1 atb=0
+-5.2867	fibonacci	1378	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	1336	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	1308	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	1392	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	1294	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	1350	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	1406	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	762	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	1140	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	1028	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	1042	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	1056	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	790	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	e digits (base 10)	19029	1	0	seg0.11	300	kw=CIRCUMFERENCES isign=1 phase=3 litf=1 atb=0
+-5.2867	fibonacci	804	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	818	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	832	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	846	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	860	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	874	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	1168	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	1224	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	1238	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	1252	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	1266	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	1182	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	1196	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	1154	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	1210	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	1014	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	944	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	384	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	496	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	916	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	272	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	370	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	314	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	118	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	6	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	692	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	34	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	48	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	62	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	76	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	90	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	104	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	phi digits (base 29)	18327	28	1	seg0.9	300	kw=DECEPTION isign=1 phase=0 litf=1 atb=0
+-5.2867	primes from 3301	9898	1	0	seg0.11	300	kw=SACRED isign=28 phase=4 litf=1 atb=0
+-5.2867	fibonacci	1616	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	1630	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	1546	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	1560	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	1574	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	1588	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	1602	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	328	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	356	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	258	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	pi digits (base 10)	7685	1	0	seg0.14	300	kw=SURFACE isign=1 phase=2 litf=1 atb=0
+-5.2867	fibonacci	286	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	pi digits (base 10)	11048	1	0	seg0.12	300	kw=TRUTH isign=1 phase=1 litf=1 atb=0
+-5.2867	fibonacci	342	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	primes from 3301	11303	1	1	seg0.8	300	kw=ADHERENCE isign=28 phase=8 litf=1 atb=0
+-5.2867	fibonacci	300	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	primes-1 (totient)	1482	28	1	seg0.14	300	kw=ADHERENCE isign=1 phase=2 litf=1 atb=0
+-5.2867	fibonacci	482	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	phi digits (base 29)	9080	28	1	seg0.14	300	kw=DECEPTION isign=1 phase=4 litf=1 atb=0
+-5.2867	fibonacci	188	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	202	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	160	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	132	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	1518	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	1504	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	1532	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	1420	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	1434	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	primes+1	16916	28	0	seg0.15	300	kw=ENLIGHTENED isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	1448	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	1462	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	1476	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	e digits (base 10)	15296	1	0	seg0.14	300	kw=PRIMES isign=28 phase=3 litf=1 atb=0
+-5.2867	fibonacci	1490	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	primes	10361	1	0	seg0.11	300	kw=SACRED isign=28 phase=4 litf=1 atb=0
+-5.2867	fibonacci	468	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	440	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	398	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	412	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	216	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	230	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	244	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	174	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	146	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	cumulative prime sum	13016	1	1	seg0.14	300	kw=PRESERVATION isign=28 phase=9 litf=1 atb=0
+-5.2867	fibonacci	426	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	510	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	1070	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	1084	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	1098	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	566	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	524	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	580	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	594	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	608	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	622	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	1112	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	552	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	fibonacci	538	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2867	primes	11766	1	1	seg0.8	300	kw=ADHERENCE isign=28 phase=8 litf=1 atb=0
+-5.2867	sqrt2 digits (base 29)	4011	28	1	seg0.12	300	kw=WARNING isign=28 phase=4 litf=1 atb=0
+-5.2867	fibonacci	20	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2900	cumulative prime sum	1601	1	1	seg0.7	300	kw=EMERGENCE isign=1 phase=4 litf=1 atb=0
+-5.2900	pi digits (base 29)	19327	1	0	seg0.14	300	kw=WELCOME isign=1 phase=5 litf=1 atb=0
+-5.2900	cumulative prime sum	14974	1	0	seg0.11	300	kw=FIRFUMFERENFE isign=1 phase=6 litf=1 atb=0
+-5.2900	primes-1 (totient)	13101	1	0	seg0.14	300	kw=ENLIGHTENED isign=1 phase=9 litf=1 atb=0
+-5.2900	primes+1	13673	28	1	seg0.8	300	kw=INSTRUCTION isign=1 phase=7 litf=1 atb=0
+-5.2900	primes+1	15434	28	1	seg0.12	300	kw=PARABLE isign=1 phase=4 litf=1 atb=0
+-5.2900	primes-1 (totient)	204	28	0	seg0.8	300	kw=INSTRUCTION isign=28 phase=5 litf=1 atb=0
+-5.2900	primes-1 (totient)	13010	1	0	seg0.9	300	kw=DECEPTION isign=1 phase=8 litf=1 atb=0
+-5.2900	cumulative prime sum	19616	1	0	seg0.7	300	kw=DIVINITY isign=28 phase=4 litf=1 atb=0
+-5.2900	pi digits (base 29)	61	1	1	seg0.11	300	kw=CIRCUMFERENCES isign=1 phase=12 litf=1 atb=0
+-5.2900	pi digits (base 10)	14445	1	0	seg0.12	300	kw=INSTRUCTION isign=28 phase=0 litf=1 atb=0
+-5.2900	primes+1	13188	1	0	seg0.14	300	kw=CONSUMPTION isign=28 phase=0 litf=1 atb=0
+-5.2900	sigma(n)	17335	1	0	seg0.7	300	kw=LIBERPRIMUS isign=1 phase=9 litf=1 atb=0
+-5.2900	sqrt2 digits (base 29)	18725	1	0	seg0.12	300	kw=THEPRIMESARESACRED isign=28 phase=3 litf=1 atb=0
+-5.2900	sigma(n)	9760	1	1	seg0.12	300	kw=WELCOME isign=28 phase=2 litf=1 atb=0
+-5.2900	pi digits (base 10)	12039	28	0	seg0.8	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.2900	primes from 3301	5792	1	0	seg0.13	300	kw=INSTRUCTION isign=1 phase=9 litf=1 atb=0
+-5.2900	e digits (base 29)	13705	1	0	seg0.13	300	kw=PILGRIM isign=1 phase=6 litf=1 atb=0
+-5.2900	phi digits (base 29)	5236	1	0	seg0.12	300	kw=CIRCUMFERENCE isign=1 phase=2 litf=1 atb=0
+-5.2900	sqrt2 digits (base 29)	4406	1	0	seg0.8	300	kw=WELCOME isign=28 phase=2 litf=1 atb=0
+-5.2900	primes	6255	1	0	seg0.13	300	kw=INSTRUCTION isign=1 phase=9 litf=1 atb=0
+-5.2900	cumulative prime sum	48	1	1	seg0.12	300	kw=CIRCUMFERENCE isign=1 phase=7 litf=1 atb=0
+-5.2933	sigma(n)	14492	1	0	seg0.15	300	kw=WARNING isign=28 phase=2 litf=1 atb=0
+-5.2933	primes+1	16277	28	0	seg0.14	300	kw=PRIMES isign=28 phase=1 litf=1 atb=0
+-5.2933	phi(n)	10556	28	0	seg0.14	300	kw=PRIMES isign=1 phase=3 litf=1 atb=0
+-5.2933	primes-1 (totient)	2100	28	1	seg0.7	300	kw=SURFACE isign=28 phase=1 litf=1 atb=0
+-5.2933	primes from 3301	12386	1	1	seg0.9	300	kw=TRUTH isign=1 phase=0 litf=1 atb=0
+-5.2933	e digits (base 29)	10493	1	1	seg0.7	300	kw=EMERGENCE isign=1 phase=3 litf=1 atb=0
+-5.2933	sigma(n)	7260	1	1	seg0.8	300	kw=FIRFUMFERENFE isign=28 phase=10 litf=1 atb=0
+-5.2933	primes	12849	1	1	seg0.9	300	kw=TRUTH isign=1 phase=0 litf=1 atb=0
+-5.2933	primes from 3301	6470	28	1	seg0.7	300	kw=INSTRUCTION isign=1 phase=9 litf=1 atb=0
+-5.2933	pi digits (base 29)	1996	28	1	seg0.9	300	kw=CIRCUMFERENCE isign=1 phase=4 litf=1 atb=0
+-5.2933	primes-1 (totient)	4043	1	0	seg0.11	300	kw=INSTAR isign=1 phase=5 litf=1 atb=0
+-5.2933	sqrt2 digits (base 29)	19365	28	0	seg0.15	300	kw=INSTRUCTION isign=28 phase=1 litf=1 atb=0
+-5.2933	phi digits (base 29)	3814	28	1	seg0.13	300	kw=KOAN isign=1 phase=2 litf=1 atb=0
+-5.2933	e digits (base 10)	3172	1	1	seg0.14	300	kw=WISDOM isign=28 phase=5 litf=1 atb=0
+-5.2933	cumulative prime sum	18427	1	0	seg0.12	300	kw=FIRFUMFERENFE isign=28 phase=2 litf=1 atb=0
+-5.2933	pi digits (base 29)	6109	1	0	seg0.12	300	kw=PILGRIM isign=28 phase=4 litf=1 atb=0
+-5.2933	phi digits (base 29)	5708	1	0	seg0.9	300	kw=DECEPTION isign=28 phase=3 litf=1 atb=0
+-5.2933	phi(n)	19165	28	0	seg0.7	300	kw=TOTIENT isign=1 phase=0 litf=1 atb=0
+-5.2933	primes	6933	28	1	seg0.7	300	kw=INSTRUCTION isign=1 phase=9 litf=1 atb=0
+-5.2933	sigma(n)	2690	28	0	seg0.13	300	kw=CONSUMPTION isign=1 phase=6 litf=1 atb=0
+-5.2933	primes-1 (totient)	6667	28	1	seg0.12	300	kw=SURFACE isign=28 phase=4 litf=1 atb=0
+-5.2967	primes-1 (totient)	7223	28	1	seg0.8	300	kw=CIRCUMFERENCE isign=1 phase=1 litf=1 atb=0
+-5.2967	primes+1	4424	1	1	seg0.13	300	kw=PRESERVATION isign=1 phase=10 litf=1 atb=0
+-5.2967	primes-1 (totient)	9954	1	1	seg0.9	300	kw=SURFACE isign=28 phase=1 litf=1 atb=0
+-5.2967	primes-1 (totient)	544	28	1	seg0.9	300	kw=PRESERVATION isign=1 phase=7 litf=1 atb=0
+-5.2967	primes from 3301	2176	28	1	seg0.7	300	kw=PRIMES isign=1 phase=3 litf=1 atb=0
+-5.2967	pi digits (base 10)	12029	28	0	seg0.7	300	kw=CIRCUMFERENCES isign=1 phase=7 litf=1 atb=0
+-5.2967	e digits (base 10)	15298	1	0	seg0.14	300	kw=PRIMES isign=28 phase=4 litf=1 atb=0
+-5.2967	primes-1 (totient)	15011	28	0	seg0.9	300	kw=CIRCUMFERENCES isign=1 phase=11 litf=1 atb=0
+-5.2967	primes-1 (totient)	2035	28	1	seg0.9	300	kw=AWARNING isign=28 phase=5 litf=1 atb=0
+-5.2967	phi digits (base 29)	18759	28	1	seg0.14	300	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=0
+-5.2967	cumulative prime sum	13014	1	1	seg0.14	300	kw=PRESERVATION isign=28 phase=0 litf=1 atb=0
+-5.2967	pi digits (base 29)	656	28	0	seg0.14	300	kw=THEPRIMESARESACRED isign=28 phase=12 litf=1 atb=0
+-5.2967	phi(n)	15269	28	0	seg0.14	300	kw=LIBERPRIMUS isign=1 phase=1 litf=1 atb=0
+-5.2967	sqrt2 digits (base 29)	8854	1	1	seg0.7	300	kw=SACRED isign=1 phase=5 litf=1 atb=0
+-5.2967	primes+1	7793	28	0	seg0.15	300	kw=PRESERVATION isign=1 phase=3 litf=1 atb=0
+-5.2967	cumulative prime sum	757	28	0	seg0.8	300	kw=INSTRUCTION isign=1 phase=6 litf=1 atb=0
+-5.2967	e digits (base 29)	11959	1	1	seg0.11	300	kw=SACRED isign=1 phase=0 litf=1 atb=0
+-5.2967	sqrt2 digits (base 29)	2119	1	1	seg0.15	300	kw=EMERGENCE isign=1 phase=3 litf=1 atb=0
+-5.2967	sqrt2 digits (base 29)	215	1	0	seg0.13	300	kw=WISDOM isign=28 phase=5 litf=1 atb=0
+-5.2967	primes-1 (totient)	12297	1	1	seg0.8	300	kw=DECEPTION isign=28 phase=4 litf=1 atb=0
+-5.2967	phi(n)	7296	28	0	seg0.13	300	kw=INSTRUCTION isign=1 phase=3 litf=1 atb=0
+-5.2967	primes-1 (totient)	5566	28	0	seg0.13	300	kw=CIRCUMFERENCE isign=1 phase=8 litf=1 atb=0
+-5.2967	primes	18500	28	0	seg0.8	300	kw=CONSUMPTION isign=1 phase=6 litf=1 atb=0
+-5.2967	phi(n)	10132	28	0	seg0.14	300	kw=TRUTH isign=28 phase=3 litf=1 atb=0
+-5.2967	e digits (base 10)	5668	28	0	seg0.12	300	kw=PILGRIM isign=1 phase=1 litf=1 atb=0
+-5.2967	sqrt2 digits (base 29)	2885	1	1	seg0.7	300	kw=SURFACE isign=28 phase=0 litf=1 atb=0
+-5.2967	primes from 3301	7954	1	0	seg0.11	300	kw=DIVINITY isign=1 phase=3 litf=1 atb=0
+-5.2967	primes	8417	1	0	seg0.11	300	kw=DIVINITY isign=1 phase=3 litf=1 atb=0
+-5.2967	e digits (base 10)	10387	1	0	seg0.15	300	kw=CIRCUMFERENCE isign=1 phase=3 litf=1 atb=0
+-5.2967	primes	2639	28	1	seg0.7	300	kw=PRIMES isign=1 phase=3 litf=1 atb=0
+-5.2967	sigma(n)	18366	28	1	seg0.11	300	kw=ENLIGHTENED isign=1 phase=7 litf=1 atb=0
+-5.2967	primes from 3301	18037	28	0	seg0.8	300	kw=CONSUMPTION isign=1 phase=6 litf=1 atb=0
+-5.2967	cumulative prime sum	2	1	0	seg0.13	300	kw=PRIMALITY isign=28 phase=3 litf=1 atb=0
+-5.3000	phi digits (base 29)	3814	28	1	seg0.13	300	kw=KOAN isign=1 phase=1 litf=1 atb=0
+-5.3000	fibonacci	762	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	678	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	692	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	734	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	664	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	phi digits (base 29)	1391	1	1	seg0.12	300	kw=PILGRIM isign=28 phase=1 litf=1 atb=0
+-5.3000	fibonacci	748	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	650	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	706	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	258	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	328	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	primes	4174	1	1	seg0.14	300	kw=PRIMES isign=28 phase=0 litf=1 atb=0
+-5.3000	fibonacci	272	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	356	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	286	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	370	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	314	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	342	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	300	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	1630	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	1546	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	1560	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	1574	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	1588	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	1602	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	1616	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	phi(n)	14153	1	0	seg0.8	300	kw=PRESERVATION isign=1 phase=0 litf=1 atb=0
+-5.3000	fibonacci	132	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	146	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	primes+1	5314	28	0	seg0.9	300	kw=KOAN isign=28 phase=2 litf=1 atb=0
+-5.3000	fibonacci	160	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	174	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	188	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	202	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	216	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	230	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	244	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	pi digits (base 10)	16841	28	0	seg0.12	300	kw=EMERGENCE isign=1 phase=4 litf=1 atb=0
+-5.3000	fibonacci	776	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	860	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	818	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	874	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	primes-1 (totient)	9384	28	0	seg0.7	300	kw=FIRFUMFERENFE isign=1 phase=11 litf=1 atb=0
+-5.3000	fibonacci	888	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	832	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	804	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	846	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	790	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	1518	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	1532	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	1504	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	e digits (base 29)	5959	28	1	seg0.7	300	kw=ENLIGHTENED isign=1 phase=2 litf=1 atb=0
+-5.3000	fibonacci	1462	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	1434	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	1420	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	primes-1 (totient)	15012	28	0	seg0.9	300	kw=CIRCUMFERENCES isign=1 phase=11 litf=1 atb=0
+-5.3000	fibonacci	1476	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	1490	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	1448	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	1280	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	1294	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	1322	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	1336	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	1350	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	1364	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	1378	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	1392	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	1406	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	primes from 3301	8116	28	1	seg0.9	300	kw=PRIMALITY isign=1 phase=1 litf=1 atb=0
+-5.3000	fibonacci	1308	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	454	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	720	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	412	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	440	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	398	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	468	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	482	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	426	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	496	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	384	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	phi(n)	10761	28	1	seg0.7	300	kw=ENLIGHTENED isign=1 phase=1 litf=1 atb=0
+-5.3000	e digits (base 29)	15951	1	0	seg0.14	300	kw=CIRCUMFERENCES isign=1 phase=12 litf=1 atb=0
+-5.3000	fibonacci	510	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	phi(n)	11204	1	0	seg0.12	300	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=0
+-5.3000	fibonacci	1140	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	1028	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	1070	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	1084	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	1042	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	primes+1	18526	28	0	seg0.14	300	kw=SACRED isign=28 phase=3 litf=1 atb=0
+-5.3000	fibonacci	1098	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	phi(n)	12899	1	0	seg0.11	300	kw=CONSUMPTION isign=1 phase=2 litf=1 atb=0
+-5.3000	fibonacci	1112	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	1126	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	1056	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	e digits (base 29)	3704	28	1	seg0.12	300	kw=DIVINITY isign=1 phase=0 litf=1 atb=0
+-5.3000	primes	8579	28	1	seg0.9	300	kw=PRIMALITY isign=1 phase=1 litf=1 atb=0
+-5.3000	pi digits (base 29)	12825	28	1	seg0.15	300	kw=PRIMES isign=1 phase=3 litf=1 atb=0
+-5.3000	primes-1 (totient)	2692	28	0	seg0.7	300	kw=AWARNING isign=1 phase=4 litf=1 atb=0
+-5.3000	fibonacci	48	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	62	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	20	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	76	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	6	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	90	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	104	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	118	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	34	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	pi digits (base 10)	12737	28	1	seg0.12	300	kw=PRESERVATION isign=1 phase=8 litf=1 atb=0
+-5.3000	fibonacci	1196	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	1168	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	primes-1 (totient)	12238	1	1	seg0.11	300	kw=CONSUMPTION isign=1 phase=5 litf=1 atb=0
+-5.3000	primes-1 (totient)	15495	28	0	seg0.13	300	kw=CIRCUMFERENCES isign=1 phase=11 litf=1 atb=0
+-5.3000	fibonacci	1182	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	sigma(n)	14441	1	1	seg0.12	300	kw=ADHERENCE isign=1 phase=7 litf=1 atb=0
+-5.3000	fibonacci	1154	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	1224	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	1210	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	1238	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	1252	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	e digits (base 29)	14215	28	1	seg0.14	300	kw=CONSUMPTION isign=28 phase=9 litf=1 atb=0
+-5.3000	fibonacci	1266	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	phi digits (base 29)	8802	1	0	seg0.7	300	kw=PARABLE isign=1 phase=2 litf=1 atb=0
+-5.3000	sqrt2 digits (base 29)	217	1	0	seg0.13	300	kw=WISDOM isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	1000	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	972	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	930	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	1014	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	958	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	986	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	944	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	cumulative prime sum	5064	1	1	seg0.13	300	kw=WELCOME isign=1 phase=6 litf=1 atb=0
+-5.3000	fibonacci	916	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	902	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	538	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	524	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	phi(n)	8046	1	0	seg0.9	300	kw=THEPRIMESARESACRED isign=1 phase=13 litf=1 atb=0
+-5.3000	fibonacci	552	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	566	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	580	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	594	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	608	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	622	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	fibonacci	636	28	1	seg0.14	300	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3000	pi digits (base 29)	7467	1	0	seg0.8	300	kw=PRESERVATION isign=1 phase=0 litf=1 atb=0
+-5.3000	primes from 3301	3711	1	1	seg0.14	300	kw=PRIMES isign=28 phase=0 litf=1 atb=0
+-5.3000	primes from 3301	19579	1	0	seg0.15	300	kw=INSTRUCTION isign=28 phase=2 litf=1 atb=0
+-5.3033	cumulative prime sum	9005	1	0	seg0.11	300	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=0
+-5.3033	sqrt2 digits (base 29)	9113	28	1	seg0.9	300	kw=FIRFUMFERENFE isign=1 phase=8 litf=1 atb=0
+-5.3033	primes	14811	1	1	seg0.15	300	kw=INSTRUCTION isign=1 phase=0 litf=1 atb=0
+-5.3033	pi digits (base 29)	2050	28	1	seg0.12	300	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=0
+-5.3033	pi digits (base 10)	7991	1	0	seg0.13	300	kw=DECEPTION isign=28 phase=1 litf=1 atb=0
+-5.3033	e digits (base 10)	14678	1	0	seg0.13	300	kw=ENLIGHTENED isign=1 phase=5 litf=1 atb=0
+-5.3033	primes from 3301	8575	28	1	seg0.14	300	kw=EMERGENCE isign=1 phase=1 litf=1 atb=0
+-5.3033	primes from 3301	15917	28	0	seg0.15	300	kw=THEPRIMESARESACRED isign=1 phase=9 litf=1 atb=0
+-5.3033	pi digits (base 10)	6636	1	0	seg0.11	300	kw=DECEPTION isign=28 phase=6 litf=1 atb=0
+-5.3033	primes+1	1312	1	1	seg0.11	300	kw=INSTAR isign=1 phase=3 litf=1 atb=0
+-5.3033	sqrt2 digits (base 29)	5974	28	0	seg0.8	300	kw=INSTRUCTION isign=28 phase=4 litf=1 atb=0
+-5.3033	sqrt2 digits (base 29)	3342	28	1	seg0.7	300	kw=CONSUMPTION isign=1 phase=2 litf=1 atb=0
+-5.3033	phi digits (base 29)	11864	28	1	seg0.14	300	kw=PARABLE isign=28 phase=4 litf=1 atb=0
+-5.3033	primes from 3301	14348	1	1	seg0.15	300	kw=INSTRUCTION isign=1 phase=0 litf=1 atb=0
+-5.3033	cumulative prime sum	6668	1	0	seg0.7	300	kw=PILGRIM isign=1 phase=6 litf=1 atb=0
+-5.3033	primes from 3301	8940	1	0	seg0.11	300	kw=CIRCUMFERENCES isign=28 phase=5 litf=1 atb=0
+-5.3033	primes+1	16423	1	0	seg0.14	300	kw=THEPRIMESARESACRED isign=1 phase=7 litf=1 atb=0
+-5.3033	primes+1	190	1	1	seg0.13	300	kw=LIBERPRIMUS isign=1 phase=9 litf=1 atb=0
+-5.3033	phi(n)	9369	1	0	seg0.13	300	kw=INSTRUCTION isign=1 phase=0 litf=1 atb=0
+-5.3033	pi digits (base 10)	14445	1	0	seg0.12	300	kw=INSTRUCTION isign=28 phase=1 litf=1 atb=0
+-5.3033	primes	9038	28	1	seg0.14	300	kw=EMERGENCE isign=1 phase=1 litf=1 atb=0
+-5.3033	phi digits (base 29)	14199	28	1	seg0.15	300	kw=LIBERPRIMUS isign=28 phase=7 litf=1 atb=0
+-5.3033	pi digits (base 10)	9308	28	0	seg0.8	300	kw=ENLIGHTENED isign=28 phase=10 litf=1 atb=0
+-5.3033	phi(n)	2513	28	1	seg0.11	300	kw=THEPRIMESARESACRED isign=28 phase=5 litf=1 atb=0
+-5.3033	primes	9403	1	0	seg0.11	300	kw=CIRCUMFERENCES isign=28 phase=5 litf=1 atb=0
+-5.3033	sqrt2 digits (base 29)	17164	28	0	seg0.11	300	kw=CIRCUMFERENCES isign=1 phase=10 litf=1 atb=0
+-5.3033	phi digits (base 29)	5901	1	0	seg0.14	300	kw=LIBERPRIMUS isign=1 phase=5 litf=1 atb=0
+-5.3033	primes	16380	28	0	seg0.15	300	kw=THEPRIMESARESACRED isign=1 phase=9 litf=1 atb=0
+-5.3033	primes+1	4792	28	1	seg0.15	300	kw=ENLIGHTENED isign=1 phase=1 litf=1 atb=0
+-5.3033	pi digits (base 10)	17112	28	1	seg0.13	300	kw=ENLIGHTENED isign=1 phase=10 litf=1 atb=0
+-5.3067	cumulative prime sum	7852	1	0	seg0.11	300	kw=ENLIGHTENED isign=28 phase=4 litf=1 atb=0
+-5.3067	e digits (base 29)	6628	28	1	seg0.8	300	kw=TOTIENT isign=1 phase=1 litf=1 atb=0
+-5.3067	primes+1	1322	1	0	seg0.15	300	kw=ADHERENCE isign=1 phase=1 litf=1 atb=0
+-5.3067	primes+1	8587	28	1	seg0.15	300	kw=INSTAR isign=28 phase=4 litf=1 atb=0
+-5.3067	primes from 3301	3900	1	1	seg0.9	300	kw=PILGRIM isign=1 phase=0 litf=1 atb=0
+-5.3067	pi digits (base 29)	14506	1	1	seg0.11	300	kw=PILGRIM isign=28 phase=4 litf=1 atb=0
+-5.3067	primes+1	4476	28	0	seg0.13	300	kw=WISDOM isign=1 phase=4 litf=1 atb=0
+-5.3067	primes-1 (totient)	14370	28	0	seg0.15	300	kw=ENLIGHTENED isign=28 phase=10 litf=1 atb=0
+-5.3067	pi digits (base 29)	5875	28	0	seg0.13	300	kw=THEPRIMESARESACRED isign=1 phase=15 litf=1 atb=0
+-5.3067	sqrt2 digits (base 29)	10371	28	1	seg0.13	300	kw=SACRED isign=28 phase=1 litf=1 atb=0
+-5.3067	phi(n)	7932	28	1	seg0.14	300	kw=PARABLE isign=1 phase=3 litf=1 atb=0
+-5.3067	primes from 3301	6399	1	1	seg0.11	300	kw=ENLIGHTENED isign=1 phase=2 litf=1 atb=0
+-5.3067	e digits (base 29)	15225	1	1	seg0.14	300	kw=SACRED isign=1 phase=4 litf=1 atb=0
+-5.3067	e digits (base 29)	15227	1	1	seg0.14	300	kw=SACRED isign=1 phase=4 litf=1 atb=0
+-5.3067	primes	4363	1	1	seg0.9	300	kw=PILGRIM isign=1 phase=0 litf=1 atb=0
+-5.3067	primes from 3301	5919	28	1	seg0.7	300	kw=ADHERENCE isign=1 phase=0 litf=1 atb=0
+-5.3067	primes	6382	28	1	seg0.7	300	kw=ADHERENCE isign=1 phase=0 litf=1 atb=0
+-5.3067	primes+1	2690	1	0	seg0.14	300	kw=AWARNING isign=1 phase=4 litf=1 atb=0
+-5.3067	pi digits (base 29)	5874	28	0	seg0.13	300	kw=THEPRIMESARESACRED isign=1 phase=15 litf=1 atb=0
+-5.3067	primes	6862	1	1	seg0.11	300	kw=ENLIGHTENED isign=1 phase=2 litf=1 atb=0
+-5.3067	cumulative prime sum	8035	1	1	seg0.14	300	kw=THEPRIMESARESACRED isign=28 phase=16 litf=1 atb=0
+-5.3067	primes+1	15076	28	1	seg0.9	300	kw=FIRFUMFERENFE isign=1 phase=8 litf=1 atb=0
+-5.3067	primes from 3301	10648	1	0	seg0.7	300	kw=INSTRUCTION isign=1 phase=8 litf=1 atb=0
+-5.3067	phi(n)	5823	28	1	seg0.7	300	kw=WARNING isign=28 phase=4 litf=1 atb=0
+-5.3067	cumulative prime sum	8033	1	1	seg0.14	300	kw=THEPRIMESARESACRED isign=28 phase=16 litf=1 atb=0
+-5.3067	phi(n)	688	28	1	seg0.12	300	kw=ENLIGHTENED isign=28 phase=6 litf=1 atb=0
+-5.3067	primes-1 (totient)	9383	28	1	seg0.12	300	kw=LIBERPRIMUS isign=1 phase=9 litf=1 atb=0
+-5.3067	e digits (base 29)	6752	1	1	seg0.15	300	kw=PRIMALITY isign=1 phase=0 litf=1 atb=0
+-5.3067	phi digits (base 29)	1391	1	1	seg0.12	300	kw=PILGRIM isign=28 phase=2 litf=1 atb=0
+-5.3067	primes	11111	1	0	seg0.7	300	kw=INSTRUCTION isign=1 phase=8 litf=1 atb=0
+-5.3067	pi digits (base 29)	14700	28	1	seg0.13	300	kw=EMERGENCE isign=28 phase=4 litf=1 atb=0
+-5.3100	cumulative prime sum	5685	28	0	seg0.7	300	kw=WISDOM isign=1 phase=2 litf=1 atb=0
+-5.3100	phi(n)	18228	28	0	seg0.12	300	kw=THEPRIMESARESACRED isign=1 phase=2 litf=1 atb=0
+-5.3100	phi digits (base 29)	9082	28	1	seg0.14	300	kw=DECEPTION isign=1 phase=4 litf=1 atb=0
+-5.3100	primes from 3301	14603	1	0	seg0.14	300	kw=ADHERENCE isign=28 phase=2 litf=1 atb=0
+-5.3100	primes-1 (totient)	2990	28	1	seg0.7	300	kw=CICADA isign=1 phase=5 litf=1 atb=0
+-5.3100	e digits (base 10)	2912	1	0	seg0.7	300	kw=ENLIGHTENED isign=1 phase=6 litf=1 atb=0
+-5.3100	cumulative prime sum	8121	1	0	seg0.13	300	kw=THEPRIMESARESACRED isign=1 phase=4 litf=1 atb=0
+-5.3100	pi digits (base 29)	829	28	0	seg0.11	300	kw=DECEPTION isign=28 phase=8 litf=1 atb=0
+-5.3100	primes	15066	1	0	seg0.14	300	kw=ADHERENCE isign=28 phase=2 litf=1 atb=0
+-5.3100	primes from 3301	16125	28	0	seg0.11	300	kw=CIRCUMFERENCES isign=1 phase=9 litf=1 atb=0
+-5.3100	cumulative prime sum	12720	1	1	seg0.15	300	kw=LIBERPRIMUS isign=1 phase=7 litf=1 atb=0
+-5.3100	primes-1 (totient)	9367	28	1	seg0.9	300	kw=CONSUMPTION isign=1 phase=6 litf=1 atb=0
+-5.3100	e digits (base 10)	3372	28	0	seg0.13	300	kw=CONSUMPTION isign=1 phase=8 litf=1 atb=0
+-5.3100	pi digits (base 29)	4063	28	0	seg0.14	300	kw=PRIMES isign=1 phase=0 litf=1 atb=0
+-5.3100	primes+1	15107	28	0	seg0.13	300	kw=DIVINITY isign=1 phase=6 litf=1 atb=0
+-5.3100	phi(n)	4769	28	1	seg0.9	300	kw=CICADA isign=1 phase=5 litf=1 atb=0
+-5.3100	phi digits (base 29)	8420	28	1	seg0.9	300	kw=EMERGE isign=1 phase=4 litf=1 atb=0
+-5.3100	e digits (base 10)	5385	1	0	seg0.14	300	kw=PRESERVATION isign=1 phase=5 litf=1 atb=0
+-5.3100	sqrt2 digits (base 29)	16171	1	0	seg0.14	300	kw=ENLIGHTENED isign=28 phase=6 litf=1 atb=0
+-5.3100	primes	16588	28	0	seg0.11	300	kw=CIRCUMFERENCES isign=1 phase=9 litf=1 atb=0
+-5.3100	sigma(n)	450	28	0	seg0.13	300	kw=EMERGENCE isign=1 phase=4 litf=1 atb=0
+-5.3100	primes+1	16049	28	0	seg0.12	300	kw=WISDOM isign=1 phase=3 litf=1 atb=0
+-5.3100	cumulative prime sum	210	1	0	seg0.12	300	kw=PILGRIM isign=28 phase=1 litf=1 atb=0
+-5.3100	primes+1	3344	28	1	seg0.9	300	kw=SACRED isign=1 phase=0 litf=1 atb=0
+-5.3100	phi digits (base 29)	18197	28	0	seg0.11	300	kw=INSTRUCTION isign=1 phase=10 litf=1 atb=0
+-5.3100	e digits (base 10)	5216	1	0	seg0.12	300	kw=WISDOM isign=28 phase=5 litf=1 atb=0
+-5.3100	primes-1 (totient)	13012	1	0	seg0.9	300	kw=DECEPTION isign=1 phase=1 litf=1 atb=0
+-5.3133	sigma(n)	13321	28	0	seg0.12	300	kw=PRESERVATION isign=28 phase=2 litf=1 atb=0
+-5.3133	primes	823	28	1	seg0.13	300	kw=WISDOM isign=1 phase=1 litf=1 atb=0
+-5.3133	primes+1	9294	28	0	seg0.9	300	kw=DECEPTION isign=1 phase=5 litf=1 atb=0
+-5.3133	e digits (base 29)	6688	1	0	seg0.12	300	kw=PRIMES isign=1 phase=4 litf=1 atb=0
+-5.3133	phi(n)	11981	1	0	seg0.7	300	kw=ADHERENCE isign=1 phase=1 litf=1 atb=0
+-5.3133	sqrt2 digits (base 29)	4803	28	0	seg0.11	300	kw=PRIMALITY isign=1 phase=7 litf=1 atb=0
+-5.3133	primes+1	6666	1	0	seg0.8	300	kw=WISDOM isign=1 phase=3 litf=1 atb=0
+-5.3133	primes from 3301	12114	1	1	seg0.9	300	kw=EMERGE isign=1 phase=5 litf=1 atb=0
+-5.3133	primes+1	9194	28	1	seg0.8	300	kw=SACRED isign=1 phase=4 litf=1 atb=0
+-5.3133	cumulative prime sum	8937	28	1	seg0.15	300	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-5.3133	cumulative prime sum	18537	28	0	seg0.12	300	kw=CIRCUMFERENCE isign=1 phase=12 litf=1 atb=0
+-5.3133	primes	13391	1	1	seg0.15	300	kw=LIBERPRIMUS isign=1 phase=10 litf=1 atb=0
+-5.3133	sigma(n)	8123	1	0	seg0.12	300	kw=PRIMES isign=28 phase=1 litf=1 atb=0
+-5.3133	primes from 3301	360	28	1	seg0.13	300	kw=WISDOM isign=1 phase=1 litf=1 atb=0
+-5.3133	sqrt2 digits (base 29)	9655	28	1	seg0.9	300	kw=WARNING isign=1 phase=2 litf=1 atb=0
+-5.3133	primes+1	9326	1	1	seg0.13	300	kw=SURFACE isign=1 phase=4 litf=1 atb=0
+-5.3133	primes	12577	1	1	seg0.9	300	kw=EMERGE isign=1 phase=5 litf=1 atb=0
+-5.3133	primes+1	17664	1	1	seg0.9	300	kw=TRUTH isign=1 phase=2 litf=1 atb=0
+-5.3133	primes from 3301	12928	1	1	seg0.15	300	kw=LIBERPRIMUS isign=1 phase=10 litf=1 atb=0
+-5.3133	phi digits (base 29)	7672	28	0	seg0.8	300	kw=TRUTH isign=1 phase=2 litf=1 atb=0
+-5.3133	primes	11861	28	1	seg0.9	300	kw=EMERGE isign=28 phase=4 litf=1 atb=0
+-5.3133	primes from 3301	11398	28	1	seg0.9	300	kw=EMERGE isign=28 phase=4 litf=1 atb=0
+-5.3133	primes+1	3702	1	0	seg0.11	300	kw=PRESERVATION isign=1 phase=1 litf=1 atb=0
+-5.3167	phi(n)	18225	28	1	seg0.11	300	kw=THEPRIMESARESACRED isign=28 phase=5 litf=1 atb=0
+-5.3167	cumulative prime sum	6164	1	1	seg0.11	300	kw=CIRCUMFERENCE isign=28 phase=9 litf=1 atb=0
+-5.3167	primes from 3301	15619	28	0	seg0.8	300	kw=INSTAR isign=1 phase=3 litf=1 atb=0
+-5.3167	primes	18281	1	1	seg0.13	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.3167	sigma(n)	1512	1	1	seg0.8	300	kw=PRESERVATION isign=28 phase=11 litf=1 atb=0
+-5.3167	sqrt2 digits (base 29)	1731	28	0	seg0.13	300	kw=EMERGENCE isign=1 phase=8 litf=1 atb=0
+-5.3167	primes from 3301	5063	1	0	seg0.11	300	kw=AWARNING isign=28 phase=0 litf=1 atb=0
+-5.3167	cumulative prime sum	11204	1	0	seg0.15	300	kw=CIRCUMFERENCE isign=28 phase=12 litf=1 atb=0
+-5.3167	primes	5526	1	0	seg0.11	300	kw=AWARNING isign=28 phase=0 litf=1 atb=0
+-5.3167	pi digits (base 29)	1942	28	1	seg0.7	300	kw=DECEPTION isign=28 phase=8 litf=1 atb=0
+-5.3167	sqrt2 digits (base 29)	17441	28	1	seg0.9	300	kw=EMERGE isign=1 phase=1 litf=1 atb=0
+-5.3167	cumulative prime sum	4290	28	0	seg0.11	300	kw=ADHERENCE isign=1 phase=0 litf=1 atb=0
+-5.3167	cumulative prime sum	779	1	0	seg0.9	300	kw=SURFACE isign=1 phase=0 litf=1 atb=0
+-5.3167	primes-1 (totient)	2988	28	1	seg0.7	300	kw=CICADA isign=1 phase=4 litf=1 atb=0
+-5.3167	sigma(n)	14087	1	1	seg0.15	300	kw=PRESERVATION isign=1 phase=4 litf=1 atb=0
+-5.3167	pi digits (base 10)	6546	1	1	seg0.12	300	kw=ENLIGHTENED isign=1 phase=4 litf=1 atb=0
+-5.3167	e digits (base 10)	9256	28	0	seg0.9	300	kw=THEPRIMESARESACRED isign=1 phase=16 litf=1 atb=0
+-5.3167	sqrt2 digits (base 29)	2883	1	1	seg0.7	300	kw=SURFACE isign=28 phase=1 litf=1 atb=0
+-5.3167	pi digits (base 10)	6637	1	0	seg0.11	300	kw=DECEPTION isign=28 phase=7 litf=1 atb=0
+-5.3167	pi digits (base 29)	7301	28	0	seg0.13	300	kw=CIRCUMFERENCE isign=1 phase=1 litf=1 atb=0
+-5.3167	sigma(n)	5800	1	1	seg0.15	300	kw=DECEPTION isign=1 phase=0 litf=1 atb=0
+-5.3167	primes	16082	28	0	seg0.8	300	kw=INSTAR isign=1 phase=3 litf=1 atb=0
+-5.3167	cumulative prime sum	17306	1	1	seg0.12	300	kw=FIRFUMFERENFE isign=28 phase=11 litf=1 atb=0
+-5.3167	primes from 3301	17818	1	1	seg0.13	300	kw=EMERGENCE isign=1 phase=6 litf=1 atb=0
+-5.3167	phi(n)	16192	28	0	seg0.15	300	kw=SURFACE isign=28 phase=4 litf=1 atb=0
+-5.3167	sigma(n)	450	28	0	seg0.13	300	kw=DIVINITY isign=1 phase=7 litf=1 atb=0
+-5.3167	sigma(n)	7282	1	0	seg0.11	300	kw=LIBERPRIMUS isign=1 phase=4 litf=1 atb=0
+-5.3167	sigma(n)	7283	1	0	seg0.11	300	kw=LIBERPRIMUS isign=1 phase=4 litf=1 atb=0
+-5.3167	e digits (base 10)	3193	1	1	seg0.11	300	kw=AWARNING isign=1 phase=4 litf=1 atb=0
+-5.3200	phi digits (base 29)	9909	1	0	seg0.15	300	kw=EMERGE isign=1 phase=1 litf=1 atb=0
+-5.3200	sqrt2 digits (base 29)	9060	1	1	seg0.12	300	kw=INSTAR isign=1 phase=1 litf=1 atb=0
+-5.3200	pi digits (base 29)	19454	1	0	seg0.14	300	kw=PRIMES isign=28 phase=3 litf=1 atb=0
+-5.3200	primes from 3301	4390	28	0	seg0.9	300	kw=WARNING isign=1 phase=1 litf=1 atb=0
+-5.3200	cumulative prime sum	15341	28	0	seg0.13	300	kw=EMERGE isign=1 phase=1 litf=1 atb=0
+-5.3200	primes-1 (totient)	4254	1	0	seg0.13	300	kw=WARNING isign=1 phase=3 litf=1 atb=0

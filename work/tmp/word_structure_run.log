@@ -1,0 +1,83 @@
+LP2 sections 0.7-0.15: 12956 runes, 2896 words; seed 20261019; times in seconds are on one core
+
+A. Does the position of a word boundary depend on the ciphertext near the gap?
+   14 features (29 levels for the first seven, 3 for the straddling-pair counts); null: word lengths re-shuffled inside each section
+   gaps used 12811, boundary rate 0.2232, 2000 shuffles
+   feature                                          chi2  df  nominal p  shuffle p
+   c_i                                              34.8  28      0.176     0.1989
+   c_i+1                                            23.1  28      0.729     0.7526
+   c_i+1 - c_i                                      27.2  28      0.507     0.4988
+   c_i+1 + c_i                                      23.5  28      0.706     0.7021
+   c_i-1                                            30.3  28       0.35     0.3578
+   c_i+2                                            20.2  28      0.856     0.8671
+   c_i - c_i-1                                      32.5  28      0.255     0.2869
+   equal pair at lag 2 straddles the gap             0.4   2      0.806     0.7811
+   equal pair at lag 3 straddles the gap             0.9   2      0.649     0.5482
+   equal pair at lag 4 straddles the gap             3.5   2       0.17     0.0660
+   equal pair at lag 5 straddles the gap             1.4   2      0.486     0.2959
+   equal pair at lag 6 straddles the gap             1.2   2      0.548     0.3258
+   equal pair at lag 7 straddles the gap             0.6   2      0.733     0.5492
+   equal pair at lag 8 straddles the gap             4.9   2     0.0849     0.0100
+   combined (smallest nominal p, 10^-1.07), probability under the shuffle null: 0.5682   [used for the controls]
+   combined (smallest shuffle p, 0.0100: equal pair at lag 8 straddles the gap), family-wise probability under the shuffle null (Westfall-Young): 0.1309
+
+   Control (iid runes with LP2's frequencies and section lengths, same boundary rate; a share lam of the boundaries follows a rule
+   on 8 of the 29 values of c_i ('R') or of c_i+1 - c_i ('D'); detection = probability under the shuffle null <= 0.01):
+   rule    lam  detected
+   R      1.00     16/16
+   R      0.50     16/16
+   R      0.25     16/16
+   R      0.12     16/16
+   R      0.06     10/16
+   R      0.03      0/16
+   R      0.00      0/16
+   D      1.00     16/16
+   D      0.50     16/16
+   D      0.25     16/16
+   D      0.12     16/16
+   D      0.06     12/16
+   D      0.03      1/16
+   D      0.00      0/16
+   null controls (lam 0, both rules, 32 runs): shuffle p <= 0.05 in 1, <= 0.01 in 0
+
+   Word-level: the length of a word (1..9, 10+) against a rune beside the word; 29 x 10 tables, df 252
+   feature                                  chi2  nominal p  shuffle p   (2000 shuffles)
+   first rune of the word                  263.2      0.301     0.3063
+   last rune of the word                   240.1      0.695     0.6892
+   last rune of the previous word          264.1      0.287     0.2689
+   first rune of the next word             240.3      0.691     0.6927
+   combined: smallest nominal p, probability under the shuffle null 0.7241; smallest shuffle p, family-wise (Westfall-Young) 0.7046
+   Control: a share lam of the words has length 2 + (first rune mod 6) (iid runes, other lengths drawn from LP2's); detected = p <= 0.01:
+   lam  1.00: 16/16
+   lam  0.50: 16/16
+   lam  0.25: 16/16
+   lam  0.12: 16/16
+   lam  0.06: 10/16
+   lam  0.00: 0/16
+
+B/C. Position- and length-stratified relations inside words
+   B cells: word lengths [3, 4, 5, 6, 7, 8], all position pairs i < j (83 cells); C cells: lengths [2, 3, 4, 5, 6, 7, 8, 9, 10], all columns (54 cells)
+   vectorised column z against restart_columns.column_stats: largest difference 0.00e+00
+   LP2 against 2000 within-section rune shuffles:
+   statistic                     observed  null mean  null sd  null max  P(null >= obs)
+   B mean standardised chi2        -0.850     -0.019    0.990     3.488          0.8056
+   B largest cell z                 2.618      2.939    0.678     6.315          0.6432
+   C mean column z                 -1.272     -0.466    0.946     3.048          0.8021
+   C largest column z               2.508      2.632    0.716     7.219          0.5112
+
+   Controls: English (Emerson) runes cut at LP2's word lengths and enciphered as stated; 8 plants per row, 200 within-section shuffles each;
+   cell = plants whose statistic exceeds every shuffle (mean z against the shuffles)
+   cipher                              B mean chi2       C mean z
+   K(j)                               8/8 (  22.4)   8/8 ( 110.1)
+   K(L,j)                             8/8 (  22.9)   8/8 ( 158.2)
+   K(j) + offset per word             8/8 (  21.9)   0/8 (  -0.1)
+   K(L,j) + offset per word           8/8 (  21.8)   0/8 (   0.1)
+   random key (OTP)                   0/8 (   0.2)   0/8 (   0.1)
+   K(L,j) + offset, 50% of words      8/8 (   5.5)   0/8 (  -0.4)
+   K(L,j) + offset, 25% of words      2/8 (   1.9)   0/8 (  -0.0)
+   K(L,j) + offset, 10% of words      1/8 (   0.9)   0/8 (  -0.2)
+   K(L,j), 25% of words               0/8 (   1.4)   8/8 (  11.6)
+   K(L,j), 10% of words               0/8 (   0.3)   1/8 (   1.4)
+
+   total time 261 s
+

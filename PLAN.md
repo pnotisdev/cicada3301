@@ -679,3 +679,27 @@ GPT built it, Claude reviewed and finished the follow-up. No LP2 ciphertext scor
 v2 sparse all-offsets Rust engine: E0-E2 PASS (exact on the Q3 grid, all 693,940 stored cells to 1.3e-11 nats); full 82-window campaign projected at about 15 wall hours on 4 workers.
 **E3' FAIL:** the union bound at T300 = 29.80 nats does not hold under one common null (exact finite-key counterexamples, 2.07x the bound at Q29/n300). **F4 guard min(S, S_W) >= T PASS:** exact tails under both nulls on the
 full Q3 grid (48,708 bounds), and on the 380 saved held records 280/280 plants kept, 0/100 nulls (max -132.15). The literal wrong-offset count fails on +-15 alias cells (403 of 2,240 passes at t = 10). E3-E5 wait for adoption of the guard.
+
+### What the book asks, how it is built (2026-10-19, `work/log/phase18_cicada_intent.md`, `work/prime_sums.py`, `work/page_scan_audit.py`, `work/book_map.py`)
+
+Sentence sums of the solved plaintext are prime far more often than chance (36 of 76 body clauses against 11.2 expected, z 7.9; A Warning 9 of 9, An Instruction 4 of 4, Parable 3 of 3; long narrative clauses at chance; ordinary English 12-14%); LP2's ciphertext units are not enriched.
+Reading: the plaintext carries a number check ("either the words or their numbers"), so a decryption would be verifiable in any language; proposed for the campaign rules, not edited. Scan audit: 10.jpg is a four-in-one container, 05.jpg holds a hex copy of its own magic square and a byte-reversed copy of itself;
+no hash match, no hidden faint marks (planted control found). New open row: key restart or jump at every clause mark, to be run with chanscreen v2.
+
+### "Try all four" (2026-10-19, `work/log/phase19_try_all_four.md`)
+
+(1) `work/prime_check.py` + the CAMPAIGNS.md addendum (right keys 56% prime on short clauses, random shifts 16%). (4) OutGuess re-implemented (`work/ogscan/`, no third-party code run): the default key opens 9 pages (0, 1, 2, 3, 8, 10-13: the 2014 payloads, pages 0-2 new to the notes); a key-free screen shows no OutGuess-style payload in any of the 56 LP2 pages
+(9 of 9 controls show 14-258 deviations, LP2 pages 0); page 4: 53,227 solved-text keys, 0 hits, planted control found. Seed lists: `prng-bg` on sections 0.8-0.15 for all ten generators queued on the GPU (py3: 0 candidates). (2) and (3): chanscreen v2 step3 protocol adopted on the user's instruction; E4 200/200 detected (194/200 at 60 runes, 200/200 from 80);
+E3 as frozen failed by my choice of records (three library-keyed records were found: a 3-of-3 library-scale control), E3b gate pending; the n300 campaign (about 49 CPU-hours) and the clause scan (21) run in the detached queue `jobs/queues/chanscreen.txt` and have not been read.
+
+### Segmentation plan (2026-10-19, `work/log/phase20_segmentation_plan.md`, `work/word_structure.py`)
+
+An outside analysis proposed treating "segmentation preserved, symbols destroyed" as the central clue. Against the record: adjacent word lengths are independent (lag-1 mutual-information z +0.4; English +8.8 to +27), clause marks are not sentence-like (first word 4.42 runes against 3.14), the anti-repeat rule ignores word boundaries (0.63% inside words, 0.80% across)
+while the lag-5 and lag-6 echoes stop at them: the separators belong to the cipher layer, not to the language layer. Its top experiments were already done (restart at words Z -1.4 against 237 for planted restarts; per-word keys). New keyless tests with planted controls: the boundaries do not depend on the neighbouring runes (16 of 16 detections down to 12% of the boundaries;
+LP2 combined P 0.57 and 0.72), and there is no schedule by position in the word or by (length, position), with or without a per-word offset (LP2 P 0.81 and 0.80; plants found 8 of 8 on at least half or a quarter of the words). Order of work: read the running queues, E4-letters (power of the frozen contract under letter spelling), word-edge null / advance channels in chanscreen v2 (row `open-unkeyed`, engine work, needs a go-ahead).
+
+### Queue results (2026-10-19 / 20, `work/log/phase19_try_all_four.md` section 5, `work/chanscreen/v2/step3/PROTOCOL.md` amendment 3)
+
+**Nothing in LP2 is solved.** chanscreen v2, 82 LP2 windows of 300 runes against the 1,439-stream library (hold, spend, skip5, coin; both signs; every offset; 8.74e9 cells): 0 tier-1 cells, no cell reaches S_guard 0 (best -75.7 hold). Clause-aligned scan (82 clauses of 61-559 runes): 0 tier-1 cells (best 7.5).
+Seed sweeps of sections 0.8-0.15, ten generators over their full seed space: 0 candidates. Nine isolated computation faults in the 2,296 campaign tasks (7 raised `invalid log likelihood`, 2 stored false tier-1 cells of 132.6 and 335.1 nats that do not reproduce) were re-run clean; `summary.py` now recomputes every tier-1 group.
+What the negatives exclude: those streams, channels, q = 0.81 and an English-like plaintext; not other streams, languages, restarts inside a window, or a fault that hides a hit (about 1e-5 per call). Next (phase 20): E4-letters (power under letter spelling), word-edge channels in chanscreen v2.

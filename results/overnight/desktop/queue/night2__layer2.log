@@ -1,0 +1,567 @@
+# 2026-10-19 06:51:47 start: {PY} jobs/overnight.py run layer2 --threads 14 --device cpu
+[06:51:47] [device] cpu (--device cpu)
+[06:51:47] [overnight] desktop lane main: 2 campaigns, 14 steps to run (~13.9 h by the rough estimates), 14 threads, device cpu
+
+== setup: Build engines and data
+[06:51:47] [1/14 setup/build-phpmt cpu] start (est. 0.02 h)
+[06:51:50] [1/14 setup/build-phpmt cpu]     Finished `release` profile [optimized] target(s) in 1.11s
+[06:51:50] [1/14 setup/build-phpmt cpu] ok in 2s
+[06:51:50] [2/14 setup/build-walk cpu] start (est. 0.02 h)
+[06:51:51] [2/14 setup/build-walk cpu]     Finished `release` profile [optimized] target(s) in 0.80s
+[06:51:51] [2/14 setup/build-walk cpu] ok in 1s
+[06:51:51] [3/14 setup/build-kscreen cpu] start (est. 0.02 h)
+[06:51:52] [3/14 setup/build-kscreen cpu]     Finished `release` profile [optimized] target(s) in 0.64s
+[06:51:52] [3/14 setup/build-kscreen cpu] ok in 0s
+[06:51:52] [4/14 setup/fetch-data cpu] start (est. 0.02 h)
+[06:51:53] [4/14 setup/fetch-data cpu] lp_master.txt          cached
+[06:51:53] [4/14 setup/fetch-data cpu] lp_keys.txt            cached
+[06:51:53] [4/14 setup/fetch-data cpu] lp_translation.txt     cached
+[06:51:53] [4/14 setup/fetch-data cpu] english_20k.txt        cached
+[06:51:53] [4/14 setup/fetch-data cpu] emerson_essays1.txt    cached
+[06:51:53] [4/14 setup/fetch-data cpu] lp_verified.txt        built (6 errata lines applied)
+[06:51:53] [4/14 setup/fetch-data cpu] ok in 1s
+[06:51:53] [overnight] done  setup/data-phpmt
+[06:51:53] [overnight] done  setup/data-walk
+[06:51:53] [5/14 setup/data-kscreen cpu] start (est. 0.10 h)
+[06:52:42] [5/14 setup/data-kscreen cpu] windows: 8 segments, 10 headings, 46 pages; library: 1439 keystreams (858 already excluded by LP2's flat IoC under English plaintext)
+[06:52:42] [5/14 setup/data-kscreen cpu] ok in 48s
+
+== layer2: Two layers from the solved pages: keyword Vigenere inside, number stream with the anti-repeat rule outside
+[06:52:53] [6/14 layer2/build cpu] start (est. 0.02 h)
+[06:52:55] [6/14 layer2/build cpu]     Finished `release` profile [optimized] target(s) in 0.99s
+[06:52:55] [6/14 layer2/build cpu] ok in 1s
+[06:52:55] [overnight] done  layer2/export
+[06:52:55] [7/14 layer2/selftest cpu] start (est. 0.30 h)
+[06:53:36] [7/14 layer2/selftest cpu] PASS  bigram plant 'primes-1 (totient)' kw=DIVINITY litf=1 atb=0 isign=1 mult=1 model=0 plant_0: best +7.500 at offset 1233 (truth 1234) [kw=DIVINITY isign=1 phase=5 litf=1 atb=0]; whole window at truth +7.362, matched null max -7.171
+[06:53:36] [7/14 layer2/selftest cpu] PASS  bigram plant 'primes-1 (totient)' kw=DIVINITY litf=1 atb=0 isign=1 mult=1 model=0 plant_1: best +8.213 at offset 2231 (truth 2231) [kw=DIVINITY isign=1 phase=3 litf=1 atb=0]; whole window at truth +8.190, matched null max -7.640
+[06:53:36] [7/14 layer2/selftest cpu] PASS  bigram plant 'primes-1 (totient)' kw=DIVINITY litf=1 atb=0 isign=1 mult=1 model=0 plant_2: best +7.170 at offset 3228 (truth 3228) [kw=DIVINITY isign=1 phase=3 litf=1 atb=0]; whole window at truth +7.587, matched null max -7.852
+[06:53:36] [7/14 layer2/selftest cpu] PASS  blindness: kscreen re-decode of plant 0 at its true offset: IoC 1.197 (below its 1.40 threshold, so earlier screens could not see H-LAYER)
+[06:53:36] [7/14 layer2/selftest cpu] PASS  bigram plant 'pi digits (base 29)' kw=FIRFUMFERENFE litf=0 atb=1 isign=28 mult=28 model=1 plant_0: best +7.430 at offset 777 (truth 777) [kw=FIRFUMFERENFE isign=28 phase=0 litf=0 atb=1]; whole window at truth +7.349, matched null max -9.791
+[06:53:36] [7/14 layer2/selftest cpu] PASS  bigram plant 'pi digits (base 29)' kw=FIRFUMFERENFE litf=0 atb=1 isign=28 mult=28 model=1 plant_1: best +8.213 at offset 1774 (truth 1774) [kw=FIRFUMFERENFE isign=28 phase=0 litf=0 atb=1]; whole window at truth +8.110, matched null max -9.100
+[06:53:36] [7/14 layer2/selftest cpu] PASS  bigram plant 'pi digits (base 29)' kw=FIRFUMFERENFE litf=0 atb=1 isign=28 mult=28 model=1 plant_2: best +7.160 at offset 2771 (truth 2771) [kw=FIRFUMFERENFE isign=28 phase=0 litf=0 atb=1]; whole window at truth +7.579, matched null max -9.283
+[06:53:36] [7/14 layer2/selftest cpu] PASS  bigram plant 'phi(n)' kw=CIRCUMFERENCE litf=1 atb=1 isign=1 mult=1 model=1 plant_0: best +7.523 at offset 321 (truth 321) [kw=CIRCUMFERENCE isign=1 phase=6 litf=1 atb=1]; whole window at truth +7.349, matched null max -6.731
+[06:53:36] [7/14 layer2/selftest cpu] PASS  bigram plant 'phi(n)' kw=CIRCUMFERENCE litf=1 atb=1 isign=1 mult=1 model=1 plant_1: best +8.213 at offset 1318 (truth 1318) [kw=CIRCUMFERENCE isign=1 phase=5 litf=1 atb=1]; whole window at truth +8.102, matched null max -8.248
+[06:53:36] [7/14 layer2/selftest cpu] PASS  bigram plant 'phi(n)' kw=CIRCUMFERENCE litf=1 atb=1 isign=1 mult=1 model=1 plant_2: best +7.227 at offset 2315 (truth 2315) [kw=CIRCUMFERENCE isign=1 phase=5 litf=1 atb=1]; whole window at truth +7.629, matched null max -8.065
+[06:53:36] [7/14 layer2/selftest cpu] PASS  periodic plant (keyword not in the file, m=6) plant_0: best z 11.67 at offset 2001 (truth 2000) [m=6 litf=0]; keyword estimate + bigram re-decode: candidate
+[06:53:36] [7/14 layer2/selftest cpu] PASS  periodic plant (keyword not in the file, m=6) plant_1: best z 17.30 at offset 2997 (truth 2997) [m=6 litf=0]; keyword estimate + bigram re-decode: candidate
+[06:53:36] [7/14 layer2/selftest cpu] PASS  periodic plant (keyword not in the file, m=6) plant_2: best z 10.26 at offset 3994 (truth 3994) [m=6 litf=0]; keyword estimate + bigram re-decode: candidate
+[06:53:36] [7/14 layer2/selftest cpu] PASS  null: 3 random streams x 3000 offsets x the solved keywords (all phases, signs, literal F, Atbash) x 8 LP2 windows: best -4.773 per rune (must stay below 2.0)
+[06:53:36] [7/14 layer2/selftest cpu] SELFTEST PASSED
+[06:53:36] [7/14 layer2/selftest cpu] ok in 41s
+[06:53:36] [8/14 layer2/null cpu] start (est. 1.10 h)
+[06:53:36] [8/14 layer2/null cpu] layer2: mode bigram, 20 items, 8 windows (n<=300), 272 inner configs, mults [1, 28], models [0, 1], 3415101440 decodes, 14 threads
+[06:54:00] [8/14 layer2/null cpu]   2.15%  73,531,392 decodes  3,105,572 decodes/s  eta 17m56s
+[06:54:21] [8/14 layer2/null cpu]   4.11%  140,378,112 decodes  3,174,013 decodes/s  eta 17m12s
+[06:54:42] [8/14 layer2/null cpu]   5.95%  203,064,320 decodes  3,120,020 decodes/s  eta 17m09s
+[06:55:06] [8/14 layer2/null cpu]   8.23%  281,052,160 decodes  3,144,224 decodes/s  eta 16m37s
+[06:55:31] [8/14 layer2/null cpu]  10.62%  362,678,272 decodes  3,173,984 decodes/s  eta 16m02s
+[06:55:55] [8/14 layer2/null cpu]  12.94%  441,780,224 decodes  3,198,393 decodes/s  eta 15m30s
+[06:56:15] [8/14 layer2/null cpu]  14.93%  510,036,992 decodes  3,208,835 decodes/s  eta 15m05s
+[06:56:39] [8/14 layer2/null cpu]  17.19%  586,910,720 decodes  3,213,157 decodes/s  eta 14m40s
+[06:57:02] [8/14 layer2/null cpu]  19.37%  661,556,224 decodes  3,210,947 decodes/s  eta 14m18s
+[06:57:24] [8/14 layer2/null cpu]  21.44%  732,041,216 decodes  3,223,726 decodes/s  eta 13m52s
+[06:57:48] [8/14 layer2/null cpu]  23.72%  810,029,056 decodes  3,225,655 decodes/s  eta 13m28s
+[06:58:13] [8/14 layer2/null cpu]  26.08%  890,541,056 decodes  3,218,396 decodes/s  eta 13m04s
+[06:58:37] [8/14 layer2/null cpu]  28.36%  968,528,896 decodes  3,216,953 decodes/s  eta 12m41s
+[06:59:01] [8/14 layer2/null cpu]  30.69%  1,047,926,784 decodes  3,225,636 decodes/s  eta 12m14s
+[06:59:22] [8/14 layer2/null cpu]  32.71%  1,117,001,728 decodes  3,228,735 decodes/s  eta 11m52s
+[06:59:46] [8/14 layer2/null cpu]  35.00%  1,195,285,504 decodes  3,238,113 decodes/s  eta 11m26s
+[07:00:11] [8/14 layer2/null cpu]  37.32%  1,274,387,456 decodes  3,231,357 decodes/s  eta 11m02s
+[07:00:35] [8/14 layer2/null cpu]  39.70%  1,355,717,632 decodes  3,238,419 decodes/s  eta 10m36s
+[07:00:58] [8/14 layer2/null cpu]  41.96%  1,432,887,296 decodes  3,241,658 decodes/s  eta 10m11s
+[07:01:19] [8/14 layer2/null cpu]  43.85%  1,497,505,792 decodes  3,240,126 decodes/s  eta 9m52s
+[07:01:42] [8/14 layer2/null cpu]  46.11%  1,574,675,456 decodes  3,242,390 decodes/s  eta 9m28s
+[07:02:05] [8/14 layer2/null cpu]  48.36%  1,651,549,184 decodes  3,244,474 decodes/s  eta 9m04s
+[07:02:30] [8/14 layer2/null cpu]  50.69%  1,730,947,072 decodes  3,244,357 decodes/s  eta 8m39s
+[07:02:54] [8/14 layer2/null cpu]  52.94%  1,807,820,800 decodes  3,245,104 decodes/s  eta 8m15s
+[07:03:15] [8/14 layer2/null cpu]  54.90%  1,874,963,456 decodes  3,242,774 decodes/s  eta 7m55s
+[07:03:39] [8/14 layer2/null cpu]  57.22%  1,954,065,408 decodes  3,243,930 decodes/s  eta 7m30s
+[07:04:02] [8/14 layer2/null cpu]  59.50%  2,032,053,248 decodes  3,247,483 decodes/s  eta 7m06s
+[07:04:22] [8/14 layer2/null cpu]  61.34%  2,094,739,456 decodes  3,243,008 decodes/s  eta 6m47s
+[07:04:46] [8/14 layer2/null cpu]  63.62%  2,172,727,296 decodes  3,244,530 decodes/s  eta 6m23s
+[07:05:07] [8/14 layer2/null cpu]  65.62%  2,240,984,064 decodes  3,246,652 decodes/s  eta 6m02s
+[07:05:30] [8/14 layer2/null cpu]  67.84%  2,316,743,680 decodes  3,245,428 decodes/s  eta 5m38s
+[07:05:54] [8/14 layer2/null cpu]  70.23%  2,398,369,792 decodes  3,250,828 decodes/s  eta 5m13s
+[07:06:19] [8/14 layer2/null cpu]  72.58%  2,478,585,856 decodes  3,249,580 decodes/s  eta 4m48s
+[07:06:43] [8/14 layer2/null cpu]  74.90%  2,557,983,744 decodes  3,251,901 decodes/s  eta 4m24s
+[07:07:08] [8/14 layer2/null cpu]  77.22%  2,637,085,696 decodes  3,248,642 decodes/s  eta 3m59s
+[07:07:32] [8/14 layer2/null cpu]  79.50%  2,715,073,536 decodes  3,249,038 decodes/s  eta 3m35s
+[07:07:56] [8/14 layer2/null cpu]  81.79%  2,793,357,312 decodes  3,248,430 decodes/s  eta 3m11s
+[07:08:21] [8/14 layer2/null cpu]  84.11%  2,872,459,264 decodes  3,247,325 decodes/s  eta 2m47s
+[07:08:44] [8/14 layer2/null cpu]  86.37%  2,949,628,928 decodes  3,249,638 decodes/s  eta 2m23s
+[07:09:08] [8/14 layer2/null cpu]  88.62%  3,026,502,656 decodes  3,247,674 decodes/s  eta 2m00s
+[07:09:29] [8/14 layer2/null cpu]  90.65%  3,095,873,536 decodes  3,249,267 decodes/s  eta 1m38s
+[07:09:53] [8/14 layer2/null cpu]  92.97%  3,174,975,488 decodes  3,250,695 decodes/s  eta 1m14s
+[07:10:13] [8/14 layer2/null cpu]  94.84%  3,238,775,808 decodes  3,248,721 decodes/s  eta 54s
+[07:10:37] [8/14 layer2/null cpu]  97.12%  3,316,763,648 decodes  3,250,441 decodes/s  eta 30s
+[07:11:01] [8/14 layer2/null cpu]  99.37%  3,393,637,376 decodes  3,250,130 decodes/s  eta 7s
+[07:11:06] [8/14 layer2/null cpu] layer2: 3415101440 decodes (3369126012 aborted early) in 1050 s; best -4.5200; wrote <repo>\results\layer2\null_bigram_solved.tsv
+[07:11:06] [8/14 layer2/null cpu] ok in 17m30s
+[07:11:06] [9/14 layer2/bigram-solved cpu] start (est. 6.30 h)
+[07:11:07] [9/14 layer2/bigram-solved cpu] layer2: mode bigram, 115 items, 8 windows (n<=300), 272 inner configs, mults [1, 28], models [0, 1], 11034208768 decodes, 14 threads
+[07:11:30] [9/14 layer2/bigram-solved cpu]   0.60%  65,732,608 decodes  2,769,722 decodes/s  eta 1h06m
+[07:11:53] [9/14 layer2/bigram-solved cpu]   1.28%  141,492,224 decodes  3,018,578 decodes/s  eta 1h00m
+[07:12:18] [9/14 layer2/bigram-solved cpu]   2.02%  223,118,336 decodes  3,123,181 decodes/s  eta 57m42s
+[07:12:41] [9/14 layer2/bigram-solved cpu]   2.72%  299,992,064 decodes  3,160,208 decodes/s  eta 56m37s
+[07:13:05] [9/14 layer2/bigram-solved cpu]   3.40%  374,933,504 decodes  3,156,442 decodes/s  eta 56m17s
+[07:13:30] [9/14 layer2/bigram-solved cpu]   4.10%  452,921,344 decodes  3,162,570 decodes/s  eta 55m46s
+[07:13:53] [9/14 layer2/bigram-solved cpu]   4.80%  530,091,008 decodes  3,191,727 decodes/s  eta 54m51s
+[07:14:16] [9/14 layer2/bigram-solved cpu]   5.53%  610,307,072 decodes  3,212,363 decodes/s  eta 54m05s
+[07:14:39] [9/14 layer2/bigram-solved cpu]   6.21%  685,248,512 decodes  3,227,127 decodes/s  eta 53m27s
+[07:15:03] [9/14 layer2/bigram-solved cpu]   6.94%  765,464,576 decodes  3,230,302 decodes/s  eta 52m59s
+[07:15:28] [9/14 layer2/bigram-solved cpu]   7.64%  842,634,240 decodes  3,223,932 decodes/s  eta 52m41s
+[07:15:51] [9/14 layer2/bigram-solved cpu]   8.36%  922,850,304 decodes  3,242,119 decodes/s  eta 51m59s
+[07:16:15] [9/14 layer2/bigram-solved cpu]   9.05%  998,609,920 decodes  3,238,094 decodes/s  eta 51m39s
+[07:16:39] [9/14 layer2/bigram-solved cpu]   9.75%  1,075,779,584 decodes  3,238,199 decodes/s  eta 51m15s
+[07:17:02] [9/14 layer2/bigram-solved cpu]  10.45%  1,152,653,312 decodes  3,238,188 decodes/s  eta 50m52s
+[07:17:23] [9/14 layer2/bigram-solved cpu]  11.04%  1,218,681,856 decodes  3,238,208 decodes/s  eta 50m31s
+[07:17:46] [9/14 layer2/bigram-solved cpu]  11.75%  1,296,669,696 decodes  3,243,078 decodes/s  eta 50m03s
+[07:18:11] [9/14 layer2/bigram-solved cpu]  12.46%  1,374,953,472 decodes  3,236,277 decodes/s  eta 49m45s
+[07:18:33] [9/14 layer2/bigram-solved cpu]  13.15%  1,450,678,272 decodes  3,248,481 decodes/s  eta 49m10s
+[07:18:55] [9/14 layer2/bigram-solved cpu]  13.80%  1,522,869,248 decodes  3,251,141 decodes/s  eta 48m46s
+[07:19:19] [9/14 layer2/bigram-solved cpu]  14.52%  1,601,971,200 decodes  3,250,279 decodes/s  eta 48m22s
+[07:19:43] [9/14 layer2/bigram-solved cpu]  15.24%  1,681,369,088 decodes  3,252,266 decodes/s  eta 47m56s
+[07:20:08] [9/14 layer2/bigram-solved cpu]  15.94%  1,759,356,928 decodes  3,249,380 decodes/s  eta 47m34s
+[07:20:33] [9/14 layer2/bigram-solved cpu]  16.64%  1,836,526,592 decodes  3,244,645 decodes/s  eta 47m15s
+[07:20:57] [9/14 layer2/bigram-solved cpu]  17.33%  1,912,286,208 decodes  3,239,495 decodes/s  eta 46m56s
+[07:21:21] [9/14 layer2/bigram-solved cpu]  18.03%  1,989,455,872 decodes  3,237,371 decodes/s  eta 46m34s
+[07:21:44] [9/14 layer2/bigram-solved cpu]  18.74%  2,067,443,712 decodes  3,241,359 decodes/s  eta 46m06s
+[07:22:09] [9/14 layer2/bigram-solved cpu]  19.45%  2,145,727,488 decodes  3,239,737 decodes/s  eta 45m44s
+[07:22:32] [9/14 layer2/bigram-solved cpu]  20.12%  2,220,372,992 decodes  3,236,836 decodes/s  eta 45m23s
+[07:22:56] [9/14 layer2/bigram-solved cpu]  20.83%  2,298,360,832 decodes  3,238,228 decodes/s  eta 44m58s
+[07:23:16] [9/14 layer2/bigram-solved cpu]  21.41%  2,362,161,152 decodes  3,236,430 decodes/s  eta 44m40s
+[07:23:40] [9/14 layer2/bigram-solved cpu]  22.10%  2,439,034,880 decodes  3,236,202 decodes/s  eta 44m16s
+[07:24:04] [9/14 layer2/bigram-solved cpu]  22.83%  2,519,242,240 decodes  3,241,108 decodes/s  eta 43m47s
+[07:24:25] [9/14 layer2/bigram-solved cpu]  23.48%  2,590,327,808 decodes  3,242,849 decodes/s  eta 43m24s
+[07:24:50] [9/14 layer2/bigram-solved cpu]  24.17%  2,667,201,536 decodes  3,240,832 decodes/s  eta 43m02s
+[07:25:11] [9/14 layer2/bigram-solved cpu]  24.75%  2,730,523,136 decodes  3,234,449 decodes/s  eta 42m47s
+[07:25:34] [9/14 layer2/bigram-solved cpu]  25.44%  2,807,422,976 decodes  3,236,310 decodes/s  eta 42m22s
+[07:25:56] [9/14 layer2/bigram-solved cpu]  26.14%  2,884,810,240 decodes  3,242,494 decodes/s  eta 41m53s
+[07:26:20] [9/14 layer2/bigram-solved cpu]  26.86%  2,963,276,800 decodes  3,244,851 decodes/s  eta 41m27s
+[07:26:41] [9/14 layer2/bigram-solved cpu]  27.56%  3,041,264,640 decodes  3,254,105 decodes/s  eta 40m56s
+[07:27:05] [9/14 layer2/bigram-solved cpu]  28.31%  3,124,004,864 decodes  3,258,965 decodes/s  eta 40m27s
+[07:27:28] [9/14 layer2/bigram-solved cpu]  29.01%  3,200,878,592 decodes  3,261,988 decodes/s  eta 40m01s
+[07:27:50] [9/14 layer2/bigram-solved cpu]  29.75%  3,282,504,704 decodes  3,272,437 decodes/s  eta 39m29s
+[07:28:12] [9/14 layer2/bigram-solved cpu]  30.47%  3,361,606,656 decodes  3,277,205 decodes/s  eta 39m01s
+[07:28:34] [9/14 layer2/bigram-solved cpu]  31.17%  3,439,890,432 decodes  3,285,147 decodes/s  eta 38m32s
+[07:28:55] [9/14 layer2/bigram-solved cpu]  31.85%  3,514,535,936 decodes  3,288,114 decodes/s  eta 38m07s
+[07:29:18] [9/14 layer2/bigram-solved cpu]  32.57%  3,593,637,888 decodes  3,292,063 decodes/s  eta 37m40s
+[07:29:40] [9/14 layer2/bigram-solved cpu]  33.28%  3,671,921,664 decodes  3,297,964 decodes/s  eta 37m12s
+[07:30:02] [9/14 layer2/bigram-solved cpu]  33.99%  3,751,023,616 decodes  3,303,961 decodes/s  eta 36m44s
+[07:30:24] [9/14 layer2/bigram-solved cpu]  34.69%  3,828,193,280 decodes  3,307,189 decodes/s  eta 36m19s
+[07:30:45] [9/14 layer2/bigram-solved cpu]  35.39%  3,905,067,008 decodes  3,312,471 decodes/s  eta 35m52s
+[07:31:09] [9/14 layer2/bigram-solved cpu]  36.12%  3,985,579,008 decodes  3,314,726 decodes/s  eta 35m26s
+[07:31:33] [9/14 layer2/bigram-solved cpu]  36.84%  4,064,680,960 decodes  3,315,132 decodes/s  eta 35m02s
+[07:31:56] [9/14 layer2/bigram-solved cpu]  37.54%  4,141,850,624 decodes  3,315,054 decodes/s  eta 34m39s
+[07:32:21] [9/14 layer2/bigram-solved cpu]  38.25%  4,220,952,576 decodes  3,313,041 decodes/s  eta 34m16s
+[07:32:45] [9/14 layer2/bigram-solved cpu]  38.97%  4,300,350,464 decodes  3,310,856 decodes/s  eta 33m54s
+[07:33:10] [9/14 layer2/bigram-solved cpu]  39.67%  4,377,224,192 decodes  3,307,932 decodes/s  eta 33m32s
+[07:33:33] [9/14 layer2/bigram-solved cpu]  40.38%  4,455,507,968 decodes  3,308,406 decodes/s  eta 33m08s
+[07:33:56] [9/14 layer2/bigram-solved cpu]  41.08%  4,532,381,696 decodes  3,309,040 decodes/s  eta 32m45s
+[07:34:17] [9/14 layer2/bigram-solved cpu]  41.65%  4,595,886,080 decodes  3,305,220 decodes/s  eta 32m28s
+[07:34:40] [9/14 layer2/bigram-solved cpu]  42.35%  4,673,055,744 decodes  3,306,173 decodes/s  eta 32m04s
+[07:35:04] [9/14 layer2/bigram-solved cpu]  43.06%  4,751,043,584 decodes  3,304,945 decodes/s  eta 31m41s
+[07:35:28] [9/14 layer2/bigram-solved cpu]  43.76%  4,828,213,248 decodes  3,302,561 decodes/s  eta 31m19s
+[07:35:51] [9/14 layer2/bigram-solved cpu]  44.46%  4,906,201,088 decodes  3,303,980 decodes/s  eta 30m55s
+[07:36:16] [9/14 layer2/bigram-solved cpu]  45.16%  4,983,370,752 decodes  3,301,433 decodes/s  eta 30m33s
+[07:36:39] [9/14 layer2/bigram-solved cpu]  45.86%  5,060,444,672 decodes  3,301,619 decodes/s  eta 30m09s
+[07:37:01] [9/14 layer2/bigram-solved cpu]  46.59%  5,141,235,200 decodes  3,306,992 decodes/s  eta 29m42s
+[07:37:22] [9/14 layer2/bigram-solved cpu]  47.21%  5,209,666,048 decodes  3,307,392 decodes/s  eta 29m21s
+[07:37:45] [9/14 layer2/bigram-solved cpu]  47.88%  5,283,197,440 decodes  3,305,190 decodes/s  eta 29m00s
+[07:38:09] [9/14 layer2/bigram-solved cpu]  48.59%  5,361,185,280 decodes  3,303,377 decodes/s  eta 28m37s
+[07:38:33] [9/14 layer2/bigram-solved cpu]  49.28%  5,437,240,832 decodes  3,302,915 decodes/s  eta 28m15s
+[07:38:56] [9/14 layer2/bigram-solved cpu]  50.02%  5,519,685,120 decodes  3,305,481 decodes/s  eta 27m48s
+[07:39:21] [9/14 layer2/bigram-solved cpu]  50.73%  5,597,968,896 decodes  3,304,533 decodes/s  eta 27m25s
+[07:39:43] [9/14 layer2/bigram-solved cpu]  51.44%  5,675,956,736 decodes  3,305,990 decodes/s  eta 27m01s
+[07:40:05] [9/14 layer2/bigram-solved cpu]  52.06%  5,744,213,504 decodes  3,304,472 decodes/s  eta 26m41s
+[07:40:29] [9/14 layer2/bigram-solved cpu]  52.75%  5,821,087,232 decodes  3,302,964 decodes/s  eta 26m18s
+[07:40:53] [9/14 layer2/bigram-solved cpu]  53.47%  5,900,485,120 decodes  3,303,697 decodes/s  eta 25m54s
+[07:41:16] [9/14 layer2/bigram-solved cpu]  54.14%  5,974,016,512 decodes  3,300,741 decodes/s  eta 25m33s
+[07:41:39] [9/14 layer2/bigram-solved cpu]  54.84%  6,050,890,240 decodes  3,301,606 decodes/s  eta 25m09s
+[07:42:03] [9/14 layer2/bigram-solved cpu]  55.54%  6,128,059,904 decodes  3,301,039 decodes/s  eta 24m46s
+[07:42:27] [9/14 layer2/bigram-solved cpu]  56.23%  6,204,933,632 decodes  3,299,985 decodes/s  eta 24m23s
+[07:42:49] [9/14 layer2/bigram-solved cpu]  56.95%  6,284,331,520 decodes  3,302,440 decodes/s  eta 23m58s
+[07:43:13] [9/14 layer2/bigram-solved cpu]  57.66%  6,362,319,360 decodes  3,303,117 decodes/s  eta 23m34s
+[07:43:36] [9/14 layer2/bigram-solved cpu]  58.38%  6,441,717,248 decodes  3,304,687 decodes/s  eta 23m10s
+[07:43:59] [9/14 layer2/bigram-solved cpu]  59.08%  6,518,590,976 decodes  3,304,527 decodes/s  eta 22m46s
+[07:44:22] [9/14 layer2/bigram-solved cpu]  59.76%  6,593,532,416 decodes  3,304,229 decodes/s  eta 22m24s
+[07:44:44] [9/14 layer2/bigram-solved cpu]  60.46%  6,671,520,256 decodes  3,306,567 decodes/s  eta 21m59s
+[07:45:08] [9/14 layer2/bigram-solved cpu]  61.18%  6,750,918,144 decodes  3,306,870 decodes/s  eta 21m35s
+[07:45:32] [9/14 layer2/bigram-solved cpu]  61.88%  6,827,791,872 decodes  3,305,383 decodes/s  eta 21m13s
+[07:45:55] [9/14 layer2/bigram-solved cpu]  62.56%  6,903,551,488 decodes  3,305,158 decodes/s  eta 20m50s
+[07:46:19] [9/14 layer2/bigram-solved cpu]  63.27%  6,981,835,264 decodes  3,304,587 decodes/s  eta 20m26s
+[07:46:43] [9/14 layer2/bigram-solved cpu]  63.97%  7,058,708,992 decodes  3,304,163 decodes/s  eta 20m03s
+[07:47:08] [9/14 layer2/bigram-solved cpu]  64.67%  7,135,878,656 decodes  3,301,912 decodes/s  eta 19m41s
+[07:47:32] [9/14 layer2/bigram-solved cpu]  65.39%  7,214,980,608 decodes  3,301,518 decodes/s  eta 19m17s
+[07:47:56] [9/14 layer2/bigram-solved cpu]  66.09%  7,292,150,272 decodes  3,300,340 decodes/s  eta 18m54s
+[07:48:19] [9/14 layer2/bigram-solved cpu]  66.70%  7,360,111,104 decodes  3,297,537 decodes/s  eta 18m34s
+[07:48:43] [9/14 layer2/bigram-solved cpu]  67.38%  7,435,052,544 decodes  3,294,987 decodes/s  eta 18m12s
+[07:49:07] [9/14 layer2/bigram-solved cpu]  68.12%  7,516,382,720 decodes  3,295,407 decodes/s  eta 17m47s
+[07:49:31] [9/14 layer2/bigram-solved cpu]  68.82%  7,593,552,384 decodes  3,295,279 decodes/s  eta 17m24s
+[07:49:54] [9/14 layer2/bigram-solved cpu]  69.53%  7,671,540,224 decodes  3,295,355 decodes/s  eta 17m00s
+[07:50:19] [9/14 layer2/bigram-solved cpu]  70.24%  7,750,642,176 decodes  3,294,969 decodes/s  eta 16m37s
+[07:50:40] [9/14 layer2/bigram-solved cpu]  70.96%  7,830,040,064 decodes  3,298,747 decodes/s  eta 16m11s
+[07:51:00] [9/14 layer2/bigram-solved cpu]  71.62%  7,902,457,344 decodes  3,301,108 decodes/s  eta 15m49s
+[07:51:21] [9/14 layer2/bigram-solved cpu]  72.34%  7,981,855,232 decodes  3,305,805 decodes/s  eta 15m23s
+[07:51:42] [9/14 layer2/bigram-solved cpu]  73.07%  8,063,185,408 decodes  3,310,799 decodes/s  eta 14m57s
+[07:52:02] [9/14 layer2/bigram-solved cpu]  73.79%  8,142,583,296 decodes  3,315,477 decodes/s  eta 14m32s
+[07:52:24] [9/14 layer2/bigram-solved cpu]  74.50%  8,220,571,136 decodes  3,318,475 decodes/s  eta 14m08s
+[07:52:45] [9/14 layer2/bigram-solved cpu]  75.20%  8,297,740,800 decodes  3,321,463 decodes/s  eta 13m44s
+[07:53:11] [9/14 layer2/bigram-solved cpu]  75.91%  8,375,728,640 decodes  3,318,226 decodes/s  eta 13m21s
+[07:53:31] [9/14 layer2/bigram-solved cpu]  76.44%  8,434,776,576 decodes  3,314,760 decodes/s  eta 13m04s
+[07:53:55] [9/14 layer2/bigram-solved cpu]  77.13%  8,510,832,128 decodes  3,313,278 decodes/s  eta 12m42s
+[07:54:15] [9/14 layer2/bigram-solved cpu]  77.70%  8,573,222,400 decodes  3,311,747 decodes/s  eta 12m23s
+[07:54:37] [9/14 layer2/bigram-solved cpu]  78.51%  8,662,647,296 decodes  3,318,505 decodes/s  eta 11m55s
+[07:54:58] [9/14 layer2/bigram-solved cpu]  79.67%  8,791,066,112 decodes  3,340,943 decodes/s  eta 11m11s
+[07:55:23] [9/14 layer2/bigram-solved cpu]  80.39%  8,870,168,064 decodes  3,339,488 decodes/s  eta 10m48s
+[07:55:46] [9/14 layer2/bigram-solved cpu]  81.06%  8,944,813,568 decodes  3,338,047 decodes/s  eta 10m26s
+[07:56:11] [9/14 layer2/bigram-solved cpu]  81.78%  9,024,211,456 decodes  3,337,062 decodes/s  eta 10m02s
+[07:56:34] [9/14 layer2/bigram-solved cpu]  82.50%  9,103,313,408 decodes  3,337,232 decodes/s  eta 9m39s
+[07:56:57] [9/14 layer2/bigram-solved cpu]  83.19%  9,179,368,960 decodes  3,336,829 decodes/s  eta 9m16s
+[07:57:22] [9/14 layer2/bigram-solved cpu]  83.92%  9,259,585,024 decodes  3,335,906 decodes/s  eta 8m52s
+[07:57:46] [9/14 layer2/bigram-solved cpu]  84.63%  9,337,868,800 decodes  3,336,027 decodes/s  eta 8m28s
+[07:58:09] [9/14 layer2/bigram-solved cpu]  85.30%  9,412,514,304 decodes  3,334,364 decodes/s  eta 8m06s
+[07:58:33] [9/14 layer2/bigram-solved cpu]  86.00%  9,489,683,968 decodes  3,333,678 decodes/s  eta 7m43s
+[07:58:56] [9/14 layer2/bigram-solved cpu]  86.70%  9,566,557,696 decodes  3,333,668 decodes/s  eta 7m20s
+[07:59:20] [9/14 layer2/bigram-solved cpu]  87.40%  9,643,727,360 decodes  3,332,374 decodes/s  eta 6m57s
+[07:59:44] [9/14 layer2/bigram-solved cpu]  88.11%  9,721,715,200 decodes  3,331,794 decodes/s  eta 6m34s
+[08:00:08] [9/14 layer2/bigram-solved cpu]  88.81%  9,799,703,040 decodes  3,331,184 decodes/s  eta 6m11s
+[08:00:32] [9/14 layer2/bigram-solved cpu]  89.51%  9,876,872,704 decodes  3,330,997 decodes/s  eta 5m47s
+[08:00:55] [9/14 layer2/bigram-solved cpu]  90.22%  9,954,860,544 decodes  3,330,973 decodes/s  eta 5m24s
+[08:01:15] [9/14 layer2/bigram-solved cpu]  90.82%  10,020,889,088 decodes  3,330,378 decodes/s  eta 5m04s
+[08:01:39] [9/14 layer2/bigram-solved cpu]  91.52%  10,098,876,928 decodes  3,329,780 decodes/s  eta 4m41s
+[08:02:03] [9/14 layer2/bigram-solved cpu]  92.22%  10,176,046,592 decodes  3,329,669 decodes/s  eta 4m18s
+[08:02:28] [9/14 layer2/bigram-solved cpu]  92.94%  10,255,148,544 decodes  3,328,505 decodes/s  eta 3m54s
+[08:02:51] [9/14 layer2/bigram-solved cpu]  93.65%  10,333,432,320 decodes  3,328,251 decodes/s  eta 3m31s
+[08:03:16] [9/14 layer2/bigram-solved cpu]  94.36%  10,411,420,160 decodes  3,326,733 decodes/s  eta 3m07s
+[08:03:40] [9/14 layer2/bigram-solved cpu]  95.08%  10,491,636,224 decodes  3,327,306 decodes/s  eta 2m43s
+[08:04:03] [9/14 layer2/bigram-solved cpu]  95.79%  10,569,920,000 decodes  3,327,288 decodes/s  eta 2m20s
+[08:04:27] [9/14 layer2/bigram-solved cpu]  96.50%  10,647,907,840 decodes  3,326,476 decodes/s  eta 1m56s
+[08:04:52] [9/14 layer2/bigram-solved cpu]  97.22%  10,727,305,728 decodes  3,326,133 decodes/s  eta 1m32s
+[08:05:16] [9/14 layer2/bigram-solved cpu]  97.94%  10,806,407,680 decodes  3,325,262 decodes/s  eta 1m09s
+[08:05:39] [9/14 layer2/bigram-solved cpu]  98.62%  10,882,463,232 decodes  3,325,114 decodes/s  eta 46s
+[08:06:03] [9/14 layer2/bigram-solved cpu]  99.33%  10,960,451,072 decodes  3,325,021 decodes/s  eta 22s
+[08:06:25] [9/14 layer2/bigram-solved cpu] layer2: 11034208768 decodes (10888902903 aborted early) in 3319 s; best -4.0767; wrote <repo>\results\layer2\bigram_solved.tsv
+[08:06:25] [9/14 layer2/bigram-solved cpu] ok in 55m18s
+[08:06:25] [10/14 layer2/verify-solved cpu] start (est. 0.10 h)
+[08:06:28] [10/14 layer2/verify-solved cpu] # verify bigram_solved.tsv (mode=bigram): top 15 hits re-decoded over the whole window, 20 matched-null offsets each; pass = score >= 2.0 and >= null max + 5.0
+[08:06:28] [10/14 layer2/verify-solved cpu] noise      seg0.15 'p_(n+1) * p_n' offset=6027 mult=1 model=0 kw=DIVINITY isign=28 phase=4 litf=1 atb=1: screen -4.077; whole window -7.879/rune (IoC 1.050), matched null max -8.056; keyword [23, 10, 1, 10, 9, 10, 16, 26] atb=1
+[08:06:28] [10/14 layer2/verify-solved cpu] noise      seg0.14 'n * p_n' offset=13313 mult=28 model=0 kw=FIRFUMFERENFE isign=28 phase=11 litf=1 atb=0: screen -4.393; whole window -7.746/rune (IoC 1.089), matched null max -7.858; keyword [0, 10, 4, 0, 1, 19, 0, 18, 4, 18, 9, 0, 18] atb=0
+[08:06:28] [10/14 layer2/verify-solved cpu] noise      seg0.12 'sqrt2 digits (base 10)' offset=493 mult=28 model=0 kw=FIRFUMFERENFE isign=28 phase=4 litf=1 atb=1: screen -4.400; whole window -7.252/rune (IoC 1.097), matched null max -7.500; keyword [0, 10, 4, 0, 1, 19, 0, 18, 4, 18, 9, 0, 18] atb=1
+[08:06:28] [10/14 layer2/verify-solved cpu] noise      seg0.8 'sqrt29 digits (base 29)' offset=8202 mult=28 model=0 kw=CIRCUMFERENCE isign=1 phase=5 litf=1 atb=0: screen -4.580; whole window -7.347/rune (IoC 1.081), matched null max -7.395; keyword [5, 10, 4, 5, 1, 19, 0, 18, 4, 18, 9, 5, 18] atb=0
+[08:06:28] [10/14 layer2/verify-solved cpu] noise      seg0.13 'cumulative prime sum' offset=10086 mult=1 model=0 kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=1: screen -4.587; whole window -7.713/rune (IoC 1.070), matched null max -7.906; keyword [0, 10, 4, 0, 1, 19, 0, 18, 4, 18, 9, 0, 18] atb=1
+[08:06:28] [10/14 layer2/verify-solved cpu] noise      seg0.11 'primes' offset=1020 mult=28 model=1 kw=FIRFUMFERENFE isign=28 phase=5 litf=1 atb=1: screen -4.593; whole window -7.566/rune (IoC 1.055), matched null max -7.992; keyword [0, 10, 4, 0, 1, 19, 0, 18, 4, 18, 9, 0, 18] atb=1
+[08:06:28] [10/14 layer2/verify-solved cpu] noise      seg0.7 'p_n - n' offset=5914 mult=1 model=1 kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=0: screen -4.603; whole window -6.870/rune (IoC 1.100), matched null max -7.730; keyword [0, 10, 4, 0, 1, 19, 0, 18, 4, 18, 9, 0, 18] atb=0
+[08:06:28] [10/14 layer2/verify-solved cpu] noise      seg0.9 'catalan G digits (base 29)' offset=9390 mult=28 model=1 kw=DIVINITY isign=28 phase=4 litf=1 atb=1: screen -4.640; whole window -7.781/rune (IoC 1.052), matched null max -8.051; keyword [23, 10, 1, 10, 9, 10, 16, 26] atb=1
+[08:06:28] [10/14 layer2/verify-solved cpu] noise      seg0.14 'n * p_n' offset=13313 mult=28 model=0 kw=FIRFUMFERENFE isign=28 phase=12 litf=1 atb=0: screen -4.420; whole window -7.751/rune (IoC 1.089), matched null max -7.924; keyword [0, 10, 4, 0, 1, 19, 0, 18, 4, 18, 9, 0, 18] atb=0
+[08:06:28] [10/14 layer2/verify-solved cpu] noise      seg0.15 'sigma(n)' offset=16758 mult=1 model=1 kw=DIVINITY isign=1 phase=7 litf=1 atb=0: screen -4.457; whole window -7.845/rune (IoC 1.069), matched null max -8.207; keyword [23, 10, 1, 10, 9, 10, 16, 26] atb=0
+[08:06:28] [10/14 layer2/verify-solved cpu] noise      seg0.14 'n * p_n' offset=13310 mult=28 model=0 kw=FIRFUMFERENFE isign=28 phase=10 litf=1 atb=0: screen -4.523; whole window -7.770/rune (IoC 1.086), matched null max -8.047; keyword [0, 10, 4, 0, 1, 19, 0, 18, 4, 18, 9, 0, 18] atb=0
+[08:06:28] [10/14 layer2/verify-solved cpu] noise      seg0.15 'primes-1 (totient)' offset=19090 mult=1 model=0 kw=FIRFUMFERENFE isign=1 phase=6 litf=1 atb=0: screen -4.533; whole window -6.709/rune (IoC 1.083), matched null max -7.773; keyword [0, 10, 4, 0, 1, 19, 0, 18, 4, 18, 9, 0, 18] atb=0
+[08:06:28] [10/14 layer2/verify-solved cpu] noise      seg0.14 'n * p_n' offset=13313 mult=28 model=0 kw=FIRFUMFERENFE isign=28 phase=10 litf=1 atb=0: screen -4.537; whole window -7.773/rune (IoC 1.090), matched null max -7.775; keyword [0, 10, 4, 0, 1, 19, 0, 18, 4, 18, 9, 0, 18] atb=0
+[08:06:28] [10/14 layer2/verify-solved cpu] noise      seg0.15 'primes-1 (totient)' offset=19090 mult=1 model=0 kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=0: screen -4.553; whole window -6.718/rune (IoC 1.085), matched null max -7.699; keyword [0, 10, 4, 0, 1, 19, 0, 18, 4, 18, 9, 0, 18] atb=0
+[08:06:28] [10/14 layer2/verify-solved cpu] noise      seg0.15 'sqrt3 digits (base 29)' offset=16454 mult=1 model=1 kw=CIRCUMFERENCE isign=28 phase=5 litf=1 atb=0: screen -4.577; whole window -8.096/rune (IoC 1.060), matched null max -8.043; keyword [5, 10, 4, 5, 1, 19, 0, 18, 4, 18, 9, 5, 18] atb=0
+[08:06:28] [10/14 layer2/verify-solved cpu] 0 of 15 re-decoded hits pass (none: noise)
+[08:06:28] [10/14 layer2/verify-solved cpu] ok in 3s
+[08:06:28] [11/14 layer2/bigram-words cpu] start (est. 4.00 h)
+[08:06:29] [11/14 layer2/bigram-words cpu] layer2: mode bigram, 20 items, 8 windows (n<=300), 1008 inner configs, mults [1, 28], models [0, 1], 8597288448 decodes, 14 threads
+[08:07:04] [11/14 layer2/bigram-words cpu]   1.01%  86,704,128 decodes  2,446,122 decodes/s  eta 57m59s
+[08:07:40] [11/14 layer2/bigram-words cpu]   2.35%  202,309,632 decodes  2,829,161 decodes/s  eta 49m27s
+[08:08:18] [11/14 layer2/bigram-words cpu]   3.89%  334,430,208 decodes  3,064,307 decodes/s  eta 44m56s
+[08:08:53] [11/14 layer2/bigram-words cpu]   5.19%  445,906,944 decodes  3,087,492 decodes/s  eta 44m00s
+[08:09:29] [11/14 layer2/bigram-words cpu]   6.53%  561,512,448 decodes  3,114,693 decodes/s  eta 43m00s
+[08:10:04] [11/14 layer2/bigram-words cpu]   7.98%  686,472,192 decodes  3,184,438 decodes/s  eta 41m24s
+[08:10:40] [11/14 layer2/bigram-words cpu]   9.14%  785,562,624 decodes  3,128,047 decodes/s  eta 41m37s
+[08:11:17] [11/14 layer2/bigram-words cpu]  10.63%  913,554,432 decodes  3,165,888 decodes/s  eta 40m27s
+[08:11:53] [11/14 layer2/bigram-words cpu]  12.02%  1,033,288,704 decodes  3,182,813 decodes/s  eta 39m37s
+[08:12:30] [11/14 layer2/bigram-words cpu]  13.36%  1,148,894,208 decodes  3,181,350 decodes/s  eta 39m01s
+[08:13:05] [11/14 layer2/bigram-words cpu]  14.67%  1,261,467,648 decodes  3,182,883 decodes/s  eta 38m25s
+[08:13:41] [11/14 layer2/bigram-words cpu]  15.97%  1,372,944,384 decodes  3,178,177 decodes/s  eta 37m53s
+[08:14:17] [11/14 layer2/bigram-words cpu]  17.36%  1,492,678,656 decodes  3,184,233 decodes/s  eta 37m11s
+[08:14:53] [11/14 layer2/bigram-words cpu]  18.66%  1,604,155,392 decodes  3,180,710 decodes/s  eta 36m39s
+[08:15:29] [11/14 layer2/bigram-words cpu]  20.00%  1,719,760,896 decodes  3,185,087 decodes/s  eta 35m59s
+[08:16:09] [11/14 layer2/bigram-words cpu]  21.40%  1,839,495,168 decodes  3,168,133 decodes/s  eta 35m33s
+[08:16:32] [11/14 layer2/bigram-words cpu]  22.13%  1,902,523,392 decodes  3,151,469 decodes/s  eta 35m24s
+[08:17:10] [11/14 layer2/bigram-words cpu]  23.52%  2,022,257,664 decodes  3,152,776 decodes/s  eta 34m45s
+[08:17:48] [11/14 layer2/bigram-words cpu]  24.87%  2,137,863,168 decodes  3,147,083 decodes/s  eta 34m13s
+[08:18:31] [11/14 layer2/bigram-words cpu]  26.36%  2,265,854,976 decodes  3,137,139 decodes/s  eta 33m38s
+[08:18:51] [11/14 layer2/bigram-words cpu]  27.08%  2,327,786,496 decodes  3,134,130 decodes/s  eta 33m20s
+[08:19:11] [11/14 layer2/bigram-words cpu]  27.80%  2,389,718,016 decodes  3,132,746 decodes/s  eta 33m02s
+[08:19:52] [11/14 layer2/bigram-words cpu]  29.15%  2,506,420,224 decodes  3,118,972 decodes/s  eta 32m33s
+[08:20:32] [11/14 layer2/bigram-words cpu]  30.45%  2,617,896,960 decodes  3,102,551 decodes/s  eta 32m07s
+[08:20:53] [11/14 layer2/bigram-words cpu]  31.27%  2,688,086,016 decodes  3,109,159 decodes/s  eta 31m41s
+[08:21:32] [11/14 layer2/bigram-words cpu]  32.71%  2,811,949,056 decodes  3,112,970 decodes/s  eta 30m58s
+[08:22:13] [11/14 layer2/bigram-words cpu]  34.05%  2,927,554,560 decodes  3,099,939 decodes/s  eta 30m29s
+[08:22:35] [11/14 layer2/bigram-words cpu]  34.92%  3,001,872,384 decodes  3,105,322 decodes/s  eta 30m02s
+[08:22:56] [11/14 layer2/bigram-words cpu]  35.64%  3,063,803,904 decodes  3,101,998 decodes/s  eta 29m44s
+[08:23:17] [11/14 layer2/bigram-words cpu]  36.31%  3,121,606,656 decodes  3,096,915 decodes/s  eta 29m28s
+[08:23:55] [11/14 layer2/bigram-words cpu]  37.66%  3,237,760,512 decodes  3,094,579 decodes/s  eta 28m52s
+[08:24:15] [11/14 layer2/bigram-words cpu]  38.37%  3,299,143,680 decodes  3,093,333 decodes/s  eta 28m33s
+[08:24:54] [11/14 layer2/bigram-words cpu]  39.88%  3,428,651,520 decodes  3,101,246 decodes/s  eta 27m47s
+[08:25:29] [11/14 layer2/bigram-words cpu]  41.23%  3,544,257,024 decodes  3,107,996 decodes/s  eta 27m06s
+[08:26:04] [11/14 layer2/bigram-words cpu]  42.62%  3,663,991,296 decodes  3,116,877 decodes/s  eta 26m23s
+[08:26:38] [11/14 layer2/bigram-words cpu]  43.87%  3,771,339,264 decodes  3,118,212 decodes/s  eta 25m48s
+[08:27:14] [11/14 layer2/bigram-words cpu]  45.31%  3,895,202,304 decodes  3,126,861 decodes/s  eta 25m04s
+[08:27:48] [11/14 layer2/bigram-words cpu]  46.65%  4,010,807,808 decodes  3,133,776 decodes/s  eta 24m24s
+[08:28:11] [11/14 layer2/bigram-words cpu]  47.53%  4,086,222,336 decodes  3,138,196 decodes/s  eta 23m57s
+[08:28:33] [11/14 layer2/bigram-words cpu]  48.35%  4,156,411,392 decodes  3,137,531 decodes/s  eta 23m35s
+[08:28:56] [11/14 layer2/bigram-words cpu]  49.07%  4,218,342,912 decodes  3,130,605 decodes/s  eta 23m19s
+[08:29:17] [11/14 layer2/bigram-words cpu]  49.74%  4,276,145,664 decodes  3,125,967 decodes/s  eta 23m02s
+[08:29:54] [11/14 layer2/bigram-words cpu]  51.08%  4,391,751,168 decodes  3,124,803 decodes/s  eta 22m26s
+[08:30:15] [11/14 layer2/bigram-words cpu]  51.71%  4,445,425,152 decodes  3,117,532 decodes/s  eta 22m12s
+[08:30:53] [11/14 layer2/bigram-words cpu]  53.10%  4,565,159,424 decodes  3,116,927 decodes/s  eta 21m34s
+[08:31:29] [11/14 layer2/bigram-words cpu]  54.46%  4,681,861,632 decodes  3,119,356 decodes/s  eta 20m55s
+[08:32:03] [11/14 layer2/bigram-words cpu]  55.95%  4,809,853,440 decodes  3,134,975 decodes/s  eta 20m08s
+[08:32:37] [11/14 layer2/bigram-words cpu]  57.29%  4,925,458,944 decodes  3,141,194 decodes/s  eta 19m29s
+[08:33:13] [11/14 layer2/bigram-words cpu]  58.64%  5,041,064,448 decodes  3,142,147 decodes/s  eta 18m52s
+[08:33:49] [11/14 layer2/bigram-words cpu]  59.98%  5,156,669,952 decodes  3,143,258 decodes/s  eta 18m15s
+[08:34:24] [11/14 layer2/bigram-words cpu]  61.42%  5,280,532,992 decodes  3,152,636 decodes/s  eta 17m32s
+[08:34:58] [11/14 layer2/bigram-words cpu]  62.73%  5,393,106,432 decodes  3,154,756 decodes/s  eta 16m56s
+[08:35:35] [11/14 layer2/bigram-words cpu]  64.07%  5,508,711,936 decodes  3,154,742 decodes/s  eta 16m19s
+[08:36:12] [11/14 layer2/bigram-words cpu]  65.42%  5,624,317,440 decodes  3,154,323 decodes/s  eta 15m43s
+[08:36:34] [11/14 layer2/bigram-words cpu]  66.24%  5,694,506,496 decodes  3,154,108 decodes/s  eta 15m20s
+[08:36:55] [11/14 layer2/bigram-words cpu]  67.00%  5,760,566,784 decodes  3,153,470 decodes/s  eta 15m00s
+[08:37:16] [11/14 layer2/bigram-words cpu]  67.77%  5,826,627,072 decodes  3,153,446 decodes/s  eta 14m39s
+[08:37:53] [11/14 layer2/bigram-words cpu]  69.08%  5,939,200,512 decodes  3,151,325 decodes/s  eta 14m03s
+[08:38:14] [11/14 layer2/bigram-words cpu]  69.85%  6,005,260,800 decodes  3,151,343 decodes/s  eta 13m43s
+[08:38:34] [11/14 layer2/bigram-words cpu]  70.57%  6,067,192,320 decodes  3,150,739 decodes/s  eta 13m23s
+[08:38:55] [11/14 layer2/bigram-words cpu]  71.24%  6,124,995,072 decodes  3,147,199 decodes/s  eta 13m06s
+[08:39:17] [11/14 layer2/bigram-words cpu]  71.96%  6,186,926,592 decodes  3,142,814 decodes/s  eta 12m47s
+[08:39:55] [11/14 layer2/bigram-words cpu]  73.36%  6,306,660,864 decodes  3,142,958 decodes/s  eta 12m09s
+[08:40:17] [11/14 layer2/bigram-words cpu]  74.12%  6,372,721,152 decodes  3,142,249 decodes/s  eta 11m48s
+[08:40:55] [11/14 layer2/bigram-words cpu]  75.52%  6,492,455,424 decodes  3,141,421 decodes/s  eta 11m10s
+[08:41:33] [11/14 layer2/bigram-words cpu]  76.87%  6,609,157,632 decodes  3,139,976 decodes/s  eta 10m33s
+[08:41:54] [11/14 layer2/bigram-words cpu]  77.64%  6,675,217,920 decodes  3,140,596 decodes/s  eta 10m12s
+[08:42:15] [11/14 layer2/bigram-words cpu]  78.36%  6,737,149,440 decodes  3,138,344 decodes/s  eta 9m53s
+[08:42:53] [11/14 layer2/bigram-words cpu]  79.85%  6,865,141,248 decodes  3,142,431 decodes/s  eta 9m11s
+[08:43:15] [11/14 layer2/bigram-words cpu]  80.52%  6,922,944,000 decodes  3,138,098 decodes/s  eta 8m54s
+[08:43:52] [11/14 layer2/bigram-words cpu]  81.87%  7,038,549,504 decodes  3,137,545 decodes/s  eta 8m17s
+[08:44:14] [11/14 layer2/bigram-words cpu]  82.54%  7,096,352,256 decodes  3,132,148 decodes/s  eta 7m59s
+[08:44:53] [11/14 layer2/bigram-words cpu]  84.04%  7,225,440,768 decodes  3,135,412 decodes/s  eta 7m18s
+[08:45:15] [11/14 layer2/bigram-words cpu]  84.72%  7,283,243,520 decodes  3,131,110 decodes/s  eta 7m00s
+[08:45:54] [11/14 layer2/bigram-words cpu]  86.25%  7,415,364,096 decodes  3,134,807 decodes/s  eta 6m17s
+[08:46:16] [11/14 layer2/bigram-words cpu]  86.92%  7,473,166,848 decodes  3,130,736 decodes/s  eta 5m59s
+[08:46:55] [11/14 layer2/bigram-words cpu]  88.27%  7,588,772,352 decodes  3,127,406 decodes/s  eta 5m22s
+[08:47:34] [11/14 layer2/bigram-words cpu]  89.71%  7,712,635,392 decodes  3,128,530 decodes/s  eta 4m43s
+[08:48:12] [11/14 layer2/bigram-words cpu]  91.07%  7,829,337,600 decodes  3,127,620 decodes/s  eta 4m06s
+[08:48:33] [11/14 layer2/bigram-words cpu]  91.79%  7,891,269,120 decodes  3,126,126 decodes/s  eta 3m46s
+[08:49:13] [11/14 layer2/bigram-words cpu]  93.27%  8,018,712,576 decodes  3,126,998 decodes/s  eta 3m05s
+[08:49:51] [11/14 layer2/bigram-words cpu]  94.66%  8,138,446,848 decodes  3,126,875 decodes/s  eta 2m27s
+[08:50:13] [11/14 layer2/bigram-words cpu]  95.34%  8,196,249,600 decodes  3,123,277 decodes/s  eta 2m08s
+[08:50:50] [11/14 layer2/bigram-words cpu]  96.73%  8,315,983,872 decodes  3,124,096 decodes/s  eta 1m30s
+[08:51:29] [11/14 layer2/bigram-words cpu]  98.12%  8,435,718,144 decodes  3,123,304 decodes/s  eta 52s
+[08:51:50] [11/14 layer2/bigram-words cpu]  98.79%  8,493,520,896 decodes  3,121,412 decodes/s  eta 33s
+[08:52:10] [11/14 layer2/bigram-words cpu]  99.43%  8,548,291,584 decodes  3,118,367 decodes/s  eta 16s
+[08:52:19] [11/14 layer2/bigram-words cpu] layer2: 8597288448 decodes (8482488875 aborted early) in 2750 s; best -4.0400; wrote <repo>\results\layer2\bigram_words.tsv
+[08:52:19] [11/14 layer2/bigram-words cpu] ok in 45m50s
+[08:52:19] [12/14 layer2/verify-words cpu] start (est. 0.10 h)
+[08:52:23] [12/14 layer2/verify-words cpu] # verify bigram_words.tsv (mode=bigram): top 15 hits re-decoded over the whole window, 20 matched-null offsets each; pass = score >= 2.0 and >= null max + 5.0
+[08:52:23] [12/14 layer2/verify-words cpu] noise      seg0.12 'phi(n)' offset=16526 mult=28 model=0 kw=CONSUMPTION isign=28 phase=4 litf=1 atb=0: screen -4.040; whole window -7.208/rune (IoC 1.065), matched null max -7.913; keyword [5, 3, 9, 15, 1, 19, 13, 16, 10, 3, 9] atb=0
+[08:52:23] [12/14 layer2/verify-words cpu] noise      seg0.14 'pi digits (base 29)' offset=7667 mult=1 model=0 kw=LIBERPRIMUS isign=28 phase=8 litf=1 atb=0: screen -4.337; whole window -7.276/rune (IoC 1.074), matched null max -8.144; keyword [20, 10, 17, 18, 4, 13, 4, 10, 19, 1, 15] atb=0
+[08:52:23] [12/14 layer2/verify-words cpu] noise      seg0.8 'pi digits (base 29)' offset=12797 mult=28 model=0 kw=LIBERPRIMUS isign=1 phase=2 litf=1 atb=0: screen -4.367; whole window -6.787/rune (IoC 1.082), matched null max -7.744; keyword [20, 10, 17, 18, 4, 13, 4, 10, 19, 1, 15] atb=0
+[08:52:23] [12/14 layer2/verify-words cpu] noise      seg0.15 'primes' offset=11061 mult=28 model=1 kw=WELCOME isign=1 phase=2 litf=1 atb=0: screen -4.430; whole window -7.829/rune (IoC 1.063), matched null max -8.022; keyword [7, 18, 20, 5, 3, 19, 18] atb=0
+[08:52:23] [12/14 layer2/verify-words cpu] noise      seg0.9 'primes+1' offset=6475 mult=1 model=1 kw=INTUS isign=1 phase=3 litf=1 atb=0: screen -4.500; whole window -7.623/rune (IoC 1.074), matched null max -7.994; keyword [10, 9, 16, 1, 15] atb=0
+[08:52:23] [12/14 layer2/verify-words cpu] noise      seg0.11 'pi digits (base 29)' offset=9694 mult=1 model=1 kw=PRIMES isign=1 phase=4 litf=1 atb=0: screen -4.503; whole window -7.677/rune (IoC 1.077), matched null max -8.009; keyword [13, 4, 10, 19, 18, 15] atb=0
+[08:52:23] [12/14 layer2/verify-words cpu] noise      seg0.13 'primes+1' offset=13723 mult=1 model=1 kw=INSTRUCTION isign=1 phase=3 litf=1 atb=0: screen -4.537; whole window -7.532/rune (IoC 1.077), matched null max -7.875; keyword [10, 9, 15, 16, 4, 1, 5, 16, 10, 3, 9] atb=0
+[08:52:23] [12/14 layer2/verify-words cpu] noise      seg0.7 'sigma(n)' offset=12094 mult=1 model=1 kw=ADHERENCE isign=1 phase=0 litf=1 atb=0: screen -4.683; whole window -6.874/rune (IoC 1.101), matched null max -7.926; keyword [24, 23, 8, 18, 4, 18, 9, 5, 18] atb=0
+[08:52:23] [12/14 layer2/verify-words cpu] noise      seg0.14 'e digits (base 29)' offset=12751 mult=1 model=0 kw=PRESERVATION isign=1 phase=9 litf=1 atb=0: screen -4.377; whole window -7.359/rune (IoC 1.102), matched null max -7.727; keyword [13, 4, 18, 15, 18, 4, 1, 24, 16, 10, 3, 9] atb=0
+[08:52:23] [12/14 layer2/verify-words cpu] noise      seg0.12 'phi(n)' offset=17473 mult=1 model=1 kw=ENLIGHTENED isign=1 phase=9 litf=1 atb=0: screen -4.410; whole window -7.191/rune (IoC 1.090), matched null max -7.514; keyword [18, 9, 20, 10, 6, 8, 16, 18, 9, 18, 23] atb=0
+[08:52:23] [12/14 layer2/verify-words cpu] noise      seg0.15 'primes from 3301' offset=10598 mult=28 model=1 kw=WELCOME isign=1 phase=2 litf=1 atb=0: screen -4.430; whole window -7.829/rune (IoC 1.063), matched null max -7.926; keyword [7, 18, 20, 5, 3, 19, 18] atb=0
+[08:52:23] [12/14 layer2/verify-words cpu] noise      seg0.15 'primes' offset=11061 mult=28 model=1 kw=WELCOME isign=1 phase=3 litf=1 atb=0: screen -4.443; whole window -7.830/rune (IoC 1.064), matched null max -8.051; keyword [7, 18, 20, 5, 3, 19, 18] atb=0
+[08:52:23] [12/14 layer2/verify-words cpu] noise      seg0.15 'primes from 3301' offset=10598 mult=28 model=1 kw=WELCOME isign=1 phase=3 litf=1 atb=0: screen -4.443; whole window -7.830/rune (IoC 1.064), matched null max -7.928; keyword [7, 18, 20, 5, 3, 19, 18] atb=0
+[08:52:23] [12/14 layer2/verify-words cpu] noise      seg0.8 'e digits (base 29)' offset=820 mult=1 model=0 kw=KOAN isign=1 phase=3 litf=1 atb=0: screen -4.453; whole window -7.579/rune (IoC 1.079), matched null max -8.269; keyword [5, 3, 24, 9] atb=0
+[08:52:23] [12/14 layer2/verify-words cpu] noise      seg0.15 'sigma(n)' offset=16758 mult=1 model=1 kw=DIVINITY isign=1 phase=7 litf=1 atb=0: screen -4.457; whole window -7.845/rune (IoC 1.069), matched null max -8.207; keyword [23, 10, 1, 10, 9, 10, 16, 26] atb=0
+[08:52:23] [12/14 layer2/verify-words cpu] 0 of 15 re-decoded hits pass (none: noise)
+[08:52:23] [12/14 layer2/verify-words cpu] ok in 3s
+[08:52:23] [13/14 layer2/periodic cpu] start (est. 1.50 h)
+[08:52:23] [13/14 layer2/periodic cpu] layer2: mode periodic, 115 items, 8 windows (n<=300), 13 inner configs, mults [1, 28], models [0, 1], 527370272 decodes, 14 threads
+[08:52:44] [13/14 layer2/periodic cpu]   1.85%  9,758,528 decodes  467,670 decodes/s  eta 18m27s
+[08:53:05] [13/14 layer2/periodic cpu]   3.78%  19,943,040 decodes  472,168 decodes/s  eta 17m55s
+[08:53:26] [13/14 layer2/periodic cpu]   5.63%  29,701,568 decodes  468,268 decodes/s  eta 17m43s
+[08:53:47] [13/14 layer2/periodic cpu]   7.55%  39,832,832 decodes  473,732 decodes/s  eta 17m09s
+[08:54:07] [13/14 layer2/periodic cpu]   9.46%  49,871,744 decodes  475,972 decodes/s  eta 16m43s
+[08:54:29] [13/14 layer2/periodic cpu]  11.39%  60,056,256 decodes  475,880 decodes/s  eta 16m22s
+[08:54:50] [13/14 layer2/periodic cpu]  13.36%  70,441,280 decodes  479,591 decodes/s  eta 15m53s
+[08:55:11] [13/14 layer2/periodic cpu]  15.23%  80,306,304 decodes  476,946 decodes/s  eta 15m37s
+[08:55:32] [13/14 layer2/periodic cpu]  17.08%  90,064,832 decodes  475,522 decodes/s  eta 15m20s
+[08:55:53] [13/14 layer2/periodic cpu]  18.98%  100,089,600 decodes  476,739 decodes/s  eta 14m56s
+[08:56:14] [13/14 layer2/periodic cpu]  21.14%  111,459,712 decodes  481,416 decodes/s  eta 14m24s
+[08:56:35] [13/14 layer2/periodic cpu]  23.10%  121,821,856 decodes  481,931 decodes/s  eta 14m02s
+[08:56:56] [13/14 layer2/periodic cpu]  25.07%  132,191,904 decodes  483,435 decodes/s  eta 13m37s
+[08:57:17] [13/14 layer2/periodic cpu]  27.01%  142,425,920 decodes  484,410 decodes/s  eta 13m15s
+[08:57:37] [13/14 layer2/periodic cpu]  28.97%  152,770,176 decodes  485,802 decodes/s  eta 12m51s
+[08:57:58] [13/14 layer2/periodic cpu]  31.00%  163,487,168 decodes  487,861 decodes/s  eta 12m26s
+[08:58:19] [13/14 layer2/periodic cpu]  32.91%  173,579,328 decodes  487,355 decodes/s  eta 12m06s
+[08:58:40] [13/14 layer2/periodic cpu]  34.86%  183,817,088 decodes  487,035 decodes/s  eta 11m45s
+[08:59:02] [13/14 layer2/periodic cpu]  36.79%  194,001,600 decodes  486,408 decodes/s  eta 11m25s
+[08:59:22] [13/14 layer2/periodic cpu]  38.51%  203,067,904 decodes  484,341 decodes/s  eta 11m10s
+[08:59:43] [13/14 layer2/periodic cpu]  40.37%  212,879,680 decodes  483,906 decodes/s  eta 10m50s
+[09:00:04] [13/14 layer2/periodic cpu]  42.23%  222,705,600 decodes  483,112 decodes/s  eta 10m31s
+[09:00:24] [13/14 layer2/periodic cpu]  43.90%  231,505,664 decodes  481,307 decodes/s  eta 10m15s
+[09:00:44] [13/14 layer2/periodic cpu]  45.77%  241,372,768 decodes  481,035 decodes/s  eta 9m55s
+[09:01:06] [13/14 layer2/periodic cpu]  47.78%  251,973,280 decodes  481,612 decodes/s  eta 9m32s
+[09:01:27] [13/14 layer2/periodic cpu]  49.76%  262,424,032 decodes  481,981 decodes/s  eta 9m10s
+[09:01:47] [13/14 layer2/periodic cpu]  51.74%  272,874,784 decodes  483,314 decodes/s  eta 8m47s
+[09:02:08] [13/14 layer2/periodic cpu]  53.62%  282,753,952 decodes  482,852 decodes/s  eta 8m27s
+[09:02:28] [13/14 layer2/periodic cpu]  55.45%  292,405,984 decodes  482,702 decodes/s  eta 8m07s
+[09:02:49] [13/14 layer2/periodic cpu]  57.32%  302,271,008 decodes  482,669 decodes/s  eta 7m46s
+[09:03:11] [13/14 layer2/periodic cpu]  59.34%  312,934,752 decodes  482,607 decodes/s  eta 7m24s
+[09:03:32] [13/14 layer2/periodic cpu]  61.41%  323,878,880 decodes  483,610 decodes/s  eta 7m01s
+[09:03:53] [13/14 layer2/periodic cpu]  63.23%  333,477,664 decodes  483,328 decodes/s  eta 6m41s
+[09:04:14] [13/14 layer2/periodic cpu]  65.11%  343,395,936 decodes  483,004 decodes/s  eta 6m21s
+[09:04:35] [13/14 layer2/periodic cpu]  67.05%  353,580,448 decodes  482,981 decodes/s  eta 6m00s
+[09:04:55] [13/14 layer2/periodic cpu]  68.94%  363,566,112 decodes  483,087 decodes/s  eta 5m39s
+[09:05:16] [13/14 layer2/periodic cpu]  70.76%  373,164,896 decodes  482,646 decodes/s  eta 5m20s
+[09:05:36] [13/14 layer2/periodic cpu]  72.83%  384,094,880 decodes  484,236 decodes/s  eta 4m56s
+[09:05:56] [13/14 layer2/periodic cpu]  74.91%  395,078,112 decodes  485,540 decodes/s  eta 4m32s
+[09:06:16] [13/14 layer2/periodic cpu]  76.58%  403,839,072 decodes  484,355 decodes/s  eta 4m15s
+[09:06:37] [13/14 layer2/periodic cpu]  78.65%  414,769,056 decodes  485,601 decodes/s  eta 3m52s
+[09:06:57] [13/14 layer2/periodic cpu]  81.08%  427,615,968 decodes  489,093 decodes/s  eta 3m24s
+[09:07:18] [13/14 layer2/periodic cpu]  82.90%  437,175,648 decodes  488,190 decodes/s  eta 3m05s
+[09:07:39] [13/14 layer2/periodic cpu]  84.82%  447,306,912 decodes  487,905 decodes/s  eta 2m44s
+[09:08:00] [13/14 layer2/periodic cpu]  86.68%  457,118,688 decodes  487,578 decodes/s  eta 2m24s
+[09:08:21] [13/14 layer2/periodic cpu]  88.44%  466,397,984 decodes  486,819 decodes/s  eta 2m05s
+[09:08:41] [13/14 layer2/periodic cpu]  90.31%  476,263,008 decodes  486,589 decodes/s  eta 1m45s
+[09:09:02] [13/14 layer2/periodic cpu]  92.17%  486,088,928 decodes  486,547 decodes/s  eta 1m25s
+[09:09:23] [13/14 layer2/periodic cpu]  93.98%  495,634,464 decodes  485,848 decodes/s  eta 1m05s
+[09:09:44] [13/14 layer2/periodic cpu]  95.93%  505,925,472 decodes  485,763 decodes/s  eta 44s
+[09:10:05] [13/14 layer2/periodic cpu]  97.81%  515,843,744 decodes  485,713 decodes/s  eta 24s
+[09:10:25] [13/14 layer2/periodic cpu]  99.58%  525,176,288 decodes  485,154 decodes/s  eta 5s
+[09:10:29] [13/14 layer2/periodic cpu] layer2: 527370272 decodes (442788006 aborted early) in 1087 s; best 10.6243; wrote <repo>\results\layer2\periodic_core.tsv
+[09:10:29] [13/14 layer2/periodic cpu] ok in 18m06s
+[09:10:29] [14/14 layer2/verify-periodic cpu] start (est. 0.30 h)
+[09:10:51] [14/14 layer2/verify-periodic cpu] # verify periodic_core.tsv (mode=periodic): top 100 hits re-decoded over the whole window, 20 matched-null offsets each; pass = score >= 2.0 and >= null max + 5.0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.11 'p_n - n' offset=18720 mult=28 model=0 m=4 litf=0: screen 10.624; whole window -10.114/rune (IoC 1.019), matched null max -10.210; keyword [27, 7, 6, 16] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.14 'p_(n+1) * p_n' offset=10764 mult=28 model=0 m=2 litf=0: screen 10.422; whole window -10.340/rune (IoC 1.012), matched null max -9.898; keyword [15, 24] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.8 'ln2 digits (base 29)' offset=3747 mult=28 model=1 m=2 litf=0: screen 10.019; whole window -9.537/rune (IoC 1.044), matched null max -9.997; keyword [5, 7] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.12 'cumulative prime sum' offset=17700 mult=1 model=0 m=10 litf=0: screen 9.971; whole window -9.319/rune (IoC 1.061), matched null max -9.729; keyword [21, 6, 1, 17, 13, 17, 11, 21, 3, 16] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.9 'p_(n+1) * p_n' offset=14776 mult=28 model=0 m=3 litf=0: screen 9.801; whole window -9.308/rune (IoC 1.029), matched null max -9.996; keyword [3, 2, 24] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.7 'phi digits (base 29)' offset=1522 mult=28 model=0 m=2 litf=0: screen 9.799; whole window -9.866/rune (IoC 1.063), matched null max -9.566; keyword [13, 4] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.13 'cumulative prime sum' offset=17319 mult=1 model=1 m=4 litf=0: screen 9.636; whole window -9.692/rune (IoC 1.018), matched null max -9.878; keyword [18, 13, 10, 20] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.15 'emirps' offset=488 mult=28 model=0 m=2 litf=0: screen 9.506; whole window -9.929/rune (IoC 1.024), matched null max -9.876; keyword [25, 16] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.14 'p_(n+1) * p_n' offset=10764 mult=28 model=0 m=4 litf=0: screen 10.364; whole window -10.374/rune (IoC 1.018), matched null max -10.011; keyword [27, 14, 15, 3] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.14 'p_(n+1) * p_n' offset=10763 mult=28 model=0 m=2 litf=0: screen 10.056; whole window -10.099/rune (IoC 1.017), matched null max -9.870; keyword [21, 27] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.14 'p_(n+1) * p_n' offset=10763 mult=28 model=0 m=4 litf=0: screen 9.948; whole window -10.178/rune (IoC 1.025), matched null max -9.712; keyword [27, 22, 18, 3] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.12 'sqrt2 digits (base 29)' offset=14612 mult=1 model=1 m=2 litf=0: screen 9.909; whole window -9.928/rune (IoC 1.006), matched null max -9.952; keyword [0, 4] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.12 'sqrt5 digits (base 29)' offset=8715 mult=1 model=0 m=2 litf=0: screen 9.873; whole window -10.117/rune (IoC 1.034), matched null max -9.899; keyword [24, 26] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.8 'composites' offset=17850 mult=28 model=0 m=2 litf=0: screen 9.799; whole window -9.704/rune (IoC 1.024), matched null max -10.034; keyword [27, 19] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.9 'sqrt2 digits (base 29)' offset=16334 mult=1 model=0 m=3 litf=0: screen 9.756; whole window -10.243/rune (IoC 1.019), matched null max -9.920; keyword [2, 27, 26] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.8 'p_n + n' offset=18381 mult=1 model=0 m=5 litf=0: screen 9.719; whole window -9.050/rune (IoC 1.049), matched null max -9.899; keyword [5, 11, 23, 7, 22] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.8 'p_n + n' offset=18382 mult=1 model=0 m=5 litf=0: screen 9.719; whole window -9.325/rune (IoC 1.042), matched null max -9.825; keyword [19, 11, 23, 5, 25] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.14 'primes^3' offset=14730 mult=1 model=1 m=5 litf=0: screen 9.661; whole window -9.612/rune (IoC 1.028), matched null max -9.916; keyword [22, 9, 25, 1, 19] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.7 'phi digits (base 29)' offset=1523 mult=28 model=0 m=2 litf=0: screen 9.653; whole window -10.038/rune (IoC 1.060), matched null max -9.837; keyword [27, 4] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.8 'p_n + n' offset=18383 mult=1 model=0 m=5 litf=0: screen 9.544; whole window -9.353/rune (IoC 1.054), matched null max -9.816; keyword [4, 11, 0, 5, 25] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.12 'p_n - n' offset=9822 mult=28 model=1 m=2 litf=0: screen 9.543; whole window -10.369/rune (IoC 1.025), matched null max -9.887; keyword [28, 27] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.7 '3301 * p_n' offset=10013 mult=28 model=1 m=2 litf=0: screen 9.543; whole window -9.822/rune (IoC 1.050), matched null max -10.033; keyword [13, 19] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.8 'p_n - n' offset=9085 mult=1 model=1 m=11 litf=0: screen 9.521; whole window -8.654/rune (IoC 1.054), matched null max -9.989; keyword [23, 11, 14, 17, 22, 19, 11, 12, 13, 8, 25] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.11 'pi^2 digits (base 29)' offset=2399 mult=1 model=1 m=2 litf=0: screen 9.469; whole window -9.760/rune (IoC 1.034), matched null max -9.981; keyword [21, 27] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.8 'cumulative prime sum' offset=8834 mult=28 model=1 m=2 litf=0: screen 9.469; whole window -10.309/rune (IoC 1.021), matched null max -9.937; keyword [9, 16] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.13 'sigma(n)' offset=17066 mult=1 model=1 m=2 litf=0: screen 9.433; whole window -9.653/rune (IoC 1.040), matched null max -9.973; keyword [3, 11] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.15 'prime index of primes' offset=1372 mult=28 model=1 m=3 litf=0: screen 9.396; whole window -10.036/rune (IoC 1.034), matched null max -10.124; keyword [28, 11, 23] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.8 'cbrt2 digits (base 29)' offset=8865 mult=28 model=0 m=2 litf=0: screen 9.396; whole window -10.017/rune (IoC 1.024), matched null max -9.996; keyword [10, 13] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.14 'prime index of primes' offset=15672 mult=28 model=0 m=2 litf=0: screen 9.396; whole window -9.821/rune (IoC 1.025), matched null max -9.901; keyword [3, 2] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.12 'sqrt2 digits (base 29)' offset=14614 mult=1 model=1 m=2 litf=0: screen 9.359; whole window -9.682/rune (IoC 1.007), matched null max -10.057; keyword [0, 4] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.8 'prime index of primes' offset=8226 mult=1 model=0 m=2 litf=0: screen 9.359; whole window -10.031/rune (IoC 1.022), matched null max -9.683; keyword [1, 5] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.12 'ln3 digits (base 29)' offset=893 mult=1 model=1 m=3 litf=0: screen 9.351; whole window -9.478/rune (IoC 1.036), matched null max -9.542; keyword [11, 3, 6] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.12 'n * p_n' offset=7628 mult=28 model=1 m=3 litf=0: screen 9.351; whole window -9.454/rune (IoC 1.051), matched null max -9.535; keyword [20, 10, 27] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.15 'cumulative phi(n)' offset=1196 mult=28 model=1 m=9 litf=0: screen 9.342; whole window -9.905/rune (IoC 1.025), matched null max -9.976; keyword [19, 8, 18, 4, 21, 11, 21, 25, 27] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.13 'sqrt2 digits (base 10)' offset=643 mult=1 model=1 m=2 litf=0: screen 9.323; whole window -9.745/rune (IoC 1.026), matched null max -10.050; keyword [11, 0] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.13 'sqrt3301 digits (base 29)' offset=9119 mult=1 model=1 m=2 litf=0: screen 9.323; whole window -9.868/rune (IoC 1.026), matched null max -9.923; keyword [17, 20] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.7 'phi digits (base 29)' offset=1524 mult=28 model=0 m=2 litf=0: screen 9.323; whole window -9.811/rune (IoC 1.063), matched null max -9.716; keyword [13, 4] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.11 'prime gaps' offset=7094 mult=28 model=1 m=3 litf=0: screen 9.306; whole window -9.954/rune (IoC 1.031), matched null max -9.820; keyword [26, 19, 26] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.7 'pi digits (base 29)' offset=7168 mult=1 model=0 m=4 litf=0: screen 9.272; whole window -8.959/rune (IoC 1.060), matched null max -9.726; keyword [25, 26, 21, 16] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.13 'p_n^2 - 1' offset=17075 mult=28 model=0 m=4 litf=0: screen 9.272; whole window -9.590/rune (IoC 1.027), matched null max -9.668; keyword [21, 0, 15, 11] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.13 'primes^2' offset=17075 mult=28 model=0 m=4 litf=0: screen 9.272; whole window -9.590/rune (IoC 1.027), matched null max -9.668; keyword [22, 1, 16, 12] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.12 'sqrt3 digits (base 29)' offset=11599 mult=28 model=1 m=8 litf=0: screen 9.270; whole window -8.611/rune (IoC 1.038), matched null max -9.880; keyword [12, 13, 20, 10, 21, 7, 4, 24] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.7 'phi digits (base 29)' offset=4144 mult=1 model=0 m=3 litf=0: screen 9.261; whole window -9.436/rune (IoC 1.024), matched null max -9.572; keyword [16, 26, 23] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.7 'ln10 digits (base 29)' offset=11367 mult=1 model=0 m=3 litf=0: screen 9.261; whole window -10.030/rune (IoC 1.049), matched null max -9.844; keyword [15, 16, 27] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.12 'cumulative prime sum' offset=13002 mult=1 model=0 m=2 litf=0: screen 9.249; whole window -9.239/rune (IoC 1.041), matched null max -9.638; keyword [16, 11] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.11 'p_n - n' offset=18722 mult=28 model=0 m=4 litf=0: screen 9.220; whole window -9.491/rune (IoC 1.034), matched null max -9.842; keyword [27, 7, 6, 13] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.13 'ln2 digits (base 29)' offset=11935 mult=28 model=1 m=3 litf=0: screen 9.216; whole window -9.642/rune (IoC 1.027), matched null max -9.959; keyword [18, 14, 11] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.8 'cumulative prime sum' offset=10683 mult=1 model=1 m=2 litf=0: screen 9.213; whole window -9.856/rune (IoC 1.028), matched null max -9.921; keyword [22, 18] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.9 'sigma(n)' offset=1527 mult=1 model=0 m=2 litf=0: screen 9.213; whole window -10.013/rune (IoC 1.009), matched null max -10.010; keyword [18, 25] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.9 'e digits (base 10)' offset=7104 mult=1 model=1 m=2 litf=0: screen 9.213; whole window -9.844/rune (IoC 1.026), matched null max -10.202; keyword [5, 21] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.9 'sqrt2 digits (base 29)' offset=16334 mult=1 model=0 m=6 litf=0: screen 9.177; whole window -10.052/rune (IoC 1.032), matched null max -9.968; keyword [17, 13, 26, 2, 28, 11] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.7 'prime index of primes' offset=9225 mult=28 model=0 m=2 litf=0: screen 9.176; whole window -9.775/rune (IoC 1.024), matched null max -9.719; keyword [2, 16] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.9 'e digits (base 29)' offset=1331 mult=28 model=0 m=2 litf=0: screen 9.176; whole window -10.010/rune (IoC 1.010), matched null max -9.935; keyword [6, 22] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.12 'e^pi digits (base 29)' offset=13128 mult=1 model=1 m=3 litf=0: screen 9.171; whole window -9.893/rune (IoC 1.042), matched null max -9.825; keyword [16, 24, 26] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.9 'sqrt3 digits (base 29)' offset=8825 mult=1 model=0 m=3 litf=0: screen 9.171; whole window -9.771/rune (IoC 1.020), matched null max -9.954; keyword [5, 2, 23] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.7 'cumulative phi(n)' offset=8300 mult=1 model=1 m=7 litf=0: screen 9.163; whole window -8.158/rune (IoC 1.041), matched null max -10.004; keyword [7, 10, 12, 5, 15, 24, 18] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.12 'cumulative prime sum' offset=17698 mult=1 model=0 m=10 litf=0: screen 9.140; whole window -9.482/rune (IoC 1.042), matched null max -9.848; keyword [27, 21, 7, 3, 13, 17, 18, 19, 3, 12] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.12 'cumulative prime sum' offset=17699 mult=1 model=0 m=10 litf=0: screen 9.140; whole window -8.708/rune (IoC 1.059), matched null max -9.675; keyword [21, 6, 22, 17, 18, 17, 5, 19, 3, 12] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.14 'rad(n)' offset=13019 mult=1 model=1 m=2 litf=0: screen 9.139; whole window -9.449/rune (IoC 1.020), matched null max -9.751; keyword [2, 22] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.8 'carmichael lambda(n)' offset=13755 mult=1 model=1 m=2 litf=0: screen 9.139; whole window -9.822/rune (IoC 1.009), matched null max -10.171; keyword [25, 18] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.14 'primes^3' offset=11142 mult=28 model=1 m=2 litf=0: screen 9.139; whole window -10.116/rune (IoC 1.035), matched null max -9.728; keyword [22, 8] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.7 'sigma(n)' offset=4605 mult=1 model=1 m=14 litf=0: screen 9.133; whole window -7.800/rune (IoC 1.098), matched null max -9.845; keyword [17, 13, 7, 7, 17, 20, 12, 24, 18, 26, 23, 21, 20, 26] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.7 'ln2 digits (base 29)' offset=3834 mult=1 model=1 m=3 litf=0: screen 9.127; whole window -9.107/rune (IoC 1.048), matched null max -10.038; keyword [4, 19, 2] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.13 'n * p_n' offset=18191 mult=1 model=1 m=3 litf=0: screen 9.127; whole window -9.932/rune (IoC 1.007), matched null max -9.702; keyword [12, 13, 3] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.15 'sqrt3 digits (base 10)' offset=1623 mult=28 model=0 m=8 litf=0: screen 9.122; whole window -9.647/rune (IoC 1.024), matched null max -9.908; keyword [6, 14, 1, 16, 5, 10, 21, 1] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.11 'sqrt2 digits (base 29)' offset=9381 mult=1 model=0 m=4 litf=0: screen 9.116; whole window -10.148/rune (IoC 1.028), matched null max -9.949; keyword [13, 9, 28, 6] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.7 'pi digits (base 29)' offset=7169 mult=1 model=0 m=4 litf=0: screen 9.116; whole window -9.154/rune (IoC 1.034), matched null max -9.316; keyword [25, 26, 1, 16] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.11 'p_n - n' offset=18721 mult=28 model=0 m=4 litf=0: screen 9.116; whole window -9.326/rune (IoC 1.040), matched null max -10.082; keyword [27, 7, 6, 13] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.8 'sqrt5 digits (base 29)' offset=15178 mult=1 model=1 m=9 litf=0: screen 9.106; whole window -9.597/rune (IoC 1.033), matched null max -9.741; keyword [8, 1, 3, 11, 25, 12, 22, 2, 10] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.8 'cbrt2 digits (base 29)' offset=11195 mult=28 model=0 m=2 litf=0: screen 9.103; whole window -9.465/rune (IoC 1.038), matched null max -10.004; keyword [9, 2] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.11 'ln10 digits (base 29)' offset=12354 mult=1 model=0 m=2 litf=0: screen 9.103; whole window -9.752/rune (IoC 1.032), matched null max -9.769; keyword [0, 23] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.15 'sqrt3301 digits (base 29)' offset=7285 mult=28 model=1 m=5 litf=0: screen 9.078; whole window -9.866/rune (IoC 1.016), matched null max -9.963; keyword [22, 12, 7, 20, 10] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.14 'Omega(n)' offset=18123 mult=1 model=1 m=5 litf=0: screen 9.078; whole window -10.034/rune (IoC 1.014), matched null max -10.173; keyword [15, 4, 25, 5, 11] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.9 'ln3 digits (base 29)' offset=18840 mult=1 model=0 m=2 litf=0: screen 9.066; whole window -9.659/rune (IoC 1.030), matched null max -9.810; keyword [14, 18] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.13 'cumulative phi(n)' offset=14886 mult=1 model=1 m=2 litf=0: screen 9.066; whole window -10.022/rune (IoC 1.009), matched null max -9.785; keyword [10, 8] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.9 'sigma(n)' offset=13252 mult=1 model=0 m=2 litf=0: screen 9.066; whole window -10.353/rune (IoC 1.030), matched null max -10.016; keyword [2, 19] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.8 'n * p_n' offset=16150 mult=28 model=0 m=4 litf=0: screen 9.064; whole window -9.054/rune (IoC 1.040), matched null max -9.950; keyword [23, 23, 18, 25] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.9 'sigma(n)' offset=15768 mult=28 model=1 m=3 litf=0: screen 9.037; whole window -9.727/rune (IoC 1.028), matched null max -9.623; keyword [21, 7, 22] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.12 'sqrt3 digits (base 29)' offset=18492 mult=28 model=1 m=3 litf=0: screen 9.037; whole window -9.492/rune (IoC 1.043), matched null max -9.507; keyword [0, 8, 21] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.12 'zeta(3) digits (base 29)' offset=5525 mult=28 model=1 m=2 litf=0: screen 9.030; whole window -9.185/rune (IoC 1.026), matched null max -9.865; keyword [2, 8] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.11 '(p-1)/2' offset=16197 mult=1 model=0 m=2 litf=0: screen 9.030; whole window -9.843/rune (IoC 1.026), matched null max -10.178; keyword [4, 11] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.11 '(p+1)/2' offset=16197 mult=1 model=0 m=2 litf=0: screen 9.030; whole window -9.843/rune (IoC 1.026), matched null max -10.178; keyword [3, 10] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.15 'prime index of primes' offset=9851 mult=1 model=1 m=2 litf=0: screen 9.030; whole window -10.160/rune (IoC 1.017), matched null max -9.988; keyword [2, 11] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.7 'sqrt3301 digits (base 29)' offset=1678 mult=1 model=1 m=2 litf=0: screen 9.030; whole window -9.565/rune (IoC 1.017), matched null max -9.967; keyword [5, 4] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.11 'sqrt2 digits (base 10)' offset=9394 mult=28 model=0 m=2 litf=0: screen 9.030; whole window -10.151/rune (IoC 1.022), matched null max -10.020; keyword [2, 28] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.13 'euler gamma digits (base 29)' offset=9457 mult=1 model=1 m=2 litf=0: screen 9.030; whole window -9.525/rune (IoC 1.030), matched null max -9.469; keyword [5, 23] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.11 'e digits (base 10)' offset=5150 mult=1 model=0 m=2 litf=0: screen 9.030; whole window -10.021/rune (IoC 1.021), matched null max -9.616; keyword [7, 16] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.15 'p_n mod 3301' offset=1525 mult=28 model=1 m=2 litf=0: screen 9.030; whole window -9.994/rune (IoC 1.020), matched null max -10.089; keyword [14, 14] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.7 'p_n + n' offset=16377 mult=28 model=1 m=5 litf=0: screen 9.020; whole window -8.709/rune (IoC 1.055), matched null max -9.420; keyword [23, 8, 1, 1, 20] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.12 'euler gamma digits (base 29)' offset=14226 mult=28 model=0 m=5 litf=0: screen 9.020; whole window -9.535/rune (IoC 1.009), matched null max -9.952; keyword [19, 12, 8, 8, 18] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.9 'primes^2' offset=12700 mult=1 model=1 m=2 litf=0: screen 8.993; whole window -9.800/rune (IoC 1.017), matched null max -9.902; keyword [25, 13] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.8 'prime index of primes' offset=8228 mult=1 model=0 m=2 litf=0: screen 8.993; whole window -9.934/rune (IoC 1.020), matched null max -9.773; keyword [1, 5] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.13 'sqrt2 digits (base 10)' offset=631 mult=1 model=1 m=2 litf=0: screen 8.993; whole window -10.080/rune (IoC 1.024), matched null max -10.070; keyword [11, 7] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.15 'sqrt3301 digits (base 29)' offset=13434 mult=1 model=0 m=2 litf=0: screen 8.993; whole window -10.027/rune (IoC 1.025), matched null max -10.097; keyword [6, 17] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.15 'rad(n)' offset=16558 mult=28 model=0 m=2 litf=0: screen 8.993; whole window -9.976/rune (IoC 1.024), matched null max -10.040; keyword [8, 22] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.11 'cumulative prime sum' offset=18789 mult=1 model=1 m=2 litf=0: screen 8.993; whole window -9.821/rune (IoC 1.042), matched null max -9.822; keyword [24, 19] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.8 'sqrt3301 digits (base 29)' offset=5680 mult=1 model=1 m=2 litf=0: screen 8.993; whole window -10.514/rune (IoC 1.012), matched null max -9.996; keyword [8, 16] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.9 'p_n^2 - 1' offset=12700 mult=1 model=1 m=2 litf=0: screen 8.993; whole window -9.800/rune (IoC 1.017), matched null max -9.902; keyword [26, 14] atb=1
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.14 'e digits (base 29)' offset=12860 mult=28 model=0 m=2 litf=0: screen 8.993; whole window -10.165/rune (IoC 1.016), matched null max -9.984; keyword [27, 21] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] noise      seg0.12 'p_n mod 3301' offset=11561 mult=28 model=0 m=4 litf=0: screen 8.960; whole window -9.795/rune (IoC 1.027), matched null max -9.930; keyword [26, 8, 10, 19] atb=0
+[09:10:51] [14/14 layer2/verify-periodic cpu] 0 of 100 re-decoded hits pass (none: noise)
+[09:10:51] [14/14 layer2/verify-periodic cpu] ok in 21s
+[09:10:51] [overnight] done  layer2/combined
+[09:10:51] [overnight] done  layer2/verify-combined
+
+[09:11:03] ===== summary: desktop, 2h19m =====
+  ok     setup/build-phpmt                              cpu         2s
+  ok     setup/build-walk                               cpu         1s
+  ok     setup/build-kscreen                            cpu         0s
+  ok     setup/fetch-data                               cpu         1s
+  ok     setup/data-kscreen                             cpu        48s
+  ok     layer2/build                                   cpu         1s
+  ok     layer2/selftest                                cpu        41s
+  ok     layer2/null                                    cpu     17m30s
+  ok     layer2/bigram-solved                           cpu     55m18s
+  ok     layer2/verify-solved                           cpu         3s
+  ok     layer2/bigram-words                            cpu     45m50s
+  ok     layer2/verify-words                            cpu         3s
+  ok     layer2/periodic                                cpu     18m06s
+  ok     layer2/verify-periodic                         cpu        21s
+
+layer2: Two layers from the solved pages: keyword Vigenere inside, number stream with the anti-repeat rule outside
+  - controls: SELFTEST PASSED
+  - null: 20 random streams x the solved keys (bigram): best -4.5200 per rune (3,415,101,440 decodes in 18 min)
+  - core streams x the solved keys DIVINITY / FIRFUMFERENFE / CIRCUMFERENCE (bigram): best -4.0767 per rune (11,034,208,768 decodes in 55 min)
+    - verification: 0 of 15 re-decoded hits pass (none: noise)
+  - 20 Cicada streams x 30 Cicada keywords (bigram): best -4.0400 per rune (8,597,288,448 decodes in 46 min)
+    - verification: 0 of 15 re-decoded hits pass (none: noise)
+  - core streams x any keyword of period 2-14 (column z): best 10.6243 z (527,370,272 decodes in 18 min)
+    - verification: 0 of 100 re-decoded hits pass (none: noise)
+  - variant A1: 20 streams with a solved key folded in, one pointer (bigram): best -5.6267 per rune (1,159,951,616 decodes in 3 min)
+    - verification: 0 of 15 re-decoded hits pass (none: noise)
+
+report: results/overnight/desktop/REPORT.md
+# 2026-10-19 09:11:03 exit 0

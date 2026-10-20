@@ -1,0 +1,105 @@
+# campaign set null: 5 windows (lengths 300-300), 14 chunks, T = 29.7992 nats
+# tasks present 70 of 70
+
+1. Best S_guard per channel (window, stream, sign, offset, S)
+   hold     227.603  ('cal175', 'md5-ctr reject :parable', 1, 1582, 227.603366410611)
+   spend     42.766  ('cal175', 'md5-ctr reject :parable', 1, 1576, 42.76555526020252)
+   skip5    -12.966  ('cal175', 'md5-ctr reject :parable', 1, 1576, -12.965787513648252)
+   coin     -80.064  ('cal175', 'md5-ctr mod :parable', 1, 1755, -77.61703283041038)
+
+2. Windows searched 5; per-window maximum S_guard: min -102.37, median 181.80, max 227.60
+
+3. Cells (stream, sign, channel, offset) with S_guard >= t, against the Markov bound N e^-t
+   t =   0.000: observed        174   bound 5.331e+08
+   t =   5.000: observed        164   bound 3.592e+06
+   t =  10.000: observed        158   bound 2.42e+04
+   t =  15.000: observed        151   bound 163.1
+   t =  20.000: observed        147   bound 1.099
+   t =  29.799: observed        137   bound 6.098e-05
+   cells searched: 533,130,960
+
+4. TIER 1 (S_guard >= T): 137 cells, 137 of them reproduced by an independent recomputation
+   (4, 'cal175', 'md5-ctr reject :parable', 1, 'hold', 1582, 227.603366410611, 227.603366410611, 304)
+   (4, 'cal175', 'md5-ctr reject :parable', 1, 'hold', 1583, 225.475237026757, 225.475237026757, 304)
+   (3, 'cal150', 'sha512-ctr reject :<256 bytes 50bd24b4>', 1, 'hold', 15907, 218.05662433680038, 218.05662433680038, 630)
+   (3, 'cal150', 'sha512-ctr reject :<256 bytes 50bd24b4>', 1, 'hold', 15908, 215.84169077783474, 215.84169077783474, 630)
+   (4, 'cal175', 'md5-ctr reject :parable', 1, 'hold', 1584, 212.19288216532175, 212.19288216532175, 304)
+   (3, 'cal150', 'sha512-ctr reject :<256 bytes 50bd24b4>', 1, 'hold', 15909, 206.21169796189963, 206.21169796189963, 630)
+   (4, 'cal175', 'md5-ctr reject :parable', 1, 'hold', 1585, 204.69341445156886, 204.69341445156886, 304)
+   (3, 'cal150', 'sha512-ctr reject :<256 bytes 50bd24b4>', 1, 'hold', 15910, 203.32028576141795, 203.32028576141795, 630)
+   (4, 'cal175', 'md5-ctr reject :parable', 1, 'hold', 1586, 202.65571500789463, 202.65571500789463, 304)
+   (4, 'cal175', 'md5-ctr reject :parable', 1, 'hold', 1587, 201.77020601400295, 201.77020601400295, 304)
+   (4, 'cal175', 'md5-ctr reject :parable', 1, 'hold', 1588, 201.0697991036053, 201.0697991036053, 304)
+   (3, 'cal150', 'sha512-ctr reject :<256 bytes 50bd24b4>', 1, 'hold', 15912, 193.6750621383834, 193.6750621383834, 630)
+   (4, 'cal175', 'md5-ctr reject :parable', 1, 'hold', 1581, 193.55204606867426, 193.55204606867426, 304)
+   (3, 'cal150', 'sha512-ctr reject :<256 bytes 50bd24b4>', 1, 'hold', 15911, 192.90548524131555, 192.90548524131555, 630)
+   (3, 'cal150', 'sha512-ctr reject :<256 bytes 50bd24b4>', 1, 'hold', 15913, 191.10495167702516, 191.10495167702516, 630)
+   (4, 'cal175', 'md5-ctr reject :parable', 1, 'hold', 1589, 189.3797162791949, 189.3797162791949, 304)
+   (3, 'cal150', 'sha512-ctr reject :<256 bytes 50bd24b4>', 1, 'hold', 15914, 183.53051497992385, 183.53051497992385, 630)
+   (1, 'cal050', 'sha512-ctr mod :1311', 1, 'hold', 2261, 181.8049863445226, 181.8049863445226, 589)
+   (4, 'cal175', 'md5-ctr reject :parable', 1, 'hold', 1590, 181.73269274986546, 181.73269274986546, 304)
+   (4, 'cal175', 'md5-ctr reject :parable', 1, 'hold', 1591, 179.1283325162865, 179.1283325162865, 304)
+   (3, 'cal150', 'sha512-ctr reject :<256 bytes 50bd24b4>', 1, 'hold', 15915, 178.45212974309516, 178.45212974309516, 630)
+   (4, 'cal175', 'md5-ctr reject :parable', 1, 'hold', 1592, 177.16330157715117, 177.16330157715117, 304)
+   (3, 'cal150', 'sha512-ctr reject :<256 bytes 50bd24b4>', 1, 'hold', 15916, 176.06158879599104, 176.06158879599104, 630)
+   (1, 'cal050', 'sha512-ctr mod :1311', 1, 'hold', 2263, 174.07476656097936, 174.07476656097936, 589)
+   (4, 'cal175', 'md5-ctr reject :parable', 1, 'hold', 1593, 173.91333318903628, 173.91333318903628, 304)
+   (3, 'cal150', 'sha512-ctr reject :<256 bytes 50bd24b4>', 1, 'hold', 15917, 172.51232414765207, 172.51232414765207, 630)
+   (1, 'cal050', 'sha512-ctr mod :1311', 1, 'hold', 2262, 171.6185191330527, 171.6185191330527, 589)
+   (4, 'cal175', 'md5-ctr reject :parable', 1, 'hold', 1594, 171.05893493971018, 171.05893493971018, 304)
+   (4, 'cal175', 'md5-ctr reject :parable', 1, 'hold', 1595, 170.13792208041616, 170.13792208041616, 304)
+   (4, 'cal175', 'md5-ctr reject :parable', 1, 'hold', 1580, 169.67146381481427, 169.67146381481427, 304)
+   (3, 'cal150', 'sha512-ctr reject :<256 bytes 50bd24b4>', 1, 'hold', 15918, 167.49359980003408, 167.49359980003408, 630)
+   (4, 'cal175', 'md5-ctr reject :parable', 1, 'hold', 1596, 166.75442193917002, 166.75442193917002, 304)
+   (4, 'cal175', 'md5-ctr reject :parable', 1, 'hold', 1597, 166.29523752586738, 166.29523752586738, 304)
+   (4, 'cal175', 'md5-ctr reject :parable', 1, 'hold', 1598, 164.33189236054932, 164.33189236054932, 304)
+   (1, 'cal050', 'sha512-ctr mod :1311', 1, 'hold', 2264, 163.38392999266807, 163.38392999266807, 589)
+   (4, 'cal175', 'md5-ctr reject :parable', 1, 'hold', 1599, 160.5402743396802, 160.5402743396802, 304)
+   (1, 'cal050', 'sha512-ctr mod :1311', 1, 'hold', 2265, 159.4979441905623, 159.4979441905623, 589)
+   (4, 'cal175', 'md5-ctr reject :parable', 1, 'hold', 1600, 158.4748621477686, 158.4748621477686, 304)
+   (1, 'cal050', 'sha512-ctr mod :1311', 1, 'hold', 2266, 157.05317125840043, 157.05317125840043, 589)
+   (1, 'cal050', 'sha512-ctr mod :1311', 1, 'hold', 2267, 156.45604792156155, 156.45604792156155, 589)
+   (3, 'cal150', 'sha512-ctr reject :<256 bytes 50bd24b4>', 1, 'hold', 15919, 155.37243384411067, 155.37243384411067, 630)
+   (4, 'cal175', 'md5-ctr reject :parable', 1, 'hold', 1602, 148.75240172833264, 148.75240172833264, 304)
+   (3, 'cal150', 'sha512-ctr reject :<256 bytes 50bd24b4>', 1, 'hold', 15921, 148.32682717772855, 148.32682717772855, 630)
+   (3, 'cal150', 'sha512-ctr reject :<256 bytes 50bd24b4>', 1, 'hold', 15920, 148.02538262805638, 148.02538262805638, 630)
+   (1, 'cal050', 'sha512-ctr mod :1311', 1, 'hold', 2268, 147.360483414418, 147.360483414418, 589)
+   (1, 'cal050', 'sha512-ctr mod :1311', 1, 'hold', 2269, 147.21638480164245, 147.21638480164245, 589)
+   (4, 'cal175', 'md5-ctr reject :parable', 1, 'hold', 1601, 146.74055057541727, 146.74055057541727, 304)
+   (3, 'cal150', 'sha512-ctr reject :<256 bytes 50bd24b4>', 1, 'hold', 15923, 144.04595645856352, 144.04595645856352, 630)
+   (3, 'cal150', 'sha512-ctr reject :<256 bytes 50bd24b4>', 1, 'hold', 15922, 143.50657251116309, 143.50657251116309, 630)
+   (3, 'cal150', 'sha512-ctr reject :<256 bytes 50bd24b4>', 1, 'hold', 15924, 142.35296517069662, 142.35296517069662, 630)
+
+5. Top tier-2 cell per channel and window with the highest scores (UNVERIFIED ranks)
+   hold   cal175             md5-ctr reject :parable              sign  1 offset   1582  S_guard  227.603  S  227.603
+   hold   cal150             sha512-ctr reject :<256 bytes 50bd24 sign  1 offset  15907  S_guard  218.057  S  218.057
+   hold   cal050             sha512-ctr mod :1311                 sign  1 offset   2261  S_guard  181.805  S  181.805
+   hold   cal050             sha512-ctr reject :1311              sign  1 offset   2045  S_guard   45.975  S   45.975
+   hold   cal175             md5-ctr mod :parable                 sign  1 offset   1812  S_guard  -97.693  S  -97.693
+   hold   cal050             n * p_n                              sign  1 offset   6471  S_guard  -99.284  S  -99.284
+   hold   cal150             sha256-chain mod :434                sign  1 offset   3012  S_guard  -99.830  S  -99.830
+   hold   cal100             sha512-ctr reject :<128 bytes 333633 sign -1 offset  13821  S_guard -100.549  S -100.549
+   spend  cal175             md5-ctr reject :parable              sign  1 offset   1576  S_guard   42.766  S   42.766
+   spend  cal175             md5-ctr mod :parable                 sign  1 offset   1756  S_guard -127.705  S -127.705
+   spend  cal150             sha512-ctr reject :<256 bytes 50bd24 sign  1 offset  15906  S_guard -131.988  S -131.988
+   spend  cal050             sha512-ctr mod :1311                 sign  1 offset   2254  S_guard -156.816  S -156.816
+   spend  cal150             sha256-ctr reject :the primes are sa sign -1 offset  12421  S_guard -162.247  S -162.247
+   spend  cal175             sha256-ctr reject :emergence         sign -1 offset  11894  S_guard -166.078  S -166.078
+   spend  cal050             sha512-ctr mod :all things should be sign  1 offset   5200  S_guard -167.445  S -167.445
+   spend  cal175             sha256-ctr reject :INSTAR EMERGENCE  sign  1 offset   8128  S_guard -171.199  S -171.199
+   skip5  cal175             md5-ctr reject :parable              sign  1 offset   1576  S_guard  -12.966  S  -12.966
+   skip5  cal175             md5-ctr mod :parable                 sign  1 offset   1754  S_guard  -46.108  S  -45.531
+   skip5  cal050             sha512-ctr mod :1311                 sign  1 offset   2249  S_guard -183.730  S -181.978
+   skip5  cal150             sha512-ctr reject :<256 bytes 50bd24 sign  1 offset  15905  S_guard -197.490  S -196.147
+   skip5  cal100             md5-ctr reject :koan                 sign -1 offset  12817  S_guard -205.446  S -205.384
+   skip5  cal000             sha256-ctr reject :primes            sign  1 offset  13699  S_guard -209.570  S -209.570
+   skip5  cal150             md5-ctr reject :7A35090F             sign -1 offset   7650  S_guard -211.232  S -211.232
+   skip5  cal175             sha256-ctr mod :shadows aethereal bu sign  1 offset   5012  S_guard -211.790  S -211.790
+   coin   cal175             md5-ctr mod :parable                 sign  1 offset   1755  S_guard  -80.064  S  -77.617
+   coin   cal175             md5-ctr reject :parable              sign  1 offset   1567  S_guard -105.594  S -105.350
+   coin   cal150             sha512-ctr reject :<256 bytes 50bd24 sign  1 offset  15906  S_guard -194.972  S -191.984
+   coin   cal050             sha512-ctr mod :1311                 sign  1 offset   2248  S_guard -204.687  S -202.360
+   coin   cal150             md5-ctr reject :emerge               sign  1 offset  10659  S_guard -211.249  S -211.249
+   coin   cal050             sha256-ctr reject :parable           sign  1 offset  15084  S_guard -211.860  S -211.860
+   coin   cal175             sha256-ctr mod :primes               sign -1 offset  12828  S_guard -211.947  S -211.947
+   coin   cal100             sha512-ctr reject :primes            sign  1 offset  19244  S_guard -212.613  S -212.613

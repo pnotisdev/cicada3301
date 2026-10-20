@@ -23,6 +23,8 @@
 | [screens/](screens/) | Dictionary screens rerun with the corrected segmentation |  |
 | [payload/](payload/) | Hash and passphrase-decryption tests on the corrected 256-byte payload |  |
 | [analysis/](analysis/) | Statistics of the ciphertext and one-off checks (word lengths, echoes, restarts, cribs, controls); one text file per script in work/ | the file named like the script |
+| [chanscreen/](chanscreen/) | chanscreen v2 step3: E3 wrong-key nulls (null/), E4 plants (e4/), the LP2 library campaign (n300/) and the clause-aligned scan (clause/) as one npz per (window, stream chunk), logs, summaries | summary_n300.txt (tier 1 = candidates, not leads), e4_summary.txt |
+| [outguess/](outguess/) | Payloads of the nine pages that open with OutGuess's default key (2014 chain), extracted by the own reader in work/ogscan | ../analysis/outguess_scan.txt |
 
 ## Results by question
 
@@ -44,6 +46,8 @@
 | Key running backward through the text, with and without ciphertext feedback (a = 0..28) | excluded | 1.387 (null 1.335) | [chain](kscreen/chain) |
 | Step-domain cipher: the plaintext enters c_i - c_(i-1), keyed mod 28 (variants A, B, C) | excluded | 1.297 (null 1.320) | [step_periodicity.txt](analysis/step_periodicity.txt) |
 | Clocked key pointer: after each rune the pointer advances by 1 + index, prime or prime - 1 (six clocks) | excluded |  | [clock_c1_library.tsv](kscreen/clock_c1_library.tsv), [clock_pp_library_verify.txt](kscreen/clock_pp_library_verify.txt) |
+| chanscreen v2: hold / spend / skip5 / coin library campaign on the 82 LP2 windows of 300 runes (S_guard rule), controls and clause scan | excluded |  | [PROTOCOL.md](../work/chanscreen/v2/step3/PROTOCOL.md), [summary_null.txt](chanscreen/summary_null.txt), [e4_summary.txt](chanscreen/e4_summary.txt), [chanscreen.txt](../jobs/queues/chanscreen.txt), [summary_n300.txt](chanscreen/summary_n300.txt), [summary_clause.txt](chanscreen/summary_clause.txt) |
+| Power of the chanscreen v2 contract when the plaintext is spelled letter by letter (TH as T + H, no digraph runes) | open |  | [PROTOCOL.md](../work/chanscreen/v2/step3/PROTOCOL.md) |
 | Per-rune periodic sign templates (period 2-5: the Beaufort / Vigenere alternation) | excluded | 1.400 (null 1.318) | [P5_ppmmp.tsv](kscreen/signs_periodic/P5_ppmmp.tsv), [P5_pmmmm.tsv](kscreen/signs_periodic/P5_pmmmm.tsv), [sign_periodic_selftest.txt](kscreen/sign_periodic_selftest.txt) |
 
 ### Seeded generators, passphrases and sequences as keys
@@ -59,6 +63,7 @@
 | 199,088 OEIS integer sequences as keys (mod 29), boundary-free score | partial |  | [true_key_score.txt](analysis/true_key_score.txt), [bg_oeis_verify.txt](prngx/bg_oeis_verify.txt), [bg_oeis_A60_verify.txt](prngx/bg_oeis_A60_verify.txt), [bg_oeis_B48_verify.txt](prngx/bg_oeis_B48_verify.txt) |
 | Passphrases to hash streams (19.2 M candidates, MD5 / SHA-1 / SHA-256 / SHA-512) and KDF streams (719,280) | partial |  | [bg_words_verify.txt](hashscan/bg_words_verify.txt), [bg_kdf_verify.txt](prngx/bg_kdf_verify.txt) |
 | Dictionary screens (screen 1, screen 2, reverse direction, heading restarts) with the corrected word segmentation | partial |  | [screens](screens) |
+| Boundary-free seed sweeps of sections 0.8-0.15 over the FULL seed space (a fresh seed per section), ten generators | excluded |  | [bg_py3_all.log](prng/bg_py3_all.log), [bg_glibc_all.log](prng/bg_glibc_all.log), [bg_net_all.log](prng/bg_net_all.log) |
 
 ### Cipher structure beyond c = p + k
 
@@ -80,6 +85,8 @@
 | Evolving-alphabet walk (period-5 alphabets per word, alphabet changes per word, skip on repeat; aldegonde's length-clocked walk) | untestable |  | [perm_relations.txt](analysis/perm_relations.txt) |
 | Keyword-mixed outer alphabet around an additive key: relabel the ciphertext by sigma, then the ordinary screen | open |  | [relabel_export.py](../work/kscreen/relabel_export.py), [RELABEL.md](../work/kscreen/RELABEL.md), [relabel_control.txt](../work/tmp/relabel_control.txt), [summary.txt](../work/tmp/relabel_gate/summary.txt), [relabel_all_summary.txt](../work/tmp/relabel_all_summary.txt), [relabel_all_kw_KOAN.tsv](kscreen/relabel_all_kw_KOAN.tsv), [relabel_all_kw_PRIMES.tsv](kscreen/relabel_all_kw_PRIMES.tsv), [relabel_all_atbash.tsv](kscreen/relabel_all_atbash.tsv), [relabel_all_null.tsv](kscreen/relabel_all_null.tsv) |
 | Unkeyed insertions (an extra rune per word that consumes no key value) and extra key advance at word separators / line / page breaks | open |  | [README.md](../work/proposals/null_beam/README.md), [null_insertion.txt](analysis/null_insertion.txt) |
+| Does the word segmentation depend on the ciphertext? Boundaries against the runes around each gap, equal pairs straddling a gap, and word length against neighbouring runes | excluded |  | [word_structure.py](../work/word_structure.py), [word_structure.txt](analysis/word_structure.txt) |
+| Position- and length-stratified relations inside words: difference histograms (schedule plus a fresh offset per word) and column coincidences by word length | excluded |  | [word_structure.py](../work/word_structure.py), [word_structure.txt](analysis/word_structure.txt) |
 | H1: library x keyword (L <= 20) with a drift-tracking decoder | open |  | [README.md](../work/h5slice/README.md), [h5slice.py](../work/h5slice/h5slice.py), [control.txt](../work/h5slice/control.txt), [lp2_look.txt](../work/h5slice/lp2_look.txt), [verify_nb.log](../work/h5slice/verify_nb.log), [README.md](../work/h5rs/README.md), [CAMPAIGN.md](../work/h5rs/CAMPAIGN.md), [campaign_control.txt](../work/h5rs/campaign_control.txt), [launch_campaign.bat](../work/h5rs/launch_campaign.bat) |
 | H2: tableau / transition-table ciphers (a statistic invariant to the table) | open |  | [proposals_h2_skip.txt](analysis/proposals_h2_skip.txt) |
 | Collision-substitution kernels: B=999 re-tests, fixed halves and echo-site dispersion | observed | 15.895 (null 11.373) | [PROTOCOL.md](../work/independent/collision_followup/PROTOCOL.md), [power.json](independent/desktop/20261018T155345Z-collision-followup-power-160fce/power.json), [mechanisms.json](independent/desktop/20261018T155356Z-collision-followup-mechanisms-ef3932/mechanisms.json), [run.log](independent/desktop/20261018T155406Z-collision-followup-sections-1812ed/run.log), [certificate.json](independent/desktop/20261018T160053Z-collision-followup-certify-25137d/certificate.json), [test.json](independent/desktop/20261018T160108Z-collision-followup-test-7c859d/test.json), [optimism.json](independent/desktop/20261018T160142Z-collision-followup-optimism-f9c191/optimism.json), [PROTOCOL.md](../work/independent/collision_fixed_halves/PROTOCOL.md), [certify.json](independent/desktop/20261018T162712Z-collision-fixed-certify-754ea4/certify.json), [halves.json](independent/desktop/20261018T162720Z-collision-fixed-halves-cae869/halves.json), [section-merge.json](independent/desktop/20261018T163227Z-collision-fixed-section-merge-120ada/section-merge.json), [PROTOCOL.md](../work/independent/echo_dispersion/PROTOCOL.md), [controls.json](independent/desktop/20261018T164533Z-echo-dispersion-controls-4db2d5/controls.json), [test.json](independent/desktop/20261018T164550Z-echo-dispersion-test-3cc8e1/test.json) |
@@ -96,6 +103,7 @@
 | Key reuse between sections (two-time pad under skip drift) | untestable |  | [pad_reuse_power.txt](analysis/pad_reuse_power.txt) |
 | Transposition | partial |  | [page_seams_2026-10-17.txt](analysis/page_seams_2026-10-17.txt) |
 | Key that starts mid-page: windows of 300 runes at staggered positions across the book | excluded | 1.332 (null 1.318) | [staggered.tsv](kscreen/staggered.tsv), [staggered_null.tsv](kscreen/staggered_null.tsv), [staggered_windows.py](../work/tmp/staggered_windows.py), [stag_plant_screen.tsv](../work/tmp/stag_plant_screen.tsv) |
+| Key restart or jump at every clause mark: library scan of clause-aligned windows (61-559 runes), likelihood score | excluded |  | [summary_clause.txt](chanscreen/summary_clause.txt), [PROTOCOL.md](../work/chanscreen/v2/step3/PROTOCOL.md) |
 
 ### Cribs, puzzle furniture and outside claims
 
@@ -106,6 +114,9 @@
 | The 256-byte base-60 payload (pages 64-66), corrected bytes | excluded |  | [hashes.txt](payload/hashes.txt), [decrypt.txt](payload/decrypt.txt) |
 | Page-30 grid, the Some Wisdom word square (1033), the page-14 square (3301) | explained |  | [grid_key.txt](analysis/grid_key.txt) |
 | Origin of the 0.6 square's seeds {809, 434, 312, 966, 1311, 204} and t = 1246 | open |  | [squares_check.txt](analysis/squares_check.txt) |
+| Gematria sums of the solved pages' sentences: the book's own numbers | observed |  | [prime_sums.txt](analysis/prime_sums.txt), [prime_sums.py](../work/prime_sums.py) |
+| Containers, appended bytes and faint marks in the 75 page scans; the annotated book map | observed |  | [page_scan_audit.txt](analysis/page_scan_audit.txt), [page_scan_audit.py](../work/page_scan_audit.py), [book_map.py](../work/book_map.py), [book_map.png](../work/figures/book_map.png) |
+| OutGuess-style payloads in the 75 page scans: own reader, default key, key-free screen, solved-text key sweep | excluded |  | [outguess_scan.txt](analysis/outguess_scan.txt), [og.py](../work/ogscan/og.py), [run_scan.py](../work/ogscan/run_scan.py), [main.rs](../work/ogscan/src/main.rs), [payload_03.txt](outguess/payload_03.txt), [outguess_page03_hex_image.png](../work/figures/outguess_page03_hex_image.png) |
 
 ### What LP2 shows (any solution has to explain it)
 

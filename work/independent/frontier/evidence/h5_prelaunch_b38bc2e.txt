@@ -1,0 +1,63 @@
+# work/h5rs pre-launch controls - plants through the REAL file: path, recorded by
+# record_prelaunch.py from the sweep TSVs (paths relative to the repo root).
+# run 2026-10-18 22:42:50; engine = fast, abort (120, 0.9), beam 24, max_em 5, beam_a 12 (the campaign sweep settings).
+# grid per plant: its stream x offsets 0..1999 x L 2..20 x models {0,1} = 76,000 cells;
+# matched null: null8.ksb (seeds 9000..9007) over the same window/grid = 608,000 cells.
+# candidate rule: IoC >= 1.6 AND >= the window's matched-null max (same model) + 0.15.
+# plant semantics: h5slice.plant (model 0 = skip, keep 0.19, seed 42, litf False, b 0),
+# plaintext = Self-Reliance runes 3000:3300 (work/sim.py); keywords via lp.word_to_key
+# (FIRFUMFERENFE [0,10,4,0,1,19,0,18,4,18,9,0,18], CIRCUMFERENCE [5,10,4,5,1,19,0,18,4,18,9,5,18],
+# DIVINITY [23,10,1,10,9,10,16,26]); library stream values verified == h5slice/keystreams
+# generators (prelaunch_plant.py output above).
+
+== plant (a): primes + FIRFUMFERENFE (L=13) at offset 1300, window seg0.8 (prev 7) ==
+   sweep: work\h5rs\sweep_a_real.tsv over offs 0..2000 x L 2..20 x models 0,1
+   real-sweep rows >= 1.5: [(1300, 13, 0, 1.850136)]
+   plant cell IoC = 1.850136 (row + best); grid argmax = PLANT CELL
+   model-1 best: (368, 11, 1, 'seg0.8', 1.286893)
+   matched-null max: model 0 = 1.370050, model 1 = 1.341343 (threshold m0 = 1.520050)
+   rule: IoC >= 1.6 : True; IoC >= nullmax(m0)+0.15 : True; margin above null max = 0.480086
+   => CONTROL PASS
+
+== plant (b): primes + CIRCUMFERENCE (L=13) at offset 1600, window seg0.11 (prev 24) ==
+   sweep: work\h5rs\sweep_b_real.tsv over offs 0..2000 x L 2..20 x models 0,1
+   real-sweep rows >= 1.5: [(1600, 13, 0, 1.917336), (1600, 13, 1, 1.608606)]
+   plant cell IoC = 1.917336 (row + best); grid argmax = PLANT CELL
+   model-1 best: (1600, 13, 1, 'seg0.11', 1.608606)
+   matched-null max: model 0 = 1.515595, model 1 = 1.407376 (threshold m0 = 1.665595)
+   rule: IoC >= 1.6 : True; IoC >= nullmax(m0)+0.15 : True; margin above null max = 0.401741
+   => CONTROL PASS
+
+== plant (c): primes-1 (totient) + DIVINITY (L=8) at offset 1422, window seg0.14 (prev 20) ==
+   sweep: work\h5rs\sweep_c_real.tsv over offs 0..2000 x L 2..20 x models 0,1
+   real-sweep rows >= 1.5: [(1422, 8, 0, 1.935617)]
+   plant cell IoC = 1.935617 (row + best); grid argmax = PLANT CELL
+   model-1 best: (1456, 20, 1, 'seg0.14', 1.208864)
+   matched-null max: model 0 = 1.480890, model 1 = 1.497455 (threshold m0 = 1.630890)
+   rule: IoC >= 1.6 : True; IoC >= nullmax(m0)+0.15 : True; margin above null max = 0.454727
+   => CONTROL PASS
+
+== plant (c1500): primes-1 (totient) + DIVINITY (L=8) at offset 1500, window seg0.14 (prev 20) ==
+   sweep: work\h5rs\sweep_c1500_real.tsv over offs 0..2000 x L 2..20 x models 0,1
+   real-sweep rows >= 1.5: []
+   plant cell (1500, 8, 0) NOT among rows >= 1.5
+   h5rs decode at truth cell: ABORT
+   h5rs decode --no-abort --engine scalar: ioc=1.6984040793 wcol=23,10,1,10,9,10,16,26 skips=8
+   h5rs decode --no-abort --engine fast:   ioc=0.9964130267 wcol=19,10,1,22,23,18,0,26 skips=6
+   => the campaign's init abort kills the truth cell at this offset (all engines agree); scalar/no-abort recovers wcol=DIVINITY (ioc 1.6984), fast/fastscalar tie-flip to a junk wcol (0.9964) - recorded as the negative-documentation control. Control (c) therefore uses the closest clean deep offset (1422).
+
+== summary ==
+  plant-a: PASS - (1300,13,0) IoC 1.850136 argmax=True rule1=True rule2=True
+  plant-b: PASS - (1600,13,0) IoC 1.917336 argmax=True rule1=True rule2=True
+  plant-c: PASS - (1422,8,0) IoC 1.935617 argmax=True rule1=True rule2=True
+  controls: 3 plant controls, 3 PASS
+
+== null-size justification (real seg0.8 window, full grid 0..1999 x L 2..20 x both models) ==
+  8-stream null max (null8.ksb): model 0 = 1.361300 (rand max over 8 x 76,000 cells), model 1 = 1.336213
+  581-stream sweep: 44,156,000 cells; cells >= 1.5: 23; cells >= 1.6: 3
+  581-stream null max (null581.ksb, seeds 9000..9580): model 0 = 1.617168, model 1 = 1.676032 (over 581 x 76,000 = 44,156,000 cells)
+  growth 8 -> 581 streams: model 0 +0.255868, model 1 +0.339819
+  margin verdict: the +0.15 margin MUST BE REPLACED by the measured 581-stream value; effective candidate floor = max(1.6, nullmax581 + 0.15).
+  Gumbel cross-check model 0: n=581 mu=1.2910 beta=0.0596 fitted E[max n=581]=1.7050 vs observed=1.6172; fitted growth 8->581 = 0.2555 vs observed 0.2559
+  Gumbel cross-check model 1: n=581 mu=1.2349 beta=0.0582 fitted E[max n=581]=1.6386 vs observed=1.6760; fitted growth 8->581 = 0.2492 vs observed 0.3398
+  consequence for the plants: their PASS above is against the 8-stream matched-null max (the task's control specification). Against the measured 581-stream null max of the real seg0.8 window the effective floor is 1.617168+0.15 = 1.767168 (m0) / 1.676032+0.15 = 1.826032 (m1). Plant IoCs: (a) 1.850136, (b) 1.917336, (c) 1.935617 - all still above the measured floor for their model (m0); a naive +0.256/+0.340 growth extrapolation of the OTHER windows' 8-stream maxima would put (b)'s seg0.11 floor near its IoC (unmeasured), so the campaign-scale null max per window should be measured, not extrapolated, before reading the controls against it.

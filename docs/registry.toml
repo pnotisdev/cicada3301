@@ -254,6 +254,19 @@ gap = "Keys that start beyond the first ~9,000 terms for the prime clocks"
 log = ["work/log/phase9_hyp.md"]
 files = ["results/kscreen/clock_c1_library.tsv", "results/kscreen/clock_pp_library_verify.txt"]
 
+[[experiment]]
+id = "chanscreen-step3"
+group = "streams"
+title = "chanscreen v2: hold / spend / skip5 / coin library campaign on the 82 LP2 windows of 300 runes (S_guard rule), controls and clause scan"
+status = "excluded"
+what = "The 1,439-stream library at every offset, both signs, the four repair channels, summed-path English-LM likelihood against a uniform-plaintext null with the common-law guard (alpha 0.001, T300 = 29.80 nats); E3 nulls, E4 plants, the campaign and the clause-aligned scan are one protocol (work/chanscreen/v2/step3/PROTOCOL.md)"
+control = "E4: 200 library-scale mid-text plants detected 200 of 200 (194-200 of 200 down to 60 runes), Viterbi accuracy 0.99; E3: three library-keyed v1 records each found their own stream among 1,439 (S_guard 182-228) and two iid-key records stay at -100; E3b (five more iid-key nulls) is the gate"
+result = "n300 (finished 2026-10-19 22:15): 0 of 8.74e9 cells reach S_guard 0 nats; best per channel -75.7 hold, -161.2 spend, -179.5 skip5, -201.4 coin. Clause scan (finished 2026-10-20 02:15, repaired 04:17): 0 tier-1 cells in 82 clauses of 61-559 runes; best 7.5 hold, 6.8 spend, 5.5 skip5, -2.0 coin. Nine isolated faulty tasks of 2,296 (7 raised an error, 2 stored false tier-1 cells, 98 and 1, that do not reproduce) were re-run clean, PROTOCOL.md amendment 3; summary.py now recomputes every tier-1 group"
+gap = "E3 as frozen failed its literal criterion by my choice of records (library-keyed ones), reported in PROTOCOL.md amendment 1; plants search only their own stream (identification among 1,439 not measured; aliases in other channels win); English-like plaintext, Emerson-trained LM, q = 0.81, no previous ciphertext rune at a window start; other streams, languages and restarts inside a window are not covered; faults: 9 of 2,296 tasks (about 1e-5 per engine call), summary.py recomputes every tier-1 group, a fault that hides a real hit is not detected (about 1e-5 per call), the machine may be marginal at full load"
+cost = "About 49 CPU-hours (n300) plus 21 (clauses) on 12 workers; done 2026-10-19/20"
+log = ["work/log/phase19_try_all_four.md", "work/log/phase17_chanscreen.md"]
+files = ["work/chanscreen/v2/step3/PROTOCOL.md", "results/chanscreen/summary_null.txt", "results/chanscreen/e4_summary.txt", "jobs/queues/chanscreen.txt", "results/chanscreen/summary_n300.txt", "results/chanscreen/summary_clause.txt"]
+
 # ------------------------------------------------------------------------------------------ generators
 
 [[experiment]]
@@ -656,6 +669,42 @@ priority = 15
 result = "The AI-campaign repo's best z 5.2 is below its noise replicates; not run here"
 log = ["work/log/research_2026-10-17.md"]
 
+[[experiment]]
+id = "lp1-prime-sums"
+group = "claims"
+title = "Gematria sums of the solved pages' sentences: the book's own numbers"
+status = "observed"
+what = "Sum of the Gematria primes of every clause of the solved plaintext (sections 0.0-0.6, 0.16, 0.17), against a shuffle null per section and against ordinary English (Emerson) in GP runes; the same counts on LP2's ciphertext units"
+control = "Shuffle null (500 shuffles per section, same unit lengths): 11.2 +- 3.1 prime of 76 expected; Emerson Essays I by sentence length: 12-14% prime, 47-52% odd; the displayed ciphertext of the encrypted pages is at chance (7 of 53)"
+result = "36 of 76 body clauses have a prime sum (z 7.9): A Warning 9 of 9, An Instruction 4 of 4, Parable 3 of 3, Some Wisdom 3 of 3; clauses of at most 40 runes 32 of 53 (60%), longer ones 4 of 23 (chance), the Koans at chance. LP2's ciphertext units are not enriched (clauses 18.6% against 13.0%, z 2.2; words, lines, pages at chance)"
+gap = "Says nothing about LP2's key until a decryption exists. Exploratory: the clause marks are the transcription's, the short / long split was made after looking. A weak outside source (a Substack deep dive) asserts that each decoded line sums to a prime without method. If it holds for LP2's plaintext it checks a decryption in any language: 45 LP2 clauses are 13-40 runes long, about 27 would be prime against about 6 by chance"
+log = ["work/log/phase18_cicada_intent.md"]
+files = ["results/analysis/prime_sums.txt", "work/prime_sums.py"]
+
+[[experiment]]
+id = "page-scan-audit"
+group = "claims"
+title = "Containers, appended bytes and faint marks in the 75 page scans; the annotated book map"
+status = "observed"
+what = "JPEG structure and quantisation families of work/orig/NN.jpg, bytes after the last EOI, SHA-512 against the An End hash, off-white pixels far from ink (hidden faint marks), the stipple of the last page"
+control = "Planted faint (level 252-254) text and rectangle re-encoded at JPEG quality 85 and 95 is found (about 160,000 pixels) while the 22 clean text pages show 0; the container decode is checked by byte equality (10.jpg) and by the magic square's sums (05.jpg)"
+result = "10.jpg holds pages 10-13 end to end; 05.jpg is [page][360-byte text][page byte-reversed] and the text decodes to its own 25 magic-square cells (all sums 1033); no scan hashes to the An End SHA-512; no hidden faint marks in the text pages; the last page's cicada is 574 irregular stipple dots. The five scans of the rare quantisation family (03, 08, 10, 11, 12) are among the named 2014 OutGuess carriers, none of the 66 scans of the common families (all LP2 pages) is"
+gap = "Pixel and container level only; DCT-level payloads are covered by the outguess-scan row; the quantisation-family reading is an inference about the encoder history"
+log = ["work/log/phase18_cicada_intent.md", "work/log/phase9_art.md"]
+files = ["results/analysis/page_scan_audit.txt", "work/page_scan_audit.py", "work/book_map.py", "work/figures/book_map.png"]
+
+[[experiment]]
+id = "outguess-scan"
+group = "claims"
+title = "OutGuess-style payloads in the 75 page scans: own reader, default key, key-free screen, solved-text key sweep"
+status = "excluded"
+what = "Own re-implementation of the OutGuess retrieval path (Rust coefficient lister + Python iterator / RC4, written from the program's source read as data), validated on the known carriers; the default key on every page; a key-free screen of the usable DCT-coefficient bits (an embedded header flips about half of 32 positions inside the first ~550 usable bits); 53,227 solved-text keys on the one page the screen cannot judge"
+control = "Nine pages open with the default key (0, 1, 2, 3, 8, 10, 11, 12, 13; 3, 8 and 10-13 give the named 2014 payload texts) and all nine show 14-258 deviations among the first 600 bits; a payload planted into a clean page by the writer's rules is found by the sweep under the keys 'welcome' and 'DIVINITY', the unplanted page gives none"
+result = "No OutGuess-style payload in any of the 56 LP2 pages (17-72): their usable-bit streams are constant for 5,747-29,443 bits, a header would have flipped about 16 of the first 600 bits; also none on pages 5-9, 14-16, 73, 74. Page 4 (art at the top) is not decided by the screen: 53,227 solved-text keys give 0 hits. New: pages 0, 1, 2 carry 2,899-byte PGP-signed hex messages (2014 chain), and the page 3 payload contains a hex JPEG (587 x 109 px, eleven runes and the digits 5 and 3)"
+gap = "OutGuess writes DC and AC coefficient LSBs from the start of the bitmap; embedders that avoid DC (F5, AC-only schemes), other containers and keys outside the list on page 4 are not covered. The payload contents belong to the 2014 chain, not to LP2"
+log = ["work/log/phase19_try_all_four.md"]
+files = ["results/analysis/outguess_scan.txt", "work/ogscan/og.py", "work/ogscan/run_scan.py", "work/ogscan/src/main.rs", "results/outguess/payload_03.txt", "work/figures/outguess_page03_hex_image.png"]
+
 # ----------------------------------------------------------------------------------------------- observed
 
 [[experiment]]
@@ -731,11 +780,47 @@ group = "structure"
 title = "Unkeyed insertions (an extra rune per word that consumes no key value) and extra key advance at word separators / line / page breaks"
 status = "open"
 priority = 2
-what = "Every decoder moves the key pointer only forward at a collision; the '+1 rune in 42% of words' fit is the motivation, and 2026-10-18 adds a second: the lag-6 echo rate (0.0272 +/- 0.0047) equals the avoided-collision rate (0.0269-0.0282). H8 as defined (the null spends the colliding attempt's key value) is aligned and already visible to kscreen: alive as a partial explanation of the word lengths (G 56 -> 40); the unkeyed variant is not decoded. 2026-10-18: the nulledge option is built - deterministic word-edge nulls (0% / 100% of edges) are excluded, and the 42% mixture is measured to have no powered IoC decoder (registry row nulledge); what remains here is the extra key advance at word separators / line / page breaks"
-cost = "About 3-4 h of engine work (the nulledge part is done), then about 7 min of CPU per variant"
-needs = "A per-rune extra-advance line in the engine for the layout events (work/proposals/null_beam is an untrusted prototype of the decoder)"
-log = ["work/log/phase10_review.md", "work/log/phase10_proposals_review.md", "work/log/phase11_review.md", "work/log/phase12_review2.md"]
+what = "Every decoder moves the key pointer only forward at a collision; the '+1 rune in 42% of words' fit is the motivation, and 2026-10-18 adds a second: the lag-6 echo rate (0.0272 +/- 0.0047) equals the avoided-collision rate (0.0269-0.0282). H8 as defined (the null spends the colliding attempt's key value) is aligned and already visible to kscreen: alive as a partial explanation of the word lengths (G 56 -> 40); the unkeyed variant is not decoded. 2026-10-18: the nulledge option is built - deterministic word-edge nulls (0% / 100% of edges) are excluded, and the 42% mixture is measured to have no powered IoC decoder (registry row nulledge); what remains here is the extra key advance at word separators / line / page breaks 2026-10-19: the exact summed-path likelihood of chanscreen v2 marginalises over which word edges carry a keyless null or an extra key advance, which the IoC beam could not, so the 42% mixture becomes decodable there; the weak echoes stop at the word edges (the encryptor reads them), which is why the edges are the layout to use (work/log/phase20_segmentation_plan.md, plan step 3)"
+cost = "About 1 day of engine work (a word-edge arc in work/chanscreen/v2/backward.rs, a dense reference, E4-style plants with nulls at 42% of the edges), then about 25% more CPU per added channel (n300 is about 49 CPU-hours for four channels); start after the n300 campaign ends"
+needs = "The user's go-ahead (engine work) and the n300 campaign finished (its engine library is in use); work/proposals/null_beam stays an untrusted prototype"
+log = ["work/log/phase10_review.md", "work/log/phase10_proposals_review.md", "work/log/phase11_review.md", "work/log/phase12_review2.md", "work/log/phase20_segmentation_plan.md"]
 files = ["work/proposals/null_beam/README.md", "results/analysis/null_insertion.txt"]
+
+[[experiment]]
+id = "segmentation-dependence"
+group = "structure"
+title = "Does the word segmentation depend on the ciphertext? Boundaries against the runes around each gap, equal pairs straddling a gap, and word length against neighbouring runes"
+status = "excluded"
+what = "14 gap features (c_i, c_i+1, their difference and sum, c_i-1, c_i+2, c_i - c_i-1, an equal pair at lag 2..8 straddling the gap) and 4 word-level tables (word length against the first / last rune of the word, the last rune of the previous word, the first rune of the next word); null = the word lengths shuffled inside each section, 2,000 shuffles, same runes"
+control = "iid runes with LP2's section lengths and boundary rate: boundaries following a rule on 8 of 29 values of c_i or of the difference, for a share lam of the boundaries, are found 16 of 16 down to lam 0.12 (10-12 of 16 at 0.06, 0-1 of 16 at 0.03); word lengths set by the first rune for a share lam of the words: 16 of 16 down to 0.12 (10 of 16 at 0.06); 0 of 32 false positives at p <= 0.01"
+result = "No feature is significant (combined probability 0.568 for the smallest nominal p, 0.724 for the word-level tables; the smallest shuffle p is 0.0100, an equal pair at lag 8 straddling a gap, family-wise 0.131): the boundaries do not depend on the runes next to them; an equal pair at lag 5 straddling a gap does not predict a boundary (shuffle p 0.30), so the lag-5 echo is not a placement effect (the lag-6 relation was not tested here)"
+gap = "A dependence on fewer than about 6-12% of the boundaries; a dependence on the key stream rather than on the ciphertext runes; rules on three or more runes; the controls use iid runes, not LP2's weak echoes"
+log = ["work/log/phase20_segmentation_plan.md"]
+files = ["work/word_structure.py", "results/analysis/word_structure.txt"]
+
+[[experiment]]
+id = "word-position-schedule"
+group = "structure"
+title = "Position- and length-stratified relations inside words: difference histograms (schedule plus a fresh offset per word) and column coincidences by word length"
+status = "excluded"
+what = "B: for word lengths 3-8 and every position pair i < j (83 cells) the histogram of c_j - c_i mod 29, mean standardised chi-square; C: the equal-pair z of restart_columns for every column of the words of exactly L runes, L = 2-10 (54 cells); null = runes shuffled inside each section, 2,000 shuffles, same word lengths"
+control = "English runes cut at LP2's word lengths with a schedule K(j) or K(L,j): B finds 8 of 8 plants with or without a fresh offset per word (mean z 22), C finds 8 of 8 without the offset (z 110-158) and is blind with it (0 of 8, as designed); partial plants: B 8/8 with offset on half the words, 2/8 on a quarter, 1/8 on a tenth; C 8/8 without offset on a quarter of the words (z 11.6), 1/8 on a tenth; random key 0 of 8 in both"
+result = "LP2: B mean standardised chi-square -0.85 (P 0.81), C mean column z -1.27 (P 0.80), largest cells z 2.6 and 2.5 (P 0.64 and 0.51): no schedule by position in the word or by (length, position), with or without a per-word offset"
+gap = "Schedules on fewer words (under a quarter for C, under half for B), a different schedule for every word (a per-word key, see per-word-keys), a plaintext that is not English-like (power lower, not measured), keys that restart inside a word"
+log = ["work/log/phase20_segmentation_plan.md"]
+files = ["work/word_structure.py", "results/analysis/word_structure.txt"]
+
+[[experiment]]
+id = "open-letter-spelling-power"
+group = "streams"
+title = "Power of the chanscreen v2 contract when the plaintext is spelled letter by letter (TH as T + H, no digraph runes)"
+status = "open"
+priority = 2
+what = "The word-length histogram fits English counted in letters (G 60) far better than English in digraph runes (G 242), and the frozen decoder LM is trained on digraph text; the n300 and clause negatives quote E4 power for digraph-spelled plaintext only. E4-style plants (50 per channel) from the same held-out English slice converted letter by letter (TH, ING, EO, OE, AE, IA, EA expanded), searched over their own stream with the frozen thresholds"
+cost = "About 1 h on a few cores; can run beside the n300 campaign"
+needs = "A letter-spelled plaintext pool (the m04 pool builder with the digraph runes expanded); the frozen decoder, LM and thresholds stay unchanged"
+log = ["work/log/phase20_segmentation_plan.md"]
+files = ["work/chanscreen/v2/step3/PROTOCOL.md"]
 
 [[experiment]]
 id = "open-direction"
@@ -750,12 +835,14 @@ log = ["work/log/phase10_deepseek_round4.md", "work/log/phase10_signrules.md"]
 [[experiment]]
 id = "open-bg-sections"
 group = "generators"
-title = "Boundary-free seed sweeps of sections 0.8-0.15 over the FULL seed space (a fresh seed per section)"
-status = "open"
-priority = 4
-cost = "1.1-1.7 h per generator on the GPU (about 4.5 h for the queued run)"
-needs = "GPU; the gates and the +7.3 per rune measurement exist"
-log = ["work/log/phase9_overnight_results.md", "docs/QUEUE.md"]
+title = "Boundary-free seed sweeps of sections 0.8-0.15 over the FULL seed space (a fresh seed per section), ten generators"
+status = "excluded"
+what = "py3, java, php, glibc, mt32, mt31, msvc, drand48, ruby over all 2^32 seeds and net over 2^31, boundary-free bigram score, gate +300, sections 0.8-0.15 with a fresh seed per section; run 2026-10-19 as the gpu4h and gpu_rest queues on the 2080 Ti"
+control = "The gates of prng-bg: planted seeds at rank 1 for every generator, CUDA kernels identical to the CPU generators (work/tests/test_bgmt.py), a true key scores +7.3 per rune on Cicada's solved text"
+result = "0 candidates at +300 in all ten sweeps (3,061-13,653 s each; glibc was paused for about 1.5 h by the user)"
+gap = "One pad from the start of each section; a pad after an unknown discard; other generators, string or float seeds, ISAAC, filtered LFSRs; GPU faults were not audited (a GPU engine timeout was logged at 14:48 on 2026-10-19)"
+log = ["work/log/phase9_overnight_results.md", "docs/QUEUE.md", "work/log/phase19_try_all_four.md"]
+files = ["results/prng/bg_py3_all.log", "results/prng/bg_glibc_all.log", "results/prng/bg_net_all.log"]
 
 [[experiment]]
 id = "open-sign-periodic"
@@ -908,6 +995,18 @@ gap = "My plants only (uniform random keywords, no literal F, skip / coin only, 
 log = ["work/log/phase16_h5_power_map.md", "work/log/phase13_gated_h5.md"]
 files = ["results/analysis/h5_power_map.txt", "results/analysis/h5_power_map.json"]
 
+[[experiment]]
+id = "open-clause-windows"
+group = "layout"
+title = "Key restart or jump at every clause mark: library scan of clause-aligned windows (61-559 runes), likelihood score"
+status = "excluded"
+what = "Every screen so far fixes one key alignment per 300-rune window or restarts at a window start; the solved pages' sentences are numerically constructed (lp1-prime-sums), and 'their numbers are the direction' may mean a pointer that moves at each sentence. The 167 clause marks of LP2 give the windows; the IoC screen cannot judge windows of 60-250 runes against a library-sized null (heavy tail), the likelihood score of chanscreen v2 can (an estimate: +30 to +60 nats for 60-120 true runes against a threshold near +30)"
+control = "E4 prefix plants of the same engine: 194 of 200 detected at 60 runes, 200 of 200 from 80 runes; the recomputation check reproduces 137 of 137 real library-keyed cells (null set) and rejects both false cells that occurred"
+result = "0 tier-1 cells in the 82 clause windows (61-559 runes) against 1,439 streams, both signs, four channels, every offset (best S_guard 7.5 hold, 6.8 spend, 5.5 skip5, -2.0 coin; 9 cells above 5, none above 10). One false 335 nats cell (spend, sha512-ctr reject :welcome) did not reproduce and its task was re-run; five tasks that raised an error were re-run clean"
+gap = "Clauses under 61 runes; a restart that is not at a clause mark; streams outside the library; q other than 0.81; plaintexts that are not English-like; a fault that hides a real hit (about 1e-5 per call)"
+log = ["work/log/phase18_cicada_intent.md", "work/log/phase17_chanscreen.md", "work/log/phase19_try_all_four.md"]
+files = ["results/chanscreen/summary_clause.txt", "work/chanscreen/v2/step3/PROTOCOL.md"]
+
 # ---------------------------------------------------------------------------------------------- folders
 
 [[folder]]
@@ -962,3 +1061,13 @@ what = "Hash and passphrase-decryption tests on the corrected 256-byte payload"
 path = "results/analysis"
 what = "Statistics of the ciphertext and one-off checks (word lengths, echoes, restarts, cribs, controls); one text file per script in work/"
 read = "the file named like the script"
+
+[[folder]]
+path = "results/chanscreen"
+what = "chanscreen v2 step3: E3 wrong-key nulls (null/), E4 plants (e4/), the LP2 library campaign (n300/) and the clause-aligned scan (clause/) as one npz per (window, stream chunk), logs, summaries"
+read = "summary_n300.txt (tier 1 = candidates, not leads), e4_summary.txt"
+
+[[folder]]
+path = "results/outguess"
+what = "Payloads of the nine pages that open with OutGuess's default key (2014 chain), extracted by the own reader in work/ogscan"
+read = "../analysis/outguess_scan.txt"
