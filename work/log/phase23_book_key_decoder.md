@@ -92,17 +92,31 @@ section, 80-93% per section.
 
 Cost of the screen: 8 windows x 22.6 ms = 0.18 s per book-offset and spelling. The KJV (3.0 M digraph + 3.2 M letter
 runes) is about 310 core-hours, about 19 h on 16 threads. Emerson's Essays (contains Self-Reliance; 0.31 M + 0.33 M) is
-about 32 core-hours. The other candidates are estimated from their Gutenberg sizes, not measured: Liber AL ~0.05 M,
-Mabinogion ~1 M, Blake ~0.5 M, Agrippa ~1.5 M. All six: about 1,100 core-hours, about 3 days on one 16-thread PC.
+about 32 core-hours. With the downloaded copies (table above) all six books, both spellings, come to 9.5 M
+book-offsets: about 480 core-hours, about 30 h on one 16-thread PC.
 300-rune windows halve the cost at power 53-68% per window. Neither variant has been run.
 
 ## Candidate books
 
-- In the repository: **KJV** (`work/ref/corpora/pg10.txt`, git-ignored), **Emerson, Essays First Series**
-  (`work/ref/emerson_essays1.txt`, tracked; contains Self-Reliance).
-- **Not present, not downloaded:** Liber AL vel Legis, Agrippa's Three Books of Occult Philosophy, the Mabinogion
-  (Guest), and Blake (Marriage of Heaven and Hell; Songs of Innocence and of Experience). They would go to
-  `work/ref/corpora/` as data only; that folder's `.gitignore` keeps them out of git. Downloading needs the user's OK.
+- In the repository: **KJV** (`work/ref/corpora/pg10.txt`, git-ignored; 3.00 M digraph / 3.23 M letter runes),
+  **Emerson, Essays First Series** (`work/ref/emerson_essays1.txt`, tracked; contains Self-Reliance; 0.31 M / 0.33 M).
+- Downloaded 2026-10-20 on the user's request, as data only, to `work/ref/corpora/cited/` (git-ignored by
+  `work/ref/corpora/.gitignore`; to rebuild on the other PC, fetch the same URLs and check the hashes):
+
+| file | source | runes (digraph / letters) | SHA-256 |
+|---|---|---|---|
+| `pg5160.txt` | Mabinogion, Guest translation, https://www.gutenberg.org/cache/epub/5160/pg5160.txt | 412,273 / 439,070 | `e177d7c2ff357bc5e3f506c7131d158d8b8f5e05883110bdf495f0d9d7f49886` |
+| `pg1934.txt` | Blake, Songs of Innocence and of Experience, https://www.gutenberg.org/cache/epub/1934/pg1934.txt | 21,292 / 22,714 | `a5b76d4de22f42e1bf40f08256a329728f4cb7ad18d6581709aa7a9683c5e455` |
+| `pg45315.txt` | Blake, The Marriage of Heaven and Hell, https://www.gutenberg.org/cache/epub/45315/pg45315.txt | 18,651 / 19,888 | `fc9a76619fcb76c58273d7fc9e034108b0d7fffed3780ad5b8226954a12b289a` |
+| `agrippa_1651_archive_djvu.txt` | Agrippa, Three Books of Occult Philosophy, 1651 English (Freake), archive.org OCR, https://archive.org/download/threebooksoccult/threebooksoccult_djvu.txt | 827,454 / 882,212 | `18c939d60813846946b37f557ad172f3a4b5ad721cdfb8108891311de2827d9b` |
+| `liber_al_oto.html` | Liber AL vel Legis, OTO library, https://lib.oto-usa.org/libri/liber0220.html?pages=no | (page) | `2be978efc94fe4b4319d45e5d34f59bda81e344b8475c1ff684b805cb372e6b8` |
+| `liber_al_oto.txt` | the same page's text, tags stripped, from "Had! The manifestation of Nuit." to "ANKH-F-N-KHONSU" (includes the Comment) | 22,033 / 23,528 | `778aba056307de5a0b747dd3fb3d8a7b483aac3aad91c1fba316728505db5a0b` |
+
+- **Agrippa caveat:** the only copy reachable with valid TLS is a raw OCR of the 1651 print: long s read as f,
+  page headers and catchwords, broken words. Each OCR error is an insertion or deletion in the key, and the decoder has no
+  backward step, so a negative on this copy is weak. Peterson's transcription (esotericarchives.com) was not fetched:
+  its TLS certificate had expired on 2026-10-20.
+- The KJV has many editions; ours is Gutenberg #10.
 
 ## What this does NOT cover
 
