@@ -10,6 +10,7 @@ vectors.
 ```bash
 python -m pip install -r requirements.txt
 python scripts/fetch_data.py                 # verifies the committed data (or re-downloads it if missing)
+python scripts/fetch_data.py --corpora      # the git-ignored books and comparison corpora (docs/SOURCES.md)
 (cd work/phpmt && cargo build --release)     # PRNG-pad sweep engine
 (cd work/walk  && cargo build --release)     # word-scoped solver and key-free alphabet search
 (cd work/kscreen && cargo build --release)   # language-agnostic keystream screen

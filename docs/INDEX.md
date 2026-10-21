@@ -27,7 +27,8 @@
 | Document | Kind | What it is |
 |---|---|---|
 | [RUNNING.md](RUNNING.md) | living | Setup, tests, overnight runner, individual long jobs, GPU |
-| [QUEUE.md](QUEUE.md) | living | The detached CPU / GPU job queues (currently stopped), how to restart them |
+| [QUEUE.md](QUEUE.md) | living | The detached CPU / GPU job queues (five running since 2026-10-20/21), how to restart them after a reboot |
+| [SOURCES.md](SOURCES.md) | living | Where every text, image and dataset comes from: URLs, pinned commits, SHA-256, and how to re-fetch them (`scripts/fetch_data.py --corpora`) |
 
 ## History and reviews
 

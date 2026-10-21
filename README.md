@@ -96,6 +96,7 @@ Suggested order, from the registry; none of this is a long run unless stated. De
 | Every result with its control, files and the logs behind it | [results/INDEX.md](results/INDEX.md), or `results/index.html` in a browser (chart of scores against the rule, filter by status) |
 | The machine-readable ledger (one row per test) | [docs/registry.toml](docs/registry.toml) |
 | What each document is, and which are historical | [docs/INDEX.md](docs/INDEX.md) |
+| Where every book, image and dataset comes from | [docs/SOURCES.md](docs/SOURCES.md) |
 | Where each script lives | [work/README.md](work/README.md) |
 | The plan, phase by phase, and every phase's results | [PLAN.md](PLAN.md) |
 | How to build, test and run campaigns, GPU, queues | [docs/RUNNING.md](docs/RUNNING.md), [docs/CAMPAIGNS.md](docs/CAMPAIGNS.md), [docs/QUEUE.md](docs/QUEUE.md) |
@@ -133,6 +134,8 @@ scripts/                   fetch_data.py (data, pinned hashes), build_overview.p
 ```
 
 ## Sources
+
+**Every source, with its URL, pinned commit or SHA-256, and how to re-fetch it: [docs/SOURCES.md](docs/SOURCES.md)** (`python scripts/fetch_data.py --corpora` re-downloads the git-ignored books and corpora).
 
 Transcription and images: [rtkd/iddqd](https://github.com/rtkd/iddqd). Community research this builds on:
 [Dukotah/cicada3301](https://github.com/Dukotah/cicada3301),
