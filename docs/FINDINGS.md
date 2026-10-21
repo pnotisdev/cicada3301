@@ -15,7 +15,9 @@
 
 The four structural signals point to an encryptor that knows where words begin and end and repairs collisions. One shared collision-repair rule reproduces the doublet deficit and both echoes at about their size (phase 25), but not the S carrier or the word lengths, and the cheap tests found no coupling between the signals (phase 38).
 
-The solved pages also carry a check any future decryption can use: 36 of 76 of their sentence clauses have a prime Gematria sum (z 7.9) (`lp1-prime-sums`).
+The solved pages also carry a check any future decryption can use: 36 of 76 of their sentence clauses have a prime Gematria sum (z 7.9) (`lp1-prime-sums`). **This is authored:** the ID3 tags of Cicada's own 2013 audio file (Cicada OS, a year before Liber Primus) carry the Parable's text and 1,595,277,641, exactly the product of its three prime clause sums (1259 x 1031 x 1229).
+
+A second verifier: in the solved pages every one-rune word decrypts to A or I (27 of 27), against 2 in 29 by chance; LP2 has 83 one-rune words (`ai-oracle`). No hit any campaign kept comes near it.
 
 ## 2. What is excluded (with planted keys the tests recover, and random-key nulls)
 
@@ -30,8 +32,8 @@ What each negative does **not** exclude is listed per row; the common limits are
 
 ## 3. Open
 
-- Queued (detached, `docs/QUEUE.md`): the KJV as a table-free book key; key-pointer direction by the words' numbers ("their numbers are the direction"); sign rules from page / line numbers; a key-pointer jump by word length.
-- Built, awaiting the owner's decision: the word-edge campaign over all 82 windows (about 300 CPU-hours; one-window pilot null).
+- Queued (detached, `docs/QUEUE.md`): the KJV as a table-free book key; key-pointer direction by the words' numbers ("their numbers are the direction"); the remaining page / line sign rules. Done since: the word-length pointer jump and four layout rules (negative).
+- Built, not run: the word-edge campaign over all 82 windows (about 300 CPU-hours; one-window pilot null). A simulation (`insertion-doublets`) rejects edge-only insertion as the source of the word-length excess, so the campaign would need a mid-word variant.
 - Not testable at LP2's size: two-tap echo rules, an evolving-alphabet walk, key reuse between sections.
 - The page that hashes to An End's SHA-512 has never been found; the repository's own estimate is about 50% that LP2's key cannot be recovered from the book alone.
 
@@ -39,7 +41,7 @@ What each negative does **not** exclude is listed per row; the common limits are
 
 - The transcription (rtkd/iddqd master plus our errata) is confirmed by an independent re-read; the payload's five corrected bytes agree with iddqd's own hex byte string (`payload`).
 - The signed January 2016 and April 2017 messages verify against Cicada's key 7A35090F; neither contains a key.
-- Cicada's 2012 book code was line:character, spaces counted, on Cicada's own line-wrapped text (`book-codes`).
+- Cicada's book codes count line:character, spaces and blank lines included, on Cicada's own line-wrapped copy of the text: the 2012 Mabinogion code and the 2012 Agrippa code both reproduce that way (`book-codes`). Cicada's "Agrippa" is William Gibson's 1992 poem, not the 1651 occult text (screened too: 0 hits).
 - The 1.40 IoC rule is a screening threshold between the random-key maximum (about 1.37 at 1e10 decodes) and real plaintext (>= 1.45 on 300 runes); hits are decided by whole-section verification, which no candidate has ever passed.
 
 Sources of every text and image: [SOURCES.md](SOURCES.md).
