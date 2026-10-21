@@ -184,6 +184,21 @@ log = ["work/log/phase10_sacred.md", "work/log/phase10_squares.md"]
 files = ["results/kscreen/sacred3_segments.tsv", "results/kscreen/sacred3_segments_verify.txt", "results/kscreen/sacred3_selftest.txt"]
 
 [[experiment]]
+id = "book-number-streams"
+group = "streams"
+title = "Cicada's cited books as NUMBER streams (keys computed from a book): cumulative sums of GP indices / prime values over letters and words, word-length cumulations, per-sentence sums"
+status = "excluded"
+what = "Phase 33: 132 streams (11 families x 6 books x 2 spellings: Liber AL, Blake MHH and Songs, Self-Reliance, the Mabinogion, Agrippa), 80 pass the flat-IoC rule; 8 section windows of 300 runes, skip + coin, multipliers 1 and 28, every offset (183 M decodes, 2 threads)"
+best = 1.3462
+null = 1.3417
+chart = true
+control = "Independent planter, shortest and longest stream of every kept family: 14 / 14 recovered"
+result = "Best 1.3462 (0.15, Mabinogion prime-value cumulation, digraph) against matched nulls 1.3191 / 1.3417; 0 of 15 keep IoC >= 1.40 over their window (1.045-1.075, the same stream's random offsets 1.041-1.06)"
+gap = "The 36 streams that fail flatness (per-word sums, per-letter primes, word lengths); windows other than the section starts; multipliers other than +-1; other books and transforms"
+log = ["work/log/phase33_book_number_streams.md", "work/log/phase22_book_keys.md"]
+files = ["work/kscreen/booknum.py", "work/kscreen/booknum_selftest.py", "results/kscreen/booknum_selftest.txt", "results/kscreen/booknum_segments.tsv", "results/kscreen/booknum_segments_verify.txt", "results/kscreen/booknum_null_1.tsv", "results/kscreen/booknum_null_2.tsv"]
+
+[[experiment]]
 id = "signed-streams"
 group = "streams"
 title = "Signed page-scan material as key streams: the eight PGP-signed 2014 payloads and three 991-byte hex blobs (272 streams)"
@@ -936,11 +951,11 @@ title = "Step-domain seed sweeps (prng-step): ten generators, IoC scoring"
 status = "open"
 priority = 8
 what = "Running on the gpunight queue since 2026-10-20 (jobs/overnight.py run prng-step, window 0.7, all 2^32 seeds, 144 settings per seed); controls (work/tests/test_stepmt.py) run first"
-result = "So far py3, php, glibc swept (4,103-4,790 s each on the 2080 Ti): 0 candidates at the IoC floor of 1.45 in each; java running"
+result = "So far py3, php, glibc, java swept (4,028-4,790 s each on the 2080 Ti): 0 candidates at the IoC floor of 1.45 in each; the rest running"
 cost = "About 1.2-1.3 h per generator on the GPU"
 needs = "The remaining generators of the queue"
 log = ["work/log/phase9_step28.md"]
-files = ["results/prng/step_py3_07.log", "results/prng/step_php_07.log", "results/prng/step_glibc_07.log", "results/overnight/desktop/prng_step_selftest.txt"]
+files = ["results/prng/step_py3_07.log", "results/prng/step_php_07.log", "results/prng/step_glibc_07.log", "results/prng/step_java_07.log", "results/overnight/desktop/prng_step_selftest.txt"]
 
 [[experiment]]
 id = "open-h1"
