@@ -1085,10 +1085,10 @@ title = "'Its words are the map' as a key-pointer JUMP at word boundaries: extra
 status = "open"
 priority = 5
 what = "Phase 37: new advsep modes in work/kscreen (advsep=0|1|2 code paths unchanged; default and old modes bit-identical: results/kscreen/wordjump_identity.txt, selftest passed)"
-control = "Independent planter, 4 plants per mode: 12 / 12 returned at the exact offset; 10 / 12 with IoC >= 1.60 and two at 1.584 / 1.589 on a low-IoC plaintext window (the repo's own selftest gives 1.609-1.617 there): FAILED as pre-defined, recorded, not relaxed; default engine and wrong modes 1.23-1.34; rand nulls 1.3145 / 1.3469 / 1.3165"
+control = "Independent planter, 4 plants per mode: 12 / 12 returned at the exact offset; 10 / 12 with IoC >= 1.60 and two at 1.584 / 1.589 on a low-IoC plaintext window (the repo's own selftest gives 1.609-1.617 there): FAILED as pre-defined, recorded, not relaxed; a restated gate fixed before 12 fresh plants (Walden windows): 10 / 12 pass, FAILED again (one plant one offset off, the skip alias other selftests accept; one beam-16 shortfall of 0.059 at the exact offset); no key missed; default engine and wrong modes 1.23-1.34; rand nulls 1.3145 / 1.3469 / 1.3165"
 result = "No LP2 screen yet"
 cost = "About 355 M decodes per mode: 1.1-1.5 h at 2 threads, 6-7 min at 14 threads; three modes plus one matched null each about 7-9 h at 2 threads"
-needs = "A free CPU, and the plant gate rerun on a different plaintext window or the gate restated before the screen"
+needs = "The user's decision whether to accept a +-1 offset / beam tolerance (as the other selftests do); the queue jobs/queues/wordjump.txt is prepared and not launched"
 log = ["work/log/phase37_word_jump.md", "work/log/phase34_2016_message_map.md"]
 files = ["work/kscreen/wordjump_control.py", "results/kscreen/wordjump_control.txt", "results/kscreen/wordjump_identity.txt", "results/kscreen/wordjump_selftest.txt"]
 

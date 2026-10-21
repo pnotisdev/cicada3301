@@ -1,0 +1,13 @@
+FAIL  advsep=3 plant 'primes reversed digits' model=0 mult=1 subst=0: plaintext IoC 1.805 (need 1.624); best 1.819 at offset 17686 (truth 17685); re-decode at truth 1.813; blind: advsep=0 1.304, advsep=1 1.255
+PASS  advsep=3 plant 'sha256-ctr mod :an instruction' model=1 mult=28 subst=1: plaintext IoC 1.670 (need 1.503); best 1.684 at offset 14517 (truth 14517); re-decode at truth 1.684; blind: advsep=0 1.248, advsep=1 1.257
+PASS  advsep=3 plant 'sha512-ctr reject :434' model=0 mult=28 subst=1: plaintext IoC 1.710 (need 1.539); best 1.714 at offset 18955 (truth 18955); re-decode at truth 1.714; blind: advsep=0 1.262, advsep=1 1.256
+PASS  advsep=3 plant 'sha256-chain mod :welcome' model=1 mult=1 subst=0: plaintext IoC 1.575 (need 1.418); best 1.575 at offset 16339 (truth 16339); re-decode at truth 1.575; blind: advsep=0 1.280, advsep=1 1.249
+PASS  advsep=4 plant 'sha256-ctr reject :circumference' model=0 mult=1 subst=0: plaintext IoC 1.877 (need 1.689); best 1.877 at offset 16599 (truth 16599); re-decode at truth 1.877; blind: advsep=0 1.254, advsep=1 1.249
+PASS  advsep=4 plant 'md5-ctr reject :instar' model=1 mult=28 subst=1: plaintext IoC 1.834 (need 1.650); best 1.838 at offset 4973 (truth 4973); re-decode at truth 1.838; blind: advsep=0 1.269, advsep=1 1.261
+PASS  advsep=4 plant 'sha256-ctr mod :1033' model=0 mult=28 subst=1: plaintext IoC 1.896 (need 1.706); best 1.902 at offset 13692 (truth 13692); re-decode at truth 1.902; blind: advsep=0 1.252, advsep=1 1.265
+PASS  advsep=4 plant 'sha512-ctr mod :divinity' model=1 mult=1 subst=0: plaintext IoC 1.785 (need 1.606); best 1.785 at offset 4607 (truth 4607); re-decode at truth 1.785; blind: advsep=0 1.247, advsep=1 1.296
+PASS  advsep=5 plant 'sha256-chain mod :LIBER PRIMUS' model=0 mult=1 subst=0: plaintext IoC 1.803 (need 1.623); best 1.818 at offset 411 (truth 411); re-decode at truth 1.818; blind: advsep=0 1.288, advsep=1 1.270
+FAIL  advsep=5 plant 'sha256-ctr reject :2014' model=1 mult=28 subst=1: plaintext IoC 1.721 (need 1.549); best 1.662 at offset 3453 (truth 3453); re-decode at truth 1.721; blind: advsep=0 1.268, advsep=1 1.262
+PASS  advsep=5 plant 'sha512-ctr reject :firfumferenfe' model=0 mult=28 subst=1: plaintext IoC 1.926 (need 1.734); best 1.926 at offset 17645 (truth 17645); re-decode at truth 1.926; blind: advsep=0 1.245, advsep=1 1.268
+PASS  advsep=5 plant 'sha256-chain reject :a warning' model=1 mult=1 subst=0: plaintext IoC 1.641 (need 1.477); best 1.641 at offset 13449 (truth 13449); re-decode at truth 1.641; blind: advsep=0 1.240, advsep=1 1.260
+WORDJUMP CONTROL2 FAILED

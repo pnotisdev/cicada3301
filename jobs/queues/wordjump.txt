@@ -1,0 +1,23 @@
+# word-jump screens (phase 37, work/log/phase37_word_jump.md, 'Queued'): advsep=3 (n_w of the word just ended), 4 (constant 2), 5 (n_w of the next word) as extra key-pointer advances at word boundaries, over the 581 flat library streams x 8 section windows, 14 threads, then verify.py on the top 15; one matched null (581 random streams) per mode.
+# Starts only after the booknight queue (book_key_screen), the pdir queue (pdir_pilot / pdir_verify) and the layout queue (layout_queue.py) are done: WAIT holds at most QUEUE_MAX_WAIT_SECONDS (launch with 172800) each, repeated.
+# Engine: work/kscreen/target/advlen/release/kscreen.exe (the build the controls ran on). Outputs: results/kscreen/wordjump/. Resumable (finished outputs are skipped).
+# Stop: end the python.exe processes whose command line contains jobqueue.py wordjump or wordjump_queue.py (and kscreen.exe if running).
+WAIT | book_key_screen
+WAIT | jobqueue.py booknight
+WAIT | book_key_screen
+WAIT | jobqueue.py booknight
+WAIT | pdir_pilot
+WAIT | jobqueue.py pdir
+WAIT | pdir_pilot
+WAIT | jobqueue.py pdir
+WAIT | pdir_verify
+WAIT | layout_queue.py
+WAIT | jobqueue.py layout
+WAIT | layout_queue.py
+WAIT | jobqueue.py layout
+advsep3 | {PY} work/kscreen/wordjump_queue.py 3 --threads 14
+null-advsep3 | {PY} work/kscreen/wordjump_queue.py 3 --null --threads 14
+advsep4 | {PY} work/kscreen/wordjump_queue.py 4 --threads 14
+null-advsep4 | {PY} work/kscreen/wordjump_queue.py 4 --null --threads 14
+advsep5 | {PY} work/kscreen/wordjump_queue.py 5 --threads 14
+null-advsep5 | {PY} work/kscreen/wordjump_queue.py 5 --null --threads 14
