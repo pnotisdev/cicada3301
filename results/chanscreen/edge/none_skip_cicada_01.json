@@ -1,0 +1,78 @@
+{
+ "name": "sha512-ctr reject :INTUS",
+ "stream_index": 190,
+ "stream_len": 20000,
+ "offset": 12580,
+ "e": 14,
+ "mult": 1,
+ "true_sign": 1,
+ "o_true": 12594,
+ "nulls_in_window": 0,
+ "adv_in_window": 0,
+ "doublets": 3,
+ "words_in_window": 64,
+ "sec": 15,
+ "kind": "none",
+ "channel": "skip",
+ "src": "cicada",
+ "index": 1,
+ "q_plant": 0.8,
+ "rho": 0.42,
+ "edge": {
+  "detected": true,
+  "band_best": 176.158691801572,
+  "winner_score": 176.158691801572,
+  "winner": {
+   "sign": 1,
+   "channel": "skip5",
+   "offset": 12594
+  },
+  "winner_is_true": true,
+  "null_counts": {
+   "0": 3,
+   "5": 2,
+   "10": 2
+  },
+  "n_null": 159844,
+  "null_max": 24.327064766981948,
+  "seconds": {
+   "1|hold": 1.8895852999994531,
+   "1|spend": 4.108739699993748,
+   "1|skip5": 1.6563210999593139,
+   "1|coin": 1.1808478999882936,
+   "-1|hold": 2.216543599963188,
+   "-1|spend": 4.393867700011469,
+   "-1|skip5": 0.999174700002186,
+   "-1|coin": 1.6377442000084557
+  }
+ },
+ "base": {
+  "detected": true,
+  "band_best": 207.45148124841035,
+  "winner_score": 207.45148124841035,
+  "winner": {
+   "sign": 1,
+   "channel": "skip5",
+   "offset": 12594
+  },
+  "winner_is_true": true,
+  "null_counts": {
+   "0": 0,
+   "5": 0,
+   "10": 0
+  },
+  "n_null": 159844,
+  "null_max": -82.5971204967874,
+  "seconds": {
+   "1|hold": 0.9749333999934606,
+   "1|spend": 1.0335606999578886,
+   "1|skip5": 0.3301635999814607,
+   "1|coin": 0.8225879999808967,
+   "-1|hold": 1.924147899961099,
+   "-1|spend": 1.9234097000444308,
+   "-1|skip5": 0.844014500034973,
+   "-1|coin": 0.5479699000134133
+  }
+ },
+ "seconds": 26.496300800004974
+}

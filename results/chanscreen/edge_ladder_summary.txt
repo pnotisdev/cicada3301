@@ -1,0 +1,22 @@
+# Phase 24 power ladder (edge decoder nu = 0.42, T300 = 29.80 used for every n), 192 plants
+
+nullf: detected / true within 3 nats of the global best / median band score / matched-null max, by plant nu (rows) and n (columns)
+  nu_plant 0.10: n=60: 19/24 23/24 med   35.8 null max    10.0 | n=150: 24/24 23/24 med   88.0 null max   -16.1 | n=300: 24/24 22/24 med  178.3 null max   -71.9 | 
+  nu_plant 0.20: n=60: 18/24 24/24 med   36.5 null max     5.7 | n=150: 24/24 24/24 med   85.0 null max   -14.5 | n=300: 24/24 24/24 med  167.2 null max   -71.1 | 
+  nu_plant 0.42: n=60: 16/24 24/24 med   34.2 null max     6.2 | n=150: 24/24 24/24 med   87.7 null max   -12.2 | n=300: 24/24 24/24 med  162.7 null max   -69.6 | 
+  nu_plant 0.60: n=60: 14/24 24/24 med   31.0 null max     7.8 | n=150: 24/24 24/24 med   75.1 null max   -17.4 | n=300: 24/24 22/24 med  150.4 null max   -65.4 | 
+adv: detected / true within 3 nats of the global best / median band score / matched-null max, by plant nu (rows) and n (columns)
+  nu_plant 0.10: n=60: 21/24 24/24 med   37.6 null max     3.8 | n=150: 24/24 24/24 med   90.0 null max   -24.2 | n=300: 24/24 24/24 med  189.6 null max   -85.1 | 
+  nu_plant 0.20: n=60: 18/24 23/24 med   35.9 null max     6.8 | n=150: 24/24 23/24 med   89.9 null max   -25.3 | n=300: 24/24 24/24 med  175.8 null max   -81.0 | 
+  nu_plant 0.42: n=60: 21/24 24/24 med   37.8 null max     1.4 | n=150: 24/24 24/24 med   95.7 null max   -26.8 | n=300: 24/24 24/24 med  177.1 null max   -80.2 | 
+  nu_plant 0.60: n=60: 18/24 24/24 med   36.5 null max     7.2 | n=150: 24/24 24/24 med   86.0 null max   -26.7 | n=300: 24/24 24/24 med  167.0 null max   -77.8 | 
+
+By channel (n=300 / n=150 / n=60 detected, all nu pooled):
+  nullf hold   24/24 / 24/24 / 13/24
+  nullf spend  24/24 / 24/24 / 16/24
+  nullf skip5  24/24 / 24/24 / 20/24
+  nullf coin   24/24 / 24/24 / 18/24
+  adv   hold   24/24 / 24/24 / 21/24
+  adv   spend  24/24 / 24/24 / 15/24
+  adv   skip5  24/24 / 24/24 / 21/24
+  adv   coin   24/24 / 24/24 / 21/24

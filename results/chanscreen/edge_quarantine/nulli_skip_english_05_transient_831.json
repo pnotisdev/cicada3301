@@ -1,0 +1,106 @@
+{
+ "name": "omega(n)",
+ "stream_index": 96,
+ "stream_len": 20000,
+ "offset": 11707,
+ "e": 69,
+ "mult": 1,
+ "true_sign": 1,
+ "o_true": 11777,
+ "nulls_in_window": 22,
+ "adv_in_window": 0,
+ "doublets": 5,
+ "words_in_window": 64,
+ "sec": 15,
+ "kind": "nulli",
+ "channel": "skip",
+ "src": "english",
+ "index": 5,
+ "q_plant": 0.8,
+ "rho": 0.42,
+ "edge": {
+  "detected": true,
+  "band_best": 175.18616140004497,
+  "winner_score": 175.18616140004497,
+  "winner": {
+   "sign": 1,
+   "channel": "skip5",
+   "offset": 11777
+  },
+  "winner_is_true": true,
+  "null_counts": {
+   "0": 54,
+   "5": 33,
+   "10": 14
+  },
+  "n_null": 159844,
+  "null_max": 31.136590404579124,
+  "seconds": {
+   "1|hold": 2.5219731999677606,
+   "1|spend": 2.7490142000024207,
+   "1|skip5": 1.2734230000060052,
+   "1|coin": 1.264463400002569,
+   "-1|hold": 3.1288667999906465,
+   "-1|spend": 3.196384600014426,
+   "-1|skip5": 1.1266952999867499,
+   "-1|coin": 1.1904168999753892
+  }
+ },
+ "base": {
+  "detected": false,
+  "band_best": -97.40445102988929,
+  "winner_score": -13.77677961613233,
+  "winner": {
+   "sign": 1,
+   "channel": "hold",
+   "offset": 11811
+  },
+  "winner_is_true": false,
+  "null_counts": {
+   "0": 0,
+   "5": 0,
+   "10": 0
+  },
+  "n_null": 159844,
+  "null_max": -13.77677961613233,
+  "seconds": {
+   "1|hold": 1.1389804999926127,
+   "1|spend": 1.179173200041987,
+   "1|skip5": 0.38968679995741695,
+   "1|coin": 0.3303899000165984,
+   "-1|hold": 0.9955440000048839,
+   "-1|spend": 1.0481500999885611,
+   "-1|skip5": 0.40070810000179335,
+   "-1|coin": 0.36037589999614283
+  }
+ },
+ "null_edge": {
+  "detected": false,
+  "band_best": -Infinity,
+  "winner_score": 831.0794806323486,
+  "winner": {
+   "sign": 1,
+   "channel": "hold",
+   "offset": 565
+  },
+  "winner_is_true": false,
+  "null_counts": {
+   "0": 165,
+   "5": 165,
+   "10": 165
+  },
+  "n_null": 160008,
+  "null_max": 831.0794806323486,
+  "seconds": {
+   "1|hold": 2.574767599988263,
+   "1|spend": 2.0603612000122666,
+   "1|skip5": 0.8709118999540806,
+   "1|coin": 0.8925598000059836,
+   "-1|hold": 1.8715482000261545,
+   "-1|spend": 2.2326622999971732,
+   "-1|skip5": 1.1218922999687493,
+   "-1|coin": 1.1037285999627784
+  }
+ },
+ "seconds": 35.06690069998149
+}
