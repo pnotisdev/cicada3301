@@ -66,6 +66,7 @@ Find a script by what it is for. Each one writes its output into `results/analys
 | `restart_columns.py`, `restart_llr.py` | Key restarts by column coincidences and by likelihood ratio |
 | `book_key_flatness.py` | A book as the running key (any language, any letter -> rune table): LP2's IoC against encryptions under the GP, random and flattest tables, with the skip rule (`results/analysis/book_key_flatness.txt`) |
 | `book_key_screen.py` | Phase 23 LP2 screen of the cited books with the table-free beam decoder (stage 1, frozen rule; run by the `booknight` queue) |
+| `fetch_uncovering_wiki.py` | Downloads the Uncovering Cicada wiki (129 articles, image list) through its MediaWiki API into the git-ignored `ref/uncovering_cicada/`; images not fetched (the CDN refuses non-browser clients) |
 | `book_key_pairs.py` | The same through lag-2..8 rune-pair counts, with a table tuned to flatten the pairs (`results/analysis/book_key_pairs.txt`) |
 | `book_key_decoder.py` | Table-invariant, drift-tracking decoder for a candidate book key (table-free beam + exact skip-rule Viterbi EM) and its gate: plants with a flattening table, nulls, power and cost (`results/analysis/book_key_decoder.txt`); no LP2 run |
 | `grid30_caption.py` | Phase 27: the page-30 caption against a preregistered family of the solved pages' rules and the grid's numbers (`count`, `run`; `results/grid30_caption/`) |
