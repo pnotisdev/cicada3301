@@ -12,6 +12,7 @@ Find a script by what it is for. Each one writes its output into `results/analys
 |---|---|
 | `kscreen/` | Rust: language- and alphabet-agnostic keystream screen (IoC under both anti-repeat models); library export, verification, controls (`selftest.py`), sign rules (`signrules.py`), `gpu.py` + `kscreen.cu` CUDA port |
 | `kscreen/phase35.py`, `kscreen/wordjump_control.py`, `kscreen/booknum.py`, `kscreen/layoutrules.py`, `kscreen/dirrules.py`, `kscreen/pdir_*.py` | 2026-10-20/21 extensions of the screen: LP2 word streams and reversed ciphertext (phase 35), word-length pointer jump advsep=3-5 (37), book number streams (33), layout sign / direction rules (36), pointer direction (30) |
+| `phase38/` | Phase 38: do LP2's signals interact (isomorphs, S lag-5 x lag-6 overlap, echo-word lengths), pre-registered nulls |
 | `phpmt/` | Rust: bit-exact seed sweeps for ten generators; `bg.py` boundary-free bigram score, `gpu.py` + `.cu` CUDA ports |
 | `walk/` | Rust: word-scoped solver and key-free D-search (`dsearch`) |
 | `prngx/` | More generators, the OEIS lane (199,088 sequences), KDF streams |

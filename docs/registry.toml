@@ -1092,6 +1092,18 @@ log = ["work/log/phase37_word_jump.md", "work/log/phase34_2016_message_map.md"]
 files = ["work/kscreen/wordjump_control.py", "results/kscreen/wordjump_control.txt", "results/kscreen/wordjump_identity.txt", "results/kscreen/wordjump_selftest.txt"]
 
 [[experiment]]
+id = "signal-interactions"
+group = "structure"
+title = "Do LP2's keyless signals interact? Isomorphs (incl. DJU BEI under 812 affine maps), S lag-5 x lag-6 overlap, echo-bearing words vs the +1 length model"
+status = "observed"
+what = "Phase 38, pre-registered: equality-pattern isomorphs of length 6-30 with the whole search calibrated against 300 + 300 section-preserving shuffle nulls; DJU BEI under every affine map; overlap of the 11 S,S and 80 lag-6 sites (same word, +-1, exact) against a site-distribution-preserving null; word lengths of echo-bearing and non-echo words against a selection null"
+control = "Planted 50% co-location of the two echo sites detected 85%; planted periodic / progressive English keys NOT recovered by the isomorph test (<= 11%: low power); +1 coupling at pi = 0.3 detectable 15%"
+result = "No coupling found: isomorphs at the low end of the nulls; DJU BEI matches only itself under the 812 maps; S x lag-6 same word 2 vs 1.45 expected (no co-location, no avoidance); echo-bearing words are as long as their selection predicts (+0.08 to +0.29 runes). Verdict: independent quirks, not shown to be one mechanism"
+gap = "Low power: the isomorph test cannot see weak periodic keys, the 11-site overlap resolves only strong couplings (a repair-model coupling of 2.8% of runes is below it), the +1 test has 15% power at pi = 0.3; the echo-as-skip-marker test was not proposed because no association appeared"
+log = ["work/log/phase38_signal_interactions.md"]
+files = ["work/phase38", "results/analysis/phase38_iso.txt", "results/analysis/phase38_dju.txt", "results/analysis/phase38_overlap.txt", "results/analysis/phase38_wordlen.txt"]
+
+[[experiment]]
 id = "collision-kernel-followup"
 group = "structure"
 title = "Collision-substitution kernels: B=999 re-tests, fixed halves and echo-site dispersion"

@@ -1,0 +1,16 @@
+all words 2896: fitted +1 model r 0.425 (multi-rune only: True), G 16.5 (df 10)
+  r bootstrap 95% interval 0.380-0.470
+  length histogram (%) 1..11,12+: LP2   2.9  15.5  24.9  17.7  10.9   8.8   7.5   5.4   2.7   1.8   1.1   0.9 | model   3.0  15.6  24.1  17.6  11.8   8.8   6.7   4.6   3.3   2.2   1.2   1.1
+groups (L6-bearing E6 / lag-5-bearing E5 / either EU / none): sizes E6 74, E5 93, EU 149, non 2747
+  E6  mean length       : obs 9.297 [boot 8.989-9.553]; selection null mean 9.216 [8.738-9.698]; obs-null +0.081
+  E5  mean length       : obs 8.849 [boot 8.575-9.177]; selection null mean 8.556 [8.167-8.984]; obs-null +0.293
+  EU  mean length       : obs 8.933 [boot 8.702-9.167]; selection null mean 8.748 [8.456-9.048]; obs-null +0.185
+  non mean length       : obs 4.232 [boot 4.171-4.294]; selection null mean 4.311 [4.281-4.341]; obs-null -0.079
+  non fitted r          : obs 0.380 [boot 0.345-0.420]; selection null mean 0.395 [0.390-0.400]; obs-null -0.015
+  non G vs global model : obs 77.612 [boot 37.729-70.424]; selection null mean 43.940 [33.454-56.910]; obs-null +33.672
+L6-site word-length profile (80 sites; 1..11,12+): obs [0, 0, 0, 0, 0, 0, 8, 21, 20, 7, 14, 10], null mean [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 7.5, 10.8, 8.1, 7.2, 5.4, 5.7]
+  G(obs vs null profile) 9.4, multinomial null P 0.1139
+mixture with +1-inserted words: pi 0.000 (boot 95% 0.000-0.050), loglik gain 0.00, null P(gain>=obs) 1.0000
+supplementary (not pre-registered): chance L6-sites per shuffle 44.6 vs observed 80; excess profile by length (obs - chance) [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.5, 10.2, 11.9, -0.2, 8.6, 4.3]; log-lik gain of pi fixed at the excess share 0.44: -4.16 (negative: the +1-word profile fits the excess worse than the chance profile)
+  model profile (inserted-word share by length, L>=7): [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.341, 0.239, 0.159, 0.122, 0.07, 0.069]
+  power to detect pi=0.3 at P<=0.01: 0.15

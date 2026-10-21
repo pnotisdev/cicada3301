@@ -1,0 +1,11 @@
+S-sites 11 in 11 words; L6-sites 80 in 74 words; words with both: 2
+S-sites moved, L6 fixed (statistics counted over the 11 S-sites):
+  S->L6 A: obs 2, null mean 1.45 (sd 1.04); P(null>=obs, co-location) 0.4407; P(null<=obs, avoidance) 0.8462
+  S->L6 B: obs 1, null mean 0.80 (sd 0.83); P(null>=obs, co-location) 0.5745; P(null<=obs, avoidance) 0.8175
+  S->L6 C: obs 0, null mean 0.20 (sd 0.44); P(null>=obs, co-location) 1.0000; P(null<=obs, avoidance) 0.8166
+L6-sites moved, S fixed (statistics counted over the L6-sites w.r.t. S-sites; direction check):
+  L6->S A: obs 2, null mean 1.73 (sd 1.31); P(null>=obs, co-location) 0.5221; P(null<=obs, avoidance) 0.7386
+  L6->S B: obs 1, null mean 0.80 (sd 0.84); P(null>=obs, co-location) 0.5736; P(null<=obs, avoidance) 0.8143
+  L6->S C: obs 0, null mean 0.20 (sd 0.44); P(null>=obs, co-location) 1.0000; P(null<=obs, avoidance) 0.8138
+decision rule (A and B both P<=0.025; (co-location, avoidance)): S side (np.False_, np.False_), L6 side (np.False_, np.False_)
+controls (200 pseudo-datasets, 1000 permutations each): planted co-location detected 0.85; null pseudo-data flagged co-location 0.000, avoidance 0.000
