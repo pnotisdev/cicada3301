@@ -749,7 +749,7 @@ title = "Containers, appended bytes and faint marks in the 75 page scans; the an
 status = "observed"
 what = "JPEG structure and quantisation families of work/orig/NN.jpg, bytes after the last EOI, SHA-512 against the An End hash, off-white pixels far from ink (hidden faint marks), the stipple of the last page"
 control = "Planted faint (level 252-254) text and rectangle re-encoded at JPEG quality 85 and 95 is found (about 160,000 pixels) while the 22 clean text pages show 0; the container decode is checked by byte equality (10.jpg) and by the magic square's sums (05.jpg)"
-result = "10.jpg holds pages 10-13 end to end; 05.jpg is [page][360-byte text][page byte-reversed] and the text decodes to its own 25 magic-square cells (all sums 1033); no scan hashes to the An End SHA-512; no hidden faint marks in the text pages; the last page's cicada is 574 irregular stipple dots. The five scans of the rare quantisation family (03, 08, 10, 11, 12) are among the named 2014 OutGuess carriers, none of the 66 scans of the common families (all LP2 pages) is"
+result = "10.jpg holds pages 10-13 end to end; 05.jpg is [page][360-byte text][page byte-reversed] and the text decodes to its own 25 magic-square cells (all sums 1033); no scan hashes to the An End SHA-512; no hidden faint marks in the text pages; the last page's cicada is 574 irregular stipple dots. The five scans of the rare quantisation family (03, 08, 10, 11, 12) are among the named 2014 OutGuess carriers, none of the 66 scans of the common families (all LP2 pages) is 2026-10-21, community (Mike): all 58 LP2 JPEGs keep the original quantisation tables plus a Ghostscript (Artifex) sRGB ICC profile, while the LP1 pages with OutGuess payloads have different tables and no ICC: no OutGuess-style re-encode on LP2 (agrees with the outguess-scan row)"
 gap = "Pixel and container level only; DCT-level payloads are covered by the outguess-scan row; the quantisation-family reading is an inference about the encoder history"
 log = ["work/log/phase18_cicada_intent.md", "work/log/phase9_art.md"]
 files = ["results/analysis/page_scan_audit.txt", "work/page_scan_audit.py", "work/book_map.py", "work/figures/book_map.png"]
@@ -781,7 +781,7 @@ id = "obs-doublets"
 group = "observed"
 title = "Doublet deficit: 0.63% of adjacent pairs against 3.45% expected"
 status = "observed"
-result = "81% enforcement (the skip / coin anti-repeat rule); boundary-blind; the surviving in-word doublets are consistent with the coin model (G 3.0 against 9.4 for uniform; informational, one synthetic control)"
+result = "81% enforcement (the skip / coin anti-repeat rule); boundary-blind; the surviving in-word doublets are consistent with the coin model (G 3.0 against 9.4 for uniform; informational, one synthetic control) 2026-10-21, community (Mike): with a skip-on-repeat cipher even the right key gives two valid readings whenever k[j+1] - k[j] = c[i] - c[i-1], at 6-7% of positions on English; a greedy reader without language checks loses sync after 21-125 runes (the repo decoders track skips with a beam and an explicit skip cost)"
 log = ["PLAN.md", "work/log/phase10_proposals_review.md"]
 files = ["results/analysis/seploss.txt"]
 
@@ -817,7 +817,7 @@ id = "obs-flat"
 group = "observed"
 title = "Flat unigrams and bigrams, no coincidence peak at any lag, no literal-F excess, repeated 6-gram DJU-BEI"
 status = "observed"
-result = "458 ciphertext F against 447 +/- 21 expected (z +0.5): LP2 does not follow the solved pages' literal-F convention in one layer; the repeated 6-gram DJU-BEI has chance probability 0.16 (P(>= 1)). 2026-10-18 sharper finding: DJU and BEI are two 3-rune words, each occurring exactly twice, always as the adjacent pair DJU->BEI - the ONLY repeated adjacent word-pair in all 2,887 pairs of LP2 (within-section word-shuffle null: P(any pair >= 2 occurrences) = 0.016, P(DJU->BEI >= 2) = 0 of 1000), and the second occurrence is the book's final two words (0.15 ends ... CEAIMCX DJU BEI)"
+result = "458 ciphertext F against 447 +/- 21 expected (z +0.5): LP2 does not follow the solved pages' literal-F convention in one layer; the repeated 6-gram DJU-BEI has chance probability 0.16 (P(>= 1)). 2026-10-18 sharper finding: DJU and BEI are two 3-rune words, each occurring exactly twice, always as the adjacent pair DJU->BEI - the ONLY repeated adjacent word-pair in all 2,887 pairs of LP2 (within-section word-shuffle null: P(any pair >= 2 occurrences) = 0.016, P(DJU->BEI >= 2) = 0 of 1000), and the second occurrence is the book's final two words (0.15 ends ... CEAIMCX DJU BEI) 2026-10-21, community (Mike, CicadaSolvers Discord; replicated here only in part): both DJU BEI copies are word-aligned 3+3 (rune 6555, 28 runes into 27.jpg; and the last 6 runes of 55.jpg); word-length shuffles within sections give that alignment in 0.26% (20,000 shuffles), and none of the 129 four-rune or 6 five-rune repeats is word-aligned (0.2 expected): one event, not a word-bound key"
 log = ["PLAN.md", "work/log/phase10_review.md", "work/log/phase12_review2.md"]
 files = ["results/analysis/segment_stats.txt", "results/analysis/assumption_checks.txt", "work/tmp/pair_repeat.txt", "work/tmp/dju_context.txt", "work/tmp/dju_counts.txt"]
 
