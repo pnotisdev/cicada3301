@@ -1,6 +1,6 @@
 # Status: Liber Primus, LP2 (sections 0.7-0.15, 12,956 runes)
 
-*Generated from [docs/registry.toml](docs/registry.toml) by `scripts/build_overview.py`; do not edit by hand. Updated 2026-10-20.*
+*Generated from [docs/registry.toml](docs/registry.toml) by `scripts/build_overview.py`; do not edit by hand. Updated 2026-10-21.*
 
 **Nothing in LP2 is solved.** Each line below is a statement of the form: a planted key of this kind, in this much text, would have been found by this test, and nothing was found. The control column says how well the test is known to work; the last column says what the negative does NOT exclude.
 

@@ -12,7 +12,7 @@ Tools, data and results from a systematic attempt on the unsolved part of Cicada
 Every claim can be re-run, and every negative result comes with a positive control showing that the method would have found a real answer.
 
 <!-- status:begin -->
-| As of 2026-10-20 | |
+| As of 2026-10-21 | |
 |---|---|
 | **Solved** | **Nothing.** LP2 (sections 0.7-0.15, 12,956 runes) is still undecoded |
 | Tests on record | 75: 46 excluded, 12 partly excluded, 3 untestable at LP2's effect size, 12 still open |
@@ -27,6 +27,17 @@ Each of these is a test that was **controlled** (a planted key of that kind is r
 
 | When | Test | Result |
 |---|---|---|
+| 2026-10-21 | Word-edge null / extra-advance arc (chanscreen v2): one-window LP2 pilot, 320 M cells | no cell reaches 0 nats (null scan of the same size: -60 to -69; threshold 30.9); plants 192/192 |
+| 2026-10-21 | LP2's own word lengths / word sums as keys; ciphertext reversed per word / clause / line | best 1.256 / 1.339 / 1.374 / 1.367 against nulls 1.304-1.379; 0 verified |
+| 2026-10-21 | Step-domain seed sweeps, 8 of 10 generators x 2^32 seeds (GPU) | 0 candidates, except one drand48 window (1.481) that falls to 1.000 beyond its window |
+| 2026-10-20 | A book as the running key (17 texts, 6 languages, keyless flatness test) | excluded under the GP table or any untuned letter table (>= +11 sd); a table tuned to flatten the key is NOT excluded |
+| 2026-10-20 | Table-free book-key decoder (any letter table) on the cited books: Liber AL, Blake x2, Emerson, the Mabinogion done | 0 stage-1 hits so far (Agrippa, the KJV running) |
+| 2026-10-20 | Cited books as number streams (80 flat streams); signed page-scan material with all 28 multipliers | best 1.346 / 1.340 against nulls 1.342 / 1.336; 0 verified |
+| 2026-10-20 | Book codes: 1,520 preregistered pointer readings of the book's numbers into four cited books | best z +2.59 against null maxima 2.93 |
+| 2026-10-20 | The page-30 caption (53,014 preregistered decryptions); the 0.6 square's seeds (5.3 M recipes); the community "464-word table" | 0 two-word hits; seeds at chance; the table's balance does not survive the selection of sections and width |
+| 2026-10-20 | Old / Middle English and five other languages as the plaintext behind LP2's word lengths | none fits (G 242-1,609 against 63 for English in letters) |
+| 2026-10-20 | Remaining millisecond-timestamp months (java-abs, ruby); per-rune periodic sign templates | 0 candidates; best 1.400, 0 verified |
+| 2026-10-19 | chanscreen v2 campaign: 82 windows x 1,439 streams x 4 repair channels (8.7 x 10^9 cells), clause scan, seed sweeps of sections 0.8-0.15 | 0 tier-1 cells; 0 candidates |
 | 2026-10-18 | Outer-alphabet gate: 72 sigma settings (44 distinct) x library on window 0.7; keyword alphabets + Atbash running on all sections | gate best IoC 1.381 (aff:8:0, sha256-ctr:1311) vs null 1.287 |
 | 2026-10-18 | Prime-space / mixed-domain affine feedback (d 1-8, all a/b) | null (plant chi²/n 1.97 vs LP2 0.44): the GP prime order is not the arithmetic domain |
 | 2026-10-18 | Keyless word-edge nulls (nulledge=1/2, new engine option; selftest passed) | excluded for 0%/100% of edges (best 1.416/1.429 vs nulls 1.390/1.385; every hit falls to 1.04-1.06 whole-window); the 42% mixture is measured untestable (free-beam null 1.75 = truth level) |
@@ -58,16 +69,22 @@ Full list with controls, scope and what each negative does **not** exclude: [STA
   * a true key scores +7.3 per rune on Cicada's own text (not +10); 120-rune windows pass the gate in 99.6-100% of cases, 36-rune windows in about 29%;
   * IoC windows under about 250 runes exceed 1.40 by chance after ~10^8 decodes: the flagged restart "candidates" (heading window IoC 2.118 over 91 runes, short page windows) were not significant against a per-window extreme-value null;
   * decoders move the key pointer only forward at a collision, so runes inserted **without** consuming a key value are invisible to every screen (open, see below).
-* **Explained, not a key:** the page-30 grid, the Some Wisdom word square (1033), the page-14 square (3301).
+  * 2026-10-20/21: the lag-5 echo's S carrier holds after correcting for the 29 x 7 cells looked at (P < 0.002), but its 11 sites do not have the shape of English S____S words, and no simulated cipher keeps such coincidences on S; one shared collision-repair budget reproduces the doublet deficit and both echoes at about their size, not the S carrier or the word lengths (`work/log/phase25_mechanisms.md`).
+  * 2026-10-20: the chanscreen v2 negatives hold for letter-spelled plaintext too (200/200 plants at 300 runes, 180/200 at 60).
+* **How Cicada builds book codes:** the 2012 Mabinogion code reproduces as **line : character** (spaces counted) on Cicada's own line-wrapped text: "Call us at us tele phone number two one four three nine oh nine six o...". Every known book code came at the end of a chain that named the text first (`work/log/phase31_book_codes.md`).
+* **Explained, not a key:** the page-30 grid, the Some Wisdom word square (1033), the page-14 square (3301); the community "464-word table" (balance is a selection effect).
 
 ## What is left (the short list)
 
 Suggested order, from the registry; none of this is a long run unless stated. Details and costs in [STATUS.md](STATUS.md#left-to-do-suggested-order).
 
-1. **Keyword-mixed outer alphabet**: relabel the ciphertext, then the ordinary screen. The only family no screen covers; build and control take minutes.
-2. **Unkeyed insertions** (an extra rune per word that consumes no key value; extra key advance at layout events): about 3-4 h of engine work.
-3. **Pointer-direction sign mechanism** (both orientations): needs an engine option.
-4. Boundary-free seed sweeps of sections 0.8-0.15 over the full seed space (about 4.5 h GPU), the 25 periodic sign templates (2.7 h CPU), the remaining millisecond months (1.5 h GPU).
+**Queued on the desktop** (detached, in this order; `docs/QUEUE.md`): the table-free book-key screen (Agrippa, then the KJV, about 40 h), pointer direction "their numbers are the direction" (stage 1, about 24 h), 13 line / position sign rules (about 3 h), the word-length pointer jump (about 1 h); the last two step-domain generators on the GPU.
+
+**Next, not run:**
+1. **Interactions between the positive signals**: an isomorph search (DJU BEI and every repeated equality pattern, under affine maps), the overlap of the S lag-5 and the lag-6 sites, and the length profile of echo-bearing words. Cheap, keyless.
+2. **Echo sites as skip markers**: if the lag-6 echoes mark key skips, seed the table-free decoders with them (discovery and test on separate data).
+3. **The word-edge campaign** over all 82 windows (built, gated, pilot null; about 300 CPU-hours): the owner's decision.
+4. **Line : position pointers** from the book's numbers (squares, grid, payload) into LP's own lines, the format of Cicada's 2012 book code.
 
 **What counts as a hit.** IoC >= 1.40 on a window (or +300 on the boundary-free score), then whole-section verification with a positive control (a planted key the method recovers) and a null control (random keys, same settings). Every earlier candidate was noise. Nothing in LP2 is solved; never read a flagged line as a decryption.
 

@@ -1,6 +1,6 @@
 # Results index
 
-*Generated from [docs/registry.toml](../docs/registry.toml) by `scripts/build_overview.py`; do not edit by hand. Updated 2026-10-20. An interactive version with a chart is [index.html](index.html) (open it in a browser).*
+*Generated from [docs/registry.toml](../docs/registry.toml) by `scripts/build_overview.py`; do not edit by hand. Updated 2026-10-21. An interactive version with a chart is [index.html](index.html) (open it in a browser).*
 
 **Nothing in LP2 is solved.** Every negative below has a positive control (a planted key the method recovers) and a null control. How to read a result file:
 

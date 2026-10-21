@@ -95,3 +95,29 @@ Expected (2026-10-19): the n300 campaign about 20:30, the clause scan about 23:4
 
 All three queues ended (`chanscreen` at 02:15, `gpu_rest` at 23:55). n300: 0 tier-1 cells. Clause scan: its step failed on five tasks and stored one false cell; repaired at 04:17 (1,148 of 1,148 tasks, 0 tier-1 cells). Seed sweeps: 0 candidates in all ten generators. Details: `work/log/phase19_try_all_four.md` section 5 and `PROTOCOL.md` amendment 3.
 The queue runner process keeps the scrubber it started with, so a log written after the 2026-10-19 fix can still hold an interpreter folder path: `python scripts/privacy_scan.py --fix` scrubs it before a commit.
+
+## 2026-10-20 / 21: booknight, gpunight, pdir, layout, wordjump (and edge, not launched)
+
+Running detached on the desktop, in this dependency order (each later queue holds on `WAIT` lines until the earlier ones have no python.exe):
+
+| queue | what | interpreter / environment | about |
+|---|---|---|---|
+| `booknight` | phase 23 table-free book-key screen, stage 1 (Liber AL, Blake x2, Emerson, the Mabinogion done; Agrippa, the KJV) | the conda Python with numba + scipy (not `.venv`) | KJV about 40 h at 10 cores |
+| `gpunight` | GPU: millisecond months (done), `prng-step` (ten generators, two left) | `.venv` | about 1.2 h per generator |
+| `pdir` | phase 30 pointer direction, stage 1 (windows 0.7 + 0.8, six conventions, matched null for 000) | `.venv`, `QUEUE_MAX_WAIT_SECONDS=172800`, `KSCREEN_BIN` = `work\kscreen\target\pdir\kscreen.exe` (the guard in `pdir_pilot.py` refuses an engine without `pdir=`) | about 24 h at 14 threads |
+| `layout` | phase 36: 13 line / position sign rules + matched null | `.venv`, `QUEUE_MAX_WAIT_SECONDS=172800` | about 3 h |
+| `wordjump` | phase 37: advsep=3/4/5, each with a matched null | `.venv`, `QUEUE_MAX_WAIT_SECONDS=172800` (engine `target/advlen`) | about 1 h at 14 threads |
+| `edge` | phase 24 word-edge campaign, 82 n300 windows x 3 kinds | **written, NOT launched** (owner's decision, about 300 CPU-hours) | 20-29 h at 14 workers |
+
+**After a reboot** (from the repository root, PowerShell): start `booknight` FIRST (otherwise the waiting queues find no book screen and start at once), then the others with their environment:
+```
+Start-Process <conda python> -ArgumentList 'jobs\jobqueue.py','booknight','jobs\queues\booknight.txt' -WindowStyle Hidden
+Start-Process .venv\Scripts\python.exe -ArgumentList 'jobs\jobqueue.py','gpunight','jobs\queues\gpunight.txt' -WindowStyle Hidden
+$env:QUEUE_MAX_WAIT_SECONDS='172800'; $env:KSCREEN_BIN=(Resolve-Path work\kscreen\target\pdir\kscreen.exe).Path
+Start-Process .venv\Scripts\python.exe -ArgumentList 'jobs\jobqueue.py','pdir','jobs\queues\pdir.txt' -WindowStyle Hidden
+Remove-Item Env:KSCREEN_BIN
+Start-Process .venv\Scripts\python.exe -ArgumentList 'jobs\jobqueue.py','layout','jobs\queues\layout.txt' -WindowStyle Hidden
+Start-Process .venv\Scripts\python.exe -ArgumentList 'jobs\jobqueue.py','wordjump','jobs\queues\wordjump.txt' -WindowStyle Hidden
+python scripts\queue_priority.py --cores 10      # cooler CPU; reapply after a queue starts a new step
+```
+Finished jobs are skipped on a restart (every step is resumable). If the GPU validation fails with "kscreen port, decode by decode", check that `work\kscreen\data\pages.txt` is not empty: `export.py` needs OpenCV (`.venv`) for the page windows (2026-10-21 incident). Before recording a pdir result: `pdir.tsv` shows `gates ... ok`, 132 tsv files per convention, `pdir=` in every header.
