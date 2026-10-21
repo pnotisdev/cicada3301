@@ -11,7 +11,7 @@ Numbers
   only in 0.8 (at rune 119, 812; 3 total), 0.13 (1433 and 1524; 2), 0.14 (1468, 1589; 2), 0.15 (2474, 3008, 3316 + 1 inside
   the payload block). `%` (page) counts: 1-7 per section, pages ~260-270 runes long in 0.7-0.15.
 - Pairing '%' open / '&' close: nesting holds in 9/9 LP2 sections and 4/6 solved ones, equal counts in 1/9
-  where one of each), strict alternation 1/9. Null (shuffle): nesting held in 72% of shuffles (67% solved), so
+  strict alternation 1/9. Null (shuffle): nesting held in 72% of shuffles (67% solved), so
   no signal; equal counts are invariant under shuffling, so "equal" is a property of the counts alone, and counts
   differ (e.g. 0.8: 5 `%` vs 3 `&`; 0.11: 7 vs 1).
 - Pairing '&' open / '%' close: never nested (a `&` comes after a `%` in every section).

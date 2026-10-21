@@ -22,6 +22,7 @@ from collections import Counter
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.dirname(HERE))
 import lp  # noqa: E402
+import lang_checks  # noqa: E402
 
 BIN = os.environ.get("KSCREEN_BIN") or os.path.join(HERE, "target", "release", "kscreen" + (".exe" if os.name == "nt" else ""))
 REAL = 1.40
@@ -91,7 +92,8 @@ def main():
         out.append(f"{float(h['ioc']):.3f} (first {h['n']}) -> {ioc:.3f} over {n} runes "
                    f"[{'REAL? check by eye' if good else 'noise'}]  {h['item']!r} offset={h['offset']} "
                    f"mult={h['mult']} model={h['model']} window={h['window']} jumps={jumps}; same keystream at "
-                   f"{args.controls} random offsets: mean {cmean:.3f}, max {cmax:.3f}")
+                   f"{args.controls} random offsets: mean {cmean:.3f}, max {cmax:.3f}"
+                   + ("" if not lang_checks.applies(meta) else f"; {lang_checks.fmt(lang_checks.checks(h['window'], plain))}"))
         out.append(f"    decoded : {latin}")
         out.append(f"    by rank : {guess}")
     out.append("")

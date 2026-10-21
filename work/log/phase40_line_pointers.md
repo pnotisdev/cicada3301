@@ -89,3 +89,5 @@ and were each counted.
 No message. The best real z (4.01 non-rc; 4.44 rc) sits inside the null distribution of maxima (95th pct 4.18; rc 4.34), no anchored form was
 found, and the screen can see a planted message only with >= 64-128 pointers (the payload) and not with the 12-25 numbers of the grids. Evidence level:
 negative for the readings listed (103,584 counted, 9,525 scored), with the stated power limits; weak for the small number sets. Nothing in LP2 is solved by this.
+
+Note: the `nullrc 40 9300` run was stopped incomplete at 13:5x (about 20 of its 40 runs were done; the 26 nullrc runs reported above came from it and the second process), and every phase40 process has been killed.
