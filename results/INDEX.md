@@ -110,6 +110,7 @@
 | M04 hold-key repair (on a would-be repeat emit a uniform other rune, advance the plaintext, KEEP the key position) against the unchanged kscreen engine | observed |  | [m04_baseline.txt](analysis/m04_baseline.txt), [m04_baseline.json](analysis/m04_baseline.json), [m04_calibration.json](analysis/m04_calibration.json), [m04_q_fit.json](analysis/m04_q_fit.json), [m04_records.jsonl](analysis/m04_records.jsonl) |
 | Recall of the H5 flat-library sweep: independent stream + keyword plants through the real h5rs sweep path | observed |  | [h5_power_map.txt](analysis/h5_power_map.txt), [h5_power_map.json](analysis/h5_power_map.json) |
 | Dissection of the lag-5 S,S echo: is S a marker or filler rune? | observed |  | [phase55_s_echo_dissect.py](../work/phase55_s_echo_dissect.py), [phase55_s_echo_dissect.txt](analysis/phase55_s_echo_dissect.txt) |
+| Where does the within-word lag-6 relation c' = 24 - 2c live? | observed |  | [phase54_lag6_dissect.py](../work/phase54_lag6_dissect.py), [phase54_lag6_dissect.txt](analysis/phase54_lag6_dissect.txt) |
 
 ### Restarts, reuse and layout
 

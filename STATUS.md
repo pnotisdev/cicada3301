@@ -13,7 +13,7 @@
 | Cannot be tested at LP2's effect size | 3 |
 | Open (not run or partly run) | 9 |
 | Explained puzzle furniture | 3 |
-| Observed in LP2 | 18 |
+| Observed in LP2 | 19 |
 | Candidates that survived whole-section verification | **0** |
 
 Decision rule for the IoC screens: 1.40 on a 300-rune window; planted keys score 1.6-2.06, random keys top out near 1.37 at 10^10 decodes. A hit counts only after whole-section verification with a positive and a null control (docs/CAMPAIGNS.md).
@@ -176,6 +176,7 @@ No long runs are queued; `docs/QUEUE.md` explains how to restart the queues.
 | **M04 hold-key repair (on a would-be repeat emit a uniform other rune, advance the plaintext, KEEP the key position) against the unchanged kscreen engine** | M04: 14/100 above T (null rate about 2/100), 0/100 reach IoC 1.40, 0/100 plaintext accuracy >= 0.95, mean accuracy 0.154: the unchanged engines lose alignment at the first held repair. Spend-key substitution (same replacement, key advanced): 100/100 detected and identified, plaintext accuracy 0.969, pointer accuracy 0.998: visible to the old screens *(Regression plants through the same harness: skip 40/40 and coin 40/40 detected (plaintext accuracy 0.986 / 0.987); 200 matched nulls fixed the threshold T = 1.1969 (10th largest, about 95%); held-out matched nulls 2/100 flagged; the M04 plaintext accuracy 0.154 equals the theory for a decoder right only up to the first held repair (0.160))* |
 | **Recall of the H5 flat-library sweep: independent stream + keyword plants through the real h5rs sweep path** | Recall at >= 1.6 falls from 84% (L = 2) to 7% (L = 20); at >= 1.8 from 48% to 4%; skip 58% / 36%, coin 34% / 21% (>= 1.6 / >= 1.8); no dependence on offset band or key kind. A negative sweep therefore excludes little; the 1.8 floor rejects about half of even perfectly decoded 300-rune windows (the plaintext's own IoC is about 1.8 +- 0.1) *(Planter checked by a no-redraw round trip and a doublet-removal test; engine smoke test at L = 2; the result agrees with GPT's D2 gate (L = 20 plant aborts at the init, L = 13 skip plant reaches 1.807))* |
 | **Dissection of the lag-5 S,S echo: is S a marker or filler rune?** | 11 sites reproduce; P 0.021 over 203 cuts against the across-word null (P < 0.0001 against the within-word null); S has no favoured position (chi2 p 0.70) or length (p 0.48), site words are as long as lag-5 windows predict (8.8 vs 8.6), neighbours are not fixed, S share 3.35% vs 5.36% in the solved text. No insertion rule follows; a marker/filler S is not supported *(Solved pages 0-6: 1 S,S pair at lag 5 (null 0.63, p 0.49); the control shows lag-5 E and F/U position and length effects of its own, so it is clean for S at lag 5 only)* |
+| **Where does the within-word lag-6 relation c' = 24 - 2c live?** | Sites reproduce (80 vs 45.7 +/- 6.5, z +5.3); all word positions 0-4 elevated 1.5-4x (no fixed slot); 7-rune words show none (8 vs 8.0) while 8-9-rune words show 2x (p 0.003, 0.0002); no dominant c; c[i+5] = c' absent; no doublet-window excess; no neighbour cut survives the correction *(Within-word shuffle null (word lengths kept) and the solved sections 0.0-0.6 as negative control (11 hits vs 7.5, z +1.4))* |
 
 ## Where things are
 
