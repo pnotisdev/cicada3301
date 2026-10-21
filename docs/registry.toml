@@ -1105,6 +1105,30 @@ log = ["work/log/phase38_signal_interactions.md"]
 files = ["work/phase38", "results/analysis/phase38_iso.txt", "results/analysis/phase38_dju.txt", "results/analysis/phase38_overlap.txt", "results/analysis/phase38_wordlen.txt"]
 
 [[experiment]]
+id = "line-pointers"
+group = "claims"
+title = "The book's own numbers (squares, grid, payload, numerals) as line:position pointers into Liber Primus's own lines and the solved plaintext (Cicada's 2012 book-code format)"
+status = "partial"
+what = "Phase 40, preregistered: 103,584 readings counted in advance (9,525 scorable), positions in runes and Latin letters, with and without separators; trigram z against random pointer sets plus anchored forms (http, .onion, spelled digits)"
+control = "Whole-screen null of maxima (95th percentile z 4.18; 4.34 reverse-complement); planted messages detected only with >= 64-128 pointers (the payload), not with the 12-25 values of the grids"
+result = "No message and no anchored hit: best real z 4.01 / 4.44 inside the null maxima"
+gap = "No power for the 12-25-number grids; pointer formats and target texts outside the preregistered family"
+log = ["work/log/phase40_line_pointers.md", "work/log/phase31_book_codes.md"]
+files = ["work/phase40_line_pointers.py"]
+
+[[experiment]]
+id = "keyless-batch"
+group = "structure"
+title = "Keyless batch: fine structure of the surviving doublets, DJU BEI forensics and digraph-block fingerprints, An End's hash over every held file under 512-bit functions, word-length alignment, recurring words"
+status = "observed"
+what = "Phase 44, preregistered: 18 doublet cells + reciprocal digraphs + per page against shuffle and repair-model nulls; parity / mod-k digraph splits with a planted 2x2 Hill mod 29; 861 digests (sha512, sha3_512, blake2b) of the scans, PDF, transcriptions, payload and OutGuess payloads; LP2 word lengths against LP1 and the cited books (exact and +-1 runs); recurring 3+-rune words"
+control = "Planted 2x2 Hill recovered by the block test; nulls as stated in the log"
+result = "All null: no doublet cell deviates from uniform thinning (|z| < 2.5), XY vs YX z +0.45; no block alignment (an aligned 2x2 Hill is excluded); 0 hash matches; word-length runs inside the null; recurring words z +1.4. Community leads checked (phase 46): 'CicadaPG v.3301' as the An End preimage 0 of 90; the page-55 affine relation (10 of 73) equals the best-of-841 null's 95th percentile; the DJU BEI 'TRUTH' overlay cannot be a rune-wise difference (the copies are identical)"
+gap = "Hashes of files the repo does not hold (the hunted page itself); doublet structure at effect sizes below the moderate power stated in the log"
+log = ["work/log/phase44_keyless_batch.md", "work/log/phase46_todo_and_leads.md"]
+files = ["work/phase44/batch.py", "work/phase44/t3_hash.py"]
+
+[[experiment]]
 id = "collision-kernel-followup"
 group = "structure"
 title = "Collision-substitution kernels: B=999 re-tests, fixed halves and echo-site dispersion"
