@@ -15,3 +15,12 @@ Merges the external gap report (`phase41_gaps_external.md`), the internal gap ma
 **C. Larger:** book key x word-aware pointer (G8, after the KJV); clauses of 13-60 runes with an LM + prime-sum score (G9); scan-derived streams (ICC bytes, JPEG coefficients, ornament coordinates; G10); interior nulls (ext 1.3); The Lady of Shalott and a full cited-text list (ext 2.1); Cicada's audio releases (manual, ext 2.2); layout rules on later windows; H1 with drift tracking.
 **Owner decisions:** the word-edge campaign (about 300 CPU-hours).
 **Community claims without a stated, testable operation:** the DJU BEI "TRUTH" alignment, the compass cipher (spirals as Atbash), the 17-part triangle model, Parable's clause-sum product in audio metadata.
+
+## Round 2 of the history pass (`phase45_discord_history.md`, R2-1..R2-24), checked or queued
+- **Parable clause sums 1259, 1031, 1229 are emirps (emirp indices 59, 39, 55), product 1,595,277,641** (Kuo, 7he5haman): arithmetic verified here; Level 0: about 17-19% of primes of this size are emirps, so three in a row is about 0.5% given the sums are prime, and the sums were selected for being prime. Kuo's "audio metadata" field was not named; not testable as posted.
+- **The 2013 audio's ID3 tags carry DIVINITY and CIRCUMFERENCE** (neuroretransmit, 2024): new to the repo; audio files are not held (owner decision whether to fetch them as data).
+- **Pages 54 and 57 share a red Fehu at the same pixel position** (cesaaaar, 2025-12): an image-registration claim; cheapest test: overlay the two scans in `work/orig/` at that point.
+- **Two different "Welcome Pilgrim" hex strings** (Fib, 2026-10-19): the archive's copies should be compared byte by byte; not an LP2 key lead.
+- **Compass cipher** (spiral = Atbash, humps = shift; Louis summarising a video): Atbash and every shift are inside the excluded families when applied uniformly; a page-wise rule would need the stated page mapping.
+- **Recorded, not redone:** v.vp.'s An End preimage campaign (about 82 M string and 9,400 binary digests, seven algorithms, 61 onions live over Tor: 0 hits); aloszaM's public seed brute-forcer (hash x 6 seed families).
+- **Incident:** during round 3 of the statistics pass a mis-click sent the text "spells TRUTH" to the "possible hint/s" thread under the owner's account (14:23); the owner deleted it. Later reading uses search-result panels only.

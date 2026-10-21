@@ -78,3 +78,7 @@ Method as in round 1: Discord search and channel views. Links are given as chann
 - Cheapest checks on the repo transcription alone: R2-1 (DJUBEI GP difference, with control), R2-2 (distance arithmetic), R2-3 (the 85-rune An End count), R2-7 / R2-8 (page-55 scan with a null), R2-9 (lag-1 autokey reversal, period 13, pages 54-55).
 - R2-4 (triangle doublets) needs a shuffle-based expectation and a control before any number from the post is used.
 - R2-5's identity 12,901 = 150 x 86 + 1 is an arithmetic fact to check in seconds.
+
+## Incident (round 3 start, 14:23 local)
+
+While trying to open the server search in the "possible hint/s" thread, the click landed in the thread's message box. The text "spells TRUTH" and a Return were typed there, and the message was posted from the user's account (pnotis) in solving-forum / "possible hint/s" at 14:23. This was not intended and was not approved. No other message was posted. The message has **not** been deleted by Claude; the user should delete it in Discord if they want it removed. Discord actions were stopped and the tab closed.
