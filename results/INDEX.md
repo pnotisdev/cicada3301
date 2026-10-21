@@ -138,6 +138,7 @@
 | The page-30 grid caption (two words, 4 + 5 runes): preregistered decryption family from the solved pages' rules and the grid's own numbers | excluded |  | [grid30_caption.py](../work/grid30_caption.py), [run.log](grid30_caption/run.log), [results.json](grid30_caption/results.json), [observed_hits.txt](grid30_caption/observed_hits.txt) |
 | The book's own numbers (squares, grid, payload, numerals) as line:position pointers into Liber Primus's own lines and the solved plaintext (Cicada's 2012 book-code format) | partial |  | [phase40_line_pointers.py](../work/phase40_line_pointers.py) |
 | The A/I oracle: one-rune words must decrypt to A or I (idea from a community verifier script, re-implemented): calibration, re-scoring of every kept campaign hit, and a screen design | observed |  | [mech48](../work/mech48) |
+| Community claims: Mike's skip-optimised period 13 on 54+55.jpg with the full selection pipeline; what the 1033.jpg blob by Newton's finger is (added text vs a shrunken logo) | explained |  | [p13_full](../work/p13_full), [blake1033](../work/blake1033) |
 
 ### What LP2 shows (any solution has to explain it)
 

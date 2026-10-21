@@ -12,7 +12,7 @@
 | Partly excluded | 14 |
 | Cannot be tested at LP2's effect size | 3 |
 | Open (not run or partly run) | 9 |
-| Explained puzzle furniture | 2 |
+| Explained puzzle furniture | 3 |
 | Observed in LP2 | 17 |
 | Candidates that survived whole-section verification | **0** |
 
@@ -150,6 +150,7 @@ No long runs are queued; `docs/QUEUE.md` explains how to restart the queues.
 |---|---|
 | **Page-30 grid, the Some Wisdom word square (1033), the page-14 square (3301)** | Explained puzzle furniture, not a key |
 | **Community claim: the 464 words of four solved sections in 16 x 29 have balanced column word lengths (R = 0.2515); 928 = 2 x 464 rune-words in segments 12-14 as a two-panel grille carrier** | Every count and R = 77321/307435 reproduce. R is P 1.4e-3 under permutation and 0.17% of English slices, not explained by English word-length structure, but after the selection of sections and width an equally good cell appears in 22% (subset search) to 77% (divisor widths) of nulls. Passage-removal and question-construction percentages are what any selected low-R sequence shows. The 928-word carrier shows no balance (panel R 0.94 / 1.18) and no panel pairing (smallest p 0.135; 0 identical words) *(Pairing test: planted panel copies at 5% / 10% / 25% of cells detected 100 / 100 each; null false positives 3 / 300)* |
+| **Community claims: Mike's skip-optimised period 13 on 54+55.jpg with the full selection pipeline; what the 1033.jpg blob by Newton's finger is (added text vs a shrunken logo)** | Period 13: Mike's numbers reproduce (1.377, 1.7155); fixed-cell P 0.005, but after selection over the 78 exactly searched cells P 0.26, and the whole pipeline's maximum (1.9446, at p = 39 in the same paragraph) has P 0.040; post hoc, 13, 26 and 39 are among the paragraph's four lowest-p periods (unpreregistered, Level 0). 1033.jpg: the blob is two horizontal bands of added light pixels with a gap (a two-line layout), strongly against a compact cicada logo (text minus logo z +7.8 to +23.8 across metrics), but rectangles fit as well as text, so the Roman-numeral reading is not confirmed *(Plants: a period-13 key of Mike's strength detected in 47% by the full pipeline (88% by the fixed cell), a genuine period-13 Vigenere on English 5% (no power); 1033.jpg: two plain rectangles at the line boxes fit as well as the text (0.644 vs 0.643))* |
 
 ## What LP2 shows (any solution has to explain it)
 

@@ -1,0 +1,8 @@
+LP2: S = 1.9446 at para 14 (308 runes = 14) p=39; no-skip max 1.5536; p13 para14: base 1.3770 skip 1.7155
+perm n=200: S mean 1.792 sd 0.083 q50 1.783 q95 1.928 max 2.083 | tail P(S>=LP2) = 7/200 = 0.040 | arg max in (para14,p=13): 0 | p14,p13 skip: mean 1.323 max 1.570, >=1.7155: 0 | no-skip max mean 1.342
+   arg max periods: [ 5  3  8 11 17 17 27 24 19 30 23] (p=30..40) paras [  0   0   0  78   0   0   0   0   0   0   0   0   0   0 122]
+fresh n=200: S mean 1.787 sd 0.084 q50 1.780 q95 1.931 max 2.065 | tail P(S>=LP2) = 7/200 = 0.040 | arg max in (para14,p=13): 0 | p14,p13 skip: mean 1.323 max 1.518, >=1.7155: 0 | no-skip max mean 1.346
+   arg max periods: [ 5  9 10 16 13 10 16 24 26 27 30] (p=30..40) paras [  0   0   0  60   0   0   0   0   0   0   0   0   0   0 140]
+out_plant_eng_1.0.jsonl n=40: S mean 1.773; det>q95(perm 1.928) 2/40; det>q95(fresh 1.931) 2/40; argmax at (14,13): 0/40; p14,p13 skip IoC mean 1.371; >= LP2 S: 2; cell(14,13)-only det>q95(fresh 1.450): 3/40
+out_plant_key_0.15.jsonl n=60: S mean 1.951; det>q95(perm 1.928) 28/60; det>q95(fresh 1.931) 28/60; argmax at (14,13): 3/60; p14,p13 skip IoC mean 1.706; >= LP2 S: 26; cell(14,13)-only det>q95(fresh 1.450): 53/60
+out_plant_key_0.25.jsonl n=40: S mean 2.895; det>q95(perm 1.928) 40/40; det>q95(fresh 1.931) 40/40; argmax at (14,13): 5/40; p14,p13 skip IoC mean 2.729; >= LP2 S: 40; cell(14,13)-only det>q95(fresh 1.450): 40/40
