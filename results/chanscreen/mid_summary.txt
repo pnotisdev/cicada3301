@@ -1,0 +1,16 @@
+# Phase 51 mid-word plants: 48 plants (n = 300, plant rate 0.42), T300 = 29.7992, decoder nu = 0.42
+
+channel src      | mid: detected within3 median-band | base: detected | nullf | nulli | adv  (detected counts; median band score) | matched-null max (mid)
+hold   n=12 | mid 12/12 w3 12 med 136.5 | base 12/12 med 87.6 | nullf 12/12 med 86.9 | nulli 12/12 med 91.2 | adv 11/12 med 60.8 | null max -62.69 (0 >= T300)
+spend  n=12 | mid 12/12 w3 12 med 144.6 | base 0/12 med -263.3 | nullf 11/12 med 71.7 | nulli 11/12 med 66.7 | adv 0/12 med -154.2 | null max -57.66 (0 >= T300)
+skip5  n=12 | mid 12/12 w3 12 med 160.5 | base 0/12 med -282.6 | nullf 11/12 med 71.1 | nulli 12/12 med 71.8 | adv 0/12 med -182.1 | null max -58.25 (0 >= T300)
+coin   n=12 | mid 12/12 w3 11 med 159.7 | base 0/12 med -246.3 | nullf 10/12 med 65.7 | nulli 8/12 med 50.4 | adv 2/12 med -139.6 | null max -70.68 (0 >= T300)
+
+All channels pooled:
+  mid  : detected 48/48, true within 3 nats of best 47/48, median band 149.3, median (mid band - this decoder band) 0.0
+  base : detected 12/48, true within 3 nats of best 12/48, median band -244.0, median (mid band - this decoder band) 383.1
+  nullf: detected 44/48, true within 3 nats of best 30/48, median band 74.4, median (mid band - this decoder band) 73.7
+  nulli: detected 43/48, true within 3 nats of best 28/48, median band 70.6, median (mid band - this decoder band) 78.4
+  adv  : detected 13/48, true within 3 nats of best 12/48, median band -146.3, median (mid band - this decoder band) 292.4
+  matched nulls (mid decoder, iid key): max winner score -57.66, >= T300: 0
+  nulls in the 300-rune windows: median 26, words 63
