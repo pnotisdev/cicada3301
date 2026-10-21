@@ -64,3 +64,7 @@ Positive control: a plaintext planted with random valid pointers.
 
 Missing for any real test: which book, which format (Cicada always gave a riddle), and how the numbers group into tuples; nothing in the book states them.
 **Verdict: no book-code reading of LP2 or its numbers is testable with power beyond the single-index screen done here, and that screen is negative.**
+
+## Addendum 2026-10-21: book code B1 reproduced (the counting rule was line:character)
+Prompted by the user (the Uncovering Cicada wiki shows the 2012 text with its fixed line breaks). Pointer list `assets/2012/1CcV1.jpg.out` (76 pairs `n:k`) and the line-wrapped "Lady of the Fountain" text in the archive (`2012/additional docs/the subreddit/the mabinogion.txt`, 68 lines; both read as data, nothing run): **n = line number, k = character position in that line, 1-based, spaces counted**. Output: `Call us at us tele phone numBer two one four three nine oh nine six o` followed by 7 pointers past the archive copy's last line (the known message ends "...oh eight"). The four leading pairs already give `Call` (1:20 C, 2:3 a, 3:5 l, 4:20 l).
+Consequence for section 3: the 1,520 preregistered readings did not include a line:character format on a fixed line layout, which is the one Cicada demonstrably used in 2012. A line:position test on Liber Primus's own lines (the transcription keeps line breaks) is a new, concrete format; not run.
