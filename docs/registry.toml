@@ -692,7 +692,8 @@ title = "The 256-byte base-60 payload (pages 64-66), corrected bytes"
 status = "excluded"
 what = "Hash identity (25 candidates x 3 hashes), 832,204 AES / RC4 / XOR passphrase decryptions"
 result = "Byte-random, not a permutation or S-box; 0 hash matches; no decryption (the best, an AES-192 'hit' at printable 0.48, is the kind of coincidence hundreds of tries produce)"
-log = ["work/log/phase4_items4-6.md", "work/log/phase9_hyp.md"]
+control = "Byte reading (phase 39, 2026-10-21): our five corrected bytes (45, 50, 165, 172, 246) equal iddqd's own hex byte string (byte-strings, String 4) exactly; scream314's sexagesimal.bin is derived from a community text transcription and differs from ours in 10 bytes, where the onion page images or iddqd's byte string side with ours"
+log = ["work/log/phase4_items4-6.md", "work/log/phase9_hyp.md", "work/log/phase39_online_sources.md"]
 files = ["results/payload/hashes.txt", "results/payload/decrypt.txt"]
 
 [[experiment]]
