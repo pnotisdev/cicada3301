@@ -1670,7 +1670,7 @@
 [07:40:47] [2/11 setup/build-walk cpu]     Finished `release` profile [optimized] target(s) in 0.41s
 [07:40:47] [2/11 setup/build-walk cpu] ok in 1s
 [07:40:47] [3/11 setup/build-kscreen cpu] start (est. 0.02 h)
-[07:40:48] [3/11 setup/build-kscreen cpu]    Compiling kscreen v0.1.0 (D:\Github projects\cicada3301\work\kscreen)
+[07:40:48] [3/11 setup/build-kscreen cpu]    Compiling kscreen v0.1.0 (<repo>\work\kscreen)
 [07:41:17] [3/11 setup/build-kscreen cpu]     Finished `release` profile [optimized] target(s) in 29.43s
 [07:41:17] [3/11 setup/build-kscreen cpu] ok in 30s
 [07:41:17] [4/11 setup/fetch-data cpu] start (est. 0.02 h)
@@ -1687,3 +1687,600 @@
 
 == prng-step: Seeded-PRNG pads for the step-domain cipher, window 0.7: all ten generators
 [07:41:47] [5/11 prng-step/controls cuda] start (est. 0.02 h)
+[07:42:05] [5/11 prng-step/controls cuda] test_keys_equal_the_rust_engine (work.tests.test_stepmt.StepSweep.test_keys_equal_the_rust_engine) ... ok
+[07:42:11] [5/11 prng-step/controls cuda] test_planted_seed_is_recovered (work.tests.test_stepmt.StepSweep.test_planted_seed_is_recovered) ... ok
+[07:42:11] [5/11 prng-step/controls cuda] test_random_ciphertext_gives_no_candidate (work.tests.test_stepmt.StepSweep.test_random_ciphertext_gives_no_candidate) ... ok
+[07:42:18] [5/11 prng-step/controls cuda] test_scores_equal_the_numpy_reference (work.tests.test_stepmt.StepSweep.test_scores_equal_the_numpy_reference) ... ok
+[07:42:20] [5/11 prng-step/controls cuda] test_a_planted_seed_keeps_its_ioc_beyond_the_window_and_a_wrong_seed_does_not (work.tests.test_stepmt.Verify.test_a_planted_seed_keeps_its_ioc_beyond_the_window_and_a_wrong_seed_does_not) ... ok
+[07:42:20] [5/11 prng-step/controls cuda] ----------------------------------------------------------------------
+[07:42:20] [5/11 prng-step/controls cuda] Ran 5 tests in 25.833s
+[07:42:20] [5/11 prng-step/controls cuda] OK
+[07:42:20] [5/11 prng-step/controls cuda] GATE PASSED
+[07:42:21] [5/11 prng-step/controls cuda] ok in 34s
+[07:42:21] [overnight] done  prng-step/py3
+[07:42:21] [overnight] done  prng-step/py3-verify
+[07:42:21] [overnight] done  prng-step/php
+[07:42:21] [overnight] done  prng-step/php-verify
+[07:42:21] [overnight] done  prng-step/glibc
+[07:42:21] [overnight] done  prng-step/glibc-verify
+[07:42:21] [overnight] done  prng-step/java
+[07:42:21] [overnight] done  prng-step/java-verify
+[07:42:21] [overnight] done  prng-step/mt32
+[07:42:21] [overnight] done  prng-step/mt32-verify
+[07:42:21] [overnight] done  prng-step/net
+[07:42:21] [overnight] done  prng-step/net-verify
+[07:42:21] [overnight] done  prng-step/msvc
+[07:42:21] [overnight] done  prng-step/msvc-verify
+[07:42:21] [6/11 prng-step/drand48 cuda] start (est. 2.80 h)
+[07:42:28] [6/11 prng-step/drand48 cuda] step: drand48 sweep of 4294967296 seeds, 2 windows x 144 settings on CUDA NVIDIA GeForce RTX 2080 Ti
+[07:42:48] [6/11 prng-step/drand48 cuda]   0.53%  22,685,758 seeds  1,127,282 seeds/s  eta 1h03m
+[07:43:08] [6/11 prng-step/drand48 cuda]   1.00%  43,108,989 seeds  1,071,214 seeds/s  eta 1h06m
+[07:43:28] [6/11 prng-step/drand48 cuda]   1.48%  63,635,054 seeds  1,053,869 seeds/s  eta 1h06m
+[07:43:48] [6/11 prng-step/drand48 cuda]   1.96%  84,083,124 seeds  1,044,265 seeds/s  eta 1h07m
+[07:44:08] [6/11 prng-step/drand48 cuda]   2.43%  104,539,665 seeds  1,038,363 seeds/s  eta 1h07m
+[07:44:28] [6/11 prng-step/drand48 cuda]   2.91%  124,802,229 seeds  1,033,203 seeds/s  eta 1h07m
+[07:44:48] [6/11 prng-step/drand48 cuda]   3.38%  145,304,012 seeds  1,031,019 seeds/s  eta 1h07m
+[07:45:09] [6/11 prng-step/drand48 cuda]   3.86%  165,684,457 seeds  1,028,650 seeds/s  eta 1h06m
+[07:45:29] [6/11 prng-step/drand48 cuda]   4.34%  186,299,901 seeds  1,028,127 seeds/s  eta 1h06m
+[07:45:49] [6/11 prng-step/drand48 cuda]   4.82%  207,196,911 seeds  1,029,185 seeds/s  eta 1h06m
+[07:46:09] [6/11 prng-step/drand48 cuda]   5.32%  228,516,842 seeds  1,031,835 seeds/s  eta 1h05m
+[07:46:29] [6/11 prng-step/drand48 cuda]   5.82%  249,768,303 seeds  1,033,784 seeds/s  eta 1h05m
+[07:46:49] [6/11 prng-step/drand48 cuda]   6.31%  271,002,274 seeds  1,035,402 seeds/s  eta 1h04m
+[07:47:09] [6/11 prng-step/drand48 cuda]   6.81%  292,493,840 seeds  1,037,653 seeds/s  eta 1h04m
+[07:47:30] [6/11 prng-step/drand48 cuda]   7.31%  313,963,307 seeds  1,039,621 seeds/s  eta 1h03m
+[07:47:50] [6/11 prng-step/drand48 cuda]   7.82%  335,670,630 seeds  1,042,081 seeds/s  eta 1h03m
+[07:48:10] [6/11 prng-step/drand48 cuda]   8.32%  357,293,953 seeds  1,043,989 seeds/s  eta 1h02m
+[07:48:30] [6/11 prng-step/drand48 cuda]   8.82%  378,981,720 seeds  1,045,821 seeds/s  eta 1h02m
+[07:48:50] [6/11 prng-step/drand48 cuda]   9.33%  400,719,847 seeds  1,047,644 seeds/s  eta 1h01m
+[07:49:10] [6/11 prng-step/drand48 cuda]   9.84%  422,722,304 seeds  1,049,977 seeds/s  eta 1h01m
+[07:49:30] [6/11 prng-step/drand48 cuda]  10.36%  444,870,620 seeds  1,052,375 seeds/s  eta 1h00m
+[07:49:50] [6/11 prng-step/drand48 cuda]  10.87%  466,866,720 seeds  1,054,248 seeds/s  eta 1h00m
+[07:50:11] [6/11 prng-step/drand48 cuda]  11.37%  488,520,505 seeds  1,055,012 seeds/s  eta 1h00m
+[07:50:31] [6/11 prng-step/drand48 cuda]  11.87%  509,804,724 seeds  1,054,957 seeds/s  eta 59m48s
+[07:50:51] [6/11 prng-step/drand48 cuda]  12.39%  531,952,852 seeds  1,056,693 seeds/s  eta 59m21s
+[07:51:11] [6/11 prng-step/drand48 cuda]  12.90%  553,983,601 seeds  1,058,070 seeds/s  eta 58m56s
+[07:51:31] [6/11 prng-step/drand48 cuda]  13.41%  575,904,800 seeds  1,059,224 seeds/s  eta 58m31s
+[07:51:51] [6/11 prng-step/drand48 cuda]  13.89%  596,758,912 seeds  1,058,199 seeds/s  eta 58m15s
+[07:52:12] [6/11 prng-step/drand48 cuda]  14.36%  616,858,016 seeds  1,055,910 seeds/s  eta 58m03s
+[07:52:32] [6/11 prng-step/drand48 cuda]  14.87%  638,634,583 seeds  1,056,770 seeds/s  eta 57m40s
+[07:52:52] [6/11 prng-step/drand48 cuda]  15.38%  660,629,877 seeds  1,057,879 seeds/s  eta 57m15s
+[07:53:12] [6/11 prng-step/drand48 cuda]  15.61%  670,357,122 seeds  1,039,688 seeds/s  eta 58m06s
+[07:53:32] [6/11 prng-step/drand48 cuda]  15.99%  686,839,938 seeds  1,033,076 seeds/s  eta 58m13s
+[07:53:52] [6/11 prng-step/drand48 cuda]  16.45%  706,386,612 seeds  1,031,427 seeds/s  eta 57m59s
+[07:54:13] [6/11 prng-step/drand48 cuda]  16.90%  725,732,122 seeds  1,029,237 seeds/s  eta 57m48s
+[07:54:33] [6/11 prng-step/drand48 cuda]  17.30%  743,066,043 seeds  1,024,751 seeds/s  eta 57m46s
+[07:54:53] [6/11 prng-step/drand48 cuda]  17.70%  760,122,622 seeds  1,020,004 seeds/s  eta 57m46s
+[07:55:13] [6/11 prng-step/drand48 cuda]  18.09%  777,054,276 seeds  1,015,350 seeds/s  eta 57m45s
+[07:55:33] [6/11 prng-step/drand48 cuda]  18.48%  793,877,896 seeds  1,010,673 seeds/s  eta 57m44s
+[07:55:53] [6/11 prng-step/drand48 cuda]  18.96%  814,144,513 seeds  1,010,537 seeds/s  eta 57m25s
+[07:56:13] [6/11 prng-step/drand48 cuda]  19.43%  834,588,378 seeds  1,010,789 seeds/s  eta 57m03s
+[07:56:33] [6/11 prng-step/drand48 cuda]  19.88%  854,048,105 seeds  1,009,793 seeds/s  eta 56m48s
+[07:56:53] [6/11 prng-step/drand48 cuda]  20.35%  874,233,615 seeds  1,009,615 seeds/s  eta 56m28s
+[07:57:13] [6/11 prng-step/drand48 cuda]  20.77%  891,871,618 seeds  1,006,712 seeds/s  eta 56m20s
+[07:57:33] [6/11 prng-step/drand48 cuda]  21.33%  916,085,082 seeds  1,011,159 seeds/s  eta 55m42s
+[07:57:54] [6/11 prng-step/drand48 cuda]  21.91%  941,028,088 seeds  1,016,079 seeds/s  eta 55m01s
+[07:58:14] [6/11 prng-step/drand48 cuda]  22.58%  969,934,095 seeds  1,025,111 seeds/s  eta 54m04s
+[07:58:34] [6/11 prng-step/drand48 cuda]  23.30%  1,000,774,776 seeds  1,035,594 seeds/s  eta 53m01s
+[07:58:54] [6/11 prng-step/drand48 cuda]  23.92%  1,027,178,183 seeds  1,041,062 seeds/s  eta 52m19s
+[07:59:14] [6/11 prng-step/drand48 cuda]  24.47%  1,050,953,590 seeds  1,043,922 seeds/s  eta 51m48s
+[07:59:35] [6/11 prng-step/drand48 cuda]  25.05%  1,075,706,357 seeds  1,047,370 seeds/s  eta 51m14s
+[07:59:55] [6/11 prng-step/drand48 cuda]  25.60%  1,099,631,204 seeds  1,050,042 seeds/s  eta 50m43s
+[08:00:15] [6/11 prng-step/drand48 cuda]  26.14%  1,122,553,870 seeds  1,051,810 seeds/s  eta 50m16s
+[08:00:35] [6/11 prng-step/drand48 cuda]  26.69%  1,146,211,727 seeds  1,053,846 seeds/s  eta 49m48s
+[08:00:55] [6/11 prng-step/drand48 cuda]  27.28%  1,171,537,700 seeds  1,057,497 seeds/s  eta 49m14s
+[08:01:15] [6/11 prng-step/drand48 cuda]  27.91%  1,198,585,187 seeds  1,062,692 seeds/s  eta 48m34s
+[08:01:36] [6/11 prng-step/drand48 cuda]  28.46%  1,222,172,218 seeds  1,064,548 seeds/s  eta 48m06s
+[08:01:56] [6/11 prng-step/drand48 cuda]  28.99%  1,245,261,086 seeds  1,065,877 seeds/s  eta 47m41s
+[08:02:16] [6/11 prng-step/drand48 cuda]  29.61%  1,271,884,385 seeds  1,070,226 seeds/s  eta 47m05s
+[08:02:36] [6/11 prng-step/drand48 cuda]  30.19%  1,296,477,294 seeds  1,072,715 seeds/s  eta 46m35s
+[08:02:56] [6/11 prng-step/drand48 cuda]  30.84%  1,324,516,309 seeds  1,077,848 seeds/s  eta 45m56s
+[08:03:17] [6/11 prng-step/drand48 cuda]  31.40%  1,348,699,839 seeds  1,079,815 seeds/s  eta 45m28s
+[08:03:37] [6/11 prng-step/drand48 cuda]  31.97%  1,372,988,138 seeds  1,081,819 seeds/s  eta 45m01s
+[08:03:57] [6/11 prng-step/drand48 cuda]  32.54%  1,397,558,763 seeds  1,084,050 seeds/s  eta 44m33s
+[08:04:17] [6/11 prng-step/drand48 cuda]  33.21%  1,426,546,328 seeds  1,089,444 seeds/s  eta 43m53s
+[08:04:37] [6/11 prng-step/drand48 cuda]  33.91%  1,456,346,046 seeds  1,095,322 seeds/s  eta 43m12s
+[08:04:57] [6/11 prng-step/drand48 cuda]  34.49%  1,481,325,771 seeds  1,097,591 seeds/s  eta 42m43s
+[08:05:17] [6/11 prng-step/drand48 cuda]  35.08%  1,506,693,814 seeds  1,099,844 seeds/s  eta 42m15s
+[08:05:37] [6/11 prng-step/drand48 cuda]  35.63%  1,530,104,885 seeds  1,100,856 seeds/s  eta 41m52s
+[08:05:58] [6/11 prng-step/drand48 cuda]  36.17%  1,553,638,963 seeds  1,101,865 seeds/s  eta 41m28s
+[08:06:18] [6/11 prng-step/drand48 cuda]  36.81%  1,581,034,346 seeds  1,105,563 seeds/s  eta 40m55s
+[08:06:38] [6/11 prng-step/drand48 cuda]  37.41%  1,606,698,404 seeds  1,107,877 seeds/s  eta 40m27s
+[08:06:58] [6/11 prng-step/drand48 cuda]  37.98%  1,631,099,804 seeds  1,109,147 seeds/s  eta 40m02s
+[08:07:18] [6/11 prng-step/drand48 cuda]  38.62%  1,658,714,453 seeds  1,112,655 seeds/s  eta 39m29s
+[08:07:38] [6/11 prng-step/drand48 cuda]  39.27%  1,686,676,706 seeds  1,116,292 seeds/s  eta 38m57s
+[08:07:59] [6/11 prng-step/drand48 cuda]  39.91%  1,714,166,453 seeds  1,119,371 seeds/s  eta 38m26s
+[08:08:19] [6/11 prng-step/drand48 cuda]  40.56%  1,741,898,009 seeds  1,122,759 seeds/s  eta 37m54s
+[08:08:39] [6/11 prng-step/drand48 cuda]  41.12%  1,766,182,060 seeds  1,123,702 seeds/s  eta 37m30s
+[08:09:00] [6/11 prng-step/drand48 cuda]  41.72%  1,791,745,615 seeds  1,125,463 seeds/s  eta 37m04s
+[08:09:20] [6/11 prng-step/drand48 cuda]  42.28%  1,816,012,023 seeds  1,126,391 seeds/s  eta 36m41s
+[08:09:40] [6/11 prng-step/drand48 cuda]  42.88%  1,841,830,250 seeds  1,128,363 seeds/s  eta 36m14s
+[08:10:00] [6/11 prng-step/drand48 cuda]  43.54%  1,870,072,784 seeds  1,131,666 seeds/s  eta 35m43s
+[08:10:20] [6/11 prng-step/drand48 cuda]  44.12%  1,894,842,830 seeds  1,132,858 seeds/s  eta 35m19s
+[08:10:40] [6/11 prng-step/drand48 cuda]  44.74%  1,921,762,887 seeds  1,135,237 seeds/s  eta 34m50s
+[08:11:00] [6/11 prng-step/drand48 cuda]  45.35%  1,947,644,613 seeds  1,137,052 seeds/s  eta 34m24s
+[08:11:20] [6/11 prng-step/drand48 cuda]  45.91%  1,971,712,657 seeds  1,137,818 seeds/s  eta 34m02s
+[08:11:41] [6/11 prng-step/drand48 cuda]  46.48%  1,996,207,500 seeds  1,138,712 seeds/s  eta 33m39s
+[08:12:01] [6/11 prng-step/drand48 cuda]  47.03%  2,019,862,742 seeds  1,139,119 seeds/s  eta 33m17s
+[08:12:21] [6/11 prng-step/drand48 cuda]  47.61%  2,044,947,026 seeds  1,140,357 seeds/s  eta 32m53s
+[08:12:41] [6/11 prng-step/drand48 cuda]  48.31%  2,074,738,308 seeds  1,144,153 seeds/s  eta 32m20s
+[08:13:01] [6/11 prng-step/drand48 cuda]  48.86%  2,098,401,142 seeds  1,144,522 seeds/s  eta 31m59s
+[08:13:21] [6/11 prng-step/drand48 cuda]  49.45%  2,123,812,177 seeds  1,145,822 seeds/s  eta 31m35s
+[08:13:41] [6/11 prng-step/drand48 cuda]  50.07%  2,150,298,024 seeds  1,147,601 seeds/s  eta 31m09s
+[08:14:02] [6/11 prng-step/drand48 cuda]  50.62%  2,174,260,898 seeds  1,147,877 seeds/s  eta 30m48s
+[08:14:22] [6/11 prng-step/drand48 cuda]  51.21%  2,199,399,721 seeds  1,148,940 seeds/s  eta 30m24s
+[08:14:42] [6/11 prng-step/drand48 cuda]  51.81%  2,225,152,116 seeds  1,150,183 seeds/s  eta 30m00s
+[08:15:02] [6/11 prng-step/drand48 cuda]  52.36%  2,248,776,078 seeds  1,150,395 seeds/s  eta 29m39s
+[08:15:23] [6/11 prng-step/drand48 cuda]  53.00%  2,276,521,015 seeds  1,152,627 seeds/s  eta 29m11s
+[08:15:43] [6/11 prng-step/drand48 cuda]  53.64%  2,303,670,736 seeds  1,154,553 seeds/s  eta 28m45s
+[08:16:03] [6/11 prng-step/drand48 cuda]  54.22%  2,328,689,054 seeds  1,155,378 seeds/s  eta 28m22s
+[08:16:23] [6/11 prng-step/drand48 cuda]  54.76%  2,351,932,694 seeds  1,155,345 seeds/s  eta 28m02s
+[08:16:43] [6/11 prng-step/drand48 cuda]  55.34%  2,376,689,613 seeds  1,156,127 seeds/s  eta 27m39s
+[08:17:04] [6/11 prng-step/drand48 cuda]  56.03%  2,406,422,592 seeds  1,159,164 seeds/s  eta 27m09s
+[08:17:24] [6/11 prng-step/drand48 cuda]  56.72%  2,435,905,642 seeds  1,162,006 seeds/s  eta 26m40s
+[08:17:44] [6/11 prng-step/drand48 cuda]  57.30%  2,461,142,761 seeds  1,162,821 seeds/s  eta 26m17s
+[08:18:04] [6/11 prng-step/drand48 cuda]  57.94%  2,488,547,703 seeds  1,164,742 seeds/s  eta 25m51s
+[08:18:24] [6/11 prng-step/drand48 cuda]  58.63%  2,518,179,050 seeds  1,167,599 seeds/s  eta 25m22s
+[08:18:44] [6/11 prng-step/drand48 cuda]  59.32%  2,547,576,284 seeds  1,170,305 seeds/s  eta 24m53s
+[08:19:05] [6/11 prng-step/drand48 cuda]  59.95%  2,575,016,644 seeds  1,172,024 seeds/s  eta 24m28s
+[08:19:25] [6/11 prng-step/drand48 cuda]  60.58%  2,602,015,831 seeds  1,173,485 seeds/s  eta 24m03s
+[08:19:45] [6/11 prng-step/drand48 cuda]  61.19%  2,627,925,234 seeds  1,174,393 seeds/s  eta 23m39s
+[08:20:05] [6/11 prng-step/drand48 cuda]  61.80%  2,654,119,052 seeds  1,175,537 seeds/s  eta 23m16s
+[08:20:25] [6/11 prng-step/drand48 cuda]  62.40%  2,680,175,925 seeds  1,176,614 seeds/s  eta 22m52s
+[08:20:46] [6/11 prng-step/drand48 cuda]  63.02%  2,706,542,079 seeds  1,177,740 seeds/s  eta 22m29s
+[08:21:06] [6/11 prng-step/drand48 cuda]  63.66%  2,734,185,232 seeds  1,179,497 seeds/s  eta 22m03s
+[08:21:26] [6/11 prng-step/drand48 cuda]  64.19%  2,757,094,114 seeds  1,179,197 seeds/s  eta 21m44s
+[08:21:46] [6/11 prng-step/drand48 cuda]  64.69%  2,778,297,727 seeds  1,178,101 seeds/s  eta 21m27s
+[08:22:06] [6/11 prng-step/drand48 cuda]  65.35%  2,806,925,223 seeds  1,180,162 seeds/s  eta 21m01s
+[08:22:26] [6/11 prng-step/drand48 cuda]  66.00%  2,834,643,634 seeds  1,181,745 seeds/s  eta 20m36s
+[08:22:46] [6/11 prng-step/drand48 cuda]  66.69%  2,864,375,165 seeds  1,184,207 seeds/s  eta 20m08s
+[08:23:06] [6/11 prng-step/drand48 cuda]  67.40%  2,894,621,108 seeds  1,186,833 seeds/s  eta 19m40s
+[08:23:27] [6/11 prng-step/drand48 cuda]  68.10%  2,924,756,317 seeds  1,189,359 seeds/s  eta 19m12s
+[08:23:47] [6/11 prng-step/drand48 cuda]  68.81%  2,955,218,156 seeds  1,191,997 seeds/s  eta 18m44s
+[08:24:07] [6/11 prng-step/drand48 cuda]  69.51%  2,985,619,960 seeds  1,194,562 seeds/s  eta 18m16s
+[08:24:27] [6/11 prng-step/drand48 cuda]  70.22%  3,015,870,882 seeds  1,197,021 seeds/s  eta 17m49s
+[08:24:47] [6/11 prng-step/drand48 cuda]  70.92%  3,046,107,657 seeds  1,199,429 seeds/s  eta 17m21s
+[08:25:07] [6/11 prng-step/drand48 cuda]  71.62%  3,076,123,272 seeds  1,201,721 seeds/s  eta 16m54s
+[08:25:27] [6/11 prng-step/drand48 cuda]  72.32%  3,106,222,967 seeds  1,204,011 seeds/s  eta 16m27s
+[08:25:48] [6/11 prng-step/drand48 cuda]  73.03%  3,136,511,486 seeds  1,206,343 seeds/s  eta 16m00s
+[08:26:08] [6/11 prng-step/drand48 cuda]  73.73%  3,166,757,666 seeds  1,208,626 seeds/s  eta 15m33s
+[08:26:28] [6/11 prng-step/drand48 cuda]  74.44%  3,196,964,817 seeds  1,210,840 seeds/s  eta 15m07s
+[08:26:48] [6/11 prng-step/drand48 cuda]  75.14%  3,227,141,360 seeds  1,213,026 seeds/s  eta 14m40s
+[08:27:08] [6/11 prng-step/drand48 cuda]  75.84%  3,257,434,586 seeds  1,215,230 seeds/s  eta 14m14s
+[08:27:28] [6/11 prng-step/drand48 cuda]  76.54%  3,287,556,050 seeds  1,217,325 seeds/s  eta 13m48s
+[08:27:48] [6/11 prng-step/drand48 cuda]  77.25%  3,317,738,375 seeds  1,219,418 seeds/s  eta 13m21s
+[08:28:08] [6/11 prng-step/drand48 cuda]  77.95%  3,347,885,195 seeds  1,221,467 seeds/s  eta 12m55s
+[08:28:28] [6/11 prng-step/drand48 cuda]  78.65%  3,377,862,589 seeds  1,223,426 seeds/s  eta 12m30s
+[08:28:49] [6/11 prng-step/drand48 cuda]  79.34%  3,407,802,318 seeds  1,225,336 seeds/s  eta 12m04s
+[08:29:09] [6/11 prng-step/drand48 cuda]  80.04%  3,437,784,178 seeds  1,227,242 seeds/s  eta 11m38s
+[08:29:29] [6/11 prng-step/drand48 cuda]  80.75%  3,467,976,036 seeds  1,229,188 seeds/s  eta 11m13s
+[08:29:49] [6/11 prng-step/drand48 cuda]  81.45%  3,498,156,850 seeds  1,231,106 seeds/s  eta 10m47s
+[08:30:09] [6/11 prng-step/drand48 cuda]  82.15%  3,528,191,492 seeds  1,232,938 seeds/s  eta 10m22s
+[08:30:29] [6/11 prng-step/drand48 cuda]  82.84%  3,558,090,917 seeds  1,234,698 seeds/s  eta 9m57s
+[08:30:49] [6/11 prng-step/drand48 cuda]  83.54%  3,588,161,061 seeds  1,236,496 seeds/s  eta 9m32s
+[08:31:10] [6/11 prng-step/drand48 cuda]  84.25%  3,618,335,437 seeds  1,238,305 seeds/s  eta 9m06s
+[08:31:30] [6/11 prng-step/drand48 cuda]  84.94%  3,648,285,571 seeds  1,240,009 seeds/s  eta 8m42s
+[08:31:50] [6/11 prng-step/drand48 cuda]  85.64%  3,678,395,183 seeds  1,241,754 seeds/s  eta 8m17s
+[08:32:10] [6/11 prng-step/drand48 cuda]  86.35%  3,708,684,065 seeds  1,243,539 seeds/s  eta 7m51s
+[08:32:30] [6/11 prng-step/drand48 cuda]  87.05%  3,738,671,932 seeds  1,245,187 seeds/s  eta 7m27s
+[08:32:50] [6/11 prng-step/drand48 cuda]  87.75%  3,768,771,300 seeds  1,246,836 seeds/s  eta 7m02s
+[08:33:10] [6/11 prng-step/drand48 cuda]  88.45%  3,798,777,330 seeds  1,248,454 seeds/s  eta 6m37s
+[08:33:30] [6/11 prng-step/drand48 cuda]  89.15%  3,828,879,810 seeds  1,250,080 seeds/s  eta 6m13s
+[08:33:51] [6/11 prng-step/drand48 cuda]  89.85%  3,858,832,794 seeds  1,251,633 seeds/s  eta 5m48s
+[08:34:11] [6/11 prng-step/drand48 cuda]  90.55%  3,889,083,465 seeds  1,253,271 seeds/s  eta 5m24s
+[08:34:31] [6/11 prng-step/drand48 cuda]  91.25%  3,919,326,856 seeds  1,254,874 seeds/s  eta 4m59s
+[08:34:51] [6/11 prng-step/drand48 cuda]  91.96%  3,949,549,146 seeds  1,256,456 seeds/s  eta 4m35s
+[08:35:11] [6/11 prng-step/drand48 cuda]  92.65%  3,979,470,193 seeds  1,257,924 seeds/s  eta 4m11s
+[08:35:31] [6/11 prng-step/drand48 cuda]  93.35%  4,009,557,088 seeds  1,259,420 seeds/s  eta 3m47s
+[08:35:51] [6/11 prng-step/drand48 cuda]  94.06%  4,039,840,802 seeds  1,260,967 seeds/s  eta 3m22s
+[08:36:11] [6/11 prng-step/drand48 cuda]  94.76%  4,069,814,856 seeds  1,262,388 seeds/s  eta 2m58s
+[08:36:32] [6/11 prng-step/drand48 cuda]  95.46%  4,099,836,249 seeds  1,263,817 seeds/s  eta 2m34s
+[08:36:52] [6/11 prng-step/drand48 cuda]  96.16%  4,129,850,221 seeds  1,265,224 seeds/s  eta 2m11s
+[08:37:12] [6/11 prng-step/drand48 cuda]  96.85%  4,159,708,429 seeds  1,266,556 seeds/s  eta 1m47s
+[08:37:32] [6/11 prng-step/drand48 cuda]  97.55%  4,189,553,371 seeds  1,267,874 seeds/s  eta 1m23s
+[08:37:52] [6/11 prng-step/drand48 cuda]  98.25%  4,219,669,826 seeds  1,269,261 seeds/s  eta 59s
+[08:38:12] [6/11 prng-step/drand48 cuda]  98.95%  4,249,790,481 seeds  1,270,633 seeds/s  eta 36s
+[08:38:32] [6/11 prng-step/drand48 cuda]  99.65%  4,279,870,222 seeds  1,271,963 seeds/s  eta 12s
+[08:38:42] [6/11 prng-step/drand48 cuda] swept 4294967296 seeds in 3375 s; best candidate ioc 1.481; highest histogram bin ioc >= 1.48; candidates >= 1.45: 1
+[08:38:42] [6/11 prng-step/drand48 cuda] hist 4:10510 5:5074126 6:185064347 7:1925117536 8:9511683291 9:28763595945 10:61509934945 11:114025282750 12:140928750218 13:161013624830 14:162218086058 15:147248725417 16:122444256680 17:94519442461 18:68464617063 19:46959188493 20:30717757412 21:19288004330 22:11687057187 23:6865001603 24:3925095881 25:2347299931 26:1128521372 27:605881221 28:320407584 29:167250605 30:86397783 31:44219544 32:22470982 33:11343605 34:5705440 35:2858654 36:1429067 37:713570 38:356557 39:188153 40:83017 41:41150 42:20660 43:10461 44:5169 45:2771 46:1344 47:798 48:329 49:209 50:98 51:46 52:24 53:8 54:8 55:1 56:1 57:1 58:1 63:1
+[08:38:43] [6/11 prng-step/drand48 cuda] ok in 56m21s
+[08:38:43] [7/11 prng-step/drand48-verify cpu] start (est. 0.05 h)
+[08:38:44] [7/11 prng-step/drand48-verify cpu] # step-domain verification of the 1 best candidates of drand48 (results/prng/step_drand48_07.tsv); IoC inside the window / beyond it to the end of the section
+[08:38:45] [7/11 prng-step/drand48-verify cpu] 1.481	seed 67565842	sec0.7@1+1 B map 1 keep m=27: window 1.481, beyond (486 steps) 1.000
+[08:38:45] [7/11 prng-step/drand48-verify cpu] ok in 1s
+[08:38:45] [8/11 prng-step/ruby cuda] start (est. 2.80 h)
+[08:38:50] [8/11 prng-step/ruby cuda] step: ruby sweep of 4294967296 seeds, 2 windows x 144 settings on CUDA NVIDIA GeForce RTX 2080 Ti
+[08:39:10] [8/11 prng-step/ruby cuda]   0.63%  27,042,615 seeds  1,334,600 seeds/s  eta 53m18s
+[08:39:30] [8/11 prng-step/ruby cuda]   1.26%  53,909,756 seeds  1,335,243 seeds/s  eta 52m56s
+[08:39:50] [8/11 prng-step/ruby cuda]   1.88%  80,710,648 seeds  1,334,092 seeds/s  eta 52m39s
+[08:40:10] [8/11 prng-step/ruby cuda]   2.50%  107,365,003 seeds  1,331,966 seeds/s  eta 52m24s
+[08:40:31] [8/11 prng-step/ruby cuda]   3.12%  134,122,859 seeds  1,331,677 seeds/s  eta 52m05s
+[08:40:51] [8/11 prng-step/ruby cuda]   3.75%  160,921,135 seeds  1,331,767 seeds/s  eta 51m44s
+[08:41:11] [8/11 prng-step/ruby cuda]   4.37%  187,706,279 seeds  1,331,704 seeds/s  eta 51m24s
+[08:41:31] [8/11 prng-step/ruby cuda]   4.99%  214,420,293 seeds  1,331,260 seeds/s  eta 51m05s
+[08:41:51] [8/11 prng-step/ruby cuda]   5.61%  241,081,888 seeds  1,330,703 seeds/s  eta 50m46s
+[08:42:11] [8/11 prng-step/ruby cuda]   6.23%  267,766,077 seeds  1,330,215 seeds/s  eta 50m27s
+[08:42:31] [8/11 prng-step/ruby cuda]   6.85%  294,404,253 seeds  1,329,681 seeds/s  eta 50m09s
+[08:42:51] [8/11 prng-step/ruby cuda]   7.47%  320,972,910 seeds  1,328,923 seeds/s  eta 49m50s
+[08:43:11] [8/11 prng-step/ruby cuda]   8.09%  347,434,831 seeds  1,327,878 seeds/s  eta 49m33s
+[08:43:32] [8/11 prng-step/ruby cuda]   8.71%  373,933,147 seeds  1,327,137 seeds/s  eta 49m15s
+[08:43:52] [8/11 prng-step/ruby cuda]   9.33%  400,618,129 seeds  1,327,106 seeds/s  eta 48m54s
+[08:44:12] [8/11 prng-step/ruby cuda]   9.95%  427,254,414 seeds  1,326,904 seeds/s  eta 48m35s
+[08:44:32] [8/11 prng-step/ruby cuda]  10.57%  453,912,924 seeds  1,326,860 seeds/s  eta 48m15s
+[08:44:52] [8/11 prng-step/ruby cuda]  11.19%  480,568,765 seeds  1,326,771 seeds/s  eta 47m55s
+[08:45:12] [8/11 prng-step/ruby cuda]  11.81%  507,244,852 seeds  1,326,759 seeds/s  eta 47m35s
+[08:45:32] [8/11 prng-step/ruby cuda]  12.43%  533,961,496 seeds  1,326,793 seeds/s  eta 47m15s
+[08:45:52] [8/11 prng-step/ruby cuda]  13.05%  560,584,098 seeds  1,326,626 seeds/s  eta 46m55s
+[08:46:13] [8/11 prng-step/ruby cuda]  13.67%  587,150,744 seeds  1,326,367 seeds/s  eta 46m35s
+[08:46:33] [8/11 prng-step/ruby cuda]  14.29%  613,773,808 seeds  1,326,278 seeds/s  eta 46m16s
+[08:46:53] [8/11 prng-step/ruby cuda]  14.91%  640,447,055 seeds  1,326,235 seeds/s  eta 45m56s
+[08:47:13] [8/11 prng-step/ruby cuda]  15.53%  667,115,803 seeds  1,326,221 seeds/s  eta 45m35s
+[08:47:33] [8/11 prng-step/ruby cuda]  16.15%  693,759,207 seeds  1,326,169 seeds/s  eta 45m15s
+[08:47:53] [8/11 prng-step/ruby cuda]  16.77%  720,398,821 seeds  1,326,114 seeds/s  eta 44m56s
+[08:48:13] [8/11 prng-step/ruby cuda]  17.39%  747,012,320 seeds  1,326,005 seeds/s  eta 44m36s
+[08:48:33] [8/11 prng-step/ruby cuda]  18.01%  773,531,336 seeds  1,325,740 seeds/s  eta 44m16s
+[08:48:53] [8/11 prng-step/ruby cuda]  18.63%  800,000,924 seeds  1,325,418 seeds/s  eta 43m57s
+[08:49:14] [8/11 prng-step/ruby cuda]  19.25%  826,635,647 seeds  1,325,369 seeds/s  eta 43m37s
+[08:49:34] [8/11 prng-step/ruby cuda]  19.87%  853,257,243 seeds  1,325,294 seeds/s  eta 43m17s
+[08:49:54] [8/11 prng-step/ruby cuda]  20.49%  879,855,285 seeds  1,325,205 seeds/s  eta 42m57s
+[08:50:14] [8/11 prng-step/ruby cuda]  21.10%  906,446,782 seeds  1,325,107 seeds/s  eta 42m37s
+[08:50:34] [8/11 prng-step/ruby cuda]  21.72%  932,850,530 seeds  1,324,739 seeds/s  eta 42m18s
+[08:50:54] [8/11 prng-step/ruby cuda]  22.33%  959,272,857 seeds  1,324,434 seeds/s  eta 41m59s
+[08:51:14] [8/11 prng-step/ruby cuda]  22.95%  985,684,823 seeds  1,324,135 seeds/s  eta 41m39s
+[08:51:34] [8/11 prng-step/ruby cuda]  23.57%  1,012,212,559 seeds  1,323,989 seeds/s  eta 41m19s
+[08:51:54] [8/11 prng-step/ruby cuda]  24.18%  1,038,660,574 seeds  1,323,742 seeds/s  eta 41m00s
+[08:52:15] [8/11 prng-step/ruby cuda]  24.80%  1,065,089,332 seeds  1,323,507 seeds/s  eta 40m40s
+[08:52:35] [8/11 prng-step/ruby cuda]  25.42%  1,091,585,284 seeds  1,323,369 seeds/s  eta 40m21s
+[08:52:55] [8/11 prng-step/ruby cuda]  25.96%  1,114,939,251 seeds  1,319,609 seeds/s  eta 40m10s
+[08:53:15] [8/11 prng-step/ruby cuda]  26.51%  1,138,755,221 seeds  1,316,421 seeds/s  eta 39m58s
+[08:53:35] [8/11 prng-step/ruby cuda]  27.07%  1,162,721,849 seeds  1,313,604 seeds/s  eta 39m44s
+[08:53:55] [8/11 prng-step/ruby cuda]  27.63%  1,186,829,383 seeds  1,311,003 seeds/s  eta 39m31s
+[08:54:15] [8/11 prng-step/ruby cuda]  28.20%  1,211,155,313 seeds  1,308,770 seeds/s  eta 39m16s
+[08:54:35] [8/11 prng-step/ruby cuda]  28.76%  1,235,411,536 seeds  1,306,602 seeds/s  eta 39m02s
+[08:54:56] [8/11 prng-step/ruby cuda]  29.33%  1,259,646,937 seeds  1,304,431 seeds/s  eta 38m47s
+[08:55:16] [8/11 prng-step/ruby cuda]  29.89%  1,283,920,110 seeds  1,302,427 seeds/s  eta 38m32s
+[08:55:36] [8/11 prng-step/ruby cuda]  30.46%  1,308,200,347 seeds  1,300,511 seeds/s  eta 38m17s
+[08:55:56] [8/11 prng-step/ruby cuda]  31.02%  1,332,427,512 seeds  1,298,645 seeds/s  eta 38m01s
+[08:56:16] [8/11 prng-step/ruby cuda]  31.59%  1,356,992,464 seeds  1,297,092 seeds/s  eta 37m45s
+[08:56:36] [8/11 prng-step/ruby cuda]  32.15%  1,381,026,280 seeds  1,295,113 seeds/s  eta 37m30s
+[08:56:56] [8/11 prng-step/ruby cuda]  32.72%  1,405,300,554 seeds  1,293,473 seeds/s  eta 37m14s
+[08:57:16] [8/11 prng-step/ruby cuda]  33.28%  1,429,528,553 seeds  1,291,826 seeds/s  eta 36m58s
+[08:57:37] [8/11 prng-step/ruby cuda]  33.85%  1,453,831,064 seeds  1,290,323 seeds/s  eta 36m42s
+[08:57:57] [8/11 prng-step/ruby cuda]  34.42%  1,478,201,464 seeds  1,288,925 seeds/s  eta 36m25s
+[08:58:17] [8/11 prng-step/ruby cuda]  34.98%  1,502,420,870 seeds  1,287,436 seeds/s  eta 36m09s
+[08:58:37] [8/11 prng-step/ruby cuda]  35.55%  1,526,691,700 seeds  1,286,062 seeds/s  eta 35m53s
+[08:58:57] [8/11 prng-step/ruby cuda]  36.11%  1,550,991,210 seeds  1,284,727 seeds/s  eta 35m36s
+[08:59:17] [8/11 prng-step/ruby cuda]  36.67%  1,575,116,217 seeds  1,283,296 seeds/s  eta 35m19s
+[08:59:37] [8/11 prng-step/ruby cuda]  37.24%  1,599,370,053 seeds  1,282,043 seeds/s  eta 35m03s
+[08:59:57] [8/11 prng-step/ruby cuda]  37.80%  1,623,601,809 seeds  1,280,801 seeds/s  eta 34m46s
+[09:00:18] [8/11 prng-step/ruby cuda]  38.37%  1,648,018,283 seeds  1,279,782 seeds/s  eta 34m28s
+[09:00:38] [8/11 prng-step/ruby cuda]  38.94%  1,672,260,211 seeds  1,278,595 seeds/s  eta 34m11s
+[09:00:58] [8/11 prng-step/ruby cuda]  39.50%  1,696,510,319 seeds  1,277,458 seeds/s  eta 33m54s
+[09:01:18] [8/11 prng-step/ruby cuda]  40.06%  1,720,740,486 seeds  1,276,371 seeds/s  eta 33m37s
+[09:01:38] [8/11 prng-step/ruby cuda]  40.63%  1,745,024,619 seeds  1,275,364 seeds/s  eta 33m19s
+[09:01:58] [8/11 prng-step/ruby cuda]  41.20%  1,769,402,684 seeds  1,274,409 seeds/s  eta 33m02s
+[09:02:18] [8/11 prng-step/ruby cuda]  41.76%  1,793,762,622 seeds  1,273,496 seeds/s  eta 32m44s
+[09:02:38] [8/11 prng-step/ruby cuda]  42.33%  1,818,073,287 seeds  1,272,592 seeds/s  eta 32m26s
+[09:02:59] [8/11 prng-step/ruby cuda]  42.89%  1,842,259,746 seeds  1,271,571 seeds/s  eta 32m09s
+[09:03:19] [8/11 prng-step/ruby cuda]  43.46%  1,866,593,553 seeds  1,270,723 seeds/s  eta 31m51s
+[09:03:39] [8/11 prng-step/ruby cuda]  44.03%  1,891,015,060 seeds  1,269,939 seeds/s  eta 31m33s
+[09:03:59] [8/11 prng-step/ruby cuda]  44.59%  1,915,309,261 seeds  1,269,120 seeds/s  eta 31m15s
+[09:04:19] [8/11 prng-step/ruby cuda]  45.16%  1,939,677,710 seeds  1,268,342 seeds/s  eta 30m57s
+[09:04:39] [8/11 prng-step/ruby cuda]  45.73%  1,963,991,060 seeds  1,267,559 seeds/s  eta 30m39s
+[09:04:59] [8/11 prng-step/ruby cuda]  46.29%  1,988,193,070 seeds  1,266,738 seeds/s  eta 30m21s
+[09:05:20] [8/11 prng-step/ruby cuda]  46.86%  2,012,416,853 seeds  1,265,920 seeds/s  eta 30m03s
+[09:05:40] [8/11 prng-step/ruby cuda]  47.42%  2,036,692,962 seeds  1,265,173 seeds/s  eta 29m45s
+[09:06:00] [8/11 prng-step/ruby cuda]  47.98%  2,060,904,167 seeds  1,264,409 seeds/s  eta 29m27s
+[09:06:20] [8/11 prng-step/ruby cuda]  48.55%  2,085,015,882 seeds  1,263,613 seeds/s  eta 29m09s
+[09:06:40] [8/11 prng-step/ruby cuda]  49.11%  2,109,270,721 seeds  1,262,892 seeds/s  eta 28m51s
+[09:07:00] [8/11 prng-step/ruby cuda]  49.68%  2,133,554,910 seeds  1,262,208 seeds/s  eta 28m32s
+[09:07:20] [8/11 prng-step/ruby cuda]  50.24%  2,157,682,262 seeds  1,261,484 seeds/s  eta 28m14s
+[09:07:40] [8/11 prng-step/ruby cuda]  50.80%  2,181,901,303 seeds  1,260,793 seeds/s  eta 27m56s
+[09:08:01] [8/11 prng-step/ruby cuda]  51.37%  2,206,173,552 seeds  1,260,160 seeds/s  eta 27m38s
+[09:08:21] [8/11 prng-step/ruby cuda]  51.93%  2,230,339,713 seeds  1,259,495 seeds/s  eta 27m19s
+[09:08:41] [8/11 prng-step/ruby cuda]  52.49%  2,254,482,874 seeds  1,258,810 seeds/s  eta 27m01s
+[09:09:01] [8/11 prng-step/ruby cuda]  53.05%  2,278,494,915 seeds  1,258,077 seeds/s  eta 26m43s
+[09:09:21] [8/11 prng-step/ruby cuda]  53.59%  2,301,877,333 seeds  1,257,001 seeds/s  eta 26m26s
+[09:09:41] [8/11 prng-step/ruby cuda]  54.15%  2,325,624,071 seeds  1,256,137 seeds/s  eta 26m08s
+[09:10:01] [8/11 prng-step/ruby cuda]  54.69%  2,348,900,970 seeds  1,255,045 seeds/s  eta 25m51s
+[09:10:22] [8/11 prng-step/ruby cuda]  55.25%  2,372,851,142 seeds  1,254,352 seeds/s  eta 25m32s
+[09:10:42] [8/11 prng-step/ruby cuda]  55.81%  2,397,059,448 seeds  1,253,829 seeds/s  eta 25m14s
+[09:11:02] [8/11 prng-step/ruby cuda]  56.37%  2,421,208,325 seeds  1,253,244 seeds/s  eta 24m55s
+[09:11:22] [8/11 prng-step/ruby cuda]  56.94%  2,445,451,391 seeds  1,252,746 seeds/s  eta 24m36s
+[09:11:42] [8/11 prng-step/ruby cuda]  57.50%  2,469,647,998 seeds  1,252,238 seeds/s  eta 24m18s
+[09:12:02] [8/11 prng-step/ruby cuda]  58.06%  2,493,739,695 seeds  1,251,685 seeds/s  eta 23m59s
+[09:12:22] [8/11 prng-step/ruby cuda]  58.63%  2,517,935,941 seeds  1,251,178 seeds/s  eta 23m40s
+[09:12:42] [8/11 prng-step/ruby cuda]  59.19%  2,542,063,994 seeds  1,250,654 seeds/s  eta 23m22s
+[09:13:03] [8/11 prng-step/ruby cuda]  59.75%  2,566,195,884 seeds  1,250,167 seeds/s  eta 23m03s
+[09:13:23] [8/11 prng-step/ruby cuda]  60.31%  2,590,345,202 seeds  1,249,656 seeds/s  eta 22m44s
+[09:13:43] [8/11 prng-step/ruby cuda]  60.87%  2,614,461,949 seeds  1,249,162 seeds/s  eta 22m25s
+[09:14:03] [8/11 prng-step/ruby cuda]  61.43%  2,638,574,279 seeds  1,248,686 seeds/s  eta 22m07s
+[09:14:23] [8/11 prng-step/ruby cuda]  61.99%  2,662,611,136 seeds  1,248,167 seeds/s  eta 21m48s
+[09:14:43] [8/11 prng-step/ruby cuda]  62.56%  2,686,825,276 seeds  1,247,737 seeds/s  eta 21m29s
+[09:15:03] [8/11 prng-step/ruby cuda]  63.12%  2,711,005,064 seeds  1,247,311 seeds/s  eta 21m10s
+[09:15:23] [8/11 prng-step/ruby cuda]  63.69%  2,735,278,659 seeds  1,246,942 seeds/s  eta 20m51s
+[09:15:44] [8/11 prng-step/ruby cuda]  64.24%  2,759,123,554 seeds  1,246,365 seeds/s  eta 20m32s
+[09:16:04] [8/11 prng-step/ruby cuda]  64.80%  2,783,174,314 seeds  1,245,896 seeds/s  eta 20m13s
+[09:16:24] [8/11 prng-step/ruby cuda]  65.36%  2,807,327,119 seeds  1,245,501 seeds/s  eta 19m54s
+[09:16:44] [8/11 prng-step/ruby cuda]  65.92%  2,831,394,314 seeds  1,245,060 seeds/s  eta 19m36s
+[09:17:04] [8/11 prng-step/ruby cuda]  66.48%  2,855,294,012 seeds  1,244,550 seeds/s  eta 19m17s
+[09:17:24] [8/11 prng-step/ruby cuda]  67.04%  2,879,415,954 seeds  1,244,148 seeds/s  eta 18m58s
+[09:17:44] [8/11 prng-step/ruby cuda]  67.60%  2,903,466,267 seeds  1,243,743 seeds/s  eta 18m39s
+[09:18:04] [8/11 prng-step/ruby cuda]  68.16%  2,927,518,152 seeds  1,243,319 seeds/s  eta 18m20s
+[09:18:25] [8/11 prng-step/ruby cuda]  68.72%  2,951,693,312 seeds  1,242,959 seeds/s  eta 18m01s
+[09:18:45] [8/11 prng-step/ruby cuda]  69.29%  2,975,907,591 seeds  1,242,637 seeds/s  eta 17m42s
+[09:19:05] [8/11 prng-step/ruby cuda]  69.85%  3,000,149,584 seeds  1,242,303 seeds/s  eta 17m22s
+[09:19:25] [8/11 prng-step/ruby cuda]  70.42%  3,024,368,398 seeds  1,241,983 seeds/s  eta 17m03s
+[09:19:45] [8/11 prng-step/ruby cuda]  70.98%  3,048,669,688 seeds  1,241,700 seeds/s  eta 16m44s
+[09:20:05] [8/11 prng-step/ruby cuda]  71.53%  3,072,047,704 seeds  1,241,041 seeds/s  eta 16m25s
+[09:20:25] [8/11 prng-step/ruby cuda]  72.09%  3,096,129,720 seeds  1,240,670 seeds/s  eta 16m06s
+[09:20:45] [8/11 prng-step/ruby cuda]  72.63%  3,119,519,122 seeds  1,240,043 seeds/s  eta 15m48s
+[09:21:06] [8/11 prng-step/ruby cuda]  73.17%  3,142,827,475 seeds  1,239,398 seeds/s  eta 15m30s
+[09:21:26] [8/11 prng-step/ruby cuda]  73.72%  3,166,096,970 seeds  1,238,741 seeds/s  eta 15m11s
+[09:21:46] [8/11 prng-step/ruby cuda]  74.26%  3,189,570,204 seeds  1,238,178 seeds/s  eta 14m53s
+[09:22:06] [8/11 prng-step/ruby cuda]  74.82%  3,213,641,461 seeds  1,237,865 seeds/s  eta 14m34s
+[09:22:26] [8/11 prng-step/ruby cuda]  75.38%  3,237,675,322 seeds  1,237,530 seeds/s  eta 14m14s
+[09:22:46] [8/11 prng-step/ruby cuda]  75.94%  3,261,768,340 seeds  1,237,212 seeds/s  eta 13m55s
+[09:23:06] [8/11 prng-step/ruby cuda]  76.50%  3,285,833,988 seeds  1,236,901 seeds/s  eta 13m36s
+[09:23:26] [8/11 prng-step/ruby cuda]  77.06%  3,309,845,063 seeds  1,236,577 seeds/s  eta 13m17s
+[09:23:47] [8/11 prng-step/ruby cuda]  77.62%  3,333,949,796 seeds  1,236,281 seeds/s  eta 12m57s
+[09:24:07] [8/11 prng-step/ruby cuda]  78.19%  3,358,112,967 seeds  1,236,011 seeds/s  eta 12m38s
+[09:24:27] [8/11 prng-step/ruby cuda]  78.75%  3,382,136,828 seeds  1,235,707 seeds/s  eta 12m19s
+[09:24:47] [8/11 prng-step/ruby cuda]  79.30%  3,406,114,896 seeds  1,235,385 seeds/s  eta 11m59s
+[09:25:07] [8/11 prng-step/ruby cuda]  79.87%  3,430,229,359 seeds  1,235,115 seeds/s  eta 11m40s
+[09:25:27] [8/11 prng-step/ruby cuda]  80.43%  3,454,229,313 seeds  1,234,810 seeds/s  eta 11m21s
+[09:25:47] [8/11 prng-step/ruby cuda]  80.98%  3,478,201,964 seeds  1,234,508 seeds/s  eta 11m02s
+[09:26:07] [8/11 prng-step/ruby cuda]  81.54%  3,502,154,681 seeds  1,234,183 seeds/s  eta 10m42s
+[09:26:28] [8/11 prng-step/ruby cuda]  82.10%  3,526,224,652 seeds  1,233,915 seeds/s  eta 10m23s
+[09:26:48] [8/11 prng-step/ruby cuda]  82.66%  3,550,182,651 seeds  1,233,620 seeds/s  eta 10m04s
+[09:27:08] [8/11 prng-step/ruby cuda]  83.22%  3,574,207,334 seeds  1,233,333 seeds/s  eta 9m44s
+[09:27:28] [8/11 prng-step/ruby cuda]  83.77%  3,597,890,706 seeds  1,232,939 seeds/s  eta 9m25s
+[09:27:48] [8/11 prng-step/ruby cuda]  84.33%  3,622,027,339 seeds  1,232,711 seeds/s  eta 9m06s
+[09:28:08] [8/11 prng-step/ruby cuda]  84.89%  3,646,054,818 seeds  1,232,452 seeds/s  eta 8m47s
+[09:28:28] [8/11 prng-step/ruby cuda]  85.45%  3,670,075,826 seeds  1,232,179 seeds/s  eta 8m27s
+[09:28:48] [8/11 prng-step/ruby cuda]  86.01%  3,694,176,445 seeds  1,231,951 seeds/s  eta 8m08s
+[09:29:09] [8/11 prng-step/ruby cuda]  86.57%  3,718,328,112 seeds  1,231,748 seeds/s  eta 7m48s
+[09:29:29] [8/11 prng-step/ruby cuda]  87.14%  3,742,506,717 seeds  1,231,535 seeds/s  eta 7m29s
+[09:29:49] [8/11 prng-step/ruby cuda]  87.70%  3,766,712,143 seeds  1,231,345 seeds/s  eta 7m09s
+[09:30:09] [8/11 prng-step/ruby cuda]  88.27%  3,790,991,876 seeds  1,231,184 seeds/s  eta 6m49s
+[09:30:29] [8/11 prng-step/ruby cuda]  88.83%  3,815,040,849 seeds  1,230,956 seeds/s  eta 6m30s
+[09:30:49] [8/11 prng-step/ruby cuda]  89.39%  3,839,169,489 seeds  1,230,743 seeds/s  eta 6m10s
+[09:31:09] [8/11 prng-step/ruby cuda]  89.95%  3,863,324,225 seeds  1,230,544 seeds/s  eta 5m51s
+[09:31:29] [8/11 prng-step/ruby cuda]  90.51%  3,887,416,814 seeds  1,230,342 seeds/s  eta 5m31s
+[09:31:50] [8/11 prng-step/ruby cuda]  91.07%  3,911,588,398 seeds  1,230,145 seeds/s  eta 5m12s
+[09:32:10] [8/11 prng-step/ruby cuda]  91.63%  3,935,648,284 seeds  1,229,927 seeds/s  eta 4m52s
+[09:32:30] [8/11 prng-step/ruby cuda]  92.20%  3,959,908,281 seeds  1,229,783 seeds/s  eta 4m32s
+[09:32:50] [8/11 prng-step/ruby cuda]  92.76%  3,984,133,076 seeds  1,229,619 seeds/s  eta 4m13s
+[09:33:10] [8/11 prng-step/ruby cuda]  93.33%  4,008,365,173 seeds  1,229,460 seeds/s  eta 3m53s
+[09:33:30] [8/11 prng-step/ruby cuda]  93.89%  4,032,600,537 seeds  1,229,306 seeds/s  eta 3m33s
+[09:33:50] [8/11 prng-step/ruby cuda]  94.45%  4,056,550,685 seeds  1,229,068 seeds/s  eta 3m14s
+[09:34:10] [8/11 prng-step/ruby cuda]  95.00%  4,080,059,516 seeds  1,228,703 seeds/s  eta 2m55s
+[09:34:31] [8/11 prng-step/ruby cuda]  95.53%  4,103,098,511 seeds  1,228,190 seeds/s  eta 2m36s
+[09:34:51] [8/11 prng-step/ruby cuda]  96.08%  4,126,487,948 seeds  1,227,798 seeds/s  eta 2m17s
+[09:35:11] [8/11 prng-step/ruby cuda]  96.61%  4,149,500,438 seeds  1,227,293 seeds/s  eta 1m59s
+[09:35:31] [8/11 prng-step/ruby cuda]  97.15%  4,172,535,824 seeds  1,226,807 seeds/s  eta 1m40s
+[09:35:51] [8/11 prng-step/ruby cuda]  97.69%  4,195,910,725 seeds  1,226,427 seeds/s  eta 1m21s
+[09:36:11] [8/11 prng-step/ruby cuda]  98.24%  4,219,249,442 seeds  1,226,040 seeds/s  eta 1m02s
+[09:36:31] [8/11 prng-step/ruby cuda]  98.78%  4,242,655,877 seeds  1,225,676 seeds/s  eta 43s
+[09:36:51] [8/11 prng-step/ruby cuda]  99.33%  4,266,046,590 seeds  1,225,313 seeds/s  eta 24s
+[09:37:12] [8/11 prng-step/ruby cuda]  99.87%  4,289,282,230 seeds  1,224,911 seeds/s  eta 5s
+[09:37:16] [8/11 prng-step/ruby cuda] swept 4294967296 seeds in 3507 s; best candidate ioc 0.000; highest histogram bin ioc >= 1.42; candidates >= 1.45: 0
+[09:37:16] [8/11 prng-step/ruby cuda] hist 4:7906 5:4093006 6:156952910 7:1700637176 8:8685642979 9:26973775786 10:58892040783 11:110978424980 12:138828206563 13:160027683683 14:162398971485 15:148353522034 16:124098662901 17:96353986317 18:70202750195 19:48437335690 20:31877869998 21:20140283546 22:12280758777 23:7260050939 24:4177841980 25:2515332690 26:1217735049 27:657920334 28:350178761 29:184004459 30:95649470 31:49259010 32:25183511 33:12794590 34:6471497 35:3259960 36:1640569 37:821813 38:412210 39:221096 40:97407 41:48956 42:24805 43:12220 44:6405 45:3292 46:1741 47:882 48:424 49:209 50:114 51:65 52:39 53:18 54:5 55:5 56:6 57:2
+[09:37:17] [8/11 prng-step/ruby cuda] ok in 58m32s
+[09:37:17] [9/11 prng-step/ruby-verify cpu] start (est. 0.05 h)
+[09:38:11] [9/11 prng-step/ruby-verify cpu] # step-domain verification of the 0 best candidates of ruby (results/prng/step_ruby_07.tsv); IoC inside the window / beyond it to the end of the section
+[09:38:11] [9/11 prng-step/ruby-verify cpu] no candidate reached the sweep's floor
+[09:38:12] [9/11 prng-step/ruby-verify cpu] ok in 54s
+[09:38:12] [10/11 prng-step/mt31 cuda] start (est. 2.80 h)
+[09:39:12] [10/11 prng-step/mt31 cuda] still running (1m00s), last output: (none yet)
+[09:39:44] [10/11 prng-step/mt31 cuda] step: mt31 sweep of 4294967296 seeds, 2 windows x 144 settings on CUDA NVIDIA GeForce RTX 2080 Ti
+[09:40:05] [10/11 prng-step/mt31 cuda]   0.49%  21,042,842 seeds  1,041,382 seeds/s  eta 1h08m
+[09:40:25] [10/11 prng-step/mt31 cuda]   1.01%  43,476,508 seeds  1,077,071 seeds/s  eta 1h05m
+[09:40:45] [10/11 prng-step/mt31 cuda]   1.55%  66,362,613 seeds  1,098,092 seeds/s  eta 1h04m
+[09:41:05] [10/11 prng-step/mt31 cuda]   2.03%  87,171,314 seeds  1,080,960 seeds/s  eta 1h04m
+[09:41:25] [10/11 prng-step/mt31 cuda]   2.53%  108,576,833 seeds  1,076,356 seeds/s  eta 1h04m
+[09:41:45] [10/11 prng-step/mt31 cuda]   3.02%  129,905,550 seeds  1,073,924 seeds/s  eta 1h04m
+[09:42:06] [10/11 prng-step/mt31 cuda]   3.58%  153,676,937 seeds  1,087,255 seeds/s  eta 1h03m
+[09:42:26] [10/11 prng-step/mt31 cuda]   4.07%  174,952,778 seeds  1,084,182 seeds/s  eta 1h03m
+[09:42:46] [10/11 prng-step/mt31 cuda]   4.57%  196,447,566 seeds  1,082,352 seeds/s  eta 1h03m
+[09:43:06] [10/11 prng-step/mt31 cuda]   5.08%  218,316,431 seeds  1,082,572 seeds/s  eta 1h02m
+[09:43:26] [10/11 prng-step/mt31 cuda]   5.63%  241,973,098 seeds  1,091,582 seeds/s  eta 1h01m
+[09:43:46] [10/11 prng-step/mt31 cuda]   6.15%  264,219,352 seeds  1,093,028 seeds/s  eta 1h01m
+[09:44:06] [10/11 prng-step/mt31 cuda]   6.67%  286,259,697 seeds  1,092,392 seeds/s  eta 1h01m
+[09:44:27] [10/11 prng-step/mt31 cuda]   7.17%  307,941,273 seeds  1,091,044 seeds/s  eta 1h00m
+[09:44:47] [10/11 prng-step/mt31 cuda]   7.70%  330,877,637 seeds  1,093,968 seeds/s  eta 1h00m
+[09:45:07] [10/11 prng-step/mt31 cuda]   8.27%  355,343,530 seeds  1,101,092 seeds/s  eta 59m38s
+[09:45:27] [10/11 prng-step/mt31 cuda]   8.80%  377,832,894 seeds  1,101,740 seeds/s  eta 59m15s
+[09:45:47] [10/11 prng-step/mt31 cuda]   9.30%  399,294,295 seeds  1,099,763 seeds/s  eta 59m02s
+[09:46:08] [10/11 prng-step/mt31 cuda]   9.80%  421,080,265 seeds  1,098,446 seeds/s  eta 58m47s
+[09:46:28] [10/11 prng-step/mt31 cuda]  10.32%  443,078,591 seeds  1,098,419 seeds/s  eta 58m27s
+[09:46:48] [10/11 prng-step/mt31 cuda]  10.83%  465,182,960 seeds  1,098,340 seeds/s  eta 58m07s
+[09:47:08] [10/11 prng-step/mt31 cuda]  11.35%  487,419,262 seeds  1,098,156 seeds/s  eta 57m47s
+[09:47:29] [10/11 prng-step/mt31 cuda]  11.86%  509,492,516 seeds  1,097,652 seeds/s  eta 57m29s
+[09:47:49] [10/11 prng-step/mt31 cuda]  12.38%  531,834,693 seeds  1,097,896 seeds/s  eta 57m08s
+[09:48:09] [10/11 prng-step/mt31 cuda]  12.99%  558,024,019 seeds  1,105,722 seeds/s  eta 56m20s
+[09:48:29] [10/11 prng-step/mt31 cuda]  13.49%  579,508,664 seeds  1,103,982 seeds/s  eta 56m06s
+[09:48:49] [10/11 prng-step/mt31 cuda]  14.00%  601,383,558 seeds  1,103,374 seeds/s  eta 55m48s
+[09:49:10] [10/11 prng-step/mt31 cuda]  14.53%  624,188,393 seeds  1,104,076 seeds/s  eta 55m25s
+[09:49:30] [10/11 prng-step/mt31 cuda]  15.05%  646,470,983 seeds  1,104,391 seeds/s  eta 55m04s
+[09:49:50] [10/11 prng-step/mt31 cuda]  15.67%  673,202,312 seeds  1,111,451 seeds/s  eta 54m19s
+[09:50:10] [10/11 prng-step/mt31 cuda]  16.24%  697,600,478 seeds  1,114,648 seeds/s  eta 53m47s
+[09:50:30] [10/11 prng-step/mt31 cuda]  16.85%  723,886,964 seeds  1,120,669 seeds/s  eta 53m07s
+[09:50:50] [10/11 prng-step/mt31 cuda]  17.41%  747,651,508 seeds  1,122,495 seeds/s  eta 52m40s
+[09:51:11] [10/11 prng-step/mt31 cuda]  17.92%  769,504,344 seeds  1,121,523 seeds/s  eta 52m23s
+[09:51:31] [10/11 prng-step/mt31 cuda]  18.45%  792,432,982 seeds  1,121,985 seeds/s  eta 52m02s
+[09:51:51] [10/11 prng-step/mt31 cuda]  18.96%  814,133,040 seeds  1,120,581 seeds/s  eta 51m46s
+[09:52:11] [10/11 prng-step/mt31 cuda]  19.47%  836,165,608 seeds  1,119,580 seeds/s  eta 51m29s
+[09:52:31] [10/11 prng-step/mt31 cuda]  19.96%  857,465,204 seeds  1,118,010 seeds/s  eta 51m15s
+[09:52:51] [10/11 prng-step/mt31 cuda]  20.50%  880,364,280 seeds  1,118,694 seeds/s  eta 50m52s
+[09:53:11] [10/11 prng-step/mt31 cuda]  21.00%  901,757,930 seeds  1,117,382 seeds/s  eta 50m37s
+[09:53:32] [10/11 prng-step/mt31 cuda]  21.56%  925,917,849 seeds  1,119,247 seeds/s  eta 50m10s
+[09:53:52] [10/11 prng-step/mt31 cuda]  22.12%  949,885,506 seeds  1,120,913 seeds/s  eta 49m44s
+[09:54:12] [10/11 prng-step/mt31 cuda]  22.65%  972,920,494 seeds  1,121,362 seeds/s  eta 49m23s
+[09:54:32] [10/11 prng-step/mt31 cuda]  23.22%  997,142,964 seeds  1,123,102 seeds/s  eta 48m56s
+[09:54:52] [10/11 prng-step/mt31 cuda]  23.70%  1,017,773,382 seeds  1,120,959 seeds/s  eta 48m44s
+[09:55:13] [10/11 prng-step/mt31 cuda]  24.19%  1,039,066,878 seeds  1,119,461 seeds/s  eta 48m28s
+[09:55:33] [10/11 prng-step/mt31 cuda]  24.69%  1,060,268,549 seeds  1,118,074 seeds/s  eta 48m13s
+[09:55:53] [10/11 prng-step/mt31 cuda]  25.18%  1,081,545,736 seeds  1,116,670 seeds/s  eta 47m58s
+[09:56:13] [10/11 prng-step/mt31 cuda]  25.65%  1,101,559,719 seeds  1,114,147 seeds/s  eta 47m46s
+[09:56:33] [10/11 prng-step/mt31 cuda]  26.12%  1,121,763,983 seeds  1,112,049 seeds/s  eta 47m33s
+[09:56:53] [10/11 prng-step/mt31 cuda]  26.61%  1,142,953,663 seeds  1,110,825 seeds/s  eta 47m18s
+[09:57:13] [10/11 prng-step/mt31 cuda]  27.09%  1,163,381,625 seeds  1,109,075 seeds/s  eta 47m04s
+[09:57:33] [10/11 prng-step/mt31 cuda]  27.65%  1,187,377,871 seeds  1,110,647 seeds/s  eta 46m38s
+[09:57:54] [10/11 prng-step/mt31 cuda]  28.20%  1,211,362,817 seeds  1,112,019 seeds/s  eta 46m13s
+[09:58:14] [10/11 prng-step/mt31 cuda]  28.79%  1,236,442,835 seeds  1,114,293 seeds/s  eta 45m45s
+[09:58:34] [10/11 prng-step/mt31 cuda]  29.39%  1,262,105,658 seeds  1,117,273 seeds/s  eta 45m15s
+[09:58:54] [10/11 prng-step/mt31 cuda]  30.02%  1,289,475,541 seeds  1,121,473 seeds/s  eta 44m40s
+[09:59:14] [10/11 prng-step/mt31 cuda]  30.61%  1,314,770,348 seeds  1,123,705 seeds/s  eta 44m12s
+[09:59:35] [10/11 prng-step/mt31 cuda]  31.17%  1,338,609,618 seeds  1,124,774 seeds/s  eta 43m48s
+[09:59:55] [10/11 prng-step/mt31 cuda]  31.68%  1,360,490,137 seeds  1,124,032 seeds/s  eta 43m31s
+[10:00:15] [10/11 prng-step/mt31 cuda]  32.22%  1,383,906,613 seeds  1,124,606 seeds/s  eta 43m09s
+[10:00:35] [10/11 prng-step/mt31 cuda]  32.71%  1,404,837,218 seeds  1,123,183 seeds/s  eta 42m53s
+[10:00:55] [10/11 prng-step/mt31 cuda]  33.20%  1,426,041,592 seeds  1,121,981 seeds/s  eta 42m37s
+[10:01:16] [10/11 prng-step/mt31 cuda]  33.73%  1,448,700,604 seeds  1,121,999 seeds/s  eta 42m17s
+[10:01:36] [10/11 prng-step/mt31 cuda]  34.26%  1,471,645,641 seeds  1,122,267 seeds/s  eta 41m56s
+[10:01:56] [10/11 prng-step/mt31 cuda]  34.74%  1,492,190,783 seeds  1,120,684 seeds/s  eta 41m41s
+[10:02:16] [10/11 prng-step/mt31 cuda]  35.28%  1,515,087,620 seeds  1,121,012 seeds/s  eta 41m20s
+[10:02:36] [10/11 prng-step/mt31 cuda]  35.81%  1,537,940,536 seeds  1,121,131 seeds/s  eta 40m59s
+[10:02:56] [10/11 prng-step/mt31 cuda]  36.35%  1,561,143,188 seeds  1,121,559 seeds/s  eta 40m38s
+[10:03:17] [10/11 prng-step/mt31 cuda]  36.88%  1,583,970,034 seeds  1,121,698 seeds/s  eta 40m17s
+[10:03:37] [10/11 prng-step/mt31 cuda]  37.38%  1,605,666,420 seeds  1,121,021 seeds/s  eta 39m59s
+[10:03:57] [10/11 prng-step/mt31 cuda]  37.87%  1,626,705,923 seeds  1,119,936 seeds/s  eta 39m43s
+[10:04:17] [10/11 prng-step/mt31 cuda]  38.39%  1,648,690,065 seeds  1,119,624 seeds/s  eta 39m24s
+[10:04:37] [10/11 prng-step/mt31 cuda]  38.89%  1,670,526,936 seeds  1,119,106 seeds/s  eta 39m05s
+[10:04:57] [10/11 prng-step/mt31 cuda]  39.37%  1,690,944,161 seeds  1,117,714 seeds/s  eta 38m50s
+[10:05:17] [10/11 prng-step/mt31 cuda]  39.91%  1,714,180,131 seeds  1,118,279 seeds/s  eta 38m28s
+[10:05:37] [10/11 prng-step/mt31 cuda]  40.41%  1,735,762,568 seeds  1,117,674 seeds/s  eta 38m10s
+[10:05:58] [10/11 prng-step/mt31 cuda]  40.92%  1,757,338,811 seeds  1,117,021 seeds/s  eta 37m52s
+[10:06:18] [10/11 prng-step/mt31 cuda]  41.42%  1,778,973,595 seeds  1,116,408 seeds/s  eta 37m34s
+[10:06:38] [10/11 prng-step/mt31 cuda]  41.90%  1,799,739,940 seeds  1,115,225 seeds/s  eta 37m17s
+[10:06:59] [10/11 prng-step/mt31 cuda]  42.40%  1,821,127,874 seeds  1,114,384 seeds/s  eta 37m00s
+[10:07:19] [10/11 prng-step/mt31 cuda]  42.91%  1,843,128,491 seeds  1,114,066 seeds/s  eta 36m41s
+[10:07:39] [10/11 prng-step/mt31 cuda]  43.38%  1,863,253,417 seeds  1,112,667 seeds/s  eta 36m25s
+[10:07:59] [10/11 prng-step/mt31 cuda]  43.94%  1,887,161,472 seeds  1,113,502 seeds/s  eta 36m02s
+[10:08:19] [10/11 prng-step/mt31 cuda]  44.51%  1,911,662,745 seeds  1,114,738 seeds/s  eta 35m38s
+[10:08:39] [10/11 prng-step/mt31 cuda]  45.06%  1,935,154,591 seeds  1,115,310 seeds/s  eta 35m16s
+[10:09:00] [10/11 prng-step/mt31 cuda]  45.60%  1,958,587,314 seeds  1,115,784 seeds/s  eta 34m54s
+[10:09:20] [10/11 prng-step/mt31 cuda]  46.20%  1,984,304,210 seeds  1,117,580 seeds/s  eta 34m28s
+[10:09:40] [10/11 prng-step/mt31 cuda]  46.77%  2,008,681,643 seeds  1,118,681 seeds/s  eta 34m04s
+[10:10:00] [10/11 prng-step/mt31 cuda]  47.27%  2,030,326,312 seeds  1,118,272 seeds/s  eta 33m45s
+[10:10:20] [10/11 prng-step/mt31 cuda]  47.79%  2,052,403,497 seeds  1,118,005 seeds/s  eta 33m26s
+[10:10:40] [10/11 prng-step/mt31 cuda]  48.34%  2,076,101,642 seeds  1,118,701 seeds/s  eta 33m03s
+[10:11:00] [10/11 prng-step/mt31 cuda]  48.86%  2,098,670,690 seeds  1,118,778 seeds/s  eta 32m43s
+[10:11:21] [10/11 prng-step/mt31 cuda]  49.45%  2,123,721,658 seeds  1,120,046 seeds/s  eta 32m19s
+[10:11:41] [10/11 prng-step/mt31 cuda]  50.06%  2,150,140,403 seeds  1,122,083 seeds/s  eta 31m51s
+[10:12:01] [10/11 prng-step/mt31 cuda]  50.69%  2,177,312,627 seeds  1,124,369 seeds/s  eta 31m23s
+[10:12:21] [10/11 prng-step/mt31 cuda]  51.29%  2,202,820,479 seeds  1,125,844 seeds/s  eta 30m58s
+[10:12:41] [10/11 prng-step/mt31 cuda]  51.90%  2,229,015,705 seeds  1,127,638 seeds/s  eta 30m32s
+[10:13:01] [10/11 prng-step/mt31 cuda]  52.52%  2,255,756,131 seeds  1,129,639 seeds/s  eta 30m05s
+[10:13:21] [10/11 prng-step/mt31 cuda]  53.16%  2,282,991,698 seeds  1,131,857 seeds/s  eta 29m38s
+[10:13:42] [10/11 prng-step/mt31 cuda]  53.80%  2,310,715,662 seeds  1,134,287 seeds/s  eta 29m09s
+[10:14:02] [10/11 prng-step/mt31 cuda]  54.44%  2,338,193,074 seeds  1,136,552 seeds/s  eta 28m42s
+[10:14:22] [10/11 prng-step/mt31 cuda]  55.09%  2,365,897,497 seeds  1,138,879 seeds/s  eta 28m14s
+[10:14:42] [10/11 prng-step/mt31 cuda]  55.73%  2,393,637,596 seeds  1,141,173 seeds/s  eta 27m46s
+[10:15:02] [10/11 prng-step/mt31 cuda]  56.38%  2,421,389,558 seeds  1,143,430 seeds/s  eta 27m19s
+[10:15:22] [10/11 prng-step/mt31 cuda]  57.02%  2,449,159,675 seeds  1,145,665 seeds/s  eta 26m51s
+[10:15:42] [10/11 prng-step/mt31 cuda]  57.67%  2,476,748,438 seeds  1,147,764 seeds/s  eta 26m24s
+[10:16:02] [10/11 prng-step/mt31 cuda]  58.31%  2,504,502,531 seeds  1,149,904 seeds/s  eta 25m57s
+[10:16:23] [10/11 prng-step/mt31 cuda]  58.96%  2,532,277,415 seeds  1,152,009 seeds/s  eta 25m30s
+[10:16:43] [10/11 prng-step/mt31 cuda]  59.60%  2,559,973,511 seeds  1,154,040 seeds/s  eta 25m03s
+[10:17:03] [10/11 prng-step/mt31 cuda]  60.24%  2,587,490,859 seeds  1,155,958 seeds/s  eta 24m37s
+[10:17:23] [10/11 prng-step/mt31 cuda]  60.89%  2,615,400,359 seeds  1,158,012 seeds/s  eta 24m10s
+[10:17:43] [10/11 prng-step/mt31 cuda]  61.54%  2,643,069,901 seeds  1,159,922 seeds/s  eta 23m44s
+[10:18:03] [10/11 prng-step/mt31 cuda]  62.18%  2,670,651,140 seeds  1,161,764 seeds/s  eta 23m18s
+[10:18:23] [10/11 prng-step/mt31 cuda]  62.83%  2,698,392,456 seeds  1,163,640 seeds/s  eta 22m52s
+[10:18:43] [10/11 prng-step/mt31 cuda]  63.47%  2,726,205,264 seeds  1,165,528 seeds/s  eta 22m26s
+[10:19:04] [10/11 prng-step/mt31 cuda]  64.12%  2,754,147,437 seeds  1,167,421 seeds/s  eta 22m00s
+[10:19:24] [10/11 prng-step/mt31 cuda]  64.77%  2,781,953,192 seeds  1,169,240 seeds/s  eta 21m34s
+[10:19:44] [10/11 prng-step/mt31 cuda]  65.42%  2,809,710,951 seeds  1,170,992 seeds/s  eta 21m08s
+[10:20:04] [10/11 prng-step/mt31 cuda]  66.06%  2,837,069,667 seeds  1,172,548 seeds/s  eta 20m43s
+[10:20:24] [10/11 prng-step/mt31 cuda]  66.70%  2,864,737,358 seeds  1,174,208 seeds/s  eta 20m18s
+[10:20:44] [10/11 prng-step/mt31 cuda]  67.35%  2,892,560,911 seeds  1,175,909 seeds/s  eta 19m53s
+[10:21:04] [10/11 prng-step/mt31 cuda]  67.99%  2,920,352,990 seeds  1,177,575 seeds/s  eta 19m27s
+[10:21:24] [10/11 prng-step/mt31 cuda]  68.64%  2,948,076,935 seeds  1,179,191 seeds/s  eta 19m02s
+[10:21:45] [10/11 prng-step/mt31 cuda]  69.28%  2,975,745,564 seeds  1,180,748 seeds/s  eta 18m37s
+[10:22:05] [10/11 prng-step/mt31 cuda]  69.93%  3,003,463,456 seeds  1,182,314 seeds/s  eta 18m12s
+[10:22:25] [10/11 prng-step/mt31 cuda]  70.57%  3,031,106,324 seeds  1,183,813 seeds/s  eta 17m48s
+[10:22:45] [10/11 prng-step/mt31 cuda]  71.22%  3,058,714,569 seeds  1,185,281 seeds/s  eta 17m23s
+[10:23:05] [10/11 prng-step/mt31 cuda]  71.86%  3,086,480,488 seeds  1,186,792 seeds/s  eta 16m58s
+[10:23:25] [10/11 prng-step/mt31 cuda]  72.51%  3,114,101,871 seeds  1,188,208 seeds/s  eta 16m34s
+[10:23:45] [10/11 prng-step/mt31 cuda]  73.15%  3,141,617,594 seeds  1,189,586 seeds/s  eta 16m10s
+[10:24:06] [10/11 prng-step/mt31 cuda]  73.79%  3,169,339,100 seeds  1,190,990 seeds/s  eta 15m45s
+[10:24:26] [10/11 prng-step/mt31 cuda]  74.44%  3,196,984,726 seeds  1,192,365 seeds/s  eta 15m21s
+[10:24:46] [10/11 prng-step/mt31 cuda]  75.08%  3,224,556,496 seeds  1,193,685 seeds/s  eta 14m57s
+[10:25:06] [10/11 prng-step/mt31 cuda]  75.72%  3,252,363,257 seeds  1,195,083 seeds/s  eta 14m32s
+[10:25:26] [10/11 prng-step/mt31 cuda]  76.37%  3,280,180,409 seeds  1,196,458 seeds/s  eta 14m08s
+[10:25:46] [10/11 prng-step/mt31 cuda]  77.01%  3,307,619,695 seeds  1,197,673 seeds/s  eta 13m44s
+[10:26:06] [10/11 prng-step/mt31 cuda]  77.65%  3,334,971,818 seeds  1,198,827 seeds/s  eta 13m21s
+[10:26:26] [10/11 prng-step/mt31 cuda]  78.29%  3,362,583,015 seeds  1,200,083 seeds/s  eta 12m57s
+[10:26:46] [10/11 prng-step/mt31 cuda]  78.94%  3,390,452,593 seeds  1,201,396 seeds/s  eta 12m33s
+[10:27:07] [10/11 prng-step/mt31 cuda]  79.59%  3,418,228,168 seeds  1,202,662 seeds/s  eta 12m09s
+[10:27:27] [10/11 prng-step/mt31 cuda]  80.23%  3,445,955,643 seeds  1,203,894 seeds/s  eta 11m45s
+[10:27:47] [10/11 prng-step/mt31 cuda]  80.88%  3,473,568,446 seeds  1,205,070 seeds/s  eta 11m22s
+[10:28:07] [10/11 prng-step/mt31 cuda]  81.52%  3,501,187,516 seeds  1,206,231 seeds/s  eta 10m58s
+[10:28:27] [10/11 prng-step/mt31 cuda]  82.16%  3,528,806,860 seeds  1,207,373 seeds/s  eta 10m35s
+[10:28:47] [10/11 prng-step/mt31 cuda]  82.80%  3,556,410,871 seeds  1,208,489 seeds/s  eta 10m11s
+[10:29:07] [10/11 prng-step/mt31 cuda]  83.45%  3,584,010,844 seeds  1,209,597 seeds/s  eta 9m48s
+[10:29:28] [10/11 prng-step/mt31 cuda]  84.09%  3,611,733,877 seeds  1,210,731 seeds/s  eta 9m24s
+[10:29:48] [10/11 prng-step/mt31 cuda]  84.73%  3,639,303,627 seeds  1,211,790 seeds/s  eta 9m01s
+[10:30:08] [10/11 prng-step/mt31 cuda]  85.38%  3,667,088,539 seeds  1,212,921 seeds/s  eta 8m38s
+[10:30:28] [10/11 prng-step/mt31 cuda]  86.02%  3,694,654,635 seeds  1,213,952 seeds/s  eta 8m15s
+[10:30:48] [10/11 prng-step/mt31 cuda]  86.67%  3,722,301,212 seeds  1,215,001 seeds/s  eta 7m51s
+[10:31:08] [10/11 prng-step/mt31 cuda]  87.31%  3,750,116,333 seeds  1,216,084 seeds/s  eta 7m28s
+[10:31:28] [10/11 prng-step/mt31 cuda]  87.96%  3,777,831,080 seeds  1,217,134 seeds/s  eta 7m05s
+[10:31:48] [10/11 prng-step/mt31 cuda]  88.60%  3,805,527,630 seeds  1,218,147 seeds/s  eta 6m42s
+[10:32:09] [10/11 prng-step/mt31 cuda]  89.24%  3,833,041,773 seeds  1,219,109 seeds/s  eta 6m19s
+[10:32:29] [10/11 prng-step/mt31 cuda]  89.89%  3,860,680,795 seeds  1,220,090 seeds/s  eta 5m56s
+[10:32:49] [10/11 prng-step/mt31 cuda]  90.54%  3,888,508,189 seeds  1,221,112 seeds/s  eta 5m33s
+[10:33:09] [10/11 prng-step/mt31 cuda]  91.19%  3,916,475,698 seeds  1,222,174 seeds/s  eta 5m10s
+[10:33:29] [10/11 prng-step/mt31 cuda]  91.82%  3,943,802,119 seeds  1,223,005 seeds/s  eta 4m47s
+[10:33:49] [10/11 prng-step/mt31 cuda]  92.43%  3,969,821,115 seeds  1,223,414 seeds/s  eta 4m26s
+[10:34:10] [10/11 prng-step/mt31 cuda]  93.04%  3,996,234,131 seeds  1,223,906 seeds/s  eta 4m04s
+[10:34:30] [10/11 prng-step/mt31 cuda]  93.65%  4,022,210,864 seeds  1,224,354 seeds/s  eta 3m43s
+[10:34:50] [10/11 prng-step/mt31 cuda]  94.27%  4,048,989,729 seeds  1,224,967 seeds/s  eta 3m21s
+[10:35:10] [10/11 prng-step/mt31 cuda]  94.90%  4,075,728,337 seeds  1,225,585 seeds/s  eta 2m59s
+[10:35:30] [10/11 prng-step/mt31 cuda]  95.52%  4,102,597,459 seeds  1,226,201 seeds/s  eta 2m37s
+[10:35:51] [10/11 prng-step/mt31 cuda]  96.10%  4,127,620,978 seeds  1,226,207 seeds/s  eta 2m16s
+[10:36:11] [10/11 prng-step/mt31 cuda]  96.67%  4,152,090,482 seeds  1,226,110 seeds/s  eta 1m57s
+[10:36:31] [10/11 prng-step/mt31 cuda]  97.25%  4,176,863,701 seeds  1,226,163 seeds/s  eta 1m36s
+[10:36:51] [10/11 prng-step/mt31 cuda]  97.84%  4,202,034,328 seeds  1,226,286 seeds/s  eta 1m16s
+[10:37:11] [10/11 prng-step/mt31 cuda]  98.39%  4,225,905,695 seeds  1,226,012 seeds/s  eta 56s
+[10:37:31] [10/11 prng-step/mt31 cuda]  98.92%  4,248,620,265 seeds  1,225,483 seeds/s  eta 38s
+[10:37:52] [10/11 prng-step/mt31 cuda]  99.47%  4,272,179,991 seeds  1,225,098 seeds/s  eta 19s
+[10:38:12] [10/11 prng-step/mt31 cuda]  99.96%  4,293,288,186 seeds  1,224,054 seeds/s  eta 1s
+[10:38:13] [10/11 prng-step/mt31 cuda] swept 4294967296 seeds in 3509 s; best candidate ioc 1.483; highest histogram bin ioc >= 1.48; candidates >= 1.45: 2
+[10:38:13] [10/11 prng-step/mt31 cuda] hist 4:7973 5:4099862 6:156925117 7:1700585701 8:8685698897 9:26974355548 10:58891900175 11:110978260172 12:138828121995 13:160027194847 14:162398338227 15:148354581670 16:124098334079 17:96353852347 18:70202728563 19:48437214299 20:31877907301 21:20140408020 22:12280747868 23:7260131991 24:4177895944 25:2515414357 26:1217785697 27:657957149 28:350197020 29:184030477 30:95653364 31:49255557 32:25187397 33:12790690 34:6468900 35:3257746 36:1638660 37:823073 38:413719 39:220310 40:97318 41:49040 42:24621 43:12455 44:6396 45:3315 46:1631 47:846 48:447 49:220 50:112 51:69 52:30 53:19 54:8 55:4 56:2 58:1 62:1 63:1
+[10:38:15] [10/11 prng-step/mt31 cuda] ok in 1h00m
+[10:38:15] [11/11 prng-step/mt31-verify cpu] start (est. 0.05 h)
+[10:38:18] [11/11 prng-step/mt31-verify cpu] # step-domain verification of the 2 best candidates of mt31 (results/prng/step_mt31_07.tsv); IoC inside the window / beyond it to the end of the section
+[10:38:19] [11/11 prng-step/mt31-verify cpu] 1.483	seed 3142921996	sec0.7@1 A map 0 drop m=17: window 1.483, beyond (486 steps) 0.991
+[10:38:19] [11/11 prng-step/mt31-verify cpu] 1.476	seed 3142921996	sec0.7@1 A map 0 drop m=3: window 1.476, beyond (486 steps) 1.018
+[10:38:20] [11/11 prng-step/mt31-verify cpu] ok in 4s
+
+[10:38:21] ===== summary: desktop, 2h57m =====
+  ok     setup/build-phpmt                              cpu         3s
+  ok     setup/build-walk                               cpu         1s
+  ok     setup/build-kscreen                            cpu        30s
+  ok     setup/fetch-data                               cpu         1s
+  ok     prng-step/controls                             cuda       34s
+  ok     prng-step/drand48                              cuda    56m21s
+  ok     prng-step/drand48-verify                       cpu         1s
+  ok     prng-step/ruby                                 cuda    58m32s
+  ok     prng-step/ruby-verify                          cpu        54s
+  ok     prng-step/mt31                                 cuda     1h00m
+  ok     prng-step/mt31-verify                          cpu         4s
+
+prng-step: Seeded-PRNG pads for the step-domain cipher, window 0.7: all ten generators
+  - controls (a skipped test counts as failed): GATE PASSED
+  - py3: swept 4294967296 seeds in 4790 s; best candidate ioc 0.000; highest histogram bin ioc >= 1.42; candidates >= 1.45: 0; best-ranked candidate: no candidate reached the sweep's floor
+  - php: swept 4294967296 seeds in 4531 s; best candidate ioc 0.000; highest histogram bin ioc >= 1.44; candidates >= 1.45: 0; best-ranked candidate: no candidate reached the sweep's floor
+  - glibc: swept 4294967296 seeds in 4103 s; best candidate ioc 0.000; highest histogram bin ioc >= 1.43; candidates >= 1.45: 0; best-ranked candidate: no candidate reached the sweep's floor
+  - java: swept 4294967296 seeds in 4028 s; best candidate ioc 0.000; highest histogram bin ioc >= 1.43; candidates >= 1.45: 0; best-ranked candidate: no candidate reached the sweep's floor
+  - mt32: swept 4294967296 seeds in 3833 s; best candidate ioc 0.000; highest histogram bin ioc >= 1.42; candidates >= 1.45: 0; best-ranked candidate: no candidate reached the sweep's floor
+  - net: swept 4294967296 seeds in 4082 s; best candidate ioc 0.000; highest histogram bin ioc >= 1.41; candidates >= 1.45: 0; best-ranked candidate: no candidate reached the sweep's floor
+  - msvc: swept 4294967296 seeds in 3903 s; best candidate ioc 0.000; highest histogram bin ioc >= 1.41; candidates >= 1.45: 0; best-ranked candidate: no candidate reached the sweep's floor
+  - drand48: swept 4294967296 seeds in 3375 s; best candidate ioc 1.481; highest histogram bin ioc >= 1.48; candidates >= 1.45: 1; best-ranked candidate: 1.481	seed 67565842	sec0.7@1+1 B map 1 keep m=27: window 1.481, beyond (486 steps) 1.000
+  - ruby: swept 4294967296 seeds in 3507 s; best candidate ioc 0.000; highest histogram bin ioc >= 1.42; candidates >= 1.45: 0; best-ranked candidate: no candidate reached the sweep's floor
+  - mt31: swept 4294967296 seeds in 3509 s; best candidate ioc 1.483; highest histogram bin ioc >= 1.48; candidates >= 1.45: 2; best-ranked candidate: 1.483	seed 3142921996	sec0.7@1 A map 0 drop m=17: window 1.483, beyond (486 steps) 0.991
+
+report: results/overnight/desktop/REPORT.md
+# 2026-10-21 10:38:22 exit 0

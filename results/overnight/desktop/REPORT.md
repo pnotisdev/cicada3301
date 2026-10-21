@@ -1,6 +1,6 @@
 # Overnight campaigns: report from desktop
 
-Generated on desktop at 2026-10-19 23:55:12 by `python jobs/overnight.py`. Thresholds and method: docs/CAMPAIGNS.md.
+Generated on desktop at 2026-10-21 10:38:21 by `python jobs/overnight.py`. Thresholds and method: docs/CAMPAIGNS.md.
 
 **Controls:** unit tests and kscreen selftest passed on desktop; null results below are validated.
 
@@ -339,21 +339,21 @@ The doublet fingerprint is also what a cipher gives whose ciphertext step is nev
 - verification (the best-ranked window continued to the end of its section): sec0.9@1200 B/drop m=17 stream #571 'sha256-ctr mod :2014' offset 5796: window 1.297, beyond (229 steps) 0.961
 - periodic keys (coincidences at lag 2..3000, planted controls and a structured null):   largest z of all scopes and settings: LP2 4.97; 40 random replicates of the same statistic: median 4.49, max 5.48, replicates >= LP2: 4; controls passed
 
-## prng-step: Seeded-PRNG pads for the step-domain cipher, window 0.7: all ten generators (0/20 steps done)
+## prng-step: Seeded-PRNG pads for the step-domain cipher, window 0.7: all ten generators (20/20 steps done)
 
 Research note C2: the seed sweeps of the ordinary cipher (c = p + k) cannot see a key that enters the STEP c_i - c_{i-1}. work/phpmt/step.py runs the ten generators of phpmt.cu over all 2^32 seeds and scores, per seed, 144 settings on the first 240 steps of section 0.7 (at key index 0 and 1) (variants A and C with keys mod 28 / variant B with log2 of the non-zero keys of Z29, both key maps, zero steps spending a key value or not, the 12 unit multipliers of Z28) by the index of coincidence of the decoded classes. Gates: keys equal the Rust engine for both alphabets, scores equal the numpy reference, planted seeds recovered for every generator, random ciphertext gives no candidate (work/tests/test_stepmt.py).
 
-- controls (a skipped test counts as failed): not run
-- py3: not run
-- php: not run
-- glibc: not run
-- java: not run
-- mt32: not run
-- net: not run
-- msvc: not run
-- drand48: not run
-- ruby: not run
-- mt31: not run
+- controls (a skipped test counts as failed): GATE PASSED
+- py3: swept 4294967296 seeds in 4790 s; best candidate ioc 0.000; highest histogram bin ioc >= 1.42; candidates >= 1.45: 0; best-ranked candidate: no candidate reached the sweep's floor
+- php: swept 4294967296 seeds in 4531 s; best candidate ioc 0.000; highest histogram bin ioc >= 1.44; candidates >= 1.45: 0; best-ranked candidate: no candidate reached the sweep's floor
+- glibc: swept 4294967296 seeds in 4103 s; best candidate ioc 0.000; highest histogram bin ioc >= 1.43; candidates >= 1.45: 0; best-ranked candidate: no candidate reached the sweep's floor
+- java: swept 4294967296 seeds in 4028 s; best candidate ioc 0.000; highest histogram bin ioc >= 1.43; candidates >= 1.45: 0; best-ranked candidate: no candidate reached the sweep's floor
+- mt32: swept 4294967296 seeds in 3833 s; best candidate ioc 0.000; highest histogram bin ioc >= 1.42; candidates >= 1.45: 0; best-ranked candidate: no candidate reached the sweep's floor
+- net: swept 4294967296 seeds in 4082 s; best candidate ioc 0.000; highest histogram bin ioc >= 1.41; candidates >= 1.45: 0; best-ranked candidate: no candidate reached the sweep's floor
+- msvc: swept 4294967296 seeds in 3903 s; best candidate ioc 0.000; highest histogram bin ioc >= 1.41; candidates >= 1.45: 0; best-ranked candidate: no candidate reached the sweep's floor
+- drand48: swept 4294967296 seeds in 3375 s; best candidate ioc 1.481; highest histogram bin ioc >= 1.48; candidates >= 1.45: 1; best-ranked candidate: 1.481	seed 67565842	sec0.7@1+1 B map 1 keep m=27: window 1.481, beyond (486 steps) 1.000
+- ruby: swept 4294967296 seeds in 3507 s; best candidate ioc 0.000; highest histogram bin ioc >= 1.42; candidates >= 1.45: 0; best-ranked candidate: no candidate reached the sweep's floor
+- mt31: swept 4294967296 seeds in 3509 s; best candidate ioc 1.483; highest histogram bin ioc >= 1.48; candidates >= 1.45: 2; best-ranked candidate: 1.483	seed 3142921996	sec0.7@1 A map 0 drop m=17: window 1.483, beyond (486 steps) 0.991
 
 ## layer2: Two layers from the solved pages: keyword Vigenere inside, number stream with the anti-repeat rule outside (11/11 steps done)
 
@@ -370,7 +370,7 @@ Hypothesis H-LAYER (work/log/hypotheses_2026-10-17.md): q = p + K[phi mod m] wit
 - variant A1: 20 streams with a solved key folded in, one pointer (bigram): best -5.6267 per rune (1,159,951,616 decodes in 3 min)
   - verification: 0 of 15 re-decoded hits pass (none: noise)
 
-## prng-time: Generators seeded with a millisecond timestamp of 2012-2014 (Java 48-bit, CPython two-word seeds) (87/100 steps done)
+## prng-time: Generators seeded with a millisecond timestamp of 2012-2014 (Java 48-bit, CPython two-word seeds) (100/100 steps done)
 
 The 32-bit sweeps cover every time(NULL) seed but not new Random(System.currentTimeMillis()) (Java's seed is 48-bit) or random.seed(int(time.time() * 1000)) (CPython seeds MT19937 with two 32-bit words above 2^32). Every UTC month of 2012-01 .. 2014-01, newest first, section 0.7, boundary-free bigram score, then a whole-section check of the best rows with independently built keys against random timestamps. With a validated GPU: work/phpmt/time_gpu.py (the desktop's 64-bit port bgmt64.cu, gate tests/test_bgmt64; java, py3, java-abs, and 'ruby' = Ruby's documented seeding and rand(n) rule on CPython's MT19937, not checked against a Ruby; about 9 h for all). Without one: work/prngx/time_campaign.py on the CPU (gate tests/test_prngx_time: vectors from CPython and the Java specification, seeds planted with independent keys found at rank 1, random ciphertext without candidates; about 210 h, so run the newest months with --hours). Both gates run through run_gate.py and fail on a skipped test.
 
@@ -378,5 +378,5 @@ The 32-bit sweeps cover every time(NULL) seed but not new Random(System.currentT
 - generator vectors (Java 48-bit and CPython two-word seeds): not run
 - GPU java: 25 of 25 months done; candidates after the whole-section check: none
 - GPU py3: 25 of 25 months done; candidates after the whole-section check: none
-- GPU java-abs: 23 of 25 months done; candidates after the whole-section check: none
-- GPU ruby (Ruby rule unverified): 14 of 25 months done; candidates after the whole-section check: none
+- GPU java-abs: 25 of 25 months done; candidates after the whole-section check: none
+- GPU ruby (Ruby rule unverified): 25 of 25 months done; candidates after the whole-section check: none

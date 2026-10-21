@@ -69,7 +69,7 @@
 | Dictionary screens (screen 1, screen 2, reverse direction, heading restarts) with the corrected word segmentation | partial |  | [screens](screens) |
 | Boundary-free seed sweeps of sections 0.8-0.15 over the FULL seed space (a fresh seed per section), ten generators | excluded |  | [bg_py3_all.log](prng/bg_py3_all.log), [bg_glibc_all.log](prng/bg_glibc_all.log), [bg_net_all.log](prng/bg_net_all.log) |
 | Remaining millisecond-timestamp months: java-abs 2012-01 / 02, ruby 2012-01 .. 2012-11 | excluded |  | [time_gpu](prng/time_gpu) |
-| Step-domain seed sweeps (prng-step): ten generators, IoC scoring | open |  | [step_py3_07.log](prng/step_py3_07.log), [step_php_07.log](prng/step_php_07.log), [step_glibc_07.log](prng/step_glibc_07.log), [step_java_07.log](prng/step_java_07.log), [prng_step_selftest.txt](overnight/desktop/prng_step_selftest.txt) |
+| Step-domain seed sweeps (prng-step): ten generators, IoC scoring | excluded |  | [step_py3_07.log](prng/step_py3_07.log), [step_php_07.log](prng/step_php_07.log), [step_glibc_07.log](prng/step_glibc_07.log), [step_java_07.log](prng/step_java_07.log), [step_mt31_07.log](prng/step_mt31_07.log), [step_mt31_07_verify.txt](prng/step_mt31_07_verify.txt), [step_ruby_07.log](prng/step_ruby_07.log), [prng_step_selftest.txt](overnight/desktop/prng_step_selftest.txt) |
 
 ### Cipher structure beyond c = p + k
 
