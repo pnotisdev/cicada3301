@@ -1,0 +1,59 @@
+LP2: 12956 runes, 2896 words (mean 4.47); doublets 86 = in-word 63 + across-gap 23; mean length of the word holding an in-word doublet 6.08 (n 63, s.e. 0.33); share of in-word doublets at a word edge pair 0.48 (30/63); lag6 in-word z +5.32, lag5 z +3.53
+
+## Reviewer's numbers, reproduced
+words x 0.42 x 2/29 = 2896 x 0.42 x 2/29 = 83.9 (reviewer: 2,813 words -> 81; LP2's word count by this repo's segmentation is 2896).
+mean LP2 word length weighted by adjacent pairs, sum L(L-1)/sum(L-1) = 6.02 (reviewer 6.02).
+analytic B: doublet-holding word's final length, weighting inserted words by in-word neighbour count 2L/(L+1): 5.38; unweighted mean final length of inserted words 5.17 (reviewer 5.45 likely one of these; 'edge' slots excluded would be lower). Final in-word share of B doublets analytic: 0.77 (LP2 0.73).
+
+## Word-length fits to LP2 (English histogram from the simulation corpus, G on LP2's 2896 words, 12 bins)
+A (no insertion): G 227.8 (df 11); B constant: fitted r 0.405, G 32.3 (df 10); at r = 0.42: G 32.7
+D linear a + b (L-2): a 0.406, b -0.0052, G 32.2 (df 9); pins at L=2..8: 0.41 0.40 0.40 0.39 0.39 0.38 0.37
+E proportional c (L-1): c 0.1894, G 158.6 (df 10); pins at L=2..8: 0.19 0.38 0.57 0.76 0.95 1.00 1.00
+slope scan, pins(L) = a + b (L-2), a refitted by G: b, a, G, analytic doublet-word length (LP2 6.08, A-like 6.0, B 5.4)
+  b -0.01  a 0.407  G   32.3  doublet-word len 5.25
+  b +0.00  a 0.405  G   32.3  doublet-word len 5.38
+  b +0.01  a 0.403  G   33.1  doublet-word len 5.50
+  b +0.02  a 0.402  G   34.5  doublet-word len 5.61
+  b +0.03  a 0.400  G   36.7  doublet-word len 5.71
+  b +0.04  a 0.399  G   39.4  doublet-word len 5.80
+  b +0.06  a 0.397  G   46.6  doublet-word len 5.96
+  b +0.08  a 0.397  G   55.1  doublet-word len 6.05
+  b +0.10  a 0.423  G   63.1  doublet-word len 6.05
+check, Emerson-only English (work/wordlen.py): A G 242.4; B fitted r 0.425 G 16.5 (repo: 16.5 at 42%). The multi-book English of the simulation fits worse (G 32.3): corpus floor, not the model.
+
+## Simulation (reps per model: 300)
+model  dbl tot [95%]       in-word [95%]     gap [95%]        in-share   doublet-word len [95%]  edge-pair share [95%]  lag6 z [95%]   lag5 z    mean word len   G(LP2|pooled) df p
+A    85 [68,102]        64 [49,80]        21 [13,30]      0.75      5.74 [5.05,6.43]        0.55 [0.44,0.66]      -0.1 [-1.8,+1.9] -0.1    4.05             226.4 11 2.4e-42
+B    80 [64,98]         63 [50,77]        17 [8,27]       0.79      5.38 [4.83,6.05]        0.58 [0.46,0.70]      -0.1 [-2.0,+2.2] -0.1    4.44              38.0 10 3.7e-05
+C    77 [58,95]         41 [29,54]        36 [23,48]      0.53      5.16 [4.49,5.91]        1.00 [1.00,1.00]      -0.1 [-1.8,+1.9] -0.2    4.44              36.3 10 7.4e-05
+D    76 [60,92]         59 [45,74]        17 [9,25]       0.78      5.32 [4.78,5.85]        0.58 [0.44,0.69]      +0.0 [-1.7,+2.0] -0.1    4.42              32.0  9 0.0002
+E    101 [80,120]       83 [66,100]       17 [10,26]      0.83      6.50 [5.99,6.95]        0.44 [0.34,0.55]      +0.0 [-1.7,+1.9] -0.2    4.56             159.9 10 3.4e-29
+F    104 [82,126]       84 [65,104]       21 [12,30]      0.80      6.05 [5.49,6.53]        0.51 [0.41,0.63]      +0.0 [-1.9,+2.0] -0.2    4.59              53.8 10 5.3e-08
+A6   85 [70,103]        64 [51,81]        21 [14,30]      0.75      5.74 [4.98,6.48]        0.56 [0.44,0.67]      +4.7 [+1.9,+7.6] -0.1    4.05             230.6 11 3.2e-43
+B6   80 [61,99]         62 [46,78]        17 [10,26]      0.78      5.40 [4.86,6.00]        0.59 [0.47,0.72]      +3.6 [+1.1,+6.0] -0.2    4.45              33.5 10 0.00022
+C6   76 [61,95]         40 [28,52]        36 [25,47]      0.53      5.18 [4.53,5.93]        1.00 [1.00,1.00]      +4.8 [+2.2,+7.5] -0.1    4.45              33.1 10 0.00026
+LP2  86                 63                23              0.73      6.08                    0.48                  +5.3           +3.5    4.47
+
+## Per-statistic position of LP2 inside each model's replicate distribution (fraction of reps <= LP2; 2.5%-97.5% is 'inside'), and joint check
+model  dbl tot   in-word   gap   in-share   doublet-word len   edge share   lag6 z  | inside all 4 of (in-word, gap, word len, edge)  | joint Mahalanobis p (in-word, gap, word len)
+A      0.560   0.487   0.717   0.350   0.827   0.130   1.000   | YES | 0.810
+B      0.773   0.550   0.923   0.147   0.977   0.047   1.000   | no  | 0.080
+C      0.877   1.000   0.027   1.000   0.997   0.000   1.000   | no  | 0.000
+D      0.903   0.757   0.930   0.203   0.990   0.053   1.000   | no  | 0.033
+E      0.060   0.013   0.900   0.007   0.067   0.727   1.000   | no  | 0.020
+F      0.063   0.017   0.710   0.040   0.570   0.277   1.000   | no  | 0.203
+A6     0.597   0.510   0.763   0.327   0.793   0.093   0.683   | YES | 0.770
+B6     0.813   0.570   0.927   0.137   0.983   0.047   0.933   | no  | 0.043
+C6     0.903   1.000   0.017   1.000   0.993   0.000   0.640   | no  | 0.000
+
+## In-word doublet position (pooled reps): share at a word-edge pair, and distribution of the pair's relative position in 5 bins (0 = first pair slot, 1 = last)
+LP2 (n 63): edge 0.48; rel-position bins 0.16 0.17 0.19 0.30 0.17
+A    (n 19159): edge 0.55; mean doublet-word len 5.74
+B    (n 18813): edge 0.58; mean doublet-word len 5.38
+C    (n 12172): edge 1.00; mean doublet-word len 5.16
+D    (n 17662): edge 0.58; mean doublet-word len 5.32
+E    (n 24969): edge 0.44; mean doublet-word len 6.50
+F    (n 25135): edge 0.51; mean doublet-word len 6.05
+A6   (n 19272): edge 0.56; mean doublet-word len 5.74
+B6   (n 18745): edge 0.59; mean doublet-word len 5.40
+C6   (n 12059): edge 1.00; mean doublet-word len 5.18

@@ -844,7 +844,7 @@ priority = 2
 what = "Every decoder moves the key pointer only forward at a collision; the '+1 rune in 42% of words' fit is the motivation, and 2026-10-18 adds a second: the lag-6 echo rate (0.0272 +/- 0.0047) equals the avoided-collision rate (0.0269-0.0282). H8 as defined (the null spends the colliding attempt's key value) is aligned and already visible to kscreen: alive as a partial explanation of the word lengths (G 56 -> 40); the unkeyed variant is not decoded. 2026-10-18: the nulledge option is built - deterministic word-edge nulls (0% / 100% of edges) are excluded, and the 42% mixture is measured to have no powered IoC decoder (registry row nulledge); what remains here is the extra key advance at word separators / line / page breaks 2026-10-19: the exact summed-path likelihood of chanscreen v2 marginalises over which word edges carry a keyless null or an extra key advance, which the IoC beam could not, so the 42% mixture becomes decodable there; the weak echoes stop at the word edges (the encryptor reads them), which is why the edges are the layout to use (work/log/phase20_segmentation_plan.md, plan step 3)"
 result = "One-window LP2 pilot (window 0.7 at offset 0, page-safe word-edge mask, full library, three kinds, 319,878,576 cells): no cell reaches 0 nats (max -55.3 / -58.3 / -72.4 against the null scan's -60.3 / -69.3 / -61.1 and T_edge 30.9). The full campaign (82 windows, jobs/queues/edge.txt) is written and NOT launched"
 cost = "Engine built (phase 24). Full LP2 scan of the three kinds (nullf, nulli, adv) over the 82 n300 windows x the library: about 285-400 CPU-hours (19-27 h on 15 workers)"
-needs = "A free CPU (after booknight, pdir and layout); hit rule pre-registered in work/log/phase24_word_edge_channels.md section 6 (fresh recomputation, edge score >= base + 20 nats on the same cell, aliases collapsed)"
+needs = "A free CPU (after booknight, pdir and layout); hit rule pre-registered in work/log/phase24_word_edge_channels.md section 6 (fresh recomputation, edge score >= base + 20 nats on the same cell, aliases collapsed). 2026-10-21 (phase 47): the doublet data REJECT an edge-only insertion model as the source of the +1 word lengths (joint p 0.000); a mid-word variant is the one consistent with the length fit, so the edge campaign should not be justified by that fit"
 control = "Phase 24: word-edge arc in chanscreen v2 (work/chanscreen/v2/backward_edge.rs, engine_edge.py), exact against a dense reference and bit-identical by default; 192 / 192 E4-style plants (null or extra advance at 42% of word edges) detected with the true cell within 3 nats of the best; power ladder: 24 / 24 at n >= 150 for event rates 0.1-0.6, 14-21 / 24 at n = 60; E3-style null scan over the full library (319,878,576 cells, three kinds): best S_guard -60.3 against T300 29.8, 0 cells >= 0; an independent review (phase24_review.md) addressed"
 log = ["work/log/phase10_review.md", "work/log/phase10_proposals_review.md", "work/log/phase11_review.md", "work/log/phase12_review2.md", "work/log/phase20_segmentation_plan.md", "work/log/phase24_word_edge_channels.md", "work/log/phase24_review.md"]
 files = ["work/proposals/null_beam/README.md", "results/analysis/null_insertion.txt"]
@@ -1127,6 +1127,18 @@ result = "All null: no doublet cell deviates from uniform thinning (|z| < 2.5), 
 gap = "Hashes of files the repo does not hold (the hunted page itself); doublet structure at effect sizes below the moderate power stated in the log"
 log = ["work/log/phase44_keyless_batch.md", "work/log/phase46_todo_and_leads.md"]
 files = ["work/phase44/batch.py", "work/phase44/t3_hash.py"]
+
+[[experiment]]
+id = "insertion-doublets"
+group = "structure"
+title = "Joint test: can extra runes inserted after a 100%-enforced anti-repeat rule explain both the '+1 rune in 42% of words' and the 86 surviving doublets?"
+status = "observed"
+what = "Phase 47 (an outside review's idea), preregistered, mech25-style simulation (English, LP2 layout, random key, 300 replicates per model): A the current q = 0.81 rule, no insertions; B q = 1.0 then one uniform rune in 42% of words at a uniform position; C as B but at word edges only; D insertion rising with word length; E, F variants; doublet count, in-word / gap split (63 / 23), length of doublet-bearing words (6.08), edge share, word-length G"
+control = "The reviewer's numbers reproduce (about 81 doublets, 5.45 vs 6.02 mean word lengths)"
+result = "Joint p: A 0.81 (consistent), B 0.08 (marginal), D 0.033, E 0.020, F 0.20, C 0.000: an edge-only insertion layer is REJECTED (in-word count above all 300 replicates, edge share 1.00 vs 0.48). If the +1 runes are real insertions they are mid-word, so the word-edge campaign's edge-only event model is not justified by the length fit; it needs a mid-word variant or another motivation"
+gap = "Inserted rune values uniform (an echo or copy rune would change the lag statistics); one corpus family and spelling; the 63 / 23 split is a single observation (Poisson errors 8 and 5)"
+log = ["work/log/phase47_insertion_doublets.md"]
+files = ["work/mech25/insert47.py", "results/analysis/insert47.txt", "results/analysis/insert47_q.txt"]
 
 [[experiment]]
 id = "collision-kernel-followup"
