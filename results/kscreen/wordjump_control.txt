@@ -1,0 +1,16 @@
+PASS  advsep=3 plant 'sha256-chain mod :3301' model=0 mult=1 subst=0: best 1.749 at offset 792 (truth 792); re-decode at truth 1.749; wrong conventions: advsep=0 1.234, advsep=1 1.253, advsep=4 1.268, advsep=5 1.262
+PASS  advsep=3 plant 'sha256-ctr mod :DIVINITY' model=1 mult=28 subst=1: best 2.056 at offset 3287 (truth 3287); re-decode at truth 2.056; wrong conventions: advsep=0 1.278, advsep=1 1.249, advsep=4 1.263, advsep=5 1.231
+FAIL  advsep=3 plant 'sha512-ctr mod :cicada3301' model=0 mult=28 subst=1: best 1.584 at offset 4655 (truth 4655); re-decode at truth 1.584; wrong conventions: advsep=0 1.238, advsep=1 1.249, advsep=4 1.260, advsep=5 1.264
+PASS  advsep=3 plant 'sha256-chain mod :3301' model=1 mult=1 subst=0: best 1.749 at offset 2768 (truth 2768); re-decode at truth 1.749; wrong conventions: advsep=0 1.245, advsep=1 1.281, advsep=4 1.280, advsep=5 1.249
+PASS  advsep=4 plant 'sha256-ctr mod :DIVINITY' model=0 mult=1 subst=0: best 1.671 at offset 14453 (truth 14453); re-decode at truth 1.671; wrong conventions: advsep=0 1.258, advsep=1 1.258, advsep=3 1.283, advsep=5 1.279
+PASS  advsep=4 plant 'sha512-ctr mod :cicada3301' model=1 mult=28 subst=1: best 2.056 at offset 3612 (truth 3612); re-decode at truth 2.056; wrong conventions: advsep=0 1.247, advsep=1 1.264, advsep=3 1.340, advsep=5 1.256
+FAIL  advsep=4 plant 'sha256-chain mod :3301' model=0 mult=28 subst=1: best 1.589 at offset 15276 (truth 15276); re-decode at truth 1.591; wrong conventions: advsep=0 1.252, advsep=1 1.280, advsep=3 1.255, advsep=5 1.252
+PASS  advsep=4 plant 'sha256-ctr mod :DIVINITY' model=1 mult=1 subst=0: best 1.757 at offset 8376 (truth 8376); re-decode at truth 1.757; wrong conventions: advsep=0 1.264, advsep=1 1.293, advsep=3 1.279, advsep=5 1.240
+PASS  advsep=5 plant 'sha512-ctr mod :cicada3301' model=0 mult=1 subst=0: best 1.772 at offset 15976 (truth 15976); re-decode at truth 1.772; wrong conventions: advsep=0 1.250, advsep=1 1.266, advsep=3 1.243, advsep=4 1.271
+PASS  advsep=5 plant 'sha256-chain mod :3301' model=1 mult=28 subst=1: best 2.056 at offset 16462 (truth 16462); re-decode at truth 2.056; wrong conventions: advsep=0 1.265, advsep=1 1.313, advsep=3 1.262, advsep=4 1.252
+PASS  advsep=5 plant 'sha256-ctr mod :DIVINITY' model=0 mult=28 subst=1: best 1.626 at offset 620 (truth 620); re-decode at truth 1.626; wrong conventions: advsep=0 1.258, advsep=1 1.281, advsep=3 1.249, advsep=4 1.262
+PASS  advsep=5 plant 'sha512-ctr mod :cicada3301' model=1 mult=1 subst=0: best 1.749 at offset 1023 (truth 1023); re-decode at truth 1.749; wrong conventions: advsep=0 1.257, advsep=1 1.259, advsep=3 1.275, advsep=4 1.265
+PASS  null advsep=3: rand:300:373 on the 8 section windows, mults=1, best 1.3145
+PASS  null advsep=4: rand:300:374 on the 8 section windows, mults=1, best 1.3469
+PASS  null advsep=5: rand:300:375 on the 8 section windows, mults=1, best 1.3165
+WORDJUMP CONTROL FAILED

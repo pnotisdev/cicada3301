@@ -1,0 +1,23 @@
+INFO  20 of 24 word streams are predicted flat (<= 1.003 under English); the rest cannot be additive keys of a flat text (the screen is run on all of them)
+PASS  A plant 'p35 book n prefix fwd' model=0 mult=1 plant_0: best 1.740 at offset 401 (truth 400); another word stream ('p35 book R raw fwd') on the same ciphertext: 1.185
+PASS  A plant 'p35 book n prefix fwd' model=0 mult=1 plant_1: best 2.057 at offset 611 (truth 611); another word stream ('p35 book R raw fwd') on the same ciphertext: 1.177
+PASS  A plant 'p35 book n prefix fwd' model=0 mult=1 plant_2: best 1.609 at offset 822 (truth 822); another word stream ('p35 book R raw fwd') on the same ciphertext: 1.194
+PASS  A plant 'p35 book R prefix rev' model=1 mult=28 plant_0: best 1.749 at offset 400 (truth 400); another word stream ('p35 book n prefix fwd') on the same ciphertext: 1.203
+PASS  A plant 'p35 book R prefix rev' model=1 mult=28 plant_1: best 2.056 at offset 611 (truth 611); another word stream ('p35 book n prefix fwd') on the same ciphertext: 1.187
+PASS  A plant 'p35 book R prefix rev' model=1 mult=28 plant_2: best 1.609 at offset 822 (truth 822); another word stream ('p35 book n prefix fwd') on the same ciphertext: 1.221
+PASS  A plant 'p35 seg0.15 n prefix fwd' model=1 mult=1 plant_0: best 1.775 at offset 2 (truth 0); another word stream ('p35 book R raw fwd') on the same ciphertext: 1.232
+PASS  A plant 'p35 seg0.15 n prefix fwd' model=1 mult=1 plant_1: best 2.105 at offset 0 (truth 0); another word stream ('p35 book R raw fwd') on the same ciphertext: 1.212
+PASS  A plant 'p35 seg0.15 n prefix fwd' model=1 mult=1 plant_2: best 1.600 at offset 0 (truth 0); another word stream ('p35 book R raw fwd') on the same ciphertext: 1.168
+PASS  A plant 'p35 seg0.15 R prefix rev' model=0 mult=28 plant_0: best 1.749 at offset 0 (truth 0); another word stream ('p35 book n prefix fwd') on the same ciphertext: 1.201
+PASS  A plant 'p35 seg0.15 R prefix rev' model=0 mult=28 plant_1: best 2.056 at offset 0 (truth 0); another word stream ('p35 book n prefix fwd') on the same ciphertext: 1.220
+PASS  A plant 'p35 seg0.15 R prefix rev' model=0 mult=28 plant_2: best 1.627 at offset 0 (truth 0); another word stream ('p35 book n prefix fwd') on the same ciphertext: 1.208
+PASS  B plant reversed per word 'primes-1 (totient)' model=0 mult=1 plant_0: transformed pipeline best 1.749 at offset 1734 (truth 1734); the plant WITHOUT the transform 1.214
+PASS  B plant reversed per word 'primes-1 (totient)' model=0 mult=1 plant_1: transformed pipeline best 2.065 at offset 2731 (truth 2731); the plant WITHOUT the transform 1.237
+PASS  B plant reversed per word 'primes-1 (totient)' model=0 mult=1 plant_2: transformed pipeline best 1.610 at offset 3728 (truth 3728); the plant WITHOUT the transform 1.209
+PASS  B plant reversed per clause 'pi digits (base 29)' model=1 mult=28 plant_0: transformed pipeline best 1.749 at offset 1734 (truth 1734); the plant WITHOUT the transform 1.249
+PASS  B plant reversed per clause 'pi digits (base 29)' model=1 mult=28 plant_1: transformed pipeline best 2.056 at offset 2731 (truth 2731); the plant WITHOUT the transform 1.242
+PASS  B plant reversed per clause 'pi digits (base 29)' model=1 mult=28 plant_2: transformed pipeline best 1.599 at offset 3728 (truth 3728); the plant WITHOUT the transform 1.252
+PASS  B plant reversed per line 'primes-1 (totient)' model=0 mult=1 plant_0: transformed pipeline best 1.749 at offset 1734 (truth 1734); the plant WITHOUT the transform 1.238
+PASS  B plant reversed per line 'primes-1 (totient)' model=0 mult=1 plant_1: transformed pipeline best 2.056 at offset 2731 (truth 2731); the plant WITHOUT the transform 1.261
+PASS  B plant reversed per line 'primes-1 (totient)' model=0 mult=1 plant_2: transformed pipeline best 1.609 at offset 3728 (truth 3728); the plant WITHOUT the transform 1.234
+PHASE35 CONTROLS PASSED

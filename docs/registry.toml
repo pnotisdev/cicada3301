@@ -1064,6 +1064,35 @@ log = ["work/log/phase36_layout_rules.md", "work/log/phase34_2016_message_map.md
 files = ["work/kscreen/layoutrules.py", "work/kscreen/layout_selftest.py", "results/kscreen/layout_selftest.txt"]
 
 [[experiment]]
+id = "words-map"
+group = "structure"
+title = "'Its words are the map', read literally: LP2's own word-length / word-sum sequences as key streams, and the ciphertext reversed per word, clause or line"
+status = "excluded"
+what = "Phase 35: (A) 24 streams (word length, GP index sum, GP prime-value sum per word; raw and prefix sums mod 29; forwards and reversed; whole book and per section) screened on the 8 section windows; (B) windows reversed inside every word / clause / line and screened with the default engine against the 581 flat library streams (355 M decodes per unit)"
+best = 1.374
+null = 1.3786
+chart = true
+control = "Independent planters: 21 of 21 windows recovered at the planted offset (+-2 skip alias) with IoC >= 1.60; the untransformed plant is blind to the reversed screen"
+result = "A: best 1.2557 against shuffled-stream null 1.3042; B: word 1.3385 / null 1.3210, clause 1.3740 / 1.3042, line 1.3669 / 1.3786; nothing reaches 1.40; verify.py 0 of 10 kept in each screen"
+gap = "Word sequences of the solved sections, per-page / line / clause values, other moduli; reversal combined with signs or pointer direction, of other units or of only some units; keys outside the library; clause and line plants were synthetic units"
+log = ["work/log/phase35_words_map.md", "work/log/phase34_2016_message_map.md"]
+files = ["work/kscreen/phase35.py", "results/kscreen/phase35"]
+
+[[experiment]]
+id = "word-jump"
+group = "structure"
+title = "'Its words are the map' as a key-pointer JUMP at word boundaries: extra advance by the word length or a constant (advsep=3|4|5)"
+status = "open"
+priority = 5
+what = "Phase 37: new advsep modes in work/kscreen (advsep=0|1|2 code paths unchanged; default and old modes bit-identical: results/kscreen/wordjump_identity.txt, selftest passed)"
+control = "Independent planter, 4 plants per mode: 12 / 12 returned at the exact offset; 10 / 12 with IoC >= 1.60 and two at 1.584 / 1.589 on a low-IoC plaintext window (the repo's own selftest gives 1.609-1.617 there): FAILED as pre-defined, recorded, not relaxed; default engine and wrong modes 1.23-1.34; rand nulls 1.3145 / 1.3469 / 1.3165"
+result = "No LP2 screen yet"
+cost = "About 355 M decodes per mode: 1.1-1.5 h at 2 threads, 6-7 min at 14 threads; three modes plus one matched null each about 7-9 h at 2 threads"
+needs = "A free CPU, and the plant gate rerun on a different plaintext window or the gate restated before the screen"
+log = ["work/log/phase37_word_jump.md", "work/log/phase34_2016_message_map.md"]
+files = ["work/kscreen/wordjump_control.py", "results/kscreen/wordjump_control.txt", "results/kscreen/wordjump_identity.txt", "results/kscreen/wordjump_selftest.txt"]
+
+[[experiment]]
 id = "collision-kernel-followup"
 group = "structure"
 title = "Collision-substitution kernels: B=999 re-tests, fixed halves and echo-site dispersion"

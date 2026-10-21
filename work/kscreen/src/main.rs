@@ -19,12 +19,12 @@
 //! Modes:
 //!   screen <windows.txt> <family> <out.tsv> [n=300] [beam=16] [mults=1,28|all|a,b,..] [models=0,1]
 //!          [threads=T] [top=2000] [abort=150:1.2|0] [only=<item>] [items=a:b] [minlen=50] [dir=back]
-//!          [nulledge=0|1|2] [advsep=0|1|2]
+//!          [nulledge=0|1|2] [advsep=0..5]
 //!   trace  <windows.txt> <family> <out.txt> [same options as screen] [offs=a:b]
 //!          (one line per decode, for the decode-by-decode comparison with the GPU port)
 //!   plant  <plain_windows.txt> <family> <item> <offset> <mult> <model> <keep> <seed> <subst 0|1> <out.txt>
 //!   verify <windows.txt> <family> <item> <offset> <mult> <model> <window|all> [n=0] [beam=64] [controls=K]
-//!          [nulledge=0|1|2] [advsep=0|1|2]
+//!          [nulledge=0|1|2] [advsep=0..5]
 //!          (controls=K also decodes K random offsets of the same keystream: a keystream-matched null)
 //!   info   <family>
 //!
@@ -38,6 +38,7 @@
 //! P line (per-position prev values) gets no null positions and decodes exactly as with nulledge=0. nulledge=0
 //! runs the untouched original code path, byte-identical to before.
 //!
+//! advsep=3|4|5 (docs: work/kscreen/WORDJUMP.md): the extra key-pointer advance at each word boundary is the length of the word just ended (3), a constant 2 (4) or the length of the next word (5); no line/page breaks.
 //! advsep=1|2 (docs: work/kscreen/ADVSEP.md; the layout pointer advance of NEGATIVE_SPACE.md blind spot 9):
 //! the key pointer consumes ONE extra key value between words (before the next word's first rune, per the
 //! window's L line) and, for advsep=2, also ONE extra key value at every line/page break (per the window's
@@ -296,13 +297,14 @@ fn adv_positions(w: &Win) -> Vec<usize> {
     }
     let mut adv = vec![0usize; w.runes.len()];
     let mut b = 0usize;
-    for &l in &lens {
+    for (wi, &l) in lens.iter().enumerate() {
         b += l;
         if b < w.runes.len() {
-            adv[b] += 1;
+            // 1, 2: one extra key value per boundary (original); 3: the length of the word just ended; 4: a constant 2; 5: the length of the next word (WORDJUMP.md)
+            adv[b] += match kind { 3 => l, 4 => 2, 5 => lens[wi + 1], _ => 1 };
         }
     }
-    if kind >= 2 {
+    if kind == 2 {
         for &p in &w.breaks {
             if p > 0 && p < w.runes.len() {
                 adv[p] += 1;
@@ -1141,7 +1143,7 @@ fn mode_screen(args: &[String]) {
     assert!(nulledge <= 2, "nulledge=0|1|2 (0 = off; word-edge keyless nulls, see NULLEDGE.md)");
     NULLEDGE.store(nulledge, Ordering::Relaxed);
     let advsep: usize = get(&o, "advsep", 0);
-    assert!(advsep <= 2, "advsep=0|1|2 (0 = off; extra key advances at word boundaries / layout breaks, see ADVSEP.md)");
+    assert!(advsep <= 5, "advsep=0..5 (0 = off; extra key advances at word boundaries / layout breaks, see ADVSEP.md and WORDJUMP.md)");
     ADVSEP.store(advsep, Ordering::Relaxed);
     set_pdir(&o);
     let n_req: usize = get(&o, "n", 300);
@@ -1386,7 +1388,7 @@ fn mode_trace(args: &[String]) {
     assert!(nulledge <= 2, "nulledge=0|1|2 (0 = off; word-edge keyless nulls, see NULLEDGE.md)");
     NULLEDGE.store(nulledge, Ordering::Relaxed);
     let advsep: usize = get(&o, "advsep", 0);
-    assert!(advsep <= 2, "advsep=0|1|2 (0 = off; extra key advances at word boundaries / layout breaks, see ADVSEP.md)");
+    assert!(advsep <= 5, "advsep=0..5 (0 = off; extra key advances at word boundaries / layout breaks, see ADVSEP.md and WORDJUMP.md)");
     ADVSEP.store(advsep, Ordering::Relaxed);
     set_pdir(&o);
     let n_req: usize = get(&o, "n", 300);
@@ -1536,7 +1538,7 @@ fn mode_verify(args: &[String]) {
     assert!(nulledge <= 2, "nulledge=0|1|2 (0 = off; word-edge keyless nulls, see NULLEDGE.md)");
     NULLEDGE.store(nulledge, Ordering::Relaxed);
     let advsep: usize = get(&o, "advsep", 0);
-    assert!(advsep <= 2, "advsep=0|1|2 (0 = off; extra key advances at word boundaries / layout breaks, see ADVSEP.md)");
+    assert!(advsep <= 5, "advsep=0..5 (0 = off; extra key advances at word boundaries / layout breaks, see ADVSEP.md and WORDJUMP.md)");
     ADVSEP.store(advsep, Ordering::Relaxed);
     set_pdir(&o);
     let pdir = PDIR.load(Ordering::Relaxed) > 0;
