@@ -1314,3 +1314,15 @@ result = "Structural: LP2 has 26 of its 86 doublets across word gaps, which this
 gap = "Other multiplier streams than the primes, other RARE runes than NG (the structural test applies to any single rune r: doublets would sit on plaintext r, so r must be a rune that starts words about 30% of its uses), offsets beyond 20,000"
 log = ["work/log/discord_cumulative_check_output.txt"]
 files = ["work/discord_cumulative_check.py"]
+
+[[experiment]]
+id = "s-echo-dissect"
+group = "structure"
+title = "Dissection of the lag-5 S,S echo: is S a marker or filler rune?"
+status = "observed"
+what = "Phase 55: 11 in-word S,S pairs at lag 5 against within-word and across-word shuffles (10,000 draws each); S frequency by word position and word length; neighbours of the sites; site-word lengths; the same lag, position and length tests for all 29 runes (min-p over runes and 7 lags = 203 cuts); solved pages 0-6 as negative control"
+control = "Solved pages 0-6: 1 S,S pair at lag 5 (null 0.63, p 0.49); the control shows lag-5 E and F/U position and length effects of its own, so it is clean for S at lag 5 only"
+result = "11 sites reproduce; P 0.021 over 203 cuts against the across-word null (P < 0.0001 against the within-word null); S has no favoured position (chi2 p 0.70) or length (p 0.48), site words are as long as lag-5 windows predict (8.8 vs 8.6), neighbours are not fixed, S share 3.35% vs 5.36% in the solved text. No insertion rule follows; a marker/filler S is not supported"
+gap = "Neighbour test only for S (11 sites); no fit against the English-letter length model beyond the length-weighted expectation; nothing excludes the echo being a weak S-only coincidence or a mechanism that acts on S without leaving a position signature"
+log = ["work/log/phase55_s_echo_dissect.md"]
+files = ["work/phase55_s_echo_dissect.py", "results/analysis/phase55_s_echo_dissect.txt"]
