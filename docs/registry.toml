@@ -1141,6 +1141,18 @@ log = ["work/log/phase47_insertion_doublets.md"]
 files = ["work/mech25/insert47.py", "results/analysis/insert47.txt", "results/analysis/insert47_q.txt"]
 
 [[experiment]]
+id = "ai-oracle"
+group = "claims"
+title = "The A/I oracle: one-rune words must decrypt to A or I (idea from a community verifier script, re-implemented): calibration, re-scoring of every kept campaign hit, and a screen design"
+status = "observed"
+what = "Phase 48: one-rune words of the solved plaintext (page-safe word cut, repo decryptions); LP2's one-rune words; the oracle fraction of 610 real and 179 null hits kept by past campaigns (re-decoded with the skip rule); a best-path DP over pointer drift as a screen statistic with planted keys and random-offset nulls"
+control = "Planted 0.3-text keys (13-25 one-rune words): power 0.95-1.00; random offsets: path-averaged mean 0.068 (q99.9 0.16-0.24), best-path mean 0.30-0.34 with a heavy tail (max 1.00 in the 13-word case)"
+result = "Calibration: 27 of 27 one-rune words in the solved plaintext are A or I (19 A, 8 I; Wilson 95% lower bound 87.5%; the community's 26/28 not reproduced, our count is stricter). LP2 has 83 one-rune words (community: 100). Past hits: best oracle fraction 0.40 (real) / 0.22 (null), none >= 0.5, none flagged. As a screen: power 0.97-1.00 but about 330x the cost of one IoC decode per stream-offset over a whole section; best used as a verifier and post-filter of IoC / LM hits"
+gap = "Assumes LP2's plaintext keeps English one-letter words and that LP2's separators are its word boundaries; a full screen at every offset is too costly as designed; the heavy best-path null tail needs a calibrated threshold per window"
+log = ["work/log/phase48_ai_oracle.md", "work/log/phase46_todo_and_leads.md"]
+files = ["work/mech48"]
+
+[[experiment]]
 id = "collision-kernel-followup"
 group = "structure"
 title = "Collision-substitution kernels: B=999 re-tests, fixed halves and echo-site dispersion"

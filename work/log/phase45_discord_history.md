@@ -143,3 +143,24 @@ Read-only again (one new tab, closed at the end). Same rules: nothing posted, re
 - The Welcome Pilgrim strings, the archive location of the chronology CicadasKoan asked for, and the 2014 onion page files were not located in Discord; they are in the community archive, which is not local.
 - #faq-start-here remains unread (from this tab it shows no history).
 - Search results were not exhaustive for "telnet" and "phone number" (no results in server scope).
+
+## QR posters 2012
+
+Result: **not found.** No pointer list, decoded address or Gibson-edition note from the 2012 QR-poster stage was found in the CicadaSolvers Discord. Read-only pass, one tab (closed); nothing posted, reacted to or joined.
+
+Searches run (server search, each from #general-solving): `Agrippa`, `Gibson`, `poster`, `QR`, `i2p`, `poem`. Each result list was read from the results panel (first page only); no message was jumped to, so no message links are recorded here.
+
+| Search term | Relevant hit (channel, date, first words, display name) | What it says | Use for this stage |
+|---|---|---|---|
+| Agrippa | #literature, 13/01/2026, "agrippa", ᖰᚙᜣᝇᝯᝮᚙᖳ; #general, 21/08/2026, "Deez? I only know Agrippa?", TheScareworkBoo | Single-word mentions; no text or count | none |
+| Gibson | #bot-commands, 06/08/2025, CicadaBot (rhyming recap of the 2012 chain) | Recap: 4chan /x/ image, Caesar cipher, OutGuess, subreddit book code, Mabinogion text, phone number, countdown site, physical locations. Gibson/Agrippa/QR are not mentioned in the visible text. | Shows the 2012 chain as the community describes it; no poster stage |
+| poster | #general-solving, 19/10/2026, "like theres alot of stuff that really doesnt make sense to me, like the posters", quaaaaaaaaaaack; and an Uncovering Cicada wiki snippet quoted by xenai: "The 2013 Winners Questions ... solvers retrieved the messages from posters around the world ... Shamir's Secret Sharing" | The posters are the **2013** stage (Shamir), not the 2012 QR stage | Different stage; the wiki snippet is a pointer to check, not a source |
+| QR | #bot-commands, 15/10/2026, CicadaBot (wiki search log) | Bot search log; "2012 puzzle began on January 4th" summary | none |
+| i2p | #general, 08/10/2026, DCPH: "V2? No. V3? ... I2p?" and #the-deep-web-hash, 06/12/2024, Kaon: "indexers with v3 Keys onion or i2p" | Speculation about networks for the An End page; no addresses | Context for the An End hunt, not decoded addresses |
+| poem | #literature, 17/10/2026, hcaltrom, "The Poetry Foundation, The Lady of Shalott" | Unrelated poem link | none |
+
+Notes for a follow-up (not done here):
+- The Gibson poem and its edition are not named anywhere in the searched messages. The repo's `book-codes` row covers the 2012 Mabinogion and the 2013 Liber AL codes, not a Gibson text.
+- A targeted check would need the channel history of #general-solving from 2024 (when i2p/Tor addresses were discussed in #the-deep-web-hash) and the archive's 2012 assets, not a server-wide word search. The search index returned noise for multi-word queries ("book of the dead" gave no results).
+
+QR posters 2012: resolved from the archive, search stopped (parent session: Agrippa pointer list in everywhere.jpg, decoded with the repo OutGuess reader; onion address reproduced). Discord search ended here; my tab was already closed.

@@ -137,6 +137,7 @@
 | Community claim: the 464 words of four solved sections in 16 x 29 have balanced column word lengths (R = 0.2515); 928 = 2 x 464 rune-words in segments 12-14 as a two-panel grille carrier | explained |  | [phase26_464_table.py](../work/phase26_464_table.py), [phase26_464_followup.py](../work/phase26_464_followup.py), [phase26_clause_tail.py](../work/phase26_clause_tail.py), [phase26_words.py](../work/phase26_words.py), [phase26_464_table_output.txt](../work/log/phase26_464_table_output.txt), [phase26_464_followup_output.txt](../work/log/phase26_464_followup_output.txt), [phase26_clause_tail_output.txt](../work/log/phase26_clause_tail_output.txt) |
 | The page-30 grid caption (two words, 4 + 5 runes): preregistered decryption family from the solved pages' rules and the grid's own numbers | excluded |  | [grid30_caption.py](../work/grid30_caption.py), [run.log](grid30_caption/run.log), [results.json](grid30_caption/results.json), [observed_hits.txt](grid30_caption/observed_hits.txt) |
 | The book's own numbers (squares, grid, payload, numerals) as line:position pointers into Liber Primus's own lines and the solved plaintext (Cicada's 2012 book-code format) | partial |  | [phase40_line_pointers.py](../work/phase40_line_pointers.py) |
+| The A/I oracle: one-rune words must decrypt to A or I (idea from a community verifier script, re-implemented): calibration, re-scoring of every kept campaign hit, and a screen design | observed |  | [mech48](../work/mech48) |
 
 ### What LP2 shows (any solution has to explain it)
 

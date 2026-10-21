@@ -1,0 +1,7 @@
+library streams 1439 with >=19000 values 580
+seg0.15 (3316 runes, 15 one-rune words): 3.07 ms per stream-offset, full window
+first 300 runes: 0.122 ms per stream-offset
+0.3 plaintext (13 one-rune words) | null mean 0.3012 sd 0.0897 q99.9 0.616 max 1.000 (n=1000)
+   planted: mean 1.000 min 1.000; power(>q99.9) 1.00; true-offset+1 mean 0.846
+0.3+0.5+0.1 plaintext (25 one-rune words) | null mean 0.3403 sd 0.0545 q99.9 0.600 max 0.720 (n=1000)
+   planted: mean 0.982 min 0.560; power(>q99.9) 0.97; true-offset+1 mean 0.897

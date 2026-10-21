@@ -1,0 +1,28 @@
+== real (non-null files, non-random families): 610 hits scored
+  O mean 0.0665 median 0.0000 max 0.400; hits with O>=0.5: 0 (n_one>=5: 0); min binomial p 9.67e-04
+  expected mean under 2/29: 0.0690
+  Opair mean 0.273 max 0.600
+  seg0.7: n=79 n_one=5 best O=0.400 (2/5) p=4.1e-02 Opair=0.40  file:data/library_hyp.ksb|dec13:sha256-chain mod :INSTAR|off 0 m1 model0 ioc 1.325
+  seg0.8: n=80 n_one=8 best O=0.250 (2/8) p=1.0e-01 Opair=0.25  file:data/library.ksb|md5-ctr mod :totient|off 260 m28 model0 ioc 1.296
+  seg0.9: n=76 n_one=11 best O=0.273 (3/11) p=3.6e-02 Opair=0.27  lin:2|lin2:17,10|off state=13,24 m1 model0 ioc 1.248
+  seg0.11: n=75 n_one=18 best O=0.333 (6/18) p=9.7e-04 Opair=0.33  lin:3|lin3:5,13,4|off state=23,6,8 m1 model0 ioc 1.310
+  seg0.12: n=80 n_one=5 best O=0.400 (2/5) p=4.1e-02 Opair=0.40  lin:2|lin2:23,10|off state=12,0 m1 model1 ioc 1.272
+  seg0.13: n=74 n_one=12 best O=0.250 (3/12) p=4.5e-02 Opair=0.25  lin:3|lin3:17,28,9|off state=4,13,5 m1 model0 ioc 1.298
+  seg0.14: n=75 n_one=9 best O=0.222 (2/9) p=1.2e-01 Opair=0.22  file:data/booknum.ksb|Plen agrippa lt|off 65189 m28 model0 ioc 1.316
+  seg0.15: n=71 n_one=15 best O=0.267 (4/15) p=1.7e-02 Opair=0.27  lin:3|lin3:0,17,23|off state=27,24,17 m1 model0 ioc 1.309
+  five smallest p: [('seg0.11', '6/18', '9.7e-04'), ('seg0.15', '4/15', '1.7e-02'), ('seg0.9', '3/11', '3.6e-02'), ('seg0.9', '3/11', '3.6e-02'), ('seg0.7', '2/5', '4.1e-02')]
+  Bonferroni threshold with 610 hits: p < 8.2e-05
+== null (null files / rand: families): 179 hits scored
+  O mean 0.0485 median 0.0000 max 0.222; hits with O>=0.5: 0 (n_one>=5: 0); min binomial p 3.17e-02
+  expected mean under 2/29: 0.0690
+  Opair mean 0.290 max 0.600
+  seg0.7: n=27 n_one=5 best O=0.200 (1/5) p=3.0e-01 Opair=0.40  rand:1300:31|RANDOM 969|off 15877 m28 model0 ioc 1.355
+  seg0.8: n=21 n_one=8 best O=0.125 (1/8) p=4.4e-01 Opair=0.25  file:data/phase35/words_nu|null9 p35 book R prefix rev|off 342 m1 model1 ioc 1.248
+  seg0.9: n=24 n_one=11 best O=0.182 (2/11) p=1.7e-01 Opair=0.18  rand:37:2|RANDOM 25|off 14463 m21 model1 ioc 1.302
+  seg0.11: n=19 n_one=18 best O=0.222 (4/18) p=3.2e-02 Opair=0.22  rand:12944:21|RANDOM 8136|off 1251 m1 model1 ioc 1.331
+  seg0.12: n=33 n_one=5 best O=0.200 (1/5) p=3.0e-01 Opair=0.20  file:data/library.ksb|sha256-ctr mod :within|off 12919 m1 model0 ioc 1.351
+  seg0.13: n=20 n_one=12 best O=0.167 (2/12) p=2.0e-01 Opair=0.33  file:data/phase35/words_nu|null0 p35 book R raw fwd|off 651 m1 model0 ioc 1.273
+  seg0.14: n=21 n_one=9 best O=0.222 (2/9) p=1.2e-01 Opair=0.22  rand:12944:21|RANDOM 6189|off 2629 m28 model0 ioc 1.333
+  seg0.15: n=14 n_one=15 best O=0.200 (3/15) p=8.0e-02 Opair=0.20  rand:300:11|RANDOM 95|off 3746 m1 model0 ioc 1.315
+  five smallest p: [('seg0.11', '4/18', '3.2e-02'), ('seg0.15', '3/15', '8.0e-02'), ('seg0.15', '3/15', '8.0e-02'), ('seg0.14', '2/9', '1.2e-01'), ('seg0.14', '2/9', '1.2e-01')]
+  Bonferroni threshold with 179 hits: p < 2.8e-04
