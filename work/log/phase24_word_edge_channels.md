@@ -116,3 +116,26 @@ a start inside an event, uncapped skip, other plaintext languages, stream famili
 shorter windows have no calibrated threshold; the null scan covers the stated number of cells only (a full campaign has ~100 times more windows).
 The arc explains `none` plants too (section 3), so a hit is read through the edge-vs-base rule. A campaign negative may be quoted only as "no edge-arc cell above T in the scanned windows for events at <= 60% of word
 edges, library streams, hold/spend/skip5/coin, n >= 150".
+
+## 11. One-window LP2 pilot (2026-10-21; `step4/lp_pilot_edge.py`, `results/chanscreen/edge_lp_pilot/`, `edge_lp_pilot_summary.txt`)
+Window 0.7 @ 0 (300 runes, the first window of the 82), page-safe LP2 word-edge mask of `lp_mask.py` (65 word-final and 65 word-initial candidates), full library (1,439 streams), kinds nullf / nulli / adv,
+hold/spend/skip5/coin, both signs, every offset, decoder nu = 0.42, frozen guard score; the pre-registered hit rule was wired in (any cell >= 10 nats is recomputed in a fresh call and scored against the base engine
+on the same stream and sign, +-3 offsets, all four base channels). 42 tasks, 2 workers; the PC rebooted at about 07:30 after 7 tasks, the pilot was restarted and resumed from its per-task files (35 more tasks, finished 09:33).
+**319,878,576 cells. No cell reached 0 nats, so there are no hits, no recomputations and no edge-vs-base comparisons to report.**
+
+| kind | LP2 window 0.7@0 max S_guard (argmax) | null-scan max (iid, same size) |
+|---|---|---|
+| nullf | -58.25 (sha256-ctr reject, hold, -1) | -69.34 |
+| nulli | -55.27 (sha256-chain mod, hold, +1) | -60.33 |
+| adv | -72.41 (md5-ctr reject, hold, +1) | -61.06 |
+
+The LP2 maxima lie inside the null-scan range (within 11 nats of it, both ways), 85-100 nats below T300 = 29.8 (T_edge = 30.90 for the three kinds). Reading: window 0.7@0 holds no library stream under the nullf, nulli or adv
+channel at event rates the plants cover (0.1-0.6) for the four channels; this is one window of 82, not the campaign, and excludes only what sections 4 and 10 say.
+
+## 12. The campaign queue (written, NOT launched): `jobs/queues/edge.txt`, driver `step4/edge_campaign.py`
+Run: `python jobs/jobqueue.py edge jobs/queues/edge.txt` with `QUEUE_MAX_WAIT_SECONDS=172800`. WAIT lines hold it until booknight (`book_key_screen`, `jobqueue.py booknight`), pdir (`pdir_pilot`, `jobqueue.py pdir`) and layout
+(`layout_queue`, `jobqueue.py layout`) have no python.exe. Jobs: nullf, nulli, adv, each in two halves (windows 0:41 and 41:82) with 14 workers, then `summary n300`. 82 n300 windows x 14 chunks x 3 kinds = 3,444 tasks (`edge_campaign.py plan n300`),
+each written once to `results/chanscreen/edge_n300/<kind>_w<WWW>_c<CC>.json` (a restart skips finished tasks). Cost 285-403 CPU-hours (section 8), i.e. about 20-29 hours on 14 workers. T_edge = T300 + ln 3 = 30.898.
+The summary lists tier-1 candidates (fresh score >= T_edge, reproduced, edge-base >= 20 nats); aliases still have to be collapsed with `hit_rule.collapse_hits` and the whole-section verification of `docs/CAMPAIGNS.md` follows.
+The 82 clause windows have commented-out lines (about 40% of the n300 cost) and are NOT recommended before a clause-length null calibration: the matched nulls at 60 runes reach +10 nats and power there is 14-24 of 24.
+Tested: one stream of `n300` window 0 (adv) and of clause window 3 (nullf) ran through `task()` (10 s and 9 s, no hits); the full driver has not been run end to end.

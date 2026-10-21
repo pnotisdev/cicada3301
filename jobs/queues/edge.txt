@@ -1,0 +1,32 @@
+# edge (phase 24, work/log/phase24_word_edge_channels.md): the word-edge arc of chanscreen v2 on LP2 - keyless null at word-final edges (nullf), at word-initial edges (nulli), extra key advance at word-initial edges (adv);
+# hold, spend, skip5, coin; both signs; every offset of the 1,439 library streams; page-safe word-edge masks (step4/lp_mask.py); nu = 0.42. NOT STARTED BY THE SESSION THAT WROTE IT: the user decides.
+# Cost: about 285 CPU-hours (my measured ratios 2.1 x null, 1.6 x advance on the 49 CPU-h base; 403 h from the absolute microseconds), so about 20-27 h on 15 workers. Every task is resumable
+# (results/chanscreen/edge_n300/<kind>_w<WWW>_c<CC>.json, written once). Run from the repository root: python jobs/jobqueue.py edge jobs/queues/edge.txt (an interpreter with numpy; set QUEUE_MAX_WAIT_SECONDS=172800).
+# Starts only after booknight (book_key_screen), pdir (pdir_pilot / pdir_verify) and layout (layout_queue) are done; WAIT holds at most QUEUE_MAX_WAIT_SECONDS each, so it is repeated.
+# Hit rule (pre-registered, section 6 of the log): fresh recomputation of every cell >= 10, edge - base >= 20 nats, T_edge = T300 + ln 3 = 30.90, key-sequence aliases collapsed; the one-window pilot (window 0.7@0) comes first.
+# Stop: end the python.exe processes whose command line contains jobqueue.py edge or edge_campaign.py.
+WAIT | book_key_screen
+WAIT | jobqueue.py booknight
+WAIT | book_key_screen
+WAIT | jobqueue.py booknight
+WAIT | pdir_pilot
+WAIT | jobqueue.py pdir
+WAIT | pdir_pilot
+WAIT | jobqueue.py pdir
+WAIT | layout_queue
+WAIT | jobqueue.py layout
+WAIT | layout_queue
+WAIT | jobqueue.py layout
+nullf-a | {PY} work/chanscreen/v2/step4/edge_campaign.py run n300 --kind nullf --workers 14 --windows 0:41
+nullf-b | {PY} work/chanscreen/v2/step4/edge_campaign.py run n300 --kind nullf --workers 14 --windows 41:82
+nulli-a | {PY} work/chanscreen/v2/step4/edge_campaign.py run n300 --kind nulli --workers 14 --windows 0:41
+nulli-b | {PY} work/chanscreen/v2/step4/edge_campaign.py run n300 --kind nulli --workers 14 --windows 41:82
+adv-a | {PY} work/chanscreen/v2/step4/edge_campaign.py run n300 --kind adv --workers 14 --windows 0:41
+adv-b | {PY} work/chanscreen/v2/step4/edge_campaign.py run n300 --kind adv --workers 14 --windows 41:82
+n300-summary | {PY} work/chanscreen/v2/step4/edge_campaign.py summary n300
+# Optional, NOT part of the n300 plan: the 82 clause windows (about 40% of the n300 cost). Their threshold is ln(3 N / 0.001) but power at 60-150 runes is 14-24 of 24 on plants (log, section 4)
+# and the matched nulls at n = 60 reach +10 nats; calibrate with null_scan_edge-style windows of clause length before using them. Uncomment to run.
+# clause-nullf | {PY} work/chanscreen/v2/step4/edge_campaign.py run clause --kind nullf --workers 14
+# clause-nulli | {PY} work/chanscreen/v2/step4/edge_campaign.py run clause --kind nulli --workers 14
+# clause-adv | {PY} work/chanscreen/v2/step4/edge_campaign.py run clause --kind adv --workers 14
+# clause-summary | {PY} work/chanscreen/v2/step4/edge_campaign.py summary clause
