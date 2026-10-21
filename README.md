@@ -92,6 +92,7 @@ Suggested order, from the registry; none of this is a long run unless stated. De
 
 | You want | Open |
 |---|---|
+| The findings in plain language, one page | [docs/FINDINGS.md](docs/FINDINGS.md) |
 | What is done, what is left, in one page | [STATUS.md](STATUS.md) |
 | Every result with its control, files and the logs behind it | [results/INDEX.md](results/INDEX.md), or `results/index.html` in a browser (chart of scores against the rule, filter by status) |
 | The machine-readable ledger (one row per test) | [docs/registry.toml](docs/registry.toml) |
