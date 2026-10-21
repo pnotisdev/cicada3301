@@ -41,7 +41,7 @@ What each negative does **not** exclude is listed per row; the common limits are
 
 - The transcription (rtkd/iddqd master plus our errata) is confirmed by an independent re-read; the payload's five corrected bytes agree with iddqd's own hex byte string (`payload`).
 - The signed January 2016 and April 2017 messages verify against Cicada's key 7A35090F; neither contains a key.
-- Cicada's book codes count line:character, spaces and blank lines included, on Cicada's own line-wrapped copy of the text: the 2012 Mabinogion code and the 2012 Agrippa code both reproduce that way (`book-codes`). Cicada's "Agrippa" is William Gibson's 1992 poem, not the 1651 occult text (screened too: 0 hits).
+- Cicada's book codes count line:character, spaces and blank lines included, on Cicada's own line-wrapped copy of the text: the 2012 Mabinogion code and the 2012 Agrippa code both reproduce that way (`book-codes`). Cicada's "Agrippa" is William Gibson's 1992 poem, not the 1651 occult text (screened too: 0 hits). The 2012 Blake "second chance" code also reproduces (22/22, plate 4 with its own line breaks).
 - The 1.40 IoC rule is a screening threshold between the random-key maximum (about 1.37 at 1e10 decodes) and real plaintext (>= 1.45 on 300 runes); hits are decided by whole-section verification, which no candidate has ever passed.
 
 Sources of every text and image: [SOURCES.md](SOURCES.md).
