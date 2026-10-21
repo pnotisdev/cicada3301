@@ -451,7 +451,7 @@ status = "open"
 priority = 3
 what = "c = p + pi(k_j), k a candidate book (digraph or letter spelling), pi unknown, skip rule q = 0.81. Table-free beam over the key pointer (ciphertext grouped by key letter, each group's shift integrated out; 64 states, 8 per pointer, offsets in steps of 8), then hard EM with an exact skip-rule Viterbi for decryption"
 control = "Plants with a flattening table per plant (phase 22's search), skip rule, grid offset 0-7 below the truth; power at the family threshold (p = 5e-10, exponential tail fit): 300 runes 21/40 and 27/40 (digraph / letters), 729 runes 24/30 and 28/30, 1,524 runes 19/20 and 17/20, 3,316 runes 12/12 and 12/12; 612 nulls (wrong offset, wrong book, uniform key), 0 above the threshold"
-result = "Gate only: no LP2 window has been decoded"
+result = "Stage 1 on LP2 (booknight queue, first 729 runes of the 8 section windows, both key spellings, offsets step 8): Liber AL, Blake Songs, Blake MHH, Emerson, the Mabinogion and Agrippa done (2026-10-21 12:16), 0 stage-1 hits; LP2 window scores match the gate tail (best gate z +2.9 to +4.4, a hit needs about +10); the KJV is running"
 cost = "About 0.033 ms per rune per book-offset: the frozen screen (729-rune windows at the 8 section starts, both spellings) is about 310 core-hours for the KJV, about 480 for the six cited books"
 needs = "The user's go-ahead. All six books are local (Liber AL, Agrippa, the Mabinogion, Blake in the git-ignored work/ref/corpora/cited/, URLs and SHA-256 in the log); the Agrippa copy is a raw 1651 OCR, so a negative there is weak"
 gap = "Not covered even after a run: non-English plaintexts, editions with letters our copy has and theirs lacks (no backward step), literal-F / coin / q other than 0.81, keys computed from the book"
