@@ -1117,6 +1117,18 @@ log = ["work/log/phase40_line_pointers.md", "work/log/phase31_book_codes.md"]
 files = ["work/phase40_line_pointers.py"]
 
 [[experiment]]
+id = "nested-marks"
+group = "structure"
+title = "Do LP2's marks work as paired open/close brackets (key-stack idea from the GEB dialogue)?"
+status = "negative"
+what = "Phase 53, feasibility only: mark inventory per section 0.0-0.15, equal counts / nesting / alternation for (page, paragraph) pairs, LP2-only marks, 1,000 shuffles per section"
+control = "Solved sections 0.0-0.6 as reference; shuffle null within each section (nesting holds in 72% of shuffles, so no signal)"
+result = "No candidate pairs: LP2 has the same five marks as the solved sections, none LP2-only; `&` ends sections (extra ones only in 0.8, 0.13-0.15)"
+gap = "Brackets carried by ciphertext values or word/clause lengths rather than marks; dropped marks in the transcription"
+log = ["work/log/phase53_nested_marks.md"]
+files = ["work/phase53_nested_marks.py", "results/analysis/phase53_nested_marks.txt"]
+
+[[experiment]]
 id = "keyless-batch"
 group = "structure"
 title = "Keyless batch: fine structure of the surviving doublets, DJU BEI forensics and digraph-block fingerprints, An End's hash over every held file under 512-bit functions, word-length alignment, recurring words"
