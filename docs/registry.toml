@@ -451,7 +451,7 @@ status = "open"
 priority = 3
 what = "c = p + pi(k_j), k a candidate book (digraph or letter spelling), pi unknown, skip rule q = 0.81. Table-free beam over the key pointer (ciphertext grouped by key letter, each group's shift integrated out; 64 states, 8 per pointer, offsets in steps of 8), then hard EM with an exact skip-rule Viterbi for decryption"
 control = "Plants with a flattening table per plant (phase 22's search), skip rule, grid offset 0-7 below the truth; power at the family threshold (p = 5e-10, exponential tail fit): 300 runes 21/40 and 27/40 (digraph / letters), 729 runes 24/30 and 28/30, 1,524 runes 19/20 and 17/20, 3,316 runes 12/12 and 12/12; 612 nulls (wrong offset, wrong book, uniform key), 0 above the threshold"
-result = "Stage 1 on LP2 (booknight queue, first 729 runes of the 8 section windows, both key spellings, offsets step 8): Liber AL, Blake Songs, Blake MHH, Emerson, the Mabinogion and Agrippa done (2026-10-21 12:16), 0 stage-1 hits; LP2 window scores match the gate tail (best gate z +2.9 to +4.4, a hit needs about +10); the KJV is running. CORRECTION 2026-10-21: the 'Agrippa' Cicada used (2013 book code: 'lines and numbers corresponding to verses in Agrippa's poem', archive 4chan threads of Dec 2012 / Jan 2013) is William Gibson's 1992 poem Agrippa (a book of the dead), not Cornelius Agrippa's Three Books of Occult Philosophy (the text screened); Gibson's poem is NOT screened; the owner supplied Gibson's text (Wayback copy of the author's site), confirmed as Cicada's edition by reproducing the 2012 Agrippa book code on it (phase 31 addendum 2)"
+result = "Stage 1 on LP2 (booknight queue, first 729 runes of the 8 section windows, both key spellings, offsets step 8): Liber AL, Blake Songs, Blake MHH, Emerson, the Mabinogion and Agrippa done (2026-10-21 12:16), 0 stage-1 hits; LP2 window scores match the gate tail (best gate z +2.9 to +4.4, a hit needs about +10); the KJV is running. CORRECTION 2026-10-21: the 'Agrippa' Cicada used (2013 book code: 'lines and numbers corresponding to verses in Agrippa's poem', archive 4chan threads of Dec 2012 / Jan 2013) is William Gibson's 1992 poem Agrippa (a book of the dead), not Cornelius Agrippa's Three Books of Occult Philosophy (the text screened); Gibson's poem is NOT screened; the owner supplied Gibson's text (Wayback copy of the author's site), confirmed as Cicada's edition by reproducing the 2012 Agrippa book code on it (phase 31 addendum 2). Gibson's Agrippa (Cicada's edition) screened 2026-10-21: 0 stage-1 hits, best gate z +4.6 (the poem is about 10 k characters, so short windows of key only)"
 cost = "About 0.033 ms per rune per book-offset: the frozen screen (729-rune windows at the 8 section starts, both spellings) is about 310 core-hours for the KJV, about 480 for the six cited books"
 needs = "The user's go-ahead. All six books are local (Liber AL, Agrippa, the Mabinogion, Blake in the git-ignored work/ref/corpora/cited/, URLs and SHA-256 in the log); the Agrippa copy is a raw 1651 OCR, so a negative there is weak"
 gap = "Not covered even after a run: non-English plaintexts, editions with letters our copy has and theirs lacks (no backward step), literal-F / coin / q other than 0.81, keys computed from the book"
@@ -1053,11 +1053,11 @@ files = ["work/grid30_caption.py", "results/grid30_caption/run.log", "results/gr
 id = "layout-rules"
 group = "structure"
 title = "Key signs or pointer directions from the layout numbers (page, line, position parity and mod 3, half pages): 23 rules, built and gated"
-status = "open"
+status = "partial"
 priority = 4
 what = "Phase 36: work/kscreen/layoutrules.py builds S (sign) and D (direction) vectors from the master's page and line structure, checked against an independent parse (0 mismatches on 12,947 runes)"
 control = "Independent planter, 5 rules x 3 windows: 15 / 15 recovered at the exact offset (IoC 1.56-2.07); default engine and wrong rule blind for rules with >= 10 sign changes (1.06-1.25); page and half-page rules flip whole blocks and are PARTLY seen by the default engine (unsigned up to 1.44, criterion changed after this was seen and recorded); nulls 1.291 / 1.298"
-result = "No LP2 screen yet"
+result = "4 of the 13 line / position rules run 2026-10-21 (queue now1): Ln_par 1.3449 (null 1.3223), Ls_par 1.3449 (identical best hit: the two rules give the same signs on these windows), PL_xor 1.3184, Po_par 1.3313; all verified hits fall to 1.05-1.10 over their windows: negative so far; 9 line rules and the page rules not run"
 cost = "As signs 8-13 min per rule on 14 threads (the 13 line / position rules: 1.8-2.9 h); as pdir vectors 3-8 min per vector: all 276 would be 3-8 days, run only the sign-screen survivors"
 needs = "A free CPU; page rules (0-1 sign changes in a 300-rune window) need later windows or the whole section to add anything over the default campaigns"
 log = ["work/log/phase36_layout_rules.md", "work/log/phase34_2016_message_map.md"]
@@ -1082,13 +1082,13 @@ files = ["work/kscreen/phase35.py", "results/kscreen/phase35"]
 id = "word-jump"
 group = "structure"
 title = "'Its words are the map' as a key-pointer JUMP at word boundaries: extra advance by the word length or a constant (advsep=3|4|5)"
-status = "open"
+status = "excluded"
 priority = 5
 what = "Phase 37: new advsep modes in work/kscreen (advsep=0|1|2 code paths unchanged; default and old modes bit-identical: results/kscreen/wordjump_identity.txt, selftest passed)"
 control = "Independent planter, 4 plants per mode: 12 / 12 returned at the exact offset; 10 / 12 with IoC >= 1.60 and two at 1.584 / 1.589 on a low-IoC plaintext window (the repo's own selftest gives 1.609-1.617 there): FAILED as pre-defined, recorded, not relaxed; a restated gate fixed before 12 fresh plants (Walden windows): 10 / 12 pass, FAILED again (one plant one offset off, the skip alias other selftests accept; one beam-16 shortfall of 0.059 at the exact offset); no key missed; default engine and wrong modes 1.23-1.34; rand nulls 1.3145 / 1.3469 / 1.3165"
-result = "No LP2 screen yet"
+result = "Screen run 2026-10-21 (queue now1, 12 threads): advsep 3 / 4 / 5 best IoC 1.3650 / 1.3223 / 1.3204 against matched nulls 1.3482 / 1.3313 / 1.3236; every top hit falls to 1.05-1.12 over its whole window (random offsets of the same stream about 1.06): negative"
 cost = "About 355 M decodes per mode: 1.1-1.5 h at 2 threads, 6-7 min at 14 threads; three modes plus one matched null each about 7-9 h at 2 threads"
-needs = "The user accepted a +-1 offset / beam tolerance (as the other selftests do; then 12 / 12 pass); the queue jobs/queues/wordjump.txt is launched detached and waits for booknight, pdir and layout"
+needs = "Done"
 log = ["work/log/phase37_word_jump.md", "work/log/phase34_2016_message_map.md"]
 files = ["work/kscreen/wordjump_control.py", "results/kscreen/wordjump_control.txt", "results/kscreen/wordjump_identity.txt", "results/kscreen/wordjump_selftest.txt"]
 

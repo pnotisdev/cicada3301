@@ -33,6 +33,8 @@ BOOKS = {   # smallest first; the queue runs them in this order
     "mabinogion": (os.path.join(C, "cited", "pg5160.txt"), True),
     "agrippa": (os.path.join(C, "cited", "agrippa_1651_archive_djvu.txt"), False),
     "kjv": (os.path.join(C, "pg10.txt"), True),
+    # Cicada's Agrippa (Gibson's poem; edition confirmed by reproducing the 2012 book code, phase 31 addendum 2)
+    "agrippa_gibson": (os.path.join(HERE, "ref", "user_downloads", "agrippa_gibson_wayback_20190322.txt"), False),
 }
 _cache = {}
 

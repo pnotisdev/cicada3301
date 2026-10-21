@@ -1,0 +1,18 @@
+# now1 (2026-10-21, owner's request: "run the 3 you posted"): about one hour, in sequence, 12 threads (heat), while the other queues are paused.
+# 1. Gibson's Agrippa (Cicada's edition, phase 31 addendum 2) through the phase 23 table-free book-key screen, stage 1.
+# 2. The word-jump screens (phase 37; advsep 3/4/5 with matched nulls; outputs skipped later by jobs/queues/wordjump.txt).
+# 3. The first layout sign rules (phase 36; outputs skipped later by jobs/queues/layout.txt).
+# Run with the conda Python that has numba + scipy (book_key_screen needs them).
+agrippa_gibson | {PY} work/book_key_screen.py run agrippa_gibson 12
+summary_gibson | {PY} work/book_key_screen.py summary
+advsep3 | {PY} work/kscreen/wordjump_queue.py 3 --threads 12
+null-advsep3 | {PY} work/kscreen/wordjump_queue.py 3 --null --threads 12
+advsep4 | {PY} work/kscreen/wordjump_queue.py 4 --threads 12
+null-advsep4 | {PY} work/kscreen/wordjump_queue.py 4 --null --threads 12
+advsep5 | {PY} work/kscreen/wordjump_queue.py 5 --threads 12
+null-advsep5 | {PY} work/kscreen/wordjump_queue.py 5 --null --threads 12
+Ln_par | {PY} work/kscreen/layout_queue.py Ln_par --threads 12
+null-Ln_par | {PY} work/kscreen/layout_queue.py Ln_par --null --threads 12
+Ls_par | {PY} work/kscreen/layout_queue.py Ls_par --threads 12
+PL_xor | {PY} work/kscreen/layout_queue.py PL_xor --threads 12
+Po_par | {PY} work/kscreen/layout_queue.py Po_par --threads 12
