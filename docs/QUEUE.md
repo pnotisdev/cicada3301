@@ -125,3 +125,14 @@ Finished jobs are skipped on a restart (every step is resumable). If the GPU val
 ## 2026-10-22: r4lib (R4 library campaign at the section starts)
 
 `jobs/queues/r4lib.txt`: the phase 51 mid-word engine (`lp_pilot_mid.py`, now with `--sec/--start/--n/--channels`) on the n300 windows at the start of sections 0.8, 0.9, 0.11-0.15, channels hold and spend, the full 1,439-stream library, both signs, every offset; about 2.8 CPU-h per window (about 20 CPU-h). Justified by phase 57 (R4 is the best description of LP2; the library had been searched under it on two windows only). Waits for booknight, pdir, layout and wordjump. Launch (repository root, `QUEUE_MAX_WAIT_SECONDS=172800`): `Start-Process .venv\Scripts\python.exe -ArgumentList 'jobs\jobqueue.py','r4lib','jobs\queues\r4lib.txt' -WindowStyle Hidden`. Hit rule: S_guard >= T300 = 29.80, then `work/kscreen/verify.py`.
+
+## 2026-10-22: launch queues outside the Claude app
+
+Queues started with `Start-Process` from a Claude Code shell die when the Claude desktop app restarts (they stay in its process tree; this happened at an app update on 2026-10-22, KJV at 495/761, nothing finished was lost). Launch them through WMI instead, so their parent is the WMI service and they survive app restarts (PowerShell, repository root; environment variables go inside a `cmd /c`):
+
+```
+$root=(Get-Location).Path; $venv="$root\.venv\Scripts\python.exe"; $kb="$root\work\kscreen\target\pdir\kscreen.exe"
+Invoke-CimMethod -ClassName Win32_Process -MethodName Create -Arguments @{CommandLine="`"$((Get-Command python).Source)`" jobs\jobqueue.py booknight jobs\queues\booknight.txt"; CurrentDirectory=$root}
+Invoke-CimMethod -ClassName Win32_Process -MethodName Create -Arguments @{CommandLine="cmd /c set QUEUE_MAX_WAIT_SECONDS=172800&& set `"KSCREEN_BIN=$kb`"&& `"$venv`" jobs\jobqueue.py pdir jobs\queues\pdir.txt"; CurrentDirectory=$root}
+```
+(the same `cmd /c set QUEUE_MAX_WAIT_SECONDS=172800&& ...` form for layout, wordjump and r4lib), then `python scripts/queue_priority.py` for below-normal priority. A PC reboot still stops everything.
