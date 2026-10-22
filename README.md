@@ -61,7 +61,7 @@ Full list with controls, scope and what each negative does **not** exclude: [STA
 * **Transcription:** an independent OCR re-read confirms the LP2 transcription. Corrections found: one rune-order error on a solved page (BELIEVE), **5 byte errors in the 256-byte base-60 payload** (3 also in Dukotah's `canon_256.bin`), no merged doublets anywhere, and the word dots match the page images (0 of 2,334 missing).
 * **The cipher's fingerprint:**
   * flat unigrams and bigrams, no coincidence peak at any lag, no literal-F excess (so LP2 is not a single layer with the solved pages' literal-F convention);
-  * doublets suppressed to 0.63% against 3.45%: the anti-repeat rule is enforced about 81% of the time;
+  * doublets suppressed to 0.66% (86 of 12,947 pairs; 0.63% inside words) against 3.45%: the anti-repeat rule is enforced about 81% of the time;
   * a **within-word lag-5 echo** (z +3.7, carried by the rune S) and a **lag-6 relation c' = 24 - 2c** (z +5.0), both strictly inside words and flat over the position in the word: the mechanism knows where words begin and end;
   * word lengths with no serial structure: 2-rune words are 15.5% against 20-27% in English; the best simple fit is one extra rune in about 42% of multi-rune words (p 0.085).
 * **Method findings that changed what the negatives mean:**
@@ -104,6 +104,8 @@ Suggested order, from the registry; none of this is a long run unless stated. De
 | **For AI agents:** the working rules and the order to read things | [CLAUDE.md](CLAUDE.md) |
 
 After a new result: add or update its row in `docs/registry.toml`, then run `python scripts/build_overview.py` (it rewrites STATUS.md, `results/INDEX.md`, `results/index.html` and the status block above; `--check` is part of the test suite, so the pages cannot drift).
+
+**Reproduce:** after `python scripts/fetch_data.py`, `python scripts/reproduce_signals.py` recomputes the numbers in [docs/FINDINGS.md](docs/FINDINGS.md) section 1 (1-4 minutes, below-normal priority) and prints each next to the claimed value with PASS / FAIL; `--fast` skips the mechanism simulation.
 
 ## Quick start
 

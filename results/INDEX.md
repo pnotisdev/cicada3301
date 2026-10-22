@@ -150,12 +150,13 @@
 | Community claims: Mike's skip-optimised period 13 on 54+55.jpg with the full selection pipeline; what the 1033.jpg blob by Newton's finger is (added text vs a shrunken logo) | explained |  | [p13_full](../work/p13_full), [blake1033](../work/blake1033) |
 | Discord 2026-10-22: avaster's cumulative prime-multiplier cipher; DCPH's book key + random doublet skip | excluded |  | [discord_cumulative_check.py](../work/discord_cumulative_check.py) |
 | An End's SHA-512: archived Cicada onion and site captures hashed | excluded |  | [phase52](../work/phase52) |
+| One command that recomputes the numbers of docs/FINDINGS.md section 1 (PASS / FAIL) | observed |  | [reproduce_signals.py](../scripts/reproduce_signals.py), [test_reproduce_signals.py](../work/tests/test_reproduce_signals.py) |
 
 ### What LP2 shows (any solution has to explain it)
 
 | Test | Status | Best (null) | Files |
 |---|---|---|---|
-| Doublet deficit: 0.63% of adjacent pairs against 3.45% expected | observed |  | [seploss.txt](analysis/seploss.txt) |
+| Doublet deficit: 0.66% of adjacent pairs (0.63% inside words) against 3.45% expected | observed |  | [seploss.txt](analysis/seploss.txt) |
 | Within-word lag-5 echo | observed |  | [echo_position.txt](analysis/echo_position.txt), [lag5_check.txt](analysis/lag5_check.txt), [echo_pairs_report.md](../work/tmp/echo_pairs_report.md) |
 | Within-word lag-6 relation c' = 24 - 2c | observed |  | [echo_values.txt](analysis/echo_values.txt), [lag5_affine.txt](analysis/lag5_affine.txt), [lag_feedback_scope_extension.txt](../work/tmp/lag_feedback_scope_extension.txt), [w3_sharp_test.txt](../work/tmp/w3_sharp_test.txt) |
 | Word lengths: no serial structure, fewer 2-rune words than English | observed |  | [wordlen.txt](analysis/wordlen.txt), [wordlen_adjacency.txt](analysis/wordlen_adjacency.txt), [wordlen_parametric.txt](analysis/wordlen_parametric.txt) |

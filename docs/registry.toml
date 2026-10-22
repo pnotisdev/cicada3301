@@ -779,7 +779,7 @@ log = ["PLAN.md", "docs/prs/INDEX.md"]
 [[experiment]]
 id = "obs-doublets"
 group = "observed"
-title = "Doublet deficit: 0.63% of adjacent pairs against 3.45% expected"
+title = "Doublet deficit: 0.66% of adjacent pairs (0.63% inside words) against 3.45% expected"
 status = "observed"
 result = "81% enforcement (the skip / coin anti-repeat rule); boundary-blind; the surviving in-word doublets are consistent with the coin model (G 3.0 against 9.4 for uniform; informational, one synthetic control) 2026-10-21, community (Mike): with a skip-on-repeat cipher even the right key gives two valid readings whenever k[j+1] - k[j] = c[i] - c[i-1], at 6-7% of positions on English; a greedy reader without language checks loses sync after 21-125 runes (the repo decoders track skips with a beam and an explicit skip cost)"
 log = ["PLAN.md", "work/log/phase10_proposals_review.md"]
@@ -1422,3 +1422,15 @@ result = "max S_guard -63.96 (keywords) and -62.46 (phi); 0 cells >= 20"
 gap = "Keywords outside the set, coin/skip5 for keywords, the literal-F variant, two-layer keys, other insertion rules, section 0.10"
 log = ["work/log/phase59_keywords_r4.md"]
 files = ["work/phase59_keywords_r4.py", "results/analysis/phase59_keywords_r4.txt"]
+
+[[experiment]]
+id = "reproduce-signals"
+group = "claims"
+title = "One command that recomputes the numbers of docs/FINDINGS.md section 1 (PASS / FAIL)"
+status = "observed"
+what = "scripts/reproduce_signals.py imports the phase code and recomputes doublets, the lag-6 relation (hits, null, z, across gaps, 812 affine forms), flatness, word lengths and the +1 rune fit, the R4 fit, the gap-doublet counts, the prime clause sums and the A/I verifier; --fast skips R4 and cuts null draws (unit test work/tests/test_reproduce_signals.py)"
+control = "Each line carries a tolerance for its null-draw count; the underlying phases keep their own planted controls"
+result = "All claims reproduce within tolerance except one wording error, fixed 2026-10-22: the doublet rate is 0.66% of all adjacent pairs (86 of 12,947), 0.63% is the in-word rate. Phase 54 vs 57 per-section lag-6 statistics (28.75 vs 1.4) both reproduce and differ only in their expectation (section-composition shuffle mean vs equal rate per site)"
+gap = "Not recomputed: the P 0.005-0.013 over the whole relation search (only the 812 lag-6 affine forms), uniformity of doublets over runes, the ID3 clause-sum product; null draws are fewer than in the phases"
+log = ["work/log/phase54_lag6_dissect.md", "work/log/phase57_mechanism.md"]
+files = ["scripts/reproduce_signals.py", "work/tests/test_reproduce_signals.py"]

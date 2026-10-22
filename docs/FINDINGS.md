@@ -6,7 +6,7 @@
 
 | Signal | Measurement | Row |
 |---|---|---|
-| **Doublets are suppressed.** | 0.63% of adjacent pairs are equal against 3.45% for random text: about 81% of would-be repeats are prevented, equally for all 29 runes, inside words and across word gaps. Every other pair is flat (chi-square 786 against 760 +- 45). | `obs-doublets` |
+| **Doublets are suppressed.** | 0.66% of adjacent pairs (86 of 12,947; 0.63% inside words) are equal against 3.45% for random text: about 81% of would-be repeats are prevented, equally for all 29 runes, inside words and across word gaps. Every other pair is flat (chi-square 786 against 760 +- 45). | `obs-doublets` |
 | **A lag-6 relation inside words: c' = 24 - 2c (mod 29).** | 80 within-word pairs against 44.5 expected (z +5.3); zero excess across word gaps; P 0.005-0.013 after correcting for every relation searched; its rate (0.027 per pair) equals the rate of suppressed collisions. Not reported by any other source we found. | `obs-lag6` |
 | **A lag-5 echo inside words, carried by the rune S.** | 11 S,S pairs against 2.3 expected; P < 0.002 after correcting for 29 runes x 7 lags; the sites do not look like English S____S words. Not reported elsewhere. | `obs-lag5`, `mech25` |
 | **Word lengths are not English-like.** | Too few 2-rune words (15.5% against 20-27%, p about 1e-45); best simple fit: one extra rune in about 42% of words. No spelling convention, no other language and no Old or Middle English text fits. | `obs-wordlen`, `mech25` |
