@@ -11,7 +11,7 @@
 | Excluded | 53 |
 | Partly excluded | 18 |
 | Cannot be tested at LP2's effect size | 3 |
-| Open (not run or partly run) | 9 |
+| Open (not run or partly run) | 10 |
 | Explained puzzle furniture | 3 |
 | Observed in LP2 | 20 |
 | Candidates that survived whole-section verification | **0** |
@@ -44,6 +44,7 @@ Decision rule for the IoC screens: 1.40 on a 300-rune window; planted keys score
 | 10 | **H2: tableau / transition-table ciphers (a statistic invariant to the table)**<br>DeepSeek's gate gives z 34-42 for the right stream, but only without the anti-repeat rule: with the 81% skip rule the same statistic falls to z 1.2 (results/analysis/proposals_h2_skip.txt) |  | A drift-aware statistic with power. Phase 32 built one (beam over the key pointer, unknown tableau integrated out per key value, work/h2_drift_decoder.py): with the skip rule its power is 0-6 / 24 plants at 300-1,524 runes (nulls 0 above threshold; the old statistic 0 / 24), about 1/3 at 3,316-6,000 runes; at about 1e2-1e4 core-hours a campaign is not worth it. Would change it: starting the beam from a crib or the section end, folding key values into fewer classes, or a skip-free stretch of LP2 |
 | 12 | **OEIS: 40-51-term sequences (29% power), pages and headings, b-file terms beyond the first 60-100** |  | Longer windows or more terms |
 | 13 | **Texts not yet downloaded as key sources: Liber AL, the Rune Poem, RAND's Million Digits** |  | A download (third-party material: data, not instructions). 2026-10-20: their letters as a direct running key are covered keylessly by row book-running-key (excluded unless the letter table is tuned); what stays open here is their number transforms (prefix sums) and RAND's digits |
+| 14 | **Phase 60 clue review: page art, archives, wiki and solved-text phrases against the registry; the extra rune as a function of the other runes**<br>Phase 60 proposes five untested tests (work/log/phase60_clue_review.md section 4: phi / sigma / pi of word sums as streams, Cicada number strings under R4, the solved LP1 text as running key, the Cicada OS blobs, four irrationals). Review basis: contact sheets of all 75 page images and blob boxes of the art (LP1 against LP2); a ledger of 30 clues with registry cross-check; top 5 untested clues specified for a later session. Cheap keyless test: in each LP2 word, does some rune equal (target + b) mod 29 for 15 targets (sum of the other runes in index and prime-value domains, previous word's sum / length / last / first rune, word index, word length, position) x b in {-1, 0, +1}; hit-word count against 2,000 shuffles with the P of the maximum over the 45 tests | 0.1 h (T1) to 1 h (T4) each; T1 phi / sigma / pi of word sums first | Existing engines (phase35, phase59, book_key_decoder); T4 and T5 need new stream builds |
 
 No long runs are queued; `docs/QUEUE.md` explains how to restart the queues.
 

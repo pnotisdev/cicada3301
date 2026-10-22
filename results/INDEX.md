@@ -151,6 +151,7 @@
 | Discord 2026-10-22: avaster's cumulative prime-multiplier cipher; DCPH's book key + random doublet skip | excluded |  | [discord_cumulative_check.py](../work/discord_cumulative_check.py) |
 | An End's SHA-512: archived Cicada onion and site captures hashed | excluded |  | [phase52](../work/phase52) |
 | One command that recomputes the numbers of docs/FINDINGS.md section 1 (PASS / FAIL) | observed |  | [reproduce_signals.py](../scripts/reproduce_signals.py), [test_reproduce_signals.py](../work/tests/test_reproduce_signals.py) |
+| Phase 60 clue review: page art, archives, wiki and solved-text phrases against the registry; the extra rune as a function of the other runes | open |  | [clue_extra_rune.py](../work/clue_extra_rune.py), [phase60_art_blobs.py](../work/phase60_art_blobs.py), [phase60_extra_rune.txt](analysis/phase60_extra_rune.txt), [phase60](../work/phase60) |
 
 ### What LP2 shows (any solution has to explain it)
 

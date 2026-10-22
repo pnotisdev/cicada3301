@@ -1,0 +1,45 @@
+Phase 60 item 4: is the extra rune a simple function of the others? (work/clue_extra_rune.py)
+LP2: 2896 words, 12956 runes, 2365 words of >= 3 runes; 45 tests; 2000 shuffles
+
+LP2 REAL: max z +2.08 (position in word, b=+1), P(max over tests) = 0.582; min z -3.65
+   z +2.08  position in word, b=+1
+   z +1.77  -(sum of other runes) (prime value), b=-1
+   z +1.75  previous word: prime sum, b=-1
+   z +1.63  word length, b=-1
+   z +1.47  length - position, b=+0
+   z +1.35  previous word: index sum + this word's length, b=-1
+   z +1.26  word length, b=+0
+   z +1.23  sum of other runes (prime value), b=+0
+
+Positive controls (plant into a shuffled LP2, then run the same 45 tests against fresh shuffles):
+   plant 'sum of other runes (index)' in 45% of words: z at the planted test +48.6, max z +48.6 (planted), P(max) 0.000
+   plant 'sum of other runes (index)' in 15% of words: z at the planted test +15.1, max z +15.1 (planted), P(max) 0.000
+   plant 'previous word: index sum' in 45% of words: z at the planted test +50.4, max z +50.4 (planted), P(max) 0.000
+   plant 'word length' in 15% of words: z at the planted test +17.7, max z +17.7 (planted), P(max) 0.000
+   plant 'word index (all LP2)' in 15% of words: z at the planted test +15.5, max z +15.5 (planted), P(max) 0.000
+
+Negative control, ciphertext of Vigenere sections 1, 5 (211 words, 834 runes): max z +2.11 (previous word: first rune, b=+0), P(max) 0.616
+
+Negative control, ciphertext of Atbash sections 0, 3 (repeated words clump) (253 words, 962 runes): max z +5.90 (sum of other runes (index), b=+0), P(max) 0.000
+Null control: 100 fresh shuffles of LP2 judged against the same null: P(max) < 0.05 in 8 of 100 (expected 5)
+
+Word lengths: LP2 2896 words; Emerson (runes, IO->IA) as the length source; best one-extra-rune q = 0.420
+len  LP2   fit   (obs-fit)/sqrt(fit)   prime?
+  1    83    50.6     4.55   
+  2   448   491.7    -1.97   P
+  3   720   695.8     0.92   P
+  4   513   508.6     0.19   
+  5   317   340.8    -1.29   P
+  6   256   255.4     0.04   
+  7   216   194.3     1.55   P
+  8   156   132.8     2.01   
+  9    78    94.7    -1.72   
+ 10    52    63.2    -1.41   
+ 11    32    35.4    -0.57   P
+ 12    18    18.9    -0.20   
+ 13     4     8.9    -1.63   P
+ 14     3     3.4    -0.20   
+ 15     0     1.0    -1.02   
+ 16     0     0.5    -0.47   
+prime-length words: 1737 observed against 1766.9 fitted, z -1.14; share LP2 0.600, Emerson 0.655, fit 0.610
+even lengths 4,6,8: LP2 925 fitted 896.8; lengths 5,7,11: LP2 565 fitted 570.5
