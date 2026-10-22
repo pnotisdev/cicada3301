@@ -53,7 +53,7 @@ def T(x):
     return (24 - 2 * x) % N
 
 
-def simulate(R, rng, ctx, q, rep, ins=None, insval="uni", check=False, frule=False, blind=False, rate=0.0):
+def simulate(R, rng, ctx, q, rep, ins=None, insval="uni", check=False, frule=False, blind=False, rate=0.0, want=False):
     P, NS, WL, sid = ctx
     n = len(sid)
     secst = np.r_[True, sid[1:] != sid[:-1]]
@@ -62,6 +62,7 @@ def simulate(R, rng, ctx, q, rep, ins=None, insval="uni", check=False, frule=Fal
     WS = np.zeros((R, n), bool)
     off = np.zeros(R, int); L = np.zeros(R, int); slot = np.full(R, -1); w0 = np.zeros(R, int); lastins = np.zeros(R, bool); lastreal = np.full(R, -1)
     RH = np.zeros((R, n), np.int16); nreal = np.zeros(R, int); ar = np.arange(R)
+    RT = np.zeros((R, n), bool); RA = np.zeros((R, n), bool)   # want=True: T-valued / all repairs (phase 61)
     for t in range(n):
         if secst[t]:
             J = NS[J]
@@ -103,6 +104,8 @@ def simulate(R, rng, ctx, q, rep, ins=None, insval="uni", check=False, frule=Fal
             v = np.where(v == prev, uni, v)
         x = np.where(insnow, v, x)
         isn = insnow | tnull
+        RA[:, t] = coll & ~insnow
+        RT[:, t] = coll & ~insnow & tokr & (tbr != prevc)
         C[:, t] = x
         WS[:, t] = new
         J = J + ~isn
@@ -113,7 +116,7 @@ def simulate(R, rng, ctx, q, rep, ins=None, insval="uni", check=False, frule=Fal
         lastreal = np.where(isn, lastreal, x)
         RH[ar, nreal] = np.where(isn, RH[ar, nreal], x)
         nreal = nreal + ~isn
-    return C, WS
+    return (C, WS, RT, RA) if want else (C, WS)
 
 
 def measure(c, ws, sid):

@@ -1,0 +1,84 @@
+(a) mid engine S_guard, plants with R4 nulls (rate 0.45, decoder nu 0.42), T repairs, streams <= 2100 runes, 160 plants x (true, matched iid-key null); T300 = 29.80
+  n 300: plants with >= 1 D site 138/160; D sites 303, true T repairs among them 131 (precision 0.43); all repairs in the windows 1312, T-valued 134; literal c_i := c_(i-1) restores the pre-repair rune at 115/303 D sites
+    true-key band: n 138, mean change -2.20 nats (se 0.39), median -1.69, up 48 / down 89
+    true-key band, windows with a TRUE site: n 101, mean change -1.48 nats (se 0.43), median -1.17, up 43 / down 58
+    matched-null winner (random key): n 140, mean change +0.64 nats (se 0.26), median +0.77, up 82 / down 54
+    raw band median over the searched windows 143.6, raw matched-null winner median -117.8
+  n 150: plants with >= 1 D site 93/160; D sites 135, true T repairs among them 51 (precision 0.38); all repairs in the windows 665, T-valued 54; literal c_i := c_(i-1) restores the pre-repair rune at 43/135 D sites
+    true-key band: n 93, mean change -1.92 nats (se 0.46), median -1.25, up 37 / down 55
+    true-key band, windows with a TRUE site: n 43, mean change +0.35 nats (se 0.52), median +0.85, up 27 / down 16
+    matched-null winner (random key): n 94, mean change +0.60 nats (se 0.24), median +0.65, up 54 / down 37
+    raw band median over the searched windows 69.5, raw matched-null winner median -55.6
+  oracle-key IoC of the n 300 window (only windows with a D site, 138), mean over windows: plaintext 0.0626; raw 0.0610 (null mean 0.0357, null max 0.0376); unrep 0.0609 (null mean 0.0357, null max 0.0376); allfix 0.0626 (null mean 0.0359, null max 0.0378)
+    IoC change unrep - raw: mean -0.00003 (se 0.00004); in null-sd units -0.03; true minus null max: raw 0.0234, unrep 0.0234
+    IoC change allfix - raw: mean +0.00163 (se 0.00009); in null-sd units +1.77; true minus null max: raw 0.0234, allfix 0.0248
+
+(b) Python decoder, plants WITHOUT nulls (exact hold / spend semantics), S = ln L - ln U, 96 plants; variants raw | unrep (a) | hard (D sites forced to be repairs) | aware (R4 likelihood)
+  n 300: 96 plants; true-cipher D sites 178 (true 81), repairs 808 of which T-valued 82
+    all windows (96):
+      unrep  band: n 96, mean change -3.32 nats (se 0.57), median -1.34, up 20 / down 55
+      unrep  null winner: n 96, mean change -0.37 nats (se 0.37), median +0.00, up 36 / down 43
+      unrep  band - null winner: n 96, mean change -2.95 nats (se 0.71), median -1.69, up 27 / down 62
+      hard   band: n 96, mean change -13.96 nats (se 2.63), median -2.39, up 23 / down 53
+      hard   null winner: n 96, mean change -4.15 nats (se 0.83), median -0.77, up 22 / down 58
+      hard   band - null winner: n 96, mean change -9.81 nats (se 2.44), median -1.41, up 38 / down 52
+      aware  band: n 96, mean change +1.62 nats (se 0.21), median +0.71, up 75 / down 18
+      aware  null winner: n 96, mean change -4.84 nats (se 0.41), median -4.31, up 9 / down 87
+      aware  band - null winner: n 96, mean change +6.46 nats (se 0.42), median +6.27, up 93 / down 1
+      raw: band median 214.7, null winner median -262.1
+    windows with a D site in the TRUE cipher (77):
+      unrep  band: n 77, mean change -4.14 nats (se 0.67), median -2.99, up 20 / down 55
+      unrep  null winner: n 77, mean change -0.36 nats (se 0.41), median -0.04, up 28 / down 38
+      unrep  band - null winner: n 77, mean change -3.78 nats (se 0.83), median -2.75, up 22 / down 54
+      hard   band: n 77, mean change -17.40 nats (se 3.16), median -5.84, up 23 / down 53
+      hard   null winner: n 77, mean change -4.62 nats (se 0.99), median -1.81, up 18 / down 49
+      hard   band - null winner: n 77, mean change -12.78 nats (se 2.94), median -4.36, up 29 / down 48
+      aware  band: n 77, mean change +1.92 nats (se 0.25), median +1.88, up 58 / down 17
+      aware  null winner: n 77, mean change -4.62 nats (se 0.46), median -3.88, up 7 / down 70
+      aware  band - null winner: n 77, mean change +6.53 nats (se 0.48), median +6.21, up 74 / down 1
+      raw: band median 215.3, null winner median -258.4
+    windows with a TRUE T repair (53):
+      unrep  band: n 53, mean change -3.90 nats (se 0.87), median -3.16, up 18 / down 34
+      unrep  null winner: n 53, mean change -0.39 nats (se 0.54), median -0.04, up 21 / down 26
+      unrep  band - null winner: n 53, mean change -3.51 nats (se 1.10), median -2.99, up 18 / down 35
+      hard   band: n 53, mean change -11.36 nats (se 2.84), median -2.77, up 21 / down 31
+      hard   null winner: n 53, mean change -4.32 nats (se 0.92), median -0.75, up 14 / down 34
+      hard   band - null winner: n 53, mean change -7.04 nats (se 2.50), median -2.69, up 24 / down 29
+      aware  band: n 53, mean change +2.82 nats (se 0.27), median +2.65, up 49 / down 3
+      aware  null winner: n 53, mean change -4.80 nats (se 0.58), median -3.73, up 4 / down 49
+      aware  band - null winner: n 53, mean change +7.62 nats (se 0.57), median +7.43, up 52 / down 1
+      raw: band median 210.7, null winner median -262.2
+  n 150: 96 plants; true-cipher D sites 82 (true 44), repairs 393 of which T-valued 45
+    all windows (96):
+      unrep  band: n 96, mean change -1.24 nats (se 0.36), median +0.00, up 17 / down 36
+      unrep  null winner: n 96, mean change +0.41 nats (se 0.27), median +0.00, up 35 / down 21
+      unrep  band - null winner: n 96, mean change -1.65 nats (se 0.45), median -0.44, up 25 / down 51
+      hard   band: n 96, mean change -4.97 nats (se 1.55), median +0.00, up 21 / down 32
+      hard   null winner: n 96, mean change -1.22 nats (se 0.39), median +0.00, up 24 / down 32
+      hard   band - null winner: n 96, mean change -3.75 nats (se 1.50), median +0.00, up 34 / down 42
+      aware  band: n 96, mean change +0.97 nats (se 0.14), median +0.31, up 75 / down 19
+      aware  null winner: n 96, mean change -1.81 nats (se 0.27), median -0.86, up 15 / down 78
+      aware  band - null winner: n 96, mean change +2.78 nats (se 0.31), median +2.26, up 84 / down 11
+      raw: band median 107.6, null winner median -119.4
+    windows with a D site in the TRUE cipher (53):
+      unrep  band: n 53, mean change -2.24 nats (se 0.63), median -2.04, up 17 / down 36
+      unrep  null winner: n 53, mean change +0.73 nats (se 0.37), median +0.00, up 22 / down 11
+      unrep  band - null winner: n 53, mean change -2.97 nats (se 0.70), median -3.12, up 15 / down 38
+      hard   band: n 53, mean change -9.00 nats (se 2.69), median -2.44, up 21 / down 32
+      hard   null winner: n 53, mean change -1.21 nats (se 0.50), median +0.00, up 14 / down 19
+      hard   band - null winner: n 53, mean change -7.79 nats (se 2.55), median -2.61, up 21 / down 32
+      aware  band: n 53, mean change +1.59 nats (se 0.23), median +1.96, up 37 / down 16
+      aware  null winner: n 53, mean change -1.79 nats (se 0.35), median -0.86, up 10 / down 43
+      aware  band - null winner: n 53, mean change +3.37 nats (se 0.43), median +3.01, up 45 / down 8
+      raw: band median 107.7, null winner median -117.1
+    windows with a TRUE T repair (37):
+      unrep  band: n 37, mean change -1.05 nats (se 0.75), median -1.12, up 17 / down 20
+      unrep  null winner: n 37, mean change +1.38 nats (se 0.42), median +0.90, up 19 / down 4
+      unrep  band - null winner: n 37, mean change -2.43 nats (se 0.90), median -2.61, up 13 / down 24
+      hard   band: n 37, mean change -3.97 nats (se 2.36), median +2.45, up 21 / down 16
+      hard   null winner: n 37, mean change -0.93 nats (se 0.58), median +0.00, up 11 / down 12
+      hard   band - null winner: n 37, mean change -3.03 nats (se 2.18), median +2.29, up 19 / down 18
+      aware  band: n 37, mean change +2.42 nats (se 0.19), median +2.60, up 36 / down 1
+      aware  null winner: n 37, mean change -1.95 nats (se 0.41), median -2.04, up 7 / down 30
+      aware  band - null winner: n 37, mean change +4.37 nats (se 0.46), median +3.86, up 35 / down 2
+      raw: band median 106.2, null winner median -120.2

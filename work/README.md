@@ -29,6 +29,7 @@ Find a script by what it is for. Each one writes its output into `results/analys
 | `phase60_t6_blobs_r4.py` | Phase 60 T6: the megabyte Cicada OS files under R4, every offset of one window, chunked, with R4 plants as control |
 | `phase60_t7_xor.py`, `phase60_t7b_xor_classes.py` | Phase 60 T7: XOR-domain keys (three exact conventions): the abandoned unigram lag DP (control only) and the key-class coincidence screen run on the library, number / onion strings and the megabyte files |
 | `phase60_t8_r4.py`, `phase60_t8_xor.py`, `phase60_t8_mp3.py` | Phase 60 T8: DATA/560.13 under R4 (start region and sampled blocks) and under the XOR screen; MP3 frame-payload stripper for the audio streams |
+| `phase61_unrepair.py` | Phase 61: lag-6 detector D on the R4 simulator (precision / recall), un-repair and guided (hard / R4-aware) decoding on plants with the mid engine and an exact Python decoder |
 | `mech48/` | Phase 48: the A/I oracle (one-rune words -> A or I): calibration, re-scoring of kept hits, drift-aware screen design |
 | `phpmt/` | Rust: bit-exact seed sweeps for ten generators; `bg.py` boundary-free bigram score, `gpu.py` + `.cu` CUDA ports |
 | `walk/` | Rust: word-scoped solver and key-free D-search (`dsearch`) |

@@ -1566,3 +1566,15 @@ result = "No Zipf structure: LP2 has 2,731 distinct words of 2,896; repeats by l
 gap = "Does not test word-length distribution (obs-wordlen) or codes that change per occurrence"
 log = ["work/log/zipf_check_output.txt"]
 files = ["work/zipf_check.py"]
+
+[[experiment]]
+id = "unrepair-lag6"
+group = "structure"
+title = "Can the lag-6 sites (c_i = 24 - 2 c_(i-6)) be used to undo collision repairs, giving the decoders a cleaner ciphertext or known repair positions?"
+status = "excluded"
+what = "Phase 61: detector D (within-word sites with c_i = T(c_(i-6))) on 250 R4 simulations of LP2's size with the true repair positions recorded; then (a) un-repair c_i := c_(i-1) at D sites, scored by the mid engine S_guard (160 plants with R4 nulls, n 300 / 150) and by oracle-key IoC, and (b) guided decoding in a small exact Python decoder (96 plants without nulls): D sites forced to be repairs (`hard`) and the full R4 likelihood (`aware`); paired against the raw ciphertext, matched iid-key null in the same stream"
+control = "Python decoder equals the Rust base engine (lnL error 1e-13, hold / spend, both signs); all T-valued repairs in 40 plants are D sites and the literal un-repair restores the pre-repair rune; simulator D count 75.4 +- 11.6 vs LP2 80 (z +0.39); matched iid-key plants as null"
+result = "D: precision 0.433, recall of all repairs 0.100 (T-valued repairs 1.0 by construction; only 10% of repairs sit at word position >= 6). Un-repair LOSES: true band -2.2 nats (n 300, se 0.4), null winner +0.6, separation -2.8 (n 150: -2.5); IoC unchanged (-0.00003); forced repairs -9.8 / -3.8. Only the full R4 likelihood helps (separation +6.5 nats at n 300, +2.8 at n 150, 93/96 and 84/96 plants up) against raw margins of 215 / 108 nats; it needs a Rust change and R4 to be the true mechanism. LP2 not scored (step 3 skipped: no gain worth an engine change)"
+gap = "A better detector (position, letter context), other repair forms, nulls inside the guided decoder, the whole-library null tail, skip5 / coin channels, the aware likelihood inside backward_mid.rs (+3-6 nats of separation, not built)"
+log = ["work/log/phase61_unrepair.md"]
+files = ["work/phase61_unrepair.py", "results/analysis/phase61_sim.txt", "results/analysis/phase61_plants.txt", "results/analysis/phase61_rust/", "results/analysis/phase61_py/"]

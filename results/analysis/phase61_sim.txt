@@ -1,0 +1,7 @@
+LP2: 80 D sites (within-word c_i = 24 - 2 c_(i-6)), 12956 runes. R4 simulator: rate 0.448, q 0.81, T repair, checked word null, 250 texts of 12956 runes
+D sites per text: mean 75.4 sd 11.6 (LP2 80, z +0.39); true T repairs among them 32.7 sd 6.7
+precision (pooled) 0.433  (per-text mean 0.433, 5-95% 0.34-0.53)
+recall of T-valued repairs 1.000 (32.7 per text; all of them are D sites by construction)
+recall of ALL repairs 0.100 (327.0 repairs per text, 0.0252 per rune); only 0.100 of repairs are T-valued (word position >= 6)
+false D sites (chance matches c_i = T(c_(i-6)) on a genuine rune): 42.8 per text; expected per 300 / 150 runes: D 1.75 / 0.87, true 0.76 / 0.38
+share of 300-rune windows with >= 1 D site (Poisson, mean 1.75): 0.83; with >= 1 true site 0.53
