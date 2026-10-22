@@ -1554,3 +1554,15 @@ result = "339 M decodes, best IoC 1.3165 (761 backwards, 0.13); the payload is c
 gap = "Rejection map and coin model, audio decoded to PCM or notes (the 2012 MIDI puzzle), audio under R4 or XOR, windows beyond the 8 section starts for R4"
 log = ["work/log/phase60_clue_review.md"]
 files = ["work/kscreen/phase60_t8.py", "work/phase60_t8_mp3.py", "results/kscreen/phase60_t8/"]
+
+[[experiment]]
+id = "zipf-words"
+group = "observed"
+title = "Word frequencies (Zipf's law): do LP2's ciphertext words repeat like a word-level code, and are its one-rune words uneven?"
+status = "excluded"
+what = "Repeated word tokens per word length in LP2 (2,896 words) against the same word lengths filled with LP2's own runes shuffled (200 draws); the 83 one-rune words against a uniform spread over 29 runes (chi-square and the largest count, 20,000 random draws). Prompted by a 2021 community claim that the one-letter words obey Zipf's law (its list mixed in the solved pages and numerals)"
+control = "The solved plaintext shows the Zipf pattern a word-level code would carry (739 words, 270 distinct; THE 46, TO 24, YOU 22); random sorted counts give the comparison curve (6.8, 5.8, 5.3, ...)"
+result = "No Zipf structure: LP2 has 2,731 distinct words of 2,896; repeats by length 55 / 94 / 16 / 0 against shuffled 55.6 / 101.2 / 10.4 / 0.2 (3-rune z +1.7, inside the look-elsewhere range over six lengths); nothing longer than 3 runes repeats. One-rune words: chi-square 20.8 (df 28), P 0.85, largest count 5 (random usually about 7): slightly MORE even than chance. A word-level code, nomenclator, or a key fixed by the plaintext word is excluded; the Zipf-like 2021 list comes from the solved pages (simple methods map A and I to a few runes) plus numerals"
+gap = "Does not test word-length distribution (obs-wordlen) or codes that change per occurrence"
+log = ["work/log/zipf_check_output.txt"]
+files = ["work/zipf_check.py"]

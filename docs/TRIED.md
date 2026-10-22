@@ -134,6 +134,8 @@ LP2 did not beat its random-key null.
 - 2026-10-22 - Cicada OS ISO fetched; DATA/560.13 (118.8 MB) recovered (hash matches) and screened with the audio files as keys (additive, XOR, R4) - uniformly random bytes, 0 hits [docs/SOURCES.md, clue-review]
 - 2026-10-22 - One-command reproduction of every published signal - 34/34 pass [reproduce-signals]
 
+- 2026-10-22 - Zipf / word frequencies: do cipher words repeat like a code, are one-rune words uneven? - no: repeats as random, one-rune words uniform (P 0.85) [zipf-words]
+
 ## Still running (2026-10-22)
 
 - KJV as a table-free book key (about 55% done), then pointer direction by the words' numbers (18 conventions), then the remaining layout sign rules and word jump.
