@@ -70,15 +70,15 @@ def section_doublets(c, start, sid, rng, draws):
     check("doublet rate, % of adjacent pairs", 0.66, 100 * (ind + gap) / same.sum(), 0.02)
     check("random-text doublet rate, % (sum of squared frequencies)", 3.45, 100 * float((f * f).sum()), 0.05)
     check("share of would-be repeats prevented, %", 81, 100 * (1 - (ind + gap) / same.sum() / float((f * f).sum())), 1)
-    # the discord check counts bare line / page breaks as gaps; the claim uses its numbers
+    # 2026-10-22: the discord check now merges bare line / page wraps like lp.word_spans (it used to count them as gaps: 26, 25.5%)
     segs = lp.load_segments()
     tot_gap = sum(dcc.doublets(segs[i])[1] for i in dcc.LP2)
     tot_in = sum(dcc.doublets(segs[i])[0] for i in dcc.LP2)
     pairs = sum(len(dcc.words(segs[i])) - 1 for i in dcc.LP2)
     allp = sum(len(lp.runes_of(segs[i])) - 1 for i in dcc.LP2)
-    check("doublets across word gaps (discord_cumulative_check), of 86", 26, tot_gap, 0, "{:.0f}", f"in-word {tot_in}")
-    check("gap share of adjacent pairs, % (same word definition)", 25.5, 100 * pairs / allp, 0.5)
-    print(f"      (word_spans, which merges bare line / page wraps, gives {gap} across gaps and {ind} inside: 3 of the 26 sit across a wrap)")
+    check("doublets across word gaps (discord_cumulative_check), of 86", 23, tot_gap, 0, "{:.0f}", f"in-word {tot_in}")
+    check("gap share of adjacent pairs, % (same word definition)", 22.3, 100 * pairs / allp, 0.5)
+    check("doublets across word gaps (lp.word_spans), of 86", 23, gap, 0, "{:.0f}", f"in-word {ind}")
 
 
 def flat(c, start, sid, rng, draws):

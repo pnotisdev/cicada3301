@@ -121,7 +121,7 @@ LP2 did not beat its random-key null.
 - 2026-10-22 - An End's SHA-512 vs 124,017 digests of archived onion captures - no match [an-end-archives]
 - 2026-10-22 - Mid-word insertion channel, one-window LP2 pilot - best -51.6 vs hit level 29.8 [work/log/phase51_midword_channel.md]
 - 2026-10-22 - Open/close bracket marks for a key stack (GEB idea) - none exist [nested-marks]
-- 2026-10-22 - Discord ciphers: avaster's cumulative prime cipher, DCPH's book + random skip - excluded (gap-doublet test) [discord-cumulative]
+- 2026-10-22 - Discord ciphers: avaster's cumulative prime cipher, DCPH's book + random skip - excluded (gap-doublet test: 23 of 86 doublets cross word gaps) [discord-cumulative]
 - 2026-10-22 - Lag-6 dissection - real (z +5.3), no fixed slot, no repair marker [lag6-dissect]
 - 2026-10-22 - Lag-5 S echo dissection - P 0.021 after 203 cuts: dropped [s-echo-dissect]
 - 2026-10-22 - Word-level rules for the lag-6 length profile - two rules fit, nothing singled out [lag6-length-rules]

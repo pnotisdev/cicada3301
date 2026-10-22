@@ -26,10 +26,13 @@ SOLVED = [0, 1, 2, 3, 4, 5, 6, 16, 17]
 
 
 def words(toks):
+    # bare line ('\n') and page ('%') breaks fall inside words in LP; only word / clause / paragraph marks and numerals cut
     w, cur = [], []
     for t in toks:
         if isinstance(t, int):
             cur.append(t)
+        elif t in ("\n", "%"):
+            continue
         elif cur:
             w.append(cur)
             cur = []
