@@ -53,6 +53,8 @@
 | chanscreen v2: hold / spend / skip5 / coin library campaign on the 82 LP2 windows of 300 runes (S_guard rule), controls and clause scan | excluded |  | [PROTOCOL.md](../work/chanscreen/v2/step3/PROTOCOL.md), [summary_null.txt](chanscreen/summary_null.txt), [e4_summary.txt](chanscreen/e4_summary.txt), [chanscreen.txt](../jobs/queues/chanscreen.txt), [summary_n300.txt](chanscreen/summary_n300.txt), [summary_clause.txt](chanscreen/summary_clause.txt) |
 | Power of the chanscreen v2 contract when the plaintext is spelled letter by letter (TH as T + H, no digraph runes) | observed |  | [e4_letters.py](../work/chanscreen/v2/step3/e4_letters.py), [e4_summary.txt](chanscreen/e4_letters_summary/e4_summary.txt) |
 | Per-rune periodic sign templates (period 2-5: the Beaufort / Vigenere alternation) | excluded | 1.400 (null 1.318) | [P5_ppmmp.tsv](kscreen/signs_periodic/P5_ppmmp.tsv), [P5_pmmmm.tsv](kscreen/signs_periodic/P5_pmmmm.tsv), [sign_periodic_selftest.txt](kscreen/sign_periodic_selftest.txt) |
+| Phase 50 block: reading-order transforms, alternative alphabet orders (20 incl. 15 OEIS orders), 10 sign rules x nulledge/advsep, plus A/I and prime checks in verify.py | excluded |  | [phase50](../work/phase50), [lang_checks.py](../work/kscreen/lang_checks.py), [lang_checks_selftest.py](../work/kscreen/lang_checks_selftest.py), [phase50](kscreen/phase50) |
+| Cicada's key habits: words, phrases, titles, first/last lines of the solved pages and the 2014 signed messages as Vigenere keys (C->F, NG/ING, IA/IO variants, literal F) | excluded |  | [phrase_keys.py](../work/phase50/phrase_keys.py), [summary_phrase_keys.txt](kscreen/phase50/summary_phrase_keys.txt) |
 
 ### Seeded generators, passphrases and sequences as keys
 
@@ -143,6 +145,7 @@
 | The A/I oracle: one-rune words must decrypt to A or I (idea from a community verifier script, re-implemented): calibration, re-scoring of every kept campaign hit, and a screen design | observed |  | [mech48](../work/mech48) |
 | Community claims: Mike's skip-optimised period 13 on 54+55.jpg with the full selection pipeline; what the 1033.jpg blob by Newton's finger is (added text vs a shrunken logo) | explained |  | [p13_full](../work/p13_full), [blake1033](../work/blake1033) |
 | Discord 2026-10-22: avaster's cumulative prime-multiplier cipher; DCPH's book key + random doublet skip | excluded |  | [discord_cumulative_check.py](../work/discord_cumulative_check.py) |
+| An End's SHA-512: archived Cicada onion and site captures hashed | excluded |  | [phase52](../work/phase52) |
 
 ### What LP2 shows (any solution has to explain it)
 

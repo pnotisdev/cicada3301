@@ -1338,3 +1338,39 @@ result = "Sites reproduce (80 vs 45.7 +/- 6.5, z +5.3); all word positions 0-4 e
 gap = "A repair rule that explains the 7-rune gap and the 2x in 8-9-rune words is not found; hypothesis for simulation only (in-word lookback 6 back at rate 0.027)"
 log = ["work/log/phase54_lag6_dissect.md"]
 files = ["work/phase54_lag6_dissect.py", "results/analysis/phase54_lag6_dissect.txt"]
+
+[[experiment]]
+id = "phase50-block"
+group = "streams"
+title = "Phase 50 block: reading-order transforms, alternative alphabet orders (20 incl. 15 OEIS orders), 10 sign rules x nulledge/advsep, plus A/I and prime checks in verify.py"
+status = "excluded"
+what = "Default kscreen engine, library x both signs x skip/coin on the first 300 runes of the 8 section windows. (i) boustrophedon (2 parities), lines-of-page reversed, pages reversed, column-major; (ii) outer alphabet orders: Latin alphabetical (2), Elder Futhark (2, nearly the GP order), rune names, and the 15 OEIS orders A107801-A107814 / A185956 (first 29 terms permute the 29 primes; source 7he5haman's Mayfly document); (iv) the 10 strongest of the 61 sign rules x nulledge 1/2 x advsep 1/2 on every third flat stream (pilot)"
+control = "Planted English recovered in every case: (i) 8/8 windows per transform, (ii) 8/8 per order (blindness 1.24-1.30 without relabelling, except the near-identity Futhark orders), (iv) 36/36; matched nulls rand:300 / rand:60"
+result = "No candidate. (i) library best 1.318-1.371 vs null 1.313-1.351; (ii) 1.318-1.386 vs null 1.304-1.390; (iv) hit max 1.4512 vs null max 1.4382 (nulledge; one 220-rune stream-end artefact), advsep 1.375 vs 1.353; 0 verified hits. verify.py now reports the A/I oracle and the prime-sum check for each hit (planted 25/27 and 31/66, wrong offsets 0.07 / 0.12, random 0.067 / 0.155)"
+gap = "Page and head windows, other reading orders, the full 581-stream flat library for the crossings (a third was run), the other 50 sign rules, nulledge x advsep, reading-order checks via A/I and primes"
+log = ["work/log/phase50_verifier_and_block.md"]
+files = ["work/phase50", "work/kscreen/lang_checks.py", "work/kscreen/lang_checks_selftest.py", "results/kscreen/phase50"]
+
+[[experiment]]
+id = "solved-phrase-keys"
+group = "streams"
+title = "Cicada's key habits: words, phrases, titles, first/last lines of the solved pages and the 2014 signed messages as Vigenere keys (C->F, NG/ING, IA/IO variants, literal F)"
+status = "excluded"
+what = "1,841 distinct keys of <= 24 runes in 8 spellings, both inner signs, literal-F off and on, every phase, first 300 runes of the 8 section windows, layer2 engine mode=known (IoC of decoded letters) with a zero outer stream; phase 50"
+control = "English planted with CIRCUMFERENCE spelled C->F (literal F), WELCOME PILGRIM and DIVINITY: 8/9 windows recovered (IoC 1.45-2.06; one short window lost to a wrong key); null: 1,841 random keywords of the same lengths"
+result = "Best IoC 1.3320 (random same-length keys 1.3773); nothing reaches 1.40, no verification needed. Negative for these keys at the section starts"
+gap = "Keys longer than 24 runes, other spelling habits, keyword + number-stream layers, pages 14-15 skip-at-solved-positions beyond the F rule, windows other than the section starts"
+log = ["work/log/phase50_verifier_and_block.md"]
+files = ["work/phase50/phrase_keys.py", "results/kscreen/phase50/summary_phrase_keys.txt"]
+
+[[experiment]]
+id = "an-end-archives"
+group = "claims"
+title = "An End's SHA-512: archived Cicada onion and site captures hashed"
+status = "excluded"
+what = "Phase 52: Wayback (CDX) and Ahmia captures of Cicada's onions and sites, 1,680 unique captures plus derived files (3,739 candidate files), hashed under 5 functions x byte/text variants (124,017 digests) and compared with An End's SHA-512"
+control = "The comparison reproduces known hashes of planted files (phase 52 log)"
+result = "No match among 124,017 digests. 24 captures (14 URLs, all on 845145127.com, spam-injected later) were quarantined by the antivirus and not hashed; they cannot be the original page"
+gap = "Only Wayback and Ahmia were queried (not archive.today, Common Crawl, tor2web mirrors); pages never captured, or captured after rewriting/compression, are not excluded; the page has never been found by anyone"
+log = ["work/log/phase52_an_end_archives.md"]
+files = ["work/phase52/"]

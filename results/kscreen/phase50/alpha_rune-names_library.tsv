@@ -1,0 +1,2012 @@
+# kscreen screen family=file:data/library.ksb windows=data/phase50/alpha_rune-names/segments.txt n=300 beam=16 mults=1,28 models=0,1 abort=150:1.2 runs=408868384 aborted=399550324 secs=746 dir=fwd
+# best 1.3520
+# window seg0.7 best 1.3010 item=sha256-chain reject :primes offset=5248 mult=1 model=0
+# window seg0.8 best 1.3171 item=sha256-ctr mod :0x7A35090F offset=5865 mult=1 model=0
+# window seg0.9 best 1.2984 item=sha256-ctr mod :some wisdom offset=4247 mult=1 model=1
+# window seg0.11 best 1.3016 item=sha256-ctr reject :firfumferenfe offset=9865 mult=1 model=1
+# window seg0.12 best 1.2977 item=md5-ctr mod :1033 offset=6677 mult=28 model=0
+# window seg0.13 best 1.3520 item=md5-ctr mod :PILGRIM offset=4599 mult=28 model=0
+# window seg0.14 best 1.3359 item=sha512-ctr mod :1729 offset=17473 mult=1 model=0
+# window seg0.15 best 1.3010 item=md5-ctr mod :question all things offset=6520 mult=28 model=0
+# hist 0.84:2 0.85:39 0.86:318 0.87:1671 0.88:4267 0.89:14720 0.90:38805 0.91:91382 0.92:193163 0.93:379047 0.94:720131 0.95:902936 0.96:1909369 0.97:3171953 0.98:5056126 0.99:7598280 1.00:10944289 1.01:15014710 1.02:14191063 1.03:22948767 1.04:27198459 1.05:30561368 1.06:32880312 1.07:33825255 1.08:33365816 1.09:24273759 1.10:29417784 1.11:25981680 1.12:21943465 1.13:18045115 1.14:14365815 1.15:8742313 1.16:9163498 1.17:6935252 1.18:5163344 1.19:3794564 1.20:15579 1.21:6875 1.22:3812 1.23:1639 1.24:968 1.25:341 1.26:172 1.27:80 1.28:39 1.29:21 1.30:11 1.31:3 1.33:3 1.34:3 1.35:1
+ioc	item	offset	mult	model	window	n
+1.3520	md5-ctr mod :PILGRIM	4599	28	0	seg0.13	300
+1.3456	sha256-chain mod :some wisdom	12275	1	1	seg0.13	300
+1.3423	sha256-chain mod :some wisdom	12273	1	1	seg0.13	300
+1.3410	sha256-ctr reject :7	4881	28	0	seg0.13	300
+1.3359	sha512-ctr mod :1729	17473	1	0	seg0.14	300
+1.3346	sha256-ctr reject :7	4880	28	0	seg0.13	300
+1.3326	sha512-ctr mod :1729	17474	1	0	seg0.14	300
+1.3184	md5-ctr mod :PILGRIM	4598	28	0	seg0.13	300
+1.3171	sha256-ctr mod :0x7A35090F	5865	1	0	seg0.8	300
+1.3165	sha256-chain mod :emergence	2891	1	0	seg0.13	300
+1.3087	phi digits (base 29)	8685	28	0	seg0.14	300
+1.3068	md5-ctr reject :emergence	17983	1	1	seg0.13	300
+1.3068	md5-ctr reject :emergence	17985	1	1	seg0.13	300
+1.3068	sha256-ctr reject :koan	19105	28	1	seg0.8	300
+1.3061	sha512-ctr mod :PILGRIM	13829	28	0	seg0.13	300
+1.3023	sha256-ctr reject :7	4876	28	0	seg0.13	300
+1.3016	sha256-ctr reject :firfumferenfe	9865	1	1	seg0.11	300
+1.3010	sha256-chain reject :primes	5248	1	0	seg0.7	300
+1.3010	sha256-ctr mod :<256 bytes cbe7a7ba>	12940	1	1	seg0.11	300
+1.3010	md5-ctr mod :question all things	6520	28	0	seg0.15	300
+1.3003	sha256-chain reject :7A35090F	686	28	1	seg0.13	300
+1.2990	sha512-ctr reject :liberprimus	12954	28	1	seg0.13	300
+1.2984	sha256-ctr mod :some wisdom	4247	1	1	seg0.9	300
+1.2984	sha512-ctr mod :parable	95	28	1	seg0.9	300
+1.2977	sha512-ctr reject :intus	12273	1	1	seg0.12	300
+1.2977	p_n - n	4956	28	0	seg0.11	300
+1.2977	md5-ctr mod :1033	6677	28	0	seg0.12	300
+1.2977	md5-ctr mod :question all things	6521	28	0	seg0.15	300
+1.2971	sha256-ctr mod :0x7A35090F	5866	1	0	seg0.8	300
+1.2971	sha512-ctr reject :intus	12271	1	1	seg0.12	300
+1.2971	sha512-ctr mod :CIRCUMFERENCE	6803	28	0	seg0.12	300
+1.2958	sha256-chain reject :question all things	9221	28	0	seg0.12	300
+1.2951	sha256-chain reject :question all things	9220	28	0	seg0.12	300
+1.2951	sha256-ctr reject :koan	19109	28	1	seg0.8	300
+1.2951	sha256-ctr reject :koan	19107	28	1	seg0.8	300
+1.2945	md5-ctr mod :FIRFUMFERENFE	18138	1	0	seg0.12	300
+1.2938	md5-ctr reject :question all things	18149	1	0	seg0.13	300
+1.2932	sha256-chain mod :7	16095	28	1	seg0.11	300
+1.2932	sha512-ctr reject :0x7A35090F	3883	28	1	seg0.8	300
+1.2932	sha256-chain reject :primes	5249	1	0	seg0.7	300
+1.2926	sha512-ctr reject :program your mind	11748	28	0	seg0.9	300
+1.2926	sha256-chain reject :PILGRIM	10691	1	1	seg0.8	300
+1.2900	sha256-ctr reject :29	15458	28	1	seg0.12	300
+1.2900	md5-ctr reject :some wisdom	8664	1	0	seg0.7	300
+1.2900	md5-ctr mod :FIRFUMFERENFE	18137	1	0	seg0.12	300
+1.2900	sha512-ctr mod :parable	93	28	1	seg0.9	300
+1.2887	sha512-ctr reject :liberprimus	9839	28	1	seg0.7	300
+1.2880	sha256-ctr mod :INSTAR EMERGENCE	7755	1	1	seg0.14	300
+1.2880	sha256-chain reject :divinity	9918	1	1	seg0.12	300
+1.2880	sha512-ctr reject :deep web	6914	1	0	seg0.7	300
+1.2880	sha256-ctr mod :pilgrim	6522	28	1	seg0.13	300
+1.2874	phi(n)	3236	28	0	seg0.15	300
+1.2874	sha256-ctr reject :koan	19103	28	1	seg0.8	300
+1.2874	sha256-ctr reject :emerge	699	1	1	seg0.7	300
+1.2874	sha512-ctr mod :parable	91	28	1	seg0.9	300
+1.2867	md5-ctr reject :<256 bytes cbe7a7ba>	1476	28	1	seg0.15	300
+1.2867	sha256-ctr mod :all things should be encrypted	12649	1	1	seg0.13	300
+1.2861	sha512-ctr reject :liber primus	12847	28	1	seg0.7	300
+1.2861	md5-ctr reject :koan	18754	28	0	seg0.11	300
+1.2861	sha256-ctr reject :the primes are sacred	11514	1	1	seg0.13	300
+1.2861	sha256-ctr reject :0x7A35090F	13908	1	0	seg0.9	300
+1.2854	sha256-ctr reject :cicada3301	6806	28	1	seg0.15	300
+1.2854	sha256-chain reject :THE PRIMES ARE SACRED	13884	1	0	seg0.11	300
+1.2848	p_n - n	4955	28	0	seg0.11	300
+1.2848	sha512-ctr reject :liberprimus	18708	28	1	seg0.13	300
+1.2848	sha256-chain reject :ALL THINGS SHOULD BE ENCRYPTED	10991	1	1	seg0.14	300
+1.2841	sha256-chain reject :divinity	9920	1	1	seg0.12	300
+1.2841	sha256-chain reject :question all things	9222	28	0	seg0.12	300
+1.2835	sha512-ctr reject :liber primus	12849	28	1	seg0.7	300
+1.2835	sha256-chain mod :20140104	8907	28	0	seg0.9	300
+1.2829	sha256-chain reject :729	1139	1	0	seg0.14	300
+1.2829	e digits (base 10)	11156	28	1	seg0.15	300
+1.2822	sha256-chain mod :a warning	8176	28	1	seg0.13	300
+1.2822	sha256-ctr reject :7	4879	28	0	seg0.13	300
+1.2822	sha512-ctr reject :CIRCUMFERENCE	14636	28	1	seg0.12	300
+1.2822	sha512-ctr reject :CIRCUMFERENCE	14634	28	1	seg0.12	300
+1.2816	sha256-ctr mod :66wc«sx<zòDlYFkLÖS#1·mFÞà%=ÇPFO	11166	1	1	seg0.9	300
+1.2816	cbrt2 digits (base 29)	19501	28	0	seg0.7	300
+1.2816	sha256-ctr mod :cicada3301	10280	28	1	seg0.9	300
+1.2816	sha256-chain reject :729	1140	1	0	seg0.14	300
+1.2803	sqrt29 digits (base 29)	19388	28	1	seg0.13	300
+1.2796	sha512-ctr reject :liberprimus	16496	28	0	seg0.11	300
+1.2796	sha256-chain mod :cicada	6598	1	1	seg0.7	300
+1.2796	sha256-chain reject :firfumferenfe	6068	28	0	seg0.15	300
+1.2790	sha256-ctr mod :1033	19421	1	0	seg0.12	300
+1.2790	md5-ctr reject :0x7A35090F	8034	28	1	seg0.14	300
+1.2790	md5-ctr reject :ALL THINGS SHOULD BE ENCRYPTED	6240	28	1	seg0.8	300
+1.2790	sha256-ctr reject :DIVINITY	4646	1	0	seg0.8	300
+1.2783	sha256-chain reject :<128 bytes 33363336>	2224	1	0	seg0.14	300
+1.2783	p_n - n	4954	28	0	seg0.11	300
+1.2783	sha512-ctr mod :cicada3301	6431	28	1	seg0.7	300
+1.2783	sha256-chain mod :some wisdom	12279	1	1	seg0.13	300
+1.2783	ln2 digits (base 29)	11952	28	1	seg0.8	300
+1.2770	sha256-chain reject :ALL THINGS SHOULD BE ENCRYPTED	10989	1	1	seg0.14	300
+1.2770	sha512-ctr reject :a warning	6052	28	1	seg0.15	300
+1.2770	md5-ctr reject :liber primus	3636	1	1	seg0.13	300
+1.2770	md5-ctr mod :pilgrim	112	28	0	seg0.8	300
+1.2770	sha256-chain reject :7A35090F	688	28	1	seg0.13	300
+1.2770	sha256-ctr mod :FIRFUMFERENFE	4415	1	0	seg0.14	300
+1.2764	md5-ctr mod :LIBER PRIMUS	1544	28	1	seg0.7	300
+1.2764	sha512-ctr reject :CIRCUMFERENCE	14638	28	1	seg0.12	300
+1.2764	md5-ctr reject :instar	10951	28	1	seg0.13	300
+1.2764	sha256-ctr mod :7A35090F	3444	28	1	seg0.8	300
+1.2764	sha256-chain reject :the primes are sacred	11875	1	1	seg0.9	300
+1.2764	sha256-ctr reject :29	17707	28	1	seg0.15	300
+1.2764	sha512-ctr reject :liberprimus	18706	28	1	seg0.13	300
+1.2764	sha256-ctr mod :koan	5452	28	1	seg0.14	300
+1.2764	sha512-ctr mod :the primes are sacred	241	1	0	seg0.9	300
+1.2757	md5-ctr reject :within	9350	1	0	seg0.9	300
+1.2757	sha256-chain mod :20140104	8908	28	0	seg0.9	300
+1.2751	sha512-ctr mod :2014	6809	1	1	seg0.9	300
+1.2751	sha256-ctr mod :emerge	8472	28	0	seg0.14	300
+1.2744	sha512-ctr mod :3258	7856	1	1	seg0.15	300
+1.2744	sha512-ctr reject :729	14693	28	0	seg0.15	300
+1.2744	md5-ctr mod :LIBER PRIMUS	1542	28	1	seg0.7	300
+1.2744	sha256-chain mod :7A35090F	16469	28	0	seg0.15	300
+1.2744	sha256-chain mod :<256 bytes cbe7a7ba>	13612	1	1	seg0.8	300
+1.2744	primes	8820	28	1	seg0.8	300
+1.2744	3301 - p_n	8820	1	1	seg0.8	300
+1.2744	primes from 3301	8357	28	1	seg0.8	300
+1.2744	sha256-chain mod :some wisdom	12277	1	1	seg0.13	300
+1.2744	primes base-29 digit sum	8868	28	1	seg0.14	300
+1.2744	primes+1	8820	28	1	seg0.8	300
+1.2744	md5-ctr mod :primes	5053	28	0	seg0.9	300
+1.2744	sha256-chain mod :7	16099	28	1	seg0.11	300
+1.2744	primes-1 (totient)	8820	28	1	seg0.8	300
+1.2738	md5-ctr reject :434	9176	28	0	seg0.8	300
+1.2738	md5-ctr mod :FIRFUMFERENFE	18209	1	1	seg0.11	300
+1.2738	sha512-ctr mod :primes	634	28	1	seg0.8	300
+1.2732	sha256-chain reject :divinity	9922	1	1	seg0.12	300
+1.2732	sha256-ctr mod :totient	6844	28	1	seg0.7	300
+1.2732	sha256-chain mod :434	12971	1	1	seg0.13	300
+1.2732	sha256-chain mod :434	11328	1	1	seg0.12	300
+1.2732	md5-ctr reject :66wc«sx<zòDlYFkLÖS#1·mFÞà%=ÇPFO	18738	28	0	seg0.8	300
+1.2725	sha256-ctr mod :INTUS	8949	28	1	seg0.12	300
+1.2725	sha256-ctr mod :AN END	13339	1	1	seg0.12	300
+1.2725	sha256-ctr reject :firfumferenfe	12538	1	0	seg0.14	300
+1.2725	md5-ctr reject :INSTAR	11893	1	1	seg0.7	300
+1.2725	sha512-ctr mod :the primes are sacred	242	1	0	seg0.9	300
+1.2725	sha512-ctr mod :DIVINITY	9813	28	1	seg0.9	300
+1.2725	sha256-ctr reject :know this	928	1	1	seg0.7	300
+1.2719	sha256-chain mod :7A35090F	9791	1	1	seg0.14	300
+1.2719	md5-ctr reject :parable	17114	28	1	seg0.9	300
+1.2719	e^pi digits (base 29)	5139	28	1	seg0.13	300
+1.2719	sha256-ctr reject :Cicada 3301	17442	1	1	seg0.15	300
+1.2719	sha256-ctr mod :the totient function is sacred	484	1	1	seg0.8	300
+1.2719	sha512-ctr mod :CIRCUMFERENCE	6800	28	0	seg0.12	300
+1.2719	sha256-ctr mod :program reality	12253	28	1	seg0.14	300
+1.2719	sha256-chain reject :circumference	9233	1	1	seg0.13	300
+1.2719	e^pi digits (base 29)	5141	28	1	seg0.13	300
+1.2712	sha256-chain reject :firfumferenfe	2730	28	1	seg0.13	300
+1.2712	sha256-chain mod :20140104	14590	1	1	seg0.8	300
+1.2712	sha512-ctr mod :DIVINITY	9811	28	1	seg0.9	300
+1.2706	sha256-ctr mod :AN END	13341	1	1	seg0.12	300
+1.2706	sha512-ctr reject :20140104	17202	1	0	seg0.7	300
+1.2706	sqrt2 digits (base 10)	459	28	1	seg0.8	300
+1.2706	md5-ctr reject :Cicada 3301	18056	1	1	seg0.8	300
+1.2706	sha512-ctr reject :<256 bytes 50bd24b4>	6859	28	0	seg0.14	300
+1.2706	sha256-ctr reject :cicada3301	6808	28	1	seg0.15	300
+1.2706	sha256-ctr mod :7	9949	1	1	seg0.7	300
+1.2706	md5-ctr reject :within	12453	28	1	seg0.11	300
+1.2699	sha256-ctr mod :3301	2270	28	0	seg0.14	300
+1.2699	md5-ctr reject :instar	10953	28	1	seg0.13	300
+1.2699	sha512-ctr mod :question all things	656	28	0	seg0.13	300
+1.2699	primes base-29 digit sum	9543	28	0	seg0.7	300
+1.2693	md5-ctr reject :cicada	12441	1	0	seg0.8	300
+1.2693	sha512-ctr reject :liberprimus	12956	28	1	seg0.13	300
+1.2693	sha512-ctr mod :INSTAR	19062	28	1	seg0.7	300
+1.2686	sha512-ctr reject :shadows aethereal buffers void carnal ob	18629	1	0	seg0.11	300
+1.2686	md5-ctr mod :divinity	5404	28	1	seg0.8	300
+1.2686	sha256-ctr mod :circumference	10221	28	1	seg0.7	300
+1.2686	md5-ctr mod :welcome	1763	1	1	seg0.8	300
+1.2686	sha256-chain mod :<128 bytes 33363336>	8785	1	0	seg0.14	300
+1.2686	sha256-ctr mod :program your mind	10658	1	0	seg0.9	300
+1.2686	sha256-chain reject :<512 bytes 63626537>	13383	1	0	seg0.9	300
+1.2686	md5-ctr reject :1033	17813	28	0	seg0.11	300
+1.2686	md5-ctr mod :deep web	18717	1	1	seg0.8	300
+1.2686	sha256-chain mod :liberprimus	7523	1	0	seg0.11	300
+1.2686	sha256-ctr mod :welcome	6594	1	1	seg0.8	300
+1.2686	sha256-ctr mod :the totient function is sacred	488	1	1	seg0.8	300
+1.2686	md5-ctr reject :divinity	4087	1	0	seg0.13	300
+1.2680	sha256-ctr mod :emerge	8473	28	0	seg0.14	300
+1.2680	sha256-ctr mod :emerge	8474	28	0	seg0.14	300
+1.2680	sha256-ctr mod :emerge	9828	1	1	seg0.14	300
+1.2680	sqrt5 digits (base 29)	4745	28	0	seg0.8	300
+1.2680	sha256-chain mod :<256 bytes cbe7a7ba>	7470	1	0	seg0.9	300
+1.2680	sha512-ctr reject :liber primus	8266	1	0	seg0.7	300
+1.2680	sha256-chain reject :434	16521	1	1	seg0.15	300
+1.2680	sha256-ctr reject :pilgrim	12219	1	0	seg0.7	300
+1.2680	sha512-ctr reject :totient	454	28	1	seg0.11	300
+1.2680	sha256-chain reject :liberprimus	12688	1	1	seg0.8	300
+1.2680	sha256-ctr mod :FULMAEAYOEA	10673	28	1	seg0.13	300
+1.2680	sha256-chain mod :7	16089	28	1	seg0.11	300
+1.2673	sha512-ctr reject :LIBER PRIMUS	9222	28	1	seg0.8	300
+1.2673	sha256-chain reject :729	16058	1	1	seg0.7	300
+1.2673	sha512-ctr reject :liber primus	15851	28	1	seg0.13	300
+1.2673	sha512-ctr mod :Cicada 3301	17119	28	1	seg0.12	300
+1.2673	sha256-ctr mod :some wisdom	8489	28	0	seg0.15	300
+1.2673	md5-ctr reject :welcome	8666	1	1	seg0.14	300
+1.2673	phi digits (base 29)	18852	1	1	seg0.14	300
+1.2673	sha256-chain reject :INTUS	5260	28	0	seg0.9	300
+1.2673	sha512-ctr mod :divinity	6191	28	0	seg0.8	300
+1.2673	sha512-ctr reject :3258	17213	28	1	seg0.7	300
+1.2673	sha512-ctr reject :<256 bytes 50bd24b4>	17104	1	0	seg0.14	300
+1.2667	sha512-ctr mod :2014	6807	1	1	seg0.9	300
+1.2667	sha256-ctr reject :0x7A35090F	12353	28	0	seg0.11	300
+1.2667	md5-ctr reject :liberprimus	11225	1	0	seg0.11	300
+1.2667	md5-ctr mod :self-reliance	8243	1	0	seg0.13	300
+1.2667	sha256-chain mod :7	16101	28	1	seg0.11	300
+1.2667	md5-ctr reject :PILGRIM	198	1	1	seg0.13	300
+1.2667	sha512-ctr reject :intus	6477	1	1	seg0.11	300
+1.2660	sha512-ctr mod :<512 bytes 63626537>	12720	1	1	seg0.13	300
+1.2660	sha512-ctr reject :1311	13867	1	1	seg0.8	300
+1.2660	md5-ctr mod :7A35090F	14804	28	1	seg0.7	300
+1.2660	sha512-ctr reject :<256 bytes 50bd24b4>	6858	28	0	seg0.14	300
+1.2660	sha256-chain reject :deep web	6604	1	1	seg0.9	300
+1.2660	sha256-chain reject :INSTAR EMERGENCE	744	28	1	seg0.8	300
+1.2660	sha512-ctr mod :Cicada 3301	17117	28	1	seg0.12	300
+1.2660	(p+1)/2	11645	1	1	seg0.9	300
+1.2660	sha256-ctr mod :1033	19422	1	0	seg0.12	300
+1.2660	sha256-chain reject :all things should be encrypted	12183	1	0	seg0.8	300
+1.2660	(p-1)/2	11645	1	1	seg0.9	300
+1.2660	sha256-ctr mod :welcome	6596	1	1	seg0.8	300
+1.2654	md5-ctr mod :liber primus	17541	1	1	seg0.7	300
+1.2654	sha512-ctr reject :deep web	6916	1	0	seg0.7	300
+1.2654	sha256-chain reject :2014	5793	28	0	seg0.15	300
+1.2654	sha256-chain reject :2014	5794	28	0	seg0.15	300
+1.2654	sha256-ctr mod :AN END	13347	1	1	seg0.12	300
+1.2654	sha512-ctr mod :PILGRIM	14672	1	1	seg0.12	300
+1.2654	sha256-ctr mod :shadows aethereal buffers void carnal ob	19283	28	0	seg0.13	300
+1.2654	sha256-chain mod :know this	8546	28	0	seg0.15	300
+1.2654	sha256-chain mod :INTUS	2596	1	0	seg0.7	300
+1.2654	(p+1)/2	5357	28	1	seg0.14	300
+1.2654	sha256-chain reject :the primes are sacred	11877	1	1	seg0.9	300
+1.2654	sha512-ctr mod :shadows aethereal buffers void carnal ob	13089	28	0	seg0.11	300
+1.2654	md5-ctr reject :29	13968	1	0	seg0.11	300
+1.2654	sha512-ctr reject :31	15521	28	1	seg0.14	300
+1.2654	sha256-chain reject :liber primus	3274	1	0	seg0.11	300
+1.2654	sha512-ctr reject :program reality	11662	28	1	seg0.11	300
+1.2654	sha256-chain mod :2014	11837	1	0	seg0.12	300
+1.2654	(p-1)/2	5357	28	1	seg0.14	300
+1.2647	e^pi digits (base 29)	14192	28	1	seg0.9	300
+1.2647	sha256-ctr reject :the primes are sacred	6954	1	1	seg0.13	300
+1.2647	sha512-ctr reject :deep web	6915	1	0	seg0.7	300
+1.2647	sha256-chain reject :koan	1311	1	1	seg0.11	300
+1.2647	ln2 digits (base 10)	11239	28	0	seg0.9	300
+1.2647	primes base-29 digit sum	19530	28	0	seg0.7	300
+1.2647	sha256-chain reject :434	11654	28	1	seg0.7	300
+1.2647	sha512-ctr mod :parable	15318	28	1	seg0.13	300
+1.2641	md5-ctr reject :31	18839	28	1	seg0.11	300
+1.2641	sha512-ctr reject :7A35090F	3297	1	0	seg0.12	300
+1.2641	md5-ctr mod :1033	6676	28	0	seg0.12	300
+1.2641	sha512-ctr mod :the primes are sacred	240	1	0	seg0.9	300
+1.2641	sha256-chain reject :<128 bytes 33363336>	6601	28	0	seg0.9	300
+1.2641	sha256-chain mod :66wc«sx<zòDlYFkLÖS#1·mFÞà%=ÇPFO	10668	28	0	seg0.15	300
+1.2641	sha256-ctr reject :<256 bytes 50bd24b4>	3518	1	1	seg0.8	300
+1.2641	sha256-chain reject :434	2922	1	0	seg0.8	300
+1.2641	sha256-chain reject :some wisdom	10757	1	0	seg0.13	300
+1.2641	sha256-chain reject :liber primus	14400	28	0	seg0.7	300
+1.2635	sha256-ctr reject :emergence	14739	28	1	seg0.15	300
+1.2635	md5-ctr reject :an end	18737	28	0	seg0.7	300
+1.2635	sha512-ctr reject :shadows aethereal buffers void carnal ob	11025	28	1	seg0.9	300
+1.2635	sha256-ctr mod :all things should be encrypted	12647	1	1	seg0.13	300
+1.2635	md5-ctr mod :729	27	28	0	seg0.12	300
+1.2635	sha256-chain mod :an end	6771	1	1	seg0.15	300
+1.2628	sha512-ctr mod :FULMAEAYOEA	13179	1	0	seg0.9	300
+1.2628	sha256-ctr mod :circumference	6018	28	1	seg0.11	300
+1.2628	sha512-ctr mod :<256 bytes 50bd24b4>	12818	1	1	seg0.9	300
+1.2628	sha256-chain mod :<128 bytes 33363336>	8787	1	0	seg0.14	300
+1.2628	sha512-ctr mod :koan	5599	1	1	seg0.7	300
+1.2622	sha256-chain mod :3301	3900	1	0	seg0.15	300
+1.2622	sha512-ctr mod :program your mind	7833	28	1	seg0.13	300
+1.2622	sha256-chain mod :7A35090F	16468	28	0	seg0.15	300
+1.2622	sha256-ctr mod :Cicada 3301	2684	1	1	seg0.12	300
+1.2622	sha256-chain mod :pilgrim	11682	28	1	seg0.7	300
+1.2622	sha512-ctr reject :emergence	15413	28	1	seg0.11	300
+1.2622	md5-ctr mod :the primes are sacred	19451	1	1	seg0.7	300
+1.2622	md5-ctr mod :FIRFUMFERENFE	18722	28	1	seg0.9	300
+1.2622	sha512-ctr mod :AN END	6116	28	0	seg0.7	300
+1.2622	sha256-ctr mod :cicada	16628	1	1	seg0.13	300
+1.2622	sha256-ctr mod :PILGRIM	4301	28	1	seg0.14	300
+1.2615	sha512-ctr mod :cicada	2415	1	0	seg0.15	300
+1.2615	md5-ctr mod :an end	15837	1	0	seg0.12	300
+1.2615	md5-ctr mod :self-reliance	8242	1	0	seg0.13	300
+1.2615	sha256-chain reject :0x7A35090F	3751	28	0	seg0.11	300
+1.2615	md5-ctr reject :command your own self	17210	1	0	seg0.7	300
+1.2615	sha512-ctr reject :PILGRIM	14188	28	0	seg0.11	300
+1.2615	p_n + n	4992	1	1	seg0.12	300
+1.2615	sha512-ctr reject :liber primus	15167	1	0	seg0.7	300
+1.2615	sha256-chain mod :a warning	19030	28	0	seg0.12	300
+1.2615	sha256-chain reject :DIVINITY	14031	28	0	seg0.9	300
+1.2615	sha256-ctr reject :3301	6090	1	1	seg0.12	300
+1.2615	primes^3	11674	28	1	seg0.7	300
+1.2615	sha256-ctr reject :<512 bytes 63626537>	564	28	1	seg0.14	300
+1.2615	md5-ctr mod :0x7A35090F	11480	28	0	seg0.14	300
+1.2615	primes base-29 digit sum	9542	28	0	seg0.7	300
+1.2615	sha512-ctr reject :729	5887	1	1	seg0.12	300
+1.2615	sha512-ctr mod :emerge	12185	1	0	seg0.8	300
+1.2615	sha512-ctr reject :the primes are sacred	15472	28	0	seg0.14	300
+1.2609	md5-ctr mod :0x7A35090F	15812	1	0	seg0.11	300
+1.2609	md5-ctr mod :<512 bytes 63626537>	16161	1	1	seg0.11	300
+1.2609	sha256-chain reject :7A35090F	8271	1	0	seg0.13	300
+1.2609	md5-ctr mod :<256 bytes cbe7a7ba>	6371	28	1	seg0.8	300
+1.2609	md5-ctr mod :welcome	1765	1	1	seg0.8	300
+1.2609	sha256-chain reject :FULMAEAYOEA	19110	1	1	seg0.12	300
+1.2609	sha512-ctr mod :AN END	66	28	0	seg0.13	300
+1.2609	md5-ctr reject :welcome	9042	1	0	seg0.9	300
+1.2609	sha256-ctr mod :20140104	6351	1	1	seg0.15	300
+1.2609	md5-ctr reject :welcome	9456	28	1	seg0.7	300
+1.2609	md5-ctr mod :2014	19073	28	0	seg0.12	300
+1.2609	sha512-ctr reject :instar	19250	28	0	seg0.13	300
+1.2609	sqrt5 digits (base 29)	11926	28	0	seg0.9	300
+1.2609	sha256-chain mod :liberprimus	7525	1	0	seg0.11	300
+1.2609	sha256-ctr mod :DIVINITY	2057	1	1	seg0.13	300
+1.2609	sha256-ctr mod :DIVINITY	2059	1	1	seg0.13	300
+1.2609	composites	117	28	1	seg0.7	300
+1.2609	sha512-ctr reject :circumference	12522	28	1	seg0.8	300
+1.2609	sha256-chain reject :liberprimus	9320	1	0	seg0.9	300
+1.2609	cbrt2 digits (base 29)	19503	28	0	seg0.7	300
+1.2609	sha512-ctr mod :29	8055	1	0	seg0.8	300
+1.2602	md5-ctr reject :AN END	7029	1	1	seg0.12	300
+1.2602	sha256-ctr mod :1311	11570	1	1	seg0.9	300
+1.2602	sha256-ctr mod :PILGRIM	7814	1	1	seg0.11	300
+1.2602	sqrt3301 digits (base 29)	13802	1	1	seg0.8	300
+1.2602	euler gamma digits (base 29)	5549	1	1	seg0.13	300
+1.2602	sqrt5 digits (base 29)	10653	1	0	seg0.15	300
+1.2602	sha256-ctr mod :1033	9735	28	1	seg0.9	300
+1.2602	sha256-chain mod :instar	1546	1	1	seg0.9	300
+1.2602	sha256-chain reject :29	18971	1	1	seg0.8	300
+1.2602	md5-ctr reject :0x7A35090F	8032	28	1	seg0.14	300
+1.2602	sha256-ctr mod :7	16286	28	0	seg0.7	300
+1.2602	md5-ctr reject :31	16519	28	1	seg0.13	300
+1.2602	sha256-chain reject :firfumferenfe	17929	28	0	seg0.13	300
+1.2596	sha256-ctr mod :<256 bytes cbe7a7ba>	18381	28	1	seg0.14	300
+1.2596	sha512-ctr reject :emergence	15411	28	1	seg0.11	300
+1.2596	md5-ctr reject :circumference	6242	1	1	seg0.15	300
+1.2596	sha256-ctr mod :INTUS	14153	1	1	seg0.15	300
+1.2596	phi digits (base 10)	19103	1	1	seg0.15	300
+1.2596	sha512-ctr reject :1311	18842	28	1	seg0.14	300
+1.2596	sha512-ctr reject :1311	18844	28	1	seg0.14	300
+1.2596	sha512-ctr mod :shadows aethereal buffers void carnal ob	13090	28	0	seg0.11	300
+1.2596	sha256-chain mod :<128 bytes 33363336>	8786	1	0	seg0.14	300
+1.2596	ln3 digits (base 29)	11370	1	1	seg0.11	300
+1.2596	md5-ctr reject :firfumferenfe	5890	1	0	seg0.14	300
+1.2596	sha256-chain mod :deep web	9660	1	1	seg0.7	300
+1.2596	sha256-ctr mod :31	13675	1	0	seg0.8	300
+1.2596	sha256-ctr mod :<256 bytes cbe7a7ba>	18383	28	1	seg0.14	300
+1.2596	sha256-chain reject :parable	5138	1	1	seg0.14	300
+1.2596	md5-ctr reject :1033	6278	28	0	seg0.11	300
+1.2596	sha256-chain reject :CIRCUMFERENCE	4867	1	0	seg0.12	300
+1.2596	sha256-ctr mod :7A35090F	8183	28	1	seg0.11	300
+1.2596	sha256-ctr reject :20140104	15450	1	0	seg0.15	300
+1.2596	md5-ctr reject :primes	16851	1	1	seg0.12	300
+1.2589	sha256-chain reject :deep web	16344	28	1	seg0.12	300
+1.2589	sha256-chain mod :question all things	5249	28	0	seg0.14	300
+1.2589	sha256-chain mod :pilgrim	9958	28	1	seg0.11	300
+1.2589	sha256-ctr reject :3258	14527	1	0	seg0.8	300
+1.2589	e^pi digits (base 29)	4950	28	1	seg0.9	300
+1.2589	e^pi digits (base 29)	4948	28	1	seg0.9	300
+1.2589	sha256-ctr mod :emergence	17199	28	1	seg0.7	300
+1.2589	sha256-chain mod :20140104	14588	1	1	seg0.8	300
+1.2589	md5-ctr reject :3258	4444	1	1	seg0.12	300
+1.2589	sha256-ctr reject :firfumferenfe	12537	1	0	seg0.14	300
+1.2589	sha256-ctr mod :1311	11572	1	1	seg0.9	300
+1.2589	sha512-ctr reject :all things should be encrypted	11017	28	1	seg0.9	300
+1.2589	sha256-chain mod :pilgrim	14882	1	1	seg0.7	300
+1.2589	sha512-ctr reject :liberprimus	18704	28	1	seg0.13	300
+1.2589	sha256-ctr mod :divinity	1064	28	1	seg0.11	300
+1.2583	md5-ctr reject :Cicada 3301	18060	1	1	seg0.8	300
+1.2583	sha256-ctr reject :3301	6088	1	1	seg0.12	300
+1.2583	sha256-chain mod :some wisdom	12283	1	1	seg0.13	300
+1.2583	md5-ctr reject :program reality	11149	1	1	seg0.9	300
+1.2583	sha256-ctr mod :emergence	17201	28	1	seg0.7	300
+1.2583	sha256-chain reject :all things should be encrypted	101	28	1	seg0.14	300
+1.2583	sha256-ctr mod :shadows aethereal buffers void carnal ob	19280	28	0	seg0.13	300
+1.2583	md5-ctr mod :<512 bytes 63626537>	2360	28	0	seg0.13	300
+1.2583	md5-ctr mod :AN END	14576	28	0	seg0.14	300
+1.2583	md5-ctr reject :intus	9050	1	0	seg0.7	300
+1.2583	md5-ctr reject :cicada3301	3445	1	1	seg0.9	300
+1.2583	md5-ctr reject :program your mind	17201	1	0	seg0.12	300
+1.2583	sha512-ctr reject :shadows aethereal buffers void carnal ob	2655	28	0	seg0.13	300
+1.2583	sha512-ctr reject :deep web	12794	28	0	seg0.13	300
+1.2576	sha512-ctr mod :DIVINITY	16964	28	0	seg0.11	300
+1.2576	sha256-chain reject :parable	2202	1	0	seg0.14	300
+1.2576	sha256-chain reject :parable	2201	1	0	seg0.14	300
+1.2576	sha256-ctr mod :0x7A35090F	11375	1	0	seg0.9	300
+1.2576	sqrt3301 digits (base 29)	9681	1	1	seg0.7	300
+1.2576	md5-ctr mod :AN END	15052	28	0	seg0.9	300
+1.2576	p_n mod 3301	2084	1	1	seg0.8	300
+1.2576	md5-ctr mod :divinity	5402	28	1	seg0.8	300
+1.2576	md5-ctr reject :1311	19241	1	0	seg0.14	300
+1.2576	sha256-chain mod :PILGRIM	11571	1	1	seg0.7	300
+1.2576	sha512-ctr reject :circumference	8364	28	1	seg0.8	300
+1.2576	sha512-ctr mod :PILGRIM	13828	28	0	seg0.13	300
+1.2576	sha512-ctr reject :all things should be encrypted	12910	28	0	seg0.15	300
+1.2576	ln3 digits (base 29)	11368	1	1	seg0.11	300
+1.2576	md5-ctr reject :liber primus	7849	28	0	seg0.14	300
+1.2576	sha256-ctr mod :AN END	13345	1	1	seg0.12	300
+1.2570	cbrt2 digits (base 29)	19506	28	0	seg0.7	300
+1.2570	sha256-chain reject :CIRCUMFERENCE	4866	1	0	seg0.12	300
+1.2570	sha512-ctr mod :program your mind	5616	28	1	seg0.7	300
+1.2570	primes popcount	16554	28	1	seg0.9	300
+1.2570	sha512-ctr reject :1311	18846	28	1	seg0.14	300
+1.2570	md5-ctr reject :welcome	9454	28	1	seg0.7	300
+1.2570	sha256-chain mod :emergence	880	1	1	seg0.9	300
+1.2570	sha256-ctr mod :DIVINITY	16593	1	1	seg0.15	300
+1.2570	sha256-ctr mod :program your mind	10657	1	0	seg0.9	300
+1.2570	md5-ctr mod :7A35090F	17517	1	0	seg0.8	300
+1.2570	sha256-chain mod :<512 bytes 63626537>	939	28	1	seg0.7	300
+1.2570	sha256-chain mod :welcome	19344	1	1	seg0.12	300
+1.2570	p_n mod 3301	19274	28	0	seg0.7	300
+1.2570	md5-ctr mod :29	3414	1	1	seg0.11	300
+1.2570	sha256-chain reject :divinity	13987	1	0	seg0.13	300
+1.2570	sha256-chain reject :7A35090F	684	28	1	seg0.13	300
+1.2570	sha512-ctr mod :parable	1696	28	1	seg0.15	300
+1.2563	md5-ctr mod :434	15163	1	0	seg0.7	300
+1.2563	sha256-chain mod :PILGRIM	1470	28	0	seg0.13	300
+1.2563	sha256-chain mod :CIRCUMFERENCE	12639	28	1	seg0.11	300
+1.2563	sha256-ctr mod :emerge	8471	28	0	seg0.14	300
+1.2563	sha512-ctr reject :434	18679	1	1	seg0.15	300
+1.2563	md5-ctr reject :cicada3301	7061	28	0	seg0.14	300
+1.2563	sha512-ctr reject :all things should be encrypted	12909	28	0	seg0.15	300
+1.2563	sha256-ctr reject :Cicada 3301	10533	28	0	seg0.12	300
+1.2563	sha256-chain mod :434	16890	1	0	seg0.8	300
+1.2563	sha256-chain reject :deep web	6608	1	1	seg0.9	300
+1.2563	sha256-ctr reject :<512 bytes 63626537>	1332	1	1	seg0.11	300
+1.2563	sha256-ctr reject :<512 bytes 63626537>	1330	1	1	seg0.11	300
+1.2563	sha256-chain mod :cicada	6538	1	0	seg0.13	300
+1.2563	md5-ctr reject :cicada	12442	1	0	seg0.8	300
+1.2563	primes popcount	16308	28	1	seg0.9	300
+1.2563	cumulative prime sum	8330	28	1	seg0.12	300
+1.2563	sha256-ctr mod :divinity	1066	28	1	seg0.11	300
+1.2563	sha512-ctr mod :divinity	15952	28	0	seg0.12	300
+1.2563	sha256-ctr mod :DIVINITY	4197	1	0	seg0.9	300
+1.2563	sha256-ctr mod :koan	19000	28	0	seg0.11	300
+1.2563	sha512-ctr mod :liber primus	16475	1	1	seg0.12	300
+1.2563	sha256-ctr mod :koan	16738	28	1	seg0.8	300
+1.2563	sha512-ctr mod :<256 bytes 50bd24b4>	12820	1	1	seg0.9	300
+1.2563	sha512-ctr reject :a warning	5685	28	0	seg0.13	300
+1.2557	md5-ctr reject :intus	9681	28	0	seg0.15	300
+1.2557	sha256-chain mod :7	19134	28	1	seg0.7	300
+1.2557	sha256-chain reject :pilgrim	11380	1	1	seg0.12	300
+1.2557	sha512-ctr reject :some wisdom	8909	1	1	seg0.15	300
+1.2557	pi digits (base 29)	10257	28	0	seg0.15	300
+1.2557	sha256-chain mod :PILGRIM	1469	28	0	seg0.13	300
+1.2557	sha256-chain mod :an instruction	5445	28	0	seg0.12	300
+1.2557	sha256-chain mod :an instruction	5446	28	0	seg0.12	300
+1.2557	sha512-ctr mod :434	8092	1	0	seg0.11	300
+1.2557	sha256-chain mod :liberprimus	5989	1	0	seg0.14	300
+1.2557	sha256-ctr reject :shadows aethereal buffers void carnal ob	13561	1	0	seg0.13	300
+1.2557	sha512-ctr reject :FULMAEAYOEA	18907	1	1	seg0.8	300
+1.2557	sha256-chain mod :liberprimus	5990	1	0	seg0.14	300
+1.2557	sha512-ctr mod :koan	6390	28	0	seg0.12	300
+1.2557	md5-ctr reject :LIBER PRIMUS	16061	1	0	seg0.14	300
+1.2551	md5-ctr mod :DIVINITY	1822	28	1	seg0.15	300
+1.2551	sha512-ctr mod :THE PRIMES ARE SACRED	3233	28	0	seg0.14	300
+1.2551	md5-ctr reject :434	18333	28	0	seg0.9	300
+1.2551	sha256-chain reject :divinity	9689	28	1	seg0.9	300
+1.2551	sha256-chain mod :divinity	2431	28	0	seg0.9	300
+1.2551	md5-ctr mod :an end	13259	1	1	seg0.9	300
+1.2551	md5-ctr mod :7A35090F	17516	1	0	seg0.8	300
+1.2551	sha256-chain mod :pilgrim	9956	28	1	seg0.11	300
+1.2551	sha512-ctr reject :program reality	4862	28	0	seg0.14	300
+1.2551	sha256-chain mod :intus	13708	28	1	seg0.12	300
+1.2551	md5-ctr mod :circumference	6242	28	1	seg0.12	300
+1.2551	md5-ctr reject :a warning	16564	1	1	seg0.11	300
+1.2551	sha256-chain reject :AN END	16800	28	0	seg0.8	300
+1.2551	phi digits (base 10)	14696	28	0	seg0.7	300
+1.2551	md5-ctr mod :liberprimus	969	28	0	seg0.9	300
+1.2551	sha256-ctr mod :INTUS	17986	28	1	seg0.12	300
+1.2551	sha256-ctr mod :koan	16736	28	1	seg0.8	300
+1.2551	md5-ctr reject :7A35090F	6883	28	0	seg0.7	300
+1.2551	md5-ctr reject :66wc«sx<zòDlYFkLÖS#1·mFÞà%=ÇPFO	1547	1	0	seg0.12	300
+1.2551	sha256-ctr mod :DIVINITY	4196	1	0	seg0.9	300
+1.2551	sha256-chain mod :PILGRIM	14398	1	1	seg0.14	300
+1.2551	sha256-ctr mod :INSTAR EMERGENCE	17618	28	1	seg0.12	300
+1.2551	sha512-ctr reject :7A35090F	4844	1	1	seg0.7	300
+1.2551	sha256-ctr reject :3258	10606	1	1	seg0.15	300
+1.2551	sha512-ctr reject :koan	17134	28	0	seg0.14	300
+1.2544	ln3 digits (base 29)	16507	28	0	seg0.8	300
+1.2544	sha256-ctr reject :LIBER PRIMUS	9731	28	1	seg0.14	300
+1.2544	sha256-chain reject :THE PRIMES ARE SACRED	15421	1	1	seg0.7	300
+1.2544	md5-ctr reject :program reality	11145	1	1	seg0.9	300
+1.2544	md5-ctr reject :program reality	11147	1	1	seg0.9	300
+1.2544	md5-ctr reject :cicada	12440	1	0	seg0.8	300
+1.2544	md5-ctr reject :cicada	7529	1	0	seg0.7	300
+1.2544	sha256-chain mod :2014	532	1	0	seg0.8	300
+1.2544	sha256-chain reject :koan	1309	1	1	seg0.11	300
+1.2544	sha512-ctr mod :THE PRIMES ARE SACRED	663	1	1	seg0.12	300
+1.2544	sha256-chain reject :31	16456	28	0	seg0.7	300
+1.2544	md5-ctr reject :3301	7919	28	0	seg0.9	300
+1.2544	sha256-ctr reject :Cicada 3301	18774	1	0	seg0.11	300
+1.2544	p_n mod 3301	2626	28	0	seg0.9	300
+1.2544	sha256-chain reject :INSTAR EMERGENCE	12322	1	1	seg0.11	300
+1.2544	sha512-ctr mod :7	18782	28	0	seg0.8	300
+1.2544	sha512-ctr reject :729	14696	28	0	seg0.15	300
+1.2544	sha256-ctr mod :1033	14764	28	1	seg0.15	300
+1.2544	md5-ctr mod :FIRFUMFERENFE	5229	28	0	seg0.7	300
+1.2544	sha256-ctr reject :some wisdom	7917	1	1	seg0.15	300
+1.2544	sha256-chain mod :program your mind	7445	28	0	seg0.14	300
+1.2544	sha256-chain mod :FULMAEAYOEA	5426	28	0	seg0.11	300
+1.2544	sha256-chain mod :pilgrim	11680	28	1	seg0.7	300
+1.2544	md5-ctr mod :DIVINITY	18510	1	0	seg0.7	300
+1.2544	ln3 digits (base 29)	16510	28	0	seg0.8	300
+1.2544	md5-ctr mod :THE PRIMES ARE SACRED	12325	1	1	seg0.8	300
+1.2544	sha256-chain reject :pilgrim	11905	1	0	seg0.8	300
+1.2538	sha512-ctr mod :66wc«sx<zòDlYFkLÖS#1·mFÞà%=ÇPFO	15419	28	0	seg0.9	300
+1.2538	carmichael lambda(n)	5224	1	0	seg0.14	300
+1.2538	sha512-ctr reject :shadows aethereal buffers void carnal ob	18389	1	1	seg0.9	300
+1.2538	sha256-ctr mod :command your own self	11615	1	1	seg0.14	300
+1.2538	sha256-chain reject :program your mind	13148	1	0	seg0.14	300
+1.2538	sha256-chain reject :program your mind	13149	1	0	seg0.14	300
+1.2538	sha256-ctr reject :intus	6692	28	1	seg0.7	300
+1.2538	sha256-chain mod :pilgrim	9962	28	1	seg0.11	300
+1.2538	sha256-ctr mod :program your mind	8024	28	1	seg0.15	300
+1.2538	sha512-ctr mod :INSTAR EMERGENCE	19119	28	1	seg0.14	300
+1.2538	sha512-ctr mod :INSTAR EMERGENCE	19121	28	1	seg0.14	300
+1.2538	md5-ctr mod :3301	15680	28	1	seg0.15	300
+1.2538	md5-ctr reject :intus	16012	28	1	seg0.15	300
+1.2538	sha256-chain reject :<256 bytes cbe7a7ba>	9996	28	0	seg0.14	300
+1.2538	md5-ctr reject :29	6141	1	0	seg0.15	300
+1.2538	sha256-ctr mod :LIBER PRIMUS	14711	28	1	seg0.7	300
+1.2538	sha512-ctr reject :parable	14330	28	1	seg0.15	300
+1.2538	sha512-ctr reject :cicada3301	10898	1	1	seg0.14	300
+1.2531	sha256-ctr mod :31	6136	28	0	seg0.11	300
+1.2531	sha256-chain reject :divinity	9687	28	1	seg0.9	300
+1.2531	sha256-ctr reject :divinity	12103	1	0	seg0.11	300
+1.2531	sha512-ctr reject :all things should be encrypted	11023	28	1	seg0.9	300
+1.2531	sha512-ctr mod :cicada	15053	1	0	seg0.12	300
+1.2531	(p+1)/2	14425	28	1	seg0.9	300
+1.2531	md5-ctr mod :a warning	296	1	0	seg0.9	300
+1.2531	sha256-chain reject :AN END	16799	28	0	seg0.8	300
+1.2531	sha256-chain reject :welcome	3926	28	1	seg0.13	300
+1.2531	sha512-ctr mod :AN END	6114	28	0	seg0.7	300
+1.2531	md5-ctr reject :deep web	9871	28	0	seg0.7	300
+1.2531	sha512-ctr reject :cicada	19082	28	1	seg0.14	300
+1.2531	sha256-ctr reject :<256 bytes cbe7a7ba>	10790	28	1	seg0.7	300
+1.2531	sha256-ctr reject :<256 bytes 50bd24b4>	2587	1	1	seg0.7	300
+1.2531	sha256-ctr reject :3258	14528	1	0	seg0.8	300
+1.2531	sha256-ctr reject :<256 bytes 50bd24b4>	7780	1	1	seg0.11	300
+1.2531	3301 * p_n	12475	1	1	seg0.7	300
+1.2531	3301 * p_n	12477	1	1	seg0.7	300
+1.2531	md5-ctr mod :AN END	14721	1	1	seg0.15	300
+1.2531	sqrt2 digits (base 10)	12389	1	0	seg0.9	300
+1.2531	md5-ctr reject :know this	7079	28	0	seg0.14	300
+1.2531	sha512-ctr reject :divinity	6834	28	1	seg0.15	300
+1.2531	(p-1)/2	14425	28	1	seg0.9	300
+1.2531	sha256-ctr mod :PILGRIM	3370	28	1	seg0.12	300
+1.2531	e^pi digits (base 29)	5143	28	1	seg0.13	300
+1.2531	sha256-chain reject :7	11331	1	1	seg0.11	300
+1.2531	sha256-chain mod :DIVINITY	7705	1	1	seg0.12	300
+1.2531	sha256-ctr mod :PILGRIM	3368	28	1	seg0.12	300
+1.2531	sha256-ctr reject :CIRCUMFERENCE	11769	28	1	seg0.11	300
+1.2531	sha256-chain mod :7	16091	28	1	seg0.11	300
+1.2531	sha256-chain reject :LIBER PRIMUS	520	1	0	seg0.15	300
+1.2531	md5-ctr reject :729	7623	28	0	seg0.7	300
+1.2525	sha256-chain reject :31	7176	28	0	seg0.8	300
+1.2525	sha256-ctr mod :3301	8814	28	1	seg0.15	300
+1.2525	sha256-chain mod :emergence	16048	28	1	seg0.9	300
+1.2525	sha512-ctr mod :primes	4734	1	1	seg0.15	300
+1.2525	sha256-ctr reject :3301	10921	28	0	seg0.12	300
+1.2525	sha512-ctr reject :divinity	18374	1	0	seg0.12	300
+1.2525	sha256-ctr reject :self-reliance	11689	1	1	seg0.12	300
+1.2525	sha512-ctr mod :know this	13153	28	1	seg0.9	300
+1.2525	sha256-ctr mod :within	12116	28	0	seg0.11	300
+1.2525	sha256-ctr mod :LIBER PRIMUS	9241	28	1	seg0.14	300
+1.2525	sha256-chain mod :INTUS	2595	1	0	seg0.7	300
+1.2525	sha512-ctr reject :shadows aethereal buffers void carnal ob	18312	28	1	seg0.7	300
+1.2525	md5-ctr reject :<256 bytes cbe7a7ba>	5868	1	0	seg0.13	300
+1.2525	sha256-ctr reject :2014	2620	1	0	seg0.11	300
+1.2525	sha256-chain reject :welcome	7959	28	1	seg0.15	300
+1.2525	sha256-chain mod :CIRCUMFERENCE	12643	28	1	seg0.11	300
+1.2525	sha256-ctr mod :AN END	9973	28	0	seg0.9	300
+1.2525	sha512-ctr reject :an instruction	15649	28	1	seg0.14	300
+1.2525	sha256-chain reject :2014	6084	28	1	seg0.11	300
+1.2525	sha256-chain reject :<256 bytes 50bd24b4>	1077	28	0	seg0.12	300
+1.2525	md5-ctr mod :434	9374	28	0	seg0.15	300
+1.2525	sha512-ctr mod :self-reliance	18384	1	0	seg0.11	300
+1.2525	sha256-ctr reject :some wisdom	7919	1	1	seg0.15	300
+1.2525	sha256-ctr mod :pilgrim	5110	1	0	seg0.12	300
+1.2525	sha256-ctr mod :pilgrim	9095	1	1	seg0.8	300
+1.2525	md5-ctr mod :emergence	3311	1	0	seg0.11	300
+1.2525	sha256-chain reject :firfumferenfe	17931	28	0	seg0.13	300
+1.2518	sha256-ctr mod :koan	14699	1	0	seg0.8	300
+1.2518	sha512-ctr mod :emerge	12186	1	0	seg0.8	300
+1.2518	md5-ctr mod :THE PRIMES ARE SACRED	12106	1	1	seg0.15	300
+1.2518	sha512-ctr reject :question all things	17167	28	0	seg0.12	300
+1.2518	sha256-ctr reject :FIRFUMFERENFE	11865	1	1	seg0.11	300
+1.2518	sha256-chain reject :a warning	6358	1	0	seg0.11	300
+1.2518	sha512-ctr reject :program reality	13151	1	0	seg0.8	300
+1.2518	primes base-29 digit sum	13730	1	0	seg0.7	300
+1.2518	sha256-chain mod :some wisdom	1	1	1	seg0.9	300
+1.2518	sha512-ctr mod :1311	13961	1	1	seg0.12	300
+1.2518	sha512-ctr reject :1311	646	1	1	seg0.13	300
+1.2518	sha512-ctr reject :INTUS	17743	28	1	seg0.13	300
+1.2518	sha256-chain reject :FULMAEAYOEA	19112	1	1	seg0.12	300
+1.2518	sha256-chain reject :29	12318	28	0	seg0.14	300
+1.2518	sha256-chain reject :729	1141	1	0	seg0.14	300
+1.2518	md5-ctr reject :3258	3523	28	0	seg0.14	300
+1.2518	md5-ctr reject :1033	3053	1	1	seg0.8	300
+1.2518	sha512-ctr mod :CIRCUMFERENCE	2081	28	1	seg0.8	300
+1.2518	md5-ctr reject :THE PRIMES ARE SACRED	9377	1	0	seg0.13	300
+1.2518	md5-ctr mod :a warning	13773	28	1	seg0.7	300
+1.2518	sha512-ctr reject :emerge	4719	1	1	seg0.9	300
+1.2518	sha256-ctr reject :self-reliance	11687	1	1	seg0.12	300
+1.2518	md5-ctr mod :the primes are sacred	18163	1	0	seg0.12	300
+1.2518	sha256-ctr reject :some wisdom	11599	1	0	seg0.15	300
+1.2518	phi(n)	486	28	0	seg0.11	300
+1.2518	sha512-ctr mod :koan	16237	1	1	seg0.8	300
+1.2518	sha512-ctr mod :0x7A35090F	6888	28	1	seg0.11	300
+1.2518	sha512-ctr mod :0x7A35090F	6890	28	1	seg0.11	300
+1.2518	md5-ctr mod :THE PRIMES ARE SACRED	12104	1	1	seg0.15	300
+1.2518	sha256-chain reject :pilgrim	11378	1	1	seg0.12	300
+1.2518	sha512-ctr mod :program reality	8674	1	1	seg0.12	300
+1.2518	sha256-chain mod :know this	18314	1	0	seg0.9	300
+1.2512	md5-ctr mod :CIRCUMFERENCE	12759	1	0	seg0.9	300
+1.2512	sha256-chain reject :29	15138	1	1	seg0.15	300
+1.2512	sha256-chain mod :66wc«sx<zòDlYFkLÖS#1·mFÞà%=ÇPFO	10669	28	0	seg0.15	300
+1.2512	sha512-ctr mod :2014	18645	1	0	seg0.13	300
+1.2512	sha256-ctr mod :all things should be encrypted	12652	1	1	seg0.13	300
+1.2512	sha256-chain reject :some wisdom	1996	1	0	seg0.9	300
+1.2512	sha256-ctr mod :0x7A35090F	11373	1	0	seg0.9	300
+1.2512	sha256-chain mod :primes	9022	28	0	seg0.11	300
+1.2512	sha256-ctr mod :divinity	1068	28	1	seg0.11	300
+1.2512	md5-ctr mod :434	4921	28	0	seg0.15	300
+1.2512	phi(n)	18586	28	1	seg0.7	300
+1.2512	sha256-ctr mod :pilgrim	5109	1	0	seg0.12	300
+1.2512	sha512-ctr reject :1311	644	1	1	seg0.13	300
+1.2512	sha512-ctr reject :INTUS	2171	1	0	seg0.14	300
+1.2512	sha256-ctr reject :totient	13075	28	1	seg0.13	300
+1.2512	sha512-ctr reject :INSTAR EMERGENCE	8133	1	0	seg0.11	300
+1.2512	sha256-chain mod :self-reliance	16390	28	0	seg0.11	300
+1.2512	md5-ctr reject :1311	19240	1	0	seg0.14	300
+1.2512	sha256-ctr mod :20140104	6349	1	1	seg0.15	300
+1.2512	sha256-ctr mod :20140104	9949	1	0	seg0.13	300
+1.2512	sha256-chain mod :cicada	6515	1	0	seg0.9	300
+1.2512	md5-ctr reject :welcome	647	1	0	seg0.9	300
+1.2512	sha256-ctr mod :0x7A35090F	12241	28	1	seg0.14	300
+1.2512	sha256-ctr mod :a warning	3285	1	1	seg0.8	300
+1.2512	md5-ctr reject :question all things	17988	28	0	seg0.13	300
+1.2512	sha512-ctr mod :cicada	17269	1	1	seg0.14	300
+1.2512	sha512-ctr mod :INTUS	3101	1	0	seg0.13	300
+1.2505	sha512-ctr reject :program reality	8444	28	1	seg0.7	300
+1.2505	sha256-ctr reject :an instruction	7285	1	0	seg0.13	300
+1.2505	sha512-ctr mod :liber primus	10734	28	0	seg0.13	300
+1.2505	sha512-ctr mod :THE PRIMES ARE SACRED	1180	1	1	seg0.11	300
+1.2505	md5-ctr reject :INSTAR EMERGENCE	5389	1	1	seg0.14	300
+1.2505	prime index of primes	13972	28	1	seg0.15	300
+1.2505	sha256-chain mod :instar	14238	28	1	seg0.8	300
+1.2505	sha512-ctr mod :koan	4117	1	0	seg0.11	300
+1.2505	primes^3	19472	1	0	seg0.11	300
+1.2505	md5-ctr mod :cicada3301	15727	1	1	seg0.14	300
+1.2505	sha256-ctr mod :Cicada 3301	7168	28	1	seg0.15	300
+1.2505	sha256-chain mod :2014	13822	1	1	seg0.9	300
+1.2505	md5-ctr reject :pilgrim	10617	1	1	seg0.12	300
+1.2505	sha512-ctr mod :AN END	6115	28	0	seg0.7	300
+1.2505	sha256-ctr mod :FIRFUMFERENFE	4414	1	0	seg0.14	300
+1.2505	sha256-chain reject :<128 bytes 33363336>	7452	1	1	seg0.14	300
+1.2505	sha512-ctr mod :3258	19390	1	0	seg0.11	300
+1.2505	sha512-ctr reject :INTUS	8618	1	0	seg0.11	300
+1.2505	phi digits (base 10)	19101	1	1	seg0.15	300
+1.2505	sha256-chain reject :FULMAEAYOEA	2575	1	0	seg0.11	300
+1.2505	sha512-ctr reject :cicada	17740	28	1	seg0.8	300
+1.2505	sha512-ctr mod :an end	14447	28	1	seg0.9	300
+1.2505	sha512-ctr reject :a warning	8761	1	1	seg0.13	300
+1.2505	sha256-chain reject :instar	16021	1	1	seg0.9	300
+1.2505	md5-ctr reject :the totient function is sacred	14592	28	0	seg0.13	300
+1.2505	sha256-ctr mod :liberprimus	12028	1	0	seg0.9	300
+1.2505	md5-ctr mod :an end	15838	1	0	seg0.12	300
+1.2505	cbrt2 digits (base 29)	8283	1	1	seg0.12	300
+1.2505	sha512-ctr reject :20140104	3913	1	0	seg0.15	300
+1.2505	md5-ctr mod :CIRCUMFERENCE	11633	28	0	seg0.11	300
+1.2505	sha256-chain mod :1311	12524	28	1	seg0.11	300
+1.2505	carmichael lambda(n)	5223	1	0	seg0.14	300
+1.2499	sha256-ctr reject :cicada3301	11988	1	0	seg0.15	300
+1.2499	sha256-ctr mod :primes	8325	28	1	seg0.13	300
+1.2499	sha512-ctr reject :<512 bytes 63626537>	920	1	1	seg0.13	300
+1.2499	sha512-ctr reject :<512 bytes 63626537>	922	1	1	seg0.13	300
+1.2499	p_(n+1) * p_n	19233	1	1	seg0.8	300
+1.2499	sha256-chain reject :20140104	15850	1	1	seg0.9	300
+1.2499	sqrt3 digits (base 10)	17373	28	1	seg0.12	300
+1.2499	sha256-ctr reject :firfumferenfe	9867	1	1	seg0.11	300
+1.2499	sqrt3 digits (base 10)	2037	28	0	seg0.8	300
+1.2499	sha256-ctr mod :FIRFUMFERENFE	11857	28	0	seg0.14	300
+1.2499	md5-ctr reject :liberprimus	11224	1	0	seg0.11	300
+1.2499	sha256-chain mod :primes	9021	28	0	seg0.11	300
+1.2499	sha256-chain reject :LIBER PRIMUS	12397	1	1	seg0.15	300
+1.2499	sqrt2 digits (base 10)	461	28	1	seg0.8	300
+1.2499	sha256-chain mod :parable	16372	1	1	seg0.9	300
+1.2499	md5-ctr reject :1033	11988	28	0	seg0.15	300
+1.2499	sha256-ctr mod :2014	1641	1	0	seg0.13	300
+1.2499	sha512-ctr reject :intus	3392	28	0	seg0.14	300
+1.2499	sha256-ctr reject :PILGRIM	16350	28	0	seg0.8	300
+1.2499	e^pi digits (base 29)	520	28	0	seg0.9	300
+1.2499	sha256-ctr reject :program reality	922	28	0	seg0.15	300
+1.2499	md5-ctr reject :cicada	7237	28	1	seg0.12	300
+1.2499	sha512-ctr reject :parable	19309	1	1	seg0.15	300
+1.2499	md5-ctr mod :FULMAEAYOEA	18579	28	1	seg0.7	300
+1.2499	sha256-chain mod :LIBER PRIMUS	7422	1	1	seg0.15	300
+1.2499	md5-ctr mod :a warning	13775	28	1	seg0.7	300
+1.2499	md5-ctr mod :434	4919	28	0	seg0.15	300
+1.2499	sha256-chain reject :7A35090F	2631	1	1	seg0.14	300
+1.2499	sha512-ctr reject :shadows aethereal buffers void carnal ob	2523	28	1	seg0.7	300
+1.2499	sha512-ctr reject :shadows aethereal buffers void carnal ob	11021	28	1	seg0.9	300
+1.2499	sha512-ctr reject :shadows aethereal buffers void carnal ob	11027	28	1	seg0.9	300
+1.2499	md5-ctr reject :<256 bytes cbe7a7ba>	5867	1	0	seg0.13	300
+1.2499	sha256-chain reject :firfumferenfe	9533	28	0	seg0.15	300
+1.2499	sha256-ctr reject :0x7A35090F	4371	1	1	seg0.14	300
+1.2499	sha512-ctr reject :intus	3391	28	0	seg0.14	300
+1.2492	md5-ctr reject :FULMAEAYOEA	15049	28	0	seg0.9	300
+1.2492	md5-ctr mod :emergence	3312	1	0	seg0.11	300
+1.2492	sha512-ctr reject :pilgrim	2079	28	0	seg0.12	300
+1.2492	sha512-ctr mod :the primes are sacred	239	1	0	seg0.9	300
+1.2492	md5-ctr mod :PILGRIM	12755	1	1	seg0.9	300
+1.2492	sha256-chain reject :29	12319	28	0	seg0.14	300
+1.2492	sha256-ctr reject :parable	5961	1	0	seg0.7	300
+1.2492	sha512-ctr mod :program your mind	4665	28	1	seg0.12	300
+1.2492	sha512-ctr reject :0x7A35090F	7693	1	1	seg0.7	300
+1.2492	sha256-ctr reject :31	5361	1	1	seg0.15	300
+1.2492	sha256-chain reject :the totient function is sacred	2037	1	1	seg0.13	300
+1.2492	sha256-chain mod :pilgrim	15383	28	0	seg0.11	300
+1.2492	sha512-ctr reject :<256 bytes cbe7a7ba>	16568	28	1	seg0.7	300
+1.2492	sha512-ctr reject :an end	15344	1	0	seg0.8	300
+1.2492	sha512-ctr reject :totient	5923	28	0	seg0.13	300
+1.2492	md5-ctr mod :THE PRIMES ARE SACRED	12323	1	1	seg0.8	300
+1.2492	sha256-chain reject :CIRCUMFERENCE	2597	1	1	seg0.8	300
+1.2492	sha512-ctr mod :INSTAR EMERGENCE	8897	28	1	seg0.14	300
+1.2492	md5-ctr mod :shadows aethereal buffers void carnal ob	10332	28	0	seg0.7	300
+1.2492	sha256-chain mod :know this	15793	1	0	seg0.13	300
+1.2492	sha256-chain mod :7A35090F	203	1	1	seg0.12	300
+1.2492	sha256-chain mod :7A35090F	16472	28	0	seg0.15	300
+1.2492	sha256-chain reject :know this	5019	1	1	seg0.7	300
+1.2492	sha256-ctr reject :<128 bytes 33363336>	9562	28	0	seg0.8	300
+1.2492	sha256-ctr mod :koan	15519	1	1	seg0.13	300
+1.2492	md5-ctr mod :434	4920	28	0	seg0.15	300
+1.2492	md5-ctr reject :all things should be encrypted	6153	1	1	seg0.8	300
+1.2492	sha256-ctr reject :THE PRIMES ARE SACRED	12093	1	1	seg0.12	300
+1.2492	md5-ctr mod :all things should be encrypted	17353	1	0	seg0.12	300
+1.2492	sha256-chain mod :1311	10558	1	1	seg0.8	300
+1.2492	sha512-ctr reject :instar	8040	28	0	seg0.14	300
+1.2492	md5-ctr mod :20140104	17515	1	1	seg0.14	300
+1.2492	sha256-chain mod :1311	1015	28	1	seg0.11	300
+1.2492	md5-ctr mod :parable	1003	1	0	seg0.8	300
+1.2492	sha256-chain reject :7A35090F	16235	28	1	seg0.13	300
+1.2492	sha512-ctr reject :Cicada 3301	18215	1	1	seg0.8	300
+1.2492	e digits (base 29)	17535	28	1	seg0.15	300
+1.2492	sha256-ctr mod :1311	4719	1	0	seg0.7	300
+1.2486	sha256-ctr mod :7A35090F	13151	1	1	seg0.9	300
+1.2486	sha256-ctr mod :7A35090F	13153	1	1	seg0.9	300
+1.2486	sha256-chain reject :31	18734	28	0	seg0.14	300
+1.2486	md5-ctr reject :intus	1608	28	1	seg0.9	300
+1.2486	sha256-chain mod :1033	1481	28	0	seg0.12	300
+1.2486	sha256-ctr reject :parable	1193	1	0	seg0.9	300
+1.2486	sha512-ctr mod :command your own self	17304	1	0	seg0.12	300
+1.2486	sha512-ctr reject :THE PRIMES ARE SACRED	4241	1	0	seg0.15	300
+1.2486	sha512-ctr reject :liber primus	12851	28	1	seg0.7	300
+1.2486	sha512-ctr mod :AN END	6116	28	1	seg0.7	300
+1.2486	sha512-ctr mod :AN END	13723	1	0	seg0.11	300
+1.2486	sha256-chain reject :1033	9631	28	0	seg0.7	300
+1.2486	md5-ctr mod :the totient function is sacred	15771	1	1	seg0.11	300
+1.2486	sha256-ctr mod :liberprimus	1102	1	1	seg0.9	300
+1.2486	md5-ctr reject :emergence	8433	1	0	seg0.8	300
+1.2486	md5-ctr mod :the totient function is sacred	4596	28	0	seg0.9	300
+1.2486	md5-ctr reject :cicada3301	12878	1	0	seg0.8	300
+1.2486	md5-ctr mod :command your own self	11488	28	1	seg0.7	300
+1.2486	primes popcount	18157	28	1	seg0.9	300
+1.2486	md5-ctr reject :INSTAR EMERGENCE	8219	28	0	seg0.11	300
+1.2486	cbrt2 digits (base 29)	19502	28	0	seg0.7	300
+1.2486	md5-ctr mod :program your mind	7147	1	1	seg0.14	300
+1.2486	sha256-chain reject :parable	18233	28	1	seg0.13	300
+1.2486	sha256-ctr mod :FIRFUMFERENFE	4416	1	0	seg0.14	300
+1.2486	sha512-ctr reject :circumference	8366	28	1	seg0.8	300
+1.2486	sha256-ctr mod :totient	5411	28	1	seg0.13	300
+1.2486	sha256-chain mod :a warning	10348	28	1	seg0.15	300
+1.2486	sha512-ctr reject :INSTAR EMERGENCE	3756	28	1	seg0.12	300
+1.2486	sha256-chain reject :FULMAEAYOEA	14911	28	1	seg0.8	300
+1.2486	md5-ctr reject :command your own self	17209	1	0	seg0.7	300
+1.2486	sha256-ctr mod :1033	9735	28	0	seg0.9	300
+1.2486	emirps	1061	28	0	seg0.12	300
+1.2479	sha512-ctr mod :totient	8033	1	0	seg0.13	300
+1.2479	sha256-chain mod :emerge	9693	1	0	seg0.7	300
+1.2479	sha256-ctr mod :self-reliance	3594	28	0	seg0.15	300
+1.2479	sha256-ctr mod :66wc«sx<zòDlYFkLÖS#1·mFÞà%=ÇPFO	1959	28	1	seg0.12	300
+1.2479	md5-ctr reject :Cicada 3301	18062	1	1	seg0.8	300
+1.2479	sha256-ctr reject :question all things	16954	28	0	seg0.14	300
+1.2479	sha512-ctr reject :LIBER PRIMUS	12990	1	1	seg0.15	300
+1.2479	md5-ctr reject :1311	12263	28	0	seg0.8	300
+1.2479	sha512-ctr mod :self-reliance	14567	28	0	seg0.11	300
+1.2479	md5-ctr reject :INTUS	13592	28	0	seg0.11	300
+1.2479	sha256-ctr reject :shadows aethereal buffers void carnal ob	13560	1	0	seg0.13	300
+1.2479	sha512-ctr mod :729	9503	28	1	seg0.13	300
+1.2479	phi digits (base 10)	17396	1	1	seg0.9	300
+1.2479	pi digits (base 10)	16076	28	1	seg0.8	300
+1.2479	md5-ctr reject :cicada	6702	28	0	seg0.12	300
+1.2479	sha256-chain mod :INSTAR	10642	1	0	seg0.12	300
+1.2479	sha512-ctr mod :cicada	11338	28	0	seg0.9	300
+1.2479	md5-ctr mod :koan	1176	28	1	seg0.7	300
+1.2479	md5-ctr mod :koan	18014	28	1	seg0.8	300
+1.2479	sha256-ctr reject :1311	2015	28	1	seg0.9	300
+1.2479	p_n - n	9416	28	1	seg0.8	300
+1.2479	sha256-chain reject :an instruction	14867	28	0	seg0.12	300
+1.2479	sha512-ctr mod :koan	16239	1	1	seg0.8	300
+1.2479	md5-ctr reject :INTUS	13591	28	0	seg0.11	300
+1.2479	md5-ctr mod :PILGRIM	9451	28	0	seg0.8	300
+1.2479	sha256-ctr mod :a warning	63	28	0	seg0.9	300
+1.2479	sha512-ctr reject :liber primus	18044	28	1	seg0.15	300
+1.2479	sha256-ctr mod :cicada3301	10272	28	1	seg0.9	300
+1.2479	sha256-chain reject :<128 bytes 33363336>	10673	28	1	seg0.11	300
+1.2479	sha256-chain reject :29	11769	28	0	seg0.14	300
+1.2479	sha256-chain reject :29	19207	28	0	seg0.7	300
+1.2479	sha256-chain reject :2014	17356	1	1	seg0.14	300
+1.2479	sha256-chain reject :29	15140	1	1	seg0.15	300
+1.2479	sha512-ctr reject :question all things	9105	28	0	seg0.9	300
+1.2479	ln3301 digits (base 29)	10385	28	1	seg0.11	300
+1.2479	md5-ctr mod :1033	14652	28	0	seg0.13	300
+1.2473	sha256-chain reject :INSTAR	5360	1	0	seg0.11	300
+1.2473	sha256-ctr mod :2014	12778	28	0	seg0.9	300
+1.2473	sha512-ctr mod :<512 bytes 63626537>	6388	28	0	seg0.9	300
+1.2473	sha256-chain mod :emergence	9402	1	1	seg0.13	300
+1.2473	sha256-chain reject :parable	5724	28	1	seg0.8	300
+1.2473	md5-ctr mod :deep web	3145	1	1	seg0.8	300
+1.2473	sha512-ctr mod :self-reliance	8518	1	1	seg0.12	300
+1.2473	ln2 digits (base 29)	10874	1	1	seg0.11	300
+1.2473	md5-ctr mod :ALL THINGS SHOULD BE ENCRYPTED	2260	28	0	seg0.8	300
+1.2473	sha256-ctr reject :instar	14394	1	1	seg0.7	300
+1.2473	sha256-chain reject :0x7A35090F	4385	28	1	seg0.11	300
+1.2473	sha512-ctr reject :29	6178	1	0	seg0.9	300
+1.2473	md5-ctr reject :parable	12617	1	0	seg0.14	300
+1.2473	sha512-ctr mod :question all things	19520	28	1	seg0.12	300
+1.2473	sha512-ctr mod :an end	1109	1	1	seg0.8	300
+1.2473	sha256-chain mod :instar	4250	28	1	seg0.14	300
+1.2473	sha512-ctr mod :instar	15905	1	0	seg0.12	300
+1.2473	md5-ctr mod :INSTAR	14964	1	0	seg0.15	300
+1.2473	primes popcount	14107	1	0	seg0.8	300
+1.2473	sha256-ctr mod :CIRCUMFERENCE	10734	1	1	seg0.13	300
+1.2473	sha256-chain mod :0x7A35090F	9807	1	0	seg0.8	300
+1.2473	sha256-chain reject :shadows aethereal buffers void carnal ob	5231	28	1	seg0.14	300
+1.2473	sha256-chain reject :liber primus	4805	28	1	seg0.9	300
+1.2473	sha256-ctr mod :a warning	3287	1	1	seg0.8	300
+1.2473	sha512-ctr reject :deep web	455	1	0	seg0.11	300
+1.2473	sha256-ctr mod :program reality	16039	1	1	seg0.15	300
+1.2473	md5-ctr mod :DIVINITY	6254	1	0	seg0.7	300
+1.2473	sha512-ctr mod :command your own self	1784	28	0	seg0.13	300
+1.2473	sha512-ctr reject :0x7A35090F	864	1	0	seg0.12	300
+1.2473	e digits (base 29)	7066	1	0	seg0.15	300
+1.2473	sha256-ctr mod :3301	1516	28	1	seg0.14	300
+1.2473	sha512-ctr mod :cicada	5230	1	1	seg0.14	300
+1.2473	sha512-ctr mod :emerge	12187	1	0	seg0.8	300
+1.2473	sha512-ctr mod :FIRFUMFERENFE	10611	1	0	seg0.12	300
+1.2466	md5-ctr reject :liberprimus	11643	28	0	seg0.11	300
+1.2466	sha256-ctr reject :firfumferenfe	4707	28	0	seg0.14	300
+1.2466	sha512-ctr mod :koan	5601	1	1	seg0.7	300
+1.2466	md5-ctr mod :the primes are sacred	18162	1	0	seg0.12	300
+1.2466	md5-ctr mod :FIRFUMFERENFE	6354	1	0	seg0.14	300
+1.2466	md5-ctr reject :THE PRIMES ARE SACRED	4949	28	0	seg0.12	300
+1.2466	sha256-ctr mod :3301	15958	28	1	seg0.12	300
+1.2466	sha256-ctr reject :koan	9794	28	0	seg0.8	300
+1.2466	md5-ctr mod :CIRCUMFERENCE	11637	28	0	seg0.11	300
+1.2466	sha256-chain reject :DIVINITY	11197	28	0	seg0.11	300
+1.2466	md5-ctr mod :3301	15682	28	1	seg0.15	300
+1.2466	catalan G digits (base 29)	17021	28	1	seg0.11	300
+1.2466	md5-ctr mod :command your own self	1567	1	0	seg0.7	300
+1.2466	sha512-ctr reject :2014	3840	28	1	seg0.8	300
+1.2466	md5-ctr mod :CIRCUMFERENCE	12760	1	0	seg0.9	300
+1.2466	primes reversed digits	8120	28	1	seg0.8	300
+1.2466	sha256-chain mod :INSTAR	15916	1	1	seg0.9	300
+1.2466	sha256-ctr reject :1311	9317	1	0	seg0.7	300
+1.2466	sha256-ctr mod :7A35090F	6814	28	0	seg0.7	300
+1.2466	sha256-chain mod :pilgrim	9960	28	1	seg0.11	300
+1.2466	sha256-ctr reject :totient	5718	1	1	seg0.14	300
+1.2466	sha512-ctr mod :2014	18927	1	1	seg0.8	300
+1.2466	sha256-chain reject :parable	5726	28	1	seg0.8	300
+1.2466	sqrt2 digits (base 10)	13503	28	0	seg0.8	300
+1.2466	md5-ctr mod :emerge	7862	1	1	seg0.14	300
+1.2466	md5-ctr mod :emerge	15482	28	0	seg0.12	300
+1.2466	sha512-ctr reject :liber primus	15853	28	1	seg0.13	300
+1.2466	p_n + n	4990	1	1	seg0.12	300
+1.2466	sqrt2 digits (base 29)	18174	1	1	seg0.15	300
+1.2466	sha256-chain reject :31	18735	28	0	seg0.14	300
+1.2466	sha256-chain reject :circumference	15520	1	0	seg0.14	300
+1.2466	md5-ctr reject :pilgrim	19083	28	0	seg0.13	300
+1.2466	sha256-ctr mod :cicada	11601	28	0	seg0.12	300
+1.2466	sha512-ctr reject :<512 bytes 63626537>	6468	1	0	seg0.14	300
+1.2466	sha256-chain reject :firfumferenfe	17849	28	0	seg0.11	300
+1.2466	sha512-ctr reject :self-reliance	16307	28	1	seg0.12	300
+1.2466	sha512-ctr mod :parable	6620	28	1	seg0.12	300
+1.2466	sha256-chain mod :an end	1227	28	1	seg0.7	300
+1.2466	sha256-chain mod :29	1609	1	0	seg0.15	300
+1.2466	sha256-chain reject :firfumferenfe	17930	28	0	seg0.13	300
+1.2466	sha256-ctr reject :Cicada 3301	15062	1	1	seg0.8	300
+1.2460	sha256-chain mod :7	11154	1	0	seg0.12	300
+1.2460	sha256-chain mod :intus	6794	1	1	seg0.15	300
+1.2460	sha512-ctr reject :1033	4637	1	1	seg0.8	300
+1.2460	md5-ctr reject :the totient function is sacred	1764	28	0	seg0.11	300
+1.2460	md5-ctr reject :the totient function is sacred	17783	1	0	seg0.11	300
+1.2460	md5-ctr reject :emergence	15430	1	0	seg0.7	300
+1.2460	sha512-ctr reject :AN END	7133	28	1	seg0.15	300
+1.2460	sha256-chain reject :circumference	16641	28	1	seg0.7	300
+1.2460	md5-ctr reject :koan	556	28	0	seg0.15	300
+1.2460	sha256-ctr reject :1033	5050	28	0	seg0.11	300
+1.2460	phi digits (base 29)	12552	1	1	seg0.9	300
+1.2460	md5-ctr reject :31	18841	28	1	seg0.11	300
+1.2460	sha512-ctr reject :THE PRIMES ARE SACRED	873	28	1	seg0.15	300
+1.2460	md5-ctr reject :liberprimus	13976	28	0	seg0.8	300
+1.2460	sha256-chain mod :<128 bytes 33363336>	18259	1	1	seg0.15	300
+1.2460	sha512-ctr reject :intus	5029	1	0	seg0.9	300
+1.2460	md5-ctr mod :3301	4329	1	1	seg0.14	300
+1.2460	md5-ctr mod :3301	7059	28	0	seg0.15	300
+1.2460	sha256-chain mod :0x7A35090F	18037	28	0	seg0.9	300
+1.2460	md5-ctr mod :command your own self	13210	28	0	seg0.13	300
+1.2460	sha512-ctr reject :intus	5030	1	0	seg0.9	300
+1.2460	sha256-ctr reject :<256 bytes cbe7a7ba>	9274	1	1	seg0.7	300
+1.2460	sha512-ctr reject :intus	5031	1	0	seg0.9	300
+1.2460	sha512-ctr mod :command your own self	17305	1	0	seg0.12	300
+1.2460	sha256-ctr reject :the primes are sacred	11516	1	1	seg0.13	300
+1.2460	prime index of primes	11850	28	1	seg0.9	300
+1.2460	md5-ctr reject :cicada	3105	1	0	seg0.15	300
+1.2460	sha512-ctr reject :66wc«sx<zòDlYFkLÖS#1·mFÞà%=ÇPFO	15197	1	0	seg0.13	300
+1.2460	sha512-ctr mod :7	14314	1	1	seg0.7	300
+1.2460	p_n mod 3301	14121	1	1	seg0.15	300
+1.2460	md5-ctr mod :a warning	5666	1	1	seg0.14	300
+1.2460	md5-ctr reject :THE PRIMES ARE SACRED	9628	1	0	seg0.11	300
+1.2460	sha256-ctr reject :cicada3301	8320	1	1	seg0.14	300
+1.2460	md5-ctr mod :434	11259	28	1	seg0.14	300
+1.2460	md5-ctr mod :self-reliance	8244	1	0	seg0.13	300
+1.2460	sha512-ctr mod :66wc«sx<zòDlYFkLÖS#1·mFÞà%=ÇPFO	2257	1	0	seg0.11	300
+1.2460	sha256-ctr reject :shadows aethereal buffers void carnal ob	1736	28	1	seg0.14	300
+1.2460	sha512-ctr mod :pilgrim	12086	28	0	seg0.13	300
+1.2460	Omega(n)	2779	1	0	seg0.9	300
+1.2460	sha256-ctr mod :cicada	1061	1	1	seg0.9	300
+1.2460	sha256-ctr mod :FULMAEAYOEA	17566	28	1	seg0.8	300
+1.2460	sha512-ctr reject :instar	11225	1	0	seg0.9	300
+1.2460	sha512-ctr reject :Cicada 3301	10581	1	1	seg0.12	300
+1.2460	md5-ctr reject :<128 bytes 33363336>	9859	1	1	seg0.7	300
+1.2460	md5-ctr reject :<512 bytes 63626537>	2435	28	1	seg0.12	300
+1.2460	sha512-ctr reject :Cicada 3301	10583	1	1	seg0.12	300
+1.2460	sha256-chain reject :question all things	97	28	1	seg0.15	300
+1.2460	md5-ctr reject :intus	9679	28	0	seg0.15	300
+1.2460	sha256-ctr reject :the primes are sacred	11518	1	1	seg0.13	300
+1.2460	n * p_n	16235	1	0	seg0.13	300
+1.2460	sha256-ctr reject :0x7A35090F	9798	1	0	seg0.14	300
+1.2460	sha256-ctr mod :welcome	6598	1	1	seg0.8	300
+1.2460	sha256-ctr mod :instar	1334	28	1	seg0.7	300
+1.2454	sha256-chain mod :self-reliance	1621	1	1	seg0.12	300
+1.2454	md5-ctr reject :INTUS	16402	28	1	seg0.11	300
+1.2454	sha512-ctr mod :shadows aethereal buffers void carnal ob	15761	1	1	seg0.7	300
+1.2454	sha256-ctr reject :THE PRIMES ARE SACRED	17006	1	1	seg0.14	300
+1.2454	sha256-ctr reject :intus	14348	1	1	seg0.11	300
+1.2454	sha256-chain reject :welcome	18016	1	1	seg0.7	300
+1.2454	sha512-ctr reject :AN END	14994	28	0	seg0.15	300
+1.2454	sha512-ctr reject :FIRFUMFERENFE	245	1	1	seg0.9	300
+1.2454	sha512-ctr mod :INSTAR EMERGENCE	19123	28	1	seg0.14	300
+1.2454	sha256-ctr mod :1729	12581	1	1	seg0.8	300
+1.2454	catalan G digits (base 29)	8518	28	0	seg0.11	300
+1.2454	catalan G digits (base 29)	19596	28	1	seg0.8	300
+1.2454	sha256-ctr reject :<256 bytes 50bd24b4>	2207	28	0	seg0.13	300
+1.2454	sha256-ctr reject :circumference	7514	1	0	seg0.14	300
+1.2454	sha512-ctr reject :an end	804	1	0	seg0.8	300
+1.2454	md5-ctr mod :<512 bytes 63626537>	8769	1	1	seg0.8	300
+1.2454	sha256-ctr reject :3301	10922	28	0	seg0.12	300
+1.2454	sha512-ctr mod :434	5030	28	1	seg0.8	300
+1.2454	sha256-ctr reject :3258	5208	28	1	seg0.12	300
+1.2454	md5-ctr mod :FULMAEAYOEA	1860	1	1	seg0.7	300
+1.2454	sha512-ctr reject :program your mind	3411	28	0	seg0.12	300
+1.2454	sha256-chain reject :2014	15366	28	0	seg0.11	300
+1.2454	md5-ctr reject :3258	15974	28	0	seg0.9	300
+1.2454	sha512-ctr reject :deep web	12748	1	1	seg0.8	300
+1.2454	sha256-ctr reject :an end	11201	1	0	seg0.11	300
+1.2454	sha512-ctr reject :20140104	13531	1	1	seg0.15	300
+1.2454	md5-ctr mod :divinity	7353	28	1	seg0.8	300
+1.2454	sha512-ctr reject :20140104	17203	1	0	seg0.7	300
+1.2454	sqrt29 digits (base 29)	6424	1	1	seg0.9	300
+1.2454	sha512-ctr reject :shadows aethereal buffers void carnal ob	18385	1	1	seg0.9	300
+1.2454	sha512-ctr mod :THE PRIMES ARE SACRED	18326	1	0	seg0.13	300
+1.2454	sha256-chain mod :liber primus	18358	1	0	seg0.8	300
+1.2454	sha256-ctr mod :firfumferenfe	3273	28	1	seg0.12	300
+1.2454	sha256-chain reject :koan	915	28	1	seg0.12	300
+1.2454	sha256-ctr reject :emerge	16652	28	0	seg0.12	300
+1.2454	md5-ctr reject :<256 bytes 50bd24b4>	15181	1	0	seg0.7	300
+1.2454	sha256-chain reject :FIRFUMFERENFE	17764	1	0	seg0.9	300
+1.2454	sha256-chain mod :koan	6405	1	1	seg0.13	300
+1.2454	sha256-ctr mod :pilgrim	5124	1	1	seg0.13	300
+1.2454	sha512-ctr mod :cicada	17267	1	1	seg0.14	300
+1.2454	sha512-ctr mod :program reality	1682	28	1	seg0.9	300
+1.2454	sha512-ctr reject :koan	825	1	1	seg0.11	300
+1.2454	sha256-chain reject :emergence	15011	28	1	seg0.8	300
+1.2454	md5-ctr reject :all things should be encrypted	14036	28	0	seg0.7	300
+1.2447	sha256-chain mod :within	16684	28	1	seg0.8	300
+1.2447	sha512-ctr mod :liberprimus	13941	1	0	seg0.11	300
+1.2447	sha256-ctr reject :program your mind	10484	28	0	seg0.14	300
+1.2447	sha256-ctr reject :program your mind	10483	28	0	seg0.14	300
+1.2447	md5-ctr mod :1033	12106	28	0	seg0.11	300
+1.2447	sha256-chain mod :INTUS	9559	1	0	seg0.12	300
+1.2447	sha256-chain reject :an end	2789	1	0	seg0.14	300
+1.2447	sqrt3 digits (base 29)	17786	1	0	seg0.13	300
+1.2447	phi digits (base 10)	14694	28	0	seg0.7	300
+1.2447	sha512-ctr reject :1729	6555	1	0	seg0.13	300
+1.2447	sha256-chain mod :instar	1548	1	1	seg0.9	300
+1.2447	md5-ctr mod :primes	11892	1	1	seg0.15	300
+1.2447	sha256-chain mod :<512 bytes 63626537>	7329	1	1	seg0.9	300
+1.2447	sha256-ctr reject :firfumferenfe	4708	28	0	seg0.14	300
+1.2447	sha512-ctr mod :3301	17504	1	0	seg0.14	300
+1.2447	sha256-chain mod :an instruction	5447	28	0	seg0.12	300
+1.2447	sha256-ctr reject :deep web	6417	1	1	seg0.7	300
+1.2447	sha512-ctr reject :program reality	17101	28	1	seg0.13	300
+1.2447	md5-ctr mod :question all things	18307	28	0	seg0.15	300
+1.2447	sha512-ctr reject :INSTAR	17420	28	0	seg0.13	300
+1.2447	sha512-ctr reject :a warning	2605	28	1	seg0.8	300
+1.2447	sha512-ctr reject :an end	438	1	1	seg0.14	300
+1.2447	sha256-ctr mod :program reality	16037	1	1	seg0.15	300
+1.2447	sha256-chain mod :<256 bytes cbe7a7ba>	15283	1	1	seg0.12	300
+1.2447	md5-ctr mod :know this	1889	28	1	seg0.8	300
+1.2447	md5-ctr reject :firfumferenfe	19348	1	0	seg0.12	300
+1.2447	sha512-ctr reject :question all things	2060	1	0	seg0.11	300
+1.2447	md5-ctr mod :29	12674	1	1	seg0.8	300
+1.2447	sha256-chain reject :7A35090F	16505	1	1	seg0.7	300
+1.2447	sha256-ctr mod :firfumferenfe	12921	28	1	seg0.14	300
+1.2447	sha256-ctr reject :FIRFUMFERENFE	8593	1	1	seg0.11	300
+1.2447	md5-ctr reject :firfumferenfe	19347	1	0	seg0.12	300
+1.2447	sha256-ctr reject :1729	10921	28	0	seg0.14	300
+1.2447	sha256-chain reject :3258	2422	28	1	seg0.13	300
+1.2447	sha256-ctr reject :0x7A35090F	2900	28	1	seg0.15	300
+1.2447	sha512-ctr mod :program reality	16777	1	1	seg0.14	300
+1.2447	n * p_n	11040	1	0	seg0.8	300
+1.2447	n * p_n	11041	1	0	seg0.8	300
+1.2447	sqrt5 digits (base 29)	4746	28	0	seg0.8	300
+1.2441	sha256-ctr mod :divinity	9451	28	1	seg0.9	300
+1.2441	sha512-ctr reject :INSTAR EMERGENCE	3758	28	1	seg0.12	300
+1.2441	sha256-ctr reject :434	17340	28	0	seg0.8	300
+1.2441	sha256-ctr mod :DIVINITY	2061	1	1	seg0.13	300
+1.2441	sha512-ctr mod :2014	1220	1	1	seg0.8	300
+1.2441	sha512-ctr mod :2014	1222	1	1	seg0.8	300
+1.2441	sha512-ctr mod :2014	4106	1	0	seg0.8	300
+1.2441	sha512-ctr mod :2014	15340	1	0	seg0.15	300
+1.2441	sha256-ctr mod :1311	13807	28	1	seg0.13	300
+1.2441	sha256-chain reject :an instruction	9860	28	0	seg0.9	300
+1.2441	md5-ctr reject :question all things	17989	28	0	seg0.13	300
+1.2441	md5-ctr reject :3258	12518	1	1	seg0.14	300
+1.2441	sha256-chain reject :self-reliance	11815	28	0	seg0.7	300
+1.2441	sha256-ctr mod :an end	1152	28	0	seg0.7	300
+1.2441	sha512-ctr mod :CIRCUMFERENCE	16688	1	1	seg0.11	300
+1.2441	sha512-ctr mod :an end	4530	28	1	seg0.8	300
+1.2441	md5-ctr mod :an instruction	3442	1	1	seg0.9	300
+1.2441	sha512-ctr mod :totient	15746	1	0	seg0.14	300
+1.2441	ln2 digits (base 10)	12511	28	1	seg0.12	300
+1.2441	sha256-ctr mod :434	2920	28	1	seg0.8	300
+1.2441	sha256-ctr reject :cicada3301	11985	1	0	seg0.15	300
+1.2441	sha256-chain mod :totient	13014	1	1	seg0.7	300
+1.2441	sha256-ctr mod :20140104	7181	28	0	seg0.8	300
+1.2441	md5-ctr mod :liberprimus	14567	1	0	seg0.14	300
+1.2441	sha512-ctr mod :self-reliance	18383	1	0	seg0.11	300
+1.2441	sha256-chain mod :deep web	18172	1	1	seg0.9	300
+1.2441	sha256-chain reject :7A35090F	8269	1	0	seg0.13	300
+1.2441	sha256-chain mod :1311	10556	1	1	seg0.8	300
+1.2441	sha256-ctr mod :1311	6101	28	0	seg0.13	300
+1.2441	sha512-ctr mod :THE PRIMES ARE SACRED	1182	1	1	seg0.11	300
+1.2441	sha512-ctr reject :INSTAR	130	1	0	seg0.8	300
+1.2441	sha512-ctr reject :INSTAR	131	1	0	seg0.8	300
+1.2441	sha256-ctr reject :primes	7174	1	1	seg0.12	300
+1.2441	sha256-ctr reject :3258	9156	28	0	seg0.12	300
+1.2441	sha256-chain reject :cicada3301	10038	28	1	seg0.14	300
+1.2441	sha512-ctr mod :3301	17503	1	0	seg0.14	300
+1.2441	sha256-chain reject :welcome	17721	1	1	seg0.9	300
+1.2441	sha512-ctr mod :liberprimus	13942	1	0	seg0.11	300
+1.2441	sha512-ctr mod :primes	5363	28	1	seg0.12	300
+1.2441	d(n)	3772	1	0	seg0.9	300
+1.2441	md5-ctr mod :pilgrim	8968	28	1	seg0.12	300
+1.2441	md5-ctr mod :instar	5548	28	0	seg0.14	300
+1.2441	md5-ctr reject :within	19320	1	1	seg0.11	300
+1.2441	sha512-ctr mod :the totient function is sacred	15676	1	0	seg0.7	300
+1.2441	sha256-ctr reject :some wisdom	14910	1	0	seg0.11	300
+1.2441	sha256-chain reject :434	10533	1	0	seg0.15	300
+1.2441	sha256-chain reject :welcome	17590	1	0	seg0.9	300
+1.2441	sha256-chain reject :welcome	13259	28	0	seg0.8	300
+1.2441	sha256-ctr mod :729	14364	28	0	seg0.9	300
+1.2441	md5-ctr reject :koan	985	28	0	seg0.15	300
+1.2441	sha256-chain mod :circumference	15401	28	0	seg0.12	300
+1.2441	md5-ctr mod :AN END	14719	1	1	seg0.15	300
+1.2441	sha256-ctr mod :liber primus	3900	28	0	seg0.12	300
+1.2441	sha512-ctr mod :<128 bytes 33363336>	14912	1	1	seg0.9	300
+1.2441	sha256-chain mod :29	6869	1	0	seg0.9	300
+1.2441	sha256-ctr reject :deep web	16443	28	1	seg0.9	300
+1.2441	md5-ctr reject :DIVINITY	17434	1	1	seg0.14	300
+1.2441	sha512-ctr reject :CIRCUMFERENCE	16529	28	0	seg0.14	300
+1.2441	sha512-ctr reject :ALL THINGS SHOULD BE ENCRYPTED	8214	28	1	seg0.11	300
+1.2441	sha512-ctr mod :INSTAR	15420	1	1	seg0.13	300
+1.2441	md5-ctr reject :primes	18712	28	0	seg0.13	300
+1.2441	sha256-ctr reject :AN END	1790	28	1	seg0.9	300
+1.2434	md5-ctr reject :434	12462	28	0	seg0.11	300
+1.2434	sha256-ctr mod :self-reliance	1521	28	1	seg0.9	300
+1.2434	sha256-ctr mod :self-reliance	3588	28	0	seg0.15	300
+1.2434	sha256-ctr mod :self-reliance	13404	28	0	seg0.9	300
+1.2434	sha256-chain mod :the primes are sacred	10970	28	0	seg0.14	300
+1.2434	sha256-ctr mod :1311	13811	28	1	seg0.13	300
+1.2434	md5-ctr reject :29	11555	28	0	seg0.9	300
+1.2434	sha512-ctr reject :intus	6475	1	1	seg0.11	300
+1.2434	sha256-chain mod :within	891	1	1	seg0.12	300
+1.2434	sha256-chain mod :within	5788	28	1	seg0.15	300
+1.2434	sha256-chain mod :PILGRIM	3302	28	0	seg0.12	300
+1.2434	sha512-ctr reject :7	3674	1	0	seg0.12	300
+1.2434	sha256-chain reject :INTUS	13464	28	1	seg0.8	300
+1.2434	sha256-ctr mod :31	13676	1	0	seg0.8	300
+1.2434	md5-ctr reject :firfumferenfe	8641	1	1	seg0.15	300
+1.2434	sha256-chain reject :1729	15183	1	1	seg0.13	300
+1.2434	md5-ctr mod :1033	11333	1	1	seg0.8	300
+1.2434	prime index of primes	18099	1	0	seg0.15	300
+1.2434	sha512-ctr reject :3301	16	28	0	seg0.9	300
+1.2434	md5-ctr mod :CIRCUMFERENCE	4292	1	1	seg0.13	300
+1.2434	sha256-ctr reject :program reality	923	28	0	seg0.15	300
+1.2434	md5-ctr mod :1033	11331	1	1	seg0.8	300
+1.2434	sha256-chain mod :7	2782	28	1	seg0.13	300
+1.2434	sha256-chain reject :know this	16121	28	0	seg0.8	300
+1.2434	sha256-ctr mod :20140104	15563	1	1	seg0.14	300
+1.2434	md5-ctr mod :a warning	13777	28	1	seg0.7	300
+1.2434	md5-ctr mod :primes	1644	28	0	seg0.12	300
+1.2434	sha256-chain reject :INSTAR EMERGENCE	18873	1	1	seg0.8	300
+1.2434	carmichael lambda(n)	6283	28	0	seg0.8	300
+1.2434	sha512-ctr reject :parable	19307	1	1	seg0.15	300
+1.2434	sha256-chain mod :7A35090F	17010	28	1	seg0.12	300
+1.2434	md5-ctr reject :7	9404	1	1	seg0.12	300
+1.2434	md5-ctr reject :LIBER PRIMUS	18691	1	1	seg0.7	300
+1.2434	sha512-ctr reject :434	13989	28	1	seg0.12	300
+1.2434	md5-ctr reject :a warning	696	1	0	seg0.15	300
+1.2434	sha256-chain reject :divinity	13986	1	0	seg0.13	300
+1.2434	sha256-chain reject :<512 bytes 63626537>	13382	1	0	seg0.9	300
+1.2434	md5-ctr reject :liberprimus	11223	1	0	seg0.11	300
+1.2434	sha256-ctr reject :an end	10403	1	1	seg0.12	300
+1.2434	sha512-ctr mod :AN END	13722	1	0	seg0.11	300
+1.2434	sha256-ctr reject :Cicada 3301	13483	28	1	seg0.15	300
+1.2434	sha512-ctr reject :shadows aethereal buffers void carnal ob	11023	28	1	seg0.9	300
+1.2434	sha512-ctr reject :shadows aethereal buffers void carnal ob	6770	1	1	seg0.15	300
+1.2434	zeta(3) digits (base 29)	15758	28	1	seg0.9	300
+1.2434	md5-ctr mod :729	7209	1	0	seg0.14	300
+1.2434	sha256-chain mod :66wc«sx<zòDlYFkLÖS#1·mFÞà%=ÇPFO	16398	28	0	seg0.8	300
+1.2434	sha256-chain mod :PILGRIM	16804	1	1	seg0.11	300
+1.2434	sha256-ctr reject :3258	818	28	0	seg0.15	300
+1.2434	sha256-ctr reject :parable	6036	28	0	seg0.8	300
+1.2434	md5-ctr mod :DIVINITY	1820	28	1	seg0.15	300
+1.2434	md5-ctr mod :deep web	10168	1	0	seg0.8	300
+1.2434	md5-ctr reject :intus	9680	28	0	seg0.15	300
+1.2434	sha256-ctr mod :shadows aethereal buffers void carnal ob	10142	28	0	seg0.12	300
+1.2434	sha256-ctr mod :29	7925	28	0	seg0.14	300
+1.2434	sha256-chain reject :firfumferenfe	8335	1	1	seg0.14	300
+1.2434	sha512-ctr reject :ALL THINGS SHOULD BE ENCRYPTED	3397	28	1	seg0.12	300
+1.2434	sha512-ctr mod :INTUS	10315	1	1	seg0.7	300
+1.2434	e digits (base 29)	17537	28	1	seg0.15	300
+1.2434	md5-ctr reject :7A35090F	6882	28	0	seg0.7	300
+1.2428	sha256-chain reject :welcome	585	28	1	seg0.12	300
+1.2428	sha512-ctr reject :0x7A35090F	5605	28	1	seg0.13	300
+1.2428	sha512-ctr mod :434	12263	28	0	seg0.8	300
+1.2428	sha256-ctr reject :66wc«sx<zòDlYFkLÖS#1·mFÞà%=ÇPFO	7167	28	0	seg0.14	300
+1.2428	sha256-ctr mod :instar	17602	28	1	seg0.12	300
+1.2428	sha256-chain mod :instar	7339	1	0	seg0.7	300
+1.2428	sha512-ctr mod :self-reliance	11940	1	0	seg0.14	300
+1.2428	sha256-chain mod :INSTAR	15644	1	1	seg0.8	300
+1.2428	sha256-chain reject :1729	18024	1	1	seg0.7	300
+1.2428	sha256-ctr mod :INSTAR EMERGENCE	17616	28	1	seg0.12	300
+1.2428	sha512-ctr reject :shadows aethereal buffers void carnal ob	15142	1	1	seg0.13	300
+1.2428	sha512-ctr reject :shadows aethereal buffers void carnal ob	4746	28	1	seg0.12	300
+1.2428	sha256-chain reject :7A35090F	8270	1	0	seg0.13	300
+1.2428	sha256-chain reject :7A35090F	16233	28	1	seg0.13	300
+1.2428	sha512-ctr reject :shadows aethereal buffers void carnal ob	15140	1	1	seg0.13	300
+1.2428	md5-ctr mod :66wc«sx<zòDlYFkLÖS#1·mFÞà%=ÇPFO	3927	1	0	seg0.14	300
+1.2428	sha256-chain reject :1033	12200	28	1	seg0.8	300
+1.2428	sha256-chain reject :command your own self	589	1	0	seg0.7	300
+1.2428	sha512-ctr reject :emerge	593	28	1	seg0.12	300
+1.2428	sha256-ctr mod :INTUS	8951	28	1	seg0.12	300
+1.2428	primes reversed digits	9530	1	1	seg0.11	300
+1.2428	ln2 digits (base 29)	10872	1	1	seg0.11	300
+1.2428	sha256-chain mod :INTUS	9560	1	0	seg0.12	300
+1.2428	md5-ctr mod :7A35090F	5831	1	0	seg0.8	300
+1.2428	p_(n+1) * p_n	3823	28	1	seg0.11	300
+1.2428	d(n)	3771	1	0	seg0.9	300
+1.2428	sha256-chain reject :3258	21	1	0	seg0.8	300
+1.2428	ln2 digits (base 10)	10504	28	0	seg0.8	300
+1.2428	sha512-ctr mod :totient	15747	1	0	seg0.14	300
+1.2428	sha512-ctr reject :1311	650	1	1	seg0.13	300
+1.2428	md5-ctr mod :command your own self	11732	1	1	seg0.8	300
+1.2428	sha512-ctr mod :66wc«sx<zòDlYFkLÖS#1·mFÞà%=ÇPFO	10581	28	1	seg0.15	300
+1.2428	md5-ctr mod :program reality	17323	28	1	seg0.13	300
+1.2428	sha256-ctr mod :1729	16176	1	1	seg0.11	300
+1.2428	sha256-ctr reject :7	7027	28	0	seg0.7	300
+1.2428	sha512-ctr reject :<256 bytes 50bd24b4>	7489	1	0	seg0.15	300
+1.2428	sha256-chain mod :434	4887	28	1	seg0.12	300
+1.2428	sha256-chain mod :all things should be encrypted	12676	1	1	seg0.7	300
+1.2428	sha512-ctr reject :pilgrim	2077	28	0	seg0.12	300
+1.2428	p_n + n	4988	1	1	seg0.12	300
+1.2428	sha256-chain mod :emerge	17173	28	0	seg0.12	300
+1.2428	sha256-ctr reject :2014	86	28	1	seg0.8	300
+1.2428	sha256-chain reject :FIRFUMFERENFE	13318	1	0	seg0.8	300
+1.2428	md5-ctr reject :koan	3191	28	0	seg0.12	300
+1.2428	sha256-chain mod :self-reliance	1522	1	1	seg0.8	300
+1.2428	md5-ctr mod :cicada	8880	1	0	seg0.11	300
+1.2428	md5-ctr mod :program your mind	18887	1	0	seg0.8	300
+1.2428	md5-ctr mod :AN END	15051	28	0	seg0.9	300
+1.2428	sha256-chain mod :pilgrim	8205	1	1	seg0.11	300
+1.2428	n * p_n	1053	1	0	seg0.11	300
+1.2428	sha512-ctr mod :parable	1632	1	0	seg0.7	300
+1.2428	sha512-ctr mod :cicada	15052	1	0	seg0.12	300
+1.2428	md5-ctr reject :DIVINITY	5455	28	1	seg0.8	300
+1.2428	sha512-ctr mod :an end	14451	28	1	seg0.9	300
+1.2421	md5-ctr reject :cicada	3106	1	0	seg0.15	300
+1.2421	md5-ctr mod :pilgrim	14419	28	0	seg0.13	300
+1.2421	sha256-ctr mod :7	9947	1	1	seg0.7	300
+1.2421	sha256-chain mod :INSTAR	9070	1	0	seg0.11	300
+1.2421	sha512-ctr reject :3301	4921	1	0	seg0.13	300
+1.2421	sha256-chain mod :a warning	753	1	1	seg0.13	300
+1.2421	sha512-ctr reject :question all things	10418	1	0	seg0.7	300
+1.2421	md5-ctr mod :29	15199	1	0	seg0.8	300
+1.2421	sha512-ctr reject :3258	16279	28	1	seg0.13	300
+1.2421	sha512-ctr mod :THE PRIMES ARE SACRED	1178	1	1	seg0.11	300
+1.2421	md5-ctr mod :parable	19562	28	0	seg0.7	300
+1.2421	sha512-ctr reject :<512 bytes 63626537>	10978	1	1	seg0.9	300
+1.2421	md5-ctr reject :7	13685	1	0	seg0.15	300
+1.2421	sha256-ctr reject :THE PRIMES ARE SACRED	4950	28	0	seg0.12	300
+1.2421	sha256-chain mod :ALL THINGS SHOULD BE ENCRYPTED	12782	1	0	seg0.7	300
+1.2421	md5-ctr reject :command your own self	8337	28	1	seg0.12	300
+1.2421	md5-ctr reject :command your own self	8339	28	1	seg0.12	300
+1.2421	sha256-ctr reject :totient	9552	1	0	seg0.8	300
+1.2421	primes base-29 digit sum	12390	1	1	seg0.8	300
+1.2421	sha512-ctr mod :liberprimus	2326	1	0	seg0.7	300
+1.2421	md5-ctr mod :DIVINITY	13497	1	1	seg0.14	300
+1.2421	sha512-ctr mod :2014	1748	28	0	seg0.13	300
+1.2421	sha512-ctr reject :liberprimus	9835	28	1	seg0.7	300
+1.2421	md5-ctr mod :the totient function is sacred	4594	28	0	seg0.9	300
+1.2421	sha512-ctr mod :totient	8034	1	0	seg0.13	300
+1.2421	sha256-ctr reject :PILGRIM	5234	1	1	seg0.8	300
+1.2421	sha256-ctr mod :1729	6194	1	1	seg0.13	300
+1.2421	catalan G digits (base 29)	12844	28	0	seg0.15	300
+1.2421	sha256-chain mod :some wisdom	3	1	1	seg0.9	300
+1.2421	sha256-chain mod :pilgrim	3984	1	0	seg0.8	300
+1.2421	md5-ctr mod :koan	2877	1	1	seg0.13	300
+1.2421	sha512-ctr reject :intus	16440	1	1	seg0.11	300
+1.2421	sha512-ctr reject :2014	12059	28	1	seg0.9	300
+1.2421	sha512-ctr reject :729	14697	28	0	seg0.15	300
+1.2421	sqrt5 digits (base 29)	9316	28	1	seg0.14	300
+1.2421	sha512-ctr mod :1033	19372	28	1	seg0.9	300
+1.2421	sha512-ctr reject :pilgrim	17643	28	1	seg0.13	300
+1.2421	sha512-ctr reject :THE PRIMES ARE SACRED	335	1	1	seg0.14	300
+1.2421	sha256-chain mod :parable	16048	1	1	seg0.14	300
+1.2421	sha256-ctr reject :FULMAEAYOEA	12119	1	0	seg0.14	300
+1.2421	md5-ctr reject :31	16222	28	0	seg0.14	300
+1.2421	sha256-chain reject :<256 bytes cbe7a7ba>	1437	1	1	seg0.9	300
+1.2421	prime index of primes	16138	1	0	seg0.14	300
+1.2421	sha512-ctr mod :FULMAEAYOEA	3677	1	0	seg0.12	300
+1.2421	sha256-chain mod :3301	13998	28	0	seg0.11	300
+1.2421	sha512-ctr reject :deep web	6180	28	1	seg0.8	300
+1.2421	sha256-chain mod :LIBER PRIMUS	14164	28	0	seg0.8	300
+1.2421	md5-ctr reject :66wc«sx<zòDlYFkLÖS#1·mFÞà%=ÇPFO	9266	1	1	seg0.8	300
+1.2421	sha256-ctr reject :729	10621	28	1	seg0.13	300
+1.2421	sha512-ctr reject :1033	16048	28	0	seg0.14	300
+1.2421	sha512-ctr mod :1729	656	1	1	seg0.9	300
+1.2421	md5-ctr reject :some wisdom	19434	1	1	seg0.9	300
+1.2421	sha512-ctr mod :29	13462	1	1	seg0.7	300
+1.2421	sha256-chain mod :PILGRIM	3301	28	0	seg0.12	300
+1.2421	phi digits (base 29)	16783	1	0	seg0.15	300
+1.2421	md5-ctr reject :firfumferenfe	8643	1	0	seg0.15	300
+1.2421	sha512-ctr mod :1729	658	1	1	seg0.9	300
+1.2421	sha256-chain mod :liberprimus	5273	28	0	seg0.15	300
+1.2421	sha256-ctr reject :program your mind	13536	1	1	seg0.8	300
+1.2421	sha512-ctr reject :know this	9866	28	1	seg0.7	300
+1.2421	sha512-ctr mod :cicada	18074	1	0	seg0.15	300
+1.2421	sha256-ctr mod :welcome	4324	1	0	seg0.14	300
+1.2421	md5-ctr reject :729	17800	28	0	seg0.11	300
+1.2421	sha512-ctr mod :20140104	15374	1	0	seg0.9	300
+1.2415	sha512-ctr reject :Cicada 3301	10097	28	0	seg0.12	300
+1.2415	md5-ctr reject :2014	15553	1	0	seg0.9	300
+1.2415	sha512-ctr reject :729	12217	28	0	seg0.8	300
+1.2415	md5-ctr mod :FIRFUMFERENFE	6355	1	0	seg0.14	300
+1.2415	sha512-ctr mod :20140104	15373	1	0	seg0.9	300
+1.2415	sha256-chain mod :some wisdom	1633	1	1	seg0.7	300
+1.2415	md5-ctr reject :an end	18738	28	0	seg0.7	300
+1.2415	sha512-ctr mod :7	8778	1	0	seg0.9	300
+1.2415	sha256-chain reject :know this	5017	1	1	seg0.7	300
+1.2415	md5-ctr mod :434	5001	28	0	seg0.15	300
+1.2415	md5-ctr reject :all things should be encrypted	12994	1	0	seg0.12	300
+1.2415	md5-ctr reject :all things should be encrypted	12993	1	0	seg0.12	300
+1.2415	md5-ctr mod :liberprimus	14566	1	0	seg0.14	300
+1.2415	md5-ctr reject :an instruction	8810	28	1	seg0.7	300
+1.2415	sha256-ctr reject :<256 bytes 50bd24b4>	7778	1	1	seg0.11	300
+1.2415	md5-ctr reject :intus	12782	28	0	seg0.14	300
+1.2415	sha256-chain reject :shadows aethereal buffers void carnal ob	4241	1	1	seg0.11	300
+1.2415	sha256-ctr mod :729	19415	28	1	seg0.14	300
+1.2415	md5-ctr reject :INSTAR	2494	28	0	seg0.14	300
+1.2415	md5-ctr reject :<256 bytes cbe7a7ba>	14507	28	0	seg0.12	300
+1.2415	md5-ctr mod :all things should be encrypted	3944	1	1	seg0.14	300
+1.2415	sha512-ctr reject :INSTAR EMERGENCE	3754	28	1	seg0.12	300
+1.2415	sha512-ctr mod :question all things	6718	28	0	seg0.14	300
+1.2415	sqrt2 digits (base 29)	11955	1	1	seg0.9	300
+1.2415	md5-ctr reject :INSTAR EMERGENCE	8217	28	0	seg0.11	300
+1.2415	md5-ctr mod :31	15246	28	1	seg0.15	300
+1.2415	md5-ctr reject :1311	12260	28	0	seg0.8	300
+1.2415	sha256-ctr mod :29	3330	28	1	seg0.15	300
+1.2415	md5-ctr reject :1311	6432	1	0	seg0.11	300
+1.2415	sha256-chain mod :AN END	17001	28	0	seg0.14	300
+1.2415	sha256-ctr mod :firfumferenfe	1192	1	1	seg0.12	300
+1.2415	md5-ctr mod :THE PRIMES ARE SACRED	8193	1	0	seg0.13	300
+1.2415	sha512-ctr reject :totient	7324	28	1	seg0.15	300
+1.2415	sha256-chain reject :3258	14568	28	1	seg0.11	300
+1.2415	sha512-ctr mod :some wisdom	3311	28	0	seg0.15	300
+1.2415	sha512-ctr mod :some wisdom	18913	1	0	seg0.9	300
+1.2415	sha256-chain reject :1311	12361	28	0	seg0.8	300
+1.2415	sha256-chain mod :parable	188	1	1	seg0.12	300
+1.2415	sha256-chain reject :<512 bytes 63626537>	12676	28	1	seg0.9	300
+1.2415	euler gamma digits (base 29)	7922	1	0	seg0.12	300
+1.2415	md5-ctr mod :self-reliance	18492	1	1	seg0.15	300
+1.2415	sha256-ctr reject :totient	18997	1	1	seg0.14	300
+1.2415	Omega(n)	15520	1	0	seg0.9	300
+1.2415	md5-ctr reject :parable	19430	28	0	seg0.12	300
+1.2415	sha256-ctr reject :the totient function is sacred	6870	28	1	seg0.13	300
+1.2415	sha256-chain mod :liber primus	13883	28	0	seg0.13	300
+1.2415	md5-ctr mod :INSTAR EMERGENCE	14857	1	1	seg0.14	300
+1.2415	sha256-chain mod :program your mind	560	28	1	seg0.8	300
+1.2415	sha256-ctr mod :FULMAEAYOEA	10675	28	1	seg0.13	300
+1.2415	sha256-ctr mod :parable	19586	28	1	seg0.9	300
+1.2415	md5-ctr reject :Cicada 3301	18904	1	1	seg0.7	300
+1.2415	sha512-ctr mod :an end	1808	1	0	seg0.15	300
+1.2415	md5-ctr mod :program reality	15341	1	1	seg0.8	300
+1.2415	sha256-ctr reject :7A35090F	10772	1	1	seg0.11	300
+1.2415	sha512-ctr reject :2014	12057	28	1	seg0.9	300
+1.2415	sha512-ctr reject :<256 bytes 50bd24b4>	8680	28	1	seg0.7	300
+1.2415	sha512-ctr reject :shadows aethereal buffers void carnal ob	2656	28	0	seg0.13	300
+1.2415	sha256-chain mod :3258	17270	28	0	seg0.9	300
+1.2415	sha512-ctr reject :self-reliance	18923	1	1	seg0.12	300
+1.2415	sha512-ctr reject :ALL THINGS SHOULD BE ENCRYPTED	3022	1	1	seg0.13	300
+1.2415	sha256-chain mod :29	2301	1	1	seg0.12	300
+1.2415	md5-ctr mod :cicada	947	28	0	seg0.11	300
+1.2408	e digits (base 10)	11160	28	1	seg0.15	300
+1.2408	md5-ctr mod :<256 bytes cbe7a7ba>	15252	28	0	seg0.9	300
+1.2408	md5-ctr mod :program your mind	8999	1	0	seg0.9	300
+1.2408	sha256-ctr mod :shadows aethereal buffers void carnal ob	3266	1	1	seg0.8	300
+1.2408	sha256-ctr mod :shadows aethereal buffers void carnal ob	14456	1	0	seg0.13	300
+1.2408	sha256-ctr mod :shadows aethereal buffers void carnal ob	16845	28	0	seg0.11	300
+1.2408	sha256-chain mod :intus	6792	1	1	seg0.15	300
+1.2408	md5-ctr mod :66wc«sx<zòDlYFkLÖS#1·mFÞà%=ÇPFO	3926	1	0	seg0.14	300
+1.2408	3301 - p_n	1294	1	1	seg0.14	300
+1.2408	primes from 3301	831	28	1	seg0.14	300
+1.2408	sqrt3 digits (base 10)	6858	1	1	seg0.9	300
+1.2408	sha256-chain reject :cicada3301	10391	1	1	seg0.12	300
+1.2408	sha256-chain mod :Cicada 3301	15774	1	1	seg0.14	300
+1.2408	md5-ctr mod :pilgrim	13634	1	1	seg0.7	300
+1.2408	sha256-chain reject :program your mind	10365	28	0	seg0.12	300
+1.2408	sha256-chain reject :20140104	10307	1	0	seg0.14	300
+1.2408	sha256-chain mod :instar	2610	28	1	seg0.13	300
+1.2408	sha256-chain reject :within	717	28	0	seg0.12	300
+1.2408	sha256-chain reject :<256 bytes cbe7a7ba>	3501	28	0	seg0.9	300
+1.2408	sha256-chain reject :intus	10065	28	0	seg0.8	300
+1.2408	sha512-ctr mod :program your mind	12177	1	1	seg0.11	300
+1.2408	sha512-ctr reject :an end	11251	28	0	seg0.12	300
+1.2408	sha256-chain mod :an instruction	1026	28	0	seg0.11	300
+1.2408	sha256-chain reject :FIRFUMFERENFE	5174	1	0	seg0.14	300
+1.2408	sha256-chain reject :THE PRIMES ARE SACRED	13882	1	0	seg0.11	300
+1.2408	primes	1294	28	1	seg0.14	300
+1.2408	Omega(n)	6911	1	1	seg0.9	300
+1.2408	sha256-ctr reject :<128 bytes 33363336>	6781	28	0	seg0.15	300
+1.2408	sha256-chain mod :66wc«sx<zòDlYFkLÖS#1·mFÞà%=ÇPFO	4753	28	1	seg0.15	300
+1.2408	sha256-ctr mod :some wisdom	5656	28	0	seg0.7	300
+1.2408	md5-ctr reject :liberprimus	9620	1	0	seg0.14	300
+1.2408	sha256-chain mod :all things should be encrypted	7778	1	0	seg0.7	300
+1.2408	sha256-chain mod :all things should be encrypted	15019	28	1	seg0.14	300
+1.2408	sha256-ctr mod :program your mind	14353	28	0	seg0.7	300
+1.2408	sha256-chain mod :<256 bytes cbe7a7ba>	12359	1	0	seg0.14	300
+1.2408	sha256-ctr reject :<128 bytes 33363336>	17264	1	0	seg0.7	300
+1.2408	sha512-ctr mod :0x7A35090F	149	1	1	seg0.7	300
+1.2408	sha256-ctr reject :20140104	14773	1	0	seg0.15	300
+1.2408	sha256-chain mod :emerge	13720	28	0	seg0.9	300
+1.2408	md5-ctr mod :THE PRIMES ARE SACRED	8194	1	0	seg0.13	300
+1.2408	sha512-ctr reject :cicada3301	10900	1	1	seg0.14	300
+1.2408	sha512-ctr mod :the totient function is sacred	5263	28	1	seg0.11	300
+1.2408	md5-ctr reject :<256 bytes 50bd24b4>	10803	1	1	seg0.11	300
+1.2408	md5-ctr reject :ALL THINGS SHOULD BE ENCRYPTED	11687	28	0	seg0.7	300
+1.2408	sha256-ctr reject :INTUS	11939	1	0	seg0.15	300
+1.2408	primes+1	1294	28	1	seg0.14	300
+1.2408	sha256-ctr reject :an instruction	7284	1	0	seg0.13	300
+1.2408	md5-ctr mod :20140104	17513	1	1	seg0.14	300
+1.2408	sha512-ctr reject :3258	10908	28	1	seg0.14	300
+1.2408	sha256-ctr mod :31	6135	28	0	seg0.11	300
+1.2408	sha256-ctr mod :AN END	14415	28	1	seg0.8	300
+1.2408	sha512-ctr reject :729	12262	28	1	seg0.7	300
+1.2408	sha512-ctr reject :<256 bytes 50bd24b4>	19406	1	1	seg0.15	300
+1.2408	sha256-chain mod :FULMAEAYOEA	5425	28	0	seg0.11	300
+1.2408	ln2 digits (base 10)	7288	1	1	seg0.9	300
+1.2408	sha512-ctr reject :intus	6323	1	1	seg0.9	300
+1.2408	sha512-ctr mod :an end	3581	28	1	seg0.8	300
+1.2408	sha512-ctr reject :divinity	15796	1	0	seg0.13	300
+1.2408	sha512-ctr reject :31	18209	28	0	seg0.7	300
+1.2408	md5-ctr reject :a warning	16566	1	1	seg0.11	300
+1.2408	sha256-ctr mod :an instruction	7401	1	0	seg0.15	300
+1.2408	md5-ctr mod :<256 bytes 50bd24b4>	4533	28	0	seg0.14	300
+1.2408	md5-ctr mod :some wisdom	9319	1	1	seg0.14	300
+1.2408	sha512-ctr reject :CIRCUMFERENCE	12547	28	1	seg0.9	300
+1.2408	sha256-ctr mod :the totient function is sacred	18640	28	0	seg0.13	300
+1.2408	md5-ctr mod :liber primus	10914	1	0	seg0.12	300
+1.2408	e digits (base 29)	1521	28	1	seg0.15	300
+1.2408	md5-ctr mod :liber primus	10915	1	0	seg0.12	300
+1.2408	sha256-ctr mod :3301	2269	28	0	seg0.14	300
+1.2408	primes-1 (totient)	1294	28	1	seg0.14	300
+1.2408	sha256-ctr mod :3301	293	28	1	seg0.12	300
+1.2408	sha512-ctr reject :CIRCUMFERENCE	12545	28	1	seg0.9	300
+1.2408	sha256-ctr mod :the totient function is sacred	10649	28	1	seg0.8	300
+1.2408	sha512-ctr reject :20140104	1309	28	0	seg0.8	300
+1.2402	sha256-chain mod :program reality	18994	28	0	seg0.8	300
+1.2402	sha256-ctr reject :self-reliance	8125	1	0	seg0.12	300
+1.2402	sha256-chain mod :some wisdom	12281	1	1	seg0.13	300
+1.2402	sha256-ctr reject :66wc«sx<zòDlYFkLÖS#1·mFÞà%=ÇPFO	2652	1	0	seg0.14	300
+1.2402	sha256-ctr reject :66wc«sx<zòDlYFkLÖS#1·mFÞà%=ÇPFO	2653	1	0	seg0.14	300
+1.2402	sigma(n)	7837	28	0	seg0.11	300
+1.2402	md5-ctr mod :DIVINITY	14355	1	0	seg0.8	300
+1.2402	sha512-ctr reject :instar	9274	1	1	seg0.13	300
+1.2402	sha256-ctr mod :deep web	18727	28	1	seg0.9	300
+1.2402	sha512-ctr reject :question all things	2059	1	0	seg0.11	300
+1.2402	pi digits (base 10)	16078	28	1	seg0.8	300
+1.2402	sha256-chain reject :within	1463	1	0	seg0.7	300
+1.2402	prime index of primes	13964	28	1	seg0.15	300
+1.2402	sha256-chain reject :some wisdom	2054	1	1	seg0.13	300
+1.2402	kw:SURFACE WE	1385	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1619	1	1	seg0.7	300
+1.2402	sha512-ctr reject :program your mind	4225	1	1	seg0.7	300
+1.2402	sha256-ctr mod :DIVINITY	15140	1	0	seg0.14	300
+1.2402	phi(n)	12830	28	1	seg0.11	300
+1.2402	md5-ctr reject :20140104	1903	1	0	seg0.7	300
+1.2402	kw:SURFACE WE	8	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	17	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	26	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	35	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	44	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	53	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	62	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	71	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	80	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	89	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	98	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	107	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	116	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	125	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	134	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	143	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	152	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	161	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	170	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	179	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	188	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	197	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	206	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	215	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	224	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	233	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	242	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	251	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	260	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	269	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	278	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	287	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	296	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	305	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	314	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	323	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	332	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	341	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	350	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	359	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	368	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	377	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	386	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	395	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	404	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	413	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	422	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	431	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	440	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	449	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	458	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	467	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	476	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	485	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	494	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	503	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	512	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	521	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	530	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	539	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	548	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	557	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	566	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	575	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	584	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	593	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	602	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	611	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	620	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	629	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	638	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	647	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	656	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	665	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	674	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	683	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	692	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	701	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	710	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	728	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	737	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	746	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	755	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	764	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	773	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	782	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	791	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	800	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	809	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	818	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	827	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	836	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	845	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	854	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	863	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	872	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	881	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	890	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	899	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	908	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	917	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	926	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	935	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	944	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	953	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	962	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	971	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	980	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	989	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	998	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1007	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1016	1	1	seg0.7	300
+1.2402	sha256-chain mod :pilgrim	671	1	1	seg0.15	300
+1.2402	kw:SURFACE WE	1034	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1043	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1052	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1061	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1070	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1079	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1088	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1097	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1106	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1115	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1124	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1133	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1142	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1151	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1160	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1169	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1178	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1187	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1196	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1205	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1214	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1223	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1232	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1241	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1250	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1259	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1268	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1277	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1286	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1295	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1304	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1313	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1322	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1331	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1340	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1349	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1358	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1367	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1376	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1394	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1403	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1412	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1421	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1430	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1439	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1448	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1457	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1466	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1475	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1484	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1493	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1502	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1511	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1520	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1529	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1538	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1547	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1556	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1565	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1574	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1583	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1592	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1601	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	1610	1	1	seg0.7	300
+1.2402	kw:SURFACE WE	719	1	1	seg0.7	300
+1.2402	sha512-ctr mod :some wisdom	8487	28	0	seg0.15	300
+1.2402	md5-ctr reject :PILGRIM	1774	1	1	seg0.11	300
+1.2402	md5-ctr mod :THE PRIMES ARE SACRED	12321	1	1	seg0.8	300
+1.2402	sha256-ctr reject :intus	14346	1	1	seg0.11	300
+1.2402	sha256-chain reject :all things should be encrypted	1433	1	0	seg0.9	300
+1.2402	sha256-chain reject :welcome	18641	28	1	seg0.8	300
+1.2402	md5-ctr reject :koan	2552	1	0	seg0.14	300
+1.2402	sha256-chain mod :cicada	4238	28	1	seg0.11	300
+1.2402	sha512-ctr mod :liberprimus	16797	1	1	seg0.11	300
+1.2402	md5-ctr mod :self-reliance	96	28	0	seg0.13	300
+1.2402	md5-ctr reject :cicada3301	568	1	1	seg0.9	300
+1.2402	sha256-ctr mod :AN END	14511	28	1	seg0.13	300
+1.2402	sha512-ctr reject :20140104	1307	28	0	seg0.8	300
+1.2402	md5-ctr mod :<256 bytes 50bd24b4>	4532	28	0	seg0.14	300
+1.2402	sha256-chain reject :<256 bytes 50bd24b4>	6316	28	0	seg0.15	300
+1.2402	sha512-ctr mod :the primes are sacred	18460	1	1	seg0.9	300
+1.2402	sha512-ctr reject :deep web	3008	28	0	seg0.11	300
+1.2402	sha512-ctr reject :deep web	3007	28	0	seg0.11	300
+1.2402	sha256-chain mod :434	4028	28	1	seg0.9	300
+1.2402	sha256-ctr mod :1729	12583	1	1	seg0.8	300
+1.2402	md5-ctr mod :command your own self	13209	28	0	seg0.13	300
+1.2402	ln2 digits (base 10)	11238	28	0	seg0.9	300
+1.2402	catalan G digits (base 29)	8517	28	0	seg0.11	300
+1.2402	sha256-ctr reject :PILGRIM	1848	1	0	seg0.15	300
+1.2402	sha256-ctr reject :7A35090F	19173	1	0	seg0.15	300
+1.2402	primes popcount	8696	28	0	seg0.9	300
+1.2402	sha256-ctr reject :instar	13309	1	0	seg0.11	300
+1.2402	sha512-ctr reject :cicada	18148	1	1	seg0.7	300
+1.2402	md5-ctr reject :66wc«sx<zòDlYFkLÖS#1·mFÞà%=ÇPFO	12746	1	0	seg0.9	300
+1.2402	sha512-ctr mod :an instruction	14205	1	0	seg0.15	300
+1.2402	e digits (base 10)	1018	1	1	seg0.8	300
+1.2402	p_n mod 3301	14123	1	1	seg0.15	300
+1.2402	md5-ctr reject :THE PRIMES ARE SACRED	18990	1	1	seg0.13	300
+1.2402	sha256-ctr reject :firfumferenfe	16895	1	0	seg0.14	300
+1.2402	sha256-ctr mod :liberprimus	15430	28	1	seg0.9	300
+1.2402	sha256-chain mod :shadows aethereal buffers void carnal ob	3029	28	1	seg0.7	300
+1.2402	sha256-chain mod :2014	11068	28	1	seg0.14	300
+1.2402	sha512-ctr reject :primes	14466	28	1	seg0.7	300
+1.2402	sha256-ctr mod :3301	9653	28	1	seg0.14	300
+1.2402	sha256-ctr mod :3301	17073	1	1	seg0.13	300
+1.2402	sha256-ctr reject :the primes are sacred	10159	1	0	seg0.7	300
+1.2402	sha512-ctr mod :circumference	3515	1	0	seg0.13	300
+1.2402	kw:SURFACE WE	1025	1	1	seg0.7	300
+1.2395	sha256-ctr reject :0x7A35090F	9799	1	0	seg0.14	300
+1.2395	sha256-ctr mod :instar	11269	1	0	seg0.7	300
+1.2395	sigma(n)	1772	1	1	seg0.15	300
+1.2395	sigma(n)	1770	1	1	seg0.15	300
+1.2395	sha512-ctr mod :cicada3301	7616	1	0	seg0.12	300
+1.2395	primes+1	12828	28	0	seg0.15	300
+1.2395	sha256-chain reject :divinity	9924	1	1	seg0.12	300
+1.2395	sha256-ctr reject :FIRFUMFERENFE	12516	1	1	seg0.15	300
+1.2395	sha256-ctr mod :FULMAEAYOEA	17568	28	1	seg0.8	300
+1.2395	sha256-ctr mod :FULMAEAYOEA	18988	28	0	seg0.12	300
+1.2395	md5-ctr mod :29	14654	28	0	seg0.13	300
+1.2395	md5-ctr reject :434	11424	28	0	seg0.14	300
+1.2395	md5-ctr reject :434	15026	28	0	seg0.8	300
+1.2395	sha256-chain mod :liberprimus	11858	28	1	seg0.13	300
+1.2395	sha256-chain mod :instar	8769	1	1	seg0.14	300
+1.2395	md5-ctr mod :FIRFUMFERENFE	16460	28	1	seg0.12	300
+1.2395	sha256-ctr mod :pilgrim	18409	28	0	seg0.11	300
+1.2395	sha512-ctr mod :welcome	11612	28	1	seg0.14	300
+1.2395	sha256-chain reject :INSTAR	12582	28	1	seg0.11	300
+1.2395	md5-ctr mod :question all things	17641	28	0	seg0.9	300
+1.2395	sqrt3 digits (base 29)	5876	28	0	seg0.15	300
+1.2395	sha256-chain reject :ALL THINGS SHOULD BE ENCRYPTED	9134	28	0	seg0.12	300
+1.2395	cbrt2 digits (base 29)	9078	28	1	seg0.7	300
+1.2395	sha256-chain reject :liberprimus	13207	28	1	seg0.9	300
+1.2395	md5-ctr reject :intus	13184	1	0	seg0.7	300
+1.2395	sha256-ctr mod :shadows aethereal buffers void carnal ob	17185	1	1	seg0.11	300
+1.2395	sha256-ctr reject :1729	2123	28	0	seg0.7	300
+1.2395	sha256-ctr reject :circumference	5398	28	0	seg0.14	300
+1.2395	md5-ctr reject :AN END	12840	28	0	seg0.7	300
+1.2395	sha256-ctr mod :66wc«sx<zòDlYFkLÖS#1·mFÞà%=ÇPFO	5793	1	0	seg0.15	300
+1.2395	sha256-chain mod :cicada	4242	28	1	seg0.11	300
+1.2395	md5-ctr mod :Cicada 3301	18365	1	1	seg0.14	300
+1.2395	sha512-ctr mod :0x7A35090F	12500	1	0	seg0.9	300
+1.2395	sha256-ctr reject :intus	2649	1	0	seg0.14	300
+1.2395	md5-ctr reject :pilgrim	19084	28	0	seg0.13	300
+1.2395	sha256-ctr reject :command your own self	18216	28	0	seg0.9	300
+1.2395	sha256-chain mod :emerge	410	1	1	seg0.13	300
+1.2395	sha256-ctr mod :31	6137	28	0	seg0.11	300
+1.2395	sha256-ctr reject :2014	11875	28	1	seg0.13	300
+1.2395	md5-ctr reject :program reality	9182	28	0	seg0.9	300
+1.2395	md5-ctr reject :FIRFUMFERENFE	3785	1	0	seg0.12	300
+1.2395	sha256-chain mod :know this	8692	28	0	seg0.9	300
+1.2395	sha256-chain mod :DIVINITY	13086	28	1	seg0.11	300
+1.2395	primes	12828	28	0	seg0.15	300
+1.2395	sha512-ctr mod :<256 bytes 50bd24b4>	12712	1	1	seg0.12	300
+1.2395	sha512-ctr reject :29	6179	1	0	seg0.9	300
+1.2395	md5-ctr mod :1729	5351	1	0	seg0.9	300
+1.2395	sha256-chain reject :Cicada 3301	4901	28	1	seg0.11	300
+1.2395	sha512-ctr reject :command your own self	5239	28	0	seg0.14	300
+1.2395	sha256-ctr reject :liberprimus	7886	28	0	seg0.15	300
+1.2395	prime index of primes	13968	28	1	seg0.15	300
+1.2395	prime index of primes	13966	28	1	seg0.15	300
+1.2395	sha256-chain reject :2014	14064	1	0	seg0.14	300
+1.2395	md5-ctr mod :PILGRIM	3125	28	1	seg0.11	300
+1.2395	sha256-ctr reject :FULMAEAYOEA	17554	1	0	seg0.14	300
+1.2395	sha256-chain mod :parable	1469	1	0	seg0.11	300
+1.2395	euler gamma digits (base 29)	7923	1	0	seg0.12	300
+1.2395	sha256-chain mod :1033	13551	1	1	seg0.11	300
+1.2395	md5-ctr mod :LIBER PRIMUS	6177	28	1	seg0.15	300
+1.2395	ln2 digits (base 29)	10010	28	1	seg0.11	300
+1.2395	sha256-ctr mod :7A35090F	8185	28	1	seg0.11	300
+1.2395	sha256-ctr mod :434	12000	28	0	seg0.15	300
+1.2395	sha512-ctr mod :an end	19593	1	0	seg0.11	300
+1.2395	e digits (base 10)	11162	28	1	seg0.15	300
+1.2395	e digits (base 10)	17104	28	0	seg0.9	300
+1.2395	(p+1)/2	15337	1	0	seg0.15	300
+1.2395	sha256-chain mod :3301	17625	28	0	seg0.11	300
+1.2395	md5-ctr reject :THE PRIMES ARE SACRED	11887	1	1	seg0.7	300
+1.2395	sha256-ctr mod :20140104	16510	28	0	seg0.11	300
+1.2395	md5-ctr mod :circumference	8984	28	0	seg0.13	300
+1.2395	primes from 3301	12365	28	0	seg0.15	300
+1.2395	(p-1)/2	15337	1	0	seg0.15	300
+1.2395	3301 - p_n	12828	1	0	seg0.15	300
+1.2395	md5-ctr reject :0x7A35090F	8030	28	1	seg0.14	300
+1.2395	md5-ctr mod :instar	6410	28	0	seg0.9	300
+1.2395	md5-ctr reject :emergence	11904	1	0	seg0.15	300
+1.2395	sha256-chain mod :29	8491	28	1	seg0.7	300
+1.2395	sha512-ctr mod :program reality	7302	1	1	seg0.15	300
+1.2395	sha256-chain mod :cicada3301	8765	1	0	seg0.9	300
+1.2395	sha256-chain reject :firfumferenfe	19174	28	0	seg0.14	300
+1.2395	primes-1 (totient)	12828	28	0	seg0.15	300
+1.2395	sha512-ctr reject :<512 bytes 63626537>	7113	28	1	seg0.11	300
+1.2389	sha512-ctr reject :pilgrim	2078	28	0	seg0.12	300
+1.2389	sha512-ctr reject :know this	9870	28	1	seg0.7	300
+1.2389	sha256-chain reject :deep web	19049	1	0	seg0.15	300
+1.2389	sha256-chain mod :within	19398	28	0	seg0.7	300
+1.2389	sha512-ctr mod :THE PRIMES ARE SACRED	17963	28	1	seg0.14	300
+1.2389	sha512-ctr reject :shadows aethereal buffers void carnal ob	4748	28	1	seg0.12	300
+1.2389	sha256-ctr reject :divinity	10094	1	1	seg0.7	300
+1.2389	sha256-ctr mod :self-reliance	15916	28	0	seg0.7	300
+1.2389	sha256-ctr reject :intus	14344	1	1	seg0.11	300
+1.2389	sha256-chain mod :emerge	18922	1	1	seg0.12	300
+1.2389	ln3 digits (base 29)	3644	1	1	seg0.8	300
+1.2389	sha256-ctr mod :66wc«sx<zòDlYFkLÖS#1·mFÞà%=ÇPFO	1961	28	1	seg0.12	300
+1.2389	sha256-ctr mod :1311	6010	28	0	seg0.14	300
+1.2389	sha512-ctr mod :<256 bytes cbe7a7ba>	1446	1	1	seg0.11	300
+1.2389	md5-ctr reject :CIRCUMFERENCE	848	1	1	seg0.7	300
+1.2389	md5-ctr reject :AN END	18498	1	1	seg0.13	300
+1.2389	sha512-ctr reject :729	14694	28	0	seg0.15	300
+1.2389	sha512-ctr mod :the totient function is sacred	3878	1	0	seg0.13	300
+1.2389	sha256-ctr mod :pilgrim	8716	1	0	seg0.9	300
+1.2389	sha256-ctr mod :pilgrim	6306	1	0	seg0.13	300
+1.2389	3301 * p_n	16920	28	1	seg0.11	300
+1.2389	sqrt3 digits (base 29)	5290	1	0	seg0.7	300
+1.2389	sha256-ctr mod :pilgrim	9101	1	1	seg0.8	300
+1.2389	sha256-ctr mod :an instruction	2425	28	0	seg0.15	300
+1.2389	md5-ctr reject :liber primus	16089	1	1	seg0.9	300
+1.2389	md5-ctr mod :divinity	13325	1	0	seg0.11	300
+1.2389	sha512-ctr mod :question all things	5035	1	0	seg0.8	300
+1.2389	sha256-chain reject :program reality	18851	28	1	seg0.12	300
+1.2389	sha256-ctr reject :totient	7864	1	1	seg0.12	300
+1.2389	md5-ctr reject :liber primus	7850	28	0	seg0.14	300
+1.2389	sha256-ctr mod :pilgrim	18408	28	0	seg0.11	300
+1.2389	sqrt3 digits (base 29)	7925	28	1	seg0.11	300
+1.2389	sha512-ctr reject :729	11220	1	1	seg0.9	300
+1.2389	ln3301 digits (base 29)	10383	28	1	seg0.11	300
+1.2389	sha512-ctr reject :question all things	1275	1	1	seg0.11	300
+1.2389	md5-ctr reject :434	18332	28	0	seg0.9	300
+1.2389	sha512-ctr reject :shadows aethereal buffers void carnal ob	18387	1	1	seg0.9	300
+1.2389	sha256-chain reject :29	11613	1	1	seg0.15	300
+1.2389	sha256-chain reject :intus	16666	28	0	seg0.9	300
+1.2389	sha512-ctr reject :liber primus	13335	28	1	seg0.13	300
+1.2389	sha512-ctr reject :emergence	15749	28	0	seg0.15	300
+1.2389	sha256-ctr mod :0x7A35090F	2346	28	0	seg0.8	300
+1.2389	sha512-ctr mod :the primes are sacred	11832	28	0	seg0.14	300
+1.2389	md5-ctr reject :shadows aethereal buffers void carnal ob	2707	1	1	seg0.8	300
+1.2389	md5-ctr reject :<256 bytes cbe7a7ba>	14461	1	1	seg0.13	300
+1.2389	sha256-chain reject :question all things	12521	1	1	seg0.13	300
+1.2389	md5-ctr mod :3258	13086	1	1	seg0.7	300
+1.2389	md5-ctr mod :LIBER PRIMUS	6175	28	1	seg0.15	300
+1.2389	rad(n)	17987	28	0	seg0.9	300
+1.2389	sha256-ctr mod :PILGRIM	729	28	0	seg0.11	300
+1.2389	sha256-ctr mod :PILGRIM	730	28	0	seg0.11	300
+1.2389	prime index of primes	11852	28	1	seg0.9	300
+1.2389	d(n)	6269	28	1	seg0.7	300
+1.2389	md5-ctr mod :deep web	4974	28	1	seg0.8	300
+1.2389	catalan G digits (base 29)	17019	28	1	seg0.11	300
+1.2389	md5-ctr reject :Cicada 3301	18058	1	1	seg0.8	300
+1.2389	catalan G digits (base 29)	17023	28	1	seg0.11	300
+1.2389	sha256-ctr mod :parable	17733	1	0	seg0.7	300
+1.2389	sha256-ctr reject :7A35090F	12756	28	0	seg0.15	300
+1.2389	md5-ctr mod :3301	15684	28	1	seg0.15	300
+1.2389	md5-ctr mod :ALL THINGS SHOULD BE ENCRYPTED	11214	28	0	seg0.13	300
+1.2389	md5-ctr reject :FIRFUMFERENFE	3362	28	0	seg0.9	300
+1.2389	sha256-ctr reject :INSTAR EMERGENCE	9761	1	1	seg0.7	300
+1.2389	sha512-ctr mod :all things should be encrypted	828	1	1	seg0.9	300
+1.2389	md5-ctr mod :deep web	11022	28	0	seg0.8	300
+1.2389	sha256-chain mod :729	2140	28	1	seg0.13	300
+1.2389	md5-ctr mod :a warning	19065	1	0	seg0.12	300
+1.2389	sha512-ctr mod :instar	2815	28	0	seg0.15	300
+1.2389	sha256-ctr mod :emergence	17508	28	0	seg0.7	300
+1.2389	sha256-chain mod :<512 bytes 63626537>	5388	28	0	seg0.14	300
+1.2389	sha256-chain mod :<512 bytes 63626537>	5389	28	0	seg0.14	300
+1.2389	sha512-ctr mod :liber primus	9884	1	1	seg0.9	300
+1.2389	sha512-ctr mod :FIRFUMFERENFE	313	28	1	seg0.9	300
+1.2389	e digits (base 10)	2639	1	0	seg0.9	300
+1.2389	sha256-ctr mod :liberprimus	11754	28	0	seg0.7	300
+1.2389	sha512-ctr reject :primes	10711	28	1	seg0.13	300
+1.2389	sha256-ctr mod :29	6431	1	0	seg0.12	300
+1.2389	sha256-ctr reject :circumference	7738	1	1	seg0.7	300
+1.2389	e digits (base 29)	4941	1	1	seg0.7	300
+1.2389	sha512-ctr reject :self-reliance	17994	28	0	seg0.13	300
+1.2389	sha256-chain mod :cicada3301	8764	1	0	seg0.9	300
+1.2389	sha256-ctr reject :0x7A35090F	4367	1	1	seg0.14	300
+1.2389	sha512-ctr reject :koan	823	1	1	seg0.11	300
+1.2389	sha256-chain reject :emergence	3814	1	1	seg0.7	300
+1.2389	md5-ctr reject :primes	2192	1	0	seg0.11	300
+1.2389	sha256-chain mod :firfumferenfe	5734	1	0	seg0.9	300
+1.2382	sha256-chain mod :INSTAR	5949	1	1	seg0.11	300
+1.2382	sha256-chain mod :instar	8767	1	1	seg0.14	300
+1.2382	md5-ctr reject :434	6717	1	1	seg0.7	300
+1.2382	sha256-ctr reject :FIRFUMFERENFE	9048	1	1	seg0.11	300
+1.2382	sha256-chain mod :program your mind	566	28	1	seg0.8	300
+1.2382	sha512-ctr reject :7	17278	28	1	seg0.13	300
+1.2382	sha256-chain mod :emerge	18589	1	1	seg0.14	300
+1.2382	sha256-ctr mod :self-reliance	3592	28	0	seg0.15	300
+1.2382	ln2 digits (base 10)	13386	1	1	seg0.8	300
+1.2382	md5-ctr mod :3301	4335	1	1	seg0.14	300
+1.2382	md5-ctr mod :command your own self	14483	28	0	seg0.7	300
+1.2382	sha256-ctr mod :divinity	6278	1	0	seg0.15	300
+1.2382	sha256-ctr reject :PILGRIM	6108	28	0	seg0.11	300
+1.2382	md5-ctr mod :command your own self	11490	28	1	seg0.7	300
+1.2382	sha256-ctr mod :CIRCUMFERENCE	15723	1	0	seg0.8	300
+1.2382	sha256-chain mod :THE PRIMES ARE SACRED	10693	1	1	seg0.13	300
+1.2382	sha256-chain reject :the totient function is sacred	14843	1	1	seg0.15	300
+1.2382	sha256-ctr reject :1311	9318	1	0	seg0.7	300
+1.2382	md5-ctr mod :LIBER PRIMUS	14164	1	0	seg0.9	300
+1.2382	ln2 digits (base 29)	10004	28	1	seg0.11	300
+1.2382	sha256-chain mod :ALL THINGS SHOULD BE ENCRYPTED	12781	1	0	seg0.7	300
+1.2382	md5-ctr mod :all things should be encrypted	4512	28	0	seg0.13	300
+1.2382	sha512-ctr mod :31	16789	28	1	seg0.8	300
+1.2382	sha256-chain reject :ALL THINGS SHOULD BE ENCRYPTED	6815	1	1	seg0.8	300
+1.2382	md5-ctr mod :deep web	11021	28	0	seg0.8	300
+1.2382	md5-ctr reject :intus	12783	28	0	seg0.14	300
+1.2382	md5-ctr mod :2014	13043	1	1	seg0.12	300
+1.2382	sha512-ctr reject :INTUS	8617	1	0	seg0.11	300
+1.2382	p_n - n	4005	1	1	seg0.8	300
+1.2382	sha512-ctr mod :the primes are sacred	17245	28	1	seg0.12	300
+1.2382	sha256-chain reject :7	14432	1	1	seg0.8	300
+1.2382	sha256-chain mod :434	4026	28	1	seg0.9	300
+1.2382	sha256-ctr reject :INSTAR	12474	1	0	seg0.13	300
+1.2382	sha256-chain mod :1033	1482	28	0	seg0.12	300
+1.2382	sha256-chain reject :know this	12533	1	0	seg0.7	300
+1.2382	sha512-ctr reject :emerge	3346	28	1	seg0.12	300
+1.2382	sha256-ctr reject :<128 bytes 33363336>	17639	1	1	seg0.8	300
+1.2382	sha512-ctr mod :liber primus	11119	1	1	seg0.12	300
+1.2382	sha512-ctr mod :liber primus	11117	1	1	seg0.12	300
+1.2382	sha256-chain mod :know this	15950	28	1	seg0.8	300
+1.2382	sha256-chain mod :know this	15952	28	1	seg0.8	300
+1.2382	sha256-ctr mod :7A35090F	6813	28	0	seg0.7	300
+1.2382	sha256-chain reject :within	16684	28	0	seg0.13	300
+1.2382	sha256-ctr reject :3301	8550	1	0	seg0.8	300
+1.2382	sha512-ctr mod :29	8056	1	0	seg0.8	300
+1.2382	d(n)	8481	1	1	seg0.7	300
+1.2382	sha512-ctr reject :Cicada 3301	10585	1	1	seg0.12	300
+1.2382	md5-ctr reject :<256 bytes 50bd24b4>	6679	28	1	seg0.11	300
+1.2382	sha256-chain mod :firfumferenfe	10617	28	0	seg0.9	300
+1.2382	sha256-ctr reject :29	2396	28	0	seg0.9	300
+1.2382	sha256-ctr mod :the primes are sacred	18293	1	0	seg0.8	300
+1.2382	sha256-chain reject :7	5096	1	0	seg0.12	300
+1.2382	md5-ctr mod :emerge	12666	28	0	seg0.14	300
+1.2382	sha512-ctr reject :firfumferenfe	15908	1	0	seg0.11	300
+1.2382	md5-ctr reject :within	4043	28	1	seg0.9	300
+1.2382	md5-ctr mod :cicada	6505	1	1	seg0.7	300
+1.2382	sha256-chain mod :Cicada 3301	11030	1	1	seg0.15	300
+1.2382	md5-ctr reject :emergence	9287	1	0	seg0.12	300
+1.2382	sha512-ctr reject :primes	11639	1	0	seg0.12	300
+1.2382	sha512-ctr reject :primes	13126	1	0	seg0.14	300
+1.2382	sha256-ctr mod :7A35090F	7162	1	1	seg0.11	300
+1.2382	sha256-chain mod :INSTAR	6996	1	0	seg0.13	300
+1.2382	sha256-chain reject :an end	10143	1	0	seg0.7	300
+1.2382	sha256-ctr reject :AN END	1788	28	1	seg0.9	300
+1.2382	sha512-ctr reject :the totient function is sacred	12971	28	0	seg0.12	300
+1.2382	md5-ctr reject :ALL THINGS SHOULD BE ENCRYPTED	10129	1	0	seg0.15	300
+1.2382	sha256-chain mod :command your own self	4250	1	0	seg0.11	300
+1.2382	sha256-chain mod :an end	1227	28	0	seg0.8	300
+1.2382	sha512-ctr reject :question all things	9104	28	0	seg0.9	300
+1.2382	sha256-ctr reject :66wc«sx<zòDlYFkLÖS#1·mFÞà%=ÇPFO	7166	28	0	seg0.14	300
+1.2382	sha512-ctr mod :LIBER PRIMUS	8937	1	1	seg0.14	300
+1.2382	sha512-ctr mod :question all things	2343	28	0	seg0.14	300
+1.2382	sha256-chain mod :7A35090F	16471	28	0	seg0.15	300
+1.2382	p_n - n	18642	28	1	seg0.9	300
+1.2382	sha256-ctr reject :totient	5169	28	0	seg0.13	300
+1.2382	sha512-ctr mod :pilgrim	12085	28	0	seg0.13	300
+1.2382	sha512-ctr reject :1311	647	1	1	seg0.13	300
+1.2382	sha256-chain reject :circumference	5523	1	1	seg0.13	300
+1.2382	primes base-29 digit sum	11006	28	1	seg0.13	300
+1.2382	md5-ctr reject :divinity	15370	1	1	seg0.15	300
+1.2382	sha512-ctr reject :koan	16583	1	1	seg0.9	300
+1.2382	sha512-ctr reject :ALL THINGS SHOULD BE ENCRYPTED	707	28	1	seg0.12	300
+1.2382	sha512-ctr mod :firfumferenfe	4148	1	1	seg0.8	300
+1.2376	md5-ctr reject :3301	10228	28	1	seg0.12	300
+1.2376	sha512-ctr reject :ALL THINGS SHOULD BE ENCRYPTED	709	28	1	seg0.12	300
+1.2376	md5-ctr mod :0x7A35090F	15813	1	0	seg0.11	300
+1.2376	md5-ctr mod :AN END	12368	28	1	seg0.11	300
+1.2376	sha512-ctr mod :welcome	19399	28	0	seg0.9	300
+1.2376	md5-ctr mod :question all things	15029	1	1	seg0.11	300
+1.2376	md5-ctr mod :AN END	17706	1	0	seg0.9	300
+1.2376	3301 * p_n	11280	28	1	seg0.15	300
+1.2376	md5-ctr mod :AN END	7106	28	0	seg0.8	300
+1.2376	md5-ctr mod :DIVINITY	2899	1	1	seg0.12	300
+1.2376	sha256-ctr reject :31	19385	28	0	seg0.9	300
+1.2376	sha512-ctr reject :an end	17875	28	0	seg0.13	300
+1.2376	sha256-ctr reject :primes	17102	28	1	seg0.14	300
+1.2376	sha256-chain reject :THE PRIMES ARE SACRED	13883	1	0	seg0.11	300
+1.2376	md5-ctr reject :1033	19369	1	0	seg0.15	300
+1.2376	sha512-ctr mod :2014	5384	28	0	seg0.11	300
+1.2376	sha256-chain mod :PILGRIM	4696	1	0	seg0.12	300
+1.2376	sha512-ctr reject :divinity	19249	1	0	seg0.8	300
+1.2376	sha512-ctr reject :7A35090F	8054	28	1	seg0.15	300
+1.2376	sha256-ctr reject :<512 bytes 63626537>	562	28	1	seg0.14	300
+1.2376	sha256-ctr reject :<512 bytes 63626537>	19184	1	1	seg0.15	300
+1.2376	p_(n+1) * p_n	19231	1	1	seg0.8	300
+1.2376	sha512-ctr reject :totient	450	28	1	seg0.11	300
+1.2376	sha256-chain reject :parable	2200	1	0	seg0.14	300
+1.2376	md5-ctr reject :INSTAR EMERGENCE	15163	1	0	seg0.15	300
+1.2376	sha256-chain reject :FIRFUMFERENFE	17729	1	1	seg0.11	300
+1.2376	sha256-ctr reject :1033	9233	28	1	seg0.7	300
+1.2376	sha256-chain reject :circumference	5521	1	1	seg0.13	300
+1.2376	sha512-ctr mod :1729	17212	1	0	seg0.13	300
+1.2376	phi digits (base 29)	12550	1	1	seg0.9	300
+1.2376	sha256-ctr reject :2014	2621	1	0	seg0.11	300
+1.2376	md5-ctr mod :welcome	8578	28	1	seg0.13	300
+1.2376	md5-ctr reject :LIBER PRIMUS	16062	1	0	seg0.14	300
+1.2376	sha256-chain reject :0x7A35090F	3750	28	0	seg0.11	300
+1.2376	primes	3903	28	0	seg0.7	300
+1.2376	primes	12830	28	0	seg0.15	300
+1.2376	md5-ctr reject :liber primus	217	1	1	seg0.9	300
+1.2376	primes	19198	28	1	seg0.9	300
+1.2376	primes	19200	28	1	seg0.9	300
+1.2376	sha512-ctr mod :question all things	18453	1	0	seg0.9	300
+1.2376	md5-ctr reject :liber primus	4963	28	1	seg0.7	300
+1.2376	sha512-ctr reject :firfumferenfe	12609	1	0	seg0.7	300
+1.2376	sha512-ctr reject :<128 bytes 33363336>	14173	1	0	seg0.7	300
+1.2376	sha256-chain reject :<128 bytes 33363336>	6600	28	0	seg0.9	300
+1.2376	sha256-chain reject :2014	2310	1	0	seg0.9	300
+1.2376	sha256-chain reject :1311	6566	28	0	seg0.7	300
+1.2376	sha256-chain mod :<256 bytes cbe7a7ba>	12357	1	0	seg0.14	300
+1.2376	euler gamma digits (base 29)	18134	1	1	seg0.13	300
+1.2376	sha256-ctr reject :FULMAEAYOEA	12120	1	0	seg0.14	300
+1.2376	sha512-ctr reject :liber primus	421	1	1	seg0.7	300
+1.2376	sha512-ctr reject :THE PRIMES ARE SACRED	10364	1	1	seg0.13	300
+1.2376	sha256-chain reject :LIBER PRIMUS	12395	1	1	seg0.15	300
+1.2376	sha256-ctr reject :7	15150	28	1	seg0.9	300
+1.2376	catalan G digits (base 29)	17017	28	1	seg0.11	300
+1.2376	sha256-ctr reject :7A35090F	12611	28	0	seg0.9	300
+1.2376	sha512-ctr reject :some wisdom	2106	28	1	seg0.9	300
+1.2376	sha512-ctr reject :cicada	18150	1	1	seg0.7	300
+1.2376	sha256-chain reject :DIVINITY	10401	1	0	seg0.14	300
+1.2376	sha512-ctr reject :FIRFUMFERENFE	896	1	0	seg0.12	300
+1.2376	sha256-ctr mod :CIRCUMFERENCE	15758	28	1	seg0.9	300
+1.2376	sha512-ctr reject :<256 bytes cbe7a7ba>	15805	28	0	seg0.12	300
+1.2376	sha256-chain mod :LIBER PRIMUS	7424	1	1	seg0.15	300
+1.2376	sha256-chain mod :3301	709	28	0	seg0.11	300
+1.2376	md5-ctr mod :INSTAR	18319	28	0	seg0.9	300
+1.2376	sha256-chain mod :3301	14000	28	0	seg0.11	300
+1.2376	md5-ctr reject :all things should be encrypted	6159	1	1	seg0.8	300
+1.2376	p_n mod 3301	18511	1	0	seg0.7	300
+1.2376	sha256-chain mod :3301	708	28	0	seg0.11	300
+1.2376	md5-ctr mod :liberprimus	12229	1	0	seg0.7	300
+1.2376	md5-ctr mod :434	5000	28	0	seg0.15	300
+1.2376	primes+1	19200	28	1	seg0.9	300
+1.2376	sha256-ctr mod :deep web	7822	1	0	seg0.8	300
+1.2376	mobius mu(n)	6725	28	0	seg0.9	300
+1.2376	sha512-ctr reject :Cicada 3301	12861	1	0	seg0.11	300
+1.2376	sha256-chain reject :7A35090F	5215	1	1	seg0.13	300
+1.2376	sha256-chain reject :7A35090F	10782	1	0	seg0.11	300
+1.2376	primes+1	12830	28	0	seg0.15	300
+1.2376	sha256-chain mod :liber primus	10922	1	0	seg0.11	300
+1.2376	primes+1	19198	28	1	seg0.9	300
+1.2376	sha256-ctr mod :within	13410	28	1	seg0.9	300
+1.2376	primes+1	3903	28	0	seg0.7	300
+1.2376	3301 - p_n	3903	1	0	seg0.7	300
+1.2376	sha256-ctr mod :29	13026	28	1	seg0.12	300
+1.2376	md5-ctr reject :0x7A35090F	17594	1	0	seg0.15	300
+1.2376	3301 - p_n	12830	1	0	seg0.15	300
+1.2376	3301 - p_n	19200	1	1	seg0.9	300
+1.2376	3301 - p_n	19198	1	1	seg0.9	300
+1.2376	primes from 3301	18735	28	1	seg0.9	300
+1.2376	sha512-ctr reject :1033	18959	1	1	seg0.11	300
+1.2376	primes from 3301	18737	28	1	seg0.9	300
+1.2376	primes from 3301	3440	28	0	seg0.7	300
+1.2376	primes from 3301	12367	28	0	seg0.15	300
+1.2376	md5-ctr mod :circumference	8985	28	0	seg0.13	300
+1.2376	md5-ctr mod :<512 bytes 63626537>	8773	1	1	seg0.8	300
+1.2376	md5-ctr reject :FIRFUMFERENFE	7024	28	1	seg0.8	300
+1.2376	md5-ctr mod :intus	8885	1	1	seg0.12	300
+1.2376	rad(n)	17988	28	0	seg0.9	300
+1.2376	pi digits (base 10)	4406	28	1	seg0.9	300
+1.2376	ln2 digits (base 29)	769	28	1	seg0.7	300
+1.2376	sha256-ctr mod :THE PRIMES ARE SACRED	16854	28	0	seg0.9	300
+1.2376	sha512-ctr reject :66wc«sx<zòDlYFkLÖS#1·mFÞà%=ÇPFO	874	1	0	seg0.14	300
+1.2376	sha256-ctr reject :all things should be encrypted	4777	28	0	seg0.11	300
+1.2376	primes-1 (totient)	3903	28	0	seg0.7	300
+1.2376	sha512-ctr mod :<128 bytes 33363336>	14159	1	0	seg0.14	300
+1.2376	sha256-ctr mod :3301	11384	1	0	seg0.13	300
+1.2376	primes-1 (totient)	19198	28	1	seg0.9	300
+1.2376	primes-1 (totient)	19200	28	1	seg0.9	300
