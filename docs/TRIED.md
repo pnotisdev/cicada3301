@@ -131,7 +131,7 @@ LP2 did not beat its random-key null.
 - 2026-10-22 - Cicada's 2012 Blake "second chance" code reproduced 22/22 (plate 4, plate line breaks); 2014 GEB code format dialogue:speech:word:letter [book-codes]
 - 2026-10-22 - Clue review: all page images, archives, wiki; extra rune as a checksum of its word - negative [clue-review]
 - 2026-10-22 - Clue tests: phi/sigma/pi of word sums; Cicada number strings and onion strings under R4; LP1 text as running key; Cicada OS files; four irrationals combined; XOR-domain keys; Cicada OS files under R4 - all negative [p60-wordsums, p60-numkeys-r4, p60-lp1-key, p60-cicada-blobs, p60-irrationals, p60-xor-keys, p60-blobs-r4]
-- 2026-10-22 - Cicada OS ISO fetched; DATA/560.13 (118.8 MB) recovered (hash matches); screening as keys under way [docs/SOURCES.md]
+- 2026-10-22 - Cicada OS ISO fetched; DATA/560.13 (118.8 MB) recovered (hash matches) and screened with the audio files as keys (additive, XOR, R4) - uniformly random bytes, 0 hits [docs/SOURCES.md, clue-review]
 - 2026-10-22 - One-command reproduction of every published signal - 34/34 pass [reproduce-signals]
 
 ## Still running (2026-10-22)

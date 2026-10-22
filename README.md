@@ -27,6 +27,13 @@ Each of these is a test that was **controlled** (a planted key of that kind is r
 
 | When | Test | Result |
 |---|---|---|
+| 2026-10-22 | The 2013 Cicada OS data: `DATA/560.13` (118.8 MB, recovered from the original ISO after the archive's copy turned out to be a dead Git LFS pointer), `560.17`, `_560.00`, `folly`, and the 2013/2014 audio files as key streams (additive, XOR, under R4) | 560.13 is uniformly random bytes (entropy 7.999998); 0 hits in any mapping |
+| 2026-10-22 | Clue review of all 75 page images, the 2012-2017 archive and the wiki; the five untested clues it found: phi / sigma / pi of word sums, Cicada's number and onion strings under R4, the solved LP1 text as running key ("the key is all around you"), four irrationals combined, XOR-domain keys | all negative with controls (`work/log/phase60_clue_review.md`) |
+| 2026-10-22 | 1,940 keywords from the solved pages (with Cicada's spellings) and phi(prime) under the best-fit mechanism R4 (insertions would hide a keyword's period) | best -64 against the hit level 29.8; DIVINITY / FIRFUMFERENFE plants 44/44 |
+| 2026-10-22 | DJU BEI as a reused stretch of key (equal 6-runs at key distance 5,700-6,500 in 1,439 streams) | no stream explains it; best decode 1.088 |
+| 2026-10-22 | Mid-word insertion channel, one-window LP2 pilot | best -51.6 against 29.8; the 260 CPU-hour campaign is not justified |
+| 2026-10-22 | Solved-phrase keys, 20 alphabet orders (incl. 15 OEIS prime orders from the community's Mayfly document), open/close key-stack marks, An End's SHA-512 against 124,017 digests of archived onion captures | no candidate; no bracket marks; no hash match |
+| 2026-10-22 | Two community ciphers (a cumulative prime-multiplier cipher; a book key with a random doublet skip) | excluded by the gap-doublet test: LP2 has 23 of its 86 doublets across word gaps; the first cipher would need 23 word-initial NG, English has none |
 | 2026-10-21 | Word-edge null / extra-advance arc (chanscreen v2): one-window LP2 pilot, 320 M cells | no cell reaches 0 nats (null scan of the same size: -60 to -69; threshold 30.9); plants 192/192 |
 | 2026-10-21 | LP2's own word lengths / word sums as keys; ciphertext reversed per word / clause / line | best 1.256 / 1.339 / 1.374 / 1.367 against nulls 1.304-1.379; 0 verified |
 | 2026-10-21 | Step-domain seed sweeps, 8 of 10 generators x 2^32 seeds (GPU) | 0 candidates, except one drand48 window (1.481) that falls to 1.000 beyond its window |
@@ -72,20 +79,22 @@ Full list with controls, scope and what each negative does **not** exclude: [STA
   * decoders move the key pointer only forward at a collision, so runes inserted **without** consuming a key value are invisible to every screen (open, see below).
   * 2026-10-20/21 (superseded 2026-10-22 by phase 55: P 0.021 against the across-word null, dropped): the lag-5 echo's S carrier held after correcting for the 29 x 7 cells looked at (P < 0.002), but its 11 sites do not have the shape of English S____S words, and no simulated cipher keeps such coincidences on S; one shared collision-repair budget reproduces the doublet deficit and both echoes at about their size, not the S carrier or the word lengths (`work/log/phase25_mechanisms.md`).
   * 2026-10-20: the chanscreen v2 negatives hold for letter-spelled plaintext too (200/200 plants at 300 runes, 180/200 at 60).
-* **How Cicada builds book codes:** the 2012 Mabinogion code reproduces as **line : character** (spaces counted) on Cicada's own line-wrapped text: "Call us at us tele phone number two one four three nine oh nine six o...". Every known book code came at the end of a chain that named the text first (`work/log/phase31_book_codes.md`).
+* **How Cicada builds book codes:** all three 2012 codes reproduce as **line : character** (spaces counted) on the line layout of Cicada's own source: the Mabinogion ("Call us at us tele phone number two one four three nine oh nine six o..."), William Gibson's *Agrippa* poem, and the Blake "second chance" code, 22/22 on plate 4 of *The Marriage of Heaven and Hell* with the plate's own line breaks (`work/blake_second_chance.py`). The 2014 code counts **dialogue : speech : word : letter** in *Gödel, Escher, Bach* (the 2014 solvers' worked decode). Every known book code came at the end of a chain that named the text first (`work/log/phase31_book_codes.md`).
+* **Mechanism (phase 57):** no single rule explains LP2; the best description is two rules, a collision repair writing 24 - 2c(-6) inside words and one extra rune in about 45% of words. It fits every statistic (P 0.64) but gives no key.
 * **Explained, not a key:** the page-30 grid, the Some Wisdom word square (1033), the page-14 square (3301); the community "464-word table" (balance is a selection effect).
 
 ## What is left (the short list)
 
 Suggested order, from the registry; none of this is a long run unless stated. Details and costs in [STATUS.md](STATUS.md#left-to-do-suggested-order).
 
-**Queued on the desktop** (detached, in this order; `docs/QUEUE.md`): the table-free book-key screen (Agrippa, then the KJV, about 40 h), pointer direction "their numbers are the direction" (stage 1, about 24 h), 13 line / position sign rules (about 3 h), the word-length pointer jump (about 1 h); the last two step-domain generators on the GPU.
+**Running on the desktop** (detached, in this order; `docs/QUEUE.md`): the KJV as a table-free book key (about half done), pointer direction "their numbers are the direction" (stage 1, about 24 h), the remaining line / position sign rules and the word-length pointer jump.
 
-**Next, not run:**
-1. **Interactions between the positive signals**: an isomorph search (DJU BEI and every repeated equality pattern, under affine maps), the overlap of the S lag-5 and the lag-6 sites, and the length profile of echo-bearing words. Cheap, keyless.
-2. **Echo sites as skip markers**: if the lag-6 echoes mark key skips, seed the table-free decoders with them (discovery and test on separate data).
-3. **The word-edge campaign** over all 82 windows (built, gated, pilot null; about 300 CPU-hours): the owner's decision.
-4. **Line : position pointers** from the book's numbers (squares, grid, payload) into LP's own lines, the format of Cicada's 2012 book code.
+**What is honestly left** (after phases 50-60 every operation named in Cicada's own words, numbers and files that we could express has been run with a control):
+1. **Missing data:** the page that hashes to An End's SHA-512 (never found by anyone; possibly a required outside key), and anything given privately to the 2014 finalists.
+2. **Not enumerable:** a key from outside every list, two-layer ciphers, a transposition combined with a substitution, plaintext that is not language (numbers, encoded data), keys with internal structure under R4.
+3. **Untestable at LP2's size:** two-tap echo rules, an evolving-alphabet walk, key reuse between sections.
+
+The full record of what was tried, one line per test by date: [docs/TRIED.md](docs/TRIED.md).
 
 **What counts as a hit.** IoC >= 1.40 on a window (or +300 on the boundary-free score), then whole-section verification with a positive control (a planted key the method recovers) and a null control (random keys, same settings). Every earlier candidate was noise. Nothing in LP2 is solved; never read a flagged line as a decryption.
 
@@ -94,6 +103,7 @@ Suggested order, from the registry; none of this is a long run unless stated. De
 | You want | Open |
 |---|---|
 | The findings in plain language, one page | [docs/FINDINGS.md](docs/FINDINGS.md) |
+| Everything tried, one line per test by date | [docs/TRIED.md](docs/TRIED.md) |
 | What is done, what is left, in one page | [STATUS.md](STATUS.md) |
 | Every result with its control, files and the logs behind it | [results/INDEX.md](results/INDEX.md), or `results/index.html` in a browser (chart of scores against the rule, filter by status) |
 | The machine-readable ledger (one row per test) | [docs/registry.toml](docs/registry.toml) |
