@@ -1387,3 +1387,14 @@ gap = "English plaintext and flat random key only; rates tuned on the total; pro
 log = ["work/log/phase56_lag6_length_rules.md"]
 files = ["work/phase56_lag6_length_rules.py", "results/analysis/phase56_lag6_length_rules.txt"]
 
+[[experiment]]
+id = "mechanism-search"
+group = "structure"
+title = "One encryption rule for all of LP2's anomalies at once?"
+status = "partial"
+what = "Phase 57: nine hand-designable rules (uniform repair, repair writing T(c-6), null on collision, per-word null later-pass / checked / end check rune / null valued T(c-6), per-rune key-event null, plaintext-F rule), English plaintext, random key, LP2 layout, 500 replicates each; nine statistics scored together (doublets in / gap, lag-6 T in-word / across, best other affine form, word-length G, unigram, bigram, lag 2-12 max z); side predictions: lag-7 T hits, T hits ending a word, T length profile, DJU-type repeats. Implied search run: chanscreen v2 mid-word arc"
+control = "Script self-test (q 1 gives 0 doublets; T repair lifts hits; nulls lengthen words); R0 no-echo reference; 12 R4 plants recovered 12/12 by the mid arc at n 150 and 300 (band min 57.9 / 119.5 vs T300 29.8), matched iid-key nulls max -18.0 / -55.8"
+result = "Best R4: repair writes T(c-6) at q 0.81 plus one checked null in ~45% of multi-rune words: chi2 6.7, P 0.64, inside 1 sd on both side predictions. R3 / R7 fit the nine statistics (P 0.72 / 0.65) but miss lag-7 (34.5 vs 22) / word-final hits (24 vs 32) by 1.6-1.8 sd. All rules without a per-word extra rune fail the word lengths (G z +8.0 to +9.2), a per-rune null too (+6.3); a per-word null valued T gives 1.5x too many hits, in 7-rune words. DJU BEI: P <= 0.002 under every rule. LP2 pilot 0.15 @ 0, n 150, full library, 106.6M cells: max -4.88, nothing >= 0"
+gap = "A statistical fit, not evidence Cicada used the rule; English digraph plaintext and flat random key only; one rate tuned (to the word count); the null's value function (e.g. a check rune) is not modelled; two-parameter rules and more than one null per word not tried; side splits are about 2 sd each; T300 not calibrated at n 150; pilot is one window of about 86, library streams only; DJU BEI unexplained"
+log = ["work/log/phase57_mechanism.md"]
+files = ["work/phase57_mechanism.py", "work/phase57_pilot.py", "results/analysis/phase57_mechanism.txt", "results/analysis/phase57_pilot.txt", "results/chanscreen/phase57_plants/", "results/chanscreen/phase57_lp_pilot/"]

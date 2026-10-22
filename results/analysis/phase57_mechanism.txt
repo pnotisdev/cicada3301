@@ -1,0 +1,31 @@
+LP2: din 63.0 dgap 23.0 t6 80.0 t6x 401.0 oth 65.0 uni 26.4 bi 785.8 lagz 3.0 dju 1 words 2896
+500 replicates per rule; columns: rule mean (z of LP2 against the rule's replicates)
+R0 uniform repair (reference)      r=0.000 | din   64.3( -0.2) dgap   20.5( +0.6) t6   38.5( +5.5) t6x  406.6( -0.3) oth   59.1( +1.0) G   38.8( +8.9) uni   26.7( -0.0) bi  754.0( +0.8) lagz    1.9( +2.2) | chi2   117.3 P 0.002 | worst G | P(dju>=1) 0.002
+                                   unscored: T hits by word length 7/8/9/10+ 5.9/7.8/8.9/15.8 (LP2 8/21/20/31); section chi2 of T hits 7.0 (LP2 1.4, P 0.986); lag-7 T hits 22.1 +- 5.7 (LP2 22); T hits ending a word 16.1 +- 4.4 (LP2 32)
+R1 repair writes T(c-6)            r=0.000 | din   64.5( -0.2) dgap   21.1( +0.4) t6   67.8( +1.1) t6x  407.6( -0.3) oth   59.2( +1.0) G   39.1( +8.8) uni   26.6( -0.0) bi  756.5( +0.8) lagz    1.9( +2.0) | chi2    84.7 P 0.002 | worst G | P(dju>=1) 0.002
+                                   unscored: T hits by word length 7/8/9/10+ 10.4/13.6/15.8/28.0 (LP2 8/21/20/31); section chi2 of T hits 7.0 (LP2 1.4, P 0.986); lag-7 T hits 21.6 +- 5.2 (LP2 22); T hits ending a word 28.4 +- 5.9 (LP2 32)
+R2 collision -> null T(c-6)        r=0.000 | din   63.9( -0.1) dgap   20.7( +0.5) t6   75.0( +0.4) t6x  401.2( -0.0) oth   64.3( +0.1) G   34.2( +8.0) uni   25.8( +0.1) bi  754.0( +0.8) lagz    2.0( +2.0) | chi2    69.6 P 0.002 | worst G | P(dju>=1) 0.002
+                                   unscored: T hits by word length 7/8/9/10+ 6.0/12.7/15.4/40.9 (LP2 8/21/20/31); section chi2 of T hits 6.8 (LP2 1.4, P 0.984); lag-7 T hits 24.6 +- 5.7 (LP2 22); T hits ending a word 17.2 +- 4.1 (LP2 32)
+R3 q1 T-repair + word null         r=0.448 | din   67.6( -0.6) dgap   18.2( +1.1) t6   68.5( +1.1) t6x  399.2( +0.1) oth   67.4( -0.4) G   30.4( +0.1) uni   25.8( +0.1) bi  756.1( +0.8) lagz    2.1( +1.4) | chi2     5.7 P 0.717 | worst lagz | P(dju>=1) 0.000
+                                   unscored: T hits by word length 7/8/9/10+ 9.4/12.8/14.4/31.9 (LP2 8/21/20/31); section chi2 of T hits 7.1 (LP2 1.4, P 0.994); lag-7 T hits 34.5 +- 6.9 (LP2 22); T hits ending a word 26.9 +- 5.3 (LP2 32)
+R4 T-repair + checked word null    r=0.448 | din   60.1( +0.4) dgap   16.9( +1.5) t6   76.6( +0.3) t6x  400.0( +0.1) oth   67.0( -0.3) G   30.9( +0.2) uni   26.4( -0.0) bi  756.0( +0.7) lagz    1.9( +1.9) | chi2     6.7 P 0.643 | worst lagz | P(dju>=1) 0.000
+                                   unscored: T hits by word length 7/8/9/10+ 10.8/14.9/15.7/35.2 (LP2 8/21/20/31); section chi2 of T hits 6.6 (LP2 1.4, P 0.986); lag-7 T hits 25.7 +- 5.6 (LP2 22); T hits ending a word 30.9 +- 5.8 (LP2 32)
+R5 q1 + word null = T(c-6)         r=0.448 | din   66.2( -0.4) dgap   18.4( +1.1) t6  122.1( -2.8) t6x  399.3( +0.1) oth   67.1( -0.4) G   30.9( +0.4) uni   26.2( +0.0) bi  755.6( +0.8) lagz    2.2( +1.4) | chi2    12.0 P 0.228 | worst t6 | P(dju>=1) 0.002
+                                   unscored: T hits by word length 7/8/9/10+ 20.5/25.0/24.5/52.1 (LP2 8/21/20/31); section chi2 of T hits 6.2 (LP2 1.4, P 0.974); lag-7 T hits 25.4 +- 6.0 (LP2 22); T hits ending a word 51.6 +- 7.5 (LP2 32)
+R6 T-repair + per-rune null        r=0.107 | din   60.2( +0.4) dgap   17.2( +1.4) t6   90.5( -0.8) t6x  390.6( +0.5) oth   77.8( -1.9) G   29.4( +6.3) uni   26.6( -0.0) bi  756.7( +0.7) lagz    1.9( +2.1) | chi2    51.2 P 0.002 | worst G | P(dju>=1) 0.000
+                                   unscored: T hits by word length 7/8/9/10+ 11.0/14.9/16.4/48.2 (LP2 8/21/20/31); section chi2 of T hits 6.7 (LP2 1.4, P 0.984); lag-7 T hits 32.6 +- 6.8 (LP2 22); T hits ending a word 34.2 +- 6.0 (LP2 32)
+R7 T-repair + end check rune       r=0.448 | din   57.6( +0.7) dgap   19.1( +0.9) t6   71.6( +0.8) t6x  400.5( +0.0) oth   67.0( -0.3) G   30.3( +0.4) uni   26.7( -0.0) bi  754.9( +0.8) lagz    2.0( +1.9) | chi2     6.4 P 0.647 | worst lagz | P(dju>=1) 0.000
+                                   unscored: T hits by word length 7/8/9/10+ 8.5/13.4/15.3/34.4 (LP2 8/21/20/31); section chi2 of T hits 6.9 (LP2 1.4, P 0.984); lag-7 T hits 25.7 +- 5.8 (LP2 22); T hits ending a word 24.0 +- 5.0 (LP2 32)
+R8 plaintext F -> T(c-6)           r=0.000 | din   63.7( -0.1) dgap   20.9( +0.5) t6   44.6( +4.1) t6x  405.7( -0.2) oth   59.1( +1.0) G   37.5( +9.2) uni   26.6( -0.0) bi  754.8( +0.8) lagz    1.9( +1.9) | chi2   106.3 P 0.002 | worst G | P(dju>=1) 0.000
+                                   unscored: T hits by word length 7/8/9/10+ 9.1/8.9/9.5/17.0 (LP2 8/21/20/31); section chi2 of T hits 7.1 (LP2 1.4, P 0.982); lag-7 T hits 22.4 +- 5.5 (LP2 22); T hits ending a word 20.0 +- 5.1 (LP2 32)
+
+ranked by combined chi2 (9 statistics; P = share of the rule's own replicates at least as far from its mean):
+  R3 q1 T-repair + word null         chi2     5.7  P 0.717  |z|>2: 
+  R7 T-repair + end check rune       chi2     6.4  P 0.647  |z|>2: 
+  R4 T-repair + checked word null    chi2     6.7  P 0.643  |z|>2: 
+  R5 q1 + word null = T(c-6)         chi2    12.0  P 0.228  |z|>2: t6 -2.8
+  R6 T-repair + per-rune null        chi2    51.2  P 0.002  |z|>2: G +6.3, lagz +2.1
+  R2 collision -> null T(c-6)        chi2    69.6  P 0.002  |z|>2: G +8.0
+  R1 repair writes T(c-6)            chi2    84.7  P 0.002  |z|>2: G +8.8
+  R8 plaintext F -> T(c-6)           chi2   106.3  P 0.002  |z|>2: t6 +4.1, G +9.2
+  R0 uniform repair (reference)      chi2   117.3  P 0.002  |z|>2: t6 +5.5, G +8.9, lagz +2.2
