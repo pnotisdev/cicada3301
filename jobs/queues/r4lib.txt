@@ -1,0 +1,33 @@
+# R4 library campaign at the section starts (2026-10-22): phase 57 found R4 (collision repair writing 24 - 2c(-6) plus one extra rune in ~45% of words)
+# the best description of LP2, but the full 1,439-stream library was searched under it on only two windows (0.7@0 all channels, phase 51; 0.15@0 n150, phase 57).
+# This runs the phase 51 mid-word engine (work/chanscreen/v2/step4/lp_pilot_mid.py, plants 48/48 and R4 12/12) on the remaining section-start n300 windows,
+# channels hold and spend (the two cheapest; skip5 / coin stay for later if this is clean), both signs, every offset. Hit rule: S_guard >= T300 = 29.80, then
+# whole-section verification (work/kscreen/verify.py). Section 0.10 (9 runes) has no n300 window. About 2.8 CPU-h per window, 14 workers.
+# Starts after booknight, pdir, layout and wordjump: WAIT holds at most QUEUE_MAX_WAIT_SECONDS (launch with 172800) each, repeated.
+# Outputs: results/chanscreen/mid_lp_s<sec>_0_n300_hold-spend/ and *_summary.txt. Resumable. Stop: end python.exe processes whose command line contains jobqueue.py r4lib or lp_pilot_mid.py.
+WAIT | book_key_screen
+WAIT | jobqueue.py booknight
+WAIT | book_key_screen
+WAIT | jobqueue.py booknight
+WAIT | pdir_pilot
+WAIT | jobqueue.py pdir
+WAIT | pdir_pilot
+WAIT | jobqueue.py pdir
+WAIT | layout_queue.py
+WAIT | jobqueue.py layout
+WAIT | wordjump_queue.py
+WAIT | jobqueue.py wordjump
+r4-s8 | {PY} -B work/chanscreen/v2/step4/lp_pilot_mid.py run --sec 8 --channels hold,spend --workers 14
+r4-s9 | {PY} -B work/chanscreen/v2/step4/lp_pilot_mid.py run --sec 9 --channels hold,spend --workers 14
+r4-s11 | {PY} -B work/chanscreen/v2/step4/lp_pilot_mid.py run --sec 11 --channels hold,spend --workers 14
+r4-s12 | {PY} -B work/chanscreen/v2/step4/lp_pilot_mid.py run --sec 12 --channels hold,spend --workers 14
+r4-s13 | {PY} -B work/chanscreen/v2/step4/lp_pilot_mid.py run --sec 13 --channels hold,spend --workers 14
+r4-s14 | {PY} -B work/chanscreen/v2/step4/lp_pilot_mid.py run --sec 14 --channels hold,spend --workers 14
+r4-s15 | {PY} -B work/chanscreen/v2/step4/lp_pilot_mid.py run --sec 15 --channels hold,spend --workers 14
+sum-s8 | {PY} -B work/chanscreen/v2/step4/lp_pilot_mid.py summary --sec 8 --channels hold,spend
+sum-s9 | {PY} -B work/chanscreen/v2/step4/lp_pilot_mid.py summary --sec 9 --channels hold,spend
+sum-s11 | {PY} -B work/chanscreen/v2/step4/lp_pilot_mid.py summary --sec 11 --channels hold,spend
+sum-s12 | {PY} -B work/chanscreen/v2/step4/lp_pilot_mid.py summary --sec 12 --channels hold,spend
+sum-s13 | {PY} -B work/chanscreen/v2/step4/lp_pilot_mid.py summary --sec 13 --channels hold,spend
+sum-s14 | {PY} -B work/chanscreen/v2/step4/lp_pilot_mid.py summary --sec 14 --channels hold,spend
+sum-s15 | {PY} -B work/chanscreen/v2/step4/lp_pilot_mid.py summary --sec 15 --channels hold,spend

@@ -121,3 +121,7 @@ Start-Process .venv\Scripts\python.exe -ArgumentList 'jobs\jobqueue.py','wordjum
 python scripts\queue_priority.py --cores 10      # cooler CPU; reapply after a queue starts a new step
 ```
 Finished jobs are skipped on a restart (every step is resumable). If the GPU validation fails with "kscreen port, decode by decode", check that `work\kscreen\data\pages.txt` is not empty: `export.py` needs OpenCV (`.venv`) for the page windows (2026-10-21 incident). Before recording a pdir result: `pdir.tsv` shows `gates ... ok`, 132 tsv files per convention, `pdir=` in every header.
+
+## 2026-10-22: r4lib (R4 library campaign at the section starts)
+
+`jobs/queues/r4lib.txt`: the phase 51 mid-word engine (`lp_pilot_mid.py`, now with `--sec/--start/--n/--channels`) on the n300 windows at the start of sections 0.8, 0.9, 0.11-0.15, channels hold and spend, the full 1,439-stream library, both signs, every offset; about 2.8 CPU-h per window (about 20 CPU-h). Justified by phase 57 (R4 is the best description of LP2; the library had been searched under it on two windows only). Waits for booknight, pdir, layout and wordjump. Launch (repository root, `QUEUE_MAX_WAIT_SECONDS=172800`): `Start-Process .venv\Scripts\python.exe -ArgumentList 'jobs\jobqueue.py','r4lib','jobs\queues\r4lib.txt' -WindowStyle Hidden`. Hit rule: S_guard >= T300 = 29.80, then `work/kscreen/verify.py`.
