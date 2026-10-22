@@ -1398,3 +1398,15 @@ result = "Best R4: repair writes T(c-6) at q 0.81 plus one checked null in ~45% 
 gap = "A statistical fit, not evidence Cicada used the rule; English digraph plaintext and flat random key only; one rate tuned (to the word count); the null's value function (e.g. a check rune) is not modelled; two-parameter rules and more than one null per word not tried; side splits are about 2 sd each; T300 not calibrated at n 150; pilot is one window of about 86, library streams only; DJU BEI unexplained"
 log = ["work/log/phase57_mechanism.md"]
 files = ["work/phase57_mechanism.py", "work/phase57_pilot.py", "results/analysis/phase57_mechanism.txt", "results/analysis/phase57_pilot.txt", "results/chanscreen/phase57_plants/", "results/chanscreen/phase57_lp_pilot/"]
+
+[[experiment]]
+id = "djubei-reuse"
+group = "structure"
+title = "Is DJU BEI two encryptions of one plaintext under a repeated key run? (library streams, equal 6-runs at key distance 5,700-6,500)"
+status = "partial"
+what = "Phase 58: 1,439 library streams, all pairs with equal 6-runs (and 5-runs) at distance 5,700-6,500, 100 shuffles per stream; decode of LP2 at the implied offsets, both signs"
+control = "Planted 6-run at distance 6,100 found; 300 iid streams average 0.013 pairs (expected 0.019)"
+result = "31 structured number families exceed their shuffle maxima (arithmetic regularity, not specific to 6,395); best decoded window IoC 1.088 over 686 offsets (threshold 1.40): no stream explains DJU BEI"
+gap = "Keys outside the library, key distances outside 5,700-6,500, plain no-skip decode (verify.py not run); constraint for future screens: k[a..a+5] = k[b..b+5] at the copies' key positions"
+log = ["work/log/phase58_djubei_reuse.md"]
+files = ["work/phase58_djubei_reuse.py", "results/analysis/phase58_djubei_reuse.txt"]

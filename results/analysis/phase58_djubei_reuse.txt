@@ -1,0 +1,61 @@
+== 1. DJU BEI copies ==
+repeated adjacent word pair, 6 runes: DJU BEI
+  words 1462,1463: segment 13, flat start 6555, word lengths 3,3, line/page breaks inside first word []
+  words 2894,2895: segment 15, flat start 12950, word lengths 3,3, line/page breaks inside first word []
+  rune distance 6395; second copy ends at 12956 of 12956 (book end: True); segment starts (flat): {7: 0, 8: 729, 9: 1874, 10: 3603, 11: 3612, 12: 5506, 13: 6527, 14: 8051, 15: 9640}
+  copy 1 in segment 13 (28 runes in), copy 2 in segment 15; sections between: 1; page breaks strictly between the copies: 29 (over whole segments 13..15)
+
+== 2. scan: 1439 streams, key distance 5700-6500, 100 shuffles each ==
+positive control (6-run planted at 2900 / 9000, d 6100): found True, total pairs 1
+null control, 300 iid streams of 20,000: mean 6-pairs 0.0133 (expected 0.0192), max 1
+library total: real 6-pairs 279213, shuffle mean 29340.14; real 5-pairs 435500, shuffle mean 91547.07
+iid expectation over the library: 6-pairs 11.16, 5-pairs 323.81
+streams with real 6-pairs above their shuffle maximum: 31; with any 6-pair: 43
+  prime counting pi(n)                             len 20000 6-pairs 115743 (shuf mean 0.03 max 1) 5-pairs 148176 (shuf mean 0.5 max 3)
+  composites                                       len 20000 6-pairs 106066 (shuf mean 0.00 max 0) 5-pairs 140624 (shuf mean 0.6 max 3)
+  mobius mu(n)                                     len 20000 6-pairs 35745 (shuf mean 16763.84 max 17258) 5-pairs 82146 (shuf mean 49481.1 max 50257)
+  omega(n)                                         len 20000 6-pairs 16965 (shuf mean 11768.98 max 12463) 5-pairs 47174 (shuf mean 36807.4 max 38328)
+  rad(n)                                           len 20000 6-pairs  1969 (shuf mean 0.02 max 1) 5-pairs  4152 (shuf mean 0.5 max 3)
+  Omega(n)                                         len 20000 6-pairs  1013 (shuf mean 497.43 max 575) 5-pairs  4350 (shuf mean 2634.4 max 2783)
+  primes popcount                                  len 20000 6-pairs   917 (shuf mean 87.56 max 118) 5-pairs  3851 (shuf mean 614.2 max 692)
+  d(n)                                             len 20000 6-pairs   251 (shuf mean 129.91 max 173) 5-pairs  1261 (shuf mean 861.8 max 960)
+  prime gaps                                       len 20000 6-pairs    74 (shuf mean 11.20 max 23) 5-pairs   419 (shuf mean 110.9 max 141)
+  primes^2                                         len 20000 6-pairs    47 (shuf mean 1.35 max 6) 5-pairs   233 (shuf mean 20.6 max 34)
+  p_n^2 - 1                                        len 20000 6-pairs    47 (shuf mean 1.65 max 6) 5-pairs   233 (shuf mean 21.3 max 34)
+  primes digit sum                                 len 20000 6-pairs    42 (shuf mean 0.75 max 4) 5-pairs   280 (shuf mean 11.6 max 22)
+  p_n mod 3301                                     len 20000 6-pairs    25 (shuf mean 0.00 max 0) 5-pairs   102 (shuf mean 0.6 max 2)
+  ln2 digits (base 10)                             len 20000 6-pairs    22 (shuf mean 11.16 max 19) 5-pairs   145 (shuf mean 111.6 max 134)
+  primes from 3301                                 len 20000 6-pairs    21 (shuf mean 0.05 max 1) 5-pairs   124 (shuf mean 0.6 max 4)
+  primes                                           len 20000 6-pairs    18 (shuf mean 0.01 max 1) 5-pairs   119 (shuf mean 0.6 max 3)
+  primes-1 (totient)                               len 20000 6-pairs    18 (shuf mean 0.02 max 1) 5-pairs   119 (shuf mean 0.5 max 3)
+  primes+1                                         len 20000 6-pairs    18 (shuf mean 0.03 max 2) 5-pairs   119 (shuf mean 0.6 max 4)
+  primes^3                                         len 20000 6-pairs    18 (shuf mean 0.01 max 1) 5-pairs   119 (shuf mean 0.5 max 4)
+  (p-1)/2                                          len 20000 6-pairs    18 (shuf mean 0.03 max 1) 5-pairs   119 (shuf mean 0.7 max 4)
+  (p+1)/2                                          len 20000 6-pairs    18 (shuf mean 0.00 max 0) 5-pairs   119 (shuf mean 0.6 max 3)
+  3301 * p_n                                       len 20000 6-pairs    18 (shuf mean 0.00 max 0) 5-pairs   119 (shuf mean 0.6 max 4)
+  3301 - p_n                                       len 20000 6-pairs    18 (shuf mean 0.03 max 1) 5-pairs   119 (shuf mean 0.7 max 3)
+  primes base-29 digit sum                         len 20000 6-pairs    16 (shuf mean 0.20 max 2) 5-pairs   135 (shuf mean 4.4 max 11)
+  p_n - n                                          len 20000 6-pairs    15 (shuf mean 0.01 max 1) 5-pairs   105 (shuf mean 0.5 max 2)
+  p_n + n                                          len 20000 6-pairs    12 (shuf mean 0.01 max 1) 5-pairs    87 (shuf mean 0.5 max 3)
+  p_(n+1) * p_n                                    len 20000 6-pairs     5 (shuf mean 0.03 max 1) 5-pairs    19 (shuf mean 0.7 max 4)
+  primes reversed digits                           len 20000 6-pairs     3 (shuf mean 0.02 max 1) 5-pairs    36 (shuf mean 0.6 max 4)
+  cumulative prime sum                             len 20000 6-pairs     2 (shuf mean 0.02 max 1) 5-pairs    19 (shuf mean 0.5 max 3)
+  ln2 digits (base 29)                             len 20000 6-pairs     1 (shuf mean 0.00 max 0) 5-pairs     3 (shuf mean 0.5 max 3)
+  sha256-chain reject :<512 bytes 63626537>        len 20000 6-pairs     1 (shuf mean 0.00 max 0) 5-pairs     2 (shuf mean 0.6 max 4)
+streams with 5-pairs above shuffle max but no 6-excess: 5
+
+== 3. decode check of 6-run repeats in streams with <= 300 pairs (not the periodic / low-entropy streams) ==
+pairs at exactly the rune distance 6395 (no skips): composites, primes popcount, mobius mu(n), prime counting pi(n)
+candidates with a usable offset (copy 1 at the first repeat): 686; best by IoC of the 306 runes around copy 1:
+  window 1.088 whole-book 1.000 d(n) i=9191 j=15511 offset=2636 sign=+1 skipped-between=75
+  window 1.071 whole-book 1.000 d(n) i=9857 j=16337 offset=3302 sign=-1 skipped-between=-85
+  window 1.068 whole-book 1.000 p_n - n i=9957 j=15907 offset=3402 sign=-1 skipped-between=445
+  window 1.066 whole-book 1.000 prime gaps i=11793 j=17643 offset=5238 sign=+1 skipped-between=545
+  window 1.065 whole-book 1.000 p_n + n i=10374 j=16356 offset=3819 sign=+1 skipped-between=413
+  window 1.062 whole-book 1.000 prime gaps i=9559 j=15978 offset=3004 sign=+1 skipped-between=-24
+  window 1.061 whole-book 1.000 d(n) i=7877 j=13877 offset=1322 sign=-1 skipped-between=395
+  window 1.060 whole-book 1.000 d(n) i=11553 j=17601 offset=4998 sign=-1 skipped-between=347
+  (random windows ~1.05-1.35; verify.py REAL threshold 1.40; this plain no-skip decode is only a screen, verify.py not run)
+
+== 4. constraint ==
+DJU BEI is the same 6 ciphertext runes twice. For c' = c + s*k (mod 29) the plaintexts are equal iff k[a+t] = k[b+t], t = 0..5, a, b the key positions of the copies. With no skipped or inserted runes b - a = 6395; otherwise b - a = 6395 plus the extra key steps in between (the scan samples 5700-6500). Equal runs survive any sign or multiplier. So any screen that reports a key family and offset must also show k[a..a+5] = k[b..b+5] there; a periodic family passes only if its period divides b - a, and a non-periodic one only by chance (29^-6 = 1.7e-9 per pair). If the plaintexts differ the difference k[a+t] - k[b+t] is unconstrained, so only the equal-plaintext reading gives a test.

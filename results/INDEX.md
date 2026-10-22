@@ -115,6 +115,7 @@
 | Where does the within-word lag-6 relation c' = 24 - 2c live? | observed |  | [phase54_lag6_dissect.py](../work/phase54_lag6_dissect.py), [phase54_lag6_dissect.txt](analysis/phase54_lag6_dissect.txt) |
 | Which word-level rule gives the lag-6 length profile? | partial |  | [phase56_lag6_length_rules.py](../work/phase56_lag6_length_rules.py), [phase56_lag6_length_rules.txt](analysis/phase56_lag6_length_rules.txt) |
 | One encryption rule for all of LP2's anomalies at once? | partial |  | [phase57_mechanism.py](../work/phase57_mechanism.py), [phase57_pilot.py](../work/phase57_pilot.py), [phase57_mechanism.txt](analysis/phase57_mechanism.txt), [phase57_pilot.txt](analysis/phase57_pilot.txt), [phase57_plants](chanscreen/phase57_plants), [phase57_lp_pilot](chanscreen/phase57_lp_pilot) |
+| Is DJU BEI two encryptions of one plaintext under a repeated key run? (library streams, equal 6-runs at key distance 5,700-6,500) | partial |  | [phase58_djubei_reuse.py](../work/phase58_djubei_reuse.py), [phase58_djubei_reuse.txt](analysis/phase58_djubei_reuse.txt) |
 
 ### Restarts, reuse and layout
 
