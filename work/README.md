@@ -85,6 +85,7 @@ Find a script by what it is for. Each one writes its output into `results/analys
 | `phase53_nested_marks.py` | Phase 53: do LP2's marks form open/close pairs for a nested key stack? (shuffle null; no) |
 | `discord_cumulative_check.py` | Checks two Discord cipher proposals (2026-10-22) against LP2: structural doublet test and a prime-offset scan with control and null |
 | `fetch_uncovering_wiki.py` | Downloads the Uncovering Cicada wiki (129 articles, image list) through its MediaWiki API into the git-ignored `ref/uncovering_cicada/`; images not fetched (the CDN refuses non-browser clients) |
+| `iso_extract.py` | Copies one file out of an ISO 9660 image as raw bytes (used for `DATA/560.13` of the 2013 Cicada OS ISO; nothing mounted or run) |
 | `book_key_pairs.py` | The same through lag-2..8 rune-pair counts, with a table tuned to flatten the pairs (`results/analysis/book_key_pairs.txt`) |
 | `book_key_decoder.py` | Table-invariant, drift-tracking decoder for a candidate book key (table-free beam + exact skip-rule Viterbi EM) and its gate: plants with a flattening table, nulls, power and cost (`results/analysis/book_key_decoder.txt`); no LP2 run |
 | `grid30_caption.py` | Phase 27: the page-30 caption against a preregistered family of the solved pages' rules and the grid's numbers (`count`, `run`; `results/grid30_caption/`) |
