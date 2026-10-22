@@ -11,6 +11,7 @@ Find a script by what it is for. Each one writes its output into `results/analys
 | Folder | What |
 |---|---|
 | `kscreen/` | Rust: language- and alphabet-agnostic keystream screen (IoC under both anti-repeat models); library export, verification, controls (`selftest.py`), sign rules (`signrules.py`), `gpu.py` + `kscreen.cu` CUDA port |
+| `kscreen/phase60_t1.py`, `kscreen/phase60_t4t5.py` | Phase 60 tests: T1 word-sum streams and word-aligned / feedback keys; T4 Cicada OS files and T5 four-irrational streams on the plain library screen |
 | `kscreen/phase35.py`, `kscreen/wordjump_control.py`, `kscreen/booknum.py`, `kscreen/layoutrules.py`, `kscreen/dirrules.py`, `kscreen/pdir_*.py` | 2026-10-20/21 extensions of the screen: LP2 word streams and reversed ciphertext (phase 35), word-length pointer jump advsep=3-5 (37), book number streams (33), layout sign / direction rules (36), pointer direction (30) |
 | `phase38/` | Phase 38: do LP2's signals interact (isomorphs, S lag-5 x lag-6 overlap, echo-word lengths), pre-registered nulls |
 | `phase40_line_pointers.py`, `phase44/` | Phase 40: line:position pointers into LP's own lines; phase 44: keyless batch (doublet fine structure, digraph blocks, 512-bit hashes of held files, word-length alignment) |
@@ -23,6 +24,8 @@ Find a script by what it is for. Each one writes its output into `results/analys
 | `phase59_keywords_r4.py` | Phase 59: 1,940 solved-text keywords (and phi(prime)) as periodic keys through the R4 mid-word arc on all 48 n300 LP2 windows, R4 keyword plants as control |
 | `clue_extra_rune.py` | Phase 60: is the extra rune of LP2's words a simple function of the other runes, the previous word, the word index or length? 45 tests, shuffle null, planted controls, solved-ciphertext control, prime-length check |
 | `phase60_art_blobs.py` | Phase 60: ink-blob boxes of the page art, the five contact sheets in `phase60/`, and the cross-versus-glyph sheet |
+| `phase60_t2_numkeys.py` | Phase 60 T2 and T4-under-R4: Cicada's number strings, the 256-byte onion strings and the Cicada OS file folly as short keys through the phase 59 R4 engine (`P60_SET=t2|hex256|folly`) |
+| `phase60_t3_lp1key.py` | Phase 60 T3: the solved LP1 plaintext (forwards, reversed, read twice round) as a table-invariant running key, stage 1 of the book-key rule, plant control |
 | `mech48/` | Phase 48: the A/I oracle (one-rune words -> A or I): calibration, re-scoring of kept hits, drift-aware screen design |
 | `phpmt/` | Rust: bit-exact seed sweeps for ten generators; `bg.py` boundary-free bigram score, `gpu.py` + `.cu` CUDA ports |
 | `walk/` | Rust: word-scoped solver and key-free D-search (`dsearch`) |

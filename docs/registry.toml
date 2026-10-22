@@ -1439,13 +1439,70 @@ files = ["scripts/reproduce_signals.py", "work/tests/test_reproduce_signals.py"]
 id = "clue-review"
 group = "claims"
 title = "Phase 60 clue review: page art, archives, wiki and solved-text phrases against the registry; the extra rune as a function of the other runes"
-status = "open"
-priority = 14
-cost = "0.1 h (T1) to 1 h (T4) each; T1 phi / sigma / pi of word sums first"
-needs = "Existing engines (phase35, phase59, book_key_decoder); T4 and T5 need new stream builds"
-what = "Phase 60 proposes five untested tests (work/log/phase60_clue_review.md section 4: phi / sigma / pi of word sums as streams, Cicada number strings under R4, the solved LP1 text as running key, the Cicada OS blobs, four irrationals). Review basis: contact sheets of all 75 page images and blob boxes of the art (LP1 against LP2); a ledger of 30 clues with registry cross-check; top 5 untested clues specified for a later session. Cheap keyless test: in each LP2 word, does some rune equal (target + b) mod 29 for 15 targets (sum of the other runes in index and prime-value domains, previous word's sum / length / last / first rune, word index, word length, position) x b in {-1, 0, +1}; hit-word count against 2,000 shuffles with the P of the maximum over the 45 tests"
+status = "partial"
+what = "Review basis: contact sheets of all 75 page images and blob boxes of the art (LP1 against LP2); a ledger of 30 clues with registry cross-check; top 5 untested clues specified for a later session. Cheap keyless test: in each LP2 word, does some rune equal (target + b) mod 29 for 15 targets (sum of the other runes in index and prime-value domains, previous word's sum / length / last / first rune, word index, word length, position) x b in {-1, 0, +1}; hit-word count against 2,000 shuffles with the P of the maximum over the 45 tests"
 control = "Planted relation (sum of the other runes in 45% and 15% of words, previous word's sum 45%, word length 15%, word index 15%) recovered as the maximum (z +15.1 to +50.4, P 0.000); 100 fresh shuffles judged against the null: P(max) < 0.05 in 8 of 100; solved Vigenere sections 1 and 5 (ciphertext): max z +2.11, P 0.62 (the Atbash sections give z +5.9 because repeated words clump, a control artefact, not a result)"
-result = "Extra rune: negative. Max z +2.08 (position in word), P(max over 45 tests) 0.58; the only large deviation is the known gap-doublet deficit (previous word's last rune, z -3.5). No padding of word lengths to primes (z -1.1). Images: the black glyph at the end of 0.11 (image 39) is the 0.7 Russian cross rotated 90 degrees; the five-dot figure and body strip are block markers; art is page-invariant inside a part and LP1 shows no art -> method rule. New clue never used: Cicada's 2013 'The key is all around you' (Cicada OS message). Top 5 untested: phi / sigma / pi of word sums as streams, Cicada number strings as short keys under R4, the solved LP1 text as running key, the Cicada OS blobs as streams, four irrationals combined"
-gap = "A relation involving the key or plaintext, or in fewer than about 4% of words; images read at reduced resolution (no faint-mark or micro-difference search beyond page-scan-audit); the five proposed tests are not run"
+result = "Extra rune: negative. Max z +2.08 (position in word), P(max over 45 tests) 0.58; the only large deviation is the known gap-doublet deficit (previous word's last rune, z -3.5). No padding of word lengths to primes (z -1.1). Images: the black glyph at the end of 0.11 (image 39) is the 0.7 Russian cross rotated 90 degrees; the five-dot figure and body strip are block markers; art is page-invariant inside a part and LP1 shows no art -> method rule. New clue never used: Cicada's 2013 'The key is all around you' (Cicada OS message). Top 5 untested: phi / sigma / pi of word sums as streams, Cicada number strings as short keys under R4, the solved LP1 text as running key, the Cicada OS blobs as streams, four irrationals combined. Follow-up 2026-10-22: the five ranked tests were run (p60-wordsums, p60-numkeys-r4, p60-lp1-key, p60-cicada-blobs, p60-irrationals), all negative; no further clue found that names an operation not yet run"
+gap = "Images read at reduced resolution (no faint-mark or micro-difference search beyond page-scan-audit); the archive was searched for key statements, not read line by line; a relation involving the key or plaintext, or in fewer than about 4% of words (extra rune)"
 log = ["work/log/phase60_clue_review.md"]
 files = ["work/clue_extra_rune.py", "work/phase60_art_blobs.py", "results/analysis/phase60_extra_rune.txt", "work/phase60/"]
+
+[[experiment]]
+id = "p60-wordsums"
+group = "structure"
+title = "Phase 60 T1: phi, sigma, pi, gap, phi(S+1) of LP2's own word prime / index sums as per-word key material (engine screen, word-aligned fixed-point and direct decodes, word-level feedback)"
+status = "excluded"
+what = "A: 96 word-value streams (7 functions of G, 5 of R; whole book and 0.15; raw / prefix; forwards / reversed) through the kscreen library screen (all offsets, 8 section windows, both signs, skip / coin). B: PT (key from the plaintext word's sum: share of words with a consistent shift, 24 configurations x 29 constants b) and CT (key from the ciphertext word's sum, direct decode, IoC), whole LP2, 0.15 and each section. C: key from the previous word's sum (plaintext or ciphertext chain, 841 chains per configuration)"
+control = "A: 12 of 12 plant windows recovered (IoC 1.607-2.081), another stream stays 1.17-1.21. B: PT plants share 1.000 (null max 0.747), with 45% extra unkeyed runes 0.854 (null max 0.735); CT plants IoC 1.87 / 1.81 (null max 1.01-1.02). C: PT and CT plants are the maximum chain, IoC 1.79 / 1.80 (null max 1.010 / 1.006)"
+result = "A: best IoC 1.2738 (4.4 M decodes) against the matched null of 960 shuffled streams 1.2951. B: PT best share 0.7142, P(max) 0.92 (0.15: 0.50; per section lowest P 0.158); CT best IoC 1.0062, P 0.475. C: best chain IoC 1.0026, null max 1.0030, P 0.32"
+gap = "Keys that are not a function of one word's sum (two words, the line, the page), sums in another convention (digraph runes spelled as two letters), other functions, a printed word that is not the encryptor's word (segmentation), the engine screen A ignores R4's extra rune (B tolerates it only for PT)"
+log = ["work/log/phase60_clue_review.md"]
+files = ["work/kscreen/phase60_t1.py", "results/kscreen/phase60_t1/", "work/kscreen/data/phase60_t1/streams.tsv"]
+
+[[experiment]]
+id = "p60-numkeys-r4"
+group = "structure"
+title = "Phase 60 T2: Cicada's published number strings and the seven 256-byte onion strings as short periodic keys under R4"
+status = "partial"
+what = "50 number keys (2014 / 2012 / 2015 whitespace sequences, Fibonacci-tree branches, digit strings of 3301, 1033, 761, the Parable product, the 16-digit community key, the 49 numbers of the 7 x 7 square, the 2012 P.S. digits, two cookie values; three maps) and 20 keys from the 256-byte onion strings and their XORs, phase 59 engine and channels (mid-word arc, hold / spend, both signs, every phase) on all 48 n300 windows"
+control = "32 of 32 and 24 of 24 R4 plants with these keys recovered (true score 113-183, median 147 / 153); wrong keys at most 24.9 (the 256-byte set has alias decoys up to 127: mod and rej variants and XOR relatives), random same-length keys -37 / -74, iid-key plants with the true key -96 / -84"
+result = "Max S_guard -56.8 (number strings) and -57.4 (256-byte strings); 0 cells >= 20, 0 windows at the hit level 29.8; CPU 0.12 + 0.09 h"
+gap = "Coin / skip5 channels, keys with a gap rule between terms, number strings not listed, keys longer than 256, section 0.10, insertion rules other than R4's"
+log = ["work/log/phase60_clue_review.md"]
+files = ["work/phase60_t2_numkeys.py", "results/analysis/phase60_t2_numkeys.txt", "results/analysis/phase60_t2_hex256.txt"]
+
+[[experiment]]
+id = "p60-lp1-key"
+group = "structure"
+title = "Phase 60 T3: 'The key is all around you': the solved LP1 plaintext (forwards, reversed, read twice round) as a table-invariant running key"
+status = "partial"
+what = "The 4,536 characters of work/ref/lp_translation.txt as the book of the frozen book-key rule, stage 1 (table-free beam, first 729 runes of the 8 sections of >= 729 runes, offsets step 8), both key spellings, three variants"
+control = "Plants through the same decoder: digraph 2 of 6 and 10 of 12 (second seed), letters 6 of 6, reversed 5 of 6 and 6 of 6, 0 uniform-key hits; power for this short text is about two thirds"
+result = "0 stage-1 hits in six variants x 8 sections; best gate z +3.7 (a hit needs about +10); best beam score -0.160 per rune against thresholds -0.0112 / -0.0417"
+gap = "Short text (about 2.9-3.1 k runes), reduced power; LP1 text in another order or paired with sections; windows after the first 729 runes; non-English key parts"
+log = ["work/log/phase60_clue_review.md"]
+files = ["work/phase60_t3_lp1key.py", "results/analysis/phase60_t3_lp1key.txt", "results/analysis/phase60_t3_control.txt", "results/book_key_screen/desktop/lp1_text/", "results/book_key_screen/desktop/lp1_rev/", "results/book_key_screen/desktop/lp1_cyc/"]
+
+[[experiment]]
+id = "p60-cicada-blobs"
+group = "streams"
+title = "Phase 60 T4: the Cicada OS data files (folly = wisdom, 560.17, _560.00) as additive key streams"
+status = "partial"
+what = "Bytes mod 29 and with rejection (>= 232 dropped), forwards and backwards (12 streams), plain library screen (all offsets, 8 section windows, both signs, skip / coin); folly also under R4 (phase 59 engine, 4 keys of 3,368 terms)"
+control = "Plants in each file recovered at the exact offset in 9 of 9 windows (IoC 1.607-2.089); R4: 16 of 16 folly plants recovered (116-171 nats), decoys inside the set alias at up to 119, random keys -65, iid-key plant -72"
+result = "Plain screen: 631.8 M decodes, best IoC 1.3268 (random 1.18 M stream through the same screen 1.2880; library random keys reach about 1.37 at 1e10 decodes); R4 folly: max S_guard -65.9, 0 cells >= 20. Keyless: adjacent-equal byte pairs z +1.0 / +1.2 / -0.3"
+gap = "Other byte-to-symbol maps (base-29 conversion, 5-bit chunks, XOR with the rune index), the megabyte files under R4, the git-lfs object 560.13 points to, any non-additive use"
+log = ["work/log/phase60_clue_review.md"]
+files = ["work/kscreen/phase60_t4t5.py", "work/phase60_t2_numkeys.py", "results/kscreen/phase60_t4t5/", "results/analysis/phase60_t4_folly_r4.txt"]
+
+[[experiment]]
+id = "p60-irrationals"
+group = "streams"
+title = "Phase 60 T5: 'do four unreasonable things each day': four-way sums of pi, e, phi, sqrt2 digit streams and one constant per page"
+status = "partial"
+what = "36 aligned sums (every subset of size 2-4, every sign pattern) of the base-29 digits of pi, e, phi, sqrt2 through the library screen on the 8 section windows; and the 46 page starts (data/pages.txt) against the four constants and the 36 sums at any offset (covers every page -> constant assignment)"
+control = "Pair and four-way plants recovered in 6 of 6 windows at the exact offset (IoC 1.609-2.056); matched random-stream nulls (72 streams on the section windows, 76 on the page windows)"
+result = "Section windows: best IoC 1.3094 (22.6 M decodes) against null 1.3436 (45.2 M). Page windows: constants 1.4880, sums 1.5938, both from the two shortest windows (131 and 137 runes); the random null on the same windows reaches 1.6893, so these are short-window artefacts (verify.py decodes read as noise, A/I 0 of 0)"
+gap = "Other combinations (products, quotients, digit interleaving, base-10 digits), restart digits other than any offset on windows of >= 200 runes, other sets of four irrationals; per-page screening of windows under about 250 runes has no power at this rule"
+log = ["work/log/phase60_clue_review.md"]
+files = ["work/kscreen/phase60_t4t5.py", "results/kscreen/phase60_t4t5/"]

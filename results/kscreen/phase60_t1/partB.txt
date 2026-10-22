@@ -1,0 +1,56 @@
+== LP2 all (8 windows' sections): 2894 words
+B-PT real: best share of words with a consistent shift 0.7142; null max-over-all-configs median 0.7180, max 0.7287; P(max) = 0.921
+      R pi s=+1: share 0.7142 at b=3  (null mean max-over-b 0.7183)
+      G pi s=+1: share 0.7080 at b=28  (null mean max-over-b 0.7059)
+      R phi s=+1: share 0.6990 at b=11  (null mean max-over-b 0.6978)
+      G gap s=+1: share 0.6966 at b=2  (null mean max-over-b 0.6974)
+      R phi(S+1) s=+1: share 0.6952 at b=16  (null mean max-over-b 0.6965)
+      G gap s=-1: share 0.6797 at b=17  (null mean max-over-b 0.6822)
+B-CT real: best IoC 1.0062; null max-over-configs median 1.0060, max 1.0090; P(max) = 0.475
+      R pi s=+1: IoC 1.0062
+      G gap s=-1: IoC 1.0027
+      G pi s=+1: IoC 1.0018
+      R pi s=-1: IoC 1.0017
+      R phi(S+1) s=+1: IoC 1.0013
+      G S-1 s=+1: IoC 1.0011
+== seg0.15: 735 words
+B-PT real: best share of words with a consistent shift 0.7361; null max-over-all-configs median 0.7347, max 0.7592; P(max) = 0.495
+      R pi s=+1: share 0.7361 at b=21  (null mean max-over-b 0.7349)
+      G gap s=+1: share 0.7238 at b=17  (null mean max-over-b 0.7139)
+      R phi(S+1) s=+1: share 0.7197 at b=7  (null mean max-over-b 0.7138)
+      G pi s=+1: share 0.7156 at b=6  (null mean max-over-b 0.7204)
+      R phi s=+1: share 0.7088 at b=12  (null mean max-over-b 0.7157)
+      G sigma s=+1: share 0.7048 at b=4  (null mean max-over-b 0.6790)
+B-CT real: best IoC 1.0072; null max-over-configs median 1.0078, max 1.0182; P(max) = 0.594
+      R pi s=+1: IoC 1.0072
+      G pi s=+1: IoC 1.0054
+      G S-1 s=+1: IoC 1.0051
+      G S s=+1: IoC 1.0051
+      R gap s=-1: IoC 1.0019
+      G gap s=-1: IoC 1.0015
+== controls (English words from Emerson; same statistic, same null size)
+PT plant (G, phi, +, b=5): best share of words with a consistent shift 1.0000; null max-over-all-configs median 0.7320, max 0.7470; P(max) = 0.038
+      G phi s=+1: share 1.0000 at b=5  (null mean max-over-b 0.6768)
+      G gap s=+1: share 0.7935 at b=8  (null mean max-over-b 0.7070)
+      R pi s=+1: share 0.7805 at b=3  (null mean max-over-b 0.7328)
+      planted config share 1.0000 at b=5 (want b=5); is the maximum: True
+PT plant (R, sigma, -, b=17): best share of words with a consistent shift 1.0000; null max-over-all-configs median 0.7335, max 0.7470; P(max) = 0.038
+      R sigma s=-1: share 1.0000 at b=17  (null mean max-over-b 0.6952)
+      R phi(S+1) s=+1: share 0.8060 at b=6  (null mean max-over-b 0.7129)
+      G gap s=+1: share 0.7955 at b=12  (null mean max-over-b 0.7086)
+      planted config share 1.0000 at b=17 (want b=17); is the maximum: True
+PT plant (G, pi, +, b=3) + 45% extra unkeyed rune: best share of words with a consistent shift 0.8540; null max-over-all-configs median 0.7215, max 0.7350; P(max) = 0.038
+      G pi s=+1: share 0.8540 at b=3  (null mean max-over-b 0.7049)
+      R pi s=+1: share 0.7640 at b=27  (null mean max-over-b 0.7214)
+      G gap s=+1: share 0.7310 at b=8  (null mean max-over-b 0.7003)
+      planted config share 0.8540 at b=3 (want b=3); is the maximum: True
+CT plant (G, phi, +, b=5) (5390 words survive): best IoC 1.8663; null max-over-configs median 1.0092, max 1.0123; P(max) = 0.038
+      G phi s=+1: IoC 1.8663
+      G sigma s=+1: IoC 1.1348
+      G S-1 s=+1: IoC 1.1299
+      planted config IoC 1.8663
+CT plant (R, phi(S+1), -, b=2) (5705 words survive): best IoC 1.8141; null max-over-configs median 1.0212, max 1.0237; P(max) = 0.038
+      R phi(S+1) s=-1: IoC 1.8141
+      R phi(S+1) s=+1: IoC 1.1331
+      R gap s=-1: IoC 1.1238
+      planted config IoC 1.8141

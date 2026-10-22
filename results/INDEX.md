@@ -55,6 +55,8 @@
 | Per-rune periodic sign templates (period 2-5: the Beaufort / Vigenere alternation) | excluded | 1.400 (null 1.318) | [P5_ppmmp.tsv](kscreen/signs_periodic/P5_ppmmp.tsv), [P5_pmmmm.tsv](kscreen/signs_periodic/P5_pmmmm.tsv), [sign_periodic_selftest.txt](kscreen/sign_periodic_selftest.txt) |
 | Phase 50 block: reading-order transforms, alternative alphabet orders (20 incl. 15 OEIS orders), 10 sign rules x nulledge/advsep, plus A/I and prime checks in verify.py | excluded |  | [phase50](../work/phase50), [lang_checks.py](../work/kscreen/lang_checks.py), [lang_checks_selftest.py](../work/kscreen/lang_checks_selftest.py), [phase50](kscreen/phase50) |
 | Cicada's key habits: words, phrases, titles, first/last lines of the solved pages and the 2014 signed messages as Vigenere keys (C->F, NG/ING, IA/IO variants, literal F) | excluded |  | [phrase_keys.py](../work/phase50/phrase_keys.py), [summary_phrase_keys.txt](kscreen/phase50/summary_phrase_keys.txt) |
+| Phase 60 T4: the Cicada OS data files (folly = wisdom, 560.17, _560.00) as additive key streams | partial |  | [phase60_t4t5.py](../work/kscreen/phase60_t4t5.py), [phase60_t2_numkeys.py](../work/phase60_t2_numkeys.py), [phase60_t4t5](kscreen/phase60_t4t5), [phase60_t4_folly_r4.txt](analysis/phase60_t4_folly_r4.txt) |
+| Phase 60 T5: 'do four unreasonable things each day': four-way sums of pi, e, phi, sqrt2 digit streams and one constant per page | partial |  | [phase60_t4t5.py](../work/kscreen/phase60_t4t5.py), [phase60_t4t5](kscreen/phase60_t4t5) |
 
 ### Seeded generators, passphrases and sequences as keys
 
@@ -117,6 +119,9 @@
 | One encryption rule for all of LP2's anomalies at once? | partial |  | [phase57_mechanism.py](../work/phase57_mechanism.py), [phase57_pilot.py](../work/phase57_pilot.py), [phase57_mechanism.txt](analysis/phase57_mechanism.txt), [phase57_pilot.txt](analysis/phase57_pilot.txt), [phase57_plants](chanscreen/phase57_plants), [phase57_lp_pilot](chanscreen/phase57_lp_pilot) |
 | Is DJU BEI two encryptions of one plaintext under a repeated key run? (library streams, equal 6-runs at key distance 5,700-6,500) | partial |  | [phase58_djubei_reuse.py](../work/phase58_djubei_reuse.py), [phase58_djubei_reuse.txt](analysis/phase58_djubei_reuse.txt) |
 | Is LP2 a short repeated keyword (Cicada's solved-page key type) under R4 (collision repair + one null per word)? | partial |  | [phase59_keywords_r4.py](../work/phase59_keywords_r4.py), [phase59_keywords_r4.txt](analysis/phase59_keywords_r4.txt) |
+| Phase 60 T1: phi, sigma, pi, gap, phi(S+1) of LP2's own word prime / index sums as per-word key material (engine screen, word-aligned fixed-point and direct decodes, word-level feedback) | excluded |  | [phase60_t1.py](../work/kscreen/phase60_t1.py), [phase60_t1](kscreen/phase60_t1), [streams.tsv](../work/kscreen/data/phase60_t1/streams.tsv) |
+| Phase 60 T2: Cicada's published number strings and the seven 256-byte onion strings as short periodic keys under R4 | partial |  | [phase60_t2_numkeys.py](../work/phase60_t2_numkeys.py), [phase60_t2_numkeys.txt](analysis/phase60_t2_numkeys.txt), [phase60_t2_hex256.txt](analysis/phase60_t2_hex256.txt) |
+| Phase 60 T3: 'The key is all around you': the solved LP1 plaintext (forwards, reversed, read twice round) as a table-invariant running key | partial |  | [phase60_t3_lp1key.py](../work/phase60_t3_lp1key.py), [phase60_t3_lp1key.txt](analysis/phase60_t3_lp1key.txt), [phase60_t3_control.txt](analysis/phase60_t3_control.txt), [lp1_text](book_key_screen/desktop/lp1_text), [lp1_rev](book_key_screen/desktop/lp1_rev), [lp1_cyc](book_key_screen/desktop/lp1_cyc) |
 
 ### Restarts, reuse and layout
 
@@ -151,7 +156,7 @@
 | Discord 2026-10-22: avaster's cumulative prime-multiplier cipher; DCPH's book key + random doublet skip | excluded |  | [discord_cumulative_check.py](../work/discord_cumulative_check.py) |
 | An End's SHA-512: archived Cicada onion and site captures hashed | excluded |  | [phase52](../work/phase52) |
 | One command that recomputes the numbers of docs/FINDINGS.md section 1 (PASS / FAIL) | observed |  | [reproduce_signals.py](../scripts/reproduce_signals.py), [test_reproduce_signals.py](../work/tests/test_reproduce_signals.py) |
-| Phase 60 clue review: page art, archives, wiki and solved-text phrases against the registry; the extra rune as a function of the other runes | open |  | [clue_extra_rune.py](../work/clue_extra_rune.py), [phase60_art_blobs.py](../work/phase60_art_blobs.py), [phase60_extra_rune.txt](analysis/phase60_extra_rune.txt), [phase60](../work/phase60) |
+| Phase 60 clue review: page art, archives, wiki and solved-text phrases against the registry; the extra rune as a function of the other runes | partial |  | [clue_extra_rune.py](../work/clue_extra_rune.py), [phase60_art_blobs.py](../work/phase60_art_blobs.py), [phase60_extra_rune.txt](analysis/phase60_extra_rune.txt), [phase60](../work/phase60) |
 
 ### What LP2 shows (any solution has to explain it)
 

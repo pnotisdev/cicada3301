@@ -1,0 +1,27 @@
+# Phase 60 T2b (256-byte strings): 20 keys under R4 (phase 59 engine, hold / spend, both signs, T300 = 29.80)
+control: 24/24 planted keys recovered (score >= T300, right sign and phase); true score min / median 115.7 / 152.7; wrong-key max: set 127.2, random same-length -74.1; iid-key plant with the true key: max -84.2
+   hex256 #0 mod len 256 hold cicada 0: true 154.4 found True
+   hex256 #0 mod len 256 hold cicada 1: true 150.3 found True
+   hex256 #0 mod len 256 hold english 0: true 151.5 found True
+   hex256 #0 mod len 256 hold english 1: true 150.9 found True
+   hex256 #0 mod len 256 spend cicada 0: true 115.7 found True
+   hex256 #0 mod len 256 spend cicada 1: true 173.0 found True
+   hex256 #0 mod len 256 spend english 0: true 157.7 found True
+   hex256 #0 mod len 256 spend english 1: true 157.8 found True
+   hex256 #2 rej len 226 hold cicada 0: true 173.8 found True
+   hex256 #2 rej len 226 hold cicada 1: true 151.3 found True
+   hex256 #2 rej len 226 hold english 0: true 147.4 found True
+   hex256 #2 rej len 226 hold english 1: true 163.3 found True
+   hex256 #2 rej len 226 spend cicada 0: true 129.4 found True
+   hex256 #2 rej len 226 spend cicada 1: true 167.4 found True
+   hex256 #2 rej len 226 spend english 0: true 151.6 found True
+   hex256 #2 rej len 226 spend english 1: true 160.9 found True
+   hex256 #5 rej len 251 hold cicada 0: true 166.4 found True
+   hex256 #5 rej len 251 hold english 0: true 152.7 found True
+   hex256 #5 rej len 251 spend cicada 0: true 126.1 found True
+   hex256 #5 rej len 251 spend english 0: true 153.2 found True
+   xor 3^4 rej len 228 hold cicada 0: true 166.0 found True
+   xor 3^4 rej len 228 hold english 0: true 141.2 found True
+   xor 3^4 rej len 228 spend cicada 0: true 121.3 found True
+   xor 3^4 rej len 228 spend english 0: true 140.1 found True
+scan: 48/48 windows x 20 keys, CPU 0.09 h; max S_guard -57.35 (section 15 @ 1500, hex256 #5 mod); cells >= 20: 0; windows >= T300: 0
