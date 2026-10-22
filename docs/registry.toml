@@ -1374,3 +1374,16 @@ result = "No match among 124,017 digests. 24 captures (14 URLs, all on 845145127
 gap = "Only Wayback and Ahmia were queried (not archive.today, Common Crawl, tor2web mirrors); pages never captured, or captured after rewriting/compression, are not excluded; the page has never been found by anyone"
 log = ["work/log/phase52_an_end_archives.md"]
 files = ["work/phase52/"]
+
+[[experiment]]
+id = "lag6-length-rules"
+group = "structure"
+title = "Which word-level rule gives the lag-6 length profile?"
+status = "partial"
+what = "Phase 56: phase-25 repair, block (halves) rule, per-word key restart, insertion gate at position 7, each on English with a random key, 1,000 replicates; lag-6 hits by word length 7/8/9/10+, in-word and gap doublets, word-length G"
+control = "No-echo reference M0 (chi2 42.7, P 0.001) and the key-restart rule, which cannot produce the T relation"
+result = "Phase-25 repair (untuned) and a block rule tuned to 80 hits fit LP2's bins (chi2(6) 5.7 / 3.9, P 0.48 / 0.68); insertion gate and key restart do not (P 0.001). 7-rune bin 8 vs 10-12 expected: not distinguishable from noise. No rule moves the word-length histogram (G 267-271)"
+gap = "English plaintext and flat random key only; rates tuned on the total; profile is a post hoc cut; the extra-rune-in-42%-of-words fit remains unexplained; rules not tried: structured keys, language other than English"
+log = ["work/log/phase56_lag6_length_rules.md"]
+files = ["work/phase56_lag6_length_rules.py", "results/analysis/phase56_lag6_length_rules.txt"]
+

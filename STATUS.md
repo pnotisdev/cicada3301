@@ -9,7 +9,7 @@
 | | |
 |---|---|
 | Excluded | 53 |
-| Partly excluded | 14 |
+| Partly excluded | 15 |
 | Cannot be tested at LP2's effect size | 3 |
 | Open (not run or partly run) | 9 |
 | Explained puzzle furniture | 3 |
@@ -114,6 +114,7 @@ No long runs are queued; `docs/QUEUE.md` explains how to restart the queues.
 | **'Its words are the map', read literally: LP2's own word-length / word-sum sequences as key streams, and the ciphertext reversed per word, clause or line** | 1.374 (null 1.379) | Independent planters: 21 of 21 windows recovered at the planted offset (+-2 skip alias) with IoC >= 1.60; the untransformed plant is blind to the reversed screen | A: best 1.2557 against shuffled-stream null 1.3042; B: word 1.3385 / null 1.3210, clause 1.3740 / 1.3042, line 1.3669 / 1.3786; nothing reaches 1.40; verify.py 0 of 10 kept in each screen | Word sequences of the solved sections, per-page / line / clause values, other moduli; reversal combined with signs or pointer direction, of other units or of only some units; keys outside the library; clause and line plants were synthetic units |
 | **'Its words are the map' as a key-pointer JUMP at word boundaries: extra advance by the word length or a constant (advsep=3\|4\|5)** |  | Independent planter, 4 plants per mode: 12 / 12 returned at the exact offset; 10 / 12 with IoC >= 1.60 and two at 1.584 / 1.589 on a low-IoC plaintext window (the repo's own selftest gives 1.609-1.617 there): FAILED as pre-defined, recorded, not relaxed; a restated gate fixed before 12 fresh plants (Walden windows): 10 / 12 pass, FAILED again (one plant one offset off, the skip alias other selftests accept; one beam-16 shortfall of 0.059 at the exact offset); no key missed; default engine and wrong modes 1.23-1.34; rand nulls 1.3145 / 1.3469 / 1.3165 | Screen run 2026-10-21 (queue now1, 12 threads): advsep 3 / 4 / 5 best IoC 1.3650 / 1.3223 / 1.3204 against matched nulls 1.3482 / 1.3313 / 1.3236; every top hit falls to 1.05-1.12 over its whole window (random offsets of the same stream about 1.06): negative |  |
 | **Do LP2's marks work as paired open/close brackets (key-stack idea from the GEB dialogue)?** |  | Solved sections 0.0-0.6 as reference; shuffle null within each section (nesting holds in 72% of shuffles, so no signal) | No candidate pairs: LP2 has the same five marks as the solved sections, none LP2-only; `&` ends sections (extra ones only in 0.8, 0.13-0.15) | Brackets carried by ciphertext values or word/clause lengths rather than marks; dropped marks in the transcription |
+| **Which word-level rule gives the lag-6 length profile?** *(partly)* |  | No-echo reference M0 (chi2 42.7, P 0.001) and the key-restart rule, which cannot produce the T relation | Phase-25 repair (untuned) and a block rule tuned to 80 hits fit LP2's bins (chi2(6) 5.7 / 3.9, P 0.48 / 0.68); insertion gate and key restart do not (P 0.001). 7-rune bin 8 vs 10-12 expected: not distinguishable from noise. No rule moves the word-length histogram (G 267-271) | English plaintext and flat random key only; rates tuned on the total; profile is a post hoc cut; the extra-rune-in-42%-of-words fit remains unexplained; rules not tried: structured keys, language other than English |
 
 ### Restarts, reuse and layout
 

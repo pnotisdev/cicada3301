@@ -1,0 +1,9 @@
+LP2: T hits per word-length bin [(7, 7), (8, 8), (9, 9), (10, 99)]: [8, 21, 20, 31] of pairs [216, 312, 234, 528]  (total 80); equal-at-lag-6 32; doublets in-word 0.63% gap 0.80%
+1000 replicates per rule (English, flat random key, Q 0.81); columns: mean T hits per bin 7 | 8 | 9 | 10+
+M0 no echo             hits/bin   5.8   7.9   8.9  16.0 | total  38.6 | dbl in 0.66% gap 0.66% | eq6  38.7 | chi2(6)   42.7 P 0.001 | logL  148.50 | G(wordlen)  266.7
+M1 phase-25 repair     hits/bin  10.4  14.0  16.1  28.2 | total  68.7 | dbl in 0.67% gap 0.66% | eq6  38.4 | chi2(6)    5.7 P 0.475 | logL  164.54 | G(wordlen)  268.0
+tuned A: rate 0.0396
+A halves r=0.040       hits/bin  12.3  16.3  19.0  32.6 | total  80.2 | dbl in 0.67% gap 0.66% | eq6  38.5 | chi2(6)    3.9 P 0.678 | logL  165.38 | G(wordlen)  267.3
+tuned D: rate 0.0621
+D insert gate r=0.062  hits/bin   6.0   7.5  14.9  52.6 | total  80.9 | dbl in 0.66% gap 0.66% | eq6  39.7 | chi2(6)   29.2 P 0.001 | logL  152.51 | G(wordlen)  270.9
+B key restart f=0.5    hits/bin   6.0   7.9   9.1  15.7 | total  38.6 | dbl in 0.65% gap 0.66% | eq6  54.6 | chi2(6)   44.4 P 0.001 | logL  148.52 | G(wordlen)  267.2

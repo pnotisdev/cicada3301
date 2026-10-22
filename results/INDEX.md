@@ -113,6 +113,7 @@
 | Recall of the H5 flat-library sweep: independent stream + keyword plants through the real h5rs sweep path | observed |  | [h5_power_map.txt](analysis/h5_power_map.txt), [h5_power_map.json](analysis/h5_power_map.json) |
 | Dissection of the lag-5 S,S echo: is S a marker or filler rune? | observed |  | [phase55_s_echo_dissect.py](../work/phase55_s_echo_dissect.py), [phase55_s_echo_dissect.txt](analysis/phase55_s_echo_dissect.txt) |
 | Where does the within-word lag-6 relation c' = 24 - 2c live? | observed |  | [phase54_lag6_dissect.py](../work/phase54_lag6_dissect.py), [phase54_lag6_dissect.txt](analysis/phase54_lag6_dissect.txt) |
+| Which word-level rule gives the lag-6 length profile? | partial |  | [phase56_lag6_length_rules.py](../work/phase56_lag6_length_rules.py), [phase56_lag6_length_rules.txt](analysis/phase56_lag6_length_rules.txt) |
 
 ### Restarts, reuse and layout
 

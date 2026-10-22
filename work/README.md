@@ -15,6 +15,7 @@ Find a script by what it is for. Each one writes its output into `results/analys
 | `phase38/` | Phase 38: do LP2's signals interact (isomorphs, S lag-5 x lag-6 overlap, echo-word lengths), pre-registered nulls |
 | `phase40_line_pointers.py`, `phase44/` | Phase 40: line:position pointers into LP's own lines; phase 44: keyless batch (doublet fine structure, digraph blocks, 512-bit hashes of held files, word-length alignment) |
 | `phase55_s_echo_dissect.py` | Phase 55: dissection of the lag-5 S,S echo (position, length, neighbours, other runes, solved-page control) |
+| `phase56_lag6_length_rules.py` | Phase 56: four word-level rules (repair, blocks, key restart, insertion gate) against LP2's lag-6 word-length profile |
 | `mech48/` | Phase 48: the A/I oracle (one-rune words -> A or I): calibration, re-scoring of kept hits, drift-aware screen design |
 | `phpmt/` | Rust: bit-exact seed sweeps for ten generators; `bg.py` boundary-free bigram score, `gpu.py` + `.cu` CUDA ports |
 | `walk/` | Rust: word-scoped solver and key-free D-search (`dsearch`) |
