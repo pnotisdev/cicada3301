@@ -26,6 +26,8 @@ Find a script by what it is for. Each one writes its output into `results/analys
 | `phase60_art_blobs.py` | Phase 60: ink-blob boxes of the page art, the five contact sheets in `phase60/`, and the cross-versus-glyph sheet |
 | `phase60_t2_numkeys.py` | Phase 60 T2 and T4-under-R4: Cicada's number strings, the 256-byte onion strings and the Cicada OS file folly as short keys through the phase 59 R4 engine (`P60_SET=t2|hex256|folly`) |
 | `phase60_t3_lp1key.py` | Phase 60 T3: the solved LP1 plaintext (forwards, reversed, read twice round) as a table-invariant running key, stage 1 of the book-key rule, plant control |
+| `phase60_t6_blobs_r4.py` | Phase 60 T6: the megabyte Cicada OS files under R4, every offset of one window, chunked, with R4 plants as control |
+| `phase60_t7_xor.py`, `phase60_t7b_xor_classes.py` | Phase 60 T7: XOR-domain keys (three exact conventions): the abandoned unigram lag DP (control only) and the key-class coincidence screen run on the library, number / onion strings and the megabyte files |
 | `mech48/` | Phase 48: the A/I oracle (one-rune words -> A or I): calibration, re-scoring of kept hits, drift-aware screen design |
 | `phpmt/` | Rust: bit-exact seed sweeps for ten generators; `bg.py` boundary-free bigram score, `gpu.py` + `.cu` CUDA ports |
 | `walk/` | Rust: word-scoped solver and key-free D-search (`dsearch`) |

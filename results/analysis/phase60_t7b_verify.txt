@@ -1,0 +1,10 @@
+# Verification of the top XOR-class candidates: decode the whole 300-rune window at the candidate offset under X1 (wrapped) and X3 (pass-through) and report the IoC (random 1.0, English runes about 1.7)
+560.17 fwd and31: z 6.21 window 0.7 offset 883560: decode IoC X1 1.076, X3 0.987
+560.17 fwd and127: z 6.31 window 0.11 offset 518529: decode IoC X1 1.062, X3 0.971
+560.17 rev and31: z 6.33 window 0.15 offset 55553: decode IoC X1 1.110, X3 1.047
+560.17 rev and127: z 6.49 window 0.7 offset 510650: decode IoC X1 1.063, X3 0.991
+_560.00 fwd and31: z 6.93 window 0.14 offset 2021621: decode IoC X1 1.051, X3 1.033
+_560.00 fwd and127: z 6.53 window 0.13 offset 2566735: decode IoC X1 1.165, X3 1.048
+_560.00 rev and31: z 6.65 window 0.8 offset 3568338: decode IoC X1 1.082, X3 1.030
+_560.00 rev and127: z 6.78 window 0.11 offset 2235397: decode IoC X1 1.177, X3 1.081
+library best: sha256-chain mod :an end, window 0.9 offset 16646: z 6.82; decode IoC X1 1.150, X3 1.011

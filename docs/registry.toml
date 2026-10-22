@@ -1506,3 +1506,27 @@ result = "Section windows: best IoC 1.3094 (22.6 M decodes) against null 1.3436 
 gap = "Other combinations (products, quotients, digit interleaving, base-10 digits), restart digits other than any offset on windows of >= 200 runes, other sets of four irrationals; per-page screening of windows under about 250 runes has no power at this rule"
 log = ["work/log/phase60_clue_review.md"]
 files = ["work/kscreen/phase60_t4t5.py", "results/kscreen/phase60_t4t5/"]
+
+[[experiment]]
+id = "p60-xor-keys"
+group = "structure"
+title = "Phase 60 T7: XOR-domain keys (index XOR wrapped, prime-value XOR wrapped, index XOR with pass-through) on the section-start n300 windows"
+status = "partial"
+what = "Conventions defined exactly (X1 c = (p XOR k) mod 29; X2 c = (P[p] XOR k) mod 29; X3 c = p XOR k if <= 28 else p; X4 reject-skip not screenable). The existing engines are additive and cannot express XOR, so a numpy screen: key-class coincidences (runes keyed with the same key value share one substitution; z of equal-key equal-ciphertext pairs), strict alignment, library 1,439 streams at every offset, Cicada's number and onion strings (30 keys x 5 partitions), 560.17 / _560.00 bytes & 31 / & 127 forwards and backwards. A first R4-tolerant unigram lag-DP screen was built and abandoned for lack of power"
+control = "Plants without R4 insertions detected 6 / 8 (X1), 8 / 8 (X2), 5 / 8 (X3) (z at truth median 9.4-11.6 against random-stream maxima 4.7-5.9); WITH R4's extra rune in 45% of words 0 / 8 for all three; the DP screen recovered 1 / 10, 3 / 10, 3 / 10"
+result = "Library: best z 6.82 in 103.2 M trials (Poisson expectation 0.1 values >= 6.8; decode IoC 1.15 / 1.01); number and onion strings best z 4.95 (null 6.76); megabyte files best z 6.21-6.93, whole-window decodes IoC 0.97-1.18; hit rule z >= 7.5 fixed in advance, none reached"
+gap = "Any XOR cipher under R4's extra runes (control power 0 / 8), X4 reject-skip, key streams outside the lists, key classes larger than the window; verify.py (additive beam) cannot read XOR keys, the decode IoC replaces it"
+log = ["work/log/phase60_clue_review.md"]
+files = ["work/phase60_t7_xor.py", "work/phase60_t7b_xor_classes.py", "results/analysis/phase60_t7b_xor_classes.txt", "results/analysis/phase60_t7b_control.txt", "results/analysis/phase60_t7b_strings.txt", "results/analysis/phase60_t7b_verify.txt", "results/analysis/phase60_t7_xor_dp_control.txt"]
+
+[[experiment]]
+id = "p60-blobs-r4"
+group = "structure"
+title = "Phase 60 T6: the megabyte Cicada OS files (560.17, _560.00) as keys under R4, every offset of the first n300 window of 0.7"
+status = "partial"
+what = "Phase 59 engine and channels unchanged (mid-word arc, hold / spend, both signs); 8 streams (bytes mod 29 and rejection, forwards and backwards), all 19,735,220 offsets of ONE window (full cost over 8 windows about 28 CPU-h, over the limit), 3.56 CPU-h"
+control = "8 of 8 R4 plants with a key from these files at a random offset recovered at the right sign and offset (106.6-168.7 nats)"
+result = "Max S_guard -52.29, 0 cells >= 20, 0 chunks at the hit level 29.8"
+gap = "The other 47 windows (a key that applies to another section is missed), coin / skip5 channels, other byte-to-symbol maps, the 118 MB git-lfs object 560.13 points to (not in the archive)"
+log = ["work/log/phase60_clue_review.md"]
+files = ["work/phase60_t6_blobs_r4.py", "results/analysis/phase60_t6_blobs_r4.txt", "results/chanscreen/phase60_t6/"]
