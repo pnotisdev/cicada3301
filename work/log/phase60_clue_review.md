@@ -293,3 +293,11 @@ Key-class coincidence screen of section 8.1 (strict alignment; R4-free: power 5-
 ### 9.6 Verdict update
 
 The "not held" items of 8.3 are now held and tested: the 118 MB Cicada OS file is uniformly random and no tested use of it (additive plain, R4, XOR; pad-from-start complete, arbitrary offsets 5-8% sampled) gives a hit, and the audio payload streams give none. Remaining untested from Cicada's own material: arbitrary-offset keys in the 560.13 pad outside the samples (93% of offsets; a full R4 pass would cost about 20 CPU-h per window and map), the two blind spots (XOR under R4, reject-skip XOR), audio as PCM / notes, the P.S. number and cookie values as integers, and the page that hashes to An End's SHA-512.
+
+## Addendum 2026-10-22 (main session): onion 7 details from the 2014 "Discoveries" pad and the community flowchart
+
+Checked against the two archived copies of onion 7's `index.html` (cicada-solvers `assets/2014/stage11/ky2khlqdf7qdznac.onion/`, iBotPeaches `onions/ky2khlqdf7qdznac.onion/post/`; identical except indentation):
+- `<title>133</title>` and `<div id="331">` are genuine (both copies). 331 is prime, 133 = 7 x 19 its reversal; with the missing 19 in `message.txt.asc` and the E / S (5th / 19th letter) user agents this is a coincidence chain without a stated operation. As a key, "133" / "331" are period-3 keys: excluded under the plain model (`periodic`); under R4 only the number strings of T2 were run, not all period-3 keys (29^3 = 24,389; about 1 CPU-hour on the phase 59 engine). **Open, cheap.**
+- The pad's extra lines after image 57 (`<a href="../htmls/0N.html"><img src="../Z/0N.jpg">`, N = 1, 2, 4, 5, 6, and `background<red>` after `</html>`) are in neither archived copy: an artifact of the pad, not Cicada's page.
+- The telnet error "UNKNOWN 400 BaO'[d Request" (thttpd/2.25b) and a 404 page reporting "Apache Server at 127.0.0.1 Port 5243" (5243 = 7^2 x 107) are only in the pad's transcription; no archived bytes. Recorded, no operation implied.
+- "0421812877725", read by a barcode app from the mayfly image, is attributed by the pad itself to a scanner glitch. Recorded, not used.
