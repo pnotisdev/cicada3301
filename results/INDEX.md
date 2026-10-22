@@ -57,6 +57,8 @@
 | Cicada's key habits: words, phrases, titles, first/last lines of the solved pages and the 2014 signed messages as Vigenere keys (C->F, NG/ING, IA/IO variants, literal F) | excluded |  | [phrase_keys.py](../work/phase50/phrase_keys.py), [summary_phrase_keys.txt](kscreen/phase50/summary_phrase_keys.txt) |
 | Phase 60 T4: the Cicada OS data files (folly = wisdom, 560.17, _560.00) as additive key streams | partial |  | [phase60_t4t5.py](../work/kscreen/phase60_t4t5.py), [phase60_t2_numkeys.py](../work/phase60_t2_numkeys.py), [phase60_t4t5](kscreen/phase60_t4t5), [phase60_t4_folly_r4.txt](analysis/phase60_t4_folly_r4.txt) |
 | Phase 60 T5: 'do four unreasonable things each day': four-way sums of pi, e, phi, sqrt2 digit streams and one constant per page | partial |  | [phase60_t4t5.py](../work/kscreen/phase60_t4t5.py), [phase60_t4t5](kscreen/phase60_t4t5) |
+| Phase 60 T8: DATA/560.13 of the 2013 Cicada OS (118,818,811 uniformly random bytes) as a key: additive plain screen, R4, XOR (start region complete, arbitrary offsets sampled) | partial |  | [phase60_t8.py](../work/kscreen/phase60_t8.py), [phase60_t8_r4.py](../work/phase60_t8_r4.py), [phase60_t8_xor.py](../work/phase60_t8_xor.py), [phase60_t8](kscreen/phase60_t8), [phase60_t8_560_13_r4.txt](analysis/phase60_t8_560_13_r4.txt), [phase60_t8_560_13_xor.txt](analysis/phase60_t8_560_13_xor.txt), [phase60_t8_r4](chanscreen/phase60_t8_r4) |
+| Phase 60 T8: the 2013 / 2014 Cicada audio (761.MP3, the Interconnectedness MP3, c.mp3) stripped to frame payload bytes as additive key streams (cheap screen) | partial |  | [phase60_t8.py](../work/kscreen/phase60_t8.py), [phase60_t8_mp3.py](../work/phase60_t8_mp3.py), [phase60_t8](kscreen/phase60_t8) |
 
 ### Seeded generators, passphrases and sequences as keys
 

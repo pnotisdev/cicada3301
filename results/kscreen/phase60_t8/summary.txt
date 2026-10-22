@@ -1,0 +1,36 @@
+audio: # best 1.3165  runs=339262176  secs=2688
+# window seg0.7 best 1.3113 item=interconnectedness mod fwd offset=1757522 mult=1 model=0
+# window seg0.8 best 1.3139 item=interconnectedness mod rev offset=3394865 mult=28 model=0
+# window seg0.9 best 1.3035 item=interconnectedness mod rev offset=4022787 mult=1 model=0
+# window seg0.11 best 1.3145 item=interconnectedness mod rev offset=6362522 mult=28 model=0
+# window seg0.12 best 1.3132 item=interconnectedness mod fwd offset=1224563 mult=1 model=0
+# window seg0.13 best 1.3165 item=761 mod rev offset=972896 mult=28 model=0
+# window seg0.14 best 1.2964 item=interconnectedness mod fwd offset=434437 mult=1 model=0
+# window seg0.15 best 1.3055 item=interconnectedness mod rev offset=2865760 mult=1 model=0
+   top: 1.3165	761 mod rev	972896	28	0	seg0.13	300
+   top: 1.3145	interconnectedness mod rev	6362522	28	0	seg0.11	300
+   top: 1.3139	interconnectedness mod rev	3394865	28	0	seg0.8	300
+b13: # best 1.3171  runs=195684864  secs=986
+# window seg0.7 best 1.3003 item=b13 rej fwd @102787877 offset=86112 mult=28 model=0
+# window seg0.8 best 1.2984 item=b13 mod fwd @76376099 offset=81803 mult=1 model=1
+# window seg0.9 best 1.2997 item=b13 mod fwd @107422835 offset=94692 mult=28 model=1
+# window seg0.11 best 1.2926 item=b13 mod fwd @22153622 offset=72720 mult=28 model=0
+# window seg0.12 best 1.2816 item=b13 mod fwd @12818516 offset=18113 mult=1 model=1
+# window seg0.13 best 1.3171 item=b13 rej fwd @34965317 offset=22915 mult=1 model=0
+# window seg0.14 best 1.2874 item=b13 rej fwd @342837 offset=135 mult=28 model=1
+# window seg0.15 best 1.3023 item=b13 rej fwd @106024100 offset=18885 mult=1 model=1
+   top: 1.3171	b13 rej fwd @34965317	22915	1	0	seg0.13	300
+   top: 1.3023	b13 rej fwd @106024100	18885	1	1	seg0.15	300
+   top: 1.3023	b13 rej fwd @96930601	93430	1	1	seg0.13	300
+b13b: # best 1.3249  runs=319737600  secs=1494
+# window seg0.7 best 1.2964 item=b13 mod fwd @7495368 offset=38933 mult=28 model=0
+# window seg0.8 best 1.2900 item=b13 mod fwd @16166158 offset=32744 mult=1 model=0
+# window seg0.9 best 1.3249 item=b13 mod fwd @10251865 offset=85919 mult=1 model=0
+# window seg0.11 best 1.3010 item=b13 rej fwd @66491316 offset=29049 mult=28 model=1
+# window seg0.12 best 1.3236 item=b13 rej fwd @102146517 offset=55035 mult=1 model=1
+# window seg0.13 best 1.3158 item=b13 rej fwd @73959694 offset=63365 mult=28 model=0
+# window seg0.14 best 1.3139 item=b13 mod fwd @48117899 offset=24207 mult=1 model=1
+# window seg0.15 best 1.3223 item=b13 mod fwd @69987104 offset=46432 mult=28 model=1
+   top: 1.3249	b13 mod fwd @10251865	85919	1	0	seg0.9	300
+   top: 1.3236	b13 rej fwd @102146517	55035	1	1	seg0.12	300
+   top: 1.3223	b13 mod fwd @69987104	46432	28	1	seg0.15	300

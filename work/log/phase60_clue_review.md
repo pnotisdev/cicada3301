@@ -253,3 +253,43 @@ Section 8's "not held" list was partly wrong; the git-ignored archive clones in 
 - **The 2014 audio:** `The-Complete-Cicada3301-Archive/2014/Websites/Interconnectedness fron onion 5/3301 - Interconnectedness.mp3`, `2014/Websites/onion 5v2/c.mp3`, `assets/2014/stage07/index.mp3`, `assets/2014/stage08/index.3*`; also `cicada_3301/tool/storage/interconnected.mp3` (iBotPeaches, MD5 `7638414d...`). The 2013 `761.MP3` is in `assets/2013/cicados/AUDIO/`.
 - **The OpenPuff output:** `assets/2014/stage07/magicsquares.txt` (745 bytes, CRC32 0x6A8C41E3 per `cicada_3301/other/Interconnected_OpenPuff.md`) is the hidden file: the 5x5 3301 square, the 7x7 1033 square and the 5x5 Gematria square of page 0.6. OpenPuff is not needed; the 7x7's 49 numbers were already among the phase 60 number keys.
 - **`DATA/560.13`:** both archive copies are git-lfs pointers (118,818,811 bytes, sha256 `db79072c...`), and `git lfs pull` returns 404: the object is missing from the archive's LFS server. The original file is inside the 2013 Cicada OS ISO, which `cicada_3301/scripts/download_iso.sh` (read, not run) fetches from connortumbleson.com/uploads/2024/01/3301.iso (136,398,848 bytes, MD5 `74062dee4093c6ca0340cda23f0e994b`). Not downloaded pending the owner's decision.
+
+## 9. Third follow-up, 2026-10-22: DATA/560.13 (118.8 MB) and the 2013/2014 audio as key streams
+
+Nothing in LP2 is solved. Provenance of the new data (owner-approved, git-ignored): `work/ref/cicados_iso/560.13`, 118,818,811 bytes, SHA-256 db79072c...112f = the archive's dead LFS pointer, extracted as bytes from the MD5-verified 2013 Cicada OS ISO by `work/iso_extract.py` (the ISO is never mounted or run). Scripts: `work/kscreen/phase60_t8.py` (plain screen), `work/phase60_t8_r4.py` (R4), `work/phase60_t8_xor.py` (XOR), `work/phase60_t8_mp3.py` (audio stripping). CPU used about 5.7 h of kscreen / engine process time, below-normal priority, at most 6 threads.
+
+### 9.1 Keyless check: 560.13 is uniformly random bytes
+
+Entropy 7.999998 bits per byte in every 20 MB block, chi-square / df 1.05, adjacent-equal byte pairs z +0.54 (no anti-repeat signature; LP2's would be a deficit), bytes mod 29 at lags 1, 2, 3, 5, 6, 7, 8, 16, 29, 256 equal at 0.0344-0.0347 (expected 0.0345). So it is not the output of LP2's generator and has no structure to model: it is either a pad or noise, and the screens below are pure key searches. (560.17 and `_560.00` are likewise flat, phase 60 section 7.4.)
+
+### 9.2 560.13 as additive key: plain library screen on the section-start windows, sampled (negative)
+
+Cost first: 118.8 M offsets x 8 windows x 2 multipliers x 2 models per stream is about 3.8 G decodes (about 15 CPU-h per stream at the measured 66,000 decodes per CPU-second), over budget, so the screen is sampled. Maps: bytes mod 29 and bytes with rejection (>= 232 dropped), forwards and backwards; same engine, rule and verification as the library campaign (8 section-start n300 windows, mults 1 and 28, skip and coin models, IoC >= 1.40 then `verify.py`).
+- **Start region (a pad read from its start; LP2 is 12,956 runes):** the first 30,000 offsets of all four streams, every window: complete.
+- **Sampled blocks:** 80 blocks of 100,000 offsets of the mod-29 forward map and 80 of the rejection forward map at fixed random positions (two batches, 8.0 M offsets per map = 6.7% of the 118.8 M offsets of the mod map, 7.4% of the rejection map's 108.5 M; the backward maps only through their start regions). 515 M decodes in total.
+- **Result:** best IoC **1.3171** (first batch, 195.7 M decodes, `b13 rej fwd @34965317`, 0.13) and **1.3249** (second batch, 319.7 M decodes, `b13 mod fwd @10251865`, 0.9); nothing near 1.40, so nothing went to `verify.py`. The library campaign's random keys reach about 1.37 at 10^10 decodes (`results/kscreen/phase60_t8/`).
+- **Controls:** plants into the start region (forward map, backward rejection map), into a sampled block and into a control slice recovered at the exact offset in 15 of 15 windows (IoC 1.597-2.131; `results/kscreen/phase60_t8/controls.txt`).
+- **Power left:** 1 for a pad read from the start of the file (offset 0 .. 30,000 within the file, any section start within the first 30 k); about 7% for a key at an arbitrary offset, forwards, in either map; 0 for backward reading away from the file's end region and for key use outside those maps.
+
+### 9.3 560.13 under R4 (phase 59 engine and channels), sampled (negative)
+
+Cost 0.62 ms per offset and window, 20 CPU-h for one window and one map over the whole file, so:
+- **Start region:** offsets 0..30,000 of the mod and rejection maps against all 48 n300 windows (96 tasks): max S_guard **-59.19**, 0 cells >= 20 (0.51 CPU-h).
+- **Sampled blocks:** window 0.7@0 only, 58 blocks of 100,000 offsets of the mod map (5.8 M offsets = 4.9%): max S_guard **-45.41**, 0 cells >= 20 (1.08 CPU-h).
+- **Control:** 8 of 8 R4 plants with a 560.13 key (a 2 M-term slice, random true offset; chunk around the truth searched, valid because offsets are independent) found at the right sign and offset, score 105.9-156.3 (hit level 29.8) (`results/analysis/phase60_t8_560_13_r4.txt`).
+- **Power left:** 1 for a pad read from the start with R4 insertions (all 48 windows, both maps); about 4.9% for a key at an arbitrary offset of the mod map for window 0.7@0 only; 0 for the other 47 windows at arbitrary offsets.
+
+### 9.4 560.13 under the XOR conventions (negative)
+
+Key-class coincidence screen of section 8.1 (strict alignment; R4-free: power 5-8 of 8 plants without insertions, 0 of 8 with). Start region: first 30,000 offsets forwards and last 30,000 backwards, key = byte & 31 (X1, X3) and byte & 127 (X2), 8 windows: best z 5.37-5.69. Sampled: 30 blocks of 300,000 offsets (9.0 M offsets, 7.6%), 72.0 M offset-window trials per partition: best z **6.84** (0.9) and 6.62, against a preset hit rule of z >= 7.5 and a chance expectation of about 0.07 such values (`results/analysis/phase60_t8_560_13_xor.txt`).
+
+### 9.5 The audio files as byte streams: cheap screen (negative)
+
+- **What is stripped:** `work/phase60_t8_mp3.py` walks every MPEG audio frame by its header-given length from the first sync word, removes the ID3v2 tag at the head, an ID3v1 tag at the tail, the 4-byte header of each frame (and the 2-byte CRC when present) and keeps side information and main data. All three files parse without a lost sync: 761.MP3 6,397 frames (4,010,732 -> 3,984,938 payload bytes), the Interconnectedness MP3 (`assets/2014/stage07/index.mp3` = the onion-5 file = iBotPeaches' `interconnected.mp3`, MD5 7638414d...) 10,610 frames (6,651,873 -> 6,609,379), `c.mp3` (`stage08/index.3.mp3`, 9,288 bytes) 129 frames. The mp3stego and press-coverage files in the clones are not Cicada's and were not used.
+- **Keyless check:** the payload is compressed audio, not random: entropy 7.98 / 7.98 / 7.73 bits, adjacent-equal byte pairs z +120 / +218 / +39 (the opposite of LP2's anti-repeat deficit), so these are not the output of LP2's generator either.
+- **Screen:** payload bytes mod 29, forwards and backwards, every offset (21.1 M offsets, 8 section-start windows, mults 1 and 28, model 0 only = the cheap screen, 339 M decodes): best IoC **1.3165** (761 backwards, offset 972,896, 0.13); the bulk of the histogram sits at 1.04-1.10 because the streams are structured, none above 1.32. Control: a plant into a 200,000-term slice of the Interconnectedness payload recovered at the exact offset in 3 of 3 windows (IoC 1.609-2.057). `c.mp3` is included (8,772 offsets).
+- **Does not exclude:** the rejection map and coin model for the audio, audio decoded to PCM or MIDI/notes (the 2012 MIDI puzzle was letters in notes) instead of raw payload bytes, the OpenPuff-hidden `magicsquares.txt` numbers beyond the 49-term 7 x 7 key already in section 7.2, the audio under R4 or XOR.
+
+### 9.6 Verdict update
+
+The "not held" items of 8.3 are now held and tested: the 118 MB Cicada OS file is uniformly random and no tested use of it (additive plain, R4, XOR; pad-from-start complete, arbitrary offsets 5-8% sampled) gives a hit, and the audio payload streams give none. Remaining untested from Cicada's own material: arbitrary-offset keys in the 560.13 pad outside the samples (93% of offsets; a full R4 pass would cost about 20 CPU-h per window and map), the two blind spots (XOR under R4, reject-skip XOR), audio as PCM / notes, the P.S. number and cookie values as integers, and the page that hashes to An End's SHA-512.

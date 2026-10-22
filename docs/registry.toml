@@ -1530,3 +1530,27 @@ result = "Max S_guard -52.29, 0 cells >= 20, 0 chunks at the hit level 29.8"
 gap = "The other 47 windows (a key that applies to another section is missed), coin / skip5 channels, other byte-to-symbol maps, the 118 MB git-lfs object 560.13 points to (not in the archive)"
 log = ["work/log/phase60_clue_review.md"]
 files = ["work/phase60_t6_blobs_r4.py", "results/analysis/phase60_t6_blobs_r4.txt", "results/chanscreen/phase60_t6/"]
+
+[[experiment]]
+id = "p60-560-13"
+group = "streams"
+title = "Phase 60 T8: DATA/560.13 of the 2013 Cicada OS (118,818,811 uniformly random bytes) as a key: additive plain screen, R4, XOR (start region complete, arbitrary offsets sampled)"
+status = "partial"
+what = "Maps bytes mod 29 and rejection (>= 232), forwards and backwards. Plain library screen on the 8 section-start n300 windows (mults 1 / 28, skip / coin): first 30,000 offsets of all four streams + 80 + 80 blocks of 100,000 offsets of the two forward maps (about 7% each; 515 M decodes). R4 (phase 59 engine, hold / spend): offsets 0..30,000 of both maps against all 48 windows + 58 blocks of 100,000 (window 0.7@0, mod map, 4.9%). XOR (key-class coincidences, byte & 31 / & 127): start region both directions + 30 blocks of 300,000 offsets (7.6%). Keyless: entropy 7.999998, adjacent-equal z +0.54, lags 1-256 flat"
+control = "Plain: plants in the start region, a backward rejection start, a sampled block and a slice recovered 15 / 15 windows (IoC 1.597-2.131); R4: 8 / 8 plants with a 560.13 key (105.9-156.3 nats); XOR: plants detected 5-8 / 8 without insertions, 0 / 8 with R4 insertions (section 8.1)"
+result = "Plain best IoC 1.3171 and 1.3249 (two batches); R4 start region max S_guard -59.2, blocks -45.4, 0 cells >= 20; XOR best z 6.84 (hit rule 7.5, chance expectation 0.07), start region <= 5.7. Nothing at a hit level, so nothing went to verify.py"
+gap = "Arbitrary offsets outside the samples (about 93% for the additive screen, 95% for R4 on window 0.7@0 and 0 of the other 47 windows, 92% for XOR), backward maps outside their start regions, coin / skip5 channels, XOR under R4 and reject-skip XOR, any other byte-to-symbol map; a full R4 pass would cost about 20 CPU-h per window and map"
+log = ["work/log/phase60_clue_review.md"]
+files = ["work/kscreen/phase60_t8.py", "work/phase60_t8_r4.py", "work/phase60_t8_xor.py", "results/kscreen/phase60_t8/", "results/analysis/phase60_t8_560_13_r4.txt", "results/analysis/phase60_t8_560_13_xor.txt", "results/chanscreen/phase60_t8_r4/"]
+
+[[experiment]]
+id = "p60-audio"
+group = "streams"
+title = "Phase 60 T8: the 2013 / 2014 Cicada audio (761.MP3, the Interconnectedness MP3, c.mp3) stripped to frame payload bytes as additive key streams (cheap screen)"
+status = "partial"
+what = "MPEG frames walked by header length; ID3v2, ID3v1, 4-byte frame headers and CRCs removed (all files parse with 0 skipped bytes); payload bytes mod 29 forwards and backwards, every offset (21.1 M), 8 section-start n300 windows, mults 1 / 28, model 0 only"
+control = "A plant into a 200,000-term slice of the Interconnectedness payload recovered at the exact offset in 3 / 3 windows (IoC 1.609-2.057)"
+result = "339 M decodes, best IoC 1.3165 (761 backwards, 0.13); the payload is compressed audio (entropy 7.98 / 7.98 / 7.73 bits, adjacent-equal pairs z +120 / +218 / +39), so the streams are structured and the histogram bulk sits at 1.04-1.10; nothing above 1.32"
+gap = "Rejection map and coin model, audio decoded to PCM or notes (the 2012 MIDI puzzle), audio under R4 or XOR, windows beyond the 8 section starts for R4"
+log = ["work/log/phase60_clue_review.md"]
+files = ["work/kscreen/phase60_t8.py", "work/phase60_t8_mp3.py", "results/kscreen/phase60_t8/"]

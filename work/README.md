@@ -11,7 +11,7 @@ Find a script by what it is for. Each one writes its output into `results/analys
 | Folder | What |
 |---|---|
 | `kscreen/` | Rust: language- and alphabet-agnostic keystream screen (IoC under both anti-repeat models); library export, verification, controls (`selftest.py`), sign rules (`signrules.py`), `gpu.py` + `kscreen.cu` CUDA port |
-| `kscreen/phase60_t1.py`, `kscreen/phase60_t4t5.py` | Phase 60 tests: T1 word-sum streams and word-aligned / feedback keys; T4 Cicada OS files and T5 four-irrational streams on the plain library screen |
+| `kscreen/phase60_t1.py`, `kscreen/phase60_t4t5.py`, `kscreen/phase60_t8.py` | Phase 60 tests: T1 word-sum streams and word-aligned / feedback keys; T4 Cicada OS files and T5 four-irrational streams on the plain library screen; T8 DATA/560.13 and the audio payloads (sampled) |
 | `kscreen/phase35.py`, `kscreen/wordjump_control.py`, `kscreen/booknum.py`, `kscreen/layoutrules.py`, `kscreen/dirrules.py`, `kscreen/pdir_*.py` | 2026-10-20/21 extensions of the screen: LP2 word streams and reversed ciphertext (phase 35), word-length pointer jump advsep=3-5 (37), book number streams (33), layout sign / direction rules (36), pointer direction (30) |
 | `phase38/` | Phase 38: do LP2's signals interact (isomorphs, S lag-5 x lag-6 overlap, echo-word lengths), pre-registered nulls |
 | `phase40_line_pointers.py`, `phase44/` | Phase 40: line:position pointers into LP's own lines; phase 44: keyless batch (doublet fine structure, digraph blocks, 512-bit hashes of held files, word-length alignment) |
@@ -28,6 +28,7 @@ Find a script by what it is for. Each one writes its output into `results/analys
 | `phase60_t3_lp1key.py` | Phase 60 T3: the solved LP1 plaintext (forwards, reversed, read twice round) as a table-invariant running key, stage 1 of the book-key rule, plant control |
 | `phase60_t6_blobs_r4.py` | Phase 60 T6: the megabyte Cicada OS files under R4, every offset of one window, chunked, with R4 plants as control |
 | `phase60_t7_xor.py`, `phase60_t7b_xor_classes.py` | Phase 60 T7: XOR-domain keys (three exact conventions): the abandoned unigram lag DP (control only) and the key-class coincidence screen run on the library, number / onion strings and the megabyte files |
+| `phase60_t8_r4.py`, `phase60_t8_xor.py`, `phase60_t8_mp3.py` | Phase 60 T8: DATA/560.13 under R4 (start region and sampled blocks) and under the XOR screen; MP3 frame-payload stripper for the audio streams |
 | `mech48/` | Phase 48: the A/I oracle (one-rune words -> A or I): calibration, re-scoring of kept hits, drift-aware screen design |
 | `phpmt/` | Rust: bit-exact seed sweeps for ten generators; `bg.py` boundary-free bigram score, `gpu.py` + `.cu` CUDA ports |
 | `walk/` | Rust: word-scoped solver and key-free D-search (`dsearch`) |
