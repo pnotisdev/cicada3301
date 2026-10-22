@@ -1590,3 +1590,15 @@ result = "No pair beyond the null: global max z 6.59 (P 0.55; 95th pct 7.94), wi
 gap = "Short pairs (0.7, 0.8, 0.12) and any reuse under drift are not testable by this statistic; affine-multiplied keys, partial reuse under 1,500 runes, a known-distribution likelihood not tried"
 log = ["work/log/phase62_shared_keys.md"]
 files = ["work/phase62_shared_keys.py", "results/analysis/phase62_shared_keys.txt"]
+
+[[experiment]]
+id = "change-points"
+group = "structure"
+title = "Does LP2's machine change settings along the book? (change points of the doublet, lag-6 and word-length rates per page; one R4 setting for 0.53% vs 0.77% doublets)"
+status = "partial"
+what = "Phase 63: 57 pages in book order; series in-word doublets, across-gap doublets, lag-6 hits against each page's shuffle expectation, mean word length; Poisson / Gaussian maximum likelihood with 0, 1, 2 change points (exact), null = page-order permutations (2,000) and R4 simulations at one fixed setting (500); group A (0.7-0.11) vs B (0.12-0.15) doublet rate against R4 at q 0.81"
+control = "Spliced R4 simulations (q 0.83 then 0.75 from 0.12): detection 0.14 (in-word doublets); permutation and R4 nulls as stated"
+result = "No significant change point in any series (smallest P 0.080 before correcting for the four series, 0.41 after; BIC 0 for lag-6 and word length). One R4 setting (q 0.81) gives A 0.58% and B 0.60%; LP2 B - A +0.24 points is 1.7 sd (P 0.052 one-sided, 0.106 two-sided); the lag-6 ratio does not move (A 1.85, B 1.76; P 0.79)"
+gap = "Power for a q shift of this size is only 0.14, so a change in the repair probability is neither found nor excluded; word-length excess only through the mean length; group split chosen after seeing the rates"
+log = ["work/log/phase63_change_points.md"]
+files = ["work/phase63_change_points.py", "results/analysis/phase63_change_points.txt"]

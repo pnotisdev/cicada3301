@@ -1,0 +1,33 @@
+# Phase 63: change points of LP2's machine settings along the book (2026-10-23). Nothing in LP2 is solved.
+57 pages (units) in book order; word-length variance 5.37
+
+## Per segment (LP2 observed; 10 is the caption)
+segment | pages | in-word doublets / pairs | gap doublets / pairs | lag-6 hits / expected | mean word length
+      7 |   3 | 2 / 571 (0.35%) | 2 / 157 | 6 / 2.7 | 4.614
+      8 |   5 | 4 / 890 (0.45%) | 2 / 254 | 6 / 3.7 | 4.490
+      9 |   7 | 7 / 1346 (0.52%) | 2 / 382 | 10 / 6.4 | 4.514
+     10 |   1 | 0 / 7 (0.00%) | 0 / 1 | 0 / 0.0 | 4.500
+     11 |   8 | 10 / 1459 (0.69%) | 0 / 434 | 13 / 6.1 | 4.354
+     12 |   4 | 9 / 797 (1.13%) | 2 / 223 | 5 / 3.4 | 4.558
+     13 |   7 | 8 / 1175 (0.68%) | 5 / 348 | 11 / 5.2 | 4.367
+     14 |   7 | 8 / 1234 (0.65%) | 4 / 354 | 9 / 5.3 | 4.476
+     15 |  15 | 15 / 2581 (0.58%) | 6 / 734 | 20 / 11.6 | 4.512
+positive control (q 0.83 before page 24, 0.75 after, 100 splices): in-word doublet L1 median 5.92, share above the R4-null 95th percentile (9.46): 0.14; located at page 24 +-3 in 0.28
+
+## Change-point statistics (2 x log-likelihood gain over one setting; change at t = between page t-1 and t; P = share of null replicates at least as large)
+series | L1 (t) | P perm | P R4 | L2 (s, t) | P perm | P R4 | BIC choice (0/1/2 change points)
+din   |   3.81 (20) | 0.641 | 0.517 |  10.63 (20, 29) | 0.464 | 0.339 | 1
+dgap  |   3.19 (25) | 0.638 | 0.685 |  12.61 (11, 25) | 0.080 | 0.138 | 2
+lag6  |   4.39 (55) | 0.335 | 0.395 |   6.90 (1, 55) | 0.790 | 0.800 | 0
+wlen  |   2.24 (10) | 0.845 | 0.928 |   7.44 (2, 4) | 0.751 | 0.918 | 0
+smallest P over 4 series x (1, 2 change points) = 0.0800; share of permutation replicates with a smaller-or-equal minimum (first 500): 0.411
+
+## One R4 setting for both doublet rates? (group A = 0.7, 0.8, 0.9, caption, 0.11; group B = 0.12-0.15)
+LP2: doublet rate A 0.527%  B 0.766%  (B - A = +0.238 points); lag-6 hits / expected A 1.851  B 1.760
+R4 (q 0.81, 500 sims): doublet rate A 0.582% (sd 0.101)  B 0.595% (sd 0.088); B - A mean +0.012, sd 0.138
+P(|B - A - R4 mean| >= LP2's) = 0.106; P(B - A >= LP2's) = 0.052
+lag-6 ratio B - A: LP2 -0.091; R4 mean +0.004 sd 0.384; P(two-sided) = 0.794
+equivalent repair probability (rate ~ 1 - q, anchored at q 0.81 -> R4 mean rate 0.588%): A q = 0.830, B q = 0.753
+correlation across R4 replicates of (B - A doublet rate) with (B - A lag-6 ratio): -0.03
+
+CPU time 44 s

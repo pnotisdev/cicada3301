@@ -31,6 +31,7 @@ Find a script by what it is for. Each one writes its output into `results/analys
 | `phase60_t8_r4.py`, `phase60_t8_xor.py`, `phase60_t8_mp3.py` | Phase 60 T8: DATA/560.13 under R4 (start region and sampled blocks) and under the XOR screen; MP3 frame-payload stripper for the audio streams |
 | `phase61_unrepair.py` | Phase 61: lag-6 detector D on the R4 simulator (precision / recall), un-repair and guided (hard / R4-aware) decoding on plants with the mid engine and an exact Python decoder |
 | `phase62_shared_keys.py` | Phase 62: shared keys between LP2 section pairs (same / sign-flipped / reversed), FFT chi2 over all offsets, max-statistic null, plants under plain / R4 / drifting-R4 keys |
+| `phase63_change_points.py` | Phase 63: change-point search (0-2) on per-page doublet / lag-6 / word-length series, permutation and R4 nulls, spliced-q control, one-R4-setting test of the 0.53% vs 0.77% doublet rates |
 | `mech48/` | Phase 48: the A/I oracle (one-rune words -> A or I): calibration, re-scoring of kept hits, drift-aware screen design |
 | `phpmt/` | Rust: bit-exact seed sweeps for ten generators; `bg.py` boundary-free bigram score, `gpu.py` + `.cu` CUDA ports |
 | `walk/` | Rust: word-scoped solver and key-free D-search (`dsearch`) |
