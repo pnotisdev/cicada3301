@@ -1614,3 +1614,15 @@ result = "LP2 differs from LP1: mean clause 77.5 vs 31.8 runes, 17.3 vs 7.9 word
 gap = "13 / 14 paragraphs give no power for clauses per paragraph; the authors' clause definition for LP1 unknown (odd prime-sum share 0.65, z +1.7, is test 4's topic); clause-end letters and layout-confounded marks not tested"
 log = ["work/log/phase64_clause_structure.md"]
 files = ["work/phase64_clause_structure.py", "results/analysis/phase64_clause_structure.txt"]
+
+[[experiment]]
+id = "prime-clause-score"
+group = "claims"
+title = "Prime clause sums as a language-free score: calibration on LP1, power at LP2's unit lengths, rescoring of recorded decodes"
+status = "partial"
+what = "Phase 65: share of units (runes between '.' / '&') whose Gematria prime-value sum is prime, in LP1's decrypted text at several unit levels against uniform-random, shuffled-LP1 and English-prose baselines; exact binomial / Poisson-binomial power at LP2's actual unit lengths (per section, per n300 window) with units needed for 80% power; rescoring of 1,820 recorded verify decodes (160 runes, section start)"
+control = "Uniform-random, shuffled-plaintext and prose baselines at identical unit lengths; matched random decodes through the same Latin spelling and parse for the rescoring"
+result = "LP1 clauses: 0.443 prime vs 0.14-0.15 baseline (P 0.0005); lost when clauses are merged to LP2's sentence size (0.121 vs 0.118). LP2 (167 units, b 0.129): power at alpha 1e-6 is 0.01-0.16 per section (0.57 for 0.15) if authored like LP1, 80% needs 56 units (p 0.44) / 165 (p 0.30); n300 windows hold 2.9 units, power 0; adds d' 1.6 to the IoC's d' 32. Rescoring: 18 of 1,399 multi-unit records all-prime vs 0.95% null (P about 0.12): nothing"
+gap = "Authoring at a level other than LP2's '.' units, effect of R4 nulls on a true decryption's sums, recorded decodes are 160 runes only; the R4-simulator check for the clause-final word statistic proposed, not run"
+log = ["work/log/phase65_prime_clause_score.md"]
+files = ["work/phase65_prime_clause_score.py", "results/analysis/phase65_prime_clause_score.txt"]

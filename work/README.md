@@ -33,6 +33,7 @@ Find a script by what it is for. Each one writes its output into `results/analys
 | `phase62_shared_keys.py` | Phase 62: shared keys between LP2 section pairs (same / sign-flipped / reversed), FFT chi2 over all offsets, max-statistic null, plants under plain / R4 / drifting-R4 keys |
 | `phase63_change_points.py` | Phase 63: change-point search (0-2) on per-page doublet / lag-6 / word-length series, permutation and R4 nulls, spliced-q control, one-R4-setting test of the 0.53% vs 0.77% doublet rates |
 | `phase64_clause_structure.py` | Phase 64: clause statistics of LP1 vs LP2 (permutation), against ordinary English in runes (two punctuation schemes), length parity / moduli |
+| `phase65_prime_clause_score.py` | Phase 65: prime-sum share of clause units (LP1 calibration, LP2 power, rescoring of recorded decodes), clause-final word check |
 | `mech48/` | Phase 48: the A/I oracle (one-rune words -> A or I): calibration, re-scoring of kept hits, drift-aware screen design |
 | `phpmt/` | Rust: bit-exact seed sweeps for ten generators; `bg.py` boundary-free bigram score, `gpu.py` + `.cu` CUDA ports |
 | `walk/` | Rust: word-scoped solver and key-free D-search (`dsearch`) |
