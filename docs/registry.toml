@@ -1578,3 +1578,15 @@ result = "D: precision 0.433, recall of all repairs 0.100 (T-valued repairs 1.0 
 gap = "A better detector (position, letter context), other repair forms, nulls inside the guided decoder, the whole-library null tail, skip5 / coin channels, the aware likelihood inside backward_mid.rs (+3-6 nats of separation, not built)"
 log = ["work/log/phase61_unrepair.md"]
 files = ["work/phase61_unrepair.py", "results/analysis/phase61_sim.txt", "results/analysis/phase61_plants.txt", "results/analysis/phase61_rust/", "results/analysis/phase61_py/"]
+
+[[experiment]]
+id = "shared-keys"
+group = "layout"
+title = "Do LP2 sections share keys? (same / sign-flipped / reversed key between section pairs, all offsets)"
+status = "partial"
+what = "Phase 62: chi2 z of the 29-bin histogram of c_A[i] -/+ c_B[i+d] (and B reversed) over every offset with overlap >= 100, all 28 pairs of 0.7, 0.8, 0.9, 0.11-0.15 x 4 relations, plus a windowed variant (300-rune blocks); null = whole LP2 shuffled within words (300 / 100 replicates, maximum over pairs, relations and offsets); 0.7 vs 0.11 first"
+control = "Planted English rune texts under one random key at LP2's lengths, models plain / R4-E / R4-P / independent keys, same thresholds; selftest with identical, negated and reversed copies"
+result = "No pair beyond the null: global max z 6.59 (P 0.55; 95th pct 7.94), windowed 6.94 (P 0.61); 0.7 vs 0.11 best 5.71 (P 0.997). Power is low: plain model 0.00-0.06 at 0.7-0.11, 0.56-0.69 at 0.14-0.15, 0.80 only at n >= 2,000 aligned runes; R4 with key by emitted rune 0.12-0.19, R4 with plaintext-indexed key (drift) 0; windowed 0"
+gap = "Short pairs (0.7, 0.8, 0.12) and any reuse under drift are not testable by this statistic; affine-multiplied keys, partial reuse under 1,500 runes, a known-distribution likelihood not tried"
+log = ["work/log/phase62_shared_keys.md"]
+files = ["work/phase62_shared_keys.py", "results/analysis/phase62_shared_keys.txt"]

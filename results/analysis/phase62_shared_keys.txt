@@ -1,0 +1,121 @@
+# Phase 62: shared keys between LP2 sections (2026-10-23). Nothing in LP2 is solved.
+sections: 0.7 n=729, 0.8 n=1145, 0.9 n=1729, 0.11 n=1894, 0.12 n=1021, 0.13 n=1524, 0.14 n=1589, 0.15 n=3316
+selftest ok (identical / negated / reversed copies are found at the right relation and offset)
+
+## LP2
+null: 300 replicates (window statistic: first 100) of LP2 shuffled within words; maximum over 28 pairs x 4 relations x offsets: full mean 6.80 sd 0.60 95th pct 7.94 99th 8.70; win mean 7.18 sd 0.59 95th pct 8.17 99th 9.31
+
+0.7 vs 0.11 first (the art link): full diff z 3.97 (d -391, overlap 338); full diff-rev z 4.50 (d 644, overlap 729); full sum z 5.71 (d 1154, overlap 729); full sum-rev z 3.92 (d -381, overlap 348); win diff z 4.64 (d 354, overlap 300); win diff-rev z 6.94 (d 1257, overlap 300); win sum z 4.69 (d 1452, overlap 300); win sum-rev z 5.49 (d 1203, overlap 300)
+
+Per pair: best z over offsets for each relation (full | win); P = share of null replicates whose GLOBAL maximum is at least this pair's value
+-- full
+0.7-0.11: diff= 3.97 diff-rev= 4.50 sum= 5.71 sum-rev= 3.92 | best sum d 1154 m 729 | P(global) 0.997
+0.7-0.8: diff= 4.23 diff-rev= 4.58 sum= 5.20 sum-rev= 4.41 | best sum d -428 m 301 | P(global) 1.000
+0.7-0.9: diff= 4.98 diff-rev= 4.44 sum= 3.82 sum-rev= 3.45 | best diff d 926 m 729 | P(global) 1.000
+0.7-0.12: diff= 4.37 diff-rev= 4.39 sum= 4.17 sum-rev= 5.52 | best sum-rev d 131 m 729 | P(global) 1.000
+0.7-0.13: diff= 4.58 diff-rev= 4.28 sum= 4.99 sum-rev= 4.62 | best sum d -385 m 344 | P(global) 1.000
+0.7-0.14: diff= 4.29 diff-rev= 4.27 sum= 3.68 sum-rev= 4.40 | best sum-rev d -480 m 249 | P(global) 1.000
+0.7-0.15: diff= 5.65 diff-rev= 4.28 sum= 5.82 sum-rev= 5.19 | best sum d 2447 m 729 | P(global) 0.993
+0.8-0.9: diff= 5.94 diff-rev= 5.21 sum= 4.69 sum-rev= 5.02 | best diff d 1323 m 406 | P(global) 0.983
+0.8-0.11: diff= 5.33 diff-rev= 5.06 sum= 4.75 sum-rev= 4.25 | best diff d 725 m 1145 | P(global) 1.000
+0.8-0.12: diff= 5.46 diff-rev= 4.04 sum= 4.31 sum-rev= 5.10 | best diff d -739 m 282 | P(global) 1.000
+0.8-0.13: diff= 4.57 diff-rev= 4.59 sum= 4.43 sum-rev= 5.16 | best sum-rev d 1204 m 320 | P(global) 1.000
+0.8-0.14: diff= 5.32 diff-rev= 4.54 sum= 4.68 sum-rev= 4.20 | best diff d -116 m 1029 | P(global) 1.000
+0.8-0.15: diff= 4.26 diff-rev= 4.99 sum= 6.59 sum-rev= 5.21 | best sum d 2059 m 1145 | P(global) 0.548
+0.9-0.11: diff= 4.55 diff-rev= 4.44 sum= 4.04 sum-rev= 6.17 | best sum-rev d 936 m 958 | P(global) 0.890
+0.9-0.12: diff= 4.77 diff-rev= 4.26 sum= 4.12 sum-rev= 4.36 | best diff d -268 m 753 | P(global) 1.000
+0.9-0.13: diff= 4.92 diff-rev= 4.18 sum= 3.73 sum-rev= 4.97 | best sum-rev d 585 m 1144 | P(global) 1.000
+0.9-0.14: diff= 4.34 diff-rev= 5.16 sum= 5.36 sum-rev= 5.17 | best sum d 1 m 1589 | P(global) 1.000
+0.9-0.15: diff= 4.02 diff-rev= 4.52 sum= 4.62 sum-rev= 4.35 | best sum d 1393 m 1729 | P(global) 1.000
+0.11-0.12: diff= 4.04 diff-rev= 4.10 sum= 4.99 sum-rev= 4.89 | best sum d 310 m 1021 | P(global) 1.000
+0.11-0.13: diff= 4.14 diff-rev= 4.54 sum= 5.25 sum-rev= 3.99 | best sum d 144 m 1524 | P(global) 1.000
+0.11-0.14: diff= 4.49 diff-rev= 4.61 sum= 4.22 sum-rev= 4.34 | best diff-rev d -380 m 1209 | P(global) 1.000
+0.11-0.15: diff= 4.81 diff-rev= 4.66 sum= 4.59 sum-rev= 4.87 | best sum-rev d -1191 m 703 | P(global) 1.000
+0.12-0.13: diff= 4.94 diff-rev= 4.82 sum= 5.32 sum-rev= 5.77 | best sum-rev d -133 m 888 | P(global) 0.997
+0.12-0.14: diff= 3.88 diff-rev= 5.20 sum= 4.35 sum-rev= 5.35 | best sum-rev d 74 m 1021 | P(global) 1.000
+0.12-0.15: diff= 4.62 diff-rev= 4.59 sum= 4.97 sum-rev= 4.63 | best sum d -299 m 722 | P(global) 1.000
+0.13-0.14: diff= 5.12 diff-rev= 5.40 sum= 3.95 sum-rev= 5.99 | best sum-rev d 102 m 1487 | P(global) 0.970
+0.13-0.15: diff= 4.54 diff-rev= 5.14 sum= 5.93 sum-rev= 4.25 | best sum d -1034 m 490 | P(global) 0.987
+0.14-0.15: diff= 4.54 diff-rev= 4.92 sum= 4.76 sum-rev= 4.56 | best diff-rev d 1347 m 1589 | P(global) 1.000
+-- win
+0.7-0.11: diff= 4.64 diff-rev= 6.94 sum= 4.69 sum-rev= 5.49 | best diff-rev d 1257 m 300 | P(global) 0.614
+0.7-0.8: diff= 3.99 diff-rev= 5.18 sum= 3.73 sum-rev= 3.96 | best diff-rev d 346 m 300 | P(global) 1.000
+0.7-0.9: diff= 4.64 diff-rev= 4.20 sum= 4.58 sum-rev= 4.51 | best diff d 492 m 300 | P(global) 1.000
+0.7-0.12: diff= 4.09 diff-rev= 4.04 sum= 4.17 sum-rev= 5.02 | best sum-rev d 485 m 300 | P(global) 1.000
+0.7-0.13: diff= 4.27 diff-rev= 4.40 sum= 3.94 sum-rev= 5.15 | best sum-rev d 308 m 300 | P(global) 1.000
+0.7-0.14: diff= 4.51 diff-rev= 4.66 sum= 4.66 sum-rev= 3.94 | best sum d 1462 m 300 | P(global) 1.000
+0.7-0.15: diff= 4.04 diff-rev= 4.48 sum= 5.39 sum-rev= 4.97 | best sum d 340 m 300 | P(global) 1.000
+0.8-0.9: diff= 4.30 diff-rev= 4.74 sum= 4.09 sum-rev= 4.30 | best diff-rev d 485 m 300 | P(global) 1.000
+0.8-0.11: diff= 6.60 diff-rev= 5.49 sum= 5.44 sum-rev= 4.95 | best diff d 159 m 300 | P(global) 0.901
+0.8-0.12: diff= 5.77 diff-rev= 4.02 sum= 4.79 sum-rev= 5.26 | best diff d 540 m 300 | P(global) 1.000
+0.8-0.13: diff= 5.41 diff-rev= 4.43 sum= 5.08 sum-rev= 5.02 | best diff d 1239 m 300 | P(global) 1.000
+0.8-0.14: diff= 5.28 diff-rev= 5.10 sum= 5.00 sum-rev= 4.79 | best diff d 484 m 300 | P(global) 1.000
+0.8-0.15: diff= 5.15 diff-rev= 4.53 sum= 4.48 sum-rev= 5.44 | best sum-rev d 2424 m 300 | P(global) 1.000
+0.9-0.11: diff= 4.87 diff-rev= 5.05 sum= 4.64 sum-rev= 4.51 | best diff-rev d 2780 m 300 | P(global) 1.000
+0.9-0.12: diff= 4.27 diff-rev= 4.40 sum= 5.10 sum-rev= 4.79 | best sum d 936 m 300 | P(global) 1.000
+0.9-0.13: diff= 4.30 diff-rev= 5.33 sum= 4.84 sum-rev= 6.11 | best sum-rev d 2585 m 300 | P(global) 1.000
+0.9-0.14: diff= 5.02 diff-rev= 4.61 sum= 4.87 sum-rev= 5.41 | best sum-rev d 1594 m 300 | P(global) 1.000
+0.9-0.15: diff= 5.64 diff-rev= 5.28 sum= 5.59 sum-rev= 6.03 | best sum-rev d 2815 m 300 | P(global) 1.000
+0.11-0.12: diff= 4.48 diff-rev= 5.15 sum= 5.02 sum-rev= 4.40 | best diff-rev d 943 m 300 | P(global) 1.000
+0.11-0.13: diff= 4.82 diff-rev= 5.49 sum= 4.79 sum-rev= 4.48 | best diff-rev d 956 m 300 | P(global) 1.000
+0.11-0.14: diff= 4.61 diff-rev= 4.48 sum= 4.87 sum-rev= 5.51 | best sum-rev d 1089 m 300 | P(global) 1.000
+0.11-0.15: diff= 5.28 diff-rev= 5.23 sum= 5.67 sum-rev= 5.00 | best sum d 3057 m 300 | P(global) 1.000
+0.12-0.13: diff= 4.87 diff-rev= 4.51 sum= 4.84 sum-rev= 4.64 | best diff d 1312 m 300 | P(global) 1.000
+0.12-0.14: diff= 5.08 diff-rev= 5.28 sum= 4.66 sum-rev= 4.92 | best diff-rev d 362 m 300 | P(global) 1.000
+0.12-0.15: diff= 5.46 diff-rev= 4.95 sum= 6.39 sum-rev= 4.46 | best sum d 2849 m 300 | P(global) 0.990
+0.13-0.14: diff= 4.22 diff-rev= 4.92 sum= 4.33 sum-rev= 4.95 | best sum-rev d 42 m 300 | P(global) 1.000
+0.13-0.15: diff= 5.64 diff-rev= 4.92 sum= 5.64 sum-rev= 5.95 | best sum-rev d 1420 m 300 | P(global) 1.000
+0.14-0.15: diff= 6.06 diff-rev= 5.20 sum= 5.41 sum-rev= 4.74 | best diff d 3871 m 300 | P(global) 1.000
+
+GLOBAL: full max z 6.59 (P 0.548), win max z 6.94 (P 0.614)
+
+## Power (positive control): English rune texts under one random key, same test, thresholds = null 95th percentile of the global maximum
+pair (lengths)         model  planted relation | detected full / win (thresholds 7.9 / 8.2) | median z full / win | right relation
+0.7-0.11 (729,1894)    plain  diff      |  0.06 /  0.00 |     5.3 /    5.5 | 0.44
+0.7-0.11 (729,1894)    plain  sum       |  0.00 /  0.00 |     5.3 /    5.8 | 0.44
+0.7-0.11 (729,1894)    plain  diff-rev  |  0.00 /  0.00 |     5.2 /    5.1 | 0.19
+0.7-0.11 (729,1894)    plain  sum-rev   |  0.00 /  0.00 |     5.1 /    5.3 | 0.25
+0.7-0.11 (729,1894)    R4-E   diff      |  0.00 /  0.00 |     5.4 /    5.1 | 0.25
+0.7-0.11 (729,1894)    R4-E   sum       |  0.00 /  0.00 |     5.0 /    5.2 | 0.19
+0.7-0.11 (729,1894)    R4-E   diff-rev  |  0.00 /  0.00 |     5.3 /    5.2 | 0.06
+0.7-0.11 (729,1894)    R4-E   sum-rev   |  0.00 /  0.00 |     5.2 /    5.2 | 0.50
+0.7-0.11 (729,1894)    R4-P   diff      |  0.00 /  0.00 |     5.2 /    5.5 | 0.25
+0.7-0.11 (729,1894)    R4-P   sum       |  0.00 /  0.00 |     5.2 /    5.4 | 0.06
+0.7-0.11 (729,1894)    R4-P   diff-rev  |  0.00 /  0.00 |     5.3 /    5.4 | 0.31
+0.7-0.11 (729,1894)    R4-P   sum-rev   |  0.00 /  0.00 |     5.5 /    5.4 | 0.31
+0.7-0.11 (729,1894)    indep  diff      |  0.00 /  0.00 |     5.2 /    5.2 | 0.50
+0.8-0.12 (1145,1021)   plain  diff      |  0.31 /  0.00 |     6.2 /    5.4 | 0.62
+0.8-0.12 (1145,1021)   plain  sum       |  0.19 /  0.00 |     6.2 /    5.4 | 0.69
+0.8-0.12 (1145,1021)   plain  diff-rev  |  0.06 /  0.00 |     5.0 /    5.0 | 0.31
+0.8-0.12 (1145,1021)   plain  sum-rev   |  0.00 /  0.00 |     5.0 /    5.3 | 0.12
+0.8-0.12 (1145,1021)   R4-E   diff      |  0.00 /  0.00 |     5.2 /    5.2 | 0.31
+0.8-0.12 (1145,1021)   R4-E   sum       |  0.00 /  0.00 |     5.3 /    5.2 | 0.44
+0.8-0.12 (1145,1021)   R4-E   diff-rev  |  0.00 /  0.00 |     5.1 /    5.1 | 0.38
+0.8-0.12 (1145,1021)   R4-E   sum-rev   |  0.00 /  0.00 |     5.6 /    5.2 | 0.31
+0.8-0.12 (1145,1021)   R4-P   diff      |  0.00 /  0.00 |     4.9 /    5.1 | 0.44
+0.8-0.12 (1145,1021)   R4-P   sum       |  0.00 /  0.00 |     4.9 /    5.4 | 0.31
+0.8-0.12 (1145,1021)   R4-P   diff-rev  |  0.00 /  0.00 |     5.0 /    5.1 | 0.19
+0.8-0.12 (1145,1021)   R4-P   sum-rev   |  0.00 /  0.00 |     5.1 /    5.2 | 0.38
+0.8-0.12 (1145,1021)   indep  diff      |  0.00 /  0.00 |     4.9 /    5.6 | 0.44
+0.14-0.15 (1589,3316)  plain  diff      |  0.56 /  0.00 |     8.5 /    5.8 | 0.94
+0.14-0.15 (1589,3316)  plain  sum       |  0.69 /  0.00 |     8.8 /    6.1 | 1.00
+0.14-0.15 (1589,3316)  plain  diff-rev  |  0.00 /  0.00 |     5.4 /    5.9 | 0.12
+0.14-0.15 (1589,3316)  plain  sum-rev   |  0.00 /  0.00 |     5.1 /    5.9 | 0.31
+0.14-0.15 (1589,3316)  R4-E   diff      |  0.19 /  0.00 |     6.3 /    6.2 | 0.56
+0.14-0.15 (1589,3316)  R4-E   sum       |  0.12 /  0.00 |     5.5 /    5.9 | 0.75
+0.14-0.15 (1589,3316)  R4-E   diff-rev  |  0.00 /  0.00 |     5.5 /    6.1 | 0.31
+0.14-0.15 (1589,3316)  R4-E   sum-rev   |  0.00 /  0.00 |     5.5 /    5.9 | 0.25
+0.14-0.15 (1589,3316)  R4-P   diff      |  0.00 /  0.06 |     5.1 /    5.7 | 0.19
+0.14-0.15 (1589,3316)  R4-P   sum       |  0.00 /  0.00 |     5.3 /    6.0 | 0.12
+0.14-0.15 (1589,3316)  R4-P   diff-rev  |  0.00 /  0.00 |     5.5 /    5.9 | 0.44
+0.14-0.15 (1589,3316)  R4-P   sum-rev   |  0.00 /  0.00 |     5.7 /    6.1 | 0.19
+0.14-0.15 (1589,3316)  indep  diff      |  0.00 /  0.00 |     5.2 /    6.3 | 0.12
+
+Plain model, planted diff / sum relation, equal lengths n (full statistic only): detection against the null 95th percentile of the global maximum
+n = 500: diff 0.00 (median z 4.6); sum 0.00 (median z 4.8)
+n = 1000: diff 0.12 (median z 5.3); sum 0.05 (median z 5.4)
+n = 1500: diff 0.38 (median z 7.4); sum 0.55 (median z 8.3)
+n = 2000: diff 0.80 (median z 10.2); sum 0.82 (median z 11.3)
+n = 3000: diff 1.00 (median z 17.9); sum 1.00 (median z 18.3)
+
+CPU time 1276 s

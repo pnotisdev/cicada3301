@@ -139,6 +139,7 @@
 | Transposition | partial |  | [page_seams_2026-10-17.txt](analysis/page_seams_2026-10-17.txt) |
 | Key that starts mid-page: windows of 300 runes at staggered positions across the book | excluded | 1.332 (null 1.318) | [staggered.tsv](kscreen/staggered.tsv), [staggered_null.tsv](kscreen/staggered_null.tsv), [staggered_windows.py](../work/tmp/staggered_windows.py), [stag_plant_screen.tsv](../work/tmp/stag_plant_screen.tsv) |
 | Key restart or jump at every clause mark: library scan of clause-aligned windows (61-559 runes), likelihood score | excluded |  | [summary_clause.txt](chanscreen/summary_clause.txt), [PROTOCOL.md](../work/chanscreen/v2/step3/PROTOCOL.md) |
+| Do LP2 sections share keys? (same / sign-flipped / reversed key between section pairs, all offsets) | partial |  | [phase62_shared_keys.py](../work/phase62_shared_keys.py), [phase62_shared_keys.txt](analysis/phase62_shared_keys.txt) |
 
 ### Cribs, puzzle furniture and outside claims
 

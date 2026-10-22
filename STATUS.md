@@ -9,7 +9,7 @@
 | | |
 |---|---|
 | Excluded | 56 |
-| Partly excluded | 27 |
+| Partly excluded | 28 |
 | Cannot be tested at LP2's effect size | 3 |
 | Open (not run or partly run) | 9 |
 | Explained puzzle furniture | 3 |
@@ -139,6 +139,7 @@ No long runs are queued; `docs/QUEUE.md` explains how to restart the queues.
 | **Transposition** *(partly)* |  |  | Transposition AFTER encryption excluded (exact for the seams) | Transposition before encryption is undetectable |
 | **Key that starts mid-page: windows of 300 runes at staggered positions across the book** | 1.332 (null 1.318) | Planted control on the same engine: a library key planted at a staggered-style window recovered at IoC 1.6779 at the exact offset (work/tmp/stag_plant_screen.tsv); rand:300:300 null on the same 31 windows: best 1.3184 | 792,182,494 decodes in 19 min (16 threads): best IoC 1.3320, only 0.014 above the null maximum (verification needs +0.15) and far below the 1.40 rule; 0 hits. A continuous key is already covered by the exhaustive offset sweeps; only a key starting mid-page was open, and it is now excluded for the library | A key outside the library starting mid-page |
 | **Key restart or jump at every clause mark: library scan of clause-aligned windows (61-559 runes), likelihood score** |  | E4 prefix plants of the same engine: 194 of 200 detected at 60 runes, 200 of 200 from 80 runes; the recomputation check reproduces 137 of 137 real library-keyed cells (null set) and rejects both false cells that occurred | 0 tier-1 cells in the 82 clause windows (61-559 runes) against 1,439 streams, both signs, four channels, every offset (best S_guard 7.5 hold, 6.8 spend, 5.5 skip5, -2.0 coin; 9 cells above 5, none above 10). One false 335 nats cell (spend, sha512-ctr reject :welcome) did not reproduce and its task was re-run; five tasks that raised an error were re-run clean | Clauses under 61 runes; a restart that is not at a clause mark; streams outside the library; q other than 0.81; plaintexts that are not English-like; a fault that hides a real hit (about 1e-5 per call) |
+| **Do LP2 sections share keys? (same / sign-flipped / reversed key between section pairs, all offsets)** *(partly)* |  | Planted English rune texts under one random key at LP2's lengths, models plain / R4-E / R4-P / independent keys, same thresholds; selftest with identical, negated and reversed copies | No pair beyond the null: global max z 6.59 (P 0.55; 95th pct 7.94), windowed 6.94 (P 0.61); 0.7 vs 0.11 best 5.71 (P 0.997). Power is low: plain model 0.00-0.06 at 0.7-0.11, 0.56-0.69 at 0.14-0.15, 0.80 only at n >= 2,000 aligned runes; R4 with key by emitted rune 0.12-0.19, R4 with plaintext-indexed key (drift) 0; windowed 0 | Short pairs (0.7, 0.8, 0.12) and any reuse under drift are not testable by this statistic; affine-multiplied keys, partial reuse under 1,500 runes, a known-distribution likelihood not tried |
 
 ### Cribs, puzzle furniture and outside claims
 
