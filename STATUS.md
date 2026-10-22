@@ -13,7 +13,7 @@
 | Cannot be tested at LP2's effect size | 3 |
 | Open (not run or partly run) | 9 |
 | Explained puzzle furniture | 3 |
-| Observed in LP2 | 20 |
+| Observed in LP2 | 21 |
 | Candidates that survived whole-section verification | **0** |
 
 Decision rule for the IoC screens: 1.40 on a 300-rune window; planted keys score 1.6-2.06, random keys top out near 1.37 at 10^10 decodes. A hit counts only after whole-section verification with a positive and a null control (docs/CAMPAIGNS.md).
@@ -204,6 +204,7 @@ No long runs are queued; `docs/QUEUE.md` explains how to restart the queues.
 | **Dissection of the lag-5 S,S echo: is S a marker or filler rune?** | 11 sites reproduce; P 0.021 over 203 cuts against the across-word null (P < 0.0001 against the within-word null); S has no favoured position (chi2 p 0.70) or length (p 0.48), site words are as long as lag-5 windows predict (8.8 vs 8.6), neighbours are not fixed, S share 3.35% vs 5.36% in the solved text. No insertion rule follows; a marker/filler S is not supported *(Solved pages 0-6: 1 S,S pair at lag 5 (null 0.63, p 0.49); the control shows lag-5 E and F/U position and length effects of its own, so it is clean for S at lag 5 only)* |
 | **Where does the within-word lag-6 relation c' = 24 - 2c live?** | Sites reproduce (80 vs 45.7 +/- 6.5, z +5.3); all word positions 0-4 elevated 1.5-4x (no fixed slot); 7-rune words show none (8 vs 8.0) while 8-9-rune words show 2x (p 0.003, 0.0002); no dominant c; c[i+5] = c' absent; no doublet-window excess; no neighbour cut survives the correction *(Within-word shuffle null (word lengths kept) and the solved sections 0.0-0.6 as negative control (11 hits vs 7.5, z +1.4))* |
 | **One command that recomputes the numbers of docs/FINDINGS.md section 1 (PASS / FAIL)** | All claims reproduce within tolerance except one wording error, fixed 2026-10-22: the doublet rate is 0.66% of all adjacent pairs (86 of 12,947), 0.63% is the in-word rate. Phase 54 vs 57 per-section lag-6 statistics (28.75 vs 1.4) both reproduce and differ only in their expectation (section-composition shuffle mean vs equal rate per site) *(Each line carries a tolerance for its null-draw count; the underlying phases keep their own planted controls)* |
+| **Is LP2's clause structure authored like LP1's? (clause length, words per clause, one-word clauses, clause-end word length, parity and moduli of lengths; against ordinary English in runes)** | LP2 differs from LP1: mean clause 77.5 vs 31.8 runes, 17.3 vs 7.9 words (P 0.0002, Holm 0.0018); LP2's length matches prose SENTENCES (z -0.3), LP1's matches comma-sized clauses. Clause-final word minus mean word: LP1 +1.49, prose +1.2 to +1.4, LP2 -0.25 (z -3.7 / -6.6 against prose). No length trace of prime sums: odd counts LP1 0.56, LP2 0.49; LP2 length mod 5 chi2 P 0.011 (0.07 corrected) *(Prose windows are the reference distribution (z, percentile); permutation null for LP1 vs LP2; Monte Carlo chi2 for the moduli)* |
 
 ## Where things are
 

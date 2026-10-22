@@ -1,0 +1,50 @@
+# Phase 64: clause structure of LP2 against LP1 and ordinary English (2026-10-23). Nothing in LP2 is solved.
+Clause marks counted: '.' and '&' (paragraph end); '%' and line breaks are not marks; numerals cut words only.
+LP1 (segments 0-6): 88 clauses, 13 paragraphs, 2797 runes; LP2 (7-9, 11-15): 167 clauses, 14 paragraphs, 12947 runes
+
+## LP1 vs LP2 (permutation of pooled clauses, two-sided, 5000 permutations; Holm over the 8 statistics + KS of clause length)
+  mean clause runes              LP1   31.784  LP2   77.527  P 0.0002  Holm 0.0018
+  CV clause runes                LP1    0.675  LP2    0.948  P 0.1900  Holm 0.3947
+  mean words / clause            LP1    7.886  LP2   17.329  P 0.0002  Holm 0.0018
+  share 1-word clauses           LP1    0.057  LP2    0.012  P 0.0524  Holm 0.2096
+  clauses / paragraph            LP1    6.769  LP2   11.929  P 0.1316  Holm 0.3947
+  last word - mean word (runes)  LP1    1.492  LP2   -0.252  P 0.0002  Holm 0.0018
+  share odd rune count           LP1    0.557  LP2    0.485  P 0.2849  Holm 0.3947
+  median clause runes            LP1   26.000  LP2   57.000  P 0.0002  Holm 0.0018
+  KS clause length               D 0.380  P 0.0002  Holm 0.0018
+  share of clause marks directly before a line / page break: LP1 0.284, LP2 0.186 (line breaks per word space: LP1 0.239)
+  bootstrap 95% intervals (clauses resampled): mean clause runes LP1 [27.5, 36.3], LP2 [67.3, 90.0]
+  clause lengths (runes) LP1: 6 22 25 15 12 17 23 25 25 14 7 48 61 99 36 56 39 48 6 22 22 21 20 30 10 17 24 23 7 76 5 33 24 42 28 42 41 44 41 29 27 29 32 47 77 33 29 22 59 56 12 26 16 62 10 65 34 73 24 11 37 47 15 25 9 75 36 91 10 13 31 31 12 15 13 5 31 35 74 69 77 28 12 13 26 14 17 7
+  clause length histogram LP2 (bins 1-9, 10-19, ..., 100+): [12, 20, 19, 10, 14, 10, 10, 5, 8, 7, 52]
+  clause length histogram LP1 (same bins):                [8, 20, 23, 13, 9, 3, 4, 6, 0, 2, 0]
+
+## Ordinary English prose in runes (phase 22/25 corpora): windows of LP1's and LP2's rune count; z and percentile of LP1 / LP2 among the windows
+scheme 'sentence': prose windows 300 x 2797 runes (mean clauses 39) and 300 x 12947 runes
+  statistic                        prose(LP1-size) mean+-sd   LP1 z   pct |   prose(LP2-size) mean+-sd   LP2 z   pct
+  mean clause runes                  89.430 +-  40.816    -1.4     5 |     88.883 +-  32.905    -0.3    36
+  CV clause runes                     0.778 +-   0.236    -0.4    39 |      0.821 +-   0.213    +0.6    70
+  mean words / clause                21.591 +-   9.421    -1.5     6 |     21.563 +-   7.485    -0.6    26
+  share 1-word clauses                0.070 +-   0.090    -0.1    60 |      0.063 +-   0.072    -0.7    29
+  clauses / paragraph                 4.689 +-   3.608    +0.6    76 |      4.653 +-   2.849    +2.6    99
+  last word - mean word (runes)       1.239 +-   0.586    +0.4    65 |      1.341 +-   0.434    -3.7     0
+  share odd rune count                0.495 +-   0.089    +0.7    78 |      0.502 +-   0.043    -0.4    34
+  median clause runes                72.047 +-  35.958    -1.3     7 |     70.822 +-  30.300    -0.5    31
+scheme 'clause': prose windows 300 x 2797 runes (mean clauses 114) and 300 x 12947 runes
+  statistic                        prose(LP1-size) mean+-sd   LP1 z   pct |   prose(LP2-size) mean+-sd   LP2 z   pct
+  mean clause runes                  28.345 +-   7.500    +0.5    70 |     29.389 +-   6.112    +7.9   100
+  CV clause runes                     0.704 +-   0.129    -0.2    50 |      0.696 +-   0.096    +2.6    99
+  mean words / clause                 6.802 +-   1.704    +0.6    75 |      7.137 +-   1.364    +7.5   100
+  share 1-word clauses                0.125 +-   0.106    -0.6    21 |      0.102 +-   0.073    -1.2     0
+  clauses / paragraph                14.043 +-  12.056    -0.6    38 |     15.239 +-   9.649    -0.3    40
+  last word - mean word (runes)       1.342 +-   0.363    +0.4    68 |      1.421 +-   0.252    -6.6     0
+  share odd rune count                0.514 +-   0.049    +0.9    82 |      0.506 +-   0.025    -0.8    20
+  median clause runes                24.055 +-   6.914    +0.3    62 |     25.192 +-   5.415    +5.9   100
+
+## Trace of prime-sum authoring in clause lengths (step 3)
+LP1 decrypted: 88 clauses, prime-value sum odd in 57 (0.65), prime in 39 (0.44)
+prose windows (sentence marks, LP1 size): share of clauses with odd prime-value sum 0.50 +- 0.08; LP1 0.65 -> z +1.7
+clause rune count odd: LP1 0.56 (n 88), LP2 0.49 (n 167); binomial P(LP2 vs 0.5, two-sided) = 0.757
+  LP1 clause length mod 2: [39, 49] chi2 1.1 P 0.340; mod 3: [28, 29, 31] chi2 0.2 P 0.941; mod 5: [17, 19, 24, 12, 16] chi2 4.4 P 0.364  (3 moduli: Bonferroni x3)
+  LP2 clause length mod 2: [86, 81] chi2 0.1 P 0.760; mod 3: [53, 55, 59] chi2 0.3 P 0.859; mod 5: [23, 49, 25, 37, 33] chi2 13.0 P 0.011  (3 moduli: Bonferroni x3)
+
+CPU time 30 s

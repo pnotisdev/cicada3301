@@ -128,6 +128,7 @@
 | Phase 60 T6: the megabyte Cicada OS files (560.17, _560.00) as keys under R4, every offset of the first n300 window of 0.7 | partial |  | [phase60_t6_blobs_r4.py](../work/phase60_t6_blobs_r4.py), [phase60_t6_blobs_r4.txt](analysis/phase60_t6_blobs_r4.txt), [phase60_t6](chanscreen/phase60_t6) |
 | Can the lag-6 sites (c_i = 24 - 2 c_(i-6)) be used to undo collision repairs, giving the decoders a cleaner ciphertext or known repair positions? | excluded |  | [phase61_unrepair.py](../work/phase61_unrepair.py), [phase61_sim.txt](analysis/phase61_sim.txt), [phase61_plants.txt](analysis/phase61_plants.txt), [phase61_rust](analysis/phase61_rust), [phase61_py](analysis/phase61_py) |
 | Does LP2's machine change settings along the book? (change points of the doublet, lag-6 and word-length rates per page; one R4 setting for 0.53% vs 0.77% doublets) | partial |  | [phase63_change_points.py](../work/phase63_change_points.py), [phase63_change_points.txt](analysis/phase63_change_points.txt) |
+| Is LP2's clause structure authored like LP1's? (clause length, words per clause, one-word clauses, clause-end word length, parity and moduli of lengths; against ordinary English in runes) | observed |  | [phase64_clause_structure.py](../work/phase64_clause_structure.py), [phase64_clause_structure.txt](analysis/phase64_clause_structure.txt) |
 
 ### Restarts, reuse and layout
 

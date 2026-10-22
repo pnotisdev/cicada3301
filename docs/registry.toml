@@ -1602,3 +1602,15 @@ result = "No significant change point in any series (smallest P 0.080 before cor
 gap = "Power for a q shift of this size is only 0.14, so a change in the repair probability is neither found nor excluded; word-length excess only through the mean length; group split chosen after seeing the rates"
 log = ["work/log/phase63_change_points.md"]
 files = ["work/phase63_change_points.py", "results/analysis/phase63_change_points.txt"]
+
+[[experiment]]
+id = "clause-structure"
+group = "structure"
+title = "Is LP2's clause structure authored like LP1's? (clause length, words per clause, one-word clauses, clause-end word length, parity and moduli of lengths; against ordinary English in runes)"
+status = "observed"
+what = "Phase 64: clauses cut at '.' and '&' (LP1 = segments 0-6, 88 clauses; LP2 = 7-9, 11-15, 167 clauses); LP1 vs LP2 by permutation of pooled clauses (5,000, Holm over 9 tests); 300 windows of LP1's / LP2's rune count from the phase 22/25 corpora in runes under two punctuation schemes (sentence, clause); prime-value sums of LP1's clauses; lengths mod 2, 3, 5"
+control = "Prose windows are the reference distribution (z, percentile); permutation null for LP1 vs LP2; Monte Carlo chi2 for the moduli"
+result = "LP2 differs from LP1: mean clause 77.5 vs 31.8 runes, 17.3 vs 7.9 words (P 0.0002, Holm 0.0018); LP2's length matches prose SENTENCES (z -0.3), LP1's matches comma-sized clauses. Clause-final word minus mean word: LP1 +1.49, prose +1.2 to +1.4, LP2 -0.25 (z -3.7 / -6.6 against prose). No length trace of prime sums: odd counts LP1 0.56, LP2 0.49; LP2 length mod 5 chi2 P 0.011 (0.07 corrected)"
+gap = "13 / 14 paragraphs give no power for clauses per paragraph; the authors' clause definition for LP1 unknown (odd prime-sum share 0.65, z +1.7, is test 4's topic); clause-end letters and layout-confounded marks not tested"
+log = ["work/log/phase64_clause_structure.md"]
+files = ["work/phase64_clause_structure.py", "results/analysis/phase64_clause_structure.txt"]
