@@ -1410,3 +1410,15 @@ result = "31 structured number families exceed their shuffle maxima (arithmetic 
 gap = "Keys outside the library, key distances outside 5,700-6,500, plain no-skip decode (verify.py not run); constraint for future screens: k[a..a+5] = k[b..b+5] at the copies' key positions"
 log = ["work/log/phase58_djubei_reuse.md"]
 files = ["work/phase58_djubei_reuse.py", "results/analysis/phase58_djubei_reuse.txt"]
+
+[[experiment]]
+id = "keywords-r4"
+group = "structure"
+title = "Is LP2 a short repeated keyword (Cicada's solved-page key type) under R4 (collision repair + one null per word)?"
+status = "partial"
+what = "Phase 59: 1,940 periodic keywords (solved pages, 2014 messages, spelling variants, length 3-30) and the phi(prime) stream, chanscreen v2 mid-word arc, hold/spend (phi: also skip5/coin), both signs, every phase, all 48 n300 windows of 0.7-0.15"
+control = "44 R4 plants with a keyword key (12 with sign -1) all recovered (113.8+ nats, T300 29.8); wrong keywords max 25.4, random keywords -45.8, iid-key plant -93.5"
+result = "max S_guard -63.96 (keywords) and -62.46 (phi); 0 cells >= 20"
+gap = "Keywords outside the set, coin/skip5 for keywords, the literal-F variant, two-layer keys, other insertion rules, section 0.10"
+log = ["work/log/phase59_keywords_r4.md"]
+files = ["work/phase59_keywords_r4.py", "results/analysis/phase59_keywords_r4.txt"]

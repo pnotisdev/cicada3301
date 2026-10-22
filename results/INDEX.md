@@ -116,6 +116,7 @@
 | Which word-level rule gives the lag-6 length profile? | partial |  | [phase56_lag6_length_rules.py](../work/phase56_lag6_length_rules.py), [phase56_lag6_length_rules.txt](analysis/phase56_lag6_length_rules.txt) |
 | One encryption rule for all of LP2's anomalies at once? | partial |  | [phase57_mechanism.py](../work/phase57_mechanism.py), [phase57_pilot.py](../work/phase57_pilot.py), [phase57_mechanism.txt](analysis/phase57_mechanism.txt), [phase57_pilot.txt](analysis/phase57_pilot.txt), [phase57_plants](chanscreen/phase57_plants), [phase57_lp_pilot](chanscreen/phase57_lp_pilot) |
 | Is DJU BEI two encryptions of one plaintext under a repeated key run? (library streams, equal 6-runs at key distance 5,700-6,500) | partial |  | [phase58_djubei_reuse.py](../work/phase58_djubei_reuse.py), [phase58_djubei_reuse.txt](analysis/phase58_djubei_reuse.txt) |
+| Is LP2 a short repeated keyword (Cicada's solved-page key type) under R4 (collision repair + one null per word)? | partial |  | [phase59_keywords_r4.py](../work/phase59_keywords_r4.py), [phase59_keywords_r4.txt](analysis/phase59_keywords_r4.txt) |
 
 ### Restarts, reuse and layout
 

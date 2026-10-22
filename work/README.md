@@ -19,6 +19,7 @@ Find a script by what it is for. Each one writes its output into `results/analys
 | `phase57_mechanism.py` | Phase 57: nine encryption rules (repair, T-repair, null on collision, per-word / per-rune / end nulls, F rule) scored on all LP2 anomalies at once |
 | `phase57_pilot.py` | Phase 57: R4 planted control and one-window LP2 pilot (0.15 @ 0, n 150) of the chanscreen v2 mid-word arc |
 | `phase58_djubei_reuse.py` | Phase 58: equal 6-runs at key distance 5,700-6,500 in every library stream (DJU BEI as reused key), shuffle null, planted control |
+| `phase59_keywords_r4.py` | Phase 59: 1,940 solved-text keywords (and phi(prime)) as periodic keys through the R4 mid-word arc on all 48 n300 LP2 windows, R4 keyword plants as control |
 | `mech48/` | Phase 48: the A/I oracle (one-rune words -> A or I): calibration, re-scoring of kept hits, drift-aware screen design |
 | `phpmt/` | Rust: bit-exact seed sweeps for ten generators; `bg.py` boundary-free bigram score, `gpu.py` + `.cu` CUDA ports |
 | `walk/` | Rust: word-scoped solver and key-free D-search (`dsearch`) |
