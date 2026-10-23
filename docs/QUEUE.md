@@ -136,3 +136,5 @@ Invoke-CimMethod -ClassName Win32_Process -MethodName Create -Arguments @{Comman
 Invoke-CimMethod -ClassName Win32_Process -MethodName Create -Arguments @{CommandLine="cmd /c set QUEUE_MAX_WAIT_SECONDS=172800&& set `"KSCREEN_BIN=$kb`"&& `"$venv`" jobs\jobqueue.py pdir jobs\queues\pdir.txt"; CurrentDirectory=$root}
 ```
 (the same `cmd /c set QUEUE_MAX_WAIT_SECONDS=172800&& ...` form for layout, wordjump and r4lib), then `python scripts/queue_priority.py` for below-normal priority. A PC reboot still stops everything.
+
+After a reboot, double-click `scripts/restart_queues.bat` (it calls `scripts/restart_queues.ps1`, which does exactly the above, refuses to start a second copy when queues already run, and `-DryRun` only prints).
