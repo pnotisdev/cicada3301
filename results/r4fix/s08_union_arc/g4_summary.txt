@@ -1,0 +1,47 @@
+# R4 repair s08 G4: R4 plants (null slot 0..L), union arc vs mid arc, 12 plants, T300 = 29.80 (used at n 150 and 300), decoder nu 0.42, plant rate 0.45
+
+n 150
+  m04   union: detected 6/6, true within 3 nats of best 6/6, band min / median / max 55.7 / 72.1 / 77.2
+  m04   mid  : detected 6/6, true within 3 nats of best 6/6, band min / median / max 52.3 / 69.0 / 72.7
+  m04   matched iid-key null (union): max winner -15.8, >= T300: 0/6
+  spend union: detected 6/6, true within 3 nats of best 6/6, band min / median / max 43.5 / 54.7 / 99.4
+  spend mid  : detected 6/6, true within 3 nats of best 5/6, band min / median / max 31.7 / 58.9 / 95.1
+  spend matched iid-key null (union): max winner -17.1, >= T300: 0/6
+  pooled: union detected 12/12, mid detected 12/12; median band union 62.8 mid 58.6; median (union - mid) 4.6; union >= mid in 11/12
+
+n 300
+  m04   union: detected 6/6, true within 3 nats of best 6/6, band min / median / max 113.2 / 147.4 / 156.7
+  m04   mid  : detected 6/6, true within 3 nats of best 6/6, band min / median / max 76.8 / 138.2 / 147.4
+  m04   matched iid-key null (union): max winner -63.9, >= T300: 0/6
+  spend union: detected 6/6, true within 3 nats of best 6/6, band min / median / max 79.9 / 124.6 / 165.4
+  spend mid  : detected 6/6, true within 3 nats of best 1/6, band min / median / max 51.3 / 118.3 / 152.6
+  spend matched iid-key null (union): max winner -57.0, >= T300: 0/6
+  pooled: union detected 12/12, mid detected 12/12; median band union 126.2 mid 120.0; median (union - mid) 11.3; union >= mid in 12/12
+
+per plant: channel src idx | n | nulls (edge) in window | union band / winner / within3 | mid band / winner / within3 | null union winner
+m04   cicada  0 | 150 | 13 ( 8) | union    77.2    77.2 1 | mid    72.7    72.7 1 | null   -40.2
+m04   cicada  0 | 300 | 22 (12) | union   156.7   156.7 1 | mid   147.4   147.4 1 | null   -90.0
+m04   cicada  1 | 150 | 10 ( 5) | union    64.6    64.6 1 | mid    58.3    58.4 1 | null   -46.6
+m04   cicada  1 | 300 | 29 (15) | union   113.2   113.3 1 | mid    76.8    77.5 1 | null   -98.1
+m04   cicada  2 | 150 | 10 ( 7) | union    61.1    61.1 1 | mid    53.0    53.0 1 | null   -18.2
+m04   cicada  2 | 300 | 24 (14) | union   113.3   113.3 1 | mid    95.8    95.8 1 | null   -65.2
+m04   english 3 | 150 | 18 ( 9) | union    75.8    75.8 1 | mid    71.0    71.0 1 | null   -15.8
+m04   english 3 | 300 | 28 (13) | union   154.6   154.6 1 | mid   141.9   141.9 1 | null   -63.9
+m04   english 4 | 150 | 18 ( 7) | union    55.7    55.7 1 | mid    52.3    52.3 1 | null   -58.4
+m04   english 4 | 300 | 32 (12) | union   147.4   147.4 1 | mid   138.2   138.2 1 | null  -117.9
+m04   english 5 | 150 | 11 ( 5) | union    72.1    72.1 1 | mid    69.0    69.0 1 | null   -41.3
+m04   english 5 | 300 | 26 ( 8) | union   127.8   127.8 1 | mid   125.4   125.4 1 | null  -105.6
+spend cicada  0 | 150 | 20 ( 7) | union    43.5    43.5 1 | mid    31.7    37.9 0 | null   -64.8
+spend cicada  0 | 300 | 40 (16) | union    79.9    79.9 1 | mid    51.3    65.1 0 | null  -140.9
+spend cicada  1 | 150 | 12 ( 4) | union    48.6    48.6 1 | mid    43.5    43.5 1 | null   -22.2
+spend cicada  1 | 300 | 21 ( 7) | union   122.1   122.1 1 | mid   112.1   112.1 1 | null   -66.1
+spend cicada  2 | 150 | 15 ( 5) | union    54.7    55.5 1 | mid    58.9    58.9 1 | null   -21.2
+spend cicada  2 | 300 | 31 (11) | union   109.4   109.4 1 | mid   104.8   108.5 0 | null   -62.8
+spend english 3 | 150 | 11 ( 3) | union    99.4   100.3 1 | mid    95.1    96.8 1 | null   -17.1
+spend english 3 | 300 | 26 ( 9) | union   165.4   165.4 1 | mid   152.6   157.2 0 | null   -57.0
+spend english 4 | 150 | 11 ( 4) | union    79.4    79.4 1 | mid    78.8    78.9 1 | null   -52.1
+spend english 4 | 300 | 26 (12) | union   150.7   150.7 1 | mid   121.7   129.4 0 | null  -103.6
+spend english 5 | 150 | 14 ( 7) | union    52.6    53.1 1 | mid    40.6    42.9 1 | null   -65.3
+spend english 5 | 300 | 27 ( 8) | union   124.6   125.8 1 | mid   118.3   122.0 0 | null  -118.3
+
+CPU seconds per plant (all searches): 24 20 271 271 27 28 22 248 244 206 20 19; total 1399

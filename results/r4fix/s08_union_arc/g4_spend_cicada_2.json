@@ -1,0 +1,104 @@
+{
+ "name": "sqrt2 digits (base 10)",
+ "stream_index": 55,
+ "stream_len": 20000,
+ "offset": 5939,
+ "e": 48,
+ "true_sign": 1,
+ "o_true": 5982,
+ "T_repairs": 0,
+ "sec": 7,
+ "channel": "spend",
+ "src": "cicada",
+ "index": 2,
+ "q_plant": 0.8080441803951439,
+ "rho_plant": 0.45,
+ "nu_decoder": 0.42,
+ "150": {
+  "nulls": 15,
+  "edge_nulls": 5,
+  "union": {
+   "detected": true,
+   "band_best": 54.72126307590719,
+   "winner_score": 55.520235616143964,
+   "true_within3": true,
+   "winner": [
+    1,
+    "skip5",
+    5981
+   ],
+   "null_max": -6.891783986442931,
+   "cpu_seconds": 28.890625
+  },
+  "mid": {
+   "detected": true,
+   "band_best": 58.86145706809549,
+   "winner_score": 58.86145706809549,
+   "true_within3": true,
+   "winner": [
+    1,
+    "spend",
+    5981
+   ],
+   "null_max": -8.615517285979365,
+   "cpu_seconds": 19.578125
+  },
+  "null_union": {
+   "detected": false,
+   "band_best": -Infinity,
+   "winner_score": -21.22975458831479,
+   "true_within3": false,
+   "winner": [
+    -1,
+    "hold",
+    18147
+   ],
+   "null_max": -21.22975458831479,
+   "cpu_seconds": 37.703125
+  }
+ },
+ "300": {
+  "nulls": 31,
+  "edge_nulls": 11,
+  "union": {
+   "detected": true,
+   "band_best": 109.42707788689427,
+   "winner_score": 109.42707788689427,
+   "true_within3": true,
+   "winner": [
+    1,
+    "spend",
+    5981
+   ],
+   "null_max": 45.7869298404197,
+   "cpu_seconds": 60.84375
+  },
+  "mid": {
+   "detected": true,
+   "band_best": 104.79013410996197,
+   "winner_score": 108.54538800038256,
+   "true_within3": false,
+   "winner": [
+    1,
+    "hold",
+    5981
+   ],
+   "null_max": 41.17769764524189,
+   "cpu_seconds": 36.078125
+  },
+  "null_union": {
+   "detected": false,
+   "band_best": -Infinity,
+   "winner_score": -62.82354918197882,
+   "true_within3": false,
+   "winner": [
+    1,
+    "hold",
+    5245
+   ],
+   "null_max": -62.82354918197882,
+   "cpu_seconds": 61.125
+  }
+ },
+ "cpu_seconds": 244.25
+}

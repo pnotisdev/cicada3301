@@ -1,0 +1,21 @@
+R4 slot-rule comparison (keyless simulation; q 0.81, repair T(c-6) in-word, one checked null per multi-rune word at rate r tuned to 2,896 words; same plaintext source and layout as phase 57)
+LP2: din 63 dgap 23 t6 80 t6x 401 oth 65 uni 26.4 bi 785.8 lagz 2.96 | edge-pair share 0.48 doublet-word length 6.08 T hits ending a word 32 words 2896
+
+Table 1: phase 57's nine statistics, replicate mean (z of LP2), combined chi2 (sum z^2) and P (share of the rule's own replicates with chi2 >= LP2's)
+R0 uniform repair, no nulls (null control)   reps 500 r=0.0000 | din   64.2( -0.2) dgap   20.8( +0.5) t6   41.1( +5.8) t6x  403.7( -0.1) oth   62.8( +0.5) G   21.8(+21.7) uni   26.9( -0.1) bi  755.3( +0.8) lagz    1.9( +1.9) | chi2  508.9 P 0.002 | worst G +21.7
+R4 slot any 0..L (phase 57)                  reps 500 r=0.3986 | din   60.2( +0.4) dgap   17.0( +1.5) t6   79.7( +0.0) t6x  398.1( +0.1) oth   69.4( -1.0) G   18.1( -0.0) uni   26.6( -0.0) bi  754.9( +0.8) lagz    2.0( +1.8) | chi2    7.4 P 0.571 | worst lagz +1.8
+R4 slot interior 1..L-1 (decoder)            reps 500 r=0.3967 | din   58.1( +0.7) dgap   19.1( +0.9) t6   80.6( -0.1) t6x  397.3( +0.2) oth   69.4( -0.9) G   18.0( -0.0) uni   26.6( -0.0) bi  756.8( +0.7) lagz    1.9( +2.1) | chi2    6.9 P 0.593 | worst lagz +2.1
+R4 slot edge 0 or L                          reps 500 r=0.3971 | din   63.2( -0.0) dgap   15.1( +2.0) t6   78.4( +0.2) t6x  399.0( +0.1) oth   69.4( -1.0) G   17.6( +0.1) uni   26.2( +0.0) bi  754.9( +0.8) lagz    2.0( +1.9) | chi2    9.4 P 0.375 | worst dgap +2.0
+
+Table 2: phase 47 doublet-placement statistics, replicate mean +- sd (z, percentile of LP2 among replicates)
+rule       in-word/gap doublets          in-word share  edge-pair share        doublet-word length    T hits ending a word   T hits by word length 7/8/9/10+ (LP2 8/21/20/31)   lag-7 T hits (LP2 22)
+R0          64.2(-0.2) /  20.8(+0.5)   0.76 (LP2 0.73)  0.54+-0.06 (-1.1, pct 0.162)  5.85+-0.34 (+0.7, pct 0.750)  17.2+-4.0 (+3.7)  6.2/8.2/9.3/17.4   23.8+-5.7
+any         60.2(+0.4) /  17.0(+1.5)   0.78 (LP2 0.73)  0.51+-0.06 (-0.5, pct 0.318)  6.15+-0.38 (-0.2, pct 0.432)  31.6+-5.6 (+0.1)  11.0/15.6/16.5/36.7   27.0+-5.7
+interior    58.1(+0.7) /  19.1(+0.9)   0.75 (LP2 0.73)  0.52+-0.07 (-0.6, pct 0.292)  6.20+-0.39 (-0.3, pct 0.382)  32.5+-5.6 (-0.1)  11.5/15.4/16.6/37.0   27.2+-5.3
+edge        63.2(-0.0) /  15.1(+2.0)   0.81 (LP2 0.73)  0.48+-0.07 (-0.1, pct 0.456)  6.15+-0.36 (-0.2, pct 0.432)  29.4+-5.3 (+0.5)  10.3/15.0/16.4/36.7   26.6+-5.2
+
+Table 3: word-length G (z) per rule is in Table 1 (column G). Extended chi2 = Table 1's nine z plus the three placement z (dwl, edge, tend):
+  R0         chi2 (9)  508.9   chi2 (12)  524.3
+  any        chi2 (9)    7.4   chi2 (12)    7.7
+  interior   chi2 (9)    6.9   chi2 (12)    7.3
+  edge       chi2 (9)    9.4   chi2 (12)    9.7

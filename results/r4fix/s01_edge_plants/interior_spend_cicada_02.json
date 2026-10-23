@@ -1,0 +1,108 @@
+{
+ "name": "sha512-ctr reject :Cicada 3301",
+ "stream_index": 150,
+ "stream_len": 20000,
+ "offset": 17341,
+ "e": 60,
+ "mult": 1,
+ "true_sign": 1,
+ "o_true": 17394,
+ "nulls_in_window": 22,
+ "T_repairs": 3,
+ "sec": 9,
+ "mode": "interior",
+ "channel": "spend",
+ "src": "cicada",
+ "index": 2,
+ "q_plant": 0.8080441803951439,
+ "null_positions": [
+  8,
+  47,
+  64,
+  69,
+  77,
+  92,
+  100,
+  111,
+  131,
+  153,
+  176,
+  198,
+  207,
+  213,
+  222,
+  229,
+  234,
+  249,
+  254,
+  278,
+  284,
+  293
+ ],
+ "edge_positions": [],
+ "150": {
+  "detected": true,
+  "band_best": 72.71686314820016,
+  "winner_score": 72.71686314820016,
+  "true_within3": true,
+  "winner_is_true": true,
+  "winner": [
+   1,
+   "spend",
+   17394
+  ],
+  "null_max": 6.488986424387178,
+  "seconds": 12.49686399998609,
+  "nulls": 9,
+  "edge_nulls": 0,
+  "first_edge": null,
+  "first_null": 8
+ },
+ "null150": {
+  "detected": false,
+  "band_best": -Infinity,
+  "winner_score": -27.557334306706935,
+  "true_within3": false,
+  "winner_is_true": false,
+  "winner": [
+   1,
+   "spend",
+   13811
+  ],
+  "null_max": -27.557334306706935,
+  "seconds": 11.345173400011845
+ },
+ "300": {
+  "detected": true,
+  "band_best": 131.56051862367906,
+  "winner_score": 131.56051862367906,
+  "true_within3": true,
+  "winner_is_true": true,
+  "winner": [
+   1,
+   "spend",
+   17394
+  ],
+  "null_max": 60.876231379146134,
+  "seconds": 30.263552200020058,
+  "nulls": 22,
+  "edge_nulls": 0,
+  "first_edge": null,
+  "first_null": 8
+ },
+ "null300": {
+  "detected": false,
+  "band_best": -Infinity,
+  "winner_score": -78.70059984223155,
+  "true_within3": false,
+  "winner_is_true": false,
+  "winner": [
+   1,
+   "hold",
+   18830
+  ],
+  "null_max": -78.70059984223155,
+  "seconds": 33.75377660000231
+ },
+ "seconds": 87.91956270000082
+}

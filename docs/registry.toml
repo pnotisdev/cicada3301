@@ -1626,3 +1626,20 @@ result = "LP1 clauses: 0.443 prime vs 0.14-0.15 baseline (P 0.0005); lost when c
 gap = "Authoring at a level other than LP2's '.' units, effect of R4 nulls on a true decryption's sums, recorded decodes are 160 runes only; the R4-simulator check for the clause-final word statistic proposed, not run"
 log = ["work/log/phase65_prime_clause_score.md"]
 files = ["work/phase65_prime_clause_score.py", "results/analysis/phase65_prime_clause_score.txt"]
+
+[[experiment]]
+id = "r4-decoder-coverage"
+group = "structure"
+title = "Does the R4 decoder see R4 as fitted? (null slot 0..L with word edges vs the interior-only plants and mid arc; power by n, nu, q; slot rule, null count and null check from LP2's statistics; a union arc)"
+status = "partial"
+what = "Laptop R4 repair sessions s01-s10 (2026-10-23/24), plants and keyless simulations only, no LP2 ciphertext: R4 plants with slots interior / any (0..L) / edge through the unchanged mid arc at n 100-450 with mis-set nu (0.30-0.55) and plant q (0.70-0.95); phase 57's nine statistics under three slot rules, two-null shares f2 0-0.50, six null-check settings (500 replicates each); literal-F rule on top of R4; a union arc (one null at any cipher position 0..Lc-1) built and gated; one shared R4 simulator (work/r4fix/r4sim.py, 12 unit tests)"
+control = "Interior-slot plants reproduce phase 57 exactly (12/12, band min 57.9 / 119.5); matched iid-key nulls max -3.9 to -124.5 by n; slot-rule, null-count and null-check simulations reproduce phase 57's R4 row (chi2 6.7, P 0.643) and R0 (P 0.002); union arc vs a dense reference (1,180 trials, worst 3.6e-15), reduces exactly to the mid arc and the base engine, mutants detected"
+result = "The mid arc detects R4 as fitted: slots 0..L 12/12 at n 150 and 300 (s01); recall n 100 16/24, n 150 45/48, n 200 48/48, n 300 24/24, n 450 24/24 (s05); each edge null costs about 2-4 nats; mis-set nu or q loses no detection. The R4 negatives of phases 57-60 stand; r4lib can run as queued. LP2 accepts every slot rule (P 0.46-0.67), two-null shares up to 0.30 and all six null-check settings once q is refitted: not decidable from LP2. Literal F on R4 raises the F share to 5.2-6.2% (LP2 3.535%, z -8.5 / -12.7): excluded by flatness. Union arc: gates pass, same detection, +4.6 / +11.3 nats median margin, right channel more often (spend n 300 6/6 vs 1/6), cost 1.15-1.49x the mid arc"
+gap = "12-48 plants per cell (a 90% lower bound needs n >= 200); recall below n 150 drops (n 100: 67%); skip5 / coin channels under R4 as fitted not planted; the decoder models one null per word; null valued by a function not modelled; lp_pilot_mid.py sets the first word-start flag in every window (wrong for stride windows starting mid-word)"
+log = ["work/log/r4fix_2026-10-24.md", "work/log/r4fix_s01_edge_plants.md", "work/log/r4fix_s05_power_map.md", "work/log/r4fix_s08_union_arc.md"]
+files = ["work/r4fix/", "results/r4fix/"]
+
+[[folder]]
+path = "results/r4fix"
+what = "R4 repair sessions s01-s10 (laptop, 2026-10-23/24): per-plant records and summaries of the edge-slot plants, the mid-arc power map, slot-rule / null-count / null-check simulations, literal-F plants and the union-arc gates (plants and simulations only, no LP2 ciphertext)"
+read = "work/log/r4fix_2026-10-24.md"

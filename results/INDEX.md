@@ -27,6 +27,7 @@
 | [analysis/](analysis/) | Statistics of the ciphertext and one-off checks (word lengths, echoes, restarts, cribs, controls); one text file per script in work/ | the file named like the script |
 | [chanscreen/](chanscreen/) | chanscreen v2 step3: E3 wrong-key nulls (null/), E4 plants (e4/), the LP2 library campaign (n300/) and the clause-aligned scan (clause/) as one npz per (window, stream chunk), logs, summaries | summary_n300.txt (tier 1 = candidates, not leads), e4_summary.txt |
 | [outguess/](outguess/) | Payloads of the nine pages that open with OutGuess's default key (2014 chain), extracted by the own reader in work/ogscan | ../analysis/outguess_scan.txt |
+| [r4fix/](r4fix/) | R4 repair sessions s01-s10 (laptop, 2026-10-23/24): per-plant records and summaries of the edge-slot plants, the mid-arc power map, slot-rule / null-count / null-check simulations, literal-F plants and the union-arc gates (plants and simulations only, no LP2 ciphertext) | work/log/r4fix_2026-10-24.md |
 
 ## Results by question
 
@@ -129,6 +130,7 @@
 | Can the lag-6 sites (c_i = 24 - 2 c_(i-6)) be used to undo collision repairs, giving the decoders a cleaner ciphertext or known repair positions? | excluded |  | [phase61_unrepair.py](../work/phase61_unrepair.py), [phase61_sim.txt](analysis/phase61_sim.txt), [phase61_plants.txt](analysis/phase61_plants.txt), [phase61_rust](analysis/phase61_rust), [phase61_py](analysis/phase61_py) |
 | Does LP2's machine change settings along the book? (change points of the doublet, lag-6 and word-length rates per page; one R4 setting for 0.53% vs 0.77% doublets) | partial |  | [phase63_change_points.py](../work/phase63_change_points.py), [phase63_change_points.txt](analysis/phase63_change_points.txt) |
 | Is LP2's clause structure authored like LP1's? (clause length, words per clause, one-word clauses, clause-end word length, parity and moduli of lengths; against ordinary English in runes) | observed |  | [phase64_clause_structure.py](../work/phase64_clause_structure.py), [phase64_clause_structure.txt](analysis/phase64_clause_structure.txt) |
+| Does the R4 decoder see R4 as fitted? (null slot 0..L with word edges vs the interior-only plants and mid arc; power by n, nu, q; slot rule, null count and null check from LP2's statistics; a union arc) | partial |  | [r4fix](../work/r4fix), [r4fix](r4fix) |
 
 ### Restarts, reuse and layout
 

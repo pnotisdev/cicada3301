@@ -1,0 +1,195 @@
+# R4 repair s05: power map of the unchanged mid arc on R4 plants (plants only; T300 = 29.80 used at every n; "lo" = Wilson 95% lower bound, "hi" = upper)
+# columns: detected k/N (lo-hi) | true within 3 nats of the global best | band min / median / max | wrong-cell best (median of undetected-or-all) | matched null max
+
+## base: decoder nu 0.42, plant q frozen (~0.81), slot mode any
+n 100: detected 16/24 ( 47- 82%) | within3 21/24 | band   13.9 /   39.9 /   54.5 | wrong-cell best median   30.9 | null max -3.9 (N=12)
+        non-alias view (24 plants): within3 24/24, best wrong cell outside the true key window (median / max) -36.4 / -4.8
+        m04   cicada : 3/6 bands 18.2 43.8 27.1 19.5 44.2 40.5
+        m04   english: 4/6 bands 13.9 16.6 40.9 41.8 37.9 39.3
+        spend cicada : 5/6 bands 53.7 41.6 32.0 46.1 43.0 25.4
+        spend english: 4/6 bands 54.5 33.4 45.1 40.7 24.1 28.9
+        UNDETECTED m04 cicada 0: true cell 18.2, best wrong cell -8.1 (non-alias -8.1), global winner 18.2, edge nulls 7/14, stream len 20000
+        UNDETECTED m04 cicada 2: true cell 27.1, best wrong cell 29.8 (non-alias -35.3), global winner 29.8, edge nulls 4/8, stream len 2008
+        UNDETECTED m04 cicada 3: true cell 19.5, best wrong cell 19.5 (non-alias -37.1), global winner 19.5, edge nulls 8/12, stream len 2010
+        UNDETECTED m04 english 0: true cell 13.9, best wrong cell 13.9 (non-alias -45.2), global winner 13.9, edge nulls 5/12, stream len 2006
+        UNDETECTED m04 english 1: true cell 16.6, best wrong cell -4.8 (non-alias -4.8), global winner 16.6, edge nulls 4/12, stream len 20000
+        UNDETECTED spend cicada 5: true cell 25.4, best wrong cell 25.4 (non-alias -48.5), global winner 25.4, edge nulls 5/11, stream len 2007
+        UNDETECTED spend english 4: true cell 24.1, best wrong cell -8.6 (non-alias -8.6), global winner 24.1, edge nulls 3/10, stream len 20000
+        UNDETECTED spend english 5: true cell 28.9, best wrong cell -10.3 (non-alias -10.3), global winner 30.1, edge nulls 6/13, stream len 20000
+n 150: detected 45/48 ( 83- 98%) | within3 44/48 | band   16.1 /   59.6 /   95.3 | wrong-cell best median   51.1 | null max -19.8 (N=12)
+        non-alias view (48 plants): within3 48/48, best wrong cell outside the true key window (median / max) -58.2 / 74.5
+        m04   cicada : 12/12 bands 37.2 58.7 52.0 37.1 66.5 62.0 71.6 62.7 48.6 93.1 74.5 66.7
+        m04   english: 10/12 bands 20.2 45.6 60.5 57.1 63.2 45.9 48.8 85.6 35.8 70.8 50.2 16.1
+        spend cicada : 12/12 bands 67.6 58.7 39.5 66.4 58.4 61.0 68.2 71.4 84.9 57.4 75.3 95.3
+        spend english: 11/12 bands 78.8 44.7 62.9 61.2 44.4 47.1 28.3 78.1 53.6 68.0 47.2 49.4
+        UNDETECTED m04 english 0: true cell 20.2, best wrong cell 20.2 (non-alias -67.9), global winner 20.2, edge nulls 11/20, stream len 2006
+        UNDETECTED m04 english 11: true cell 16.1, best wrong cell -28.6 (non-alias -28.6), global winner 16.1, edge nulls 7/12, stream len 20000
+        UNDETECTED spend english 6: true cell 28.3, best wrong cell 42.6 (non-alias -56.3), global winner 42.6, edge nulls 13/18, stream len 2009
+n 200: detected 48/48 ( 93-100%) | within3 44/48 | band   38.0 /   76.8 /  117.9 | wrong-cell best median   72.6 | null max -35.3 (N=12)
+        non-alias view (48 plants): within3 48/48, best wrong cell outside the true key window (median / max) -69.2 / 110.5
+        m04   cicada : 12/12 bands 55.5 72.2 67.9 66.5 74.9 93.0 104.1 73.3 72.4 108.9 92.5 92.3
+        m04   english: 12/12 bands 48.9 61.1 71.7 78.5 82.7 60.6 67.2 100.9 54.4 95.3 66.7 38.0
+        spend cicada : 12/12 bands 93.5 77.7 61.8 87.1 76.0 80.0 97.9 96.8 110.2 67.9 99.9 117.9
+        spend english: 12/12 bands 109.8 60.6 95.2 87.9 59.5 60.0 43.1 95.2 74.2 92.3 66.2 79.3
+n 300: detected 24/24 ( 86-100%) | within3 20/24 | band   79.9 /  117.1 /  149.9 | wrong-cell best median  108.9 | null max -70.0 (N=12)
+        non-alias view (24 plants): within3 24/24, best wrong cell outside the true key window (median / max) 65.2 / 121.6
+        m04   cicada : 6/6 bands 79.9 107.6 123.9 107.8 126.0 129.2
+        m04   english: 6/6 bands 110.0 84.3 118.4 121.8 135.7 85.7
+        spend cicada : 6/6 bands 145.2 105.5 115.9 128.1 104.4 118.8
+        spend english: 6/6 bands 149.9 80.7 120.1 132.4 93.0 90.3
+n 450: detected 24/24 ( 86-100%) | within3 21/24 | band  113.5 /  172.8 /  235.2 | wrong-cell best median  166.7 | null max -124.5 (N=12)
+        m04   cicada : 6/6 bands 143.0 164.5 173.2 183.3 209.6 174.3
+        m04   english: 6/6 bands 174.7 153.4 172.4 196.6 191.5 113.5
+        spend cicada : 6/6 bands 217.2 167.8 185.9 191.6 165.1 183.0
+        spend english: 6/6 bands 235.2 142.4 151.7 163.5 155.4 171.2
+
+## base: decoder nu 0.42, plant q frozen (~0.81), slot mode interior
+n 100: detected 24/24 ( 86-100%) | within3 24/24 | band   31.5 /   50.7 /   65.5 | wrong-cell best median   46.9 | null max -
+        non-alias view (24 plants): within3 24/24, best wrong cell outside the true key window (median / max) -43.0 / 46.8
+        m04   cicada : 6/6 bands 51.2 40.0 52.8 37.6 37.4 42.9
+        m04   english: 6/6 bands 63.9 45.6 50.3 55.1 55.9 65.5
+        spend cicada : 6/6 bands 64.9 52.9 62.7 49.7 52.1 39.7
+        spend english: 6/6 bands 42.0 31.5 60.2 48.3 42.6 53.0
+n 150: detected 24/24 ( 86-100%) | within3 24/24 | band   46.0 /   72.7 /   91.8 | wrong-cell best median   69.7 | null max -
+        non-alias view (24 plants): within3 24/24, best wrong cell outside the true key window (median / max) -64.8 / 75.5
+        m04   cicada : 6/6 bands 72.4 46.0 76.9 66.2 55.3 65.9
+        m04   english: 6/6 bands 68.9 66.4 68.2 70.0 77.2 91.8
+        spend cicada : 6/6 bands 86.7 77.5 87.9 65.7 76.5 57.8
+        spend english: 6/6 bands 74.9 56.4 78.7 78.3 73.6 73.0
+n 200: detected 24/24 ( 86-100%) | within3 23/24 | band   71.1 /   95.7 /  114.0 | wrong-cell best median   92.1 | null max -
+        non-alias view (24 plants): within3 24/24, best wrong cell outside the true key window (median / max) 27.6 / 104.0
+        m04   cicada : 6/6 bands 96.4 71.1 103.2 93.1 82.2 75.9
+        m04   english: 6/6 bands 99.8 96.0 87.8 79.2 110.4 113.3
+        spend cicada : 6/6 bands 110.4 106.5 114.0 90.1 88.9 87.9
+        spend english: 6/6 bands 95.9 74.7 98.9 97.0 94.7 95.5
+n 300: detected 24/24 ( 86-100%) | within3 23/24 | band  106.3 /  146.4 /  170.2 | wrong-cell best median  142.1 | null max -
+        non-alias view (24 plants): within3 24/24, best wrong cell outside the true key window (median / max) 101.9 / 150.0
+        m04   cicada : 6/6 bands 139.6 118.8 154.0 139.5 126.5 127.6
+        m04   english: 6/6 bands 146.3 145.6 151.7 130.7 168.8 156.6
+        spend cicada : 6/6 bands 170.2 156.4 159.9 150.3 125.1 147.2
+        spend english: 6/6 bands 156.7 106.3 146.5 157.9 144.1 128.7
+
+## nu030: decoder nu 0.30, slot mode any
+n 100: detected 16/24 ( 47- 82%) | within3 20/24 | band   12.0 /   39.5 /   54.3 | wrong-cell best median   29.9 | null max -
+        non-alias view (24 plants): within3 24/24, best wrong cell outside the true key window (median / max) -39.1 / -7.1
+        m04   cicada : 3/6 bands 15.5 43.2 28.2 17.8 44.4 39.5
+        m04   english: 4/6 bands 12.0 15.0 41.6 40.1 36.7 39.5
+        spend cicada : 5/6 bands 54.3 41.5 30.6 44.5 43.1 23.4
+        spend english: 4/6 bands 54.1 30.3 44.6 39.5 22.8 25.8
+        UNDETECTED m04 cicada 0: true cell 15.5, best wrong cell -11.0 (non-alias -11.0), global winner 15.5, edge nulls 7/14, stream len 20000
+        UNDETECTED m04 cicada 2: true cell 28.2, best wrong cell 29.2 (non-alias -35.0), global winner 29.2, edge nulls 4/8, stream len 2008
+        UNDETECTED m04 cicada 3: true cell 17.8, best wrong cell 17.8 (non-alias -39.3), global winner 17.8, edge nulls 8/12, stream len 2010
+        UNDETECTED m04 english 0: true cell 12.0, best wrong cell 12.0 (non-alias -46.5), global winner 12.0, edge nulls 5/12, stream len 2006
+        UNDETECTED m04 english 1: true cell 15.0, best wrong cell -7.1 (non-alias -7.1), global winner 15.0, edge nulls 4/12, stream len 20000
+        UNDETECTED spend cicada 5: true cell 23.4, best wrong cell 23.4 (non-alias -50.6), global winner 23.4, edge nulls 5/11, stream len 2007
+        UNDETECTED spend english 4: true cell 22.8, best wrong cell -10.0 (non-alias -10.0), global winner 23.5, edge nulls 3/10, stream len 20000
+        UNDETECTED spend english 5: true cell 25.8, best wrong cell -11.6 (non-alias -11.6), global winner 29.6, edge nulls 6/13, stream len 20000
+n 150: detected 23/24 ( 80- 99%) | within3 18/24 | band   17.2 /   57.8 /   77.9 | wrong-cell best median   49.5 | null max -23.3 (N=12)
+        non-alias view (24 plants): within3 24/24, best wrong cell outside the true key window (median / max) -58.3 / 52.8
+        m04   cicada : 6/6 bands 34.3 57.9 52.9 35.0 66.6 61.3
+        m04   english: 5/6 bands 17.2 44.8 60.8 55.1 61.8 46.2
+        spend cicada : 6/6 bands 66.8 58.4 37.1 64.1 57.7 59.1
+        spend english: 6/6 bands 77.9 39.9 62.4 59.1 41.6 42.2
+        UNDETECTED m04 english 0: true cell 17.2, best wrong cell 17.2 (non-alias -70.9), global winner 17.2, edge nulls 11/20, stream len 2006
+n 200: detected 24/24 ( 86-100%) | within3 20/24 | band   47.4 /   73.6 /  109.2 | wrong-cell best median   67.2 | null max -
+        non-alias view (24 plants): within3 24/24, best wrong cell outside the true key window (median / max) -20.1 / 79.1
+        m04   cicada : 6/6 bands 52.1 70.5 69.1 65.2 75.5 92.9
+        m04   english: 6/6 bands 47.4 59.8 72.3 76.5 81.1 61.7
+        spend cicada : 6/6 bands 93.0 76.8 58.2 85.3 74.9 78.0
+        spend english: 6/6 bands 109.2 55.3 95.5 85.6 55.5 54.1
+
+## nu055: decoder nu 0.55, slot mode any
+n 100: detected 17/24 ( 51- 85%) | within3 21/24 | band   15.0 /   38.8 /   53.7 | wrong-cell best median   30.5 | null max -
+        non-alias view (24 plants): within3 24/24, best wrong cell outside the true key window (median / max) -34.5 / -3.4
+        m04   cicada : 3/6 bands 20.3 43.5 24.8 20.5 42.9 40.6
+        m04   english: 4/6 bands 15.0 17.3 39.3 42.5 38.3 38.2
+        spend cicada : 5/6 bands 52.0 40.4 32.1 46.5 41.6 26.1
+        spend english: 5/6 bands 53.7 35.3 44.2 40.8 24.4 30.7
+        UNDETECTED m04 cicada 0: true cell 20.3, best wrong cell -6.2 (non-alias -6.2), global winner 20.3, edge nulls 7/14, stream len 20000
+        UNDETECTED m04 cicada 2: true cell 24.8, best wrong cell 28.9 (non-alias -34.9), global winner 28.9, edge nulls 4/8, stream len 2008
+        UNDETECTED m04 cicada 3: true cell 20.5, best wrong cell 20.5 (non-alias -35.0), global winner 20.5, edge nulls 8/12, stream len 2010
+        UNDETECTED m04 english 0: true cell 15.0, best wrong cell 15.0 (non-alias -44.3), global winner 15.0, edge nulls 5/12, stream len 2006
+        UNDETECTED m04 english 1: true cell 17.3, best wrong cell -3.4 (non-alias -3.4), global winner 17.3, edge nulls 4/12, stream len 20000
+        UNDETECTED spend cicada 5: true cell 26.1, best wrong cell 26.1 (non-alias -46.7), global winner 26.1, edge nulls 5/11, stream len 2007
+        UNDETECTED spend english 4: true cell 24.4, best wrong cell -7.9 (non-alias -7.9), global winner 24.4, edge nulls 3/10, stream len 20000
+n 150: detected 23/24 ( 80- 99%) | within3 23/24 | band   22.0 /   57.6 /   77.7 | wrong-cell best median   47.3 | null max -17.6 (N=12)
+        non-alias view (24 plants): within3 24/24, best wrong cell outside the true key window (median / max) -50.3 / 53.1
+        m04   cicada : 6/6 bands 39.0 58.4 49.7 38.0 65.0 61.4
+        m04   english: 5/6 bands 22.0 45.2 58.9 57.9 63.3 44.3
+        spend cicada : 6/6 bands 66.5 57.1 40.0 66.9 57.2 61.4
+        spend english: 6/6 bands 77.7 47.8 61.5 61.5 45.3 50.0
+        UNDETECTED m04 english 0: true cell 22.0, best wrong cell 22.0 (non-alias -65.9), global winner 22.0, edge nulls 11/20, stream len 2006
+n 200: detected 24/24 ( 86-100%) | within3 23/24 | band   48.7 /   72.4 /  108.1 | wrong-cell best median   65.5 | null max -
+        non-alias view (24 plants): within3 24/24, best wrong cell outside the true key window (median / max) -12.9 / 83.3
+        m04   cicada : 6/6 bands 57.6 72.4 64.8 66.1 72.4 91.1
+        m04   english: 6/6 bands 48.7 60.7 69.4 78.8 82.6 57.7
+        spend cicada : 6/6 bands 91.6 76.2 62.7 86.7 74.7 79.6
+        spend english: 6/6 bands 108.1 63.5 92.7 87.4 61.3 63.4
+
+## q070: plant q 0.70 (decoder nu 0.42), slot mode any
+n 100: detected 19/24 ( 60- 91%) | within3 21/24 | band   13.9 /   40.8 /   54.5 | wrong-cell best median   36.5 | null max -
+        non-alias view (24 plants): within3 24/24, best wrong cell outside the true key window (median / max) -37.7 / -0.6
+        m04   cicada : 5/6 bands 29.9 43.8 27.1 29.9 44.2 40.5
+        m04   english: 4/6 bands 13.9 22.1 40.9 41.8 37.9 41.0
+        spend cicada : 6/6 bands 53.7 41.6 32.0 46.1 43.0 42.9
+        spend english: 4/6 bands 54.5 30.6 45.1 40.7 24.0 28.9
+        UNDETECTED m04 cicada 2: true cell 27.1, best wrong cell 29.8 (non-alias -35.3), global winner 29.8, edge nulls 4/8, stream len 2008
+        UNDETECTED m04 english 0: true cell 13.9, best wrong cell 13.9 (non-alias -45.2), global winner 13.9, edge nulls 5/12, stream len 2006
+        UNDETECTED m04 english 1: true cell 22.1, best wrong cell -0.6 (non-alias -0.6), global winner 22.1, edge nulls 4/12, stream len 20000
+        UNDETECTED spend english 4: true cell 24.0, best wrong cell -8.0 (non-alias -8.0), global winner 24.0, edge nulls 3/10, stream len 20000
+        UNDETECTED spend english 5: true cell 28.9, best wrong cell -10.3 (non-alias -10.3), global winner 30.1, edge nulls 6/13, stream len 20000
+n 150: detected 23/24 ( 80- 99%) | within3 22/24 | band   20.2 /   58.5 /   78.8 | wrong-cell best median   52.0 | null max -
+        non-alias view (24 plants): within3 24/24, best wrong cell outside the true key window (median / max) -56.4 / 53.9
+        m04   cicada : 6/6 bands 57.2 58.7 52.0 52.0 66.5 62.0
+        m04   english: 5/6 bands 20.2 47.0 60.5 57.1 63.2 47.8
+        spend cicada : 6/6 bands 67.6 58.7 39.5 66.4 58.3 78.4
+        spend english: 6/6 bands 78.8 40.7 62.9 61.2 44.2 50.9
+        UNDETECTED m04 english 0: true cell 20.2, best wrong cell 20.2 (non-alias -67.9), global winner 20.2, edge nulls 11/20, stream len 2006
+
+## q095: plant q 0.95 (decoder nu 0.42), slot mode any
+n 100: detected 17/24 ( 51- 85%) | within3 23/24 | band   13.9 /   34.6 /   57.4 | wrong-cell best median   30.3 | null max -
+        non-alias view (24 plants): within3 24/24, best wrong cell outside the true key window (median / max) -36.4 / -3.7
+        m04   cicada : 3/6 bands 18.2 48.3 27.1 19.5 39.0 30.9
+        m04   english: 4/6 bands 13.9 27.7 31.4 41.8 37.9 39.3
+        spend cicada : 5/6 bands 55.3 36.9 32.0 48.3 43.0 19.6
+        spend english: 5/6 bands 55.1 31.2 57.4 39.3 32.4 26.9
+        UNDETECTED m04 cicada 0: true cell 18.2, best wrong cell -8.1 (non-alias -8.1), global winner 18.2, edge nulls 7/14, stream len 20000
+        UNDETECTED m04 cicada 2: true cell 27.1, best wrong cell 29.8 (non-alias -35.3), global winner 29.8, edge nulls 4/8, stream len 2008
+        UNDETECTED m04 cicada 3: true cell 19.5, best wrong cell 19.5 (non-alias -37.1), global winner 19.5, edge nulls 8/12, stream len 2010
+        UNDETECTED m04 english 0: true cell 13.9, best wrong cell 13.9 (non-alias -45.2), global winner 13.9, edge nulls 5/12, stream len 2006
+        UNDETECTED m04 english 1: true cell 27.7, best wrong cell -3.7 (non-alias -3.7), global winner 27.7, edge nulls 4/12, stream len 20000
+        UNDETECTED spend cicada 5: true cell 19.6, best wrong cell 19.6 (non-alias -46.6), global winner 19.6, edge nulls 5/11, stream len 2007
+        UNDETECTED spend english 5: true cell 26.9, best wrong cell -11.6 (non-alias -11.6), global winner 28.1, edge nulls 6/13, stream len 20000
+n 150: detected 23/24 ( 80- 99%) | within3 23/24 | band   20.2 /   54.4 /   76.2 | wrong-cell best median   44.6 | null max -
+        non-alias view (24 plants): within3 24/24, best wrong cell outside the true key window (median / max) -54.9 / 46.7
+        m04   cicada : 6/6 bands 37.2 67.2 52.0 37.1 50.7 56.4
+        m04   english: 5/6 bands 20.2 56.8 43.4 57.1 61.7 45.9
+        spend cicada : 6/6 bands 73.6 55.4 39.5 67.8 58.4 53.4
+        spend english: 6/6 bands 73.2 42.4 76.2 59.8 52.0 44.7
+        UNDETECTED m04 english 0: true cell 20.2, best wrong cell 20.2 (non-alias -67.9), global winner 20.2, edge nulls 11/20, stream len 2006
+
+## paired comparison on the same 24 plants (seeds 0-5), any mode: detected / median band / median change of the true-cell score against base (nats) / plants whose detection changed (lost, gained)
+n 100 base  : detected 16/24 ( 47- 82%) median band   39.9, median change  +0.00 (min +0.0, max +0.0), lost 0, gained 0
+n 100 nu030 : detected 16/24 ( 47- 82%) median band   39.5, median change  -1.26 (min -3.1, max +1.1), lost 0, gained 0
+n 100 nu055 : detected 17/24 ( 51- 85%) median band   38.8, median change  +0.12 (min -2.3, max +2.1), lost 0, gained 1
+n 100 q070  : detected 19/24 ( 60- 91%) median band   40.8, median change  +0.00 (min -2.8, max +17.4), lost 0, gained 3
+n 100 q095  : detected 17/24 ( 51- 85%) median band   34.6, median change  +0.00 (min -9.6, max +12.3), lost 0, gained 1
+n 150 base  : detected 23/24 ( 80- 99%) median band   58.5, median change  +0.00 (min +0.0, max +0.0), lost 0, gained 0
+n 150 nu030 : detected 23/24 ( 80- 99%) median band   57.8, median change  -1.17 (min -4.9, max +0.9), lost 0, gained 0
+n 150 nu055 : detected 23/24 ( 80- 99%) median band   57.6, median change  -0.14 (min -2.4, max +3.1), lost 0, gained 0
+n 150 q070  : detected 23/24 ( 80- 99%) median band   58.5, median change  +0.00 (min -4.1, max +20.0), lost 0, gained 0
+n 150 q095  : detected 23/24 ( 80- 99%) median band   54.4, median change  +0.00 (min -17.1, max +13.3), lost 0, gained 0
+n 200 base  : detected 24/24 ( 86-100%) median band   73.5, median change  +0.00 (min +0.0, max +0.0), lost 0, gained 0
+n 200 nu030 : detected 24/24 ( 86-100%) median band   73.6, median change  -1.43 (min -5.9, max +1.2), lost 0, gained 0
+n 200 nu055 : detected 24/24 ( 86-100%) median band   72.4, median change  -0.40 (min -3.1, max +3.4), lost 0, gained 0
+n 300 base  : detected 24/24 ( 86-100%) median band  117.1, median change  +0.00 (min +0.0, max +0.0), lost 0, gained 0
+n 450 base  : detected 24/24 ( 86-100%) median band  172.8, median change  +0.00 (min +0.0, max +0.0), lost 0, gained 0
+
+## band score (true cell) by n, base, any mode, all plants: median / per-rune slope; and interior reference
+any     : n 100: 39.9 | n 150: 59.6 | n 200: 76.8 | n 300: 117.1 | n 450: 172.8
+interior: n 100: 50.7 | n 150: 72.7 | n 200: 95.7 | n 300: 146.4
+
+## matched iid-key nulls (same layout, random key, true stream searched at every offset / sign / channel), max winner score by variant / mode / n
+base   any     : n 100: -3.9 (N=12) | n 150: -19.8 (N=12) | n 200: -35.3 (N=12) | n 300: -70.0 (N=12) | n 450: -124.5 (N=12)
+nu030  any     : n 150: -23.3 (N=12)
+nu055  any     : n 150: -17.6 (N=12)

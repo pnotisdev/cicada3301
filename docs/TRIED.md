@@ -136,6 +136,10 @@ LP2 did not beat its random-key null.
 
 - 2026-10-22 - Zipf / word frequencies: do cipher words repeat like a code, are one-rune words uneven? - no: repeats as random, one-rune words uniform (P 0.85) [zipf-words]
 
+## 2026-10-24
+
+- 2026-10-24 - Does the R4 decoder see R4 as fitted (nulls at word edges too)? Plants only - yes: 12/12 at n 150 and 300, recall 45/48 at n 150, 16/24 at n 100; R4 negatives stand; slot rule, two-null share and null check not decidable from LP2; literal F on R4 excluded by the F share; union arc built and gated (+5-11 nats margin) [r4-decoder-coverage]
+
 ## Still running (2026-10-22)
 
 - KJV as a table-free book key finished 2026-10-23: 0 hits. Running: pointer direction by the words' numbers (18 conventions), then the remaining layout sign rules and word jump.

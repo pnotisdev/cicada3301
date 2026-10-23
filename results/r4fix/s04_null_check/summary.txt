@@ -1,0 +1,62 @@
+R4 null-check / visibility settings (session s04). Keyless simulation; nothing in LP2 is solved.
+LP2: din 63.00 dgap 23.00 t6 80.00 t6x 401.00 oth 65.00 uni 26.36 bi 785.77 lagz 2.96 | doublet-word length 6.08, edge-pair share 0.48, words 2896
+Setting = (null check) x (anti-repeat rule sees the null?); q 0.81, T repair, slots 0..L, 500 replicates, rate tuned to 2,896 words.
+Columns: replicate mean (z of LP2 against the setting's own replicates). Combined chi2 = sum of z^2 over the nine statistics; P = share of replicates at least as far out.
+
+A. NINE phase-57 statistics (primary: q 0.81)
+left-visible    r=0.448 q=0.810 | din   60.1( +0.4) dgap   16.9( +1.5) t6   76.6( +0.3) t6x  400.0( +0.1) oth   67.0( -0.3) G   30.9( +0.2) uni   26.4( -0.0) bi  756.0( +0.7) lagz    1.9( +1.9) | chi2     6.7 P 0.643
+left-invisible  r=0.448 q=0.810 | din   87.6( -2.5) dgap   24.4( -0.3) t6   76.7( +0.3) t6x  400.2( +0.0) oth   67.1( -0.3) G   30.9( +0.2) uni   26.5( -0.0) bi  756.0( +0.7) lagz    2.1( +1.6) | chi2     9.5 P 0.395
+both-visible    r=0.447 q=0.810 | din   53.2( +1.3) dgap   15.4( +1.9) t6   75.2( +0.4) t6x  400.5( +0.0) oth   67.4( -0.4) G   31.0( +0.2) uni   26.5( -0.0) bi  758.0( +0.7) lagz    1.9( +2.0) | chi2    10.5 P 0.309
+both-invisible  r=0.448 q=0.810 | din   53.4( +1.3) dgap   15.5( +2.0) t6   76.5( +0.3) t6x  399.9( +0.1) oth   67.0( -0.3) G   32.2( +0.3) uni   26.0( +0.1) bi  753.9( +0.8) lagz    2.0( +1.7) | chi2     9.8 P 0.351
+none-visible    r=0.448 q=0.810 | din   93.4( -3.0) dgap   26.4( -0.7) t6   76.6( +0.3) t6x  399.9( +0.1) oth   67.0( -0.3) G   30.9( +0.2) uni   26.6( -0.0) bi  756.4( +0.7) lagz    1.9( +1.9) | chi2    13.8 P 0.148
+none-invisible  r=0.448 q=0.810 | din  120.0( -4.9) dgap   33.7( -1.8) t6   76.7( +0.3) t6x  400.1( +0.0) oth   67.1( -0.4) G   30.9( +0.2) uni   26.7( -0.0) bi  756.5( +0.7) lagz    2.1( +1.6) | chi2    30.2 P 0.002
+
+A2. the nine plus doublet-word length and edge-pair share (11 statistics; P from the 11-dimensional chi2)
+left-visible    r=0.448 q=0.810 | din   60.1( +0.4) dgap   16.9( +1.5) t6   76.6( +0.3) t6x  400.0( +0.1) oth   67.0( -0.3) G   30.9( +0.2) uni   26.4( -0.0) bi  756.0( +0.7) lagz    1.9( +1.9) dwl    6.2( -0.2) edge    0.5( -0.4) | chi2     7.0 P 0.780
+left-invisible  r=0.448 q=0.810 | din   87.6( -2.5) dgap   24.4( -0.3) t6   76.7( +0.3) t6x  400.2( +0.0) oth   67.1( -0.3) G   30.9( +0.2) uni   26.5( -0.0) bi  756.0( +0.7) lagz    2.1( +1.6) dwl    5.9( +0.6) edge    0.5( -1.0) | chi2    10.7 P 0.471
+both-visible    r=0.447 q=0.810 | din   53.2( +1.3) dgap   15.4( +1.9) t6   75.2( +0.4) t6x  400.5( +0.0) oth   67.4( -0.4) G   31.0( +0.2) uni   26.5( -0.0) bi  758.0( +0.7) lagz    1.9( +2.0) dwl    6.2( -0.4) edge    0.5( -0.2) | chi2    10.7 P 0.449
+both-invisible  r=0.448 q=0.810 | din   53.4( +1.3) dgap   15.5( +2.0) t6   76.5( +0.3) t6x  399.9( +0.1) oth   67.0( -0.3) G   32.2( +0.3) uni   26.0( +0.1) bi  753.9( +0.8) lagz    2.0( +1.7) dwl    6.2( -0.3) edge    0.5( -0.3) | chi2     9.9 P 0.497
+none-visible    r=0.448 q=0.810 | din   93.4( -3.0) dgap   26.4( -0.7) t6   76.6( +0.3) t6x  399.9( +0.1) oth   67.0( -0.3) G   30.9( +0.2) uni   26.6( -0.0) bi  756.4( +0.7) lagz    1.9( +1.9) dwl    5.9( +0.7) edge    0.5( -1.0) | chi2    15.4 P 0.162
+none-invisible  r=0.448 q=0.810 | din  120.0( -4.9) dgap   33.7( -1.8) t6   76.7( +0.3) t6x  400.1( +0.0) oth   67.1( -0.4) G   30.9( +0.2) uni   26.7( -0.0) bi  756.5( +0.7) lagz    2.1( +1.6) dwl    5.8( +1.3) edge    0.5( -1.4) | chi2    34.0 P 0.002
+
+B. doublet structure at q 0.81 (replicate means; LP2: in-word 63, gap 23, doublet-word length 6.08, edge-pair share 0.48)
+setting          in-word    gap  total dbl-word len edge share | rate per pair involving a null (in-word / gap) | rate per pair without a null (in-word / gap) | null==left | null==right
+left-visible        60.1   16.9   77.0         6.15       0.50 | 0.0033 / 0.0030 | 0.0066 / 0.0065 | 0.0000 | 0.0066  (nulls per replicate 1245)
+left-invisible      87.6   24.4  112.0         5.91       0.53 | 0.0176 / 0.0172 | 0.0066 / 0.0065 | 0.0000 | 0.0354  (nulls per replicate 1245)
+both-visible        53.2   15.4   68.6         6.23       0.49 | 0.0000 / 0.0000 | 0.0065 / 0.0065 | 0.0000 | 0.0000  (nulls per replicate 1242)
+both-invisible      53.4   15.5   68.9         6.20       0.50 | 0.0000 / 0.0000 | 0.0066 / 0.0066 | 0.0000 | 0.0000  (nulls per replicate 1247)
+none-visible        93.4   26.4  119.8         5.88       0.53 | 0.0206 / 0.0208 | 0.0066 / 0.0065 | 0.0344 | 0.0066  (nulls per replicate 1245)
+none-invisible     120.0   33.7  153.6         5.77       0.54 | 0.0344 / 0.0345 | 0.0066 / 0.0065 | 0.0344 | 0.0344  (nulls per replicate 1245)
+(1/29 = 0.0345 is the rate of an unchecked pair; 0.0066 is LP2's overall doublet rate.)
+
+C. P-values per statistic group: share of each setting's replicates with din / dgap / dwl / edge as extreme as LP2 (two-sided, 2*min(tail))
+left-visible    din 0.696  dgap 0.176  dwl 0.788  edge 0.672
+left-invisible  din 0.008  dgap 0.860  dwl 0.544  edge 0.336
+both-visible    din 0.196  dgap 0.072  dwl 0.716  edge 0.876
+both-invisible  din 0.204  dgap 0.068  dwl 0.772  edge 0.788
+none-visible    din 0.004  dgap 0.612  dwl 0.444  edge 0.316
+none-invisible  din 0.000  dgap 0.072  dwl 0.144  edge 0.164
+
+D. q REFITTED so that the mean total doublet count is LP2's 86 (secondary; q capped to [0, 1]; rate as in A)
+left-visible    r=0.448 q=0.788 | din   66.4( -0.5) dgap   19.2( +0.9) t6   76.3( +0.3) t6x  399.8( +0.1) oth   67.3( -0.4) G   30.7( +0.2) uni   26.8( -0.1) bi  753.9( +0.9) lagz    1.9( +2.1) | chi2     6.6 P 0.617
+left-invisible  r=0.448 q=0.882 | din   67.3( -0.5) dgap   18.6( +1.0) t6   80.0( -0.0) t6x  399.6( +0.1) oth   67.2( -0.3) G   30.7( +0.2) uni   26.7( -0.1) bi  754.1( +0.9) lagz    2.0( +1.7) | chi2     5.1 P 0.798
+both-visible    r=0.447 q=0.763 | din   66.3( -0.4) dgap   19.1( +0.9) t6   72.5( +0.7) t6x  400.2( +0.0) oth   67.0( -0.3) G   30.0( +0.3) uni   25.9( +0.1) bi  757.6( +0.7) lagz    1.9( +2.0) | chi2     6.0 P 0.715
+both-invisible  r=0.448 q=0.763 | din   66.1( -0.4) dgap   19.3( +0.9) t6   74.4( +0.5) t6x  401.2( -0.0) oth   66.9( -0.3) G   30.5( +0.3) uni   25.9( +0.1) bi  756.7( +0.8) lagz    2.0( +1.7) | chi2     4.7 P 0.824
+none-visible    r=0.448 q=0.894 | din   66.3( -0.4) dgap   19.0( +0.9) t6   80.5( -0.0) t6x  399.9( +0.1) oth   67.2( -0.4) G   30.7( +0.2) uni   26.8( -0.1) bi  753.9( +0.9) lagz    1.9( +2.2) | chi2     6.6 P 0.641
+none-invisible  r=0.448 q=0.998 | din   66.7( -0.5) dgap   18.4( +1.1) t6   84.7( -0.4) t6x  399.6( +0.1) oth   67.2( -0.3) G   30.7( +0.2) uni   26.7( -0.0) bi  754.2( +0.9) lagz    2.1( +1.5) | chi2     4.8 P 0.828
+q-fit log (q, mean total doublets, 100 replicates each step): left-visible: (0.81, 77.5) (1.00, 0.0) (0.79, 85.4) (0.79, 85.7) (0.79, 85.7); left-invisible: (0.81, 113.6) (1.00, 44.1) (0.89, 84.2) (0.88, 87.5) (0.88, 85.9); both-visible: (0.81, 69.0) (1.00, 0.0) (0.76, 84.5) (0.76, 88.2) (0.76, 87.7); both-invisible: (0.81, 67.9) (1.00, 0.0) (0.76, 87.2) (0.76, 85.9); none-visible: (0.81, 120.2) (1.00, 42.6) (0.89, 86.5) (0.89, 84.8); none-invisible: (0.81, 155.0) (1.00, 85.2) (1.00, 85.7) (1.00, 85.5) (1.00, 83.5)
+
+POSITIVE CONTROL: left+visible (seed 104, rate 0.4484; phase 57's R4 tuned 0.448) against phase 57's published R4 row (500 replicates; difference in units of the replicate-mean s.e. sd/sqrt(500)):
+  din 60.1 vs 60.1 (-0.0) dgap 16.9 vs 16.9 (+0.0) t6 76.6 vs 76.6 (-0.0) t6x 400.0 vs 400.0 (-0.0) oth 67.0 vs 67.0 (+0.0) G 30.9 vs 30.9 (-0.0) uni 26.4 vs 26.4 (-0.0) bi 756.0 vs 756.0 (+0.0) lagz 1.9 vs 1.9 (+1.9) | chi2 6.7 (published 6.7) P 0.643 (0.643)
+  the simulator is also bit-identical to work/phase57_mechanism.py `simulate` for this setting and seed (selftest assertion, 6 replicates).
+
+DISCRIMINATION CHECK: pseudo-LP2 generated from both+invisible (seed 4242, one replicate), scored against all six settings (nine statistics / eleven)
+  pseudo-LP2: din 58 dgap 20 t6 86 words 2829 dwl 5.86 edge 0.48
+  nine: left-visible chi2 6.5 P 0.669 | left-invisible chi2 15.7 P 0.090 | both-visible chi2 8.3 P 0.459 | both-invisible chi2 8.0 P 0.509 | none-visible chi2 19.8 P 0.036 | none-invisible chi2 39.6 P 0.002 | lowest chi2: left-visible; accepted (P>0.05): ['left-visible', 'left-invisible', 'both-visible', 'both-invisible']
+  eleven: left-visible chi2 7.2 P 0.762 | left-invisible chi2 16.4 P 0.132 | both-visible chi2 9.2 P 0.567 | both-invisible chi2 8.8 P 0.625 | none-visible chi2 20.6 P 0.056 | none-invisible chi2 41.4 P 0.002 | lowest chi2: left-visible; accepted (P>0.05): ['left-visible', 'left-invisible', 'both-visible', 'both-invisible', 'none-visible']
+  extra: 30 pseudo-LP2 from both-invisible (nine statistics): setting with the lowest chi2 -> {'left-visible': 8, 'both-invisible': 12, 'both-visible': 10}; times accepted (P>0.05) -> {'left-visible': 29, 'left-invisible': 7, 'both-visible': 29, 'both-invisible': 29, 'none-visible': 3, 'none-invisible': 0}
+  extra: 30 pseudo-LP2 from both-invisible (eleven statistics): setting with the lowest chi2 -> {'left-visible': 8, 'both-invisible': 13, 'both-visible': 9}; times accepted (P>0.05) -> {'left-visible': 29, 'left-invisible': 5, 'both-visible': 28, 'both-invisible': 28, 'none-visible': 1, 'none-invisible': 0}
+  extra: 30 pseudo-LP2 from left-visible (nine statistics): setting with the lowest chi2 -> {'left-visible': 16, 'both-visible': 6, 'left-invisible': 4, 'both-invisible': 4}; times accepted (P>0.05) -> {'left-visible': 27, 'left-invisible': 17, 'both-visible': 24, 'both-invisible': 24, 'none-visible': 8, 'none-invisible': 0}
+  extra: 30 pseudo-LP2 from left-visible (eleven statistics): setting with the lowest chi2 -> {'both-visible': 5, 'both-invisible': 6, 'left-visible': 17, 'left-invisible': 2}; times accepted (P>0.05) -> {'left-visible': 26, 'left-invisible': 16, 'both-visible': 23, 'both-invisible': 24, 'none-visible': 10, 'none-invisible': 0}
+
+CPU s per setting: left-visible 140, left-invisible 127, both-visible 156, both-invisible 163, none-visible 102, none-invisible 111

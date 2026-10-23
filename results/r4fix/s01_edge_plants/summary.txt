@@ -1,0 +1,107 @@
+# R4 repair s01: R4 plants with the null slot interior / any (0..L) / edge only; unchanged mid arc, true stream only, T300 = 29.80 (used at n 150 and 300)
+interior n 150: detected 12/12, within 3 nats of best 12/12, band min / median / max 57.9 / 73.6 / 87.3; matched iid-key null max -18.0
+    m04  : detected 6/6 band 79.1 77.5 78.2 62.1 67.8 72.1
+    spend: detected 6/6 band 57.9 87.3 72.7 73.6 70.9 84.8
+interior n 300: detected 12/12, within 3 nats of best 12/12, band min / median / max 119.5 / 155.2 / 179.0; matched iid-key null max -55.8
+    m04  : detected 6/6 band 170.3 145.6 157.6 146.9 131.9 166.3
+    spend: detected 6/6 band 119.5 179.0 131.6 156.6 150.3 155.2
+any      n 150: detected 12/12, within 3 nats of best 11/12, band min / median / max 42.1 / 54.2 / 86.3; matched iid-key null max -18.7
+    m04  : detected 6/6 band 45.6 49.7 86.3 59.3 47.5 66.2
+    spend: detected 6/6 band 54.2 52.2 60.6 42.1 70.5 54.0
+any      n 300: detected 12/12, within 3 nats of best 11/12, band min / median / max 90.6 / 118.4 / 162.6; matched iid-key null max -73.2
+    m04  : detected 6/6 band 118.4 90.6 162.6 94.6 117.9 125.2
+    spend: detected 6/6 band 142.0 114.3 119.8 93.6 125.8 118.3
+edge     n 150: detected 10/12, within 3 nats of best 9/12, band min / median / max 21.4 / 46.4 / 73.6; matched iid-key null max -16.8
+    m04  : detected 5/6 band 44.9 64.1 65.1 46.7 73.6 21.4
+    spend: detected 5/6 band 46.4 26.9 29.9 35.6 36.8 66.5
+edge     n 300: detected 12/12, within 3 nats of best 8/12, band min / median / max 51.4 / 91.0 / 122.7; matched iid-key null max -70.2
+    m04  : detected 6/6 band 91.0 122.7 117.8 80.8 110.4 51.4
+    spend: detected 6/6 band 98.7 76.0 59.6 109.0 75.9 88.8
+
+per plant: mode channel src idx | n | edge nulls / nulls in window, first edge null position, band score, detected
+any      m04   cicada  0 | 150 |  6/16 first edge    4 first null    4 | band    45.6 winner    45.6 | det 1 w3 1 | null   -54.3
+any      m04   cicada  0 | 300 | 10/27 first edge    4 first null    4 | band   118.4 winner   118.4 | det 1 w3 1 | null  -118.1
+any      m04   cicada  1 | 150 |  6/16 first edge   12 first null   12 | band    49.7 winner    49.7 | det 1 w3 1 | null   -25.2
+any      m04   cicada  1 | 300 | 13/30 first edge   12 first null   12 | band    90.6 winner    90.6 | det 1 w3 1 | null   -74.6
+any      m04   cicada  2 | 150 |  6/10 first edge   12 first null    2 | band    86.3 winner    86.3 | det 1 w3 1 | null   -24.4
+any      m04   cicada  2 | 300 | 12/21 first edge   12 first null    2 | band   162.6 winner   162.6 | det 1 w3 1 | null   -73.2
+any      m04   english 0 | 150 |  6/15 first edge    3 first null    3 | band    59.3 winner    59.9 | det 1 w3 1 | null   -57.9
+any      m04   english 0 | 300 | 13/34 first edge    3 first null    3 | band    94.6 winner    94.7 | det 1 w3 1 | null  -106.9
+any      m04   english 1 | 150 |  6/11 first edge   37 first null   37 | band    47.5 winner    47.5 | det 1 w3 1 | null   -45.9
+any      m04   english 1 | 300 | 10/24 first edge   37 first null   37 | band   117.9 winner   117.9 | det 1 w3 1 | null   -99.2
+any      m04   english 2 | 150 |  6/10 first edge    3 first null    1 | band    66.2 winner    66.2 | det 1 w3 1 | null   -24.0
+any      m04   english 2 | 300 | 11/24 first edge    3 first null    1 | band   125.2 winner   125.2 | det 1 w3 1 | null   -76.0
+any      spend cicada  0 | 150 |  7/16 first edge    3 first null    3 | band    54.2 winner    54.2 | det 1 w3 1 | null   -46.5
+any      spend cicada  0 | 300 | 10/29 first edge    3 first null    3 | band   142.0 winner   142.6 | det 1 w3 1 | null  -106.3
+any      spend cicada  1 | 150 |  5/14 first edge    4 first null    4 | band    52.2 winner    52.2 | det 1 w3 1 | null   -60.0
+any      spend cicada  1 | 300 |  8/24 first edge    4 first null    4 | band   114.3 winner   114.3 | det 1 w3 1 | null  -122.7
+any      spend cicada  2 | 150 |  5/13 first edge   31 first null   13 | band    60.6 winner    62.5 | det 1 w3 1 | null   -55.6
+any      spend cicada  2 | 300 |  9/23 first edge   31 first null   13 | band   119.8 winner   119.8 | det 1 w3 1 | null  -144.3
+any      spend english 0 | 150 |  8/16 first edge   21 first null   21 | band    42.1 winner    50.7 | det 1 w3 0 | null   -30.1
+any      spend english 0 | 300 | 15/30 first edge   21 first null   21 | band    93.6 winner   105.3 | det 1 w3 0 | null   -77.7
+any      spend english 1 | 150 |  5/15 first edge   31 first null   19 | band    70.5 winner    73.4 | det 1 w3 1 | null   -18.7
+any      spend english 1 | 300 | 12/27 first edge   31 first null   19 | band   125.8 winner   128.2 | det 1 w3 1 | null   -74.4
+any      spend english 2 | 150 |  5/13 first edge    4 first null    4 | band    54.0 winner    54.0 | det 1 w3 1 | null   -55.1
+any      spend english 2 | 300 | 13/29 first edge    4 first null    4 | band   118.3 winner   118.3 | det 1 w3 1 | null  -118.7
+edge     m04   cicada  0 | 150 | 17/17 first edge    3 first null    3 | band    44.9 winner    44.9 | det 1 w3 1 | null   -16.8
+edge     m04   cicada  0 | 300 | 29/29 first edge    3 first null    3 | band    91.0 winner    91.0 | det 1 w3 1 | null   -71.5
+edge     m04   cicada  1 | 150 | 13/13 first edge   14 first null   14 | band    64.1 winner    64.1 | det 1 w3 1 | null   -67.4
+edge     m04   cicada  1 | 300 | 28/28 first edge   14 first null   14 | band   122.7 winner   122.7 | det 1 w3 1 | null  -127.7
+edge     m04   cicada  2 | 150 |  8/ 8 first edge    8 first null    8 | band    65.1 winner    65.1 | det 1 w3 1 | null   -21.1
+edge     m04   cicada  2 | 300 | 18/18 first edge    8 first null    8 | band   117.8 winner   117.8 | det 1 w3 1 | null   -70.2
+edge     m04   english 0 | 150 | 12/12 first edge    3 first null    3 | band    46.7 winner    46.7 | det 1 w3 1 | null   -61.2
+edge     m04   english 0 | 300 | 30/30 first edge    3 first null    3 | band    80.8 winner    80.8 | det 1 w3 1 | null  -143.0
+edge     m04   english 1 | 150 | 13/13 first edge    8 first null    8 | band    73.6 winner    73.6 | det 1 w3 1 | null   -24.9
+edge     m04   english 1 | 300 | 29/29 first edge    8 first null    8 | band   110.4 winner   110.4 | det 1 w3 1 | null   -71.6
+edge     m04   english 2 | 150 | 17/17 first edge    1 first null    1 | band    21.4 winner    21.4 | det 0 w3 1 | null   -58.6
+edge     m04   english 2 | 300 | 29/29 first edge    1 first null    1 | band    51.4 winner    51.4 | det 1 w3 1 | null  -124.6
+edge     spend cicada  0 | 150 | 10/10 first edge    6 first null    6 | band    46.4 winner    46.4 | det 1 w3 1 | null   -24.3
+edge     spend cicada  0 | 300 | 23/23 first edge    6 first null    6 | band    98.7 winner   105.0 | det 1 w3 0 | null   -76.6
+edge     spend cicada  1 | 150 | 14/14 first edge    1 first null    1 | band    26.9 winner    28.4 | det 0 w3 1 | null   -25.8
+edge     spend cicada  1 | 300 | 27/27 first edge    1 first null    1 | band    76.0 winner    76.0 | det 1 w3 1 | null   -75.7
+edge     spend cicada  2 | 150 | 19/19 first edge   10 first null   10 | band    29.9 winner    30.4 | det 1 w3 1 | null   -53.2
+edge     spend cicada  2 | 300 | 37/37 first edge   10 first null   10 | band    59.6 winner    67.0 | det 1 w3 0 | null  -118.7
+edge     spend english 0 | 150 | 14/14 first edge    9 first null    9 | band    35.6 winner    44.4 | det 1 w3 0 | null   -20.6
+edge     spend english 0 | 300 | 23/23 first edge    9 first null    9 | band   109.0 winner   118.7 | det 1 w3 0 | null   -70.8
+edge     spend english 1 | 150 | 16/16 first edge   30 first null   30 | band    36.8 winner    41.5 | det 1 w3 0 | null   -63.2
+edge     spend english 1 | 300 | 29/29 first edge   30 first null   30 | band    75.9 winner    77.7 | det 1 w3 1 | null  -141.2
+edge     spend english 2 | 150 | 14/14 first edge    2 first null    2 | band    66.5 winner    70.8 | det 1 w3 0 | null   -19.9
+edge     spend english 2 | 300 | 30/30 first edge    2 first null    2 | band    88.8 winner    97.9 | det 1 w3 0 | null   -71.9
+interior m04   cicada  0 | 150 |  0/13 first edge None first null   12 | band    79.1 winner    79.7 | det 1 w3 1 | null   -56.5
+interior m04   cicada  0 | 300 |  0/23 first edge None first null   12 | band   170.3 winner   170.3 | det 1 w3 1 | null  -142.2
+interior m04   cicada  1 | 150 |  0/13 first edge None first null    8 | band    77.5 winner    77.5 | det 1 w3 1 | null   -53.6
+interior m04   cicada  1 | 300 |  0/25 first edge None first null    8 | band   145.6 winner   145.6 | det 1 w3 1 | null   -96.1
+interior m04   cicada  2 | 150 |  0/12 first edge None first null    9 | band    78.2 winner    78.2 | det 1 w3 1 | null   -62.7
+interior m04   cicada  2 | 300 |  0/23 first edge None first null    9 | band   157.6 winner   157.6 | det 1 w3 1 | null  -129.6
+interior m04   english 0 | 150 |  0/12 first edge None first null    9 | band    62.1 winner    62.1 | det 1 w3 1 | null   -23.8
+interior m04   english 0 | 300 |  0/22 first edge None first null    9 | band   146.9 winner   146.9 | det 1 w3 1 | null   -71.0
+interior m04   english 1 | 150 |  0/11 first edge None first null    6 | band    67.8 winner    67.8 | det 1 w3 1 | null   -60.7
+interior m04   english 1 | 300 |  0/22 first edge None first null    6 | band   131.9 winner   131.9 | det 1 w3 1 | null  -114.7
+interior m04   english 2 | 150 |  0/12 first edge None first null   21 | band    72.1 winner    72.1 | det 1 w3 1 | null   -40.3
+interior m04   english 2 | 300 |  0/21 first edge None first null   21 | band   166.3 winner   166.3 | det 1 w3 1 | null   -96.7
+interior spend cicada  0 | 150 |  0/15 first edge None first null   12 | band    57.9 winner    58.0 | det 1 w3 1 | null   -51.4
+interior spend cicada  0 | 300 |  0/29 first edge None first null   12 | band   119.5 winner   120.7 | det 1 w3 1 | null  -120.7
+interior spend cicada  1 | 150 |  0/13 first edge None first null    6 | band    87.3 winner    87.3 | det 1 w3 1 | null   -18.0
+interior spend cicada  1 | 300 |  0/21 first edge None first null    6 | band   179.0 winner   179.0 | det 1 w3 1 | null   -55.8
+interior spend cicada  2 | 150 |  0/ 9 first edge None first null    8 | band    72.7 winner    72.7 | det 1 w3 1 | null   -27.6
+interior spend cicada  2 | 300 |  0/22 first edge None first null    8 | band   131.6 winner   131.6 | det 1 w3 1 | null   -78.7
+interior spend english 0 | 150 |  0/10 first edge None first null    8 | band    73.6 winner    73.6 | det 1 w3 1 | null   -50.3
+interior spend english 0 | 300 |  0/24 first edge None first null    8 | band   156.6 winner   156.6 | det 1 w3 1 | null  -119.5
+interior spend english 1 | 150 |  0/11 first edge None first null   10 | band    70.9 winner    70.9 | det 1 w3 1 | null   -19.2
+interior spend english 1 | 300 |  0/27 first edge None first null   10 | band   150.3 winner   150.3 | det 1 w3 1 | null   -78.9
+interior spend english 2 | 150 |  0/14 first edge None first null    4 | band    84.8 winner    84.8 | det 1 w3 1 | null   -23.0
+interior spend english 2 | 300 |  0/26 first edge None first null    4 | band   155.2 winner   155.2 | det 1 w3 1 | null   -78.9
+
+n 150, modes any + edge pooled, by number of edge nulls in the window:
+    edge nulls 3-5: n=4 detected 4 median band 57.3
+    edge nulls 6-99: n=20 detected 18 median band 47.1
+n 150, by position of the first edge null (index in the window):
+    first edge null in 0-9: n=15 detected 13 median band 52.2
+    first edge null in 10-29: n=5 detected 5 median band 49.7
+    first edge null in 30-99: n=4 detected 4 median band 54.1
+n 300, modes any + edge pooled, by number of edge nulls in the window:
+    edge nulls 6-99: n=24 detected 24 median band 109.7
+n 300, by position of the first edge null (index in the window):
+    first edge null in 0-9: n=15 detected 15 median band 109.0
+    first edge null in 10-29: n=5 detected 5 median band 93.6
+    first edge null in 30-99: n=4 detected 4 median band 118.8
