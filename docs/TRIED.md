@@ -86,7 +86,7 @@ LP2 did not beat its random-key null.
 ## 2026-10-20
 
 - 2026-10-20 - Book letters as running key under the rune table or any untuned table (17 texts, 6 languages) - excluded by flatness [book-running-key]
-- 2026-10-20 - Table-free book-key decoder: Liber AL, Blake x2, Emerson, Mabinogion, Agrippa 1651, Gibson's Agrippa - 0 hits; KJV running [book-key-decoder]
+- 2026-10-20 - Table-free book-key decoder: Liber AL, Blake x2, Emerson, Mabinogion, Agrippa 1651, Gibson's Agrippa, and the KJV (finished 2026-10-23) - 0 hits [book-key-decoder]
 - 2026-10-20 - Cited books as number streams (cumulative sums, word lengths) - best 1.346, 0 hits [book-number-streams]
 - 2026-10-20 - Signed 2014 payloads and hex blobs as keys (272 streams) - best 1.297 [signed-streams]
 - 2026-10-20 - OutGuess payloads in the LP2 page scans - none in any of the 56 pages [outguess-scan]
@@ -138,4 +138,4 @@ LP2 did not beat its random-key null.
 
 ## Still running (2026-10-22)
 
-- KJV as a table-free book key (about 55% done), then pointer direction by the words' numbers (18 conventions), then the remaining layout sign rules and word jump.
+- KJV as a table-free book key finished 2026-10-23: 0 hits. Running: pointer direction by the words' numbers (18 conventions), then the remaining layout sign rules and word jump.

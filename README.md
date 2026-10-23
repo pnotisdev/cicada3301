@@ -15,7 +15,7 @@ Every claim can be re-run, and every negative result comes with a positive contr
 | As of 2026-10-21 | |
 |---|---|
 | **Solved** | **Nothing.** LP2 (sections 0.7-0.15, 12,956 runes) is still undecoded |
-| Tests on record | 101: 56 excluded, 30 partly excluded, 3 untestable at LP2's effect size, 9 still open |
+| Tests on record | 101: 56 excluded, 31 partly excluded, 3 untestable at LP2's effect size, 8 still open |
 | Highest full-window screen score | IoC 1.415 (chain; fails whole-window verification) against the rule 1.40; a planted key lands at 1.6-2.06 |
 | Candidates that survived whole-section verification | **0** |
 | Live pages | [STATUS.md](STATUS.md) (done / left) and [results/INDEX.md](results/INDEX.md) (every result, with its control) |
@@ -27,6 +27,7 @@ Each of these is a test that was **controlled** (a planted key of that kind is r
 
 | When | Test | Result |
 |---|---|---|
+| 2026-10-23 | The KJV as a table-free book key under any letter table (stage 1, 761 chunks, ~390,000 offsets per section) | 0 stage-1 hits; best gate z +5.3 (the maximum expected over that many offsets; a hit needs about +10). All eight cited books now done |
 | 2026-10-22 | The 2013 Cicada OS data: `DATA/560.13` (118.8 MB, recovered from the original ISO after the archive's copy turned out to be a dead Git LFS pointer), `560.17`, `_560.00`, `folly`, and the 2013/2014 audio files as key streams (additive, XOR, under R4) | 560.13 is uniformly random bytes (entropy 7.999998); 0 hits in any mapping |
 | 2026-10-22 | Clue review of all 75 page images, the 2012-2017 archive and the wiki; the five untested clues it found: phi / sigma / pi of word sums, Cicada's number and onion strings under R4, the solved LP1 text as running key ("the key is all around you"), four irrationals combined, XOR-domain keys | all negative with controls (`work/log/phase60_clue_review.md`) |
 | 2026-10-22 | 1,940 keywords from the solved pages (with Cicada's spellings) and phi(prime) under the best-fit mechanism R4 (insertions would hide a keyword's period) | best -64 against the hit level 29.8; DIVINITY / FIRFUMFERENFE plants 44/44 |
@@ -87,7 +88,7 @@ Full list with controls, scope and what each negative does **not** exclude: [STA
 
 Suggested order, from the registry; none of this is a long run unless stated. Details and costs in [STATUS.md](STATUS.md#left-to-do-suggested-order).
 
-**Running on the desktop** (detached, in this order; `docs/QUEUE.md`): the KJV as a table-free book key (about half done), pointer direction "their numbers are the direction" (stage 1, about 24 h), the remaining line / position sign rules and the word-length pointer jump.
+**Running on the desktop** (detached, in this order; `docs/QUEUE.md`; after a reboot run `scripts/restart_queues.bat`): pointer direction "their numbers are the direction" (stage 1, about 24 h), the remaining line / position sign rules and the word-length pointer jump.
 
 **What is honestly left** (after phases 50-60 every operation named in Cicada's own words, numbers and files that we could express has been run with a control):
 1. **Missing data:** the page that hashes to An End's SHA-512 (never found by anyone; possibly a required outside key), and anything given privately to the 2014 finalists.
