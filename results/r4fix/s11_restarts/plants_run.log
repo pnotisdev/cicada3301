@@ -1,0 +1,42 @@
+48 plants
+[01:01:45] 1/48 p_spend_english_00.json 94.0 cpu-s
+[01:01:46] 2/48 p_m04_english_00.json 94.5 cpu-s
+[01:01:47] 3/48 p_m04_cicada_00.json 95.4 cpu-s
+[01:01:47] 4/48 p_spend_cicada_00.json 95.9 cpu-s
+[01:03:29] 5/48 p_m04_cicada_01.json 92.4 cpu-s
+[01:03:31] 6/48 p_spend_english_01.json 92.9 cpu-s
+[01:03:31] 7/48 p_m04_english_01.json 94.2 cpu-s
+[01:03:31] 8/48 p_spend_cicada_01.json 94.0 cpu-s
+[01:05:00] 9/48 p_m04_cicada_02.json 85.5 cpu-s
+[01:05:01] 10/48 p_m04_english_02.json 84.2 cpu-s
+[01:05:02] 11/48 p_spend_cicada_02.json 85.2 cpu-s
+[01:05:03] 12/48 p_spend_english_02.json 85.2 cpu-s
+[01:06:42] 13/48 p_m04_cicada_03.json 90.3 cpu-s
+[01:06:43] 14/48 p_m04_english_03.json 89.8 cpu-s
+[01:06:45] 15/48 p_spend_cicada_03.json 90.6 cpu-s
+[01:06:47] 16/48 p_spend_english_03.json 90.9 cpu-s
+[01:08:29] 17/48 p_m04_cicada_04.json 93.3 cpu-s
+[01:08:30] 18/48 p_m04_english_04.json 93.6 cpu-s
+[01:08:32] 19/48 p_spend_english_04.json 92.8 cpu-s
+[01:08:34] 20/48 p_spend_cicada_04.json 95.5 cpu-s
+[01:10:11] 21/48 p_m04_english_05.json 90.1 cpu-s
+[01:10:12] 22/48 p_m04_cicada_05.json 91.6 cpu-s
+[01:10:16] 23/48 p_spend_cicada_05.json 91.4 cpu-s
+[01:10:17] 24/48 p_spend_english_05.json 90.5 cpu-s
+[01:11:46] 25/48 p_m04_cicada_06.json 85.8 cpu-s
+[01:11:47] 26/48 p_m04_english_06.json 85.0 cpu-s
+[01:11:49] 27/48 p_spend_english_06.json 84.2 cpu-s
+[01:11:50] 28/48 p_spend_cicada_06.json 85.7 cpu-s
+Traceback (most recent call last):
+  File "<repo>\work\r4fix\s11_restarts.py", line 440, in <module>
+    txt = '\n'.join(out) + '\n'
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<repo>\work\r4fix\s11_restarts.py", line 280, in cmd_plants
+    print(f'[{time.strftime("%H:%M:%S")}] {k}/{len(todo)} {f.result()[0]} {f.result()[1]:.1f} cpu-s', flush=True)
+                                                           ^^^^^^^^^^
+  File "~\miniconda3\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "~\miniconda3\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+concurrent.futures.process.BrokenProcessPool: A process in the process pool was terminated abruptly while the future was running or pending.

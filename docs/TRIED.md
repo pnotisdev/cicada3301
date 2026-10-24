@@ -139,6 +139,9 @@ LP2 did not beat its random-key null.
 ## 2026-10-24
 
 - 2026-10-24 - Does the R4 decoder see R4 as fitted (nulls at word edges too)? Plants only - yes: 12/12 at n 150 and 300, recall 45/48 at n 150, 16/24 at n 100; R4 negatives stand; slot rule, two-null share and null check not decidable from LP2; literal F on R4 excluded by the F share; union arc built and gated (+5-11 nats margin) [r4-decoder-coverage]
+- 2026-10-24 - R4 x key restarts: 61 Cicada-named streams restarted at 46 page and 82 clause starts, union arc - 0 cells at the hit level, best -26.84 vs random-stream null -24.93 [r4-restarts]
+- 2026-10-24 - Word-length anomaly against Cicada's own text with baseline noise - survives in runes (p ~1e-5, q 0.36 [0.27, 0.45]), not in letters; THE carries most of the 2-rune deficit [wordlen-baseline]
+- 2026-10-24 - Lag-6 T sites as repairs (doublets at the sites, source runes, word-final share, full T grid) - not decidable; lag-5 one-gap and lag-9 cells borderline (P 0.03 / 0.018) [tsite-checks]
 
 ## Still running (2026-10-22)
 

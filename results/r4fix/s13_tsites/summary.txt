@@ -1,0 +1,204 @@
+s13 summary: LP2 T sites (c_j = T(c_(j-6)), T(c) = 24 - 2c mod 29) and the T grid.  Keyless; nothing decrypted.
+Nothing in LP2 is solved.  Sources: LP2's own runes (layout and statistics) and r4sim replicates / shuffles of them.
+Replicates: LP2 section lengths, English word lengths, uniform plaintext and key (flat cipher), presets documented in s13_tsites.py PRESETS.
+
+== reproduction (positive control for the statistic)
+LP2 in-word lag-6 cell: 80 hits / 1290 pairs, expected 44.47, z +5.42 (07_signal_math: 80 / 1290 / 44.47 / +5.42)
+LP2 (5,1): 307 hits / 7369 pairs, expected 254.2, z +3.37 (07: 307 / 7369 / 254.2 / +3.37).  LP2 doublets in words / across gaps 63 / 23 (63 / 23)
+
+replicate sets: mean words, mean in-word T sites (LP2 80 in 2896 words), in-word doublets / gap doublets (LP2 63 / 23)
+  within-word shuffle (2000)   words  2896.0  sites  45.73 +/-  6.44  doublets in/gap 248.0 /  90.1  lag-6 z +0.19
+  word-order shuffle (300)     words  2896.0  sites  80.00 +/-  0.00  doublets in/gap  63.0 /  99.8  lag-6 z +5.42
+  R0 (500 reps)                words  3203.3  sites  38.20 +/-  6.45  doublets in/gap  63.9 /  21.1  lag-6 z -0.03
+  R0n (500 reps)               words  2897.5  sites  45.01 +/-  6.88  doublets in/gap  59.6 /  17.4  lag-6 z +0.06
+  R1 (500 reps)                words  3204.7  sites  67.71 +/-  8.15  doublets in/gap  63.4 /  20.9  lag-6 z +4.83
+  R4 (500 reps)                words  2898.4  sites  76.48 +/-  9.15  doublets in/gap  59.7 /  17.1  lag-6 z +4.86
+  R4int (500 reps)             words  2897.4  sites  76.77 +/-  9.68  doublets in/gap  57.7 /  18.9  lag-6 z +4.91
+  R3 (500 reps)                words  2897.0  sites  67.68 +/-  8.11  doublets in/gap  66.7 /  18.7  lag-6 z +3.51
+  R7 (500 reps)                words  2898.0  sites  70.63 +/-  9.01  doublets in/gap  58.0 /  19.2  lag-6 z +3.98
+  plant (500 reps)             words  2897.9  sites  75.88 +/-  8.96  doublets in/gap  59.6 /  17.0  lag-6 z +4.77
+
+== ITEM 21: doublets at the T sites (c_j == c_(j-1))
+LP2: 80 T sites, 1 with c_j == c_(j-1).  In-word pairs at word position >= 6: 1290, doublets among them 9 (rate 0.0070) -> expected at 80 sites under 'T sites are ordinary pairs of LP2': 0.56
+R4 semantics: a T repair writes T(c[-6]) only when != prev, so a repair site is never a doublet; a chance T pair is a doublet only as an unrepaired collision.
+set                              sites   doublets per site    x80 sites      P(<=1) | of which true repair sites / doublets there / chance sites' doublets
+within-word shuffle (2000)       45.73      1.637   0.0358         2.86       0.516 |    [Bin(80, rate) P(<=obs) 0.215; replicates with 0 doublets 0.207]
+word-order shuffle (300)         80.00      1.000   0.0125         1.00       1.000 |    [Bin(80, rate) P(<=obs) 0.736; replicates with 0 doublets 0.000]
+R0 (500 reps)                    38.20      0.236   0.0062         0.49       0.972 | 0.0 / 0.00 / 0.24   [Bin(80, rate) P(<=obs) 0.912; replicates with 0 doublets 0.794]
+R0n (500 reps)                   45.01      0.262   0.0058         0.47       0.980 | 0.0 / 0.00 / 0.26   [Bin(80, rate) P(<=obs) 0.920; replicates with 0 doublets 0.766]
+R1 (500 reps)                    67.71      0.284   0.0042         0.34       0.964 | 29.9 / 0.00 / 0.28   [Bin(80, rate) P(<=obs) 0.955; replicates with 0 doublets 0.756]
+R4 (500 reps)                    76.48      0.268   0.0035         0.28       0.962 | 32.6 / 0.00 / 0.27   [Bin(80, rate) P(<=obs) 0.968; replicates with 0 doublets 0.774]
+R4int (500 reps)                 76.77      0.302   0.0039         0.31       0.964 | 33.6 / 0.00 / 0.30   [Bin(80, rate) P(<=obs) 0.960; replicates with 0 doublets 0.734]
+R3 (500 reps)                    67.68      0.190   0.0028         0.22       0.978 | 24.4 / 0.00 / 0.19   [Bin(80, rate) P(<=obs) 0.978; replicates with 0 doublets 0.832]
+R7 (500 reps)                    70.63      0.202   0.0029         0.23       0.988 | 26.9 / 0.00 / 0.20   [Bin(80, rate) P(<=obs) 0.978; replicates with 0 doublets 0.810]
+plant (500 reps)                 75.88      0.266   0.0035         0.28       0.966 | 32.5 / 0.00 / 0.27   [Bin(80, rate) P(<=obs) 0.968; replicates with 0 doublets 0.770]
+
+== ITEM 22: source rune c_(j-6) of the T sites
+LP2 source counts by rune index (F=0 .. EA=28): 1 3 5 5 4 4 1 7 2 2 1 2 3 4 2 3 5 3 2 3 0 4 2 1 0 4 4 1 2
+LP2: distinct sources 27, max count 7, chi2 vs flat (n/29 each) 28.0 (28 dof; flat mean 28 +/- 7.5), sum of squares 298 (flat expectation n + n(n-1)/29 = 298 for n = 80)
+(phase 54's 'sum of squares 298 vs 118' compared 80 hits with a 45-hit null: 298 IS the flat expectation for 80 hits, so it is not an excess.)
+set                                chi2 vs flat          max count           distinct | P(set >= LP2): chi2, max, distinct<=
+within-word shuffle (2000)       28.72 +/- 7.70      4.63 +/- 0.98     22.93 +/- 2.16 | 0.497 0.043 0.993
+word-order shuffle (300)         28.02 +/- 0.00      7.00 +/- 0.00     27.00 +/- 0.00 | 1.000 1.000 1.000
+R0 (500 reps)                    28.06 +/- 7.58      4.11 +/- 0.91     21.18 +/- 2.55 | 0.459 0.012 0.994
+R0n (500 reps)                   27.86 +/- 7.39      4.55 +/- 1.03     22.87 +/- 2.13 | 0.457 0.042 0.996
+R1 (500 reps)                    27.74 +/- 7.57      5.93 +/- 1.15     26.32 +/- 1.59 | 0.455 0.285 0.760
+R4 (500 reps)                    27.36 +/- 7.51      6.39 +/- 1.25     26.98 +/- 1.34 | 0.421 0.395 0.615
+R4int (500 reps)                 28.49 +/- 7.66      6.43 +/- 1.21     26.83 +/- 1.48 | 0.489 0.451 0.649
+R3 (500 reps)                    27.86 +/- 7.03      5.88 +/- 1.09     26.20 +/- 1.60 | 0.467 0.253 0.778
+R7 (500 reps)                    28.38 +/- 7.79      6.08 +/- 1.17     26.41 +/- 1.57 | 0.459 0.311 0.729
+plant (500 reps)                 28.35 +/- 7.50      6.39 +/- 1.21     26.78 +/- 1.40 | 0.491 0.427 0.671
+
+== ITEM 23: distance of the T site's last rune from the word end (0 = word-final rune), bins 0 1 2 3 4 5+
+LP2 T sites by distance      :  32  28   9   5   5   1   (total 80; word-final share 0.400)
+LP2 in-word lag-6 pairs      :  559  343  187  109   57   35
+LP2 chance expectation (pairs x f[T(c_src)]):  19.3  11.8   6.5   3.8   2.0   1.2  (sum 44.5)
+within-word shuffle (2000)   mean  20.1  12.0   6.5   3.8   2.0   1.2 | word-final  20.1 +/-  4.4  LP2 z +2.72  P(>=32) 0.006  P(<=32) 0.997 | share 0.440
+word-order shuffle (300)     mean  32.0  28.0   9.0   5.0   5.0   1.0 | word-final  32.0 +/-  0.0  LP2 z +nan  P(>=32) 1.000  P(<=32) 1.000 | share 0.400
+R0 (500 reps)                mean  16.0  10.2   6.1   3.2   1.6   1.1 | word-final  16.0 +/-  3.9  LP2 z +4.11  P(>=32) 0.002  P(<=32) 1.000 | share 0.419
+R0n (500 reps)               mean  18.2  11.8   7.2   4.1   2.1   1.7 | word-final  18.2 +/-  4.2  LP2 z +3.31  P(>=32) 0.002  P(<=32) 1.000 | share 0.404
+R1 (500 reps)                mean  28.4  17.7  11.2   5.7   2.7   2.0 | word-final  28.4 +/-  5.1  LP2 z +0.71  P(>=32) 0.265  P(<=32) 0.804 | share 0.419
+R4 (500 reps)                mean  31.1  19.6  12.2   7.1   3.6   2.8 | word-final  31.1 +/-  5.3  LP2 z +0.17  P(>=32) 0.475  P(<=32) 0.601 | share 0.407
+R4int (500 reps)             mean  31.9  19.2  12.2   7.1   3.7   2.8 | word-final  31.9 +/-  5.6  LP2 z +0.02  P(>=32) 0.517  P(<=32) 0.557 | share 0.415
+R3 (500 reps)                mean  26.6  17.7  11.1   6.3   3.3   2.7 | word-final  26.6 +/-  5.0  LP2 z +1.08  P(>=32) 0.152  P(<=32) 0.878 | share 0.394
+R7 (500 reps)                mean  23.9  20.1  12.7   7.4   3.7   2.9 | word-final  23.9 +/-  4.7  LP2 z +1.70  P(>=32) 0.064  P(<=32) 0.960 | share 0.339
+plant (500 reps)             mean  30.4  19.8  12.4   7.1   3.6   2.6 | word-final  30.4 +/-  5.4  LP2 z +0.30  P(>=32) 0.433  P(<=32) 0.637 | share 0.400
+   R4 (500 reps)              true-repair sites by distance  13.1   8.4   5.2   3.1   1.6   1.3 | chance sites  18.1  11.2   7.1   4.0   2.0   1.6
+   R3 (500 reps)              true-repair sites by distance   9.2   6.3   4.2   2.4   1.3   1.0 | chance sites  17.4  11.4   6.9   3.9   2.0   1.6
+   R7 (500 reps)              true-repair sites by distance   6.1   9.0   5.6   3.3   1.6   1.3 | chance sites  17.8  11.1   7.0   4.1   2.1   1.6
+   plant (500 reps)           true-repair sites by distance  13.1   8.6   5.2   2.9   1.6   1.1 | chance sites  17.3  11.3   7.1   4.1   2.0   1.6
+LP2 minus replicate mean, in sd, per bin (0..5+):
+   within-word shuffle (2000)   +2.72 +4.72 +1.00 +0.62 +2.14 -0.19
+   word-order shuffle (300)     +nan +nan +nan +nan +nan +nan
+   R0 (500 reps)                +4.11 +5.57 +1.19 +1.02 +2.62 -0.13
+   R0n (500 reps)               +3.31 +4.52 +0.71 +0.47 +1.93 -0.52
+   R1 (500 reps)                +0.71 +2.46 -0.66 -0.29 +1.37 -0.66
+   R4 (500 reps)                +0.17 +1.88 -0.90 -0.82 +0.78 -1.04
+   R4int (500 reps)             +0.02 +2.03 -0.87 -0.74 +0.72 -1.09
+   R3 (500 reps)                +1.08 +2.49 -0.69 -0.53 +0.97 -0.98
+   R7 (500 reps)                +1.70 +1.70 -1.09 -0.90 +0.69 -1.07
+   plant (500 reps)             +0.30 +1.91 -0.95 -0.80 +0.78 -0.96
+
+== ITEMS 19-20: T grid.  Cell (g, k): rune lag g, k word gaps crossed (same section).  Entry = LP2 hits / expected (z).
+Expected uses LP2's own unigrams f[T(c_i)] (replicates: their own).  LP2 table:
+  g\k                        0                       1                       2                       3                       4
+   1      355/  347.0 (+0.44)      98/   99.5 (-0.16)                        -                       -                       -
+   2      257/  249.9 (+0.45)     172/  193.4 (-1.57)       1/    2.8 (-1.11)                        -                       -
+   3      192/  168.4 (+1.85)     284/  256.5 (+1.75)      25/   21.0 (+0.88)                        -                       -
+   4      120/  111.5 (+0.81)     276/  271.3 (+0.29)      51/   61.7 (-1.38)       2/    1.1 (+0.89)                        -
+   5       59/   72.5 (-1.61)     307/  254.2 (+3.37)     103/  112.8 (-0.94)       4/    5.7 (-0.72)                        -
+   6       80/   44.5 (+5.42)     228/  224.4 (+0.24)     158/  157.0 (+0.08)      15/   18.8 (-0.88)       0/    0.3 (-0.53) 
+   7       22/   25.2 (-0.65)     196/  188.9 (+0.52)     194/  187.4 (+0.49)      48/   41.4 (+1.05)       2/    1.7 (+0.21) 
+   8       11/   13.4 (-0.67)     133/  150.5 (-1.45)     215/  204.5 (+0.75)      68/   69.6 (-0.20)      10/    6.2 (+1.56) 
+   9       14/    7.0 (+2.72)     124/  112.3 (+1.12)     198/  210.3 (-0.86)      87/   99.0 (-1.23)      19/   14.9 (+1.08) 
+  10        2/    3.2 (-0.67)      79/   81.1 (-0.24)     178/  201.0 (-1.65)     137/  128.3 (+0.78)      30/   28.0 (+0.38) 
+  11        2/    1.2 (+0.74)      47/   56.1 (-1.24)     201/  182.3 (+1.41)     138/  152.5 (-1.20)      36/   45.8 (-1.47) 
+  12        1/    0.3 (+1.14)      43/   37.5 (+0.91)     147/  156.5 (-0.77)     152/  170.4 (-1.44)      74/   67.0 (+0.88) 
+cells with >= 200 LP2 pairs, excluding (6,0): 41 (07_signal_math counted 47 by a different rule)
+LP2 largest z among those cells: +3.37 at (lag 5, gaps 1); second +2.72
+
+focus cells: LP2 z vs each replicate set's z (mean +/- sd) and P(set z >= LP2 z); excess = mean(hits - expected)
+set                          (6,0) LP2 z +5.42             (5,1) LP2 z +3.37             (9,0) LP2 z +2.72             (3,0) LP2 z +1.85             (7,0) LP2 z -0.65             (5,0) LP2 z -1.61             (6,1) LP2 z +0.24             (4,2) LP2 z -1.38             
+within-word shuffle (2000)   +0.19+/-0.98 P0.000 ex+1.2    +0.60+/-0.93 P0.004 ex+9.4    +0.01+/-1.02 P0.012 ex+0.0    +0.40+/-0.93 P0.075 ex+5.2    +0.09+/-0.98 P0.755 ex+0.5    +0.28+/-1.00 P0.967 ex+2.4    +0.46+/-0.96 P0.595 ex+6.8    -0.01+/-0.94 P0.934 ex-0.1    
+word-order shuffle (300)     +5.42+/-0.00 P1.000 ex+35.5   +0.06+/-1.03 P0.007 ex+0.9    +2.72+/-0.00 P1.000 ex+7.0    +1.85+/-0.00 P1.000 ex+23.6   -0.65+/-0.00 P1.000 ex-3.2    -1.61+/-0.00 P1.000 ex-13.5   +0.02+/-0.98 P0.402 ex+0.3    -0.04+/-0.93 P0.934 ex-0.3    
+R0 (500 reps)                -0.03+/-1.03 P0.002 ex-0.2    -0.06+/-1.02 P0.002 ex-0.9    +0.01+/-1.05 P0.016 ex+0.0    +0.02+/-0.94 P0.028 ex+0.2    +0.01+/-1.06 P0.729 ex+0.0    +0.06+/-1.00 P0.964 ex+0.4    -0.06+/-1.00 P0.391 ex-0.8    +0.05+/-1.07 P0.916 ex+0.5    
+R0n (500 reps)               +0.06+/-1.00 P0.002 ex+0.4    -0.05+/-0.97 P0.002 ex-0.8    -0.08+/-1.01 P0.010 ex-0.2    -0.02+/-0.96 P0.030 ex-0.3    -0.04+/-0.98 P0.739 ex-0.2    -0.02+/-1.01 P0.946 ex-0.2    -0.03+/-0.96 P0.385 ex-0.4    +0.00+/-1.00 P0.924 ex+0.0    
+R1 (500 reps)                +4.83+/-1.25 P0.319 ex+29.4   -0.06+/-1.04 P0.004 ex-0.9    +0.05+/-1.05 P0.012 ex+0.1    +0.01+/-1.00 P0.040 ex+0.1    -0.23+/-1.01 P0.663 ex-1.1    -0.07+/-1.00 P0.938 ex-0.6    -0.05+/-0.99 P0.371 ex-0.7    -0.04+/-0.99 P0.924 ex-0.4    
+R4 (500 reps)                +4.86+/-1.28 P0.335 ex+31.9   +0.03+/-0.97 P0.002 ex+0.5    -0.06+/-1.02 P0.006 ex-0.2    +0.00+/-0.97 P0.038 ex+0.0    -0.19+/-1.02 P0.663 ex-1.0    -0.14+/-1.06 P0.922 ex-1.2    +0.01+/-0.98 P0.417 ex+0.1    -0.01+/-0.99 P0.918 ex-0.1    
+R4int (500 reps)             +4.91+/-1.39 P0.353 ex+32.2   +0.09+/-0.99 P0.002 ex+1.4    -0.02+/-0.97 P0.006 ex-0.1    +0.06+/-1.02 P0.036 ex+0.8    -0.25+/-1.01 P0.663 ex-1.3    -0.16+/-1.03 P0.924 ex-1.3    +0.01+/-0.98 P0.411 ex+0.2    -0.03+/-1.00 P0.912 ex-0.2    
+R3 (500 reps)                +3.51+/-1.18 P0.060 ex+23.0   +0.01+/-1.02 P0.002 ex+0.2    +0.03+/-1.03 P0.008 ex+0.1    +0.02+/-1.01 P0.036 ex+0.3    +1.51+/-1.12 P0.982 ex+7.6    -0.13+/-0.97 P0.950 ex-1.1    +0.02+/-1.02 P0.399 ex+0.3    -0.04+/-0.98 P0.914 ex-0.3    
+R7 (500 reps)                +3.98+/-1.29 P0.126 ex+26.1   +0.02+/-0.99 P0.002 ex+0.3    -0.10+/-1.03 P0.006 ex-0.3    +0.07+/-1.00 P0.044 ex+0.9    -0.18+/-1.01 P0.685 ex-0.9    -0.12+/-1.01 P0.924 ex-1.0    -0.03+/-1.01 P0.385 ex-0.4    +0.03+/-0.97 P0.926 ex+0.2    
+plant (500 reps)             +4.77+/-1.30 P0.285 ex+31.3   +2.80+/-1.19 P0.301 ex+44.1   -0.02+/-1.05 P0.018 ex-0.1    +0.06+/-1.01 P0.048 ex+0.8    -0.28+/-0.99 P0.631 ex-1.4    -0.11+/-1.05 P0.938 ex-0.9    -0.21+/-0.99 P0.319 ex-3.2    -0.04+/-1.00 P0.918 ex-0.3    
+
+max over the 41 comparison cells of the T-cell z, per set (LP2 +3.37): mean, 95th pct, P(set max >= LP2 max), P(set max >= 3.37)
+   within-word shuffle (2000)   2.35  3.31  0.044  0.044
+   word-order shuffle (300)     2.77  3.11  0.027  0.023
+   R0 (500 reps)                2.25  3.20  0.028  0.026
+   R0n (500 reps)               2.23  3.16  0.022  0.020
+   R1 (500 reps)                2.28  3.33  0.050  0.048
+   R4 (500 reps)                2.25  3.16  0.034  0.032
+   R4int (500 reps)             2.23  3.10  0.020  0.018
+   R3 (500 reps)                2.48  3.64  0.092  0.090
+   R7 (500 reps)                2.24  3.13  0.032  0.030
+   plant (500 reps)             3.25  4.74  0.383  0.382
+
+planted control and nulls on the (5,1) cell: share of replicates with z(5,1) >= LP2's +3.37 (power of the plant / null rate)
+   within-word shuffle (2000)   share 0.004  mean z +0.60  mean excess +9.4 (target for the plant: LP2 +52.8)
+   word-order shuffle (300)     share 0.003  mean z +0.06  mean excess +0.9 (target for the plant: LP2 +52.8)
+   R0 (500 reps)                share 0.000  mean z -0.06  mean excess -0.9 (target for the plant: LP2 +52.8)
+   R0n (500 reps)               share 0.000  mean z -0.05  mean excess -0.8 (target for the plant: LP2 +52.8)
+   R1 (500 reps)                share 0.002  mean z -0.06  mean excess -0.9 (target for the plant: LP2 +52.8)
+   R4 (500 reps)                share 0.000  mean z +0.03  mean excess +0.5 (target for the plant: LP2 +52.8)
+   R4int (500 reps)             share 0.000  mean z +0.09  mean excess +1.4 (target for the plant: LP2 +52.8)
+   R3 (500 reps)                share 0.000  mean z +0.01  mean excess +0.2 (target for the plant: LP2 +52.8)
+   R7 (500 reps)                share 0.000  mean z +0.02  mean excess +0.3 (target for the plant: LP2 +52.8)
+   plant (500 reps)             share 0.300  mean z +2.80  mean excess +44.1 (target for the plant: LP2 +52.8)
+planted cross-gap repairs per replicate: 68.13 +/- 8.11
+
+max z over the 812 affine forms c' = a c + b of in-word pairs, per rune lag (LP2 | set mean | P(set >= LP2)); the T form is (27, 24)
+set                                     1           2           3           4           5           6           7           8           9          10          11          12
+LP2 (z of max form)                  3.50        3.24        2.85        3.80        3.86        5.42        2.99        3.24        3.89        5.04        3.53        6.35
+LP2 form (a,b)                    (26, 3)      (2, 0)     (6, 22)    (24, 28)    (23, 15)    (27, 24)     (11, 4)     (5, 26)    (24, 11)    (10, 27)      (2, 9)    (17, 13)
+LP2 z of the T form                  0.44        0.45        1.85        0.81       -1.61        5.42       -0.65       -0.67        2.72       -0.67        0.74        1.14
+within-word shuffle (2000) mean         3.24        3.24        3.29        3.30        3.35        3.38        3.45        3.55        3.68        3.86        4.24        4.94
+   P(set >= LP2)                    0.228       0.443       0.907       0.095       0.118       0.001       0.915       0.688       0.286       0.039       0.863       0.074
+word-order shuffle (300) mean         3.50        3.24        2.85        3.80        3.86        5.42        2.99        3.24        3.89        5.04        3.53        6.35
+   P(set >= LP2)                    1.000       1.000       1.000       1.000       1.000       1.000       1.000       1.000       1.000       1.000       1.000       1.000
+R0 (500 reps) mean                   3.33        3.32        3.29        3.33        3.33        3.43        3.48        3.57        3.73        3.99        4.23        4.90
+   P(set >= LP2)                    0.285       0.547       0.906       0.108       0.102       0.002       0.896       0.760       0.357       0.058       0.884       0.062
+R0n (500 reps) mean                  3.30        3.29        3.32        3.33        3.35        3.38        3.43        3.59        3.64        3.84        4.13        4.62
+   P(set >= LP2)                    0.273       0.499       0.918       0.114       0.106       0.002       0.868       0.754       0.253       0.034       0.834       0.034
+R1 (500 reps) mean                   3.33        3.28        3.30        3.31        3.35        4.93        3.46        3.57        3.71        3.94        4.29        4.98
+   P(set >= LP2)                    0.287       0.497       0.894       0.100       0.088       0.319       0.890       0.743       0.295       0.038       0.890       0.074
+R4 (500 reps) mean                   3.31        3.29        3.30        3.35        3.35        4.94        3.46        3.55        3.63        3.85        4.11        4.70
+   P(set >= LP2)                    0.263       0.493       0.900       0.128       0.098       0.335       0.878       0.737       0.244       0.028       0.830       0.034
+R4int (500 reps) mean                3.33        3.27        3.33        3.32        3.38        5.02        3.47        3.54        3.68        3.84        4.12        4.65
+   P(set >= LP2)                    0.269       0.483       0.898       0.120       0.126       0.353       0.892       0.745       0.283       0.018       0.848       0.042
+R3 (500 reps) mean                   3.30        3.27        3.29        3.32        3.34        3.96        3.49        3.54        3.64        3.88        4.03        4.62
+   P(set >= LP2)                    0.253       0.499       0.886       0.106       0.104       0.060       0.870       0.717       0.275       0.038       0.812       0.038
+R7 (500 reps) mean                   3.30        3.29        3.28        3.32        3.35        4.28        3.46        3.55        3.64        3.83        4.10        4.52
+   P(set >= LP2)                    0.277       0.517       0.876       0.124       0.102       0.130       0.886       0.749       0.251       0.018       0.844       0.030
+plant (500 reps) mean                3.33        3.29        3.30        3.32        3.38        4.88        3.45        3.53        3.63        3.79        4.17        4.60
+   P(set >= LP2)                    0.279       0.531       0.902       0.128       0.114       0.285       0.890       0.741       0.257       0.022       0.828       0.022
+
+max over lags != 6 of the affine-form maxima: LP2 6.35 (lag 12); P(set >= LP2)
+   within-word shuffle (2000)   mean 5.10  P(>= LP2) 0.077
+   word-order shuffle (300)     mean 6.35  P(>= LP2) 1.000
+   R0 (500 reps)                mean 5.18  P(>= LP2) 0.070
+   R0n (500 reps)               mean 4.89  P(>= LP2) 0.036
+   R1 (500 reps)                mean 5.25  P(>= LP2) 0.084
+   R4 (500 reps)                mean 4.96  P(>= LP2) 0.040
+   R4int (500 reps)             mean 4.94  P(>= LP2) 0.046
+   R3 (500 reps)                mean 4.92  P(>= LP2) 0.040
+   R7 (500 reps)                mean 4.83  P(>= LP2) 0.032
+   plant (500 reps)             mean 4.92  P(>= LP2) 0.030
+
+== ADDENDUM A: word-final plus penultimate (distance 0 or 1) T sites: LP2 60 of 80 (share 0.750)
+   within-word shuffle (2000)   32.1 +/- 5.5  LP2 z +5.09  P(>= LP2) 0.000  share 0.703
+   R0 (500 reps)                26.2 +/- 5.1  LP2 z +6.59  P(>= LP2) 0.002  share 0.685
+   R0n (500 reps)               29.9 +/- 5.5  LP2 z +5.47  P(>= LP2) 0.002  share 0.665
+   R1 (500 reps)                46.1 +/- 6.4  LP2 z +2.16  P(>= LP2) 0.022  share 0.681
+   R4 (500 reps)                50.7 +/- 7.0  LP2 z +1.33  P(>= LP2) 0.104  share 0.663
+   R4int (500 reps)             51.1 +/- 7.4  LP2 z +1.20  P(>= LP2) 0.136  share 0.665
+   R3 (500 reps)                44.3 +/- 6.6  LP2 z +2.37  P(>= LP2) 0.018  share 0.654
+   R7 (500 reps)                44.0 +/- 7.0  LP2 z +2.29  P(>= LP2) 0.022  share 0.623
+   plant (500 reps)             50.2 +/- 6.9  LP2 z +1.42  P(>= LP2) 0.092  share 0.662
+
+== ADDENDUM B: the whole lag-5 row (excess = hits - expected, z) for LP2 and the planted control; cells (5,k), k = 0..4
+   LP2                           -13.5 (-1.61)   +52.8 (+3.37)    -9.8 (-0.94)    -1.7 (-0.72)    +0.0 (+0.00)
+   within-word shuffle (2000)     +2.4 (+0.28)    +9.4 (+0.60)    -0.4 (-0.04)    -0.0 (-0.01)    +0.0 (+0.00)
+   R4 (500 reps)                  -1.2 (-0.14)    +0.5 (+0.03)    -0.5 (-0.04)    +0.2 (+0.08)    -0.0 (+0.01)
+   R3 (500 reps)                  -1.1 (-0.13)    +0.2 (+0.01)    +0.3 (+0.03)    +0.0 (+0.01)    +0.0 (+0.04)
+   plant (500 reps)               -0.9 (-0.11)   +44.1 (+2.80)   +19.7 (+1.91)    +1.2 (+0.49)    +0.0 (+0.08)
+== ADDENDUM C: second-largest LP2 comparison-cell z (+2.72 at lag 9, gaps 0): P(set second-largest >= it)
+   within-word shuffle (2000)   mean 1.91  P 0.016
+   word-order shuffle (300)     mean 2.20  P 0.150
+   R0 (500 reps)                mean 1.82  P 0.022
+   R0n (500 reps)               mean 1.83  P 0.020
+   R1 (500 reps)                mean 1.81  P 0.026
+   R4 (500 reps)                mean 1.80  P 0.018
+   R4int (500 reps)             mean 1.79  P 0.014
+   R3 (500 reps)                mean 1.92  P 0.032
+   R7 (500 reps)                mean 1.80  P 0.028
+   plant (500 reps)             mean 2.33  P 0.208
+(lags 10-12 in-word have about 90 / 35 / 10 pairs; a z of a handful of hits is not a Gaussian, so the lag-12 form maximum of 6.35 is a small-count artefact: P(set >= LP2) 0.02-0.08 in every set.)

@@ -1,0 +1,14 @@
+# s11 LP2 scan: restart windows x 61 named streams (+ 100 random streams as the null of the maximum); union arc nu 0.42, q 0.81, hold + spend, both signs, offsets 0..28; T300 = 29.80
+windows: 179 (page / clause x variant A: n = min(300, runes to the section end), variant B: n = min(300, runes to the next restart point)); 167 unique (section, start, n) scored; skipped under 150 runes: 77
+
+cells scored: 1,181,692 named (of which offset 0: 40,748) + 1,937,200 random-stream null; CPU in the scan 2.88 h
+
+per window type: windows | named best at offset 0 | named best over offsets 0..28 | random-stream null max (offset 0 / 0..28), per-window max over 200 random streams: median / max | counts >= 0, 5, 10, 20 (named, offset 0)
+  clause A: 77 windows | offset 0 best -28.13 (0.11c@1730+68 n 164; '3301 * p_n' sign +1 hold) | 0..28 best -28.13 (0.11c@1730+68 n 164; '3301 * p_n' sign +1 hold offset 0) | random max -38.35 / -24.93, per-window median -74.12 / -65.73 | counts >= 0: 0, >= 5: 0, >= 10: 0, >= 20: 0
+  clause B: 16 windows | offset 0 best -34.13 (0.12c@677+156 n 156; 'primes' sign +1 hold) | 0..28 best -26.84 (0.12c@677+156 n 156; 'sha256-ctr mod :3301' sign +1 hold offset 15) | random max -32.97 / -26.45, per-window median -47.82 / -42.36 | counts >= 0: 0, >= 5: 0, >= 10: 0, >= 20: 0
+  page A: 44 windows | offset 0 best -44.70 (page17_0.7@528 n 201; 'n' sign +1 hold) | 0..28 best -42.26 (page17_0.7@528 n 201; 'n' sign +1 hold offset 3) | random max -47.38 / -34.92, per-window median -71.62 / -63.99 | counts >= 0: 0, >= 5: 0, >= 10: 0, >= 20: 0
+  page B: 42 windows | offset 0 best -42.27 (page68_0.15@2829 n 179; '3301 * p_n' sign -1 hold) | 0..28 best -29.49 (page68_0.15@2829 n 179; '3301 * p_n' sign -1 hold offset 19) | random max -27.15 / -27.15, per-window median -61.73 / -53.80 | counts >= 0: 0, >= 5: 0, >= 10: 0, >= 20: 0
+
+random-stream null of the maximum (all 167 windows): max over offset 0 -27.15, over offsets 0..28 -24.93; named streams: max offset 0 -28.13, offsets 0..28 -26.84
+cells >= T300 29.80: 0
+

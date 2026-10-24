@@ -1,0 +1,123 @@
+# s12: LP2 word-length anomaly against honest baselines (2026-10-24)
+Nothing in LP2 is solved.  Keyless: LP2's 2,896 word lengths only.  Seed 20261024, single process, numpy.
+LP2: 2896 words, 1-rune 83, 2-rune 448 (15.47%), bins 1..11,12+:
+    2.9  15.5  24.9  17.7  10.9   8.8   7.5   5.4   2.7   1.8   1.1   0.9
+Solved text (lp.KNOWN keys [0, 1, 2, 3, 4, 5, 6, 16, 17]): 739 words, 2977 runes
+  Emerson: 74880 words
+  Walden: 117248 words
+  Origin of Species: 209326 words
+  KJV Bible: 792180 words
+  Republic (Jowett): 217472 words
+  Meditations: 72049 words
+  Paradise Lost: 81096 words
+  Ethics (Elwes): 89339 words
+
+## 0. Reproduction of the loose-ends audit and of results/analysis/wordlen.txt
+  LP2 vs solved text (runes): chi2 42.5, G 41.7, df 11, asymptotic p 1.80e-05 (Pearson-chi2 p 1.32e-05), MC p 0.0001; 2-rune share 24.1% vs LP2 15.5%, z -5.5
+    old one-sample G against the fixed solved histogram (runes): 202.8, p 1.99e-37
+  LP2 vs solved text (letters): chi2 25.8, G 28.0, df 11, asymptotic p 3.22e-03 (Pearson-chi2 p 6.87e-03), MC p 0.0036; 2-rune share 17.9% vs LP2 15.5%, z -1.6
+    old one-sample G against the fixed solved histogram (letters): 156.6, p 6.78e-28
+    old one-sample G against Emerson (runes): 242.4, p 1.10e-45 (wordlen.txt: runes 242.4, letters 60.4)
+    old one-sample G against Emerson (letters): 60.4, p 7.71e-09 (wordlen.txt: runes 242.4, letters 60.4)
+
+## 1. Baseline x spelling: two-sample test and fitted q  (multi = +1 only in words of >= 2 runes)
+baseline / spelling | words | 2-rune % | chi2 (df 11) | G | p two-sample MC | q multi [95% CI] | min G, p fit | q all [CI] | 1-rune exp (multi) vs 83
+Solved text / runes | 739 | 24.1 | 42.5 | 41.7 | 0.0000 (asym 1.8e-05) | 0.360 [0.270, 0.450] | 4.9, p 0.650 | 0.380 [0.280, 0.480] (G 4.8, p 0.611) | 105.8
+Solved text / letters | 739 | 17.9 | 25.8 | 28.0 | 0.0045 (asym 3.2e-03) | 0.215 [0.130, 0.315] | 12.8, p 0.077 | 0.235 [0.145, 0.340] (G 10.8, p 0.118) | 105.8
+Emerson / runes | 74880 | 27.1 | 214.9 | 234.1 | 0.0000 (asym 5.9e-44) | 0.425 [0.375, 0.470] | 15.9, p 0.099 | 0.420 [0.365, 0.475] (G 36.1, p 0.001) | 87.3
+Emerson / letters | 74880 | 20.0 | 57.2 | 58.2 | 0.0000 (asym 2.0e-08) | 0.195 [0.135, 0.255] | 23.9, p 0.005 | 0.190 [0.125, 0.255] (G 27.6, p 0.002) | 87.3
+Walden / runes | 117248 | 24.9 | 229.0 | 234.5 | 0.0000 (asym 4.8e-44) | 0.390 [0.335, 0.440] | 63.4, p 0.000 | 0.445 [0.385, 0.495] (G 40.9, p 0.000) | 135.3
+Walden / letters | 117248 | 18.5 | 72.7 | 73.7 | 0.0000 (asym 2.4e-11) | 0.135 [0.075, 0.200] | 57.1, p 0.000 | 0.200 [0.130, 0.275] (G 43.4, p 0.000) | 134.9
+Origin of Species / runes | 209326 | 26.3 | 364.4 | 365.8 | 0.0000 (asym 1.1e-71) | 0.405 [0.355, 0.455] | 147.9, p 0.000 | 0.385 [0.330, 0.435] (G 178.6, p 0.000) | 70.0
+Origin of Species / letters | 209326 | 19.3 | 185.4 | 191.3 | 0.0000 (asym 4.7e-35) | 0.110 [0.040, 0.185] | 182.2, p 0.000 | 0.080 [0.005, 0.150] (G 187.0, p 0.000) | 70.0
+KJV Bible / runes | 792180 | 25.8 | 459.5 | 394.1 | 0.0000 (asym 1.1e-77) | 0.420 [0.375, 0.465] | 144.2, p 0.000 | 0.405 [0.355, 0.450] (G 173.3, p 0.000) | 72.6
+KJV Bible / letters | 792180 | 16.5 | 211.8 | 183.9 | 0.0000 (asym 1.6e-33) | 0.155 [0.100, 0.210] | 154.0, p 0.000 | 0.150 [0.090, 0.205] (G 157.3, p 0.000) | 72.6
+Republic (Jowett) / runes | 217472 | 27.7 | 241.7 | 264.3 | 0.0000 (asym 2.8e-50) | 0.435 [0.385, 0.480] | 25.3, p 0.008 | 0.425 [0.370, 0.475] (G 52.3, p 0.000) | 81.1
+Republic (Jowett) / letters | 217472 | 20.5 | 78.0 | 79.4 | 0.0000 (asym 1.9e-12) | 0.205 [0.145, 0.265] | 38.5, p 0.000 | 0.195 [0.130, 0.255] (G 45.5, p 0.000) | 81.0
+Meditations / runes | 72049 | 24.6 | 187.4 | 192.1 | 0.0000 (asym 3.3e-35) | 0.365 [0.315, 0.415] | 26.9, p 0.002 | 0.355 [0.305, 0.410] (G 44.4, p 0.000) | 81.4
+Meditations / letters | 72049 | 20.2 | 103.9 | 104.5 | 0.0000 (asym 2.3e-17) | 0.205 [0.150, 0.265] | 57.8, p 0.000 | 0.200 [0.135, 0.260] (G 64.3, p 0.000) | 80.9
+Paradise Lost / runes | 81096 | 19.1 | 145.6 | 123.1 | 0.0000 (asym 4.4e-21) | 0.195 [0.140, 0.260] | 84.2, p 0.000 | 0.170 [0.105, 0.230] (G 95.4, p 0.000) | 60.8
+Paradise Lost / letters | 81096 | 14.6 | 109.1 | 103.3 | 0.0000 (asym 4.0e-17) | 0.000 [0.000, 0.010] | 103.3, p 0.000 | 0.000 [0.000, 0.000] (G 103.3, p 0.000) | 58.3
+Ethics (Elwes) / runes | 89339 | 30.3 | 354.0 | 387.2 | 0.0000 (asym 3.2e-76) | 0.485 [0.445, 0.525] | 40.2, p 0.000 | 0.495 [0.450, 0.540] (G 55.6, p 0.000) | 103.1
+Ethics (Elwes) / letters | 89339 | 24.1 | 186.3 | 196.0 | 0.0000 (asym 5.1e-36) | 0.335 [0.275, 0.390] | 80.9, p 0.000 | 0.345 [0.285, 0.405] (G 83.9, p 0.000) | 103.1
+(chi2 / G / p are for the UNFITTED model 'LP2 has the baseline's distribution'; the fit columns are the +1 model.)
+
+## 2. One-rune accounting (LP2 has 83 one-rune words)
+  Solved text|runes: baseline 1-rune share 3.65% -> 105.8 words expected without insertion; multi convention (q 0.360) expects 105.8 (observed 83, z -2.22); all-words convention (q 0.380) expects 65.6 (z +2.15); z for the multi convention with the baseline's own noise (variance x (1 + n1/N2), N2 = 739): -1.00
+  Solved text|letters: baseline 1-rune share 3.65% -> 105.8 words expected without insertion; multi convention (q 0.215) expects 105.8 (observed 83, z -2.22); all-words convention (q 0.235) expects 80.9 (z +0.23); z for the multi convention with the baseline's own noise (variance x (1 + n1/N2), N2 = 739): -1.00
+  Emerson|runes: baseline 1-rune share 3.01% -> 87.3 words expected without insertion; multi convention (q 0.425) expects 87.3 (observed 83, z -0.46); all-words convention (q 0.420) expects 50.6 (z +4.55); z for the multi convention with the baseline's own noise (variance x (1 + n1/N2), N2 = 74880): -0.45
+  Emerson|letters: baseline 1-rune share 3.01% -> 87.3 words expected without insertion; multi convention (q 0.195) expects 87.3 (observed 83, z -0.46); all-words convention (q 0.190) expects 70.7 (z +1.47); z for the multi convention with the baseline's own noise (variance x (1 + n1/N2), N2 = 74880): -0.45
+
+## 3. Genre noise: English blocks against the solved text, and LP2 among them
+Blocks of 2,896 contiguous words (1,000 per corpus) from each corpus: their G against the solved text's histogram, next to LP2's own two-sample G against it; percentile = share of blocks with G >= LP2's.
+  spelling runes: LP2 G 41.7, LP2 2-rune share 15.47%
+    Emerson              block 2-rune share 27.00% (2.5-97.5: 25.10-29.08); block G vs solved median   16.9 [2.5-97.5: 7.3-34.3]; share of blocks with G >= LP2 0.008; share with 2-rune <= LP2 0.000
+    Walden               block 2-rune share 24.92% (2.5-97.5: 22.41-27.35); block G vs solved median   19.5 [2.5-97.5: 9.3-35.8]; share of blocks with G >= LP2 0.000; share with 2-rune <= LP2 0.000
+    Origin of Species    block 2-rune share 26.39% (2.5-97.5: 23.76-29.35); block G vs solved median   67.2 [2.5-97.5: 32.7-172.8]; share of blocks with G >= LP2 0.914; share with 2-rune <= LP2 0.000
+    KJV Bible            block 2-rune share 25.91% (2.5-97.5: 21.37-30.87); block G vs solved median   47.5 [2.5-97.5: 18.0-87.3]; share of blocks with G >= LP2 0.612; share with 2-rune <= LP2 0.000
+    Republic (Jowett)    block 2-rune share 27.80% (2.5-97.5: 24.07-32.84); block G vs solved median   19.0 [2.5-97.5: 8.6-84.6]; share of blocks with G >= LP2 0.229; share with 2-rune <= LP2 0.000
+    Meditations          block 2-rune share 24.57% (2.5-97.5: 22.44-26.80); block G vs solved median   19.0 [2.5-97.5: 8.6-34.9]; share of blocks with G >= LP2 0.012; share with 2-rune <= LP2 0.000
+    Paradise Lost        block 2-rune share 18.99% (2.5-97.5: 17.20-21.17); block G vs solved median   41.5 [2.5-97.5: 22.2-60.6]; share of blocks with G >= LP2 0.488; share with 2-rune <= LP2 0.000
+    Ethics (Elwes)       block 2-rune share 30.37% (2.5-97.5: 23.62-36.09); block G vs solved median   35.7 [2.5-97.5: 18.3-82.7]; share of blocks with G >= LP2 0.414; share with 2-rune <= LP2 0.000
+    ALL 8 corpora pooled: share of blocks with G >= LP2's 0.335; share with 2-rune share <= LP2's 15.47%: 0.0000
+  spelling letters: LP2 G 28.0, LP2 2-rune share 15.47%
+    Emerson              block 2-rune share 20.00% (2.5-97.5: 17.99-21.76); block G vs solved median   29.6 [2.5-97.5: 20.3-43.9]; share of blocks with G >= LP2 0.636; share with 2-rune <= LP2 0.000
+    Walden               block 2-rune share 18.41% (2.5-97.5: 15.78-21.24); block G vs solved median   30.1 [2.5-97.5: 18.6-47.0]; share of blocks with G >= LP2 0.637; share with 2-rune <= LP2 0.011
+    Origin of Species    block 2-rune share 19.20% (2.5-97.5: 16.82-21.51); block G vs solved median   58.7 [2.5-97.5: 30.8-138.1]; share of blocks with G >= LP2 0.999; share with 2-rune <= LP2 0.000
+    KJV Bible            block 2-rune share 16.55% (2.5-97.5: 13.33-21.45); block G vs solved median   67.7 [2.5-97.5: 27.5-119.7]; share of blocks with G >= LP2 0.972; share with 2-rune <= LP2 0.288
+    Republic (Jowett)    block 2-rune share 20.60% (2.5-97.5: 17.99-22.86); block G vs solved median   35.7 [2.5-97.5: 20.1-73.2]; share of blocks with G >= LP2 0.820; share with 2-rune <= LP2 0.000
+    Meditations          block 2-rune share 20.35% (2.5-97.5: 18.64-22.03); block G vs solved median   37.0 [2.5-97.5: 22.9-58.1]; share of blocks with G >= LP2 0.862; share with 2-rune <= LP2 0.000
+    Paradise Lost        block 2-rune share 14.53% (2.5-97.5: 11.46-17.02); block G vs solved median   57.6 [2.5-97.5: 33.9-79.1]; share of blocks with G >= LP2 1.000; share with 2-rune <= LP2 0.788
+    Ethics (Elwes)       block 2-rune share 24.08% (2.5-97.5: 19.06-27.07); block G vs solved median   50.1 [2.5-97.5: 28.5-83.5]; share of blocks with G >= LP2 0.979; share with 2-rune <= LP2 0.000
+    ALL 8 corpora pooled: share of blocks with G >= LP2's 0.863; share with 2-rune share <= LP2's 15.47%: 0.1359
+  LP2 against the equal-weight average of the 8 English histograms [runes] (2-rune 25.7%): G 197.2; 8,000 English 2,896-word blocks: median 97.2, 95th pct 271.0, 99th 384.4; share of blocks with G >= LP2's 0.1960
+  LP2 against the equal-weight average of the 8 English histograms [letters] (2-rune 19.2%): G 53.8; 8,000 English 2,896-word blocks: median 88.6, 95th pct 282.6, 99th 411.8; share of blocks with G >= LP2's 0.7144
+Blocks of 739 words (the size of the solved text), 1,000 per corpus: two-sample G of LP2 against each block, and the fitted q with that block as the baseline; the solved text's own value for comparison.
+  runes: solved text G 41.7, q 0.360.  739-word English blocks (8000): G median 73.1 [2.5-97.5: 26.7-167.4], share with G <= solved's 0.115; q median 0.400 [0.155-0.525]; 2-rune share median 25.8% [17.5-33.7]
+  letters: solved text G 28.0, q 0.215.  739-word English blocks (8000): G median 40.4 [2.5-97.5: 12.7-108.7], share with G <= solved's 0.253; q median 0.200 [0.000-0.400]; 2-rune share median 19.4% [12.7-26.1]
+
+## 4. Where the 2-rune deficit sits: word identity in the solved text and in Emerson
+  Solved text, 2-rune words: 178 of 739 (24.1%) = 698 per 2,896 words; LP2 has 448.
+    type: n (share of the 2-unit bin; expected count at 2,896 words): THE 46 (26%; 180); TO 24 (13%; 94); IS 22 (12%; 86); WE 19 (11%; 74); OF 9 (5%; 35); AN 9 (5%; 35); BE 8 (4%; 31); HE 8 (4%; 31); IT 7 (4%; 27); OR 5 (3%; 20); DO 4 (2%; 16); AM 4 (2%; 16)
+    the seven named function words OF TO IN IS IT BE AN: 81 = 45.5% of the bin, 11.0% of all words (317 per 2,896)
+  Solved text, 2-letter words: 132 of 739 (17.9%) = 517 per 2,896 words; LP2 has 448.
+    type: n (share of the 2-unit bin; expected count at 2,896 words): TO 24 (18%; 94); IS 22 (17%; 86); WE 19 (14%; 74); OF 9 (7%; 35); AN 9 (7%; 35); BE 8 (6%; 31); HE 8 (6%; 31); IT 7 (5%; 27); OR 5 (4%; 20); DO 4 (3%; 16); AM 4 (3%; 16); SO 3 (2%; 12)
+    the seven named function words OF TO IN IS IT BE AN: 81 = 61.4% of the bin, 11.0% of all words (317 per 2,896)
+  Emerson, 2-unit words (runes): 20286 of 74880 (27.1%); top: THE 25%; OF 16%; TO 9%; IS 8%; IN 7%; IT 5%; WE 3%; AS 3%; seven function words 48.0% of the bin, 13.0% of all words
+  Emerson, 2-unit words (letters): 14970 of 74880 (20.0%); top: OF 21%; TO 12%; IS 10%; IN 10%; IT 6%; WE 5%; AS 4%; HE 4%; seven function words 65.0% of the bin, 13.0% of all words
+  'THE' is 46 of 739 solved words (6.2%), 2 runes but 3 letters: in the rune spelling it alone gives 180 of the 2-rune words per 2,896.
+  Deficit hypotheses against the solved-text baseline (what the 2-unit bin would have to lose; two-sample G to LP2, df 11, MC p; share of 2-unit tokens removed):
+    runes   full baseline                         : 2-unit share  24.1%, G   41.7, p 0.0000
+    runes   without THE (runes only)              : 2-unit share  19.0%, G   18.1, p 0.0847
+    runes   without the seven function words      : 2-unit share  14.7%, G   13.2, p 0.2865
+    runes   without the 12 commonest 2-unit types : 2-unit share   2.3%, G  112.7, p 0.0000
+    letters full baseline                         : 2-unit share  17.9%, G   28.0, p 0.0037
+    letters without THE (runes only)              : 2-unit share  17.9%, G   28.0, p 0.0033
+    letters without the seven function words      : 2-unit share   7.8%, G   55.4, p 0.0000
+    letters without the 12 commonest 2-unit types : 2-unit share   1.6%, G  148.0, p 0.0000
+  Deficit decomposition (letters, solved-text baseline): LP2 2-letter-equivalent count 448 vs 517 expected; the shortfall of 69 words equals 13% of the bin, i.e. it could be removed from the seven function words alone (317 per 2,896), but LP2 gives no word identities, so which words are missing is not observable.
+
+## 5. Controls
+Positive controls (pseudo-LP2 of 2,896 words, +1 rune at q 0.45 in multi-rune words; fit CI and p use 600 bootstrap draws each; 200 pseudo texts):
+  P1 solved text -> solved text baseline [runes] (brief's design; baseline sample shared with the source): q-hat mean 0.449 sd 0.025 (true 0.45); CI covers 0.45 in 200/200; model accepted (p > 0.05) in 200/200; median fit p 0.971
+  P1 solved text -> solved text baseline [letters] (brief's design; baseline sample shared with the source): q-hat mean 0.448 sd 0.025 (true 0.45); CI covers 0.45 in 200/200; model accepted (p > 0.05) in 200/200; median fit p 0.976
+  P2 Walden + q 0.45 -> Emerson baseline [runes] (independent texts): q-hat mean 0.482 sd 0.023 (true 0.45); CI covers 0.45 in 160/200; model accepted (p > 0.05) in 0/200; median fit p 0.002
+  P2 Walden + q 0.45 -> Emerson baseline [letters] (independent texts): q-hat mean 0.491 sd 0.028 (true 0.45); CI covers 0.45 in 137/200; model accepted (p > 0.05) in 0/200; median fit p 0.002
+  P3 half of solved text + q 0.45 -> other half as baseline [runes] (independent, 369/370 words): q-hat mean 0.439 sd 0.075 (true 0.45); CI covers 0.45 in 171/200; model accepted (p > 0.05) in 126/200; median fit p 0.106
+  P3 half of solved text + q 0.45 -> other half as baseline [letters] (independent, 369/370 words): q-hat mean 0.439 sd 0.074 (true 0.45); CI covers 0.45 in 175/200; model accepted (p > 0.05) in 130/200; median fit p 0.102
+Null controls (200 draws unless stated; two-sample MC p with 2000 draws each):
+  N1 Emerson pseudo-LP2 (no insertion) vs solved text [runes]: rejects at 0.05 in 28/200 (nominal 5%); median p 0.1287; fitted q on the same: mean 0.006
+  N2a Emerson 2,896 vs independent Emerson 739 [runes] (400 draws): rejects at 0.05 in 0.052; KS p of uniformity 0.54
+  N2b solved text against itself [runes] (400 draws): (i) pseudo from the solved histogram vs the SAME 739-word baseline: rejects at 0.05 in 0.000, KS p 0 (shared sample: conservative by design); (ii) pseudo vs a fresh 739-word resample: rejects 0.022, KS p 0.49
+  N1 Emerson pseudo-LP2 (no insertion) vs solved text [letters]: rejects at 0.05 in 189/200 (nominal 5%); median p 0.0055; fitted q on the same: mean 0.100
+  N2a Emerson 2,896 vs independent Emerson 739 [letters] (400 draws): rejects at 0.05 in 0.052; KS p of uniformity 0.85
+  N2b solved text against itself [letters] (400 draws): (i) pseudo from the solved histogram vs the SAME 739-word baseline: rejects at 0.05 in 0.000, KS p 0 (shared sample: conservative by design); (ii) pseudo vs a fresh 739-word resample: rejects 0.045, KS p 0.31
+  N3 (fit under q = 0): pseudo-LP2 from the solved text without insertion, solved text baseline, q-hat should sit near 0:
+    [runes] q-hat mean 0.011, share exactly 0: 0.53 (boundary bias: the fit cannot go below 0)
+    [letters] q-hat mean 0.010, share exactly 0: 0.53 (boundary bias: the fit cannot go below 0)
+
+## 6. Reading
+  Against Cicada's own text in letters: G 28.0 (df 11), MC p 0.0045 (asymptotic 3.2e-03); in runes G 41.7, MC p 5.0e-05.
+  Fitted q: solved/letters 0.215 [0.130, 0.315], solved/runes 0.360 [0.270, 0.450], Emerson/runes 0.425 [0.375, 0.470].
+
+Wall 1242 s, process CPU 1200 s.

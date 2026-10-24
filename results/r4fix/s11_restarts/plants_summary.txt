@@ -1,0 +1,46 @@
+# s11 controls: R4 plants (slots any, q 0.81, nu 0.45, T repair) on a named stream restarted at an LP2 page start; same driver (union arc nu 0.42, hold + spend, both signs, 61 named streams, offsets 0..28); detected = S_guard at (true stream, sign, channel, offset 0) >= T300 = 29.80
+
+n 150: detected 28/28 (first 12: 12/12), true within 3 nats of the best cell 28/28, true-cell score min / median / max 45.2 / 64.0 / 78.1; wrong-stream max over the plant searches (offset 0) 77.0; matched iid-key plants searched with the same 61 streams: max -9.9 (offset 0), -9.9 (offsets 0..28), >= T300: 0/28
+    m04   cicada   detected 7/7
+    m04   english  detected 7/7
+    spend cicada   detected 7/7
+    spend english  detected 7/7
+    plants whose page start is mid-word: 21, detected 21
+n 300: detected 28/28 (first 12: 12/12), true within 3 nats of the best cell 28/28, true-cell score min / median / max 104.5 / 134.6 / 163.9; wrong-stream max over the plant searches (offset 0) 154.4; matched iid-key plants searched with the same 61 streams: max -43.6 (offset 0), -43.6 (offsets 0..28), >= T300: 0/28
+    m04   cicada   detected 7/7
+    m04   english  detected 7/7
+    spend cicada   detected 7/7
+    spend english  detected 7/7
+    plants whose page start is mid-word: 21, detected 21
+
+per plant (n 300): channel src idx | stream | sign | page | true-cell score | nulls (edge) in 300 | best wrong | matched-null max (0..28)
+m04   cicada    0 | sha256-chain mod :<256 bytes cbe7a | +1 | 20_0.8@478   mid-word |   121.0 | 23 ( 6) |  112.4 |   -69.1
+m04   cicada    1 | sha256-ctr mod :welcome            | -1 | 52_0.14@893           |   133.2 | 25 (13) |  122.5 |   -56.8
+m04   cicada    2 | An End hash bytes                  | +1 | 64_0.15@2408 mid-word |   151.7 | 30 (10) |  127.3 |   -62.2
+m04   cicada    3 | 1033*n                             | -1 | 19_0.8@217   mid-word |   127.9 | 27 (10) |  115.0 |   -63.1
+m04   cicada    4 | n^3                                | +1 | 46_0.13@1043          |   155.3 | 24 ( 9) |  151.1 |   -77.8
+m04   cicada    5 | sha256-ctr mod :an end             | -1 | 35_0.11@1221 mid-word |   140.1 | 24 (12) |  126.5 |   -68.4
+m04   cicada    6 | sha256-chain mod :welcome          | +1 | 53_0.14@1121          |   139.7 | 26 (13) |  118.2 |   -61.7
+m04   english   0 | 1033*n                             | +1 | 68_0.15@2829 mid-word |   107.4 | 29 (13) |  103.3 |   -70.8
+m04   english   1 | sha256-ctr reject :welcome         | -1 | 61_0.15@1593 mid-word |   130.3 | 31 (13) |  124.8 |   -72.0
+m04   english   2 | sha256-chain reject :an end        | +1 | 65_0.15@2474          |   141.5 | 25 (11) |  122.5 |   -69.6
+m04   english   3 | 1033 digits                        | -1 | 58_0.15@776  mid-word |   104.5 | 29 (11) |   93.0 |   -79.7
+m04   english   4 | sha256-ctr reject :an end          | +1 | 45_0.13@780  mid-word |   123.1 | 25 (10) |  116.9 |   -68.9
+m04   english   5 | gematria primes cycle              | -1 | 67_0.15@2566 mid-word |   147.5 | 22 ( 9) |  144.1 |   -79.7
+m04   english   6 | sha256-chain mod :3301             | +1 | 51_0.14@655  mid-word |   129.9 | 29 (16) |  122.2 |   -70.4
+spend cicada    0 | pi digits (base 29)                | +1 | 49_0.14@123  mid-word |   122.1 | 26 (10) |  114.6 |   -64.5
+spend cicada    1 | 1033 digits                        | -1 | 59_0.15@1050 mid-word |   130.5 | 28 ( 8) |  127.7 |   -69.7
+spend cicada    2 | An End hash nibbles                | +1 | 51_0.14@655  mid-word |   129.8 | 25 (12) |  118.2 |   -43.6
+spend cicada    3 | ln2 digits (base 29)               | -1 | 49_0.14@123  mid-word |   128.5 | 29 (12) |  126.5 |   -68.4
+spend cicada    4 | sha256-chain mod :Cicada 3301      | +1 | 44_0.13@503           |   163.9 | 25 (12) |  154.1 |   -71.0
+spend cicada    5 | sqrt2 digits (base 29)             | -1 | 57_0.15@504  mid-word |   147.5 | 25 ( 8) |  136.2 |   -76.1
+spend cicada    6 | sha256-ctr reject :Cicada 3301     | +1 | 39_0.12@213  mid-word |   136.7 | 31 (11) |  129.7 |   -71.4
+spend english   0 | sha256-chain reject :Cicada 3301   | +1 | 49_0.14@123  mid-word |   108.9 | 31 (13) |  101.3 |   -70.1
+spend english   1 | triangular                         | -1 | 36_0.11@1490          |   131.0 | 23 (10) |  119.9 |   -66.1
+spend english   2 | primes+1                           | +1 | 56_0.15@231  mid-word |   157.2 | 28 (11) |  154.4 |   -75.5
+spend english   3 | ln3301 digits (base 29)            | -1 | 40_0.12@483  mid-word |   134.6 | 26 ( 8) |  119.6 |   -76.3
+spend english   4 | sha256-chain reject :instar        | +1 | 36_0.11@1490          |   138.8 | 25 ( 9) |  133.4 |   -69.2
+spend english   5 | An End hash nibbles                | -1 | 68_0.15@2829 mid-word |   138.1 | 24 ( 8) |  116.7 |   -75.5
+spend english   6 | sha256-chain reject :<256 bytes cb | +1 | 45_0.13@780  mid-word |   145.1 | 31 ( 8) |  144.6 |   -72.6
+
+CPU seconds (plants + nulls, both n): total 2535

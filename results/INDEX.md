@@ -60,6 +60,7 @@
 | Phase 60 T5: 'do four unreasonable things each day': four-way sums of pi, e, phi, sqrt2 digit streams and one constant per page | partial |  | [phase60_t4t5.py](../work/kscreen/phase60_t4t5.py), [phase60_t4t5](kscreen/phase60_t4t5) |
 | Phase 60 T8: DATA/560.13 of the 2013 Cicada OS (118,818,811 uniformly random bytes) as a key: additive plain screen, R4, XOR (start region complete, arbitrary offsets sampled) | partial |  | [phase60_t8.py](../work/kscreen/phase60_t8.py), [phase60_t8_r4.py](../work/phase60_t8_r4.py), [phase60_t8_xor.py](../work/phase60_t8_xor.py), [phase60_t8](kscreen/phase60_t8), [phase60_t8_560_13_r4.txt](analysis/phase60_t8_560_13_r4.txt), [phase60_t8_560_13_xor.txt](analysis/phase60_t8_560_13_xor.txt), [phase60_t8_r4](chanscreen/phase60_t8_r4) |
 | Phase 60 T8: the 2013 / 2014 Cicada audio (761.MP3, the Interconnectedness MP3, c.mp3) stripped to frame payload bytes as additive key streams (cheap screen) | partial |  | [phase60_t8.py](../work/kscreen/phase60_t8.py), [phase60_t8_mp3.py](../work/phase60_t8_mp3.py), [phase60_t8](kscreen/phase60_t8) |
+| R4 x key restarts: 61 Cicada-named streams restarted at the 46 page starts and the 82 clause starts, decoded with the union arc | partial |  | [s11_restarts.py](../work/r4fix/s11_restarts.py), [s11_restarts](r4fix/s11_restarts) |
 
 ### Seeded generators, passphrases and sequences as keys
 
@@ -131,6 +132,8 @@
 | Does LP2's machine change settings along the book? (change points of the doublet, lag-6 and word-length rates per page; one R4 setting for 0.53% vs 0.77% doublets) | partial |  | [phase63_change_points.py](../work/phase63_change_points.py), [phase63_change_points.txt](analysis/phase63_change_points.txt) |
 | Is LP2's clause structure authored like LP1's? (clause length, words per clause, one-word clauses, clause-end word length, parity and moduli of lengths; against ordinary English in runes) | observed |  | [phase64_clause_structure.py](../work/phase64_clause_structure.py), [phase64_clause_structure.txt](analysis/phase64_clause_structure.txt) |
 | Does the R4 decoder see R4 as fitted? (null slot 0..L with word edges vs the interior-only plants and mid arc; power by n, nu, q; slot rule, null count and null check from LP2's statistics; a union arc) | partial |  | [r4fix](../work/r4fix), [r4fix](r4fix) |
+| Word-length anomaly against Cicada's own solved text with the baseline's sampling noise: how many extra runes does each honest baseline imply? | observed |  | [s12_wordlen_baseline.py](../work/r4fix/s12_wordlen_baseline.py), [s12_wordlen_baseline](r4fix/s12_wordlen_baseline) |
+| Are the 80 lag-6 T sites repairs? Doublets at the sites, source-rune uniformity, word-final share, and the full T grid (rune-lag 1-12 x 0-4 word gaps) under R4 / R3 / R7 | observed |  | [s13_tsites.py](../work/r4fix/s13_tsites.py), [s13_summary.py](../work/r4fix/s13_summary.py), [s13_tsites](r4fix/s13_tsites) |
 
 ### Restarts, reuse and layout
 

@@ -1643,3 +1643,39 @@ files = ["work/r4fix/", "results/r4fix/"]
 path = "results/r4fix"
 what = "R4 repair sessions s01-s10 (laptop, 2026-10-23/24): per-plant records and summaries of the edge-slot plants, the mid-arc power map, slot-rule / null-count / null-check simulations, literal-F plants and the union-arc gates (plants and simulations only, no LP2 ciphertext)"
 read = "work/log/r4fix_2026-10-24.md"
+
+[[experiment]]
+id = "r4-restarts"
+group = "streams"
+title = "R4 x key restarts: 61 Cicada-named streams restarted at the 46 page starts and the 82 clause starts, decoded with the union arc"
+status = "partial"
+what = "Laptop session s11 (2026-10-24): key index 0 at each restart (plus offsets 1-28), windows n = min(300, runes to the section end) and n = min(300, runes to the next restart), n >= 150 (179 windows, 167 unique); union arc (one null at any cipher position, nu 0.42), q 0.81, hold and spend, both signs; 61 named library streams (layer2 core20, base-29 constants, 1033 / 3301 families, An End hash, SHA-256 streams of Cicada strings, the 256-byte payload); 100 random streams on the same windows as the null of the maximum"
+control = "28 R4 plants (r4sim, slots any, q 0.81, nu 0.45) on named streams restarted at LP2 page starts, 21 mid-word: 28/28 detected at n 150 and at n 300; matched iid-key plants max -9.9 / -43.6; non-alias other streams <= -15.7 on every plant"
+result = "Negative: 1,181,692 named cells, 0 at T300 29.8 (none reaches 0); named best -26.84 vs random-stream null maximum -24.93 (offset 0: -28.13 vs -27.15)"
+gap = "61 of 1,439 library streams; 77 window-variants under 150 runes skipped; restart points other than page and clause starts; skip5 / coin channels; offsets beyond 28; one null per word"
+log = ["work/log/r4fix_s11_restarts.md"]
+files = ["work/r4fix/s11_restarts.py", "results/r4fix/s11_restarts/"]
+
+[[experiment]]
+id = "wordlen-baseline"
+group = "structure"
+title = "Word-length anomaly against Cicada's own solved text with the baseline's sampling noise: how many extra runes does each honest baseline imply?"
+status = "observed"
+what = "Laptop session s12 (2026-10-24): two-sample tests (bootstrap, both samples resampled) of LP2's 2,896 word lengths against the solved plaintext (739 words), Emerson and other corpora, each spelled in Gematria runes and in letters; minimum-G fit of q in '+1 rune in a share q of multi-rune words' with bootstrap CIs; one-rune accounting; the 2-rune deficit by word identity in the solved text"
+control = "P1: pseudo-LP2 from the solved text at q 0.45 recovered (CI covers 200/200, model accepted 200/200); P3: independent halves of the solved text recover q with sd 0.075; P2 (Walden vs Emerson) FAILS (accepted 0/200, q biased +0.03 to +0.04): genre differences exceed sampling noise"
+result = "Runes (Cicada's spelling): anomaly survives at p about 1e-5 (G 41.7; 2-rune share 24.1% vs 15.5%), q 0.36 [0.27, 0.45] against the solved text, 0.425 [0.375, 0.47] against Emerson; no English block of 8,000 is as low. Letters: does not survive (13.6% of English 2,896-word blocks have a 2-letter share <= 15.5%; q 0.215 [0.13, 0.32]). THE accounts for 180 of the 250-word 2-rune deficit. One-rune words 83: z -0.5 / -1.0 under the multi-rune convention (phase 60's z +4.55 is the all-words convention)"
+gap = "The solved text is 739 words in one register; fit p against other-genre baselines is not calibrated (P2); word identities are not observable in LP2, so the THE / function-word split is post hoc"
+log = ["work/log/r4fix_s12_wordlen_baseline.md"]
+files = ["work/r4fix/s12_wordlen_baseline.py", "results/r4fix/s12_wordlen_baseline/"]
+
+[[experiment]]
+id = "tsite-checks"
+group = "structure"
+title = "Are the 80 lag-6 T sites repairs? Doublets at the sites, source-rune uniformity, word-final share, and the full T grid (rune-lag 1-12 x 0-4 word gaps) under R4 / R3 / R7"
+status = "observed"
+what = "Laptop session s13 (2026-10-24): keyless statistics on LP2's T sites against R4, R3, R7 and R0 replicates (r4sim, 500 each) and within-word / word-order shuffles (2,000 / 300); the T grid with the max over 812 affine forms per lag; a planted gap-crossing look-back (weight 0.26) as positive control"
+control = "LP2's lag-6 cell reproduces 80 / 44.47 (z +5.42) and the (5, 1) cell 307 / 254.2; R4 replicates reproduce phase 57 (76.5 sites, 31.1 word-final); the planted look-back gives a (5, 1) excess of +44 (target 53)"
+result = "Not decidable: 1 doublet at 80 T sites (R4 predicts 0.28, ordinary pairs 0.56), source runes uniform (chi2 28.0), 32 word-final sites (R4 31.1, R3 26.6, R7 23.9, R0 16): consistent with repairs, not separating them from an unlinked echo. The (lag 5, 1 gap) and lag-9 cells are the largest of 41 cells, P 0.03 / 0.018 under R4, unexplained; the (5, 2) cell is 2.4 sd below the look-back model's prediction"
+gap = "Power for items 21-22 is near zero at 80 sites; the grid's post-hoc selection is corrected only over its own 41 cells"
+log = ["work/log/r4fix_s13_tsites.md"]
+files = ["work/r4fix/s13_tsites.py", "work/r4fix/s13_summary.py", "results/r4fix/s13_tsites/"]
